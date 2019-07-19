@@ -1,9 +1,9 @@
 // Locale implementation inspired by https://github.com/PolymerElements/app-localize-behavior
 
 import { LitElement } from 'lit-element';
-import { OavBaseElement } from './oap-base-element';
+import { OapBaseElement } from './oap-base-element';
 
-export class OapPageViewElement extends OavBaseElement {
+export class OapPageViewElement extends OapBaseElement {
 
   shouldUpdate() {
     return this.active;

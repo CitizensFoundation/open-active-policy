@@ -1,16 +1,15 @@
 import { html } from 'lit-element';
-import { cache } from 'lit-html/directives/cache.js';
-import { PageViewElement } from './oap-page-view-element.js/index.js';
-import { OavAreaBallotStyles } from './oav-area-ballot-styles.js';
-import { encryptVote } from './ballot-encryption-behavior.js'
+import { OapPageViewElement } from './oap-page-view-element.js';
+import { OavAreaBallotStyles } from './oap-ballot-styles.js/index.js';
+import { encryptVote } from '../ballot-encryption-behavior.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 
 import '@polymer/paper-tabs/paper-tab';
 import '@polymer/paper-tabs/paper-tabs';
-import './select-articles/oap-article-item';
-import './oav-area-ballot-map';
+import './oap-article-item';
+import '../oav-area-ballot-map';
 
-class OavAreaBallot extends PageViewElement {
+class OapBallot extends OapPageViewElement {
   static get properties() {
     return {
       area: {
@@ -57,7 +56,7 @@ class OavAreaBallot extends PageViewElement {
 
   static get styles() {
     return [
-      OavAreaBallotStyles
+      OapBallotStyles
     ];
   }
 
@@ -65,49 +64,22 @@ class OavAreaBallot extends PageViewElement {
     return html`${this.area ?
       html`
         <div class="topContainer layout vertical">
-          <div class="layout horizontal center-center tabsContainer">
-            <paper-tabs id="tabs" selected="${this.selectedView}" @selected-changed="${this._selectedChanged}">
-              <paper-tab>
-                <div ?hidden="${!this.wide}">${this.area.name}</div>
-                <div ?hidden="${this.wide}" class="layout vertical center-center">
-                  <div>${this.area.name}</div>
-                </div>
-              </paper-tab>
-              <paper-tab ?hidden="${this.configFromServer.client_config.hideLocation}">${this.localize('items_on_map')}</paper-tab>
-            </paper-tabs>
-          </div>
-
           ${this.budgetBallotItems ?
             html`
               <div id="itemContainer" class="layout horizontal center-center flex wrap" ?hidden="${this.selectedView===1}">
                 ${this.budgetBallotItems.map((item, index) =>
                   html`
-                    <oav-area-ballot-item
+                    <oap-article-item
                       .name="${item.id}"
                       class="ballotAreaItem"
                       .configFromServer="${this.configFromServer}"
                       .language="${this.language}"
                       .budgetElement="${this.budgetElement}"
                       .item="${item}">
-                    </oav-area-ballot-item>
+                    </oap-article-item>
                   `
                 )}
               </div>
-              ${this.showMap ?
-                html`
-                  <oav-area-ballot-map
-                    ?hidden="${this.selectedView===0}"
-                    id="itemsMap"
-                    .budgetElement="${this.budgetElement}"
-                    .configFromServer="${this.configFromServer}"
-                    .language="${this.language}"
-                    .items="${this.budgetBallotItems}">
-                  </oav-area-ballot-map>
-                `
-                :
-                html`
-                `
-              }
             `
             :
             ''
@@ -303,14 +275,14 @@ class OavAreaBallot extends PageViewElement {
   }
 
   _toggleItemInBudget(event) {
-    this.budgetElement.toggleBudgetItem(event.detail.item);
+    this.budgetElement.toggleBudgetItem(event.detail.item);OapBallot
   }
 
   _itemSelectedInBudget(event) {
     var listItems = this.$$("#itemContainer");
     for (var i = 0; i < listItems.children.length; i++) {
       var listItem = listItems.children[i];
-      if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
+      if (listItem.id != 'domRepeat' && listItem.item.id ==OapBallot
         listItem.setInBudget();
         const map = this.$$("#itemsMap");
         if (map)
@@ -472,4 +444,4 @@ class OavAreaBallot extends PageViewElement {
   }
 }
 
-window.customElements.define('oav-area-ballot', OavAreaBallot);
+window.customElements.define('oap-ballot', OapBallot);

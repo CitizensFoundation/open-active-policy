@@ -23,11 +23,11 @@ import '@polymer/paper-spinner/paper-spinner.js';
 import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import './oav-icons.js';
 import './snack-bar.js';
-import './oav-area-ballot';
-import './oav-area-budget';
-import './oav-voting-completed';
+import './policy-quiz/oap-policy-quiz';
+//import './browse-articles/oap-swipable-cards';
+//import './oav-voting-completed';
 
-import { OapAppStyles } from './oap-app-styles.js/index.js';
+import { OapAppStyles } from './oap-app-styles';
 import { OapBaseElement } from './oap-base-element.js';
 import { OapFlexLayout } from './oap-flex-layout.js';
 
@@ -87,14 +87,14 @@ class OapApp extends OapBaseElement {
         value: false
       },
 
-      hideArticlesFolder: {
+      hideBudget: {
         type: Boolean,
         value: true
       },
 
       areaName: String,
 
-      articlesFolderElement: Object,
+      ballotElement: Object,
 
       currentBallot: Object,
 
@@ -119,7 +119,11 @@ class OapApp extends OapBaseElement {
 
       errorText: String,
 
-      languageOveride: String
+      languageOveride: String,
+
+      filteredItems: Array,
+
+      quizQuestions: Array
     };
   }
 
@@ -203,8 +207,8 @@ class OapApp extends OapBaseElement {
             <div class="helpIconInBudget">
               <paper-icon-button icon="help-outline" alt="${this.localize('help')}" @click="${this._help}}"></paper-icon-button>
             </div>
-            <div class="budgetConstainer layout horizontal center-center" ?hidden="${this.hideArticlesFolder}">
-              <oap-articles-folder
+            <div class="budgetConstainer layout horizontal center-center" ?hidden="${this.hideBudget}">
+              <oap-budget
                 id="budget"
                 .areaName="${this.areaName}"
                 .language="${this.language}"
@@ -212,20 +216,20 @@ class OapApp extends OapBaseElement {
                 .totalBudget="${this.totalBudget}"
                 .configFromServer="${this.configFromServer}"
                 .currentBallot="${this.currentBallot}">
-              </oap-articles-folder>
+              </oap-budget>
             </div>
           </app-toolbar>
           <iron-icon id="favoriteIcon" icon="${this.favoriteIcon}" hidden></iron-icon>
         </app-header>
-
         <main role="main" class="main-content" ?has-ballot="${this._page == 'area-ballot'}">
-          <oap-quiz
+          <oap-policy-quiz
             id="quiz"
+            .question="${this.quizQuestions}"
             .language="${this.language}"
             ?active="${this._page === 'quiz'}">
-          </oap-quiz>
+          </oap-policy-quiz>
           <oap-browse-articles id="browseArticles"
-            .articlesFolderElement="${this.articlesFolderElement}"
+            .ballotElement="${this.ballotElement}"
             .language="${this.language}"
             .areaIdRoutePath="${this._subPath}"
             .configFromServer="${this.configFromServer}"
@@ -238,15 +242,16 @@ class OapApp extends OapBaseElement {
             .language="${this.language}"
             ?active="${this._page === 'article-selection'}">
           </oap-article-selection>
-          <oap-final-document
+          <oap-ballot
+            .budgetBallotItems="${this.filteredItems}"
             .configFromServer="${this.configFromServer}"
             .language="${this.language}"
             ?active="${this._page === 'final-document'}">
-          </oap-final-document>
+          </oap-ballot>
           ${ this._page === 'post' ? html`
             <yp-post
               .id="post"
-              .articlesFolderElement="${this.articlesFolderElement}"
+              .ballotElement="${this.ballotElement}"
               .language="${this.language}"
               .postId="${this._subPath}"
               .host="${this.postsHost}">
@@ -280,6 +285,49 @@ class OapApp extends OapBaseElement {
       this.language = language;
       localStorage.setItem("languageOverride", language);
     }
+
+    this.setDummyData();
+  }
+
+  setDummyData() {
+    this.quizQuestions = [
+      {
+        question: "What is the shortest Constitution in the world?",
+        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        correctAnswer: 2,
+        answers: [
+          "Luxemburg","Andorra","Monaco","Bangladesh"
+        ]
+      },
+      {
+        question: "When Oliver Cromwell set up his short-lived government following the English Civil war he created a constitution, but he called his document?",
+        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/cromwell1.jpg",
+        correctAnswer: 3,
+        answers: [
+          "The Law of the Land","Principia Jurisprudencia","The Fiat of God’s Will","The Instrument of Government"
+        ]
+      },
+      {
+        question: "The Edicts of Ashoka established a constitutional code for the 3rd Century BC in what is now what modern country?",
+        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/3bc1.jpg",
+        correctAnswer: 1,
+        answers: [
+          "Nigeria","India","Thailand","Australia"
+        ]
+      },
+      {
+        question: 'The famous line “life, liberty and the pursuit of happiness” in the US Constitution is actually an edit; the original line read, “life, liberty and..."?',
+        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/wethepeople1.png",
+        correctAnswer: 3,
+        answers: [
+          "The acquisition of wealth","The perfection of spirit","the promotion of the Common Good","the pursuit of property"
+        ]
+      },
+    ],
+
+    this.allItems = [
+
+    ]
   }
 
   _setupCustomCss(config) {
@@ -344,7 +392,7 @@ class OapApp extends OapBaseElement {
           this.favoriteIcon = this.configFromServer.client_config.favoriteIcon;
         }
 
-        if (!(location.href.indexOf("completePostingOfVoteAfterRedirect") > -1)) {
+        if (false && !(location.href.indexOf("completePostingOfVoteAfterRedirect") > -1)) {
           const path = "/area-ballot/"+this.oneBallotId;
           window.history.pushState({}, null, path);
           this.fire('location-changed', path);
@@ -407,7 +455,7 @@ class OapApp extends OapBaseElement {
   }
 
   _setBudgetElement(event) {
-    this.articlesFolderElement = event.detail;
+    this.ballotElement = event.detail;
   }
 
   _removeListeners() {
@@ -457,7 +505,7 @@ class OapApp extends OapBaseElement {
           transformLeft = detail.orgAnimPos.left-detail.budgetAnimPos.left;
           transformTop = detail.orgAnimPos.top-detail.budgetAnimPos.top;
         } else {
-          var oldBudgetAnimPos = this.currentBallot.oldFavoriteItem ? this.articlesFolderElement.getItemLeftTop(this.currentBallot.oldFavoriteItem) : null;
+          var oldBudgetAnimPos = this.currentBallot.oldFavoriteItem ? this.ballotElement.getItemLeftTop(this.currentBallot.oldFavoriteItem) : null;
           if (oldBudgetAnimPos) {
             transformLeft = oldBudgetAnimPos.left-detail.budgetAnimPos.left;
             transformTop = oldBudgetAnimPos.top-detail.budgetAnimPos.top;
@@ -652,9 +700,9 @@ class OapApp extends OapBaseElement {
 
       // Setup top ballot if needed
       if (page && page=='area-ballot') {
-        this.hideArticlesFolder = false;
+        this.hideBudget = false;
       } else {
-        this.hideArticlesFolder = true;
+        this.hideBudget = true;
       }
 
       // Reset post if needed
@@ -750,7 +798,7 @@ class OapApp extends OapBaseElement {
         break;
       case 'area-ballot':
       case 'voting-completed':
-      case 'select-voting-area':
+      case 'quiz':
       case '/':
         break;
       default:
@@ -770,4 +818,4 @@ class OapApp extends OapBaseElement {
   }
 }
 
-window.customElements.define('oav-app', OapApp);
+window.customElements.define('oap-app', OapApp);

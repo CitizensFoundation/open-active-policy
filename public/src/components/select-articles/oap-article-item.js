@@ -25,11 +25,11 @@ class OapArticleItem extends OapBaseElement {
 
       elevation: Number,
 
-      articlesFolderElement: {
+      ballotElement: {
         type: Object
       },
 
-      selectedInArticlesFolder: {
+      selectedInBudget: {
         type: Boolean
       },
 

@@ -87,7 +87,7 @@ export class OapSwipableCards extends OapBaseElement {
           </div>
           <div class="global-actions">
             <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
-            <div hidden?="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
+            <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
             <div class="right-action"><img src="https://image.ibb.co/dCuESn/Path_3x.png" width="30" height="28"/></div>
         </div>
       </div>
