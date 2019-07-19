@@ -5,6 +5,7 @@ Copyright (c) 2010-2019 Citizens Foundation. AGPL License. All rights reserved.
 */
 
 import { OapBaseElement } from '../oap-base-element';
+import { OapSwipableCardsStyles } from './oap-swipable-cards-styles';
 
 export class OapSwipableCards extends OapBaseElement {
 
@@ -13,10 +14,12 @@ export class OapSwipableCards extends OapBaseElement {
       stackedOptions: String,
       rotate: Boolean,
       items: Array,
+      visibleItems: Array,
       elementsMargin: Number,
       useOverlays: Boolean,
       maxElements: Number,
       currentPosition: Number,
+      currentItemsPosition: Number,
       isFirstTime: Boolean,
       elementHeight: Number,
       velocity: Number,
@@ -39,135 +42,44 @@ export class OapSwipableCards extends OapBaseElement {
       timeTaken: Number,
       rightOpacity: Number,
       leftOpacity: Number,
-      touchingElement: Boolean
+      touchingElement: Boolean,
+      disableUpSwipe: Boolean
     }
+  }
+
+  static get styles() {
+    return [
+      OapSwipableCardsStyles
+    ];
   }
 
   render() {
     return html`
       <div class="stage">
-        <div class="title">What Kind of Traveler Are You?</div>
+        <div class="title">${this.localize("filterArticles")}</div>
           <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
             <div class="stackedcards-container">
-              <div class="card">
-                <div class="card-content">
-                  <div class="card-image"><img src="https://image.ibb.co/gQsq07/Adventure_and_Outdoor.png" width="100%" height="100%"/></div>
-                  <div class="card-titles">
-                    <h1>Adventure <br/> and Outdoor</h1>
-                    <h3>10 Destinations</h3>
+              ${this.visibleItems.map((item, index) =>
+                html`
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-image"><img src="${item.image_url}" width="100%"/></div>
+                      <div class="card-titles">
+                        <h1>${item.name}</h1>
+                        <p class="description">${item.description}</p>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="popular-destinations-text">Cost: 16pt</div>
+                      <div class="popular-destinations-images">
+                        <div class="circle"><img src="https://image.ibb.co/jmEYL7/adventure_1.jpg" width="100%" height="100%"/></div>
+                        <div class="circle"><img src="https://image.ibb.co/nsCynn/adventure_2.jpg" width="100%" height="100%"/></div>
+                        <div class="circle"><img src="https://image.ibb.co/hmsL07/adventure_3.jpg" width="100%" height="100%"/></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="card-footer">
-                  <div class="popular-destinations-text">Popular <br/> Destinations</div>
-                  <div class="popular-destinations-images">
-                    <div class="circle"><img src="https://image.ibb.co/jmEYL7/adventure_1.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/nsCynn/adventure_2.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/hmsL07/adventure_3.jpg" width="100%" height="100%"/></div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-content">
-                  <div class="card-image"><img src="https://image.ibb.co/fXPg7n/Beach_and_Chill.png" width="100%" height="100%"/></div>
-                  <div class="card-titles">
-                    <h1>Beach <br/> and Chill</h1>
-                    <h3>12 Destinations</h3>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="popular-destinations-text">Popular Destinations</div>
-                  <div class="popular-destinations-images">
-                    <div class="circle"><img src="https://image.ibb.co/muiA07/beach_chill_1.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/emAOL7/beach_chill_2.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/invq07/beach_chill_3.jpg" width="100%" height="100%"/></div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-content">
-                  <div class="card-image"><img src="https://image.ibb.co/c9gTnn/Romantic_Gateways.png" width="100%" height="100%"/></div>
-                  <div class="card-titles">
-                    <h1>Romantic <br/> Gateways</h1>
-                    <h3>15 Destinations</h3>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="popular-destinations-text">Popular Destinations</div>
-                  <div class="popular-destinations-images">
-                    <div class="circle"><img src="https://image.ibb.co/nQrkYS/romantic_1.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/ioqOL7/romantic_2.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/mXSESn/romantic_3.jpg" width="100%" height="100%"/></div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-content">
-                  <div class="card-image"><img src="https://image.ibb.co/jY88nn/city_breaks.png" width="100%" height="100%"/></div>
-                  <div class="card-titles">
-                    <h1>City <br/> Breaks</h1>
-                    <h3>32 Destinations</h3>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="popular-destinations-text">Popular Destinations</div>
-                  <div class="popular-destinations-images">
-                    <div class="circle"><img src="https://image.ibb.co/myaetS/city_break_1.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/ciocf7/city_break_2.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/i2e5YS/city_break_3.jpg" width="100%" height="100%"/></div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-content">
-                  <div class="card-image"><img src="https://image.ibb.co/eBNZSn/Family_Vacation.png" width="100%" height="100%"/></div>
-                  <div class="card-titles">
-                    <h1>Family <br/> Vancation</h1>
-                    <h3>20 Destinations</h3>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="popular-destinations-text">Popular Destinations</div>
-                  <div class="popular-destinations-images">
-                    <div class="circle"><img src="https://image.ibb.co/kEN3L7/family_vacation_1.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/iA8M7n/family_vacation_2.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/mXOcf7/family_vacation_3.jpg" width="100%" height="100%"/></div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-content">
-                  <div class="card-image"><img src="https://image.ibb.co/epvM7n/Art_and_culture.png" width="100%" height="100%"/></div>
-                  <div class="card-titles">
-                    <h1>Art and <br/> Culture</h1>
-                    <h3>18 Destinations</h3>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="popular-destinations-text">Popular Destinations</div>
-                  <div class="popular-destinations-images">
-                    <div class="circle"><img src="https://image.ibb.co/kVPYL7/art_culture_1.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/dp4Tnn/art_culture_2.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/bu6KtS/art_culture_3.jpg" width="100%" height="100%"/></div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-content">
-                  <div class="card-image"><img src="https://image.ibb.co/bXTXV7/Far_and_Away_2x.png" width="100%" height="100%"/></div>
-                  <div class="card-titles">
-                    <h1>Far and <br/> Away</h1>
-                    <h3>23 Destinations</h3>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div class="popular-destinations-text">Popular <br/> Destinations</div>
-                  <div class="popular-destinations-images">
-                    <div class="circle"><img src="https://image.ibb.co/fOYztS/far_away_1.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/izdXDS/far_away_2.jpg" width="100%" height="100%"/></div>
-                    <div class="circle"><img src="https://image.ibb.co/mqwKtS/far_away_3.jpg" width="100%" height="100%"/></div>
-                  </div>
-                </div>
-              </div>
+                `
+              )}
             </div>
             <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
             <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/dCuESn/Path_3x.png" width="auto" height="auto"/></div>
@@ -175,12 +87,12 @@ export class OapSwipableCards extends OapBaseElement {
           </div>
           <div class="global-actions">
             <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
-            <div class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
+            <div hidden?="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
             <div class="right-action"><img src="https://image.ibb.co/dCuESn/Path_3x.png" width="30" height="28"/></div>
         </div>
       </div>
 
-      <div class="final-state hidden"><h2>Got it! We received your preferences! <br/> To submit again, press F5.</h2></div>
+      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
     `;
   }
 
@@ -194,8 +106,17 @@ export class OapSwipableCards extends OapBaseElement {
     super.disconnectedCallback();
   }
 
-  firstUpdated() {
-    this.activate();
+  updated(changedProps) {
+    super.updated(changedProps);
+    if (changedProps.has('items')) {
+      if (this.items && this.items.length>0) {
+        this.visibleItems=this.items;
+        //TODO: Only show first 20 items and reload on demand
+        this.updateComplete.then(() => {
+          this.activate();
+        });
+      }
+    }
   }
 
   reset() {
@@ -203,71 +124,16 @@ export class OapSwipableCards extends OapBaseElement {
     this.rotate = true;
     this.elementsMargin = 10;
     this.currentPosition = 0;
+    this.currentItemsPosition = 0;
     this.velocity = 0.3;
     this.isFirstTime = true;
     this.touchingElement = false;
   }
 
   activate() {
-    this.obj = document.getElementById('stacked-cards-block');
-		this.stackedCardsObj = this.obj.querySelector('.stackedcards-container');
-		this.listElNodesObj = this.stackedCardsObj.children;
+    this.obj = this.$$("#stacked-cards-block");
 
-		this.topObj = this.obj.querySelector('.stackedcards-overlay.top');
-		this.rightObj = this.obj.querySelector('.stackedcards-overlay.right');
-		this.leftObj = this.obj.querySelector('.stackedcards-overlay.left');
-
-		this.countElements();
-		this.currentElement();
-    this.changeBackground();
-		this.listElNodesWidth = this.stackedCardsObj.offsetWidth;
-		this.currentElementObj = this.listElNodesObj[0];
-		this.updateUi();
-
-		//Prepare elements on DOM
-		var addMargin = this.elementsMargin * (this.items.length -1) + 'px';
-
-		if(this.stackedOptions === "Top"){
-
-			for(i = this.items.length; i < this.maxElements; i++){
-				this.listElNodesObj[i].classList.add('stackedcards-top', 'stackedcards--animatable', 'stackedcards-origin-top');
-			}
-
-			this.elTrans = this.elementsMargin * (this.items.length - 1);
-
-			this.stackedCardsObj.style.marginBottom = addMargin;
-
-		} else if(this.stackedOptions === "Bottom"){
-
-
-			for(i = this.items.length; i < this.maxElements; i++){
-				this.listElNodesObj[i].classList.add('stackedcards-bottom', 'stackedcards--animatable', 'stackedcards-origin-bottom');
-			}
-
-			this.elTrans = 0;
-
-			this.stackedCardsObj.style.marginBottom = addMargin;
-
-		} else if (this.stackedOptions === "None"){
-
-			for(i = this.items.length; i < this.maxElements; i++){
-				this.listElNodesObj[i].classList.add('stackedcards-none', 'stackedcards--animatable');
-			}
-
-			this.elTrans = 0;
-
-		}
-
-		for(i = this.items.length; i < this.maxElements; i++){
-			this.listElNodesObj[i].style.zIndex = 0;
-			this.listElNodesObj[i].style.opacity = 0;
-			this.listElNodesObj[i].style.webkitTransform ='scale(' + (1 - (this.items.length * 0.04)) +') translateX(0) translateY(' + this.elTrans + 'px) translateZ(0)';
-			this.listElNodesObj[i].style.transform ='scale(' + (1 - (this.items.length * 0.04)) +') translateX(0) translateY(' + this.elTrans + 'px) translateZ(0)';
-		}
-
-		if(this.listElNodesObj[this.currentPosition]){
-			this.listElNodesObj[this.currentPosition].classList.add('stackedcards-active');
-		}
+    this.refresh();
 
 		if(this.useOverlays){
 			this.leftObj.style.transform = 'translateX(0px) translateY(' + this.elTrans + 'px) translateZ(0px) rotate(0deg)';
@@ -297,6 +163,67 @@ export class OapSwipableCards extends OapBaseElement {
    this.addEventListeners();
   }
 
+  refresh() {
+		this.stackedCardsObj = this.obj.querySelector('.stackedcards-container');
+		this.listElNodesObj = this.stackedCardsObj.children;
+
+		this.topObj = this.obj.querySelector('.stackedcards-overlay.top');
+		this.rightObj = this.obj.querySelector('.stackedcards-overlay.right');
+		this.leftObj = this.obj.querySelector('.stackedcards-overlay.left');
+
+		this.countElements();
+		this.setCurrentElement();
+    this.changeBackground();
+		this.listElNodesWidth = this.stackedCardsObj.offsetWidth;
+		this.currentElementObj = this.listElNodesObj[0];
+		this.updateUi();
+
+		//Prepare elements on DOM
+		var addMargin = this.elementsMargin * (this.visibleItems.length -1) + 'px';
+
+		if(this.stackedOptions === "Top"){
+
+			for(i = this.visibleItems.length; i < this.maxElements; i++){
+				this.listElNodesObj[i].classList.add('stackedcards-top', 'stackedcards--animatable', 'stackedcards-origin-top');
+			}
+
+			this.elTrans = this.elementsMargin * (this.visibleItems.length - 1);
+
+			this.stackedCardsObj.style.marginBottom = addMargin;
+
+		} else if(this.stackedOptions === "Bottom"){
+
+
+			for(i = this.visibleItems.length; i < this.maxElements; i++){
+				this.listElNodesObj[i].classList.add('stackedcards-bottom', 'stackedcards--animatable', 'stackedcards-origin-bottom');
+			}
+
+			this.elTrans = 0;
+
+			this.stackedCardsObj.style.marginBottom = addMargin;
+
+		} else if (this.stackedOptions === "None"){
+
+			for(i = this.visibleItems.length; i < this.maxElements; i++){
+				this.listElNodesObj[i].classList.add('stackedcards-none', 'stackedcards--animatable');
+			}
+
+			this.elTrans = 0;
+
+		}
+
+		for(i = this.visibleItems.length; i < this.maxElements; i++){
+			this.listElNodesObj[i].style.zIndex = 0;
+			this.listElNodesObj[i].style.opacity = 0;
+			this.listElNodesObj[i].style.webkitTransform ='scale(' + (1 - (this.visibleItems.length * 0.04)) +') translateX(0) translateY(' + this.elTrans + 'px) translateZ(0)';
+			this.listElNodesObj[i].style.transform ='scale(' + (1 - (this.visibleItems.length * 0.04)) +') translateX(0) translateY(' + this.elTrans + 'px) translateZ(0)';
+		}
+
+		if(this.listElNodesObj[this.currentPosition]){
+			this.listElNodesObj[this.currentPosition].classList.add('stackedcards-active');
+		}
+  }
+
   addEventListeners() {
      // JavaScript Document
 		this.obj.addEventListener('touchstart', this.gestureStart.bind(this), false);
@@ -304,12 +231,14 @@ export class OapSwipableCards extends OapBaseElement {
 		this.obj.addEventListener('touchend', this.gestureEnd.bind(this), false);
 
 		//Add listeners to call global action for swipe cards
-		var buttonLeft = document.querySelector('.left-action');
-		var buttonTop = document.querySelector('.top-action');
-		var buttonRight = document.querySelector('.right-action');
+		var buttonLeft = this.$$('.left-action');
+		var buttonTop = this.$$('.top-action');
+		var buttonRight = this.$$('.right-action');
 
-		buttonLeft.addEventListener('click', this.onActionLeft.bind(this), false);
-		buttonTop.addEventListener('click', this.onActionTop.bind(this), false);
+    buttonLeft.addEventListener('click', this.onActionLeft.bind(this), false);
+    if (!this.disableUpSwipe) {
+      buttonTop.addEventListener('click', this.onActionTop.bind(this), false);
+    }
     buttonRight.addEventListener('click', this.onActionRight.bind(this), false);
   }
 
@@ -319,14 +248,15 @@ export class OapSwipableCards extends OapBaseElement {
    this.obj.removeEventListener('touchmove', this.gestureMove.bind(this));
    this.obj.removeEventListener('touchend', this.gestureEnd.bind(this));
 
-   //Add listeners to call global action for swipe cards
-   var buttonLeft = document.querySelector('.left-action');
-   var buttonTop = document.querySelector('.top-action');
-   var buttonRight = document.querySelector('.right-action');
+   var buttonLeft = this.$$('.left-action');
+   var buttonTop = this.$$('.top-action');
+   var buttonRight = this.$$('.right-action');
 
    if (buttonLeft) {
     buttonLeft.removeEventListener('click', this.onActionLeft.bind(this), false);
-    buttonTop.removeEventListener('click', this.onActionTop.bind(this), false);
+    if (!this.disableUpSwipe) {
+      buttonTop.removeEventListener('click', this.onActionTop.bind(this), false);
+    }
     buttonRight.removeEventListener('click', this.onActionRight.bind(this), false);
    } else {
      console.error("No buttons to detach from");
@@ -357,19 +287,19 @@ export class OapSwipableCards extends OapBaseElement {
   // Usable functions
   countElements() {
     this.maxElements = this.listElNodesObj.length;
-    if(this.items.length > this.maxElements){
-      this.items.length = this.maxElements;
+    if(this.visibleItems.length > this.maxElements){
+      this.visibleItems.length = this.maxElements;
     }
   }
 
   //Keep the active card.
-  currentElement() {
+  setCurrentElement() {
     this.currentElementObj = this.listElNodesObj[this.currentPosition];
   }
 
   //Change background for each swipe.
   changeBackground() {
-    document.body.classList.add("background-" + this.currentPosition + "");
+    this.classList.add("background-" + this.currentPosition + "");
   }
 
   //Change states
@@ -377,10 +307,10 @@ export class OapSwipableCards extends OapBaseElement {
     if(this.currentPosition == this.maxElements){
         //Event listener created to know when transition ends and changes states
         this.listElNodesObj[this.maxElements - 1].addEventListener('transitionend', function(){
-          document.body.classList.add("background-7");
-          document.querySelector('.stage').classList.add('hidden');
-          document.querySelector('.final-state').classList.remove('hidden');
-          document.querySelector('.final-state').classList.add('active');
+          this.classList.add("background-7");
+          this.$$('.stage').classList.add('hidden');
+          this.$$('.final-state').classList.remove('hidden');
+          this.$$('.final-state').classList.add('active');
           this.listElNodesObj[this.maxElements - 1].removeEventListener('transitionend', null, false);
       }.bind(this));
     }
@@ -448,9 +378,12 @@ export class OapSwipableCards extends OapBaseElement {
       this.transformUi(-1000, 0, 0, this.topObj); //Move topOverlay
       this.resetOverlayLeft();
     }
+    this.fire('item-discarded', this.items[this.currentItemPosition]);
+
     this.currentPosition = this.currentPosition + 1;
+    this.currentItemPosition = this.currentItemPosition + 1;
     this.updateUi();
-    this.currentElement();
+    this.setCurrentElement();
     this.changeBackground();
     this.changeStages();
     this.setActiveHidden();
@@ -465,10 +398,11 @@ export class OapSwipableCards extends OapBaseElement {
       this.transformUi(1000, 0, 0, this.topObj); //Move topOverlay
       this.resetOverlayRight();
     }
-
+    this.fire('item-selected', this.items[this.currentItemPosition]);
     this.currentPosition = this.currentPosition + 1;
+    this.currentItemPosition = this.currentItemPosition + 1;
     this.updateUi();
-    this.currentElement();
+    this.setCurrentElement();
     this.changeBackground();
     this.changeStages();
     this.setActiveHidden();
@@ -476,21 +410,25 @@ export class OapSwipableCards extends OapBaseElement {
 
   //Swipe active card to top.
   onSwipeTop() {
-    this.removeNoTransition();
-    this.transformUi(0, -1000, 0, this.currentElementObj);
-    if(this.useOverlays){
-      this.transformUi(0, -1000, 0, this.leftObj); //Move leftOverlay
-      this.transformUi(0, -1000, 0, this.rightObj); //Move rightOverlay
-      this.transformUi(0, -1000, 0, this.topObj); //Move topOverlay
-      this.resetOverlays();
-    }
+    if (!this.disableUpSwipe) {
+      this.removeNoTransition();
+      this.transformUi(0, -1000, 0, this.currentElementObj);
+      if(this.useOverlays){
+        this.transformUi(0, -1000, 0, this.leftObj); //Move leftOverlay
+        this.transformUi(0, -1000, 0, this.rightObj); //Move rightOverlay
+        this.transformUi(0, -1000, 0, this.topObj); //Move topOverlay
+        this.resetOverlays();
+      }
 
-    this.currentPosition = this.currentPosition + 1;
-    this.updateUi();
-    this.currentElement();
-    this.changeBackground();
-    this.changeStages();
-    this.setActiveHidden();
+      this.fire('item-bookmarked', this.items[this.currentItemPosition]);
+      this.currentPosition = this.currentPosition + 1;
+      this.currentItemPosition = this.currentItemPosition + 1;
+      this.updateUi();
+      this.setCurrentElement();
+      this.changeBackground();
+      this.changeStages();
+      this.setActiveHidden();
+    }
   }
 
   //Remove transitions from all elements to be moved in each swipe movement to improve perfomance of stacked cards.
@@ -517,7 +455,7 @@ export class OapSwipableCards extends OapBaseElement {
 
           if(this.stackedOptions === "Top"){
 
-            this.elTrans = this.elementsMargin * (this.items.length - 1);
+            this.elTrans = this.elementsMargin * (this.visibleItems.length - 1);
 
           } else if(this.stackedOptions === "Bottom" || this.stackedOptions === "None"){
 
@@ -559,7 +497,7 @@ export class OapSwipableCards extends OapBaseElement {
 
           if(this.stackedOptions === "Top"){+2
 
-            this.elTrans = this.elementsMargin * (this.items.length - 1);
+            this.elTrans = this.elementsMargin * (this.visibleItems.length - 1);
 
           } else if(this.stackedOptions === "Bottom" || this.stackedOptions === "None"){
 
@@ -601,7 +539,7 @@ export class OapSwipableCards extends OapBaseElement {
         setTimeout(function(){
           if(this.stackedOptions === "Top"){
 
-            this.elTrans = this.elementsMargin * (this.items.length - 1);
+            this.elTrans = this.elementsMargin * (this.visibleItems.length - 1);
 
           } else if(this.stackedOptions === "Bottom" || this.stackedOptions === "None"){
 
@@ -688,7 +626,7 @@ export class OapSwipableCards extends OapBaseElement {
       }
 
       if(this.stackedOptions === "Top"){
-        this.elTrans = this.elementsMargin * (this.items.length - 1);
+        this.elTrans = this.elementsMargin * (this.visibleItems.length - 1);
         if(element){
           element.style.webkitTransform = "translateX(" + moveX + "px) translateY(" + (moveY + this.elTrans) + "px) translateZ(0) rotate(" + rotateElement + "deg)";
           element.style.transform = "translateX(" + moveX + "px) translateY(" + (moveY + this.elTrans) + "px) translateZ(0) rotate(" + rotateElement + "deg)";
@@ -713,10 +651,10 @@ export class OapSwipableCards extends OapBaseElement {
       var elZindex = 5;
       var elScale = 1;
       var elOpac = 1;
-      var elTransTop = this.items.length;
+      var elTransTop = this.visibleItems.length;
       var elTransInc = this.elementsMargin;
 
-      for(i = this.currentPosition; i < (this.currentPosition + this.items.length); i++){
+      for(i = this.currentPosition; i < (this.currentPosition + this.visibleItems.length); i++){
         if(this.listElNodesObj[i]){
           if(this.stackedOptions === "Top"){
 
@@ -755,7 +693,7 @@ export class OapSwipableCards extends OapBaseElement {
           this.listElNodesObj[i].style.zIndex = elZindex;
 
           elScale = elScale - 0.04;
-          elOpac = elOpac - (1 / this.items.length);
+          elOpac = elOpac - (1 / this.visibleItems.length);
           elZindex--;
         }
       }

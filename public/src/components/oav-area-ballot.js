@@ -1,6 +1,6 @@
 import { html } from 'lit-element';
 import { cache } from 'lit-html/directives/cache.js';
-import { PageViewElement } from './page-view-element.js';
+import { PageViewElement } from './oap-page-view-element.js/index.js';
 import { OavAreaBallotStyles } from './oav-area-ballot-styles.js';
 import { encryptVote } from './ballot-encryption-behavior.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';

@@ -1,5 +1,5 @@
 import { html } from 'lit-element';
-import { PageViewElement } from './page-view-element.js';
+import { PageViewElement } from './oap-page-view-element.js/index.js';
 import { OavShadowStyles } from './oap-shadow-styles.js/index.js';
 import { OavAreaVotingCompletedStyles } from './oav-voting-completed-styles';
 import { OavFlexLayout } from './oap-flex-layout.js/index.js';

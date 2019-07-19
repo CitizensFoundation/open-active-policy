@@ -3,7 +3,7 @@
 import { LitElement } from 'lit-element';
 import { OavBaseElement } from './oap-base-element';
 
-export class PageViewElement extends OavBaseElement {
+export class OapPageViewElement extends OavBaseElement {
 
   shouldUpdate() {
     return this.active;

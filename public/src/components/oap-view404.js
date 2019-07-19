@@ -1,5 +1,5 @@
 import { html } from 'lit-element';
-import { PageViewElement } from './page-view-element.js';
+import { PageViewElement } from './oap-page-view-element.js/index.js';
 
 // These are the shared styles needed by this element.
 //import { SharedStyles } from './shared-styles.js';

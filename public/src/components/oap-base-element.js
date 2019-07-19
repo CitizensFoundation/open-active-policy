@@ -84,6 +84,14 @@ export class OapBaseElement extends LitElement {
     }
   }
 
+  firstUpdated() {
+    super.firstUpdated();
+    installMediaQueryWatcher(`(min-width: 1024px)`,
+    (matches) => {
+      this.wide = matches;
+    });
+  }
+
   $$(id) {
     return this.shadowRoot.querySelector(id);
   }
