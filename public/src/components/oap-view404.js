@@ -1,10 +1,10 @@
 import { html } from 'lit-element';
-import { PageViewElement } from './oap-page-view-element.js/index.js';
+import { OapPageViewElement } from './oap-page-view-element';
 
 // These are the shared styles needed by this element.
 //import { SharedStyles } from './shared-styles.js';
 
-class OavView404 extends PageViewElement {
+class OapView404 extends OapPageViewElement {
   render() {
     return html`
       <section>
@@ -18,4 +18,4 @@ class OavView404 extends PageViewElement {
   }
 }
 
-window.customElements.define('oav-view404', OavView404);
+window.customElements.define('oap-view404', OapView404);

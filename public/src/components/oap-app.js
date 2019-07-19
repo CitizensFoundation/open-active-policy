@@ -21,9 +21,9 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/paper-spinner/paper-spinner.js';
 import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
-import './oav-icons.js';
+import './oap-icons.js';
 import './snack-bar.js';
-import './policy-quiz/oap-policy-quiz';
+//import './policy-quiz/oap-policy-quiz';
 //import './browse-articles/oap-swipable-cards';
 //import './oav-voting-completed';
 
@@ -410,7 +410,7 @@ class OapApp extends OapBaseElement {
         window.localize = this.localize;
 
         if (this.configFromServer.client_config.insecureEmailLoginEnabled===true) {
-          import('./oav-insecure-email-login.js');
+          import('./oap-insecure-email-login.js');
         }
       })
       .catch(error => {
@@ -803,7 +803,7 @@ class OapApp extends OapBaseElement {
         break;
       default:
         page = 'view404';
-        import('./oap-view404.js/index.js');
+        import('./oap-view404.js');
     }
 
     this._page = page;
