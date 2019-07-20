@@ -299,9 +299,24 @@ class OapBallot extends OapPageViewElement {
   _setStateOfRemainingItems() {
     var budgetLeft = this.budgetElement.totalBudget-this.budgetElement.selectedBudget;
     var listItems = this.$$("#itemContainer");
+    const allSelectedIds = this.budgetElement.selectedItems.map((item) => {
+      return item.id;
+    });
     for (var i = 0; i < listItems.children.length; i++) {
       var listItem = listItems.children[i];
-      if (listItem.id != 'domRepeat' && !listItem.selectedInBudget) {
+      if (listItem.id != 'domRepeat' && !listItem.selected) {
+
+        if (listItem.item.exclusive_ids && listItem.item.exclusive_ids.length>0) {
+          listItem.item.exclusive_ids.split(",").forEach((id) => {
+            if (allSelectedIds.indexOf(id) > -1) {
+              console.log("excluding: "+listItem.item.id+" for "+listItem.item.exclusive_ids);
+              listItem.setExcluded();
+            } else {
+              listItem.setNotExcluded();
+            }
+          });
+        }
+
         if (listItem.item.price<=budgetLeft) {
           listItem.setNotTooExpensive();
         } else {

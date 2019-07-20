@@ -41,6 +41,10 @@ class OapArticleItem extends OapBaseElement {
         type: Boolean
       },
 
+      isExcluded: {
+        type: Boolean
+      },
+
       isFavorite: {
         type: Boolean
       },
@@ -134,11 +138,11 @@ class OapArticleItem extends OapBaseElement {
           </div>
 
           <paper-fab mini id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
-                    ?disabled="${this.toExpensive}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
+                    ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
           </paper-fab>
 
           <paper-fab mini elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
-                    ?disabled="${this.toExpensive}" title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
+                    ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
           </paper-fab>
 
           <div hidden>
@@ -209,7 +213,7 @@ class OapArticleItem extends OapBaseElement {
     this.toExpensive = false;
     this.isBookmarked = false;
     this.selected = false;
-
+    this.isExcluded = false;
   }
 
   _imageLoadedChanged(event) {
@@ -280,6 +284,18 @@ class OapArticleItem extends OapBaseElement {
         }
         this.removeFromBudget();
       }
+      if (this.item.exclusive_ids && this.item.exclusive_ids.length>0) {
+        const allSelectedIds = this.budgetElement.selectedItems.map((item) => {
+          return item.id;
+        });
+        this.item.exclusive_ids.split(",").forEach((id) => {
+          if (allSelectedIds.indexOf(id) > -1) {
+            this.setExcluded();
+          } else {
+            this.setNotExcluded();
+          }
+        });
+      }
     }
     this._setImageMode(true);
   }
@@ -339,6 +355,18 @@ class OapArticleItem extends OapBaseElement {
   setNotTooExpensive() {
     //console.log("setNotTooExpensive itemId: "+this.item.id);
     this.toExpensive = false;
+  }
+
+  setExcluded() {
+    //console.log("setTooExpensive itemId: "+this.item.id);
+    this.isExcluded = true;
+    this.requestUpdate();
+  }
+
+  setNotExcluded () {
+    //console.log("setNotTooExpensive itemId: "+this.item.id);
+    this.isExcluded = false;
+    this.requestUpdate();
   }
 
   _toggleFavorite() {

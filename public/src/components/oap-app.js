@@ -387,7 +387,7 @@ class OapApp extends OapBaseElement {
         description: 'Whether elected individually or packaged with a President on a "ticket", the VP gives the electorate the comfort of knowing they have chosen a worthy successor to the President, and a smooth transition of power is guaranteed should something unexpected happen to the chief executive. The VP position is also a valuable political actor for diplomacy and affairs of state.',
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe6.png",
         module_type: "Exclusive",
-        exclusive_ids: "1,2,3,4",
+        exclusive_ids: "5,6",
         price: 18.0
       },
       {
@@ -397,7 +397,7 @@ class OapApp extends OapBaseElement {
         description: "In the case of the Head of State being a Prime Minister, King or Supreme Theocrat, then there might be an executive position called President, that may be appointed or elected, and generally performs public relations for the government, as well as matters of diplomacy and affairs of state.",
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group3.png",
         module_type: "Exclusive",
-        exclusive_ids: "1,2,3,4",
+        exclusive_ids: "5,6",
         price: 8.0
       },
       {
@@ -407,7 +407,7 @@ class OapApp extends OapBaseElement {
         description: 'Sometimes called "to the victor go the spoils" approach, this allows the Executive Head of State to compose a team of cabinet members that they select, insuring a team of like minded individuals likely to work well with the Head of State and each other. Comes with increased risk of croneyism.',
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Module+image+size+-+864x580+Copy+4.png",
         module_type: "Exclusive",
-        exclusive_ids: "1,2,3,4",
+        exclusive_ids: "7,8",
         price: 18.0
       },
       {
@@ -417,7 +417,7 @@ class OapApp extends OapBaseElement {
         description: "In a Prime Minister's cabinet, integrated into the parliamentary process, the factions in the legislative body may also control the staffing of the PM's cabinet, again helping the government be as integrated, coherent and internal conflict-free as possible.",
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png",
         module_type: "Exclusive",
-        exclusive_ids: "1,2,3,4",
+        exclusive_ids: "7,8",
         price: 8.0
       },
       {
@@ -506,9 +506,139 @@ class OapApp extends OapBaseElement {
         name: "Control of Taxation/Budget",
         description: "The Branch that has this power makes the ultimate decisions on the government's revenue sources, funding allocation and debt and deficit management, the so called 'power of the purse'.",
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
-        module_type: "Simple",
+        module_type: "Delegated",
         exclusive_ids: "",
         price: 4.0
+      },
+      {
+        id: "18",
+        branch: "Executive Amendments",
+        name: "Control of Military",
+        description: "The Branch with this authority functions as the sole civilian oversight and command of the government's defense force and standing army, if any.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Delegated",
+        exclusive_ids: "",
+        price: 2.0
+      },
+      {
+        id: "19",
+        branch: "Executive Amendments",
+        name: "Control of Diplomacy",
+        description: "This conveys on the Branch the responsibility of negotiating treaties, appointing ambassadors, maintaining trade relationships and open lines of communication with neighboring countries and international allies alike.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Delegated",
+        exclusive_ids: "",
+        price: 2.0
+      },
+      {
+        id: "20",
+        branch: "Executive Amendments",
+        name: "Authority to Declare War",
+        description: "Gives the Branch the sole authority to formally engage in hostilities with another nation state.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Delegated",
+        exclusive_ids: "",
+        price: 24.0
+      },
+      {
+        id: "21",
+        branch: "Executive Amendments",
+        name: "Authority to Sign/Ratify Treaties",
+        description: "When the fruits of either war or diplomacy generate a lasting legal document of new relationship between the government and another state or multiple state actors, this confers on the Branch the ultimate authority for confirming these agreements as the law of the land.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Delegated",
+        exclusive_ids: "",
+        price: 12.0
+      },
+      {
+        id: "22",
+        branch: "Executive Amendments",
+        name: "Control of Police Forces",
+        description: "The government with this institutes a federalized power structure for it police enforcement, and for the oversight of local policing efforts and prosecutorial authority. This delegates which Branch has oversight and executive control over this chain of command.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Delegated",
+        exclusive_ids: "",
+        price: 4.0
+      },
+      {
+        id: "23",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Basic Organization of Parliament/Legislature: Unicameral",
+        description: "Creates a Legislature or Parliament with a single house representing the entire electorate, either by region or proportional representation.When this body agrees on something and successfully executes its processes and procedural requirements, the matter being voted on becomes law immediately. This allows the body to be more nimble, and to have a greater appearance of society on a level playing field.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
+      },
+      {
+        id: "24",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Basic Organization of Parliament/Legislature: Bicameral",
+        description: "Creates two chambers or houses of legislative debate and process, generally one more directly democratic ('lower'), and the other more representative of the entrenched power in the society ('upper'). Laws generated in either house must be reconciled with both bodies, creating oversight and forcing compromise by different interests. This tends to promote stability and durable legislation.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
+      },
+      {
+        id: "25",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Representation of Constituents: Proportional Distribution",
+        description: "The electorate creates the legislative body by voting for candidates and/or parties in a national election, and the proportion of the national vote by party/candidate affiliation determines the balance of power in the legislative body. If no one party achieves a majority, a coalition government of compromise become necessary.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
+      },
+      {
+        id: "26",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Representation of Constituents: Regional Empowerment",
+        description: "Each region/province/state/municipality holds elections for its specific representative, that then go to the capital to form a government to decide the national interest.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
+      },
+      {
+        id: "27",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Representation of Constituents: Hybrid",
+        description: "This frames a balance between popular vote and regional representation, usually giving an outsized influence to smaller rural areas with entrenched interests that feel they would be drown out in a straight popular vote.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
+      },
+      {
+        id: "28",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Parliamentary Procedure: Laborious & Byzantine",
+        description: "This frames the parliamentary procedure for the legislative body or bodies as almost impossibly complex, by layering commitees, requiring super majorities, enforcing deliberation periods, barring amendments or revisions to bills, etc. This makes the legal system stable and unreactive, favoring the status quo.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
+      },
+      {
+        id: "29",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Parliamentary Procedure: Elaborate & Stringent",
+        description: "Here we frame what some would think of as the 'right' amount of procedural forced debate and ability of a minority party to force compromise or revision in the deliberative process. Reconciling chambers divergent bills, filibuster tactics, while still allowing the function of law making to go on at a reasonable pace.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
+      },
+      {
+        id: "30",
+        branch: "Legislative/ Parliamentary Core Articles",
+        name: "Parliamentary Procedure: Functional & Expedient",
+        description: "Here we frame the most nimble legislative body, usually unicameral, that has few impediments to swift up and down votes to enact new laws. This makes it very responsive to public opinion if that opinion is represented by the elected officials; unfortunately it does allow for a majority party to rapidly change the legal landscape with little recourse to the minority parties in opposition.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "",
+        price: 16.0
       }
     ]
 
@@ -568,7 +698,7 @@ class OapApp extends OapBaseElement {
       duration: 300,
     });
 
-    this.choicePoints+=15;
+    this.choicePoints+=5;
     this.$$("#choicePoints").animate([
       { transform: "scale(5)", easing: 'ease-in'  },
       { transform: "scale(1)", easing: 'ease-out' }
