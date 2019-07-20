@@ -428,7 +428,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group7.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 4.0
+        price: 24.0
       },
       {
         id: "10",
@@ -438,7 +438,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group9.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 4.0
+        price: 24.0
       },
       {
         id: "11",

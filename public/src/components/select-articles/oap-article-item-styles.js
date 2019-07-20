@@ -72,11 +72,11 @@ export const OapArticleItemStyles = css`
   }
 
   .descriptionContainer {
-    height: 169px;
+    height: 100%;
     width: 300px;
     margin: 0;
     overflow: hidden;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     text-align: left;
     background-color: var(--app-ballot-item-description-background-color, #333);
@@ -87,19 +87,19 @@ export const OapArticleItemStyles = css`
   .descriptionContainer[small] {
     width: 260px;
     height: 146px;
-    font-size: 16px;
+    font-size: 12px;
     text-align: left;
   }
 
   .descriptionContainer[small][tiny] {
     width: 220px;
     height: 124px;
-    font-size: 15px;
+    font-size: 11px;
   }
 
   .description {
     padding: 8px;
-    font-size: 16px;
+    font-size: 13px;
     margin-top: 42px;
   }
 

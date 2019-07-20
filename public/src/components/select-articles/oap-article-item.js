@@ -119,10 +119,10 @@ class OapArticleItem extends OapBaseElement {
             </paper-item>
           </paper-listbox>
         </paper-menu-button>
-        <div class="layout horizontal">
+        <div class="layout horizontal" ?hidden="${this.descriptionTabSelected}">
           <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
         </div>
-        <div class="buttons">
+        <div class="buttons" ?hidden="${this.descriptionTabSelected}">
           <paper-share-button ?hidden="${!this.imageLoaded}" ?small="${this.small}" @share-tap="${this._shareTap}" class="shareIcon" horizontal-align="left" id="shareButton"
             title="${this.localize('share_idea')}" facebook twitter popup .url="${this._itemShareUrl()}">
           </paper-share-button>

@@ -199,7 +199,7 @@ class OapBallot extends OapPageViewElement {
     var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     var isIE11 = /Trident.*rv[ :]*11\./.test(navigator.userAgent);
 
-    var items = this.shadowRoot.querySelectorAll("oav-area-ballot-item");
+    var items = this.shadowRoot.querySelectorAll("oap-article-item");
     items.forEach(function (item) {
       if (item.name==itemId) {
         if (iOS || isIE11) {
@@ -223,11 +223,6 @@ class OapBallot extends OapPageViewElement {
         }
       }
     }.bind(this));
-
-    const map = this.$$("#itemsMap");
-    if (map) {
-      map.scrollIntoView(itemId);
-    }
   }
 
   _resetBallotItems() {
@@ -313,9 +308,7 @@ class OapBallot extends OapPageViewElement {
         }
       }
     }
-    const map = this.$$("#itemsMap");
-    if (map)
-      map.checkIfSelectedItemToExpensive(budgetLeft);
+    this.requestUpdate();
   }
 
   _postVoteToServer() {
@@ -377,7 +370,7 @@ class OapBallot extends OapPageViewElement {
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
 
-    var dialog = document.querySelector('oav-app').getDialog("authDialog");
+    var dialog = document.querySelector('oap-app').getDialog("authDialog");
     if (dialog)
       dialog.close();
   }
