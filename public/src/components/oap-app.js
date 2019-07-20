@@ -1160,6 +1160,11 @@ class OapApp extends OapBaseElement {
         this.$$("#selectVotingArea").refreshAreaCounters();
       }
 
+      if (page==='area-ballot' && this.filteredItems.length===0) {
+        window.history.pushState({}, null, "/quiz");
+        this.fire('location-changed', "/quiz");
+      }
+
       // Send page info to Google Analytics
       if (page && typeof ga == 'function') {
         ga('send', 'pageview', {
