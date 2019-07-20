@@ -133,39 +133,39 @@ class OapBudget extends OapBaseElement {
             <iron-image ?hidden="${!this.mediumWide}" sizing="contain" class="headerLogo" src="${this.budgetHeaderImage}"></iron-image>
             <div class="vertical center-center" style="width: 100%;">
               <div class="flex">
-              ${!this.selectedBudget && this.areaName ?
-                html`
-                  <div ?hidden="${!this.wide}" class="budgetText">${this.localize('budget_info_text', 'area_name', this.areaName)}</div>
-                  <div ?hidden="${this.wide}" class="mobileBudgetText">${this.localize('budget_info_text_mobile', 'area_name', this.areaName)}</div>
-                `
-                :
-                ''
-              }
-              ${this.selectedBudget ?
-                html`
-                  <div ?hidden="${!this.selectedBudgetIsOne}">
-                    <div class="selectedInfo budgetText" ?wide="${this.wide}" ?hidden="${!this.wide}">
-                     ${this.localize("selected_items_info_one_million", "number_of_items", this.selectedItems.length, "selectedBudget", this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
+                ${!this.selectedBudget && this.areaName ?
+                  html`
+                    <div ?hidden="${!this.wide}" class="budgetText">${this.localize('budget_info_text', 'area_name', this.areaName)}</div>
+                    <div ?hidden="${this.wide}" class="mobileBudgetText">${this.localize('budget_info_text_mobile', 'area_name', this.areaName)}</div>
+                  `
+                  :
+                  ''
+                }
+                ${this.selectedBudget ?
+                  html`
+                    <div ?hidden="${!this.selectedBudgetIsOne}">
+                      <div class="selectedInfo budgetText" ?wide="${this.wide}" ?hidden="${!this.wide}">
+                      ${this.localize("selected_items_info_one_million", "number_of_items", this.selectedItems.length, "selectedBudget", this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
+                      </div>
+                      <div class="selectedInfo mobileBudgetText" ?wide="${this.wide}" ?hidden="${this.wide}">
+                        ${this.localize("selected_items_info_mobile_one_million", "number_of_items", this.selectedItems.length, "selectedBudget",  this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
+                      </div>
                     </div>
-                    <div class="selectedInfo mobileBudgetText" ?wide="${this.wide}" ?hidden="${this.wide}">
-                      ${this.localize("selected_items_info_mobile_one_million", "number_of_items", this.selectedItems.length, "selectedBudget",  this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
+                    <div ?hidden="${this.selectedBudgetIsOne}">
+                      <div class="selectedInfo budgetText" ?wide="${this.wide}" ?hidden="${!this.wide}">
+                        ${this.localize("selected_items_info", "number_of_items", this.selectedItems.length, "selectedBudget",  this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
+                      </div>
+                      <div class="selectedInfo mobileBudgetText" ?wide="${this.wide}" ?hidden="${this.wide}">
+                        ${this.localize("selected_items_info_mobile", "number_of_items", this.selectedItems.length, "selectedBudget",  this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
+                      </div>
                     </div>
-                  </div>
-                  <div ?hidden="${this.selectedBudgetIsOne}">
-                    <div class="selectedInfo budgetText" ?wide="${this.wide}" ?hidden="${!this.wide}">
-                      ${this.localize("selected_items_info", "number_of_items", this.selectedItems.length, "selectedBudget",  this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
-                    </div>
-                    <div class="selectedInfo mobileBudgetText" ?wide="${this.wide}" ?hidden="${this.wide}">
-                      ${this.localize("selected_items_info_mobile", "number_of_items", this.selectedItems.length, "selectedBudget",  this.formatNumber(this.selectedBudget,this.configFromServer.client_config.currencySymbol))}
-                    </div>
-                  </div>
-                `
-                :
-                ''
-              }
-              <div id="budgetLeftInfo" ?wide="${this.wide}" ?hidden="${!this.currentBallot}">
-                ${this.localize('budget_left_text','budget_left', this.formatNumber(this.budgetLeft,this.configFromServer.client_config.currencySymbol))}
-              </div>
+                  `
+                  :
+                  ''
+                }
+                <div id="budgetLeftInfo" ?no-selection="${(this.selectedItems && this.selectedItems.length==0)}" ?wide="${this.wide}" ?hidden="${!this.currentBallot}">
+                  ${this.localize('budget_left_text','budget_left', this.formatNumber(this.budgetLeft,this.configFromServer.client_config.currencySymbol))}
+                </div>
               </div>
             </div>
             <paper-icon-button ?hidden="${this.wide}" class="mobileActionIcons" alt="${this.localize('help')}" icon="help-outline" @click="${this._help}"></paper-icon-button>

@@ -118,6 +118,10 @@ export const OapBudgetStyles = css`
     z-index: 100000;
   }
 
+  #budgetLeftInfo[no-selection] {
+    padding-top: 28px;
+  }
+
   .noItemsInfo {
     color: var(--app-budget-noitemsinfo-color, #555);
     font-size: 14px;
