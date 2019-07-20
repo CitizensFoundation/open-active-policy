@@ -6,7 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/'use strict';Object.defineProperty(_exports,"__esModule",{value:!0});_exports.$compilerDefault=Compiler;_exports.$mainDefault=_exports.$coreDefault=MessageFormat;_exports.$documentWaitDefault=documentWait;_exports.Headers=Headers;_exports.Request=Request;_exports.Response=Response;_exports._composedTreeContains=_composedTreeContains;_exports._getScrollInfo=_getScrollInfo;_exports._getScrollableNodes=_getScrollableNodes;_exports._getScrollingNode=_getScrollingNode;_exports._hasCachedLockedElement=_hasCachedLockedElement;_exports._hasCachedUnlockedElement=_hasCachedUnlockedElement;_exports._lockScrollInteractions=_lockScrollInteractions;_exports._scrollInteractionHandler=_scrollInteractionHandler;_exports._shouldPreventScrolling=_shouldPreventScrolling;_exports._unlockScrollInteractions=_unlockScrollInteractions;_exports.addListener=addListener;_exports.afterNextRender=afterNextRender;_exports.applyCss=applyCss;_exports.applyStyle=applyStyle;_exports.applyStylePlaceHolder=applyStylePlaceHolder;_exports.beforeNextRender=beforeNextRender;_exports.calculateSplices=calculateSplices;_exports.camelToDashCase=camelToDashCase;_exports.createScopeStyle=createScopeStyle;_exports.cssFromModule=cssFromModule;_exports.cssFromModuleImports=cssFromModuleImports;_exports.cssFromModules=cssFromModules;_exports.cssFromTemplate=cssFromTemplate;_exports.dashToCamelCase=dashToCamelCase;_exports.deepTargetFind=deepTargetFind;_exports.detectMixin=detectMixin;_exports.dumpRegistrations=dumpRegistrations;_exports.elementHasBuiltCss=elementHasBuiltCss;_exports.elementIsScrollLocked=elementIsScrollLocked;_exports.elementsAreInvalid=elementsAreInvalid;_exports.encryptVote=encryptVote;_exports.extend=extend;_exports.fetch=fetch$1;_exports.findMatchingParen=findMatchingParen;_exports.flush$2=flush;_exports.forEachRule=forEachRule;_exports.gatherStyleText=gatherStyleText;_exports.get=get;_exports.getBuildComment=getBuildComment;_exports.getComputedStyleValue=getComputedStyleValue;_exports.getCssBuild=getCssBuild;_exports.getIsExtends=getIsExtends;_exports.incrementInstanceCount=incrementInstanceCount;_exports.insertNodeIntoTemplate=insertNodeIntoTemplate;_exports.invalidate=invalidate;_exports.invalidateTemplate=invalidateTemplate;_exports.isAncestor=isAncestor;_exports.isDescendant=isDescendant;_exports.isKeyframesSelector=isKeyframesSelector;_exports.isOptimalCssBuild=isOptimalCssBuild;_exports.isPath=isPath;_exports.isTargetedBuild=isTargetedBuild;_exports.isUnscopedStyle=isUnscopedStyle;_exports.isValid=isValid;_exports.isValidating=isValidating;_exports.matches=matches;_exports.mixinBehaviors=mixinBehaviors;_exports.modelForElement=modelForElement;_exports.normalize=normalize;_exports.parse=parse;_exports.pathFromUrl=pathFromUrl;_exports.prevent=prevent;_exports.processUnscopedStyle=processUnscopedStyle;_exports.processVariableAndFallback=processVariableAndFallback;_exports.property$1=_exports.property=property;_exports.pushScrollLock=pushScrollLock;_exports.query$1=_exports.query=query;_exports.queryAll$1=_exports.queryAll=queryAll;_exports.register=register$1;_exports.register$1=register;_exports.removeCustomPropAssignment=removeCustomPropAssignment;_exports.removeListener=removeListener;_exports.removeNodesFromTemplate=removeNodesFromTemplate;_exports.removeScrollLock=removeScrollLock;_exports.resetMouseCanceller=resetMouseCanceller;_exports.resolveCss=resolveCss;_exports.resolveUrl=resolveUrl;_exports.root=root;_exports.rulesForStyle=rulesForStyle;_exports.set=set;_exports.setElementClassRaw=setElementClassRaw;_exports.setMetaTag=setMetaTag;_exports.setTouchAction=setTouchAction;_exports.split=split;_exports.splitSelectorList=splitSelectorList;_exports.startValidating=startValidating;_exports.startValidatingTemplate=startValidatingTemplate;_exports.stringify=stringify;_exports.stylesFromModule=stylesFromModule;_exports.stylesFromModuleImports=stylesFromModuleImports;_exports.stylesFromModules=stylesFromModules;_exports.stylesFromTemplate=stylesFromTemplate;_exports.templateFactory$1=_exports.templateFactory=templateFactory;_exports.templateIsValid=templateIsValid;_exports.templateIsValidating=templateIsValidating;_exports.templatize=templatize;_exports.toCssText=toCssText;_exports.translate=translate;_exports.updateNativeProperties=updateNativeProperties;_exports.$path=_exports.$parts=_exports.$part=_exports.$parserDefault=_exports.$parser=_exports.$paperSpinnerBehavior=_exports.$paperRippleBehavior=_exports.$paperMenuButton=_exports.$paperItemBehavior=_exports.$paperInkyFocusBehavior=_exports.$paperDialogBehavior=_exports.$paperCheckedElementBehavior=_exports.$paperButtonBehavior=_exports.$pageViewElement=_exports.$oavVotingCompletedStyles=_exports.$oavShadowStyles=_exports.$oavFlexLayout=_exports.$oavBaseElement=_exports.$oavAreaBudgetStyles=_exports.$oavAreaBallotStyles=_exports.$oavAreaBallotMapStyles=_exports.$oavAreaBallotItemStyles=_exports.$oavAppStyles=_exports.$network=_exports.$neonAnimationRunnerBehavior=_exports.$neonAnimationBehavior=_exports.$neonAnimatableBehavior=_exports.$mutableDataBehavior=_exports.$mutableData=_exports.$modifyTemplate=_exports.$mixin=_exports.$metadata=_exports.$mediaQuery=_exports.$main=_exports.$litHtml=_exports.$litElement=_exports.$legacyElementMixin=_exports.$ironValidatableBehavior=_exports.$ironSelection=_exports.$ironSelectable=_exports.$ironScrollTargetBehavior=_exports.$ironScrollManager=_exports.$ironResizableBehavior=_exports.$ironOverlayManager=_exports.$ironOverlayBehavior=_exports.$ironMultiSelectable=_exports.$ironMeta=_exports.$ironMenubarBehavior=_exports.$ironMenuBehavior=_exports.$ironJsonpLibrary=_exports.$ironFormElementBehavior=_exports.$ironFocusablesHelper=_exports.$ironFitBehavior=_exports.$ironControlState=_exports.$ironCheckedElementBehavior=_exports.$ironButtonState=_exports.$ironA11yKeysBehavior=_exports.$htmlTag=_exports.$helpers=_exports.$gestures=_exports.$gestureEventListeners=_exports.$flush=_exports.$flattenedNodesObserver=_exports.$fetch=_exports.$es5=_exports.$enDefault=_exports.$en=_exports.$elementMixin=_exports.$domRepeat=_exports.$domModule=_exports.$domIf=_exports.$domBind=_exports.$dom=_exports.$documentWait=_exports.$directive=_exports.$dirMixin=_exports.$defaultTemplateProcessor=_exports.$decorators=_exports.$debounce=_exports.$customStyleInterfaceDefault=_exports.$customStyleInterface$1=_exports.$customStyle=_exports.$cssTag=_exports.$cssParse=_exports.$core=_exports.$compiler=_exports.$commonUtils=_exports.$commonRegex=_exports.$class=_exports.$caseMap=_exports.$cache=_exports.$ballotEncryptionBehavior=_exports.$async=_exports.$arraySplice=_exports.$arraySelector=_exports.$applyShimUtils=_exports.$applyShimDefault=_exports.$applyShim$1=_exports.$appScrollEffectsBehavior=_exports.$appLayoutBehavior=void 0;_exports.MEDIA_MATCH=_exports.LitElement=_exports.LegacyElementMixin=_exports.IronValidatableBehaviorMeta=_exports.IronValidatableBehavior=_exports.IronSelection=_exports.IronSelectableBehavior=_exports.IronScrollTargetBehavior=_exports.IronResizableBehavior=_exports.IronOverlayManagerClass=_exports.IronOverlayManager=_exports.IronOverlayBehaviorImpl=_exports.IronOverlayBehavior=_exports.IronMultiSelectableBehaviorImpl=_exports.IronMultiSelectableBehavior=_exports.IronMeta=_exports.IronMenubarBehaviorImpl=_exports.IronMenubarBehavior=_exports.IronMenuBehaviorImpl=_exports.IronMenuBehavior=_exports.IronJsonpLibraryBehavior=_exports.IronFormElementBehavior=_exports.IronFocusablesHelper=_exports.IronFitBehavior=_exports.IronControlState=_exports.IronCheckedElementBehaviorImpl=_exports.IronCheckedElementBehavior=_exports.IronButtonStateImpl=_exports.IronButtonState=_exports.IronA11yKeysBehavior=_exports.IS_VAR=_exports.HOST_SUFFIX=_exports.HOST_PREFIX=_exports.GestureEventListeners=_exports.FlattenedNodesObserver=_exports.EventPart$1=_exports.EventPart=_exports.EventApi=_exports.ElementMixin=_exports.DomRepeat=_exports.DomModule=_exports.DomIf=_exports.DomBind=_exports.DomApi=_exports.DirMixin=_exports.DefaultTemplateProcessor$1=_exports.DefaultTemplateProcessor=_exports.Debouncer=_exports.DOMException=_exports.CustomStyleProvider=_exports.CustomStyleInterfaceInterface=_exports.CustomStyle=_exports.Class=_exports.CSSResult$1=_exports.CSSResult=_exports.BooleanAttributePart$1=_exports.BooleanAttributePart=_exports.Base=_exports.BRACKETED=_exports.AttributePart$1=_exports.AttributePart=_exports.AttributeCommitter$1=_exports.AttributeCommitter=_exports.ArraySelectorMixin=_exports.ArraySelector=_exports.AppScrollEffectsBehavior=_exports.AppLayoutBehavior=_exports.ANIMATION_MATCH=_exports.$wrap=_exports.$utils=_exports.$updatingElement=_exports.$unscopedStyleHandler=_exports.$unsafeHtml=_exports.$templatizerBehavior=_exports.$templatize=_exports.$templateStamp=_exports.$templateResult=_exports.$templateMapDefault=_exports.$templateMap=_exports.$templateInstance=_exports.$templateFactory=_exports.$template=_exports.$telemetry=_exports.$styleUtil=_exports.$styleSettings=_exports.$styleGather=_exports.$shadyRender=_exports.$settings=_exports.$router=_exports.$resolveUrl=_exports.$renderStatus=_exports.$render=_exports.$propertyEffects=_exports.$propertyAccessors=_exports.$propertiesMixin=_exports.$propertiesChanged=_exports.$polymerLegacy=_exports.$polymerFn=_exports.$polymerElement=_exports.$polymerDom=void 0;_exports.flush=_exports.findOriginalTarget=_exports.eventOptions$1=_exports.eventOptions=_exports.dom=_exports.disableRuntime=_exports.directive$1=_exports.directive=_exports.defineProperty=_exports.defaultTemplateProcessor$1=_exports.defaultTemplateProcessor=_exports.defaultConverter$1=_exports.defaultConverter=_exports.dedupingMixin=_exports.customElement$1=_exports.customElement=_exports.currentLockingElement=_exports.cssBuild=_exports.css$1=_exports.css=_exports.createMarker$1=_exports.createMarker=_exports.cache=_exports.boundAttributeSuffix=_exports.animationFrame=_exports.allowTemplateFromDomModule=_exports.enqueueDebouncer$1=_exports.enqueueDebouncer=_exports.addDebouncer=_exports.add=_exports._unlockedElementCache=_exports._scrollTimer=_exports._scrollEffects=_exports._lockingElements=_exports._lockedElementCache=_exports._boundScrollHandler=_exports.VAR_CONSUMED=_exports.VAR_ASSIGN=_exports.UpdatingElement$1=_exports.UpdatingElement=_exports.Templatizer=_exports.TemplateStamp=_exports.TemplateResult$3=_exports.TemplateResult$2=_exports.TemplateResult$1=_exports.TemplateResult=_exports.TemplateInstanceBase=_exports.TemplateInstance$1=_exports.TemplateInstance=_exports.Template$1=_exports.Template=_exports.StyleNode=_exports.SVGTemplateResult$2=_exports.SVGTemplateResult$1=_exports.SVGTemplateResult=_exports.PropertyPart$1=_exports.PropertyPart=_exports.PropertyEffects=_exports.PropertyCommitter$1=_exports.PropertyCommitter=_exports.PropertyAccessors=_exports.PropertiesMixin=_exports.PropertiesChanged=_exports.PolymerElement=_exports.Polymer$1=_exports.Polymer=_exports.PaperSpinnerBehavior=_exports.PaperRippleBehavior=_exports.PaperMenuButton=_exports.PaperItemBehaviorImpl=_exports.PaperItemBehavior=_exports.PaperInkyFocusBehaviorImpl=_exports.PaperInkyFocusBehavior=_exports.PaperDialogBehaviorImpl=_exports.PaperDialogBehavior=_exports.PaperCheckedElementBehaviorImpl=_exports.PaperCheckedElementBehavior=_exports.PaperButtonBehaviorImpl=_exports.PaperButtonBehavior=_exports.PageViewElement=_exports.OptionalMutableDataBehavior=_exports.OptionalMutableData=_exports.OavShadowStyles=_exports.OavFlexLayout=_exports.OavBaseElement=_exports.OavBallotMapStyles=_exports.OavAreaVotingCompletedStyles=_exports.OavAreaBudgetStyles=_exports.OavAreaBallotStyles=_exports.OavAreaBallotItemStyles=_exports.OavAppStyles=_exports.NodePart$1=_exports.NodePart=_exports.NeonAnimationRunnerBehaviorImpl=_exports.NeonAnimationRunnerBehavior=_exports.NeonAnimationBehavior=_exports.NeonAnimatableBehavior=_exports.MutableDataBehavior=_exports.MutableData=_exports.MIXIN_MATCH=void 0;_exports.wrap$1=_exports.wrap=_exports.version$1=_exports.version=_exports.useShadow=_exports.useNativeCustomElements=_exports.useNativeCSSProperties=_exports.updateStyles=_exports.updateMetadata=_exports.unsafeHTML=_exports.unsafeCSS$1=_exports.unsafeCSS=_exports.types=_exports.timeOut=_exports.templateCaches$1=_exports.templateCaches=_exports.syncInitialRender=_exports.svg$2=_exports.svg$1=_exports.svg=_exports.supportsAdoptingStyleSheets$1=_exports.supportsAdoptingStyleSheets=_exports.strictTemplatePolicy=_exports.setSyncInitialRender=_exports.setStrictTemplatePolicy=_exports.setSanitizeDOMValue=_exports.setRootPath=_exports.setPassiveTouchGestures=_exports.setLegacyOptimizations=_exports.setAllowTemplateFromDomModule=_exports.scrollTimingFunction=_exports.scroll=_exports.scopingAttribute=_exports.sanitizeDOMValue=_exports.rootPath=_exports.reparentNodes$1=_exports.reparentNodes=_exports.render$1=_exports.render$2=_exports.render=_exports.removeNodes$1=_exports.removeNodes=_exports.remove=_exports.registrations=_exports.registerEffect=_exports.recognizers=_exports.queryAllRoot=_exports.passiveTouchGestures=_exports.parts$1=_exports.parts=_exports.objCreate=_exports.nothing$1=_exports.nothing=_exports.notEqual$1=_exports.notEqual=_exports.nodeMarker=_exports.noChange$1=_exports.noChange=_exports.nativeShadow=_exports.nativeCssVariables=_exports.microTask=_exports.matchesSelector=_exports.markerRegex=_exports.marker=_exports.legacyOptimizations=_exports.lastAttributeNameRegex=_exports.isTemplatePartActive$1=_exports.isTemplatePartActive=_exports.isPrimitive$1=_exports.isPrimitive=_exports.isDirective$1=_exports.isDirective=_exports.isDeep=_exports.isCEPolyfill=_exports.instanceCount=_exports.installRouter=_exports.installOfflineWatcher=_exports.installMediaQueryWatcher=_exports.idlePeriod=_exports.htmlLiteral=_exports.html$5=_exports.html$4=_exports.html$1=_exports.html$3=_exports.html$2=_exports.html=_exports.hop=_exports.gestures=_exports.flushDebouncers=_exports.flush$1=void 0;meta=babelHelpers.interopRequireWildcard(meta);_require=babelHelpers.interopRequireWildcard(_require);const nativeShadow=!(window.ShadyDOM&&window.ShadyDOM.inUse);_exports.nativeShadow=nativeShadow;let nativeCssVariables_;/**
+*/'use strict';Object.defineProperty(_exports,"__esModule",{value:!0});_exports.$compilerDefault=Compiler;_exports.$mainDefault=_exports.$coreDefault=MessageFormat;_exports.$documentWaitDefault=documentWait;_exports.Headers=Headers;_exports.Request=Request;_exports.Response=Response;_exports._composedTreeContains=_composedTreeContains;_exports._getScrollInfo=_getScrollInfo;_exports._getScrollableNodes=_getScrollableNodes;_exports._getScrollingNode=_getScrollingNode;_exports._hasCachedLockedElement=_hasCachedLockedElement;_exports._hasCachedUnlockedElement=_hasCachedUnlockedElement;_exports._lockScrollInteractions=_lockScrollInteractions;_exports._scrollInteractionHandler=_scrollInteractionHandler;_exports._shouldPreventScrolling=_shouldPreventScrolling;_exports._unlockScrollInteractions=_unlockScrollInteractions;_exports.addListener=addListener;_exports.afterNextRender=afterNextRender;_exports.applyCss=applyCss;_exports.applyStyle=applyStyle;_exports.applyStylePlaceHolder=applyStylePlaceHolder;_exports.beforeNextRender=beforeNextRender;_exports.calculateSplices=calculateSplices;_exports.camelToDashCase=camelToDashCase;_exports.createScopeStyle=createScopeStyle;_exports.cssFromModule=cssFromModule;_exports.cssFromModuleImports=cssFromModuleImports;_exports.cssFromModules=cssFromModules;_exports.cssFromTemplate=cssFromTemplate;_exports.dashToCamelCase=dashToCamelCase;_exports.deepTargetFind=deepTargetFind;_exports.detectMixin=detectMixin;_exports.dumpRegistrations=dumpRegistrations;_exports.elementHasBuiltCss=elementHasBuiltCss;_exports.elementIsScrollLocked=elementIsScrollLocked;_exports.elementsAreInvalid=elementsAreInvalid;_exports.encryptVote=encryptVote;_exports.extend=extend;_exports.fetch=fetch$1;_exports.findMatchingParen=findMatchingParen;_exports.flush$2=flush;_exports.forEachRule=forEachRule;_exports.gatherStyleText=gatherStyleText;_exports.get=get;_exports.getBuildComment=getBuildComment;_exports.getComputedStyleValue=getComputedStyleValue;_exports.getCssBuild=getCssBuild;_exports.getIsExtends=getIsExtends;_exports.incrementInstanceCount=incrementInstanceCount;_exports.insertNodeIntoTemplate=insertNodeIntoTemplate;_exports.invalidate=invalidate;_exports.invalidateTemplate=invalidateTemplate;_exports.isAncestor=isAncestor;_exports.isDescendant=isDescendant;_exports.isKeyframesSelector=isKeyframesSelector;_exports.isOptimalCssBuild=isOptimalCssBuild;_exports.isPath=isPath;_exports.isTargetedBuild=isTargetedBuild;_exports.isUnscopedStyle=isUnscopedStyle;_exports.isValid=isValid;_exports.isValidating=isValidating;_exports.matches=matches;_exports.mixinBehaviors=mixinBehaviors;_exports.modelForElement=modelForElement;_exports.normalize=normalize;_exports.parse=parse;_exports.pathFromUrl=pathFromUrl;_exports.prevent=prevent;_exports.processUnscopedStyle=processUnscopedStyle;_exports.processVariableAndFallback=processVariableAndFallback;_exports.property$1=_exports.property=property;_exports.pushScrollLock=pushScrollLock;_exports.query$1=_exports.query=query;_exports.queryAll$1=_exports.queryAll=queryAll;_exports.register=register$1;_exports.register$1=register;_exports.removeCustomPropAssignment=removeCustomPropAssignment;_exports.removeListener=removeListener;_exports.removeNodesFromTemplate=removeNodesFromTemplate;_exports.removeScrollLock=removeScrollLock;_exports.resetMouseCanceller=resetMouseCanceller;_exports.resolveCss=resolveCss;_exports.resolveUrl=resolveUrl;_exports.root=root;_exports.rulesForStyle=rulesForStyle;_exports.set=set;_exports.setElementClassRaw=setElementClassRaw;_exports.setMetaTag=setMetaTag;_exports.setTouchAction=setTouchAction;_exports.split=split;_exports.splitSelectorList=splitSelectorList;_exports.startValidating=startValidating;_exports.startValidatingTemplate=startValidatingTemplate;_exports.stringify=stringify;_exports.stylesFromModule=stylesFromModule;_exports.stylesFromModuleImports=stylesFromModuleImports;_exports.stylesFromModules=stylesFromModules;_exports.stylesFromTemplate=stylesFromTemplate;_exports.templateFactory$1=_exports.templateFactory=templateFactory;_exports.templateIsValid=templateIsValid;_exports.templateIsValidating=templateIsValidating;_exports.templatize=templatize;_exports.toCssText=toCssText;_exports.translate=translate;_exports.updateNativeProperties=updateNativeProperties;_exports.$polymerDom=_exports.$path=_exports.$parts=_exports.$part=_exports.$parserDefault=_exports.$parser=_exports.$paperSpinnerBehavior=_exports.$paperRippleBehavior=_exports.$paperMenuButton=_exports.$paperItemBehavior=_exports.$paperInkyFocusBehavior=_exports.$paperDialogBehavior=_exports.$paperCheckedElementBehavior=_exports.$paperButtonBehavior=_exports.$oapSwipableCardsStyles=_exports.$oapShadowStyles=_exports.$oapPolicyQuizStyles=_exports.$oapPageViewElement=_exports.$oapFlexLayout=_exports.$oapFilterArticlesStyles=_exports.$oapBudgetStyles=_exports.$oapBaseElement=_exports.$oapBallotStyles=_exports.$oapArticleItemStyles=_exports.$oapAppStyles=_exports.$network=_exports.$neonAnimationRunnerBehavior=_exports.$neonAnimationBehavior=_exports.$neonAnimatableBehavior=_exports.$mutableDataBehavior=_exports.$mutableData=_exports.$modifyTemplate=_exports.$mixin=_exports.$metadata=_exports.$mediaQuery=_exports.$main=_exports.$litHtml=_exports.$litElement=_exports.$legacyElementMixin=_exports.$ironValidatableBehavior=_exports.$ironSelection=_exports.$ironSelectable=_exports.$ironScrollTargetBehavior=_exports.$ironScrollManager=_exports.$ironResizableBehavior=_exports.$ironOverlayManager=_exports.$ironOverlayBehavior=_exports.$ironMultiSelectable=_exports.$ironMeta=_exports.$ironMenubarBehavior=_exports.$ironMenuBehavior=_exports.$ironFormElementBehavior=_exports.$ironFocusablesHelper=_exports.$ironFitBehavior=_exports.$ironControlState=_exports.$ironCheckedElementBehavior=_exports.$ironButtonState=_exports.$ironA11yKeysBehavior=_exports.$htmlTag=_exports.$helpers=_exports.$gestures=_exports.$gestureEventListeners=_exports.$flush=_exports.$flattenedNodesObserver=_exports.$fetch=_exports.$es5=_exports.$enDefault=_exports.$en=_exports.$elementMixin=_exports.$domRepeat=_exports.$domModule=_exports.$domIf=_exports.$domBind=_exports.$dom=_exports.$documentWait=_exports.$directive=_exports.$dirMixin=_exports.$defaultTemplateProcessor=_exports.$decorators=_exports.$debounce=_exports.$customStyleInterfaceDefault=_exports.$customStyleInterface$1=_exports.$customStyle=_exports.$cssTag=_exports.$cssParse=_exports.$core=_exports.$compiler=_exports.$commonUtils=_exports.$commonRegex=_exports.$class=_exports.$caseMap=_exports.$ballotEncryptionBehavior=_exports.$async=_exports.$arraySplice=_exports.$arraySelector=_exports.$applyShimUtils=_exports.$applyShimDefault=_exports.$applyShim$1=_exports.$appScrollEffectsBehavior=_exports.$appLayoutBehavior=void 0;_exports.MIXIN_MATCH=_exports.MEDIA_MATCH=_exports.LitElement=_exports.LegacyElementMixin=_exports.IronValidatableBehaviorMeta=_exports.IronValidatableBehavior=_exports.IronSelection=_exports.IronSelectableBehavior=_exports.IronScrollTargetBehavior=_exports.IronResizableBehavior=_exports.IronOverlayManagerClass=_exports.IronOverlayManager=_exports.IronOverlayBehaviorImpl=_exports.IronOverlayBehavior=_exports.IronMultiSelectableBehaviorImpl=_exports.IronMultiSelectableBehavior=_exports.IronMeta=_exports.IronMenubarBehaviorImpl=_exports.IronMenubarBehavior=_exports.IronMenuBehaviorImpl=_exports.IronMenuBehavior=_exports.IronFormElementBehavior=_exports.IronFocusablesHelper=_exports.IronFitBehavior=_exports.IronControlState=_exports.IronCheckedElementBehaviorImpl=_exports.IronCheckedElementBehavior=_exports.IronButtonStateImpl=_exports.IronButtonState=_exports.IronA11yKeysBehavior=_exports.IS_VAR=_exports.HOST_SUFFIX=_exports.HOST_PREFIX=_exports.GestureEventListeners=_exports.FlattenedNodesObserver=_exports.EventPart$1=_exports.EventPart=_exports.EventApi=_exports.ElementMixin=_exports.DomRepeat=_exports.DomModule=_exports.DomIf=_exports.DomBind=_exports.DomApi=_exports.DirMixin=_exports.DefaultTemplateProcessor$1=_exports.DefaultTemplateProcessor=_exports.Debouncer=_exports.DOMException=_exports.CustomStyleProvider=_exports.CustomStyleInterfaceInterface=_exports.CustomStyle=_exports.Class=_exports.CSSResult$1=_exports.CSSResult=_exports.BooleanAttributePart$1=_exports.BooleanAttributePart=_exports.Base=_exports.BRACKETED=_exports.AttributePart$1=_exports.AttributePart=_exports.AttributeCommitter$1=_exports.AttributeCommitter=_exports.ArraySelectorMixin=_exports.ArraySelector=_exports.AppScrollEffectsBehavior=_exports.AppLayoutBehavior=_exports.ANIMATION_MATCH=_exports.$wrap=_exports.$utils=_exports.$updatingElement=_exports.$unscopedStyleHandler=_exports.$unsafeHtml=_exports.$templatizerBehavior=_exports.$templatize=_exports.$templateStamp=_exports.$templateResult=_exports.$templateMapDefault=_exports.$templateMap=_exports.$templateInstance=_exports.$templateFactory=_exports.$template=_exports.$telemetry=_exports.$styleUtil=_exports.$styleSettings=_exports.$styleGather=_exports.$shadyRender=_exports.$settings=_exports.$router=_exports.$resolveUrl=_exports.$repeat=_exports.$renderStatus=_exports.$render=_exports.$propertyEffects=_exports.$propertyAccessors=_exports.$propertiesMixin=_exports.$propertiesChanged=_exports.$polymerLegacy=_exports.$polymerFn=_exports.$polymerElement=void 0;_exports.flush$1=_exports.flush=_exports.findOriginalTarget=_exports.eventOptions$1=_exports.eventOptions=_exports.dom=_exports.disableRuntime=_exports.directive$1=_exports.directive=_exports.defineProperty=_exports.defaultTemplateProcessor$1=_exports.defaultTemplateProcessor=_exports.defaultConverter$1=_exports.defaultConverter=_exports.dedupingMixin=_exports.customElement$1=_exports.customElement=_exports.currentLockingElement=_exports.cssBuild=_exports.css$1=_exports.css=_exports.createMarker$1=_exports.createMarker=_exports.boundAttributeSuffix=_exports.animationFrame=_exports.allowTemplateFromDomModule=_exports.enqueueDebouncer$1=_exports.enqueueDebouncer=_exports.addDebouncer=_exports.add=_exports._unlockedElementCache=_exports._scrollTimer=_exports._scrollEffects=_exports._lockingElements=_exports._lockedElementCache=_exports._boundScrollHandler=_exports.VAR_CONSUMED=_exports.VAR_ASSIGN=_exports.UpdatingElement$1=_exports.UpdatingElement=_exports.Templatizer=_exports.TemplateStamp=_exports.TemplateResult$3=_exports.TemplateResult$2=_exports.TemplateResult$1=_exports.TemplateResult=_exports.TemplateInstanceBase=_exports.TemplateInstance$1=_exports.TemplateInstance=_exports.Template$1=_exports.Template=_exports.StyleNode=_exports.SVGTemplateResult$2=_exports.SVGTemplateResult$1=_exports.SVGTemplateResult=_exports.PropertyPart$1=_exports.PropertyPart=_exports.PropertyEffects=_exports.PropertyCommitter$1=_exports.PropertyCommitter=_exports.PropertyAccessors=_exports.PropertiesMixin=_exports.PropertiesChanged=_exports.PolymerElement=_exports.Polymer$1=_exports.Polymer=_exports.PaperSpinnerBehavior=_exports.PaperRippleBehavior=_exports.PaperMenuButton=_exports.PaperItemBehaviorImpl=_exports.PaperItemBehavior=_exports.PaperInkyFocusBehaviorImpl=_exports.PaperInkyFocusBehavior=_exports.PaperDialogBehaviorImpl=_exports.PaperDialogBehavior=_exports.PaperCheckedElementBehaviorImpl=_exports.PaperCheckedElementBehavior=_exports.PaperButtonBehaviorImpl=_exports.PaperButtonBehavior=_exports.OptionalMutableDataBehavior=_exports.OptionalMutableData=_exports.OapSwipableCardsStyles=_exports.OapShadowStyles=_exports.OapPolicyQuizStyles=_exports.OapPageViewElement=_exports.OapFlexLayout=_exports.OapFilterArticlesStyles=_exports.OapBudgetStyles=_exports.OapBaseElement=_exports.OapBallotStyles=_exports.OapArticleItemStyles=_exports.OapAppStyles=_exports.NodePart$1=_exports.NodePart=_exports.NeonAnimationRunnerBehaviorImpl=_exports.NeonAnimationRunnerBehavior=_exports.NeonAnimationBehavior=_exports.NeonAnimatableBehavior=_exports.MutableDataBehavior=_exports.MutableData=void 0;_exports.wrap$1=_exports.wrap=_exports.version$1=_exports.version=_exports.useShadow=_exports.useNativeCustomElements=_exports.useNativeCSSProperties=_exports.updateStyles=_exports.updateMetadata=_exports.unsafeHTML=_exports.unsafeCSS$1=_exports.unsafeCSS=_exports.types=_exports.timeOut=_exports.templateCaches$1=_exports.templateCaches=_exports.syncInitialRender=_exports.svg$2=_exports.svg$1=_exports.svg=_exports.supportsAdoptingStyleSheets$1=_exports.supportsAdoptingStyleSheets=_exports.strictTemplatePolicy=_exports.setSyncInitialRender=_exports.setStrictTemplatePolicy=_exports.setSanitizeDOMValue=_exports.setRootPath=_exports.setPassiveTouchGestures=_exports.setLegacyOptimizations=_exports.setAllowTemplateFromDomModule=_exports.scrollTimingFunction=_exports.scroll=_exports.scopingAttribute=_exports.sanitizeDOMValue=_exports.rootPath=_exports.repeat=_exports.reparentNodes$1=_exports.reparentNodes=_exports.render$1=_exports.render$2=_exports.render=_exports.removeNodes$1=_exports.removeNodes=_exports.remove=_exports.registrations=_exports.registerEffect=_exports.recognizers=_exports.queryAllRoot=_exports.passiveTouchGestures=_exports.parts$1=_exports.parts=_exports.objCreate=_exports.nothing$1=_exports.nothing=_exports.notEqual$1=_exports.notEqual=_exports.nodeMarker=_exports.noChange$1=_exports.noChange=_exports.nativeShadow=_exports.nativeCssVariables=_exports.microTask=_exports.matchesSelector=_exports.markerRegex=_exports.marker=_exports.legacyOptimizations=_exports.lastAttributeNameRegex=_exports.isTemplatePartActive$1=_exports.isTemplatePartActive=_exports.isPrimitive$1=_exports.isPrimitive=_exports.isDirective$1=_exports.isDirective=_exports.isDeep=_exports.isCEPolyfill=_exports.instanceCount=_exports.installRouter=_exports.installOfflineWatcher=_exports.installMediaQueryWatcher=_exports.idlePeriod=_exports.htmlLiteral=_exports.html$5=_exports.html$4=_exports.html$1=_exports.html$3=_exports.html$2=_exports.html=_exports.hop=_exports.gestures=_exports.flushDebouncers=void 0;meta=babelHelpers.interopRequireWildcard(meta);_require=babelHelpers.interopRequireWildcard(_require);function ownKeys(object,enumerableOnly){var keys=Object.keys(object);if(Object.getOwnPropertySymbols){keys.push.apply(keys,Object.getOwnPropertySymbols(object))}if(enumerableOnly)keys=keys.filter(function(sym){return Object.getOwnPropertyDescriptor(object,sym).enumerable});return keys}function _objectSpread(target){for(var i=1,source;i<arguments.length;i++){source=null!=arguments[i]?arguments[i]:{};if(i%2){ownKeys(source,!0).forEach(function(key){babelHelpers.defineProperty(target,key,source[key])})}else if(Object.getOwnPropertyDescriptors){Object.defineProperties(target,Object.getOwnPropertyDescriptors(source))}else{ownKeys(source).forEach(function(key){Object.defineProperty(target,key,Object.getOwnPropertyDescriptor(source,key))})}}return target}const nativeShadow=!(window.ShadyDOM&&window.ShadyDOM.inUse);_exports.nativeShadow=nativeShadow;let nativeCssVariables_;/**
                           * @param {(ShadyCSSOptions | ShadyCSSInterface)=} settings
                           */function calcCssVariables(settings){if(settings&&settings.shimcssproperties){nativeCssVariables_=!1}else{// chrome 49 has semi-working css vars, check if box-shadow works
 // safari 9.1 has a recalc bug: https://bugs.webkit.org/show_bug.cgi?id=155782
@@ -3400,7 +3400,7 @@ return superCtor.prototype instanceof PropertiesMixin?/** @type {!PropertiesMixi
        * @suppress {missingProperties} Super may or may not implement the callback
        * @return {void}
        * @override
-       */disconnectedCallback(){if(super.disconnectedCallback){super.disconnectedCallback()}}}return PropertiesMixin});_exports.PropertiesMixin=PropertiesMixin;var propertiesMixin={PropertiesMixin:PropertiesMixin};_exports.$propertiesMixin=propertiesMixin;const bundledImportMeta=babelHelpers.objectSpread({},meta,{url:new URL("../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",meta.url).href}),version="3.2.0";_exports.version$1=_exports.version=version;const builtCSS=window.ShadyCSS&&window.ShadyCSS.cssBuild,ElementMixin=dedupingMixin(base=>{/**
+       */disconnectedCallback(){if(super.disconnectedCallback){super.disconnectedCallback()}}}return PropertiesMixin});_exports.PropertiesMixin=PropertiesMixin;var propertiesMixin={PropertiesMixin:PropertiesMixin};_exports.$propertiesMixin=propertiesMixin;const bundledImportMeta=_objectSpread({},meta,{url:new URL("../../node_modules/%40polymer/polymer/lib/mixins/element-mixin.js",meta.url).href}),version="3.2.0";_exports.version$1=_exports.version=version;const builtCSS=window.ShadyCSS&&window.ShadyCSS.cssBuild,ElementMixin=dedupingMixin(base=>{/**
    * @constructor
    * @implements {Polymer_PropertyEffects}
    * @implements {Polymer_PropertiesMixin}
@@ -4675,7 +4675,7 @@ forwardReadOnlyProperties(DomApiNative.prototype,["parentNode","firstChild","las
                                    * abstract differences between native Shadow DOM and "Shady DOM."
                                    * @param {(Node|Event|DomApiNative|EventApi)=} obj Node or event to operate on
                                    * @return {!DomApiNative|!EventApi} Wrapper providing either node API or event API
-                                   */_exports.DomApi=DomApi;const dom=function(obj){obj=obj||document;if(obj instanceof DomApiImpl){return(/** @type {!DomApi} */obj)}if(obj instanceof EventApi){return(/** @type {!EventApi} */obj)}let helper=obj.__domApi;if(!helper){if(obj instanceof Event){helper=new EventApi(obj)}else{helper=new DomApiImpl(/** @type {Node} */obj)}obj.__domApi=helper}return helper};_exports.dom=dom;var polymer_dom={matchesSelector:matchesSelector,EventApi:EventApi,DomApi:DomApi,dom:dom,flush:flush$1,addDebouncer:enqueueDebouncer};_exports.$polymerDom=polymer_dom;const bundledImportMeta$1=babelHelpers.objectSpread({},meta,{url:new URL("../../node_modules/%40polymer/polymer/lib/legacy/legacy-element-mixin.js",meta.url).href});let styleInterface=window.ShadyCSS;/**
+                                   */_exports.DomApi=DomApi;const dom=function(obj){obj=obj||document;if(obj instanceof DomApiImpl){return(/** @type {!DomApi} */obj)}if(obj instanceof EventApi){return(/** @type {!EventApi} */obj)}let helper=obj.__domApi;if(!helper){if(obj instanceof Event){helper=new EventApi(obj)}else{helper=new DomApiImpl(/** @type {Node} */obj)}obj.__domApi=helper}return helper};_exports.dom=dom;var polymer_dom={matchesSelector:matchesSelector,EventApi:EventApi,DomApi:DomApi,dom:dom,flush:flush$1,addDebouncer:enqueueDebouncer};_exports.$polymerDom=polymer_dom;const bundledImportMeta$1=_objectSpread({},meta,{url:new URL("../../node_modules/%40polymer/polymer/lib/legacy/legacy-element-mixin.js",meta.url).href});let styleInterface=window.ShadyCSS;/**
                                        * Element class mixin that provides Polymer's "legacy" API intended to be
                                        * backward-compatible to the greatest extent possible with the API
                                        * found on the Polymer 1.x `Polymer.Base` prototype applied to all elements
@@ -6736,101 +6736,7 @@ customStyleInterface$1.processStyles()},/**
    * @return {boolean} Whether the property should be considered a change
    * @this {this}
    * @protected
-   */_shouldPropertyChange(property,value,old){return mutablePropertyChange$1(this,property,value,old,this.mutableData)}};_exports.OptionalMutableDataBehavior=OptionalMutableDataBehavior;var mutableDataBehavior={MutableDataBehavior:MutableDataBehavior,OptionalMutableDataBehavior:OptionalMutableDataBehavior};_exports.$mutableDataBehavior=mutableDataBehavior;const Base=LegacyElementMixin(HTMLElement).prototype;_exports.Base=Base;var polymerLegacy={Base:Base,Polymer:Polymer,html:html};_exports.$polymerLegacy=polymerLegacy;const IronJsonpLibraryBehavior={properties:{/**
-     * True if library has been successfully loaded
-     */libraryLoaded:{type:Boolean,value:!1,notify:!0,readOnly:!0},/**
-     * Not null if library has failed to load
-     */libraryErrorMessage:{type:String,value:null,notify:!0,readOnly:!0// Following properties are to be set by behavior users
-/**
-       * Library url. Must contain string `%%callback%%`.
-       *
-       * `%%callback%%` is a placeholder for jsonp wrapper function name
-       *
-       * Ex: https://maps.googleapis.com/maps/api/js?callback=%%callback%%
-       * @property libraryUrl
-       */ /**
-           * Set if library requires specific callback name.
-           * Name will be automatically generated if not set.
-           * @property callbackName
-           */ /**
-               * name of event to be emitted when library loads. Standard is `api-load`
-               * @property notifyEvent
-               */ /**
-                   * event with name specified in `notifyEvent` attribute
-                   * will fire upon successful load2
-                   * @event `notifyEvent`
-                   */}},observers:["_libraryUrlChanged(libraryUrl)"],_libraryUrlChanged:function(libraryUrl){// can't load before ready because notifyEvent might not be set
-if(this._isReady&&this.libraryUrl)this._loadLibrary()},_libraryLoadCallback:function(err,result){if(err){Base._warn("Library load failed:",err.message);this._setLibraryErrorMessage(err.message)}else{this._setLibraryErrorMessage(null);this._setLibraryLoaded(!0);if(this.notifyEvent)this.fire(this.notifyEvent,result,{composed:!0})}},/** loads the library, and fires this.notifyEvent upon completion */_loadLibrary:function(){LoaderMap.require(this.libraryUrl,this._libraryLoadCallback.bind(this),this.callbackName)},ready:function(){this._isReady=!0;if(this.libraryUrl)this._loadLibrary()}};/**
-    * LoaderMap keeps track of all Loaders
-    */_exports.IronJsonpLibraryBehavior=IronJsonpLibraryBehavior;var LoaderMap={apiMap:{},// { hash -> Loader }
-/**
-   * @param {Function} notifyCallback loaded callback fn(result)
-   * @param {string} jsonpCallbackName name of jsonpcallback. If API does not provide it, leave empty. Optional.
-   */require:function(url,notifyCallback,jsonpCallbackName){// make hashable string form url
-var name=this.nameFromUrl(url);// create a loader as needed
-if(!this.apiMap[name])this.apiMap[name]=new Loader(name,url,jsonpCallbackName);// ask for notification
-this.apiMap[name].requestNotify(notifyCallback)},nameFromUrl:function(url){return url.replace(/[\:\/\%\?\&\.\=\-\,]/g,"_")+"_api"}},Loader=function(name,url,callbackName){this.notifiers=[];// array of notifyFn [ notifyFn* ]
-// callback is specified either as callback name
-// or computed dynamically if url has callbackMacro in it
-if(!callbackName){if(0<=url.indexOf(this.callbackMacro)){callbackName=name+"_loaded";url=url.replace(this.callbackMacro,callbackName)}else{this.error=new Error("IronJsonpLibraryBehavior a %%callback%% parameter is required in libraryUrl");// TODO(sjmiles): we should probably fallback to listening to script.load
-return}}this.callbackName=callbackName;window[this.callbackName]=this.success.bind(this);this.addScript(url)};/** @constructor */Loader.prototype={callbackMacro:"%%callback%%",loaded:!1,addScript:function(src){var script=document.createElement("script");script.src=src;script.onerror=this.handleError.bind(this);var s=document.querySelector("script")||document.body;s.parentNode.insertBefore(script,s);this.script=script},removeScript:function(){if(this.script.parentNode){this.script.parentNode.removeChild(this.script)}this.script=null},handleError:function(ev){this.error=new Error("Library failed to load");this.notifyAll();this.cleanup()},success:function(){this.loaded=!0;this.result=Array.prototype.slice.call(arguments);this.notifyAll();this.cleanup()},cleanup:function(){delete window[this.callbackName]},notifyAll:function(){this.notifiers.forEach(function(notifyCallback){notifyCallback(this.error,this.result)}.bind(this));this.notifiers=[]},requestNotify:function(notifyCallback){if(this.loaded||this.error){notifyCallback(this.error,this.result)}else{this.notifiers.push(notifyCallback)}}};/**
-     Loads specified jsonp library.
-   
-     Example:
-   
-         <iron-jsonp-library
-           library-url="https://apis.google.com/js/plusone.js?onload=%%callback%%"
-           notify-event="api-load"
-           library-loaded="{{loaded}}"></iron-jsonp-library>
-   
-     Will emit 'api-load' event when loaded, and set 'loaded' to true
-   
-     Implemented by  Polymer.IronJsonpLibraryBehavior. Use it
-     to create specific library loader elements.
-   
-     @demo demo/index.html
-   */Polymer({is:"iron-jsonp-library",behaviors:[IronJsonpLibraryBehavior],properties:{/**
-     * Library url. Must contain string `%%callback%%`.
-     *
-     * `%%callback%%` is a placeholder for jsonp wrapper function name
-     *
-     * Ex: https://maps.googleapis.com/maps/api/js?callback=%%callback%%
-     */libraryUrl:String,/**
-     * Set if library requires specific callback name.
-     * Name will be automatically generated if not set.
-     */callbackName:String,/**
-     * event with name specified in 'notifyEvent' attribute
-     * will fire upon successful load
-     */notifyEvent:String/**
-                            * event with name specified in 'notifyEvent' attribute
-                            * will fire upon successful load
-                            * @event `notifyEvent`
-                            */}});var ironJsonpLibrary={IronJsonpLibraryBehavior:IronJsonpLibraryBehavior};_exports.$ironJsonpLibrary=ironJsonpLibrary;Polymer({is:"google-maps-api",behaviors:[IronJsonpLibraryBehavior],properties:{/** @private */mapsUrl:{type:String,value:"https://maps.googleapis.com/maps/api/js?callback=%%callback%%"},/**
-     * A Maps API key. To obtain an API key, see developers.google.com/maps/documentation/javascript/tutorial#api_key.
-     */apiKey:{type:String,value:""},/**
-     * A Maps API for Business Client ID. To obtain a Maps API for Business Client ID, see developers.google.com/maps/documentation/business/.
-     * If set, a Client ID will take precedence over an API Key.
-     */clientId:{type:String,value:""},/**
-     * Version of the Maps API to use.
-     */version:{type:String,value:"3.exp"},/**
-     * The localized language to load the Maps API with. For more information
-     * see https://developers.google.com/maps/documentation/javascript/basics#Language
-     *
-     * Note: the Maps API defaults to the preffered language setting of the browser.
-     * Use this parameter to override that behavior.
-     */language:{type:String,value:""},/**
-     * If true, sign-in is enabled.
-     * See https://developers.google.com/maps/documentation/javascript/signedin#enable_sign_in
-     */signedIn:{type:Boolean,value:!1},/**
-     * Fired when the Maps API library is loaded and ready.
-     * @event api-load
-     */ /**
-         * Name of event fired when library is loaded and available.
-         */notifyEvent:{type:String,value:"api-load"},/** @private */libraryUrl:{type:String,computed:"_computeUrl(mapsUrl, version, apiKey, clientId, language, signedIn)"}},_computeUrl(mapsUrl,version,apiKey,clientId,language,signedIn){let url=`${mapsUrl}&v=${version}`;// Always load all Maps API libraries.
-url+="&libraries=drawing,geometry,places,visualization";if(apiKey&&!clientId){url+=`&key=${apiKey}`}if(clientId){url+=`&client=${clientId}`}// Log a warning if the user is not using an API Key or Client ID.
-if(!apiKey&&!clientId){const warning="No Google Maps API Key or Client ID specified. "+"See https://developers.google.com/maps/documentation/javascript/get-api-key "+"for instructions to get started with a key or client id.";console.warn(warning)}if(language){url+=`&language=${language}`}if(signedIn){url+=`&signed_in=${signedIn}`}return url},/**
-   * Provides the google.maps JS API namespace.
-   */get api(){return google.maps}});const template=html`
+   */_shouldPropertyChange(property,value,old){return mutablePropertyChange$1(this,property,value,old,this.mutableData)}};_exports.OptionalMutableDataBehavior=OptionalMutableDataBehavior;var mutableDataBehavior={MutableDataBehavior:MutableDataBehavior,OptionalMutableDataBehavior:OptionalMutableDataBehavior};_exports.$mutableDataBehavior=mutableDataBehavior;const Base=LegacyElementMixin(HTMLElement).prototype;_exports.Base=Base;var polymerLegacy={Base:Base,Polymer:Polymer,html:html};_exports.$polymerLegacy=polymerLegacy;const template=html`
 <custom-style>
   <style is="custom-style">
     [hidden] {
@@ -12091,343 +11997,7 @@ this.$.selectionBar.classList.remove("expand");this.$.selectionBar.classList.rem
 this.$.selectionBar.classList.remove("expand");this.$.selectionBar.classList.remove("contract");this._positionBar(this._pos.width,this._pos.left);return}var oldRect=old.getBoundingClientRect(),oldIndex=this.items.indexOf(old),index=this.items.indexOf(tab),m=5;// bar animation: expand
 this.$.selectionBar.classList.add("expand");var moveRight=oldIndex<index,isRTL=this._isRTL;if(isRTL){moveRight=!moveRight}if(moveRight){this._positionBar(this._calcPercent(tabRect.left+tabRect.width-oldRect.left,w)-m,this._left)}else{this._positionBar(this._calcPercent(oldRect.left+oldRect.width-tabRect.left,w)-m,this._calcPercent(tabOffsetLeft,w)+m)}if(this.scrollable){this._scrollToSelectedIfNeeded(tabRect.width,tabOffsetLeft)}},_scrollToSelectedIfNeeded:function(tabWidth,tabOffsetLeft){var l=tabOffsetLeft-this.$.tabsContainer.scrollLeft;if(0>l){this.$.tabsContainer.scrollLeft+=l}else{l+=tabWidth-this.$.tabsContainer.offsetWidth;if(0<l){this.$.tabsContainer.scrollLeft+=l}}},_calcPercent:function(w,w0){return 100*w/w0},_positionBar:function(width,left){width=width||0;left=left||0;this._width=width;this._left=left;this.transform("translateX("+left+"%) scaleX("+width/100+")",this.$.selectionBar)},_onBarTransitionEnd:function(e){var cl=this.$.selectionBar.classList;// bar animation: expand -> contract
 if(cl.contains("expand")){cl.remove("expand");cl.add("contract");this._positionBar(this._pos.width,this._pos.left);// bar animation done
-}else if(cl.contains("contract")){cl.remove("contract")}}});function setupDragHandler_(){if(this.draggable){this.dragHandler_=google.maps.event.addListener(this.marker,"dragend",onDragEnd_.bind(this))}else{google.maps.event.removeListener(this.dragHandler_);this.dragHandler_=null}}function onDragEnd_(e,details,sender){this.latitude=e.latLng.lat();this.longitude=e.latLng.lng()}Polymer({_template:html`
-    <style>
-      :host {
-        display: none;
-      }
-    </style>
-
-    <slot></slot>
-`,is:"google-map-marker",/**
-   * Fired when the marker icon was clicked. Requires the clickEvents attribute to be true.
-   *
-   * @param {google.maps.MouseEvent} event The mouse event.
-   * @event google-map-marker-click
-   */ /**
-       * Fired when the marker icon was double clicked. Requires the clickEvents attribute to be true.
-       *
-       * @param {google.maps.MouseEvent} event The mouse event.
-       * @event google-map-marker-dblclick
-       */ /**
-           * Fired repeatedly while the user drags the marker. Requires the dragEvents attribute to be true.
-           *
-           * @event google-map-marker-drag
-           */ /**
-               * Fired when the user stops dragging the marker. Requires the dragEvents attribute to be true.
-               *
-               * @event google-map-marker-dragend
-               */ /**
-                   * Fired when the user starts dragging the marker. Requires the dragEvents attribute to be true.
-                   *
-                   * @event google-map-marker-dragstart
-                   */ /**
-                       * Fired for a mousedown on the marker. Requires the mouseEvents attribute to be true.
-                       *
-                       * @event google-map-marker-mousedown
-                       * @param {google.maps.MouseEvent} event The mouse event.
-                       */ /**
-                           * Fired when the DOM `mousemove` event is fired on the marker. Requires the mouseEvents
-                           * attribute to be true.
-                           *
-                           * @event google-map-marker-mousemove
-                           * @param {google.maps.MouseEvent} event The mouse event.
-                           */ /**
-                               * Fired when the mouse leaves the area of the marker icon. Requires the mouseEvents attribute to be
-                               * true.
-                               *
-                               * @event google-map-marker-mouseout
-                               * @param {google.maps.MouseEvent} event The mouse event.
-                               */ /**
-                                   * Fired when the mouse enters the area of the marker icon. Requires the mouseEvents attribute to be
-                                   * true.
-                                   *
-                                   * @event google-map-marker-mouseover
-                                   * @param {google.maps.MouseEvent} event The mouse event.
-                                   */ /**
-                                       * Fired for a mouseup on the marker. Requires the mouseEvents attribute to be true.
-                                       *
-                                       * @event google-map-marker-mouseup
-                                       * @param {google.maps.MouseEvent} event The mouse event.
-                                       */ /**
-                                           * Fired for a rightclick on the marker. Requires the clickEvents attribute to be true.
-                                           *
-                                           * @event google-map-marker-rightclick
-                                           * @param {google.maps.MouseEvent} event The mouse event.
-                                           */ /**
-                                               * Fired when an infowindow is opened.
-                                               *
-                                               * @event google-map-marker-open
-                                               */ /**
-                                                   * Fired when the close button of the infowindow is pressed.
-                                                   *
-                                                   * @event google-map-marker-close
-                                                   */properties:{/**
-     * A Google Maps marker object.
-     *
-     * @type google.maps.Marker
-     */marker:{type:Object,notify:!0},/**
-     * The Google map object.
-     *
-     * @type google.maps.Map
-     */map:{type:Object,observer:"_mapChanged"},/**
-     * A Google Map Infowindow object.
-     *
-     * @type {?Object}
-     */info:{type:Object,value:null},/**
-     * When true, marker *click events are automatically registered.
-     */clickEvents:{type:Boolean,value:!1,observer:"_clickEventsChanged"},/**
-     * When true, marker drag* events are automatically registered.
-     */dragEvents:{type:Boolean,value:!1,observer:"_dragEventsChanged"},/**
-     * Image URL for the marker icon.
-     *
-     * @type string|google.maps.Icon|google.maps.Symbol
-     */icon:{type:Object,value:null,observer:"_iconChanged"},/**
-     * When true, marker mouse* events are automatically registered.
-     */mouseEvents:{type:Boolean,value:!1,observer:"_mouseEventsChanged"},/**
-     * Z-index for the marker icon.
-     */zIndex:{type:Number,value:0,observer:"_zIndexChanged"},/**
-     * The marker's longitude coordinate.
-     */longitude:{type:Number,value:null,notify:!0},/**
-     * The marker's latitude coordinate.
-     */latitude:{type:Number,value:null,notify:!0},/**
-     * The marker's label.
-     */label:{type:String,value:null,observer:"_labelChanged"},/**
-     * A animation for the marker. "DROP" or "BOUNCE". See
-     * https://developers.google.com/maps/documentation/javascript/examples/marker-animations.
-     */animation:{type:String,value:null,observer:"_animationChanged"},/**
-     * Specifies whether the InfoWindow is open or not
-     */open:{type:Boolean,value:!1,observer:"_openChanged"}},observers:["_updatePosition(latitude, longitude)"],detached(){if(this.marker){google.maps.event.clearInstanceListeners(this.marker);this._listeners={};this.marker.setMap(null)}if(this._contentObserver){this._contentObserver.disconnect()}},attached(){// If element is added back to DOM, put it back on the map.
-if(this.marker){this.marker.setMap(this.map)}},_updatePosition(){if(this.marker&&null!=this.latitude&&null!=this.longitude){this.marker.setPosition(new google.maps.LatLng(parseFloat(this.latitude),parseFloat(this.longitude)))}},_clickEventsChanged(){if(this.map){if(this.clickEvents){this._forwardEvent("click");this._forwardEvent("dblclick");this._forwardEvent("rightclick")}else{this._clearListener("click");this._clearListener("dblclick");this._clearListener("rightclick")}}},_dragEventsChanged(){if(this.map){if(this.dragEvents){this._forwardEvent("drag");this._forwardEvent("dragend");this._forwardEvent("dragstart")}else{this._clearListener("drag");this._clearListener("dragend");this._clearListener("dragstart")}}},_mouseEventsChanged(){if(this.map){if(this.mouseEvents){this._forwardEvent("mousedown");this._forwardEvent("mousemove");this._forwardEvent("mouseout");this._forwardEvent("mouseover");this._forwardEvent("mouseup")}else{this._clearListener("mousedown");this._clearListener("mousemove");this._clearListener("mouseout");this._clearListener("mouseover");this._clearListener("mouseup")}}},_animationChanged(){if(this.marker){this.marker.setAnimation(google.maps.Animation[this.animation])}},_labelChanged(){if(this.marker){this.marker.setLabel(this.label)}},_iconChanged(){if(this.marker){this.marker.setIcon(this.icon)}},_zIndexChanged(){if(this.marker){this.marker.setZIndex(this.zIndex)}},_mapChanged(){// Marker will be rebuilt, so disconnect existing one from old map and listeners.
-if(this.marker){this.marker.setMap(null);google.maps.event.clearInstanceListeners(this.marker)}if(this.map&&this.map instanceof google.maps.Map){this._mapReady()}},_contentChanged(){if(this._contentObserver){this._contentObserver.disconnect()}// Watch for future updates.
-this._contentObserver=new MutationObserver(this._contentChanged.bind(this));this._contentObserver.observe(this,{childList:!0,subtree:!0});const content=this.innerHTML.trim();if(content){if(!this.info){// Create a new infowindow
-this.info=new google.maps.InfoWindow;this.openInfoHandler_=google.maps.event.addListener(this.marker,"click",()=>{this.open=!0});this.closeInfoHandler_=google.maps.event.addListener(this.info,"closeclick",()=>{this.open=!1})}this.info.setContent(content)}else if(this.info){// Destroy the existing infowindow.  It doesn't make sense to have an empty one.
-google.maps.event.removeListener(this.openInfoHandler_);google.maps.event.removeListener(this.closeInfoHandler_);this.info=null}},_openChanged(){if(this.info){if(this.open){this.info.open(this.map,this.marker);this.fire("google-map-marker-open")}else{this.info.close();this.fire("google-map-marker-close")}}},_mapReady(){this._listeners={};this.marker=new google.maps.Marker({map:this.map,position:{lat:parseFloat(this.latitude),lng:parseFloat(this.longitude)},title:this.title,animation:google.maps.Animation[this.animation],draggable:this.draggable,visible:!this.hidden,icon:this.icon,label:this.label,zIndex:this.zIndex});this._contentChanged();this._clickEventsChanged();this._dragEventsChanged();this._mouseEventsChanged();this._openChanged();setupDragHandler_.bind(this)()},_clearListener(name){if(this._listeners[name]){google.maps.event.removeListener(this._listeners[name]);this._listeners[name]=null}},_forwardEvent(name){this._listeners[name]=google.maps.event.addListener(this.marker,name,event=>{this.fire(`google-map-marker-${name}`,event)})},attributeChanged(attrName){if(!this.marker){return}// Cannot use *Changed watchers for native properties.
-switch(attrName){case"hidden":this.marker.setVisible(!this.hidden);break;case"draggable":this.marker.setDraggable(this.draggable);setupDragHandler_.bind(this)();break;case"title":this.marker.setTitle(this.title);break;}}});Polymer({_template:html`
-    <style>
-      :host {
-        position: relative;
-        display: block;
-        height: 100%;
-      }
-
-      #map {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-
-      #map {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-      .gm-control-active > img {
-        box-sizing: content-box;
-        display: none;
-        left: 50%;
-        pointer-events: none;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%,-50%);
-      }
-
-      .gm-control-active > img:nth-child(1) {
-        display:block;
-      }
-
-      .gm-control-active:hover > img:nth-child(1),
-      .gm-control-active:active > img:nth-child(1) {
-          display:none;
-      }
-
-      .gm-control-active:hover > img:nth-child(2),
-      .gm-control-active:active > img:nth-child(3) {
-          display:block;
-      }
-    </style>
-
-    <google-maps-api id="api" api-key="[[apiKey]]" client-id="[[clientId]]" version="[[version]]" signed-in="[[signedIn]]" language="[[language]]" on-api-load="_mapApiLoaded" maps-url="[[mapsUrl]]">
-    </google-maps-api>
-
-    <div id="map"></div>
-
-    <iron-selector id="selector" multi="[[!singleInfoWindow]]" selected-attribute="open" activate-event="google-map-marker-open" on-google-map-marker-close="_deselectMarker">
-      <slot id="markers" name="markers"></slot>
-    </iron-selector>
-
-    <slot id="objects"></slot>
-`,is:"google-map",/**
-   * Fired when the Maps API has fully loaded.
-   *
-   * @event google-map-ready
-   */ /**
-       * Fired when the user clicks on the map (but not when they click on a marker, infowindow, or
-       * other object). Requires the clickEvents attribute to be true.
-       *
-       * @event google-map-click
-       * @param {google.maps.MouseEvent} event The mouse event.
-       */ /**
-           * Fired when the user double-clicks on the map. Note that the google-map-click event will also fire,
-           * right before this one. Requires the clickEvents attribute to be true.
-           *
-           * @event google-map-dblclick
-           * @param {google.maps.MouseEvent} event The mouse event.
-           */ /**
-               * Fired repeatedly while the user drags the map. Requires the dragEvents attribute to be true.
-               *
-               * @event google-map-drag
-               */ /**
-                   * Fired when the user stops dragging the map. Requires the dragEvents attribute to be true.
-                   *
-                   * @event google-map-dragend
-                   */ /**
-                       * Fired when the user starts dragging the map. Requires the dragEvents attribute to be true.
-                       *
-                       * @event google-map-dragstart
-                       */ /**
-                           * Fired whenever the user's mouse moves over the map container. Requires the mouseEvents attribute to
-                           * be true.
-                           *
-                           * @event google-map-mousemove
-                           * @param {google.maps.MouseEvent} event The mouse event.
-                           */ /**
-                               * Fired when the user's mouse exits the map container. Requires the mouseEvents attribute to be true.
-                               *
-                               * @event google-map-mouseout
-                               * @param {google.maps.MouseEvent} event The mouse event.
-                               */ /**
-                                   * Fired when the user's mouse enters the map container. Requires the mouseEvents attribute to be true.
-                                   *
-                                   * @event google-map-mouseover
-                                   * @param {google.maps.MouseEvent} event The mouse event.
-                                   */ /**
-                                       * Fired when the DOM `contextmenu` event is fired on the map container. Requires the clickEvents
-                                       * attribute to be true.
-                                       *
-                                       * @event google-map-rightclick
-                                       * @param {google.maps.MouseEvent} event The mouse event.
-                                       */ /**
-                                           * Fired when the map becomes idle after panning or zooming.
-                                           *
-                                           * @event google-map-idle
-                                           */ /**
-                                               * Polymer properties for the google-map custom element.
-                                               */properties:{/**
-     * A Maps API key. To obtain an API key, see https://developers.google.com/maps/documentation/javascript/tutorial#api_key.
-     */apiKey:String,/**
-     * Overrides the origin the Maps API is loaded from. Defaults to `https://maps.googleapis.com`.
-     */mapsUrl:{type:String// Initial value set in google-maps-api.
-},/**
-     * A Maps API for Business Client ID. To obtain a Maps API for Business Client ID, see https://developers.google.com/maps/documentation/business/.
-     * If set, a Client ID will take precedence over an API Key.
-     */clientId:String,/**
-     * A latitude to center the map on.
-     */latitude:{type:Number,value:37.77493,notify:!0,reflectToAttribute:!0},/**
-     * A Maps API object.
-     */map:{type:Object,notify:!0,value:null},/**
-     * A longitude to center the map on.
-     */longitude:{type:Number,value:-122.41942,notify:!0,reflectToAttribute:!0},/**
-     * A kml file to load.
-     */kml:{type:String,value:null,observer:"_loadKml"},/**
-     * A zoom level to set the map to.
-     */zoom:{type:Number,value:10,observer:"_zoomChanged",notify:!0},/**
-     * When set, prevents the map from tilting (when the zoom level and viewport supports it).
-     */noAutoTilt:{type:Boolean,value:!1},/**
-     * Map type to display. One of 'roadmap', 'satellite', 'hybrid', 'terrain'.
-     */mapType:{type:String,value:"roadmap",// roadmap, satellite, hybrid, terrain,
-observer:"_mapTypeChanged",notify:!0},/**
-     * Version of the Google Maps API to use.
-     */version:{type:String,value:"3.exp"},/**
-     * If set, removes the map's default UI controls.
-     */disableDefaultUi:{type:Boolean,value:!1,observer:"_disableDefaultUiChanged"},/**
-     * If set, removes the map's 'map type' UI controls.
-     */disableMapTypeControl:{type:Boolean,value:!1,observer:"_disableMapTypeControlChanged"},/**
-     * If set, removes the map's 'street view' UI controls.
-     */disableStreetViewControl:{type:Boolean,value:!1,observer:"_disableStreetViewControlChanged"},/**
-     * If set, the zoom level is set such that all markers (google-map-marker children) are brought into view.
-     */fitToMarkers:{type:Boolean,value:!1,observer:"_fitToMarkersChanged"},/**
-     * If true, prevent the user from zooming the map interactively.
-     */disableZoom:{type:Boolean,value:!1,observer:"_disableZoomChanged"},/**
-     * If set, custom styles can be applied to the map.
-     * For style documentation see https://developers.google.com/maps/documentation/javascript/reference#MapTypeStyle
-     */styles:{type:Object,value(){return{}}},/**
-     * A maximum zoom level which will be displayed on the map.
-     */maxZoom:{type:Number,observer:"_maxZoomChanged"},/**
-     * A minimum zoom level which will be displayed on the map.
-     */minZoom:{type:Number,observer:"_minZoomChanged"},/**
-     * If true, sign-in is enabled.
-     * See https://developers.google.com/maps/documentation/javascript/signedin#enable_sign_in
-     */signedIn:{type:Boolean,value:!1},/**
-     * The localized language to load the Maps API with. For more information
-     * see https://developers.google.com/maps/documentation/javascript/basics#Language
-     *
-     * Note: the Maps API defaults to the preffered language setting of the browser.
-     * Use this parameter to override that behavior.
-     */language:{type:String},/**
-     * When true, map *click events are automatically registered.
-     */clickEvents:{type:Boolean,value:!1,observer:"_clickEventsChanged"},/**
-     * When true, map bounds and center change events are automatically
-     * registered.
-     */boundEvents:{type:Boolean,value:!0,observer:"_boundEventsChanged"},/**
-     * When true, map drag* events are automatically registered.
-     */dragEvents:{type:Boolean,value:!1,observer:"_dragEventsChanged"},/**
-     * When true, map mouse* events are automatically registered.
-     */mouseEvents:{type:Boolean,value:!1,observer:"_mouseEventsChanged"},/**
-     * Additional map options for google.maps.Map constructor.
-     * Use to specify additional options we do not expose as
-     * properties.
-     * Ex: `<google-map additional-map-options='{"mapTypeId":"satellite"}'>`
-     *
-     * Note, you can't use API enums like `google.maps.ControlPosition.TOP_RIGHT`
-     * when using this property as an HTML attribute. Instead, use the actual
-     * value (e.g. `3`) or set `.additionalMapOptions` in JS rather than using
-     * the attribute.
-     */additionalMapOptions:{type:Object,value(){return{}}},/**
-     * The markers on the map.
-     */markers:{type:Array,value(){return[]},readOnly:!0},/**
-     * The non-marker objects on the map.
-     */objects:{type:Array,value(){return[]},readOnly:!0},/**
-     * If set, all other info windows on markers are closed when opening a new one.
-     */singleInfoWindow:{type:Boolean,value:!1}},listeners:{"iron-resize":"resize"},observers:["_debounceUpdateCenter(latitude, longitude)"],attached(){this._initGMap()},detached(){if(this._markersChildrenListener){this.unlisten(this.$.selector,"items-changed","_updateMarkers");this._markersChildrenListener=null}if(this._objectsMutationObserver){this._objectsMutationObserver.disconnect();this._objectsMutationObserver=null}},behaviors:[IronResizableBehavior],_initGMap(){if(this.map){return;// already initialized
-}if(!0!==this.$.api.libraryLoaded){return;// api not loaded
-}if(!this.isAttached){return;// not attached
-}this.map=new google.maps.Map(this.$.map,this._getMapOptions());this._listeners={};this._updateCenter();this._loadKml();this._updateMarkers();this._updateObjects();this._addMapListeners();this.fire("google-map-ready")},_mapApiLoaded(){this._initGMap()},_getMapOptions(){const mapOptions={zoom:this.zoom,tilt:this.noAutoTilt?0:45,mapTypeId:this.mapType,disableDefaultUI:this.disableDefaultUi,mapTypeControl:!this.disableDefaultUi&&!this.disableMapTypeControl,streetViewControl:!this.disableDefaultUi&&!this.disableStreetViewControl,disableDoubleClickZoom:this.disableZoom,scrollwheel:!this.disableZoom,styles:this.styles,maxZoom:+this.maxZoom,minZoom:+this.minZoom};// Only override the default if set.
-// We use getAttribute here because the default value of this.draggable = false even when not set.
-if(null!=this.getAttribute("draggable")){mapOptions.draggable=this.draggable}for(const p in this.additionalMapOptions){mapOptions[p]=this.additionalMapOptions[p]}return mapOptions},_attachChildrenToMap(children){if(this.map){for(var i=0,child;child=children[i];++i){child.map=this.map}}},// watch for future updates to marker objects
-_observeMarkers(){// Watch for future updates.
-if(this._markersChildrenListener){return}this._markersChildrenListener=this.listen(this.$.selector,"items-changed","_updateMarkers")},_updateMarkers(){const newMarkers=Array.prototype.slice.call(this.$.markers.assignedNodes({flatten:!0}));// do not recompute if markers have not been added or removed
-if(newMarkers.length===this.markers.length){const added=newMarkers.filter(m=>this.markers&&-1===this.markers.indexOf(m));if(0===added.length){// set up observer first time around
-if(!this._markersChildrenListener){this._observeMarkers()}return}}this._observeMarkers();this.markers=this._setMarkers(newMarkers);// Set the map on each marker and zoom viewport to ensure they're in view.
-this._attachChildrenToMap(this.markers);if(this.fitToMarkers){this._fitToMarkersChanged()}},// watch for future updates to non-marker objects
-_observeObjects(){if(this._objectsMutationObserver){return}this._objectsMutationObserver=new MutationObserver(this._updateObjects.bind(this));this._objectsMutationObserver.observe(this,{childList:!0})},_updateObjects(){const newObjects=Array.prototype.slice.call(this.$.objects.assignedNodes({flatten:!0}));// Do not recompute if objects have not been added or removed.
-if(newObjects.length===this.objects.length){const added=newObjects.filter(o=>-1===this.objects.indexOf(o));if(0===added.length){// Set up observer first time around.
-this._observeObjects();return}}this._observeObjects();this._setObjects(newObjects);this._attachChildrenToMap(this.objects)},/**
-   * Clears all markers from the map.
-   *
-   * @method clear
-   */clear(){for(var i=0,m;m=this.markers[i];++i){m.marker.setMap(null)}},triggerMarkerClick(id){google.maps.event.trigger(this.markers[id].marker,"click")},/**
-   * Explicitly resizes the map, updating its center. This is useful if the
-   * map does not show after you have unhidden it.
-   *
-   * @method resize
-   */resize(){if(this.map){// saves and restores latitude/longitude because resize can move the center
-const oldLatitude=this.latitude,oldLongitude=this.longitude;google.maps.event.trigger(this.map,"resize");this.latitude=oldLatitude;// restore because resize can move our center
-this.longitude=oldLongitude;if(this.fitToMarkers){// we might not have a center if we are doing fit-to-markers
-this._fitToMarkersChanged()}}},_loadKml(){if(this.map&&this.kml){const kmlfile=new google.maps.KmlLayer({url:this.kml,map:this.map})}},_debounceUpdateCenter(){this.debounce("updateCenter",this._updateCenter)},_updateCenter(){this.cancelDebouncer("updateCenter");if(this.map&&this.latitude!==void 0&&this.longitude!==void 0){// allow for latitude and longitude to be String-typed, but still Number valued
-const lati=+this.latitude;if(isNaN(lati)){throw new TypeError("latitude must be a number")}const longi=+this.longitude;if(isNaN(longi)){throw new TypeError("longitude must be a number")}const newCenter=new google.maps.LatLng(lati,longi);let oldCenter=this.map.getCenter();if(!oldCenter){// If the map does not have a center, set it right away.
-this.map.setCenter(newCenter)}else{// Using google.maps.LatLng returns corrected lat/lngs.
-oldCenter=new google.maps.LatLng(oldCenter.lat(),oldCenter.lng());// If the map currently has a center, slowly pan to the new one.
-if(!oldCenter.equals(newCenter)){this.map.panTo(newCenter)}}}},_zoomChanged(){if(this.map){this.map.setZoom(+this.zoom)}},_idleEvent(){if(this.map){this._forwardEvent("idle")}else{this._clearListener("idle")}},_boundEventsChanged(){if(this.map){if(this.boundEvents){this._forwardEvent("center_changed");this._forwardEvent("bounds_changed")}else{this._clearListener("center_changed");this._clearListener("bounds_changed")}}},_clickEventsChanged(){if(this.map){if(this.clickEvents){this._forwardEvent("click");this._forwardEvent("dblclick");this._forwardEvent("rightclick")}else{this._clearListener("click");this._clearListener("dblclick");this._clearListener("rightclick")}}},_dragEventsChanged(){if(this.map){if(this.dragEvents){this._forwardEvent("drag");this._forwardEvent("dragend");this._forwardEvent("dragstart")}else{this._clearListener("drag");this._clearListener("dragend");this._clearListener("dragstart")}}},_mouseEventsChanged(){if(this.map){if(this.mouseEvents){this._forwardEvent("mousemove");this._forwardEvent("mouseout");this._forwardEvent("mouseover")}else{this._clearListener("mousemove");this._clearListener("mouseout");this._clearListener("mouseover")}}},_maxZoomChanged(){if(this.map){this.map.setOptions({maxZoom:+this.maxZoom})}},_minZoomChanged(){if(this.map){this.map.setOptions({minZoom:+this.minZoom})}},_mapTypeChanged(){if(this.map){this.map.setMapTypeId(this.mapType)}},_disableDefaultUiChanged(){if(!this.map){return}this.map.setOptions({disableDefaultUI:this.disableDefaultUi})},_disableMapTypeControlChanged(){if(!this.map){return}this.map.setOptions({mapTypeControl:!this.disableMapTypeControl})},_disableStreetViewControlChanged(){if(!this.map){return}this.map.setOptions({streetViewControl:!this.disableStreetViewControl})},_disableZoomChanged(){if(!this.map){return}this.map.setOptions({disableDoubleClickZoom:this.disableZoom,scrollwheel:!this.disableZoom})},attributeChanged(attrName){if(!this.map){return}// Cannot use *Changed watchers for native properties.
-switch(attrName){case"draggable":this.map.setOptions({draggable:this.draggable});break;}},_fitToMarkersChanged(){// TODO(ericbidelman): respect user's zoom level.
-if(this.map&&this.fitToMarkers&&0<this.markers.length){const latLngBounds=new google.maps.LatLngBounds;for(var i=0,m;m=this.markers[i];++i){latLngBounds.extend(new google.maps.LatLng(m.latitude,m.longitude))}// For one marker, don't alter zoom, just center it.
-if(1<this.markers.length){this.map.fitBounds(latLngBounds)}this.map.setCenter(latLngBounds.getCenter())}},_addMapListeners(){google.maps.event.addListener(this.map,"center_changed",()=>{const center=this.map.getCenter();this.latitude=center.lat();this.longitude=center.lng()});google.maps.event.addListener(this.map,"zoom_changed",()=>{this.zoom=this.map.getZoom()});google.maps.event.addListener(this.map,"maptypeid_changed",()=>{this.mapType=this.map.getMapTypeId()});this._clickEventsChanged();this._boundEventsChanged();this._dragEventsChanged();this._mouseEventsChanged();this._idleEvent()},_clearListener(name){if(this._listeners[name]){google.maps.event.removeListener(this._listeners[name]);this._listeners[name]=null}},_forwardEvent(name){this._listeners[name]=google.maps.event.addListener(this.map,name,event=>{this.fire(`google-map-${name}`,event)})},_deselectMarker(e,detail){// If singleInfoWindow is set, update iron-selector's selected attribute to be null.
-// Else remove the marker from iron-selector's selected array.
-const markerIndex=this.$.selector.indexOf(e.target);if(this.singleInfoWindow){this.$.selector.selected=null}else if(this.$.selector.selectedValues){this.$.selector.selectedValues=this.$.selector.selectedValues.filter(i=>i!==markerIndex)}}});var parser=function(){"use strict";/*
+}else if(cl.contains("contract")){cl.remove("contract")}}});var parser=function(){"use strict";/*
                  * Generated by PEG.js 0.9.0.
                  *
                  * http://pegjs.org/
@@ -13247,31 +12817,254 @@ if(this._needsShimAdoptedStyleSheets){this._needsShimAdoptedStyleSheets=!1;this.
                               * @param {Element|DocumentFragment} Node into which to render.
                               * @param {String} Element name.
                               * @nocollapse
-                              */LitElement.render=render$2;var litElement={LitElement:LitElement,defaultConverter:defaultConverter,notEqual:notEqual,UpdatingElement:UpdatingElement,customElement:customElement,property:property,query:query,queryAll:queryAll,eventOptions:eventOptions,html:html$1,svg:svg,TemplateResult:TemplateResult,SVGTemplateResult:SVGTemplateResult,supportsAdoptingStyleSheets:supportsAdoptingStyleSheets,CSSResult:CSSResult,unsafeCSS:unsafeCSS,css:css};_exports.$litElement=litElement;const templateCaches$1=new WeakMap,cache=directive(value=>part=>{if(!(part instanceof NodePart)){throw new Error("cache can only be used in text bindings")}let templateCache=templateCaches$1.get(part);if(templateCache===void 0){templateCache=new WeakMap;templateCaches$1.set(part,templateCache)}const previousValue=part.value;// First, can we update the current TemplateInstance, or do we need to move
-// the current nodes into the cache?
-if(previousValue instanceof TemplateInstance){if(value instanceof TemplateResult&&previousValue.template===part.options.templateFactory(value)){// Same Template, just trigger an update of the TemplateInstance
-part.setValue(value);return}else{// Not the same Template, move the nodes from the DOM into the cache.
-let cachedTemplate=templateCache.get(previousValue.template);if(cachedTemplate===void 0){cachedTemplate={instance:previousValue,nodes:document.createDocumentFragment()};templateCache.set(previousValue.template,cachedTemplate)}reparentNodes(cachedTemplate.nodes,part.startNode.nextSibling,part.endNode)}}// Next, can we reuse nodes from the cache?
-if(value instanceof TemplateResult){const template=part.options.templateFactory(value),cachedTemplate=templateCache.get(template);if(cachedTemplate!==void 0){// Move nodes out of cache
-part.setValue(cachedTemplate.nodes);part.commit();// Set the Part value to the TemplateInstance so it'll update it.
-part.value=cachedTemplate.instance}}part.setValue(value)});/**
-                                        * Enables fast switching between multiple templates by caching the DOM nodes
-                                        * and TemplateInstances produced by the templates.
-                                        *
-                                        * Example:
-                                        *
-                                        * ```
-                                        * let checked = false;
-                                        *
-                                        * html`
-                                        *   ${cache(checked ? html`input is checked` : html`input is not checked`)}
-                                        * `
-                                        * ```
-                                        */_exports.cache=cache;var cache$1={cache:cache};// unsafeHTML directive, and the DocumentFragment that was last set as a value.
+                              */LitElement.render=render$2;var litElement={LitElement:LitElement,defaultConverter:defaultConverter,notEqual:notEqual,UpdatingElement:UpdatingElement,customElement:customElement,property:property,query:query,queryAll:queryAll,eventOptions:eventOptions,html:html$1,svg:svg,TemplateResult:TemplateResult,SVGTemplateResult:SVGTemplateResult,supportsAdoptingStyleSheets:supportsAdoptingStyleSheets,CSSResult:CSSResult,unsafeCSS:unsafeCSS,css:css};// TODO(kschaaf): Refactor into Part API?
+_exports.$litElement=litElement;const createAndInsertPart=(containerPart,beforePart)=>{const container=containerPart.startNode.parentNode,beforeNode=beforePart===void 0?containerPart.endNode:beforePart.startNode,startNode=container.insertBefore(createMarker(),beforeNode);container.insertBefore(createMarker(),beforeNode);const newPart=new NodePart(containerPart.options);newPart.insertAfterNode(startNode);return newPart},updatePart=(part,value)=>{part.setValue(value);part.commit();return part},insertPartBefore=(containerPart,part,ref)=>{const container=containerPart.startNode.parentNode,beforeNode=ref?ref.startNode:containerPart.endNode,endNode=part.endNode.nextSibling;if(endNode!==beforeNode){reparentNodes(container,part.startNode,endNode,beforeNode)}},removePart=part=>{removeNodes(part.startNode.parentNode,part.startNode,part.endNode.nextSibling)},generateMap=(list,start,end)=>{const map=new Map;for(let i=start;i<=end;i++){map.set(list[i],i)}return map},partListCache=new WeakMap,keyListCache=new WeakMap,repeat=directive((items,keyFnOrTemplate,template)=>{let keyFn;if(template===void 0){template=keyFnOrTemplate}else if(keyFnOrTemplate!==void 0){keyFn=keyFnOrTemplate}return containerPart=>{if(!(containerPart instanceof NodePart)){throw new Error("repeat can only be used in text bindings")}// Old part & key lists are retrieved from the last update
+// (associated with the part for this instance of the directive)
+const oldParts=partListCache.get(containerPart)||[],oldKeys=keyListCache.get(containerPart)||[],newParts=[],newValues=[],newKeys=[];let index=0;for(const item of items){newKeys[index]=keyFn?keyFn(item,index):index;newValues[index]=template(item,index);index++}// Maps from key to index for current and previous update; these
+// are generated lazily only when needed as a performance
+// optimization, since they are only required for multiple
+// non-contiguous changes in the list, which are less common.
+let newKeyToIndexMap,oldKeyToIndexMap,oldHead=0,oldTail=oldParts.length-1,newHead=0,newTail=newValues.length-1;// Overview of O(n) reconciliation algorithm (general approach
+// based on ideas found in ivi, vue, snabbdom, etc.):
+//
+// * We start with the list of old parts and new values (and
+// arrays of
+//   their respective keys), head/tail pointers into each, and
+//   we build up the new list of parts by updating (and when
+//   needed, moving) old parts or creating new ones. The initial
+//   scenario might look like this (for brevity of the diagrams,
+//   the numbers in the array reflect keys associated with the
+//   old parts or new values, although keys and parts/values are
+//   actually stored in parallel arrays indexed using the same
+//   head/tail pointers):
+//
+//      oldHead v                 v oldTail
+//   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+//   newParts: [ ,  ,  ,  ,  ,  ,  ]
+//   newKeys:  [0, 2, 1, 4, 3, 7, 6] <- reflects the user's new
+//   item order
+//      newHead ^                 ^ newTail
+//
+// * Iterate old & new lists from both sides, updating,
+// swapping, or
+//   removing parts at the head/tail locations until neither
+//   head nor tail can move.
+//
+// * Example below: keys at head pointers match, so update old
+// part 0 in-
+//   place (no need to move it) and record part 0 in the
+//   `newParts` list. The last thing we do is advance the
+//   `oldHead` and `newHead` pointers (will be reflected in the
+//   next diagram).
+//
+//      oldHead v                 v oldTail
+//   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+//   newParts: [0,  ,  ,  ,  ,  ,  ] <- heads matched: update 0
+//   and newKeys:  [0, 2, 1, 4, 3, 7, 6]    advance both oldHead
+//   & newHead
+//      newHead ^                 ^ newTail
+//
+// * Example below: head pointers don't match, but tail pointers
+// do, so
+//   update part 6 in place (no need to move it), and record
+//   part 6 in the `newParts` list. Last, advance the `oldTail`
+//   and `oldHead` pointers.
+//
+//         oldHead v              v oldTail
+//   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+//   newParts: [0,  ,  ,  ,  ,  , 6] <- tails matched: update 6
+//   and newKeys:  [0, 2, 1, 4, 3, 7, 6]    advance both oldTail
+//   & newTail
+//         newHead ^              ^ newTail
+//
+// * If neither head nor tail match; next check if one of the
+// old head/tail
+//   items was removed. We first need to generate the reverse
+//   map of new keys to index (`newKeyToIndexMap`), which is
+//   done once lazily as a performance optimization, since we
+//   only hit this case if multiple non-contiguous changes were
+//   made. Note that for contiguous removal anywhere in the
+//   list, the head and tails would advance from either end and
+//   pass each other before we get to this case and removals
+//   would be handled in the final while loop without needing to
+//   generate the map.
+//
+// * Example below: The key at `oldTail` was removed (no longer
+// in the
+//   `newKeyToIndexMap`), so remove that part from the DOM and
+//   advance just the `oldTail` pointer.
+//
+//         oldHead v           v oldTail
+//   oldKeys:  [0, 1, 2, 3, 4, 5, 6]
+//   newParts: [0,  ,  ,  ,  ,  , 6] <- 5 not in new map; remove
+//   5 and newKeys:  [0, 2, 1, 4, 3, 7, 6]    advance oldTail
+//         newHead ^           ^ newTail
+//
+// * Once head and tail cannot move, any mismatches are due to
+// either new or
+//   moved items; if a new key is in the previous "old key to
+//   old index" map, move the old part to the new location,
+//   otherwise create and insert a new part. Note that when
+//   moving an old part we null its position in the oldParts
+//   array if it lies between the head and tail so we know to
+//   skip it when the pointers get there.
+//
+// * Example below: neither head nor tail match, and neither
+// were removed;
+//   so find the `newHead` key in the `oldKeyToIndexMap`, and
+//   move that old part's DOM into the next head position
+//   (before `oldParts[oldHead]`). Last, null the part in the
+//   `oldPart` array since it was somewhere in the remaining
+//   oldParts still to be scanned (between the head and tail
+//   pointers) so that we know to skip that old part on future
+//   iterations.
+//
+//         oldHead v        v oldTail
+//   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+//   newParts: [0, 2,  ,  ,  ,  , 6] <- stuck; update & move 2
+//   into place newKeys:  [0, 2, 1, 4, 3, 7, 6]    and advance
+//   newHead
+//         newHead ^           ^ newTail
+//
+// * Note that for moves/insertions like the one above, a part
+// inserted at
+//   the head pointer is inserted before the current
+//   `oldParts[oldHead]`, and a part inserted at the tail
+//   pointer is inserted before `newParts[newTail+1]`. The
+//   seeming asymmetry lies in the fact that new parts are moved
+//   into place outside in, so to the right of the head pointer
+//   are old parts, and to the right of the tail pointer are new
+//   parts.
+//
+// * We always restart back from the top of the algorithm,
+// allowing matching
+//   and simple updates in place to continue...
+//
+// * Example below: the head pointers once again match, so
+// simply update
+//   part 1 and record it in the `newParts` array.  Last,
+//   advance both head pointers.
+//
+//         oldHead v        v oldTail
+//   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+//   newParts: [0, 2, 1,  ,  ,  , 6] <- heads matched; update 1
+//   and newKeys:  [0, 2, 1, 4, 3, 7, 6]    advance both oldHead
+//   & newHead
+//            newHead ^        ^ newTail
+//
+// * As mentioned above, items that were moved as a result of
+// being stuck
+//   (the final else clause in the code below) are marked with
+//   null, so we always advance old pointers over these so we're
+//   comparing the next actual old value on either end.
+//
+// * Example below: `oldHead` is null (already placed in
+// newParts), so
+//   advance `oldHead`.
+//
+//            oldHead v     v oldTail
+//   oldKeys:  [0, 1, -, 3, 4, 5, 6] // old head already used;
+//   advance newParts: [0, 2, 1,  ,  ,  , 6] // oldHead newKeys:
+//   [0, 2, 1, 4, 3, 7, 6]
+//               newHead ^     ^ newTail
+//
+// * Note it's not critical to mark old parts as null when they
+// are moved
+//   from head to tail or tail to head, since they will be
+//   outside the pointer range and never visited again.
+//
+// * Example below: Here the old tail key matches the new head
+// key, so
+//   the part at the `oldTail` position and move its DOM to the
+//   new head position (before `oldParts[oldHead]`). Last,
+//   advance `oldTail` and `newHead` pointers.
+//
+//               oldHead v  v oldTail
+//   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+//   newParts: [0, 2, 1, 4,  ,  , 6] <- old tail matches new
+//   head: update newKeys:  [0, 2, 1, 4, 3, 7, 6]   & move 4,
+//   advance oldTail & newHead
+//               newHead ^     ^ newTail
+//
+// * Example below: Old and new head keys match, so update the
+// old head
+//   part in place, and advance the `oldHead` and `newHead`
+//   pointers.
+//
+//               oldHead v oldTail
+//   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+//   newParts: [0, 2, 1, 4, 3,   ,6] <- heads match: update 3
+//   and advance newKeys:  [0, 2, 1, 4, 3, 7, 6]    oldHead &
+//   newHead
+//                  newHead ^  ^ newTail
+//
+// * Once the new or old pointers move past each other then all
+// we have
+//   left is additions (if old list exhausted) or removals (if
+//   new list exhausted). Those are handled in the final while
+//   loops at the end.
+//
+// * Example below: `oldHead` exceeded `oldTail`, so we're done
+// with the
+//   main loop.  Create the remaining part and insert it at the
+//   new head position, and the update is complete.
+//
+//                   (oldHead > oldTail)
+//   oldKeys:  [0, 1, -, 3, 4, 5, 6]
+//   newParts: [0, 2, 1, 4, 3, 7 ,6] <- create and insert 7
+//   newKeys:  [0, 2, 1, 4, 3, 7, 6]
+//                     newHead ^ newTail
+//
+// * Note that the order of the if/else clauses is not important
+// to the
+//   algorithm, as long as the null checks come first (to ensure
+//   we're always working on valid old parts) and that the final
+//   else clause comes last (since that's where the expensive
+//   moves occur). The order of remaining clauses is is just a
+//   simple guess at which cases will be most common.
+//
+// * TODO(kschaaf) Note, we could calculate the longest
+// increasing
+//   subsequence (LIS) of old items in new position, and only
+//   move those not in the LIS set. However that costs O(nlogn)
+//   time and adds a bit more code, and only helps make rare
+//   types of mutations require fewer moves. The above handles
+//   removes, adds, reversal, swaps, and single moves of
+//   contiguous items in linear time, in the minimum number of
+//   moves. As the number of multiple moves where LIS might help
+//   approaches a random shuffle, the LIS optimization becomes
+//   less helpful, so it seems not worth the code at this point.
+//   Could reconsider if a compelling case arises.
+while(oldHead<=oldTail&&newHead<=newTail){if(null===oldParts[oldHead]){// `null` means old part at head has already been used
+// below; skip
+oldHead++}else if(null===oldParts[oldTail]){// `null` means old part at tail has already been used
+// below; skip
+oldTail--}else if(oldKeys[oldHead]===newKeys[newHead]){// Old head matches new head; update in place
+newParts[newHead]=updatePart(oldParts[oldHead],newValues[newHead]);oldHead++;newHead++}else if(oldKeys[oldTail]===newKeys[newTail]){// Old tail matches new tail; update in place
+newParts[newTail]=updatePart(oldParts[oldTail],newValues[newTail]);oldTail--;newTail--}else if(oldKeys[oldHead]===newKeys[newTail]){// Old head matches new tail; update and move to new tail
+newParts[newTail]=updatePart(oldParts[oldHead],newValues[newTail]);insertPartBefore(containerPart,oldParts[oldHead],newParts[newTail+1]);oldHead++;newTail--}else if(oldKeys[oldTail]===newKeys[newHead]){// Old tail matches new head; update and move to new head
+newParts[newHead]=updatePart(oldParts[oldTail],newValues[newHead]);insertPartBefore(containerPart,oldParts[oldTail],oldParts[oldHead]);oldTail--;newHead++}else{if(newKeyToIndexMap===void 0){// Lazily generate key-to-index maps, used for removals &
+// moves below
+newKeyToIndexMap=generateMap(newKeys,newHead,newTail);oldKeyToIndexMap=generateMap(oldKeys,oldHead,oldTail)}if(!newKeyToIndexMap.has(oldKeys[oldHead])){// Old head is no longer in new list; remove
+removePart(oldParts[oldHead]);oldHead++}else if(!newKeyToIndexMap.has(oldKeys[oldTail])){// Old tail is no longer in new list; remove
+removePart(oldParts[oldTail]);oldTail--}else{// Any mismatches at this point are due to additions or
+// moves; see if we have an old part we can reuse and move
+// into place
+const oldIndex=oldKeyToIndexMap.get(newKeys[newHead]),oldPart=oldIndex!==void 0?oldParts[oldIndex]:null;if(null===oldPart){// No old part for this value; create a new one and
+// insert it
+const newPart=createAndInsertPart(containerPart,oldParts[oldHead]);updatePart(newPart,newValues[newHead]);newParts[newHead]=newPart}else{// Reuse old part
+newParts[newHead]=updatePart(oldPart,newValues[newHead]);insertPartBefore(containerPart,oldPart,oldParts[oldHead]);// This marks the old part as having been used, so that
+// it will be skipped in the first two checks above
+oldParts[oldIndex]=null}newHead++}}}// Add parts for any remaining new values
+while(newHead<=newTail){// For all remaining additions, we insert before last new
+// tail, since old pointers are no longer valid
+const newPart=createAndInsertPart(containerPart,newParts[newTail+1]);updatePart(newPart,newValues[newHead]);newParts[newHead++]=newPart}// Remove any remaining unused old parts
+while(oldHead<=oldTail){const oldPart=oldParts[oldHead++];if(null!==oldPart){removePart(oldPart)}}// Save order of new parts for next round
+partListCache.set(containerPart,newParts);keyListCache.set(containerPart,newKeys)}});_exports.repeat=repeat;var repeat$1={repeat:repeat};// unsafeHTML directive, and the DocumentFragment that was last set as a value.
 // The DocumentFragment is used as a unique key to check if the last value
 // rendered to the part was with unsafeHTML. If not, we'll always re-render the
 // value passed to unsafeHTML.
-_exports.$cache=cache$1;const previousValues=new WeakMap,unsafeHTML=directive(value=>part=>{if(!(part instanceof NodePart)){throw new Error("unsafeHTML can only be used in text bindings")}const previousValue=previousValues.get(part);if(previousValue!==void 0&&isPrimitive(value)&&value===previousValue.value&&part.value===previousValue.fragment){return}const template=document.createElement("template");template.innerHTML=value;// innerHTML casts to string internally
+_exports.$repeat=repeat$1;const previousValues=new WeakMap,unsafeHTML=directive(value=>part=>{if(!(part instanceof NodePart)){throw new Error("unsafeHTML can only be used in text bindings")}const previousValue=previousValues.get(part);if(previousValue!==void 0&&isPrimitive(value)&&value===previousValue.value&&part.value===previousValue.fragment){return}const template=document.createElement("template");template.innerHTML=value;// innerHTML casts to string internally
 const fragment=document.importNode(template.content,!0);part.setValue(fragment);previousValues.set(part,{value,fragment})});/**
                                        * Renders the result as HTML, rather than text.
                                        *
@@ -13362,202 +13155,27 @@ const fragment=document.importNode(template.content,!0);part.setValue(fragment);
 
     
 </dom-module>`;document.head.appendChild($_documentContainer$3.content);Polymer({is:"paper-share-button",properties:{/** URL to share. Don't forget to use http:// or https:// at the beginning of the url! */url:{type:String},/** Use window.location.href as url. (Only if the url is not set) */autoUrl:{type:Boolean},/** The icon for the button (share icon by default)*/buttonIcon:{type:String,value:"custom:share"},/** text to share with the URL. (Compatible w/ Twitter / Reddit / Blogger) */sharingText:{type:String,value:""},/** Set to true to make all the logo black & white */monochrome:{type:Boolean,value:!1},/** Enable Popup sharing. Only working with compatible website (Facebook, Google Plus, Twitter)*/popup:{type:Boolean,value:!1},/** Set to true to enable share with email (mailto) */email:{type:Boolean,value:!1},/** Set to true to enable share with Facebook */facebook:{type:Boolean,value:!1},/** Set to true to enable share with Google Plus */google:{type:Boolean,value:!1},/** Set to true to enable share with Twitter */twitter:{type:Boolean,value:!1},/** Set to true to enable share with Reddit */reddit:{type:Boolean,value:!1},/** Set to true to enable share with VK */vk:{type:Boolean,value:!1},/** Set to true to enable share with Blogger */blogger:{type:Boolean,value:!1},/** Set to true to enable share with Tumblr */tumblr:{type:Boolean,value:!1},horizontalAlign:{type:String,value:"left"}},_share:function(event){var element=dom(event).localTarget;if(!this.url&&this.autoUrl){this.url=window.location.href}if(this.url){this.fire("share-tap",{brand:element.icon});if(this.popup){switch(element.icon){case"brand:facebook":this._openPopup(element.getAttribute("href"),"Sharing",600,375);break;case"brand:google":this._openPopup(element.getAttribute("href"),"Sharing",400,445);break;case"brand:twitter":this._openPopup(element.getAttribute("href"),"Sharing",500,230);break;default:window.open(element.getAttribute("href"),"Sharing");}}else{window.open(element.getAttribute("href"),"Sharing")}}else{console.error("Impossible to share, no url set")}this.$.shareMenu.close()},_openPopup:function(url,title,w,h){//Center and open the popup.
-var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+window.top.screenX-w/2;window.open(url,title,"width="+w+", height="+h+", top="+y+", left="+x)}});const $_documentContainer$4=document.createElement("template");$_documentContainer$4.setAttribute("style","display: none;");$_documentContainer$4.innerHTML=`<iron-iconset-svg size="24" name="papmapinf">
-<svg><defs>
-<g id="close"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></g>
-</defs></svg>
-</iron-iconset-svg>`;document.head.appendChild($_documentContainer$4.content);const bundledImportMeta$2=babelHelpers.objectSpread({},meta,{url:new URL("../../node_modules/plastic-resize-aware/plastic-resize-aware.js",meta.url).href});class PlasticResizeAware extends PolymerElement{static get template(){return html`
-      <style>
-        :host {
-          display: block;
-        }
-      </style>
-      <slot></slot>
-    `}static get properties(){return{/**
-       * Current element size in px. { height: width: }
-       * @type {Object}
-       */elementSize:{type:Object,notify:!0,readOnly:!0,value:function(){return{width:0,height:0}}}}}static get importMeta(){return bundledImportMeta$2}connectedCallback(){super.connectedCallback();this._initResizeObserver(!1)}disconnectedCallback(){super.disconnectedCallback();if(window.plasticResizeObserver&&window.plasticResizeObserver.observer){window.plasticResizeObserver.observer.unobserve(this);window.plasticResizeObserver.counter--}}/**
-     * Initializes resize observer
-     * @param {boolean} isPolyfilled Called after polyfill loaded
-     */_initResizeObserver(isPolyfilled){// if the polyfill is needed and not yet loaded,
-// wait for it to load first.
-if(!("ResizeObserver"in window)){// There could be multiple plastic-resize-aware elements in the document
-// but we only need to load the polyfill for ResizeObserver
-// one time.
-let polyfillScript=document.getElementById("polyfill-ResizeObserver");if(!polyfillScript){// load the ResizeObserver polyfill script
-polyfillScript=document.createElement("script");polyfillScript.id="polyfill-ResizeObserver";polyfillScript.src=this.importPath+"ResizeObserver.js";polyfillScript.async=!0;document.head.appendChild(polyfillScript)}// listen for the polyfill to finish loading
-// then retry the initLazyLoad process
-polyfillScript.addEventListener("load",_=>this._initResizeObserver(!0))}else{// ResizeObserver is available, initialize observation
-// Create the observer for this page if it doesn't exist
-if(!window.plasticResizeObserver){window.plasticResizeObserver={/* the number of elements sharing this observer */counter:0,/* an ResizeObserver with only default arguments */observer:new ResizeObserver(entries=>{entries.forEach(entry=>{entry.target._roCallback(entry)})},{})}}// observe this element
-window.plasticResizeObserver.observer.observe(this);window.plasticResizeObserver.counter++}}/**
-     * Fire event for this element's resize
-     * @param {ResizeObserverEntry} entry 
-     */_roCallback(entry){/**
-     * Fired when element size changes.
-     *
-     * @event element-resize
-     * @param {number} width
-     * @param {number} height
-     */this.dispatchEvent(new CustomEvent("element-resize",{detail:{width:entry.contentRect.width,height:entry.contentRect.height}}));this._setElementSize({width:entry.contentRect.width,height:entry.contentRect.height})}}window.customElements.define("plastic-resize-aware",PlasticResizeAware);class PlasticMapInfo extends GestureEventListeners(PolymerElement){static get template(){return html`
-    <style include="paper-material-styles">
-       :host {
-        display: inline-block;
-      }
-
-      .info-card-backing {
-        position: absolute;
-        z-index: 99;
-        max-width: 80%;
-        max-height: 75%;
-        top: 0;
-        left: 0;
-        background-color: white;
-        box-sizing: border-box;
-        padding: 0 0 0 0;
-        border-radius: 4px;
-        color: white;
-        opacity: 0;
-        display: none;
-        @apply --plastic-map-info-mixin;
-      }
-
-      .infocard-beak {
-        position: absolute;
-        opacity: 0;
-        display: none;
-      }
-
-      #stdbeak svg rect {
-        fill: blue;
-        stroke: black;
-        stroke-width: 1;
-        @apply --plastic-map-info-beak-mixin;
-      }
-
-      div.card-content {
-        overflow: hidden;
-        @apply --plastic-map-info-content;
-      }
-
-      iron-icon.closeicon {
-        --iron-icon-width: 24px;
-        --iron-icon-height: 24px;
-        position: absolute;
-        right: 3px;
-        top: 3px;
-      }
-    </style>
-    <div id="stdbeak" class="infocard-beak">
-      <svg width="20" height="20">
-        <rect x="4" y="4" width="12" height="12" transform="rotate(45 10,10)">
-      </rect></svg>
-    </div>
-    <div id="custombeak" class="infocard-beak">
-      <slot id="custombeakcontent" name="info-beak"></slot>
-    </div>
-    <div id="infocarddiv" class="paper-material info-card-backing" elevation\$="[[elevation]]">
-      <plastic-resize-aware id="raware">
-        <div class="card-content">
-          <slot id="cardcontent"></slot>
-        </div>
-      </plastic-resize-aware>
-      <iron-icon class="closeicon" icon="papmapinf:close" on-tap="close"></iron-icon>
-    </div>
-`}static get is(){return"plastic-map-info"}static get properties(){return{/**
-       * Elevation of the paper material background (0 - 5)
-       */elevation:{type:Number,notify:!0,value:4,reflectToAttribute:!0},/**
-       * Use fade in animation?
-       */fadeIn:{type:Boolean,notify:!0,value:!1},/**
-       * is showing - is the infowindow showing
-       */isShowing:{type:Boolean,notify:!0,value:!1},/**
-       * dimensions of objects necessary for positioning the info card
-       */_dim:{type:Object,notify:!0,value:()=>{return{card:{height:10,width:10},map:{height:100,width:100},marker:{x:0,y:42},beak:{width:20,height:20,customBeak:!1}}}},/**
-       * Reference to the google map
-       */map:{type:Object,notify:!0,observer:"_mapChanged"},/**
-       * reference to map listeners so they can be removed later
-       */_mapListeners:{type:Array,notify:!0,value:()=>{return[]}},/**
-       * Reference to google map marker
-       */_marker:{type:Object,notify:!0},/**
-       * Reference to google map overlay
-       */_overlay:{type:Object,notify:!0},/**
-       * beak
-       */_bk:{type:Object},/**
-       * not beak
-       */_nbk:{type:Object},/**
-       * is custom beak
-       */_isCustomBeak:{type:Boolean,notify:!0,value:!1},/**
-       * watching size of window
-       */_watchingSize:{type:Boolean,notify:!0,value:!1}}}/**
-     * close infowindow
-     */close(){this._releaseListeners();// turn off the resize-aware ??
-this.isShowing=!1;this.$.infocarddiv.style.opacity=0;this.$.infocarddiv.style.left=0;this.$.infocarddiv.style.display="none";this.$.stdbeak.style.display="none";this.$.custombeak.style.display="none";this.$.stdbeak.style.opacity=0;this.$.custombeak.style.opacity=0;//this._marker = undefined;
-}/**
-     * handle change to content
-     */_contentChanged(){if(this.isShowing){this._getInfowindowSize();let placement=this._setInfowindowPosition();// do not do _panToShowInfowindow - see issue #8
-}}/**
-     * clean up when this element is detached from the DOM
-     */disconnectedCallback(){super.disconnectedCallback();this._releaseListeners();this.isShowing=!1;this.$.infocarddiv.style.left=0;this.$.infocarddiv.style.opacity=this.fadeIn?0:1;this.$.infocarddiv.style.display="none";this.$.stdbeak.display="none";this.$.custombeak.display="none";this.$.stdbeak.opacity=0;this.$.custombeak.opacity=0;this._marker=void 0;this.map=void 0}/**
-     * perform fade in animation for card
-     */_doFadeIn(){if(this.isShowing){let currentOpacity=parseFloat(this.$.infocarddiv.style.opacity);if(.9<=currentOpacity){this.$.infocarddiv.style.opacity="1"}else{currentOpacity+=.1;this.$.infocarddiv.style.opacity=currentOpacity.toString();setTimeout(()=>{this._doFadeIn()},40)}}}/**
-     * get infowindow size
-     */_getInfowindowSize(){let icd=this.$.infocarddiv;this._dim.card.width=icd.offsetWidth;this._dim.card.height=icd.offsetHeight;// and the beak
-if(this._isCustomBeak){this._dim.beak.height=this._bk.offsetHeight;this._dim.beak.width=this._bk.offsetWidth;this._dim.customBeak=!0}else{this._dim.beak={height:20,width:20};this._dim.customBeak=!1}}/**
-     * get marker size
-     */_getMarkerSize(){if(this._marker&&this._marker.getIcon()){let mIcon=this._marker.getIcon();this._dim.marker.y=mIcon.anchor.y;this._dim.marker.x=0}else{this._dim.marker={x:0,y:42};// height of standard pin
-}}/**
-     * get map size
-     */_getMapSize(){let gm=this.map.getDiv();this._dim.map.width=gm.offsetWidth;this._dim.map.height=gm.offsetHeight}/**
-     * initialize map event listeners
-     */_initListeners(){this._mapListeners=[];this._overlay=new google.maps.OverlayView;this._overlay.draw=function(){};this._overlay.setMap(this.map);let reposition=()=>{if(this.isShowing){this._getInfowindowSize();this._setInfowindowPosition()}};this._mapListeners.push(google.maps.event.addListener(this.map,"projection_changed",()=>{this._overlay=new google.maps.OverlayView;this._overlay.draw=function(){};this._overlay.setMap(this.map)}));this._mapListeners.push(google.maps.event.addListener(this.map,"zoom_changed",e=>{if(this.isShowing){this._getInfowindowSize();this._setInfowindowPosition()}}));this._mapListeners.push(google.maps.event.addListener(this.map,"center_changed",e=>{if(this.isShowing){reposition()}}));this._mapListeners.push(google.maps.event.addListener(this._marker,"drag",e=>{if(this.isShowing){this._setInfowindowPosition()}}));this._mapListeners.push(google.maps.event.addListener(this.map,"idle",e=>{if(this.isShowing){this._setInfowindowPosition()}}));if(!this._watchingSize){this.$.raware.addEventListener("element-resize",()=>{this._contentChanged()})}}/**
-     * when the map is set, initialize the overlay,
-     * which can take a moment since it is not loaded automatically
-     * with the rest of the map apis
-     */_mapChanged(newVal,oldVal){if(this.map){this._overlay=new google.maps.OverlayView;this._overlay.draw=function(){};this._overlay.setMap(this.map)}}/**
-     * Pan the map to move the info card into view
-     * @param {Iplacement} placement current info card placement
-     */_panToShowInfowindow(placement){let panby={x:0,y:0};if(0>placement.left){panby.x=placement.left-10}else{if(placement.left+this._dim.card.width>this._dim.map.width){panby.x=placement.left+this._dim.card.width-this._dim.map.width+10}}if(0>placement.top){panby.y=placement.top-10}else{if(placement.top+this._dim.card.height+this._dim.marker.y+10>this._dim.map.height){panby.y=placement.top+this._dim.card.height+this._dim.marker.y-this._dim.map.height+20}}if(0!=panby.x||0!=panby.y){this.map.panBy(panby.x,panby.y)}}/**
-     * Is the current info card placement within the bounds of the map's containing div?
-     * @param  {Iplacement} placement current placement of the info card (top, left)
-     * @return {boolean}              true if the info card fits inside the map's containing div
-     */_placementInBounds(placement){let result=0<=placement.top&&0<=placement.left&&placement.left+this._dim.card.width<this._dim.map.width&&placement.top+this._dim.card.height+this._dim.marker.y+10<this._dim.map.height;return result}/**
-     * initialize component
-     */ready(){super.ready();if(this.map){this._overlay=new google.maps.OverlayView;this._overlay.draw=function(){};this._overlay.setMap(this.map)}}/**
-     * release event listeners
-     */_releaseListeners(){for(let l of this._mapListeners){google.maps.event.removeListener(l)}this._mapListeners=[];// turn off resize listener?
-}/**
-     * Sets the info card's position relative to the map's containing div
-     * @return {Iplacement} New position of the info card
-     */_setInfowindowPosition(){if(!this._overlay){this._overlay=new google.maps.OverlayView;this._overlay.draw=function(){};this._overlay.setMap(this.map);console.log("overlay not set")}let result={left:0,top:0};try{let point=this._overlay.getProjection().fromLatLngToContainerPixel(this._marker.getPosition()),pleft=Math.round(point.x-this._dim.card.width/2),ptop=Math.round(point.y-this._dim.card.height-this._dim.marker.y-this._dim.beak.height+10);// calculate placement
-// beak tucks 10px above bottom edge of window
-this.$.infocarddiv.style.left=pleft+"px";this.$.infocarddiv.style.top=ptop+"px";this._bk.style.left=point.x-this._dim.beak.width/2+"px";this._bk.style.top=Math.floor(ptop-10+this._dim.card.height)+"px";// beak tucks 10px above bottom edge of window
-result={left:pleft,top:ptop}}catch(err){console.log("setInfowindowPosition error");console.log(err)};return result}/**
-     * Shows the info card on top of the given google map marker
-     * @param {google.maps.Marker} marker  The marker to attach the card to
-     */showInfoWindow(marker){if(this.map&&marker){if(this.isShowing){this.close()}this._marker=marker;this._getMapSize();this._getMarkerSize();this.$.infocarddiv.style.display="block";if(0<this.$.custombeakcontent.assignedNodes({flatten:!0}).length){this._bk=this.$.custombeak;this._nbk=this.$.stdbeak;this._isCustomBeak=!0}else{this._bk=this.$.stdbeak;this._nbk=this.$.custombeak;this._isCustomBeak=!1}this._bk.style.opacity="0";this._bk.style.display="block";this._nbk.style.opacity="0";this._nbk.style.display="none";// to minimize repositioning due to content size changes
-// as polymer instantiates webcomponents in the content,
-// we will pause a few ms before instantiating the infowindow.
-setTimeout(()=>{this._getInfowindowSize();let placement=this._setInfowindowPosition();this.$.infocarddiv.style.opacity=this.fadeIn?0:1;this._bk.style.opacity="1";this._initListeners();this.isShowing=!0;if(this.fadeIn){this._doFadeIn()}if(!this._placementInBounds(placement)){this._panToShowInfowindow(placement)}},33)}}}window.customElements.define(PlasticMapInfo.is,PlasticMapInfo);/**
-                                                                 @license
-                                                                 Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
-                                                                 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-                                                                 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-                                                                 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-                                                                 Code distributed by Google as part of the polymer project is also
-                                                                 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-                                                                 */ /**
-                                                                      Utility method that calls a callback whenever a media-query matches in response
-                                                                      to the viewport size changing. The callback should take a boolean parameter
-                                                                      (with `true` meaning the media query is matched).
-                                                                    
-                                                                      Example:
-                                                                    
-                                                                          import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
-                                                                    
-                                                                          installMediaQueryWatcher(`(min-width: 600px)`, (matches) => {
-                                                                            console.log(matches ? 'wide screen' : 'narrow sreen');
-                                                                          });
-                                                                    */const installMediaQueryWatcher=(mediaQuery,layoutChangedCallback)=>{let mql=window.matchMedia(mediaQuery);mql.addListener(e=>layoutChangedCallback(e.matches));layoutChangedCallback(mql.matches)};_exports.installMediaQueryWatcher=installMediaQueryWatcher;var mediaQuery={installMediaQueryWatcher:installMediaQueryWatcher};/**
+var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+window.top.screenX-w/2;window.open(url,title,"width="+w+", height="+h+", top="+y+", left="+x)}});/**
+    @license
+    Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+    */ /**
+         Utility method that calls a callback whenever a media-query matches in response
+         to the viewport size changing. The callback should take a boolean parameter
+         (with `true` meaning the media query is matched).
+       
+         Example:
+       
+             import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
+       
+             installMediaQueryWatcher(`(min-width: 600px)`, (matches) => {
+               console.log(matches ? 'wide screen' : 'narrow sreen');
+             });
+       */const installMediaQueryWatcher=(mediaQuery,layoutChangedCallback)=>{let mql=window.matchMedia(mediaQuery);mql.addListener(e=>layoutChangedCallback(e.matches));layoutChangedCallback(mql.matches)};_exports.installMediaQueryWatcher=installMediaQueryWatcher;var mediaQuery={installMediaQueryWatcher:installMediaQueryWatcher};/**
    @license
    Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -13672,339 +13290,451 @@ if(4===xhr.readyState){request.signal.removeEventListener("abort",abortXhr)}}}xh
 retObj.b64="";retObj.aes=!1;retObj.mode="";retObj.bits=0;for(var i=0;i<lines.length;i++){flag=lines[i].substr(0,9);if(1==i&&"Proc-Type"!=flag&&0==flag.indexOf("M"))//unencrypted cert?
 b64=!0;switch(flag){case"-----BEGI":read=!0;break;case"Proc-Type":if(read)retObj.info=lines[i];break;case"DEK-Info:":if(read){var tmp=lines[i].split(","),dek=tmp[0].split(": "),aes=dek[1].split("-");retObj.aes="AES"==aes[0]?!0:!1;retObj.mode=aes[2];retObj.bits=parseInt(aes[1]);retObj.salt=tmp[1].substr(0,16);retObj.iv=tmp[1]}break;case"":if(read)b64=!0;break;case"-----END ":if(read){b64=!1;read=!1}break;default:if(read&&b64)retObj.b64+=pidCryptUtil.stripLineFeeds(lines[i]);}}return retObj},fire=function(eventName,data){debugger;const event=new CustomEvent(eventName,{detail:data});document.dispatchEvent(event)};function encryptVote(votePublicKey,selectedItemIds){var encryptedVote;if(votePublicKey){var params=certParser(votePublicKey);if(params.b64){try{var key=pidCryptUtil.decodeBase64(params.b64),rsa=new pidCrypt.RSA,asn=pidCrypt.ASN1.decode(pidCryptUtil.toByteArray(key)),tree=asn.toHexTree();//new RSA instance
 //setting the public key for encryption
-rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedItemIds));encryptedVote=pidCryptUtil.fragment(pidCryptUtil.encodeBase64(pidCryptUtil.convertFromHex(crypted)),64);return encryptedVote}catch(err){fire("oav-error-localize",["error_encryption","err",err]);return null}}else{fire("oav-error-localize",["error_invalid_public_key"]);return null}}else{fire("oav-error-localize",["error_public_key_not_found"]);return null}}var ballotEncryptionBehavior={encryptVote:encryptVote};_exports.$ballotEncryptionBehavior=ballotEncryptionBehavior;const OavAppStyles=css`
+rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedItemIds));encryptedVote=pidCryptUtil.fragment(pidCryptUtil.encodeBase64(pidCryptUtil.convertFromHex(crypted)),64);return encryptedVote}catch(err){fire("oav-error-localize",["error_encryption","err",err]);return null}}else{fire("oav-error-localize",["error_invalid_public_key"]);return null}}else{fire("oav-error-localize",["error_public_key_not_found"]);return null}}var ballotEncryptionBehavior={encryptVote:encryptVote};_exports.$ballotEncryptionBehavior=ballotEncryptionBehavior;const OapFilterArticlesStyles=css`
+
   :host {
-    display: block;
-    box-sizing: border-box;
+    width: 100%;
   }
 
-  section {
-    padding: 24px;
-    background: var(--app-section-odd-color);
+  .completed {
+    margin-top: 32px;
   }
 
-  section > * {
-    max-width: 600px;
-    margin-right: auto;
+  .continueButton {
+    margin-top: 24px;
+    background-color: var(--app-accent-color);
+    color: #FFF;
+    min-width: 350px;
+    max-width: 350px;
+    margin: 8px;
+  }
+
+  .topContainer {
+    max-width: 432px;
     margin-left: auto;
+    margin-right: auto;
+    background-color: var(--quiz-background-color, #FFF);
+    color: var(--quiz-color, #111);
+    padding-bottom: 16px;
+    margin-top: 32px;
   }
 
-  section:nth-of-type(even) {
-    background: var(--app-section-even-color);
+  .completeHeader {
+    padding: 16px;
   }
 
-  app-header {
-    z-index: 5000;
+
+  [hidden] {
+    display: none !important;
+  }
+`;_exports.OapFilterArticlesStyles=OapFilterArticlesStyles;var oapFilterArticlesStyles={OapFilterArticlesStyles:OapFilterArticlesStyles};// Locale implementation inspired by https://github.com/PolymerElements/app-localize-behavior
+_exports.$oapFilterArticlesStyles=oapFilterArticlesStyles;window.IntlMessageFormat=MessageFormat;class OapBaseElement extends LitElement{static get properties(){return{wide:{type:Boolean,value:!1},language:{type:String}}}constructor(){super()}activity(type,object){this.sendToGoogleAnalytics("send","event",object,type)}sendToGoogleAnalytics(type,parameterA,parameterB,parameterC){if("function"==typeof ga){if(parameterB&&parameterC){ga(type,parameterA,parameterB,parameterC)}else{ga(type,parameterA)}}else{console.warn("Google analytics message not sent for type:"+type+" parameterA:"+parameterA+" parameterB:"+parameterB+" parameterC:"+parameterC)}}formatNumber(value,currencyIcon){if(!currencyIcon)currencyIcon="";if(value){return currencyIcon+value.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")}else{return currencyIcon+"0"}}localize(){var key=arguments[0];if(!key||!window.localeResources||!(this.language&&window.language)||!window.localeResources[this.language])return key;var translatedValue=window.localeResources[this.language||window.language][key];if(!translatedValue){return key}var messageKey=key+translatedValue,translatedMessage=window.__localizationCache.messages[messageKey];if(!translatedMessage){translatedMessage=new MessageFormat(translatedValue,this.language,{});window.__localizationCache.messages[messageKey]=translatedMessage}for(var args={},i=1;i<arguments.length;i+=2){args[arguments[i]]=arguments[i+1]}return translatedMessage.format(args)}updated(changedProps){super.updated(changedProps);if(changedProps.has("language")){//this.requestUpdate();
+}}firstUpdated(){super.firstUpdated();installMediaQueryWatcher(`(min-width: 1024px)`,matches=>{this.wide=matches})}$$(id){return this.shadowRoot.querySelector(id)}fire(eventName,data){const event=new CustomEvent(eventName,{detail:data,bubbles:!0,composed:!0});this.dispatchEvent(event)}}_exports.OapBaseElement=OapBaseElement;var oapBaseElement={OapBaseElement:OapBaseElement};// Locale implementation inspired by https://github.com/PolymerElements/app-localize-behavior
+_exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBaseElement{shouldUpdate(){return this.active}static get properties(){return{active:{type:Boolean}}}}_exports.OapPageViewElement=OapPageViewElement;var oapPageViewElement={OapPageViewElement:OapPageViewElement};_exports.$oapPageViewElement=oapPageViewElement;const OapSwipableCardsStyles=css`
+  /*------ CSS Use Case Example START ------*/
+
+  body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      margin: 0 15px;
   }
 
-  :host {
-    display: block;
-    --app-primary-color: #333;
-    --app-secondary-color: black;
-    --app-main-backround-color: #e0e0e0;
-    --app-accent-color: var(--paper-orange-a700);
-    --app-accent-color-light: var(--paper-orange-a200);
-    --app-text-color: #ffffff;
+  .background-0 { background: #C87D26; }
+  .background-1 { background: #569D99; }
+  .background-2 { background: #740039; }
+  .background-3 { background: #839FC5; }
+  .background-4 { background: #6A4F76; }
+  .background-5 { background: #57636D; }
+  .background-6 { background: #6D5242; }
+  .background-7 { background: #4F5051; }
 
-    --paper-tabs-selection-bar-color: var(--paper-orange-a700);
-    --paper-tabs-selection-bar: {
-      color:var(--paper-orange-a700);
-      border-bottom: 3px solid !important;
-      border-bottom-color: var(--paper-orange-a700);
-    };
-
-    --primary-color-more-darker: var(--app-main-backround-color, #333);
-    --primary-color: var(--app-main-backround-color, #333);
-
-    color: var(--app-text-color);
-
-    --app-header-background-color: var(--app-primary-color);
-    --app-header-text-color: var(--app-text-color);
-    --app-header-selected-color: var(--app-primary-color);
-    --paper-icon-button-ink-color: var(--app-text-color);
+  .background-0,
+  .background-1,
+  .background-2,
+  .background-3,
+  .background-4,
+  .background-5,
+  .background-6,
+  .background-7 {
+    transition: all 400ms ease;
   }
 
-  app-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+  /* class created only for a better preview*/
+  .stage {
+      position: absolute;
+      opacity: 1;
+      max-width: 335px;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+  }
+
+  .stage.hidden {
+    opacity: 0;
+    transition: all 400ms ease;
+  }
+
+  @media screen and (max-width: 600px) {
+      .stage {
+          max-width: 100%;
+        }
+    }
+
+  h1, h2, h3 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 100;
+    color: #FFF;
     text-align: center;
-    background-color: var(--app-header-background-color);
-    color: var(--app-header-text-color);
-    border-bottom: 1px solid #eee;
   }
 
-  app-header[wide-and-ballot] {
-    height: var(--app-budget-container-height, 238px);
-    width: 100%;
-    background-size: 1920px 238px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-y: top;
-    background-image: var(--app-budget-container-background-image);
-  }
-
-  [main-title] {
-    font-size: 30px;
-    /* In the narrow layout, the toolbar is offset by the width of the
-    drawer button, and the text looks not centered. Add a padding to
-    match that button */
-    padding-right: 44px;
-  }
-
-  main {
-    display: block;
-  }
-
-  .main-content {
-  }
-
-  .main-content[has-ballot] {
-    padding-top: 150px;
-  }
-
-  .page {
-    display: none;
-  }
-
-  .page[active] {
-    display: block;
-  }
-
-
-  @media (min-width: 1024px) {
-    .toolbar-list {
-      display: block;
-    }
-    .menu-btn {
-      display: none;
-    }
-
-    .main-content[has-ballot] {
-      padding-top: 240px;
-    }
-
-    /* The drawer button isn't shown in the wide layout, so we don't
-    need to offset the title */
-    [main-title] {
-      padding-right: 0px;
-    }
-  }
-
-  .toolbar-top {
-    background-color: var(--app-header-background-color);
-  }
-
-  app-toolbar {
+  h3 {
+    font-size: 18px;
+    font-weight: 300;
+    color: #BFBFBE;
+    margin-top: 10px;
   }
 
   .title {
-    font-size: 24px;
+      width: 100%;
+      padding-bottom: 8px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 22px;
+      color: #fff;
+  }
+
+  .card-content {
+    position: relative;
+    color: #fff;
+    padding: 5px;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+  }
+  .card-image img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -o-object-fit: cover;
+        object-fit: cover;
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+  }
+
+  .card-titles {
+    position: absolute;
+    bottom: 0;
+    padding: 40px 30px;
+  }
+
+  .card-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 25px 35px;
+  }
+
+  .popular-destinations-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #8E9AA4;
+    width: 100%;
+    min-width: 110px;
+  }
+
+  .popular-destinations-images {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      width: 100%;
+  }
+
+  .circle {
+      width: 40px;
+      height: 40px;
+      border-radius:  50%;
+      background: #fff;
+      margin-left: 8px;
+  }
+
+  .circle img {
+      border-radius: 50%
+  }
+
+  /* global actions buttons*/
+  .global-actions {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      padding-top: 24px;
+      min-width: 200px;
+  }
+
+  .top-action,
+  .right-action,
+  .left-action {
+      border-radius: 50%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      background: #fff;
+    -webkit-box-shadow: 0 3px 4px 0px rgba(0,0,0,0.5);
+            box-shadow: 0 3px 4px 0px rgba(0,0,0,0.5);
+  }
+  .right-action,
+  .left-action {
+      width: 60px;
+      height: 60px;
+  }
+
+  .top-action {
+      width: 40px;
+      height: 40px;
+      margin: 0 20px;
+  }
+
+  .final-state.active {
+    position: absolute;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: all 400ms ease;
+  }
+
+  .final-state.hidden {
+    opacity: 0;
+  }
+
+
+  /*------ CSS Use Case Example END ------*/
+
+  /*----- Stacked Cards component css START -----*/
+  body {
+      overflow-x: hidden;
+  }
+
+  .no-transition {
+    -webkit-transition: none ! important;
+    transition: none ! important;
+  }
+
+  .stackedcards-overflow {
+      overflow-y: hidden !important;
+  }
+
+  .stackedcards.init {
+      opacity: 0;/* set the opacity to 0 if you want a fade-in effect to stacked cards on page load */
+  }
+
+  .stackedcards {
+      position: relative;
+  }
+
+  .stackedcards * {
+      -webkit-user-select: none;
+              -moz-user-select: none;
+                -ms-user-select: none;
+            user-select: none;
+  }
+
+  .stackedcards--animatable {
+      -webkit-transition: all 400ms ease;
+              -o-transition: all 400ms ease;
+              transition: all 400ms ease;
+  }
+
+  .stackedcards .stackedcards-container > *,
+  .stackedcards-overlay {
+      position: absolute;
+      width: 100%; /* set 100% */
+      height: 100%; /* set 100% */
+      will-change: transform, opacity;
+      top: 0;
+      border-radius: 10px;
+      min-width: 265px;
+  }
+
+  .stackedcards-overlay.left > div,
+  .stackedcards-overlay.right > div,
+  .stackedcards-overlay.top > div {
+      width: 100%;
+      height: 100%;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+  }
+
+  .stackedcards-overlay.left,
+  .stackedcards-overlay.right,
+  .stackedcards-overlay.top {
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      left: 0;
+      opacity: 0;
+      top: 0;
+      height: 100%;
+  }
+
+  .stackedcards-overlay.top,
+  .stackedcards-overlay.right,
+  .stackedcards-overlay.left {
+      background: #fff;
+  }
+
+  .stackedcards-overlay.left:empty,
+  .stackedcards-overlay.right:empty,
+  .stackedcards-overlay.top:empty {
+    display: none !important;
+  }
+
+  .stackedcards-overlay-hidden {
+      display: none;
+  }
+
+  .stackedcards-origin-bottom {
+      -webkit-transform-origin: bottom;
+              -ms-transform-origin: bottom;
+          transform-origin: bottom;
+  }
+
+  .stackedcards-origin-top {
+      -webkit-transform-origin: top;
+              -ms-transform-origin: top;
+          transform-origin: top;
+  }
+
+  .stackedcards-bottom,
+  .stackedcards-top,
+  .stackedcards-none {
+      background: #fff; /* set card background background */
+      box-shadow: 0 6px 12px 0 rgba(0,0,0,0.30);
+      height: 100%;
+  }
+
+  .stackedcards .stackedcards-container > :nth-child(1) {
+      position: relative;
+      display: block;
+  }
+
+  .description {
+    font-size: 15px;
+    color: #000;
+    margin: 8px;
+    margin-top: 4px;
+    height: 110px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .name {
+    font-size: 19px;
+    color: #000;
+    font-weight: bold;
+    margin: 8px;
+    text-align: left;
+  }
+
+  .cardImage {
+    width: 324px;
+    height: 218px;
+    transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    -o-transition: height 0.5s;
   }
 
   paper-icon-button {
-    width: 50px;
-    height: 50px;
+    color: #000;
+    width: 55px;
+    height: 55px;
   }
 
-  paper-icon-button.closeButton {
-    width: 58px;
-    height: 58px;
+  .innerHideContainer {
+    text-align: center;
   }
 
-  @media (max-width: 640px) {
-    paper-icon-button {
-      width: 40px;
-      height: 40px;
-    }
-
-    paper-icon-button.closeButton {
-      width: 46px;
-      height: 46px;
-    }
+  .card-content {
+    height: 410px;
+    width: 330px;
+    overflow: hidden;
   }
 
-  @media (max-width: 1024px) {
-    .title {
-      font-size: 17px;
-    }
-  }
-
-  .exitIconInBudget {
+  .hideUnhideContainer {
     position: absolute;
-    top: 0;
-    left: 0;
-    color: #fff;
+    bottom: 0;
+    width: 100%;
   }
 
-  .helpIconInBudget  {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: #fff;
+  .imageCollapsed {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    -o-transition: height 0.5s;
   }
 
-  #helpContent h1 {
-    line-height: 1em;
-    font-size: 1.5em;
-  }
-
-  #favoriteIcon {
-    color: var(--app-facvorite-icon-color, rgb(255,215,0));
-    background-color: transparent;
-    width: 50px;
-    height: 50px;
-    z-index: 2720;
-    -webkit-filter: drop-shadow( 1px 1px 10px #5f5f5f );
-    filter: drop-shadow( 1px 1px 10px #5f5f5f );
-  }
-
-
-  @media (max-width: 640px) {
-    #favoriteIcon {
-      width: 40px;
-      height: 40px;
-    }
-  }
-
-  .budgetContainer {
-  }
-
-  .largeSpinner {
-    position: fixed; /* or absolute */
-    top: 50%;
-    left: 50%;
-    width: 50px;
-    height: 50px;
+  .fullsizeDescription {
+    height: 100%;
   }
 
   [hidden] {
     display: none !important;
   }
-
-  paper-dialog {
-    background-color: var(--primary-background-color);
-  }
-
-  .welcomeDialog {
-    font-size: 22px;
-    max-width: 420px;
-    width: 420px;
-    padding: 8px;
-    padding-top: 0;
-    line-height: 1.3;
-    margin: 8px;
-    text-align: center;
-    width: 100%;
-    margin: 0 !important;
-      padding: 0 !important;
-  }
-
-  .welcomeText {
-    width: 420px;
-    max-width: 420px;
-    font-size: 15px;
-    margin-top: 8px;
-  }
-
-  .welcomeLogo {
-    padding: 0;
-    margin: 0;
-    margin-top: 8px;
-    max-width: 280px;
-    width: 280px;
-    height: 116px;
-  }
-
-  .welcomeLogoContainer {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-
-  paper-button.continueButton {
-    background-color: var(--app-accent-color);
-    color: #fff;
-    margin: 8px;
-    margin-bottom: 8px;
-    font-size: 18px;
-  }
-
-  paper-button.generalButton {
-    color: var(--app-accent-color);
-    background-color: #fff;
-    margin: 8px;
-  }
-
-  @media (max-width: 600px) {
-    .welcomeDialog {
-      font-size: 16px;
-      padding: 8px;
-      padding-top: 0;
-      text-align: center;
-    }
-
-    .heading {
-      font-size: 24px;
-    }
-
-    .welcomeText {
-      width: 100%;
-    }
-    paper-button.continueButton {
-      font-size: 16px;
-    }
-    .welcomeLogo {
-      width: 200px;
-      height: 83px;
-    }
-  }
-
-  @media (max-width: 340px) {
-    .welcomeDialog {
-      font-size: 13px;
-    }
-    .heading {
-      font-size: 19px;
-    }
-    paper-button.continueButton {
-      font-size: 16px;
-    }
-    .welcomeLogo {
-      margin-left: 16px;
-      display: none;
-    }
-    .welcomeLogologoContainer {
-      display: none;
-    }
-    paper-button.continueButton {
-      margin-top: 0;
-    }
-  }
-
-  .welcomeLogoContainer {
-  }
-
-  paper-dialog {
-    z-index: 1000000;
-  }
-
-  .langSelectionText {
-    font-size: 16px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-
-  .langSelect {
-    cursor: pointer;
-    margin-left: 4px;
-  }
-
-  .langSelect[is-selected] {
-    text-decoration: underline;
-  }
-`;_exports.OavAppStyles=OavAppStyles;var oavAppStyles={OavAppStyles:OavAppStyles};_exports.$oavAppStyles=oavAppStyles;const template$c=html`<iron-iconset-svg size="24" name="icons">
+/*----- Stacked Cards component css END -----*/
+`;_exports.OapSwipableCardsStyles=OapSwipableCardsStyles;var oapSwipableCardsStyles={OapSwipableCardsStyles:OapSwipableCardsStyles};_exports.$oapSwipableCardsStyles=oapSwipableCardsStyles;const template$c=html`<iron-iconset-svg size="24" name="icons">
   <svg><defs>
     <g id="chat-bubble-outline"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"></path></g>
     <g id="mode-edit"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></g>
@@ -14031,907 +13761,10 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
     <g id="do-not-disturb"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"></path></g>
     <g id="star"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></g>
     <g id="star-border"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"></path></g>
-  </defs></svg>
-</iron-iconset-svg>`;document.head.appendChild(template$c.content);class SnackBar extends LitElement{static get properties(){return{active:{type:Boolean}}}static get styles(){return[css`
-        :host {
-          display: block;
-          position: fixed;
-          top: 100%;
-          left: 0;
-          right: 0;
-          padding: 12px;
-          background-color: var(--app-secondary-color);
-          color: white;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-          text-align: center;
-          will-change: transform;
-          transform: translate3d(0, 0, 0);
-          transition-property: visibility, transform;
-          transition-duration: 0.2s;
-          visibility: hidden;
-        }
-
-        :host([active]) {
-          visibility: visible;
-          transform: translate3d(0, -100%, 0);
-        }
-
-        @media (min-width: 460px) {
-          :host {
-            width: 320px;
-            margin: auto;
-          }
-        }
-      `]}render(){return html$1`
-      <slot></slot>
-    `}}window.customElements.define("snack-bar",SnackBar);// Locale implementation inspired by https://github.com/PolymerElements/app-localize-behavior
-window.IntlMessageFormat=MessageFormat;class OavBaseElement extends LitElement{static get properties(){return{wide:{type:Boolean,value:!1},language:{type:String}}}constructor(){super()}activity(type,object){this.sendToGoogleAnalytics("send","event",object,type)}sendToGoogleAnalytics(type,parameterA,parameterB,parameterC){if("function"==typeof ga){if(parameterB&&parameterC){ga(type,parameterA,parameterB,parameterC)}else{ga(type,parameterA)}}else{console.warn("Google analytics message not sent for type:"+type+" parameterA:"+parameterA+" parameterB:"+parameterB+" parameterC:"+parameterC)}}formatNumber(value,currencyIcon){if(!currencyIcon)currencyIcon="";if(value){return currencyIcon+value.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")}else{return currencyIcon+"0"}}localize(){var key=arguments[0];if(!key||!window.localeResources||!(this.language&&window.language)||!window.localeResources[this.language])return key;var translatedValue=window.localeResources[this.language||window.language][key];if(!translatedValue){return key}var messageKey=key+translatedValue,translatedMessage=window.__localizationCache.messages[messageKey];if(!translatedMessage){translatedMessage=new MessageFormat(translatedValue,this.language,{});window.__localizationCache.messages[messageKey]=translatedMessage}for(var args={},i=1;i<arguments.length;i+=2){args[arguments[i]]=arguments[i+1]}return translatedMessage.format(args)}updated(changedProps){super.updated(changedProps);if(changedProps.has("language")){//this.requestUpdate();
-}}$$(id){return this.shadowRoot.querySelector(id)}fire(eventName,data){const event=new CustomEvent(eventName,{detail:data,bubbles:!0,composed:!0});this.dispatchEvent(event)}}_exports.OavBaseElement=OavBaseElement;var oavBaseElement={OavBaseElement:OavBaseElement};// Locale implementation inspired by https://github.com/PolymerElements/app-localize-behavior
-_exports.$oavBaseElement=oavBaseElement;class PageViewElement extends OavBaseElement{shouldUpdate(){return this.active}static get properties(){return{active:{type:Boolean}}}}_exports.PageViewElement=PageViewElement;var pageViewElement={PageViewElement:PageViewElement};_exports.$pageViewElement=pageViewElement;const OavAreaBallotStyles=css`
-
-  :host {}
-
-  iron-list {
-    margin-top: 24px;
-    padding-bottom: 16px;
-    background-color: var(--app-main-background-color);
-  }
-
-  .name {
-    font-size: 19px;
-    padding: 8px;
-  }
-
-  .description {
-    padding-left: 8px;
-  }
-
-  .price {
-    font-size: 20px;
-    position: absolute;
-    bottom: 4px;
-    left: 8px;
-  }
-
-  #itemContainer {
-    margin-top: 8px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  oav-area-ballot-item {
-    outline: 0px;
-  }
-
-  paper-button.addButton {
-    position: absolute;
-    bottom: 16px;
-    outline: 0px;
-    right: 8px;
-    background-color: var(--app-ballot-add-button-background-color, #F00);
-    color: var(--app-ballot-add-button-color, #FFF);
-  }
-
-  .budgetContainer {
-  }
-
-  .votingButtonContainer {
-    position: absolute;
-    bottom: 16px;
-  }
-
-  .topContainer {
-    background-color: var(--app-main-background-color);
-    color: var(--app-ballot-color, #333);
-  }
-
-  paper-tabs {
-    margin: 8px;
-    margin-right: 16px;
-    margin-left: 16px;
-  }
-
-  paper-tab {
-    font-size: 21px !important;
-    margin-left: 24px;
-    margin-right: 24px;
-    width: 320px;
-  }
-
-  @media (max-width: 1045px) {
-    paper-tab {
-      font-size: 15px !important;
-      margin-left: 16px;
-      margin-right: 16px;
-    }
-  }
-
-  @media (max-width: 360px) {
-    paper-tab {
-      font-size: 14px !important;
-      margin-left: 16px;
-      margin-right: 16px;
-    }
-  }
-
-  [hidden] {
-    display: none !important;
-  }
-`;_exports.OavAreaBallotStyles=OavAreaBallotStyles;var oavAreaBallotStyles={OavAreaBallotStyles:OavAreaBallotStyles};_exports.$oavAreaBallotStyles=oavAreaBallotStyles;const OavAreaBallotItemStyles=css`
-
-  .itemContent {
-    position: relative;
-    width: 300px !important;
-    height: 320px;
-    margin: 16px;
-  }
-
-  .itemContent[small] {
-    width: 260px !important;
-    height: 277px;
-    margin: 0;
-  }
-
-  .itemContent[small][tiny] {
-    width: 220px !important;
-    height: 220px;
-  }
-
-  .itemSelectedFrame {
-    background: transparent;
-    border: none;
-    width: 296px;
-    height: 316px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 4;
-  }
-
-  .itemSelectedFrame[small] {
-    width: 254px;
-    height: 271px;
-  }
-
-  .itemSelectedFrame[small][tiny] {
-    width: 214px;
-    height: 214px;
-  }
-
-  .buttons {
-    z-index: 5;
-  }
-
-  .itemSelectedFrame[selected] {
-    background: transparent;
-    border: solid 2px;
-    border-color: var(--app-accent-color);
-  }
-
-  iron-image {
-    height: 169px;
-    width: 300px;
-  }
-
-  iron-image[small] {
-    width: 260px;
-    height: 146px;
-  }
-
-  iron-image[small][tiny] {
-    width: 220px;
-    height: 124px;
-  }
-
-  google-map {
-    height: 169px;
-    width: 300px;
-    margin-bottom: 7px;
-  }
-
-  google-map[small] {
-    width: 260px;
-    height: 146px;
-    z-index: 0 !important;
-  }
-
-  google-map[small][tiny] {
-    width: 220px;
-    height: 124px;
-  }
-
-  .descriptionContainer {
-    height: 169px;
-    width: 300px;
-    margin: 0;
-    overflow: hidden;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: left;
-    background-color: var(--app-ballot-item-description-background-color, #333);
-    color: var(--app-ballot-item-description-color, #FFF);
-    margin-bottom: 7px;
-  }
-
-  .descriptionContainer[small] {
-    width: 260px;
-    height: 146px;
-    font-size: 16px;
-    text-align: left;
-  }
-
-  .descriptionContainer[small][tiny] {
-    width: 220px;
-    height: 124px;
-    font-size: 15px;
-  }
-
-  .description {
-    padding: 8px;
-    font-size: 16px;
-    margin-top: 42px;
-  }
-
-  .name {
-    font-size: var(--app-item-name-font-size, 20px);
-    padding: 8px;
-    color: var(--app-ballot-item-name-color, #222);
-  }
-
-  .name[small] {
-    font-size: var(--app-item-name-font-size-small, 17px);
-    padding-top: 4px;
-    padding-right: 4px;
-    padding-top: 4px;
-  }
-
-  .name[small][tiny] {
-    font-size: 14px;
-  }
-
-  .price {
-    font-size: 25px;
-    position: absolute;
-    bottom: 8px;
-    left: 92px;
-    color: var(--app-accent-color);
-  }
-
-  .price[no-millions] {
-    left: 108px;
-  }
-
-  .price[small] {
-    left: 70px;
-  }
-
-  .price[no-millions][small] {
-    left: 95px;
-  }
-
-  .price[small][tiny] {
-    left: 42px;
-  }
-
-  .priceCurrency {
-    font-size: 23px;
-    color: var(--app-accent-color);
-  }
-
-  paper-fab.addRemoveButton {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    background-color: var(--app-accent-color);
-    color: var(--app-ballot-item-button-color, #fff);
-  }
-
-  paper-fab.removeButton {
-    background-color: #fff !important;
-    color: var(--app-accent-color) !important;
-  }
-
-  paper-fab.addFavoriteButton {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    background-color: var(--app-accent-color);
-    color: var(--app-ballot-item-button-color, #fff);
-    --paper-fab-iron-icon: {
-      height: 29px;
-      width: 29px;
-    };
-    padding: 0;
-    padding-top: 1px;
-  }
-
-  paper-fab.removeFavoriteButton {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    color: var(--app-ballot-item-remove-fav-button-color, rgb(255,215,0));
-    background-color: var(--app-ballot-item-remove-fav-button-background-color, #FFF);
-    --paper-fab-iron-icon: {
-      height: 29px;
-      width: 29px;
-    };
-    padding: 0;
-    padding-top: var(--app-ballot-item-remove-fav-padding-top, 1px);
-  }
-
-  paper-fab[disabled] {
-    background-color: #b7b7b7;
-  }
-
-  .shareIcon {
-    position: absolute;
-    top: 6px;
-    left: 0;
-    --paper-share-button-icon-color: var(--app-accent-color-light);
-    --paper-share-button-icon-height: 46px;
-    --paper-share-button-icon-width: 46px;
-    -webkit-filter: drop-shadow( 1px 1px 10px #555 );
-    filter: drop-shadow( 1px 1px 10px #555 );
-  }
-
-  .shareIcon[small] {
-    display: none;
-  }
-
-  .budgetContainer {
-  }
-
-  .itemContent {
-    color: var(--app-ballot-item-content-color, #222);
-    background-color: var(--app-ballot-item-content-background-color, #fbfbfb);
-  }
-
-  .addRemoveButton {
-
-  }
-
-  .infoIcon {
-    color: var(--app-accent-color-light);
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    margin-right: 4px;
-  }
-
-  .infoLinks {
-    position: absolute;
-    top: 118px;
-    right: 0px;
-    z-index: 2;
-  }
-
-  .stateDropdown {
-    color: var(--app-accent-color-light);
-    position: absolute;
-    top: 60px;
-    right: 0;
-    z-index: 2;
-    padding-right: 0;
-    margin-right: 0;
-  }
-
-  .dropdownMenuButton {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-  }
-
-  .dropdownButton {
-    background-color: var(--app-accent-color);
-    opacity: 0.8;
-    color: var(--app-ballot-item-button-color, #fff);
-    padding: 2px;
-    width: 32px;
-    height: 26px;
-  }
-
-  .infoLinks[small] {
-    top: 98px;
-  }
-
-  .infoLinks[small][tiny] {
-    top: 78px;
-  }
-
-  .externalInfoIcon {
-    color: var(--app-ballot-item-extinfo-icon-color, #999);
-    width: 45px;
-    height: 45px;
-  }
-
-  .externalIconContainer {
-    position: absolute;
-    bottom: 4px;
-    left: 0px;
-    z-index: 2;
-  }
-
-  google-map {
-    z-index: 5;
-  }
-
-  paper-fab {
-    z-index: 5;
-  }
-
-  .favoriteButtons {
-  }
-
-  [hidden] {
-    display: none !important;
-  }
-`;_exports.OavAreaBallotItemStyles=OavAreaBallotItemStyles;var oavAreaBallotItemStyles={OavAreaBallotItemStyles:OavAreaBallotItemStyles};_exports.$oavAreaBallotItemStyles=oavAreaBallotItemStyles;const OavShadowStyles=css`
-  .shadow-transition {
-     transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-   }
-
-  .shadow-elevation-2dp {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  }
-
-  .shadow-elevation-3dp {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
-                0 1px 8px 0 rgba(0, 0, 0, 0.12),
-                0 3px 3px -2px rgba(0, 0, 0, 0.4);
-  }
-
-  .shadow-elevation-4dp {
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-                0 1px 10px 0 rgba(0, 0, 0, 0.12),
-                0 2px 4px -1px rgba(0, 0, 0, 0.4);
-  }
-
-  .shadow-elevation-6dp {
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
-                0 1px 18px 0 rgba(0, 0, 0, 0.12),
-                0 3px 5px -1px rgba(0, 0, 0, 0.4);
-  }
-
-  .shadow-elevation-8dp {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12),
-                0 5px 5px -3px rgba(0, 0, 0, 0.4);
-
-  }
-  .shadow-elevation-12dp {
-    box-shadow: 0 12px 16px 1px rgba(0, 0, 0, 0.14),
-                0 4px 22px 3px rgba(0, 0, 0, 0.12),
-                0 6px 7px -4px rgba(0, 0, 0, 0.4);
-  }
-
-  .shadow-elevation-16dp {
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
-                0  6px 30px 5px rgba(0, 0, 0, 0.12),
-                0  8px 10px -5px rgba(0, 0, 0, 0.4);
-  }
-  .shadow-elevation-24dp {
-    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
-                0 9px 46px 8px rgba(0, 0, 0, 0.12),
-                0 11px 15px -7px rgba(0, 0, 0, 0.4);
-  }
-`;_exports.OavShadowStyles=OavShadowStyles;var oavShadowStyles={OavShadowStyles:OavShadowStyles};_exports.$oavShadowStyles=oavShadowStyles;class OavAreaBallotItem extends OavBaseElement{static get properties(){return{item:{type:Object},staticMapsApiKey:{type:String},elevation:Number,budgetElement:{type:Object},selectedInBudget:{type:Boolean},toExpensiveForBudget:{type:Boolean},isFavorite:{type:Boolean},googleMapsApiKey:{type:String},imageTabSelected:{type:Boolean},descriptionTabSelected:{type:Boolean},mapTabSelected:{type:Boolean},descriptionPdfLink:{type:String},small:{type:Boolean},tiny:{type:Boolean},mapsHeight:{type:String,value:null},mapsWidth:{type:String,value:null},longitude:{type:String,value:null},latitude:{type:String,value:null},imageLoaded:{type:Boolean,value:!1},isOnMap:Boolean,configFromServer:Object,listBoxSelection:Number}}static get styles(){return[OavAreaBallotItemStyles,OavShadowStyles]}render(){return html$1`
-      <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp" ?small="${this.small}" ?tiny="${this.tiny}">
-        <iron-image preload @loaded-changed="${this._imageLoadedChanged}" ?small="${this.small}"
-          ?tiny$="${this.tiny}" ?hidden="${!this.imageTabSelected}" name="image" sizing="cover" src="${this.item.image_url}">
-        </iron-image>
-
-        ${this.mapTabSelected&&this.mapsHeight?html$1`
-            <iron-image class="main-image" .sizing="cover"
-              src="https://maps.googleapis.com/maps/api/staticmap?center=${this.latitude},${this.longitude}&zoom=15&size=${this.mapsWidth}x${this.mapsHeight}&markers=color:red%7Clabel:%7C${this.latitude},${this.longitude}&key=${this.configFromServer.client_config.googleMapsStaticApiKey}"
-              ?hidden="${!this.mapTabSelected}">
-            </iron-image>
-          `:""}
-        <div ?hidden="${!this.descriptionTabSelected}" name="description" class="descriptionContainer" ?tiny="${this.tiny}" ?small="${this.small}">
-          <div id="description" class="description">
-            ${this.item.description}
-          </div>
-        </div>
-        <paper-menu-button ?hidden="${this.isOnMap}" @tap="${this._openMenu}" ?small="${this.small}" ?tiny="${this.tiny}" class="dropdownMenuButton" horizontal-align="right">
-          <paper-icon-button class="dropdown-trigger dropdownButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize("openDetailMenu")}" icon="menu"></paper-icon-button>
-          <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" .selected="${this.listBoxSelection}">
-            <paper-item @tap="${this._setImageMode}">
-              <iron-icon alt="${this.localize("image_item_tab")}" class="infoIcon" icon="photo"></iron-icon>
-              ${this.localize("image_item_tab")}
-            </paper-item>
-            <paper-item @tap="${this._setDescriptionMode}">
-              <iron-icon alt="${this.localize("description_item_tab")}" class="infoIcon" icon="description"></iron-icon>
-              ${this.localize("description_item_tab")}
-            </paper-item>
-            <paper-item @tap="${this._setMapMode}" ?hidden="${this.configFromServer.client_config.hideLocation}">
-              <iron-icon alt="${this.localize("map_item_tab")}" class="infoIcon" icon="place"></iron-icon>
-              ${this.localize("map_item_tab")}
-            </paper-item>
-            <paper-item @tap="${this._openPdf}" ?hidden="${!this.descriptionPdfLink}">
-              <iron-icon alt="${this.localize("design_pdf")}" class="infoIcon" icon="picture-as-pdf"></iron-icon>
-              ${this.localize("design_pdf")}
-            </paper-item>
-            <paper-item @tap="${this._showPost}" ?hidden="${this.configFromServer.client_config.hideShowPost}">
-              <iron-icon raised alt="${this.localize("more_info_description")}" class="infoIcon" icon="info"></iron-icon>
-              ${this.localize("more_info_description")}
-            </paper-item>
-          </paper-listbox>
-        </paper-menu-button>
-        <div class="layout horizontal">
-          <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
-        </div>
-        <div class="buttons">
-          <paper-share-button ?hidden="${!this.imageLoaded}" ?small="${this.small}" @share-tap="${this._shareTap}" class="shareIcon" horizontal-align="left" id="shareButton"
-            title="${this.localize("share_idea")}" facebook twitter popup .url="${this._itemShareUrl()}">
-          </paper-share-button>
-
-          <div class="price" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
-            ${this.configFromServer.client_config.currencySymbol}${this.formatNumber(this.item.price)}
-            <span class="priceCurrency" ?hidden="${!this._priceIsOne(this.item.price)}">${this.localize("million")}</span>
-            <span class="priceCurrency" ?hidden="${this._priceIsOne(this.item.price)}">${this.localize("millions")}</span>
-          </div>
-
-          <paper-fab mini id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selectedInBudget}"
-                    ?disabled="${this.toExpensiveForBudget}" title="${this.localize("add_to_budget")}" icon="add" @click="${this._toggleInBudget}">
-          </paper-fab>
-
-          <paper-fab mini elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selectedInBudget}"
-                    ?disabled="${this.toExpensiveForBudget}" title="${this.localize("remove_from_budget")}" icon="remove" @click="${this._toggleInBudget}">
-          </paper-fab>
-
-          <div id="favoriteButtons" class="favoriteButtons" ?hidden="${!this.selectedInBudget}">
-            <paper-fab mini id="addFavoriteButton" class="addFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${this.isFavorite}"
-                      title="${this.localize("select_favorite")}" icon="${this.configFromServer.client_config.favoriteIconOutline}" @click="${this._toggleFavorite}">
-            </paper-fab>
-            <paper-fab mini class="removeFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${!this.isFavorite}"
-                      title="${this.localize("deselect_favorite")}" icon="${this.configFromServer.client_config.favoriteIcon}" @click="${this._toggleFavorite}">
-            </paper-fab>
-          </div>
-        </div>
-      </div>
-    `}updated(changedProps){super.updated(changedProps);if(changedProps.has("selectedInBudget")){if(this.selectedInBudget){this.elevation=4;this.$$("#topContainer").classList.add("shadow-elevation-12dp")}else{this.elevation=1;this.$$("#topContainer").classList.remove("shadow-elevation-12dp")}}if(changedProps.has("item")){if(this.item){if(this.item.locations&&0<this.item.locations.length){this.longitude=this.item.locations[0].longitude;this.latitude=this.item.locations[0].latitude}this.resetFromBudget()}}if(changedProps.has("small")){if(this.small){this.mapsHeight="260";this.mapsWidth="146"}else{this.mapsHeight="169";this.mapsWidth="300"}}if(changedProps.has("tiny")){if(this.tiny){this.mapsHeight="220";this.mapsWidth="124"}else{this.mapsHeight="169";this.mapsWidth="300"}}}constructor(){super();this.reset();this.listBoxSelection=0}reset(){this.small=!1;this.mapTabSelected=!1;this.descriptionTabSelected=!1;this.imageTabSelected=!0;this.isFavorite=!1;this.toExpensiveForBudget=!1;this.selectedInBudget=!1;this.mapsHeight="169";this.mapsWidth="300"}_imageLoadedChanged(event){if(event.detail.value){this.imageLoaded=!0}}_clickedDropDownMenu(){this.activity("click","dropdown")}_priceIsOne(price){if(price&&1>=price){return!0}else{return!1}}_openPdf(){this.activity("click","openPdf");if(this.item.descriptionPdfLink){window.open(this.item.descriptionPdfLink,"_blank")}}_showPost(){this.activity("click","showPost");window.appLastArea="/"+window.location.hash;const path="/post/"+this.item.idea_id;window.history.pushState({},null,path);this.fire("location-changed",path);setTimeout(()=>{this.$$("#listBox").select(0)})}_itemShareUrl(){if(this.item){return encodeURIComponent("https://"+window.location.host+"/items/"+this.item.id)}else{return null}}_shareTap(event,detail){this.activity("click","shareItem")}resetFromBudget(){//console.log("resetFromBudget itemId: "+this.item.id);
-if(this.budgetElement){if(-1<this.budgetElement.selectedItems.indexOf(this.item)){this.setInBudget();this.setNotTooExpensive();if(this.budgetElement.currentBallot.favoriteItem==this.item){this.isFavorite=!0}else{this.isFavorite=!1}}else{var budgetLeft=this.budgetElement.totalBudget-this.budgetElement.selectedBudget;if(this.item.price>budgetLeft){this.setTooExpensive()}else{this.setNotTooExpensive()}this.removeFromBudget()}}this._setImageMode(!0)}_setImageMode(disableActivity){if(!disableActivity||!1===disableActivity){this.activity("select","imageMode")}this.imageTabSelected=!0;this.descriptionTabSelected=!1;this.mapTabSelected=!1}_setMapMode(){this.activity("select","mapMode");this.imageTabSelected=!1;this.descriptionTabSelected=!1;this.mapTabSelected=!0}_setDescriptionMode(){this.activity("select","descriptionMode");this.imageTabSelected=!1;this.descriptionTabSelected=!0;this.mapTabSelected=!1}_toggleDescription(){this.activity("toggle","description");if(!0===this.descriptionTabSelected){this._setImageMode()}else{this._setDescriptionMode()}}_openMenu(){this.activity("open","itemMenu")}setInBudget(){//console.log("setInBudget itemId: "+this.item.id);
-this.selectedInBudget=!0}removeFromBudget(){//console.log("removeFromBudget itemId: "+this.item.id);
-this.selectedInBudget=!1;this.isFavorite=!1}setTooExpensive(){//console.log("setTooExpensive itemId: "+this.item.id);
-this.toExpensiveForBudget=!0}setNotTooExpensive(){//console.log("setNotTooExpensive itemId: "+this.item.id);
-this.toExpensiveForBudget=!1}_toggleFavorite(){if(this.budgetElement.currentBallot.favoriteItem&&this.budgetElement.currentBallot.favoriteItem.id==this.item.id){this.fire("oav-set-favorite-item-in-budget",{item:null});this.isFavorite=!1}else{var button=this.$$("#addFavoriteButton"),buttonRect=button.getBoundingClientRect(),left=buttonRect.left,top=buttonRect.top;// + window.scrollY;
-this.isFavorite=!0;this.fire("oav-set-favorite-item-in-budget",{item:this.item,orgAnimPos:{left:left,top:top},budgetAnimPos:this.budgetElement.getItemLeftTop(this.item)})}}_toggleInBudget(event){//console.log("_toggleInBudget itemId: "+this.item.id);
-this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteButton").style.left="12px";this.$$("#addFavoriteButton").style.bottom="12px";var animation=this.$$("#addFavoriteButton").animate([{transform:"translateX(200px)",easing:"ease-out"},{transform:"scale(2)",easing:"ease-out"},{transform:"translateY(0)",easing:"ease-out"}],{duration:400,iterations:1});animation.onfinish=function(){this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteButton").style.left="12px";this.$$("#addFavoriteButton").style.bottom="12px"}.bind(this);this.fire("oav-toggle-item-in-budget",{item:this.item})}}window.customElements.define("oav-area-ballot-item",OavAreaBallotItem);const OavBallotMapStyles=css`
-  :host {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .topMapContainer {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .mapContainer {
-    width: 100% !important;
-    height: 100% !important;
-    margin-top: 16px;
-  }
-
-  .noMapContainer {
-    padding: 8px;
-    margin: 16px;
-    background-color: #FFF;
-  }
-
-  #map {
-  }
-
-  a {
-    color: var(--primary-color-700);
-  }
-
-  h1 {
-    padding: 24px;
-  }
-
-
-  #myInfoCard {
-    background-color: #000;
-    padding: 0;
-    margin: 0 !important;
-    --paper-map-info-mixin: {
-      padding: 0;
-      margin: 0 !important;
-      background-color: #fbfbfb;
-      color: var(--app-accent-color);
-      max-width: 100%;
-      max-height: 100%;
-    };
-    --paper-map-info-beak-mixin: {
-      color: var(--app-accent-color);
-    };
-  }
-
-  .ballotItem {
-    margin: 0;
-    padding: 0;
-    color: #FFF;
-  }
-`;_exports.OavBallotMapStyles=OavBallotMapStyles;var oavAreaBallotMapStyles={OavBallotMapStyles:OavBallotMapStyles};_exports.$oavAreaBallotMapStyles=oavAreaBallotMapStyles;class OavAreaBallotMap extends OavBaseElement{static get properties(){return{items:{type:Array},budgetElement:{type:Object},selectedItem:{type:Object},configFromServer:Object,noItems:{type:Boolean,value:!1},googleMapsApiKey:{type:String},wide:{type:Boolean,observer:"_wideChanged"}}}static get styles(){return[OavBallotMapStyles,OavShadowStyles]}render(){return html$1`
-      <div class="layout vertical center-center topMapContainer">
-        ${!this.items?html$1`
-              <div class="noMapContainer shadow-elevation-3dp">
-                <h1>${this.localize("items.noMapItems")}</h1>
-              </div>
-            `:html$1`
-              <div class="mapContainer">
-                <google-map ?disable-default-ui="${this.tiny}" id="map" .apiKey="${this.configFromServer.client_config.googleMapsApiKey}" fit-to-markers>
-                  ${this.items.map(item=>{return item.locations.map(location=>{return html$1`
-                        <google-map-marker slot="markers" .clickEvents="${!0}" .latitude="${location.latitude}" data-itemid="${item.id}" .longitude="${location.longitude}" class="marker" @google-map-marker-click="${this.markerClick}">
-                        </google-map-marker>
-                      `})})}
-
-                  ${this.selectedItem?html$1`
-                    <plastic-map-info id="myInfoCard" fade-in>
-                      <oav-area-ballot-item
-                      @oav-toggle-item-in-budget="_closeInfo" small  elevation="0" id="ballotItem"
-                      .budgetElement="${this.budgetElement}"
-                      .language="${this.language}"
-                      .isOnMap="${!0}"
-                      .configFromServer="${this.configFromServer}" class="ballotItem"
-                      .item="${this.selectedItem}"
-                      ></oav-area-ballot-item>
-                    </plastic-map-info>
-                  `:html$1``}
-                </google-map>
-              </div>
-            `}
-      </div>
-    `}constructor(){super();this.reset()}connectedCallback(){super.connectedCallback();setTimeout(function(){this.resetMapHeight()}.bind(this))}disconnectedCallback(){this.items=null;super.disconnectedCallback()}reset(){}_closeInfo(){///this.$$("#myInfoCard").close();
-}updated(changedProps){super.updated(changedProps);if(changedProps.has("wide")){this.resetMapHeight()}}resetMapHeight(){var map=this.$$("#map"),windowHeight=window.innerHeight;if(map){var height;if(this.wide){height=windowHeight-322}else{height=windowHeight-236}map.style.height=height+"px"}}setItemInBudget(item){if(this.selectedItem&&this.selectedItem.id==item.id){var item=this.$$("#ballotItem");if(item){item.setInBudget()}}}removeFromBudget(item){if(this.selectedItem&&this.selectedItem.id==item.id){var item=this.$$("#ballotItem");if(item){this.$$("#ballotItem").removeFromBudget()}}}checkIfSelectedItemToExpensive(budgetLeft){if(this.selectedItem){var item=this.$$("#ballotItem");if(item){if(!item.selectedInBudget){if(this.selectedItem.price<=budgetLeft){item.setNotTooExpensive();console.log("item id "+this.selectedItem.id+"Not Too Expensive")}else if(this.selectedItem){console.log("item id "+this.selectedItem.id+"Too Expensive");item.setTooExpensive()}}}}}scrollIntoView(itemId){let markerIdCounter=0,markerIdFoundAt=null;this.items.map(item=>{return item.locations.map(location=>{if(item.id==itemId){markerIdFoundAt=markerIdCounter}markerIdCounter++})});if(null!==markerIdFoundAt&&this.$$("#map")){this.$$("#map").triggerMarkerClick(markerIdFoundAt)}}markerClick(e){this.activity("click","marker");const selectedItemId=e.target.dataset.itemid;this.items.forEach(item=>{if(item.id==selectedItemId){this.selectedItem=item}});let marker;if(e.srcElement){marker=e.srcElement.marker}else{marker=e.currentTarget.marker}setTimeout(()=>{this.$$("#myInfoCard").showInfoWindow(marker)},10)}}window.customElements.define("oav-area-ballot-map",OavAreaBallotMap);class OavAreaBallot extends PageViewElement{static get properties(){return{area:{type:Object},areaId:{type:String},configFromServer:String,areaIdRoutePath:{type:Object},selectedView:{type:Number},budgetElement:{type:Object},votePublicKey:{type:String},budgetBallotItems:Array,wide:Boolean,popupWindow:Object,favoriteItem:{type:Object},oldFavoriteItem:Object,showMap:Boolean}}static get styles(){return[OavAreaBallotStyles]}render(){return html$1`${this.area?html$1`
-        <div class="topContainer layout vertical">
-          <div class="layout horizontal center-center tabsContainer">
-            <paper-tabs id="tabs" selected="${this.selectedView}" @selected-changed="${this._selectedChanged}">
-              <paper-tab>
-                <div ?hidden="${!this.wide}">${this.area.name}</div>
-                <div ?hidden="${this.wide}" class="layout vertical center-center">
-                  <div>${this.area.name}</div>
-                </div>
-              </paper-tab>
-              <paper-tab ?hidden="${this.configFromServer.client_config.hideLocation}">${this.localize("items_on_map")}</paper-tab>
-            </paper-tabs>
-          </div>
-
-          ${this.budgetBallotItems?html$1`
-              <div id="itemContainer" class="layout horizontal center-center flex wrap" ?hidden="${1===this.selectedView}">
-                ${this.budgetBallotItems.map((item,index)=>html$1`
-                    <oav-area-ballot-item
-                      .name="${item.id}"
-                      class="ballotAreaItem"
-                      .configFromServer="${this.configFromServer}"
-                      .language="${this.language}"
-                      .budgetElement="${this.budgetElement}"
-                      .item="${item}">
-                    </oav-area-ballot-item>
-                  `)}
-              </div>
-              ${this.showMap?html$1`
-                  <oav-area-ballot-map
-                    ?hidden="${0===this.selectedView}"
-                    id="itemsMap"
-                    .budgetElement="${this.budgetElement}"
-                    .configFromServer="${this.configFromServer}"
-                    .language="${this.language}"
-                    .items="${this.budgetBallotItems}">
-                  </oav-area-ballot-map>
-                `:html$1`
-                `}
-            `:""}
-        </div>
-      `:""}
-    `}updated(changedProps){super.updated(changedProps);if(changedProps.has("areaIdRoutePath")){if(this.areaIdRoutePath){if("completePostingOfVoteAfterRedirect"===this.areaIdRoutePath){this.completeIfAuthenticatedVote()}else{this.areaId=this.areaIdRoutePath}}}if(changedProps.has("areaId")){this.loadArea()}if(changedProps.has("selectedView")){if(0===this.selectedView){this.activity("click","ideasTab")}else if(1==this.selectedView){this.showMap=!0;this.activity("click","mapTab")}}if(changedProps.has("favoriteItem")){this.oldFavoriteItem=changedProps.get("favoriteItem");if(!this.favoriteItem&&this.oldFavoriteItem){this.fire("oav-hide-favorite-item")}}}constructor(){super();this.showMap=!1}connectedCallback(){super.connectedCallback();this.reset();window.appBallot=this;this.fire("oav-set-ballot-element",this)}firstUpdated(){this._setupListeners();installMediaQueryWatcher(`(min-width: 1024px)`,matches=>{this.wide=matches})}disconnectedCallback(){this._removeListeners()}loadArea(){this.oldFavoriteItem=null;this.favoriteItem=null;if(this.areaId){this.reset();this.fire("ak-clear-area");fetch("/votes/get_ballot?area_id="+this.areaId+"&locale="+this.language,{credentials:"same-origin"}).then(res=>res.json()).then(response=>{this.area=response.area;this.budgetBallotItems=this._setupLocationsAndTranslation(response.budget_ballot_items);this.fire("oav-set-title",this.localize("ballot_area_name","area_name",this.area.name));this.fire("oav-set-area",{areaName:this.area.name,totalBudget:this.area.budget_amount});setTimeout(()=>{this.$$("#tabs").shadowRoot.getElementById("selectionBar").style.setProperty("border-bottom","3px solid var(--paper-tabs-selection-bar-color)")})}).catch(error=>{this.fire("ak-error",error);console.error("Error:",error)})}}_setupListeners(){this.addEventListener("oav-toggle-item-in-budget",this._toggleItemInBudget);this.addEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.addEventListener("oav-submit-vote",this._postVoteToServer);this.addEventListener("oav-item-selected-in-budget",this._itemSelectedInBudget);this.addEventListener("oav-item-de-selected-from-budget",this._itemDeSelectedFromBudget)}_removeListeners(){this.removeEventListener("oav-toggle-item-in-budget",this._toggleItemInBudget);this.removeEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.removeEventListener("oav-submit-vote",this._postVoteToServer);this.removeEventListener("oav-item-selected-in-budget",this._itemSelectedInBudget);this.removeEventListener("oav-item-de-selected-from-budget",this._itemDeSelectedFromBudget)}reset(){if(this.budgetElement){this.budgetElement.reset()}this._resetBallotItems();this.budgetBallotItems=null;this.area=null;this.favoriteItem=null;this.selectedView=0;this.fire("oav-set-area",{areaName:null,totalBudget:null})}_selectedChanged(event){this.selectedView=parseInt(event.detail.value)}_scrollItemIntoView(itemId){var iOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream,isIE11=/Trident.*rv[ :]*11\./.test(navigator.userAgent),items=this.shadowRoot.querySelectorAll("oav-area-ballot-item");items.forEach(function(item){if(item.name==itemId){if(iOS||isIE11){item.scrollIntoView(!1)}else{item.scrollIntoView({behavior:"smooth",block:"end",inline:"nearest"})}if(this.wide){item.animate([{transform:"translateX(-3px)",easing:"ease-in"},{transform:"translateX(3px)",easing:"ease-out"},{transform:"translateX(-5px)",easing:"ease-in"},{transform:"translateX(5px)",easing:"ease-out"},{transform:"translateX(-7px)",easing:"ease-in"},{transform:"translateX(7px)",easing:"ease-out"}],{duration:450,iterations:1})}}}.bind(this));const map=this.$$("#itemsMap");if(map){map.scrollIntoView(itemId)}}_resetBallotItems(){var listItems=this.$$("#itemContainer");if(listItems){for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.setNotTooExpensive();listItem.removeFromBudget()}}}}_toggleFavoriteItem(event){var item=event.detail.item;if(item){this.activity("toggle","favorite")}else{this.activity("detoggle","favorite")}if(this.favoriteItem!=item){this.favoriteItem=item;for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.resetFromBudget()}}}else{console.warn("Trying to set item as favorite a second time")}}_toggleItemInBudget(event){this.budgetElement.toggleBudgetItem(event.detail.item)}_itemSelectedInBudget(event){for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&listItem.item.id==event.detail.itemId){listItem.setInBudget();const map=this.$$("#itemsMap");if(map)map.setItemInBudget(listItem.item)}}this._setStateOfRemainingItems()}_itemDeSelectedFromBudget(event){for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&listItem.item.id==event.detail.itemId){if(this.favoriteItem==listItem.item){this.favoriteItem=null}listItem.removeFromBudget();const map=this.$$("#itemsMap");if(map)map.removeFromBudget(listItem.item);this.fire("oav-reset-favorite-icon-position")}}this._setStateOfRemainingItems()}_setStateOfRemainingItems(){for(var budgetLeft=this.budgetElement.totalBudget-this.budgetElement.selectedBudget,listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&!listItem.selectedInBudget){if(listItem.item.price<=budgetLeft){listItem.setNotTooExpensive()}else{listItem.setTooExpensive()}}}const map=this.$$("#itemsMap");if(map)map.checkIfSelectedItemToExpensive(budgetLeft)}_postVoteToServer(){if(this.budgetElement.selectedItems&&0<this.budgetElement.selectedItems.length){this.completePostingOfVote(this._createEncryptedVotes())}else{this.fire("oav-error",this.localize("error_no_items_selected"));console.error("error_no_items_selected")}}_createEncryptedVotes(){var selectedItemIds=this.budgetElement.selectedItems.map(item=>{return item.id});return encryptVote(this.votePublicKey,{selectedItemIds:selectedItemIds,favoriteItemId:this.favoriteItem?this.favoriteItem.id:null})}completePostingOfVote(encryptedVotes){if(this.area&&this.area.id){if(encryptedVotes){return fetch("/votes/post_vote",{method:"POST",cache:"no-cache",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({encrypted_vote:encryptedVotes,area_id:this.area.id})}).then(response=>response.json()).then(response=>{if(response&&!0===response.vote_ok){if(!0===this.configFromServer.client_config.insecureEmailLoginEnabled){this.fire("oav-insecure-email-login",{areaId:this.area.id,areaName:this.area.name,onLoginFunction:this._setVotingCompleted.bind(this)})}else{window.location=this._getSamlUrlWithLanguage()}}else{this.fire("oav-error",this.localize("error_could_not_post_vote"))}})}else{this.fire("oav-error",this.localize("error_encryption"));console.error("No encrypted votes!")}}else{this.fire("oav-error",this.localize("error_could_not_post_vote"));console.warn("Not sending as no area id")}}_setVotingCompleted(){this.reset();this.areaId=null;const path="/voting-completed";window.history.pushState({},null,path);this.fire("location-changed",path);var dialog=document.querySelector("oav-app").getDialog("authDialog");if(dialog)dialog.close()}completeIfAuthenticatedVote(){fetch("/votes/is_vote_authenticated",{credentials:"same-origin"}).then(response=>response.json()).then(response=>{if(response&&!0===response.vote_ok){this._setVotingCompleted();this.activity("completed","voting")}else{this.fire("oav-error",this.localize("error_could_not_post_vote"))}})}_getSamlUrlWithLanguage(){var url=this.configFromServer.auth_url;if("en"==this.language){url+="&siteLanguage=en"}else if("pl"==this.language){url+="&siteLanguage=pl"}return url}shuffle(a){for(let i=a.length-1;0<i;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}_setupLocationsAndTranslation(budgetBallotItems){for(var arrayLength=budgetBallotItems.length,i=0;i<arrayLength;i++){if(budgetBallotItems[i].locations&&""!=budgetBallotItems[i].locations){var hashArray=[],locationsArray=budgetBallotItems[i].locations.replace(" ","").split(","),counter=0;while(counter<locationsArray.length){hashArray.push({latitude:locationsArray[counter],longitude:locationsArray[counter+1]});counter+=2}budgetBallotItems[i].locations=hashArray}else{budgetBallotItems[i].locations=[]}}return this.shuffle(budgetBallotItems)}}window.customElements.define("oav-area-ballot",OavAreaBallot);const OavAreaBudgetStyles=css`
-  :host {
-    width: 100%;
-    display: block;
-  }
-
-  .topLevel[wide] {
-  }
-
-  .budgetContainer {
-  }
-
-  .budgetContainer[wide] {
-  }
-
-  @media (max-width: 1100px) {
-    .budgetContainer {
-    }
-  }
-
-  .headerContainer {
-  }
-
-  .budgetMaterial {
-    background-color: var(--app-budget-material-background-color, rgba(249,249,249,1.0));
-    height: 139px;
-    margin: 0px 0px 0px 0px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  .budgetMaterial[wide] {
-    width: 940px;
-    height: 184px;
-    margin-top: 24px;
-  }
-
-  #votes {
-    background-color: var(--app-budget-votes-background-color, #e0e0e0);
-    height: 81px;
-  }
-
-  #votes[wide] {
-    width: 940px;
-    height: 100px;
-  }
-
-  .budgetRuler {
-    background-color: var(--app-budget-ruler-background-color, #f0f0f0);
-    color: var(--app-budget-ruler-color, #111);
-    font-size: 14px;
-    padding: 4px;
-    padding-right: 8x;
-    padding-left: 8px;
-  }
-
-  .budgetRuler[wide] {
-    font-size: 18px;
-    padding: 8px;
-    padding-right: 16px;
-    padding-left: 16px;
-  }
-
-  .budgetHeader {
-    background-color: var(--app-budget-header-background-color, #FFF);
-    color: var(--app-budget-header-color, #000);
-    font-size: 26px;
-    padding: 12px;
-  }
-
-  .info {
-    background-color: var(--app-budget-info-background-color, rgba(249,249,249,1.0));
-    color: var(--app-budget-info-color, #111);
-    padding: 4px;
-    font-size: 12px;
-  }
-
-  .info[wide] {
-    padding: 8px;
-    font-size: 19px;
-  }
-
-  paper-button.voteButton {
-    background-color: var(--app-accent-color);
-    color: var(--app-budget-vote-button-color, #FFF);
-    margin: 8px;
-    margin-right: 4px;
-  }
-
-  paper-button[disabled] {
-    background-color: #bbb;
-  }
-
-  .selectedInfo {
-    font-size: 12px;
-  }
-
-  .selectedInfo[wide] {
-    font-size: 19px;
-  }
-
-  #budgetLeftInfo {
-    font-size: 13px;
-    font-weight: bold;
-  }
-
-  #budgetLeftInfo[wide] {
-    font-size: 19px;
-    font-weight: bold;
-    z-index: 100000;
-  }
-
-  .noItemsInfo {
-    color: var(--app-budget-noitemsinfo-color, #555);
-    font-size: 14px;
-    padding-left: 8px;
-    padding-right: 8px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 32px
-  }
-
-  .noItemsInfo[wide] {
-    font-size: 24px;
-  }
-
-  .itemInBudget {
-    border-left: solid 3px;
-    border-left-color: var(--app-accent-color);
-  }
-
-  .headerLogo {
-    width: 220px;
-    height: 66px;
-    padding: 0;
-    margin: 0;
-    margin-left: 4px;
-  }
-
-  @media (max-width: 1024px) {
-    .headerLogo {
-      width: 160px;
-      height: 48px;
-      margin-left: 4px;
-    }
-  }
-
-  .headerContainer {
-    background-color: var(--app-budget-header-container-background-color, #f0f0f0);
-    color: var(--app-budget-vote-button-color, #444)
-  }
-
-  .demoButton {
-    background-color: var(--app-accent-color);
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    padding: 5px;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-
-  .onOfferText {
-    color: var(--app-accent-color);
-    margin-right: 12px;
-    font-weight: bold;
-  }
-
-  paper-toast {
-    font-size: 17px;
-    height: 80px;
-    padding-bottom: 8px;
-  }
-
-  paper-toast[wide] {
-    font-size: 25px;
-    height: 108px;
-  }
-
-  .mobileActionIcons {
-    color: #555;
-    width: 42px;
-    height: 42px;
-    margin: 0;
-    padding: 0;
-    margin-top: 5px;
-    margin-right: 5px;
-  }
-
-  [hidden] {
-    display: none !important;
-  }
-
-  .mobileBudgetText {
-    margin-top: 6px;
-  }
-
-  .budgetText {
-    margin-top: 4px;
-  }
-`;_exports.OavAreaBudgetStyles=OavAreaBudgetStyles;var oavAreaBudgetStyles={OavAreaBudgetStyles:OavAreaBudgetStyles};_exports.$oavAreaBudgetStyles=oavAreaBudgetStyles;const OavFlexLayout=css`
+    <g id="keyboard-arrow-down"><path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path></g>
+    <g id="keyboard-arrow-up"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></g>
+      </defs></svg>
+</iron-iconset-svg>`;document.head.appendChild(template$c.content);const OapFlexLayout=css`
       .layout {
         display: -ms-flexbox;
         display: -webkit-flex;
@@ -15183,7 +14016,1338 @@ this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteBut
         bottom: 0;
         left: 0;
       };
-`;_exports.OavFlexLayout=OavFlexLayout;var oavFlexLayout={OavFlexLayout:OavFlexLayout};_exports.$oavFlexLayout=oavFlexLayout;class OavAreaBudget extends OavBaseElement{static get properties(){return{selectedItems:{type:Array,value:[],notify:!0},toastCounter:{type:Number,value:0},noSelectedItems:{type:Boolean,value:!0},areaName:{type:String,value:null},selectedBudget:{type:Number,value:0},totalBudget:{type:Number},budgetLeft:{type:Number},selectedBudgetIsOne:{type:Boolean},votesWidth:{type:Number},wide:{type:Boolean},mediumWide:{type:Boolean},mini:{type:Boolean},orientationPortrait:{type:Boolean},orientationLandscape:{type:Boolean},currentBallot:Object,budgetHeaderImage:{type:String},showExit:Boolean,configFromServer:Object}}connectedCallback(){super.connectedCallback();this.fire("oav-set-budget-element",this)}updated(changedProps){super.updated(changedProps);if(changedProps.has("selectedBudget")){this.selectedBudgetIsOne=this.selectedBudget&&1===this.selectedBudget}if(changedProps.has("selectedItems")){this._selectedItemsChanged()}if(changedProps.has("selectedBudget")||changedProps.has("totalBudget")){var budgetLeft=this.totalBudget-this.selectedBudget;if(0<budgetLeft){this.budgetLeft=budgetLeft}else{this.budgetLeft=0}}}static get styles(){return[OavAreaBudgetStyles,OavShadowStyles,OavFlexLayout]}render(){return html$1`
+`;_exports.OapFlexLayout=OapFlexLayout;var oapFlexLayout={OapFlexLayout:OapFlexLayout};// Code originally from https://www.outsystems.com/blog/posts/gestures_glamour_swipeable_stacked_cards/
+_exports.$oapFlexLayout=oapFlexLayout;class OapSwipableCards extends OapBaseElement{static get properties(){return{stackedOptions:String,rotate:Boolean,items:Array,itemsLeft:Array,visibleItems:Array,elementsMargin:Number,useOverlays:Boolean,maxElements:Number,currentPosition:Number,currentItemsPosition:Number,isFirstTime:Boolean,elementHeight:Number,velocity:Number,topObj:Object,rightObj:Object,leftObj:Object,listElNodesObj:Object,listElNodesWidth:Object,currentElementObj:Object,stackedCardsObj:Object,obj:Object,elTrans:Object,startTime:Number,startX:Number,startY:Number,translateX:Number,translateY:Number,currentX:Number,currentY:Number,timeTaken:Number,rightOpacity:Number,leftOpacity:Number,touchingElement:Boolean,disableUpSwipe:Boolean,hiddenImageIds:Object,rendering:Boolean}}static get styles(){return[OapSwipableCardsStyles]}render(){return html$1`
+      <div class="stage">
+        <div class="title">${this.localize("filterArticles")}</div>
+          <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
+            <div class="stackedcards-container">
+              ${repeat(this.visibleItems,item=>item.id,(item,index)=>html$1`
+                  <div class="card" id="card${item.id}">
+                    <div class="card-content">
+                      <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
+                      <div class="card-tistles">
+                        <div class="name">${item.name}</div>
+                        <div id="description${item.id}" class="description">${item.description}</div>
+                        ${200<item.description.length?html$1`
+                          <div class="hideUnhideContainer">
+                            <div class="innerHideContainer">
+                              ${!0==this.isImageHidden(item.id)?html$1`
+                                <paper-icon-button @click="${()=>{this.unhideImage(item.id)}}" icon="keyboard-arrow-down"></paper-icon-button>
+                              `:html$1`
+                                <paper-icon-button @click="${()=>{this.hideImage(item.id)}}" icon="keyboard-arrow-up"></paper-icon-button>
+                              `}
+                            </div>
+                          </div>
+                        `:html$1``}
+                      </div>
+                    </div>
+                  </div>
+                `)}
+            </div>
+            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+          </div>
+          <div class="global-actions">
+            <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
+            <div hidden>
+            <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
+            </div>
+            <div style="width: 100px;"></div>
+            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
+        </div>
+      </div>
+
+      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
+    `}constructor(){super();this.reset()}disconnectedCallback(){this.removeEventListeners();super.disconnectedCallback()}updated(changedProps){super.updated(changedProps);if(changedProps.has("items")){if(this.items&&0<this.items.length){this.itemsLeft=[...this.items];this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
+this.requestUpdate();this.updateComplete.then(()=>{this.activate()})}}}reset(){this.stackedOptions="Top";this.rotate=!0;this.elementsMargin=7;this.currentPosition=0;this.currentItemsPosition=0;this.useOverlays=!1;this.velocity=.3;this.isFirstTime=!0;this.touchingElement=!1;this.visibleItems=[];this.disableUpSwipe=!0;this.hiddenImageIds={};this.rendering=!0}activate(){this.obj=this.$$("#stacked-cards-block");this.refresh();if(this.useOverlays){this.leftObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.leftObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)"}else if(this.leftObj){this.leftObj.className="";this.rightObj.className="";this.topObj.className="";this.leftObj.classList.add("stackedcards-overlay-hidden");this.rightObj.classList.add("stackedcards-overlay-hidden");this.topObj.classList.add("stackedcards-overlay-hidden")}//Remove class init
+setTimeout(function(){this.obj.classList.remove("init")}.bind(this),250);this.addEventListeners()}isImageHidden(imageId){return null!=this.hiddenImageIds[imageId]}hideImage(imageId){const item=this.$$("#image"+imageId);if(item){item.classList.add("imageCollapsed");this.hiddenImageIds[imageId]=!0;const description=this.$$("#description"+imageId);description.classList.add("fullsizeDescription");this.requestUpdate()}}unhideImage(imageId){const item=this.$$("#image"+imageId);if(item){item.classList.remove("imageCollapsed");this.hiddenImageIds[imageId]=null;const description=this.$$("#description"+imageId);description.classList.remove("fullsizeDescription");this.requestUpdate()}}refresh(){this.stackedCardsObj=this.obj.querySelector(".stackedcards-container");this.listElNodesObj=this.stackedCardsObj.children;this.topObj=this.obj.querySelector(".stackedcards-overlay.top");this.rightObj=this.obj.querySelector(".stackedcards-overlay.right");this.leftObj=this.obj.querySelector(".stackedcards-overlay.left");this.countElements();this.setCurrentElement();this.changeBackground();this.listElNodesWidth=this.stackedCardsObj.offsetWidth;this.currentElementObj=this.listElNodesObj[0];this.updateUi();//Prepare elements on DOM
+var addMargin=this.elementsMargin*(this.visibleItems.length-1)+"px",i;if("Top"===this.stackedOptions){for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].classList.add("stackedcards-top","stackedcards--animatable","stackedcards-origin-top")}this.elTrans=this.elementsMargin*(this.visibleItems.length-1);this.stackedCardsObj.style.marginBottom=addMargin}else if("Bottom"===this.stackedOptions){for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].classList.add("stackedcards-bottom","stackedcards--animatable","stackedcards-origin-bottom")}this.elTrans=0;this.stackedCardsObj.style.marginBottom=addMargin}else if("None"===this.stackedOptions){for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].classList.add("stackedcards-none","stackedcards--animatable")}this.elTrans=0}for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].style.zIndex=0;this.listElNodesObj[i].style.opacity=0;this.listElNodesObj[i].style.webkitTransform="scale("+(1-.04*this.visibleItems.length)+") translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.listElNodesObj[i].style.transform="scale("+(1-.04*this.visibleItems.length)+") translateX(0) translateY("+this.elTrans+"px) translateZ(0)"}if(this.listElNodesObj[this.currentPosition]){this.listElNodesObj[this.currentPosition].classList.add("stackedcards-active")}setTimeout(function(){this.obj.classList.remove("init")}.bind(this),250)}addEventListeners(){// JavaScript Document
+document.addEventListener("touchstart",this.gestureStart.bind(this),{passive:!1});document.addEventListener("touchmove",this.gestureMove.bind(this),{passive:!1});document.addEventListener("touchend",this.gestureEnd.bind(this),{passive:!1});//Add listeners to call global action for swipe cards
+var buttonLeft=this.$$(".left-action"),buttonTop=this.$$(".top-action"),buttonRight=this.$$(".right-action");buttonLeft.addEventListener("click",this.onActionLeft.bind(this),!1);if(!this.disableUpSwipe){buttonTop.addEventListener("click",this.onActionTop.bind(this),!1)}buttonRight.addEventListener("click",this.onActionRight.bind(this),!1)}removeEventListeners(){// JavaScript Document
+document.removeEventListener("touchstart",this.gestureStart.bind(this));document.removeEventListener("touchmove",this.gestureMove.bind(this));document.removeEventListener("touchend",this.gestureEnd.bind(this));var buttonLeft=this.$$(".left-action"),buttonTop=this.$$(".top-action"),buttonRight=this.$$(".right-action");if(buttonLeft){buttonLeft.removeEventListener("click",this.onActionLeft.bind(this),!1);if(!this.disableUpSwipe){buttonTop.removeEventListener("click",this.onActionTop.bind(this),!1)}buttonRight.removeEventListener("click",this.onActionRight.bind(this),!1)}else{console.error("No buttons to detach from")}}backToMiddle(){this.removeNoTransition();this.transformUi(0,0,1,this.currentElementObj);if(this.useOverlays){this.transformUi(0,0,0,this.leftObj);this.transformUi(0,0,0,this.rightObj);this.transformUi(0,0,0,this.topObj)}this.setZindex(5);if(!(this.currentPosition>=this.maxElements)){//roll back the opacity of second element
+if(this.currentPosition+1<this.maxElements){this.listElNodesObj[this.currentPosition+1].style.opacity=".8"}}}// Usable functions
+countElements(){this.maxElements=this.listElNodesObj.length;console.error("countElements: "+this.maxElements);if(this.visibleItems.length>this.maxElements){console.error("!!!!!");this.visibleItems.length=this.maxElements}}//Keep the active card.
+setCurrentElement(){console.error("setCurrentElement: "+this.currentPosition);this.currentElementObj=this.listElNodesObj[this.currentPosition]}//Change background for each swipe.
+changeBackground(){this.classList.add("background-"+this.currentPosition+"")}//Change states
+changeStages(){if(this.currentPosition==this.maxElements){this.fire("completed");//Event listener created to know when transition ends and changes states
+this.listElNodesObj[this.maxElements-1].addEventListener("transitionend",function(){this.classList.add("background-7");this.$$(".stage").classList.add("hidden");this.$$(".final-state").classList.remove("hidden");this.$$(".final-state").classList.add("active");this.listElNodesObj[this.maxElements-1].removeEventListener("transitionend",null,!1)}.bind(this))}}//Functions to swipe left elements on logic external action.
+onActionLeft(){console.error("onActionLeft: "+this.currentPosition);if(!(this.currentPosition>=this.maxElements)){if(this.useOverlays){this.leftObj.classList.remove("no-transition");this.topObj.classList.remove("no-transition");this.leftObj.style.zIndex="8";this.transformUi(0,0,1,this.leftObj)}setTimeout(function(){this.onSwipeLeft();this.resetOverlayLeft()}.bind(this),300)}}//Functions to swipe right elements on logic external action.
+onActionRight(){console.error("onActionRight: "+this.currentPosition);if(!(this.currentPosition>=this.maxElements)){if(this.useOverlays){this.rightObj.classList.remove("no-transition");this.topObj.classList.remove("no-transition");this.rightObj.style.zIndex="8";this.transformUi(0,0,1,this.rightObj)}setTimeout(function(){this.onSwipeRight();this.resetOverlayRight()}.bind(this),300)}}//Functions to swipe top elements on logic external action.
+onActionTop(){if(!(this.currentPosition>=this.maxElements)){if(this.useOverlays){this.leftObj.classList.remove("no-transition");this.rightObj.classList.remove("no-transition");this.topObj.classList.remove("no-transition");this.topObj.style.zIndex="8";this.transformUi(0,0,1,this.topObj)}setTimeout(function(){this.onSwipeTop();this.resetOverlays()}.bind(this),300);//wait animations end
+}}//Swipe active card to left.
+onSwipeLeft(){this.removeNoTransition();this.transformUi(-1e3,0,0,this.currentElementObj);if(this.useOverlays){this.transformUi(-1e3,0,0,this.leftObj);//Move leftOverlay
+this.transformUi(-1e3,0,0,this.topObj);//Move topOverlay
+this.resetOverlayLeft()}this.fire("item-discarded",this.items[this.currentItemsPosition]);this.currentPosition=this.currentPosition+1;this.currentItemsPosition=this.currentItemsPosition+1;this.updateFromMainItemsList()}updateFromMainItemsList(){this.updateUi();this.setCurrentElement();this.changeBackground();this.changeStages();this.setActiveHidden();setTimeout(()=>{this.requestUpdate();this.updateComplete.then(()=>{if(0<this.itemsLeft.length){this.visibleItems.push(this.itemsLeft.shift());this.visibleItems.shift();this.currentPosition=0;this.requestUpdate();this.updateComplete.then(()=>{this.refresh();this.requestUpdate()})}})},300)}//Swipe active card to right.
+onSwipeRight(){this.removeNoTransition();this.transformUi(1e3,0,0,this.currentElementObj);if(this.useOverlays){this.transformUi(1e3,0,0,this.rightObj);//Move rightOverlay
+this.transformUi(1e3,0,0,this.topObj);//Move topOverlay
+this.resetOverlayRight()}this.fire("item-selected",this.items[this.currentItemsPosition]);this.currentPosition=this.currentPosition+1;this.currentItemsPosition=this.currentItemsPosition+1;this.updateUi();this.setCurrentElement();this.updateFromMainItemsList()}//Swipe active card to top.
+onSwipeTop(){if(!this.disableUpSwipe){this.removeNoTransition();this.transformUi(0,-1e3,0,this.currentElementObj);if(this.useOverlays){this.transformUi(0,-1e3,0,this.leftObj);//Move leftOverlay
+this.transformUi(0,-1e3,0,this.rightObj);//Move rightOverlay
+this.transformUi(0,-1e3,0,this.topObj);//Move topOverlay
+this.resetOverlays()}this.fire("item-bookmarked",this.items[this.currentItemsPosition]);this.currentPosition=this.currentPosition+1;this.currentItemsPosition=this.currentItemsPosition+1;this.updateUi();this.setCurrentElement();this.changeBackground();this.changeStages();this.setActiveHidden()}}//Remove transitions from all elements to be moved in each swipe movement to improve perfomance of stacked cards.
+removeNoTransition(){if(this.listElNodesObj[this.currentPosition]){if(this.useOverlays){this.leftObj.classList.remove("no-transition");this.rightObj.classList.remove("no-transition");this.topObj.classList.remove("no-transition")}this.listElNodesObj[this.currentPosition].classList.remove("no-transition");this.listElNodesObj[this.currentPosition].style.zIndex=6}}//Move the overlay left to initial position.
+resetOverlayLeft(){if(!(this.currentPosition>=this.maxElements)){if(this.useOverlays){setTimeout(function(){if("Top"===this.stackedOptions){this.elTrans=this.elementsMargin*(this.visibleItems.length-1)}else if("Bottom"===this.stackedOptions||"None"===this.stackedOptions){this.elTrans=0}if(!this.isFirstTime){this.leftObj.classList.add("no-transition");this.topObj.classList.add("no-transition")}requestAnimationFrame(function(){this.leftObj.style.transform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.leftObj.style.webkitTransform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.leftObj.style.opacity="0";this.topObj.style.transform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.topObj.style.webkitTransform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.topObj.style.opacity="0"}.bind(this))}.bind(this),300);this.isFirstTime=!1}}}//Move the overlay right to initial position.
+resetOverlayRight(){if(!(this.currentPosition>=this.maxElements)){if(this.useOverlays){setTimeout(function(){if("Top"===this.stackedOptions){+2;this.elTrans=this.elementsMargin*(this.visibleItems.length-1)}else if("Bottom"===this.stackedOptions||"None"===this.stackedOptions){this.elTrans=0}if(!this.isFirstTime){this.rightObj.classList.add("no-transition");this.topObj.classList.add("no-transition")}requestAnimationFrame(function(){this.rightObj.style.transform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.rightObj.style.webkitTransform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.rightObj.style.opacity="0";this.topObj.style.transform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.topObj.style.webkitTransform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.topObj.style.opacity="0"}.bind(this))}.bind(this),300);this.isFirstTime=!1}}}//Move the overlays to initial position.
+resetOverlays(){if(!(this.currentPosition>=this.maxElements)){if(this.useOverlays){setTimeout(function(){if("Top"===this.stackedOptions){this.elTrans=this.elementsMargin*(this.visibleItems.length-1)}else if("Bottom"===this.stackedOptions||"None"===this.stackedOptions){this.elTrans=0}if(!this.isFirstTime){this.leftObj.classList.add("no-transition");this.rightObj.classList.add("no-transition");this.topObj.classList.add("no-transition")}requestAnimationFrame(function(){this.leftObj.style.transform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.leftObj.style.webkitTransform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.leftObj.style.opacity="0";this.rightObj.style.transform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.rightObj.style.webkitTransform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.rightObj.style.opacity="0";this.topObj.style.transform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.topObj.style.webkitTransform="translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.topObj.style.opacity="0"}.bind(this))}.bind(this),300);// wait for animations time
+this.isFirstTime=!1}}}setActiveHidden(){console.error("setActiveHidden");if(!(this.currentPosition>=this.maxElements)){console.error("setActiveHidden:"+this.currentPosition);this.listElNodesObj[this.currentPosition-1].classList.remove("stackedcards-active");this.listElNodesObj[this.currentPosition-1].classList.add("stackedcards-hidden");this.listElNodesObj[this.currentPosition].classList.add("stackedcards-active")}}setLastActive(){console.error("setActiveHidden");if(!(this.currentPosition>=this.maxElements)){console.error("setActiveHidden:"+this.currentPosition);this.listElNodesObj[this.currentPosition-1].classList.remove("stackedcards-hidden");this.listElNodesObj[this.currentPosition-1].classList.add("stackedcards-active")}}//Set the new z-index for specific card.
+setZindex(zIndex){if(this.listElNodesObj[this.currentPosition]){console.error("setZindex:"+this.currentPosition);this.listElNodesObj[this.currentPosition].style.zIndex=zIndex}}// Remove element from the DOM after swipe. To use this method you need to call this in onSwipeLeft, onSwipeRight and onSwipeTop and put the method just above the variable 'this.currentPosition = this.currentPosition + 1'.
+//On the actions onSwipeLeft, onSwipeRight and onSwipeTop you need to remove the this.currentPosition variable (this.currentPosition = this.currentPosition + 1) and the setActiveHidden
+removeElement(){this.currentElementObj.remove();if(!(this.currentPosition>=this.maxElements)){this.listElNodesObj[this.currentPosition].classList.add("stackedcards-active")}}//Add translate X and Y to active card for each frame.
+transformUi(moveX,moveY,opacity,elementObj){console.error("transformUi");requestAnimationFrame(function(){var element=elementObj;// Function to generate rotate value
+function RotateRegulator(value){if(15<value/10){return 15}else if(-15>value/10){return-15}return value/10}var rotateElement;if(this.rotate){rotateElement=RotateRegulator(moveX)}else{rotateElement=0}if("Top"===this.stackedOptions){this.elTrans=5*this.elementsMargin;if(element){element.style.webkitTransform="translateX("+moveX+"px) translateY("+(moveY+this.elTrans)+"px) translateZ(0) rotate("+rotateElement+"deg)";element.style.transform="translateX("+moveX+"px) translateY("+(moveY+this.elTrans)+"px) translateZ(0) rotate("+rotateElement+"deg)";element.style.opacity=opacity}}else if("Bottom"===this.stackedOptions||"None"===this.stackedOptions){if(element){element.style.webkitTransform="translateX("+moveX+"px) translateY("+moveY+"px) translateZ(0) rotate("+rotateElement+"deg)";element.style.transform="translateX("+moveX+"px) translateY("+moveY+"px) translateZ(0) rotate("+rotateElement+"deg)";element.style.opacity=opacity}}}.bind(this))}//Action to update all elements on the DOM for each stacked card.
+updateUi(){requestAnimationFrame(function(){this.elTrans=0;var elZindex=5,elScale=1,elOpac=1,elTransTop=this.visibleItems.length,elTransInc=this.elementsMargin,i;for(i=this.currentPosition;i<this.currentPosition+this.visibleItems.length;i++){if(this.listElNodesObj[i]){if("Top"===this.stackedOptions){this.listElNodesObj[i].classList.add("stackedcards-top","stackedcards--animatable","stackedcards-origin-top");if(this.useOverlays){this.leftObj.classList.add("stackedcards-origin-top");this.rightObj.classList.add("stackedcards-origin-top");this.topObj.classList.add("stackedcards-origin-top")}this.elTrans=elTransInc*elTransTop;elTransTop--}else if("Bottom"===this.stackedOptions){this.listElNodesObj[i].classList.add("stackedcards-bottom","stackedcards--animatable","stackedcards-origin-bottom");if(this.useOverlays){this.leftObj.classList.add("stackedcards-origin-bottom");this.rightObj.classList.add("stackedcards-origin-bottom");this.topObj.classList.add("stackedcards-origin-bottom")}this.elTrans=this.elTrans+elTransInc}else if("None"===this.stackedOptions){this.listElNodesObj[i].classList.add("stackedcards-none","stackedcards--animatable");this.elTrans=this.elTrans+elTransInc}this.listElNodesObj[i].style.transform="scale("+elScale+") translateX(0) translateY("+(this.elTrans-elTransInc)+"px) translateZ(0)";this.listElNodesObj[i].style.webkitTransform="scale("+elScale+") translateX(0) translateY("+(this.elTrans-elTransInc)+"px) translateZ(0)";this.listElNodesObj[i].style.opacity=elOpac;this.listElNodesObj[i].style.zIndex=elZindex;elScale=elScale-.04;elOpac=elOpac-1/this.visibleItems.length;elZindex--}}}.bind(this))}setOverlayOpacity(){this.topOpacity=-1*((this.translateY+this.elementHeight/2)/100);this.rightOpacity=this.translateX/100;this.leftOpacity=-1*(this.translateX/100);if(1<this.topOpacity){this.topOpacity=1}if(1<this.rightOpacity){this.rightOpacity=1}if(1<this.leftOpacity){this.leftOpacity=1}}gestureStart(evt){this.startTime=new Date().getTime();this.startX=evt.changedTouches[0].clientX;this.startY=evt.changedTouches[0].clientY;this.currentX=this.startX;this.currentY=this.startY;this.setOverlayOpacity();this.touchingElement=!0;if(!(this.currentPosition>=this.maxElements)){if(this.listElNodesObj[this.currentPosition]){this.listElNodesObj[this.currentPosition].classList.add("no-transition");this.setZindex(6);if(this.useOverlays){this.leftObj.classList.add("no-transition");this.rightObj.classList.add("no-transition");this.topObj.classList.add("no-transition")}if(this.currentPosition+1<this.maxElements){this.listElNodesObj[this.currentPosition+1].style.opacity="1"}this.elementHeight=this.listElNodesObj[this.currentPosition].offsetHeight/3}}}gestureMove(evt){this.currentX=evt.changedTouches[0].pageX;this.currentY=evt.changedTouches[0].pageY;this.translateX=this.currentX-this.startX;this.translateY=this.currentY-this.startY;this.setOverlayOpacity();if(!(this.currentPosition>=this.maxElements)){evt.preventDefault();this.transformUi(this.translateX,this.translateY,1,this.currentElementObj);if(this.useOverlays){this.transformUi(this.translateX,this.translateY,this.topOpacity,this.topObj);if(0>this.translateX){this.transformUi(this.translateX,this.translateY,this.leftOpacity,this.leftObj);this.transformUi(0,0,0,this.rightObj)}else if(0<this.translateX){this.transformUi(this.translateX,this.translateY,this.rightOpacity,this.rightObj);this.transformUi(0,0,0,this.leftObj)}if(this.useOverlays){this.leftObj.style.zIndex=8;this.rightObj.style.zIndex=8;this.topObj.style.zIndex=7}}}}gestureEnd(evt){if(!this.touchingElement){return}this.translateX=this.currentX-this.startX;this.translateY=this.currentY-this.startY;this.timeTaken=new Date().getTime()-this.startTime;this.touchingElement=!1;if(!(this.currentPosition>=this.maxElements)){if(this.translateY<-1*this.elementHeight&&this.translateX>-1*(this.listElNodesWidth/2)&&this.translateX<this.listElNodesWidth/2){//is Top?
+if(this.translateY<-1*this.elementHeight||Math.abs(this.translateY)/this.timeTaken>this.velocity){// Did It Move To Top?
+if(this.disableUpSwipe){this.backToMiddle()}else{this.onSwipeTop()}}else{this.backToMiddle()}}else{if(0>this.translateX){if(this.translateX<-1*(this.listElNodesWidth/2)||Math.abs(this.translateX)/this.timeTaken>this.velocity){// Did It Move To Left?
+this.onSwipeLeft()}else{this.backToMiddle()}}else if(0<this.translateX){if(this.translateX>this.listElNodesWidth/2&&Math.abs(this.translateX)/this.timeTaken>this.velocity){// Did It Move To Right?
+this.onSwipeRight()}else{this.backToMiddle()}}}}}}window.customElements.define("oap-swipable-cards",OapSwipableCards);const OapShadowStyles=css`
+  .shadow-transition {
+     transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+   }
+
+  .shadow-elevation-2dp {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  }
+
+  .shadow-elevation-3dp {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+                0 1px 8px 0 rgba(0, 0, 0, 0.12),
+                0 3px 3px -2px rgba(0, 0, 0, 0.4);
+  }
+
+  .shadow-elevation-4dp {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                0 1px 10px 0 rgba(0, 0, 0, 0.12),
+                0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  }
+
+  .shadow-elevation-6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+                0 1px 18px 0 rgba(0, 0, 0, 0.12),
+                0 3px 5px -1px rgba(0, 0, 0, 0.4);
+  }
+
+  .shadow-elevation-8dp {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12),
+                0 5px 5px -3px rgba(0, 0, 0, 0.4);
+
+  }
+  .shadow-elevation-12dp {
+    box-shadow: 0 12px 16px 1px rgba(0, 0, 0, 0.14),
+                0 4px 22px 3px rgba(0, 0, 0, 0.12),
+                0 6px 7px -4px rgba(0, 0, 0, 0.4);
+  }
+
+  .shadow-elevation-16dp {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+                0  6px 30px 5px rgba(0, 0, 0, 0.12),
+                0  8px 10px -5px rgba(0, 0, 0, 0.4);
+  }
+  .shadow-elevation-24dp {
+    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+                0 9px 46px 8px rgba(0, 0, 0, 0.12),
+                0 11px 15px -7px rgba(0, 0, 0, 0.4);
+  }
+`;_exports.OapShadowStyles=OapShadowStyles;var oapShadowStyles={OapShadowStyles:OapShadowStyles};_exports.$oapShadowStyles=oapShadowStyles;class OapFilterArticles extends OapPageViewElement{static get properties(){return{allItems:Array,completed:Boolean}}static get styles(){return[OapFilterArticlesStyles,OapShadowStyles]}render(){return html$1`
+      ${this.completed?html$1`
+        <div class="layout vertical center-center topContainer shadow-animation shadow-elevation-3d" style="width: 100%;">
+          <div class="completeHeader">
+            ${this.localize("youHaveCompletedTheFiltering")}
+          </div>
+          <div class="buttonContainer">
+            <paper-button raised class="continueButton" @click="${()=>{this.fire("oap-filtering-finished")}}">${this.localize("continueToSelection")}</paper-button>
+          </div>
+        </div>
+    `:html$1`
+        <oap-swipable-cards .language="${this.language}" @completed="${this.setCompleted}" .disableUpSwipe="true" .items="${this.allItems}"></oap-swipable-cards>
+      `}
+
+    `}setCompleted(){this.completed=!0}updated(changedProps){super.updated(changedProps);if(changedProps.has("allItems")){this.completed=!1}}}window.customElements.define("oap-filter-articles",OapFilterArticles);const OapAppStyles=css`
+  :host {
+    display: block;
+    box-sizing: border-box;
+  }
+
+  section {
+    padding: 24px;
+    background: var(--app-section-odd-color);
+  }
+
+  section > * {
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  section:nth-of-type(even) {
+    background: var(--app-section-even-color);
+  }
+
+  app-header {
+    z-index: 5000;
+  }
+
+  :host {
+    display: block;
+    --app-primary-color: #333;
+    --app-secondary-color: black;
+    --app-main-backround-color: #e0e0e0;
+    --app-accent-color: var(--paper-orange-a700);
+    --app-accent-color-light: var(--paper-orange-a200);
+    --app-text-color: #ffffff;
+
+    --paper-tabs-selection-bar-color: var(--paper-orange-a700);
+    --paper-tabs-selection-bar: {
+      color:var(--paper-orange-a700);
+      border-bottom: 3px solid !important;
+      border-bottom-color: var(--paper-orange-a700);
+    };
+
+    --primary-color-more-darker: var(--app-main-backround-color, #333);
+    --primary-color: var(--app-main-backround-color, #333);
+
+    color: var(--app-text-color);
+
+    --app-header-background-color: var(--app-primary-color);
+    --app-header-text-color: var(--app-text-color);
+    --app-header-selected-color: var(--app-primary-color);
+    --paper-icon-button-ink-color: var(--app-text-color);
+  }
+
+  app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: var(--app-header-background-color);
+    color: var(--app-header-text-color);
+    border-bottom: 1px solid #eee;
+  }
+
+  app-header[wide-and-ballot] {
+    height: var(--app-budget-container-height, 238px);
+    width: 100%;
+    background-size: 1920px 238px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: top;
+    background-image: var(--app-budget-container-background-image);
+  }
+
+  [main-title] {
+    font-size: 30px;
+    /* In the narrow layout, the toolbar is offset by the width of the
+    drawer button, and the text looks not centered. Add a padding to
+    match that button */
+    padding-right: 44px;
+  }
+
+  main {
+    display: block;
+  }
+
+  .main-content {
+  }
+
+  .main-content[has-ballot] {
+    padding-top: 150px;
+  }
+
+  .page {
+    display: none;
+  }
+
+  .page[active] {
+    display: block;
+  }
+
+  .toolbar-top {
+    background-color: var(--app-toolbar-top-color, #000);
+  }
+
+
+  @media (min-width: 1024px) {
+    .toolbar-list {
+      display: block;
+    }
+    .menu-btn {
+      display: none;
+    }
+
+    .main-content[has-ballot] {
+      padding-top: 240px;
+    }
+
+    /* The drawer button isn't shown in the wide layout, so we don't
+    need to offset the title */
+    [main-title] {
+      padding-right: 0px;
+    }
+  }
+
+  app-toolbar {
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  paper-icon-button {
+    width: 50px;
+    height: 50px;
+  }
+
+  paper-icon-button.closeButton {
+    width: 58px;
+    height: 58px;
+  }
+
+  @media (max-width: 640px) {
+    paper-icon-button {
+      width: 40px;
+      height: 40px;
+    }
+
+    paper-icon-button.closeButton {
+      width: 46px;
+      height: 46px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .title {
+      font-size: 17px;
+    }
+  }
+
+  .exitIconInBudget {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+  }
+
+  .helpIconInBudget  {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+  }
+
+  .choicePoints {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+  }
+
+  #helpContent h1 {
+    line-height: 1em;
+    font-size: 1.5em;
+  }
+
+  #favoriteIcon {
+    color: var(--app-facvorite-icon-color, rgb(255,215,0));
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    z-index: 2720;
+    -webkit-filter: drop-shadow( 1px 1px 10px #5f5f5f );
+    filter: drop-shadow( 1px 1px 10px #5f5f5f );
+  }
+
+
+  @media (max-width: 640px) {
+    #favoriteIcon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .budgetContainer {
+  }
+
+  .largeSpinner {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  paper-dialog {
+    background-color: var(--primary-background-color);
+  }
+
+  .welcomeDialog {
+    font-size: 22px;
+    max-width: 420px;
+    width: 420px;
+    padding: 8px;
+    padding-top: 0;
+    line-height: 1.3;
+    margin: 8px;
+    text-align: center;
+    width: 100%;
+    margin: 0 !important;
+      padding: 0 !important;
+  }
+
+  .welcomeText {
+    width: 420px;
+    max-width: 420px;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+  .welcomeLogo {
+    padding: 0;
+    margin: 0;
+    margin-top: 8px;
+    max-width: 200px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .welcomeLogoContainer {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  paper-button.continueButton {
+    background-color: var(--app-accent-color);
+    color: #fff;
+    margin: 8px;
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+
+  paper-button.generalButton {
+    color: var(--app-accent-color);
+    background-color: #fff;
+    margin: 8px;
+  }
+
+  .heading {
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+    }
+
+  @media (max-width: 600px) {
+    .welcomeDialog {
+      font-size: 16px;
+      padding: 8px;
+      padding-top: 0;
+      text-align: center;
+    }
+
+    .heading {
+      font-size: 22px;
+    }
+
+    .welcomeText {
+      width: 100%;
+    }
+    paper-button.continueButton {
+      font-size: 16px;
+    }
+    .welcomeLogo {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 340px) {
+    .welcomeDialog {
+      font-size: 13px;
+    }
+    .heading {
+      font-size: 20px;
+    }
+    paper-button.continueButton {
+      font-size: 16px;
+    }
+    .welcomeLogo {
+      margin-left: 16px;
+      display: none;
+    }
+    .welcomeLogologoContainer {
+      display: none;
+    }
+    paper-button.continueButton {
+      margin-top: 0;
+    }
+  }
+
+  .welcomeLogoContainer {
+  }
+
+  paper-dialog {
+    z-index: 1000000;
+  }
+
+  .langSelectionText {
+    font-size: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .langSelect {
+    cursor: pointer;
+    margin-left: 4px;
+  }
+
+  .langSelect[is-selected] {
+    text-decoration: underline;
+  }
+
+  .choicePoints {
+    margin-left: 8px;
+    margin-top: 4px;
+    color: var(--app-accent-color, #000);
+    font-weight: bold;
+  }
+`;_exports.OapAppStyles=OapAppStyles;var oapAppStyles={OapAppStyles:OapAppStyles};_exports.$oapAppStyles=oapAppStyles;class SnackBar extends LitElement{static get properties(){return{active:{type:Boolean}}}static get styles(){return[css`
+        :host {
+          display: block;
+          position: fixed;
+          top: 100%;
+          left: 0;
+          right: 0;
+          padding: 12px;
+          background-color: var(--app-secondary-color);
+          color: white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          text-align: center;
+          will-change: transform;
+          transform: translate3d(0, 0, 0);
+          transition-property: visibility, transform;
+          transition-duration: 0.2s;
+          visibility: hidden;
+        }
+
+        :host([active]) {
+          visibility: visible;
+          transform: translate3d(0, -100%, 0);
+        }
+
+        @media (min-width: 460px) {
+          :host {
+            width: 320px;
+            margin: auto;
+          }
+        }
+      `]}render(){return html$1`
+      <slot></slot>
+    `}}window.customElements.define("snack-bar",SnackBar);const OapPolicyQuizStyles=css`
+
+  :host {
+    width: 100%;
+  }
+
+  .answerButton {
+    min-width: 350px;
+    max-width: 350px;
+    margin: 8px;
+  }
+
+  .wrongAnswer {
+    -webkit-transition: opacity 0.7s ease-in-out;
+    -moz-transition: opacity 0.7s ease-in-out;
+    -ms-transition: opacity 0.7s ease-in-out;
+    -o-transition: opacity 0.7s ease-in-out;
+     opacity: 0.0;
+  }
+
+  .buttonContainer {
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .topContainer {
+    max-width: 432px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--quiz-background-color, #FFF);
+    color: var(--quiz-color, #111);
+    padding-bottom: 16px;
+    margin-top: 32px;
+  }
+
+  .question {
+    padding: 8px;
+  }
+
+  .image {
+    width: 432px;
+    height: 270px;
+  }
+
+  .completedQuiz {
+    padding: 16px;
+  }
+
+  .completeHeader {
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .continueButton {
+    margin-top: 24px;
+    background-color: var(--app-accent-color);
+    color: #FFF;
+  }
+
+  .infoBar {
+    margin: 16px;
+    font-size: 18px;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+`;_exports.OapPolicyQuizStyles=OapPolicyQuizStyles;var oapPolicyQuizStyles={OapPolicyQuizStyles:OapPolicyQuizStyles};_exports.$oapPolicyQuizStyles=oapPolicyQuizStyles;class OapPolicyQuiz extends OapPageViewElement{static get properties(){return{questions:Array,currentQuestionIndex:Number,correctAnswers:Number,incorrectAnswers:Number,nickname:String,configFromServer:Object,savedBackgroundColor:String}}static get styles(){return[OapPolicyQuizStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.currentIndex=null}reset(){this.completed=!1;this.correctAnswers=0;this.incorrectAnswers=0;this.currentIndex=0}render(){return html$1`
+    <div class="layout vertical center-center" style="width: 100%;">
+      <div class="topContainer shadow-animation shadow-elevation-3dp">
+        ${null!==this.currentIndex?html$1`
+          <div class="horizontal infoBar">
+            <div class="layout horizontal">
+              <div class="nickname">${this.nickname}</div>
+              <div class="progress">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
+            </div>
+          </div>
+          <div>
+            <img class="image" src="${this.questions[this.currentIndex].imageUrl}"/>
+          </div>
+          <div class="question">${this.questions[this.currentIndex].question}</div>
+          <div class="vertical center">
+            <div class="buttonContainer">
+              <paper-button raised id="button0" class="answerButton" @click="${()=>{this.submitAnswer(0)}}">${this.questions[this.currentIndex].answers[0]}</paper-button>
+              <paper-button raised id="button1" class="answerButton" @click="${()=>{this.submitAnswer(1)}}">${this.questions[this.currentIndex].answers[1]}</paper-button>
+              <paper-button raised id="button2" class="answerButton" @click="${()=>{this.submitAnswer(2)}}">${this.questions[this.currentIndex].answers[2]}</paper-button>
+              <paper-button raised id="button3" class="answerButton" @click="${()=>{this.submitAnswer(3)}}">${this.questions[this.currentIndex].answers[3]}</paper-button>
+            </div>
+          </div>
+        `:html$1``}
+        ${this.completed?html$1`
+          <div class="vertical center-center completedQuiz">
+            <div class="completeHeader">
+              ${this.localize("youHaveCompletetTheQuiz")}
+            </div>
+            <div>
+              ${this.localize("correctQuizAnswers")}: ${this.correctAnswers}
+            </div>
+            <div>
+              ${this.localize("incorrectQuizAnswers")}: ${this.incorrectAnswers}
+            </div>
+            <div class="buttonContainer">
+              <paper-button raised class="answerButton continueButton" @click="${()=>{this.fire("oap-quiz-finished")}}">${this.localize("continueToFiltering")}</paper-button>
+            </div>
+          </div>
+          `:html$1``}
+      </div>
+    </div>
+    `}submitAnswer(answer){const correctAnswer=this.questions[this.currentIndex].correctAnswer;if(answer==correctAnswer){this.fire("oap-process-correct-quiz-answer");this.correctAnswers+=1;this.$$("#button"+answer).animate([{transform:"scale(1.3)",easing:"ease-in"},{transform:"scale(1.0)",easing:"ease-out"}],{duration:450,iterations:1})}else{this.fire("oap-overlay",{html:html$1`${this.localize("incorrectAnswer")}`,soundEffect:"",duration:300});this.incorrectAnswers+=1;this.$$("#button"+answer).animate([{transform:"translateX(-3px)",easing:"ease-in"},{transform:"translateX(3px)",easing:"ease-out"},{transform:"translateX(-5px)",easing:"ease-in"},{transform:"translateX(5px)",easing:"ease-out"},{transform:"translateX(-7px)",easing:"ease-in"},{transform:"translateX(7px)",easing:"ease-out"}],{duration:450,iterations:1})}this.savedBackgroundColor=this.$$("#button"+correctAnswer).style.backgroundColor;this.$$("#button"+correctAnswer).style.backgroundColor="#0F0";const incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer);incorrectButtons.forEach(buttonId=>{this.$$("#button"+buttonId).style.backgroundColor="#F00";this.$$("#button"+buttonId).classList.add("wrongAnswer")});setTimeout(()=>{this.resetAllButtons();if(this.currentIndex<this.questions.length-1){this.currentIndex+=1;this.requestUpdate()}else{this.currentIndex=null;this.completed=!0;this.requestUpdate();this.fire("oap-sound-effect","quizCompleted")}},1e3)}resetAllButtons(){[0,1,2,3].forEach(buttonId=>{this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;this.$$("#button"+buttonId).classList.remove("wrongAnswer")})}updated(changedProps){super.updated(changedProps);if(changedProps.has("questions")){if(this.questions){this.reset()}}}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
+
+  :host {}
+
+  iron-list {
+    margin-top: 24px;
+    padding-bottom: 16px;
+    background-color: var(--app-main-background-color);
+  }
+
+  .name {
+    font-size: 19px;
+    padding: 8px;
+  }
+
+  .description {
+    padding-left: 8px;
+  }
+
+  .price {
+    font-size: 20px;
+    position: absolute;
+    bottom: 4px;
+    left: 8px;
+  }
+
+  #itemContainer {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  oav-area-ballot-item {
+    outline: 0px;
+  }
+
+  paper-button.addButton {
+    position: absolute;
+    bottom: 16px;
+    outline: 0px;
+    right: 8px;
+    background-color: var(--app-ballot-add-button-background-color, #F00);
+    color: var(--app-ballot-add-button-color, #FFF);
+  }
+
+  .budgetContainer {
+  }
+
+  .votingButtonContainer {
+    position: absolute;
+    bottom: 16px;
+  }
+
+  .topContainer {
+    background-color: var(--app-main-background-color);
+    color: var(--app-ballot-color, #333);
+  }
+
+  paper-tabs {
+    margin: 8px;
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+
+  paper-tab {
+    font-size: 21px !important;
+    margin-left: 24px;
+    margin-right: 24px;
+    width: 320px;
+  }
+
+  @media (max-width: 1045px) {
+    paper-tab {
+      font-size: 15px !important;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    paper-tab {
+      font-size: 14px !important;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+`;_exports.OapBallotStyles=OapBallotStyles;var oapBallotStyles={OapBallotStyles:OapBallotStyles};_exports.$oapBallotStyles=oapBallotStyles;const OapArticleItemStyles=css`
+
+  .itemContent {
+    position: relative;
+    width: 300px !important;
+    height: 320px;
+    margin: 16px;
+  }
+
+  .itemContent[small] {
+    width: 260px !important;
+    height: 277px;
+    margin: 0;
+  }
+
+  .itemContent[small][tiny] {
+    width: 220px !important;
+    height: 220px;
+  }
+
+  .itemSelectedFrame {
+    background: transparent;
+    border: none;
+    width: 296px;
+    height: 316px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+  }
+
+  .itemSelectedFrame[small] {
+    width: 254px;
+    height: 271px;
+  }
+
+  .itemSelectedFrame[small][tiny] {
+    width: 214px;
+    height: 214px;
+  }
+
+  .buttons {
+    z-index: 5;
+  }
+
+  .itemSelectedFrame[selected] {
+    background: transparent;
+    border: solid 2px;
+    border-color: var(--app-accent-color);
+  }
+
+  iron-image {
+    width: 300px;
+    height: 201px;
+  }
+
+  iron-image[small] {
+    width: 260px;
+    height: 175px;
+  }
+
+  iron-image[small][tiny] {
+    width: 220px;
+    height: 148px;
+  }
+
+  .descriptionContainer {
+    height: 100%;
+    width: 300px;
+    margin: 0;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    background-color: var(--app-ballot-item-description-background-color, #333);
+    color: var(--app-ballot-item-description-color, #FFF);
+    margin-bottom: 7px;
+  }
+
+  .descriptionContainer[small] {
+    width: 260px;
+    height: 146px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .descriptionContainer[small][tiny] {
+    width: 220px;
+    height: 124px;
+    font-size: 11px;
+  }
+
+  .description {
+    padding: 8px;
+    font-size: 13px;
+    margin-top: 42px;
+  }
+
+  .name {
+    font-size: var(--app-item-name-font-size, 17px);
+    padding: 8px;
+    font-weight: bold;
+    color: var(--app-ballot-item-name-color, #000);
+  }
+
+  .name[small] {
+    font-size: var(--app-item-name-font-size-small, 17px);
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+  }
+
+  .name[small][tiny] {
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 25px;
+    position: absolute;
+    bottom: 8px;
+    left: 92px;
+    color: var(--app-accent-color);
+  }
+
+  .price[no-millions] {
+    left: 108px;
+  }
+
+  .price[small] {
+    left: 70px;
+  }
+
+  .price[no-millions][small] {
+    left: 95px;
+  }
+
+  .price[small][tiny] {
+    left: 42px;
+  }
+
+  .priceCurrency {
+    font-size: 23px;
+    color: var(--app-accent-color);
+  }
+
+  paper-fab.addRemoveButton {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: var(--app-accent-color);
+    color: var(--app-ballot-item-button-color, #fff);
+  }
+
+  paper-fab.removeButton {
+    background-color: #fff !important;
+    color: var(--app-accent-color) !important;
+  }
+
+  paper-fab.addFavoriteButton {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background-color: var(--app-accent-color);
+    color: var(--app-ballot-item-button-color, #fff);
+    --paper-fab-iron-icon: {
+      height: 29px;
+      width: 29px;
+    };
+    padding: 0;
+    padding-top: 1px;
+  }
+
+  paper-fab.removeFavoriteButton {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: var(--app-ballot-item-remove-fav-button-color, rgb(255,215,0));
+    background-color: var(--app-ballot-item-remove-fav-button-background-color, #FFF);
+    --paper-fab-iron-icon: {
+      height: 29px;
+      width: 29px;
+    };
+    padding: 0;
+    padding-top: var(--app-ballot-item-remove-fav-padding-top, 1px);
+  }
+
+  paper-fab[disabled] {
+    background-color: #b7b7b7;
+  }
+
+  .shareIcon {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    --paper-share-button-icon-color: var(--app-accent-color-light);
+    --paper-share-button-icon-height: 46px;
+    --paper-share-button-icon-width: 46px;
+    -webkit-filter: drop-shadow( 1px 1px 10px #555 );
+    filter: drop-shadow( 1px 1px 10px #555 );
+  }
+
+  .shareIcon[small] {
+    display: none;
+  }
+
+  .budgetContainer {
+  }
+
+  .itemContent {
+    color: var(--app-ballot-item-content-color, #222);
+    background-color: var(--app-ballot-item-content-background-color, #fbfbfb);
+  }
+
+  .addRemoveButton {
+
+  }
+
+  .infoIcon {
+    color: var(--app-accent-color-light);
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin-right: 4px;
+  }
+
+  .infoLinks {
+    position: absolute;
+    top: 118px;
+    right: 0px;
+    z-index: 2;
+  }
+
+  .stateDropdown {
+    color: var(--app-accent-color-light);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    z-index: 2;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  .dropdownMenuButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  .dropdownButton {
+    background-color: var(--app-accent-color);
+    opacity: 0.8;
+    color: var(--app-ballot-item-button-color, #fff);
+    padding: 2px;
+    width: 32px;
+    height: 26px;
+  }
+
+  .infoLinks[small] {
+    top: 98px;
+  }
+
+  .infoLinks[small][tiny] {
+    top: 78px;
+  }
+
+  .externalInfoIcon {
+    color: var(--app-ballot-item-extinfo-icon-color, #999);
+    width: 45px;
+    height: 45px;
+  }
+
+  .externalIconContainer {
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    z-index: 2;
+  }
+
+  google-map {
+    z-index: 5;
+  }
+
+  paper-fab {
+    z-index: 5;
+  }
+
+  .favoriteButtons {
+  }
+
+  .cost {
+    padding-left: 8px;
+    position: absolute;
+    bottom: 12px;
+    font-weight: bold;
+    font-size: 20px;
+    left: 120px;
+    color: var(--app-accent-color, #F00);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+`;_exports.OapArticleItemStyles=OapArticleItemStyles;var oapArticleItemStyles={OapArticleItemStyles:OapArticleItemStyles};_exports.$oapArticleItemStyles=oapArticleItemStyles;class OapArticleItem extends OapBaseElement{static get properties(){return{item:{type:Object},elevation:Number,ballotElement:{type:Object},selectedInBudget:{type:Boolean},isBookmarked:{type:Boolean},toExpensive:{type:Boolean},isFavorite:{type:Boolean},browsingMode:{type:Boolean},imageTabSelected:{type:Boolean},descriptionTabSelected:{type:Boolean},descriptionPdfLink:{type:String},small:{type:Boolean},tiny:{type:Boolean},imageLoaded:{type:Boolean,value:!1},configFromServer:Object,listBoxSelection:Number}}static get styles(){return[OapArticleItemStyles,OapShadowStyles]}render(){return html$1`
+      <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp" ?small="${this.small}" ?tiny="${this.tiny}">
+        <iron-image preload @loaded-changed="${this._imageLoadedChanged}" ?small="${this.small}"
+          ?tiny$="${this.tiny}" ?hidden="${!this.imageTabSelected}" name="image" sizing="cover" src="${this.item.image_url}">
+        </iron-image>
+        <div ?hidden="${!this.descriptionTabSelected}" name="description" class="descriptionContainer" ?tiny="${this.tiny}" ?small="${this.small}">
+          <div id="description" class="description">
+            ${this.item.description}
+          </div>
+        </div>
+        <paper-menu-button ?hidden="${this.isOnMap}" @tap="${this._openMenu}" ?small="${this.small}" ?tiny="${this.tiny}" class="dropdownMenuButton" horizontal-align="right">
+          <paper-icon-button class="dropdown-trigger dropdownButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize("openDetailMenu")}" icon="menu"></paper-icon-button>
+          <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" .selected="${this.listBoxSelection}">
+            <paper-item @tap="${this._setImageMode}">
+              <iron-icon alt="${this.localize("image_item_tab")}" class="infoIcon" icon="photo"></iron-icon>
+              ${this.localize("image_item_tab")}
+            </paper-item>
+            <paper-item @tap="${this._setDescriptionMode}">
+              <iron-icon alt="${this.localize("description_item_tab")}" class="infoIcon" icon="description"></iron-icon>
+              ${this.localize("description_item_tab")}
+            </paper-item>
+            <paper-item @tap="${this._openPdf}" ?hidden="${!this.descriptionPdfLink}">
+              <iron-icon alt="${this.localize("design_pdf")}" class="infoIcon" icon="picture-as-pdf"></iron-icon>
+              ${this.localize("design_pdf")}
+            </paper-item>
+            <paper-item @tap="${this._showPost}" ?hidden="${this.configFromServer.client_config.hideShowPost}">
+              <iron-icon raised alt="${this.localize("more_info_description")}" class="infoIcon" icon="info"></iron-icon>
+              ${this.localize("more_info_description")}
+            </paper-item>
+          </paper-listbox>
+        </paper-menu-button>
+        <div class="layout horizontal" ?hidden="${this.descriptionTabSelected}">
+          <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
+        </div>
+        <div class="buttons" ?hidden="${this.descriptionTabSelected}">
+          <paper-share-button ?hidden="${!this.imageLoaded}" ?small="${this.small}" @share-tap="${this._shareTap}" class="shareIcon" horizontal-align="left" id="shareButton"
+            title="${this.localize("share_idea")}" facebook twitter popup .url="${this._itemShareUrl()}">
+          </paper-share-button>
+
+          <div class="cost" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
+           ${this.formatNumber(this.item.price)}${this.localize("cp")}
+            <span class="costCurrency" ?hidden="${!this._costIsOne(this.item.price)}">${this.localize("million")}</span>
+            <span class="costCurrency" ?hidden="${this._costIsOne(this.item.price)}">${this.localize("millions")}</span>
+          </div>
+
+          <paper-fab mini id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
+                    ?disabled="${this.toExpensive}" title="${this.localize("add_to_budget")}" icon="add" @click="${this._toggleInBudget}">
+          </paper-fab>
+
+          <paper-fab mini elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
+                    ?disabled="${this.toExpensive}" title="${this.localize("remove_from_budget")}" icon="remove" @click="${this._toggleInBudget}">
+          </paper-fab>
+
+          <div hidden>
+          <div id="favoriteButtons" class="favoriteButtons" ?hidden="${!this.selected}">
+            <paper-fab mini id="addFavoriteButton" class="addFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${this.isFavorite}"
+                      title="${this.localize("select_favorite")}" icon="${this.configFromServer.client_config.favoriteIconOutline}" @click="${this._toggleFavorite}">
+            </paper-fab>
+            <paper-fab mini class="removeFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${!this.isFavorite}"
+                      title="${this.localize("deselect_favorite")}" icon="${this.configFromServer.client_config.favoriteIcon}" @click="${this._toggleFavorite}">
+            </paper-fab>
+          </div>
+          </div>
+        </div>
+      </div>
+    `}updated(changedProps){super.updated(changedProps);if(changedProps.has("selected")){if(this.selected){this.elevation=4;this.$$("#topContainer").classList.add("shadow-elevation-12dp")}else{this.elevation=1;this.$$("#topContainer").classList.remove("shadow-elevation-12dp")}}if(changedProps.has("item")){if(this.item){this.resetFromBudget()}}if(changedProps.has("small")){if(this.small){this.mapsHeight="260";this.mapsWidth="146"}else{this.mapsHeight="169";this.mapsWidth="300"}}if(changedProps.has("tiny")){if(this.tiny){this.mapsHeight="220";this.mapsWidth="124"}else{this.mapsHeight="169";this.mapsWidth="300"}}}constructor(){super();this.reset();this.listBoxSelection=0}reset(){this.small=!1;this.descriptionTabSelected=!1;this.imageTabSelected=!0;this.isFavorite=!1;this.toExpensive=!1;this.isBookmarked=!1;this.selected=!1}_imageLoadedChanged(event){if(event.detail.value){this.imageLoaded=!0}}_clickedDropDownMenu(){this.activity("click","dropdown")}_costIsOne(cost){if(cost&&1>=cost){return!0}else{return!1}}_openPdf(){this.activity("click","openPdf");if(this.item.descriptionPdfLink){window.open(this.item.descriptionPdfLink,"_blank")}}_showPost(){this.activity("click","showPost");window.appLastArea="/"+window.location.hash;const path="/post/"+this.item.idea_id;window.history.pushState({},null,path);this.fire("location-changed",path);setTimeout(()=>{this.$$("#listBox").select(0)})}_itemShareUrl(){if(this.item){return encodeURIComponent("https://"+window.location.host+"/items/"+this.item.id)}else{return null}}_shareTap(event,detail){this.activity("click","shareItem")}resetFromBudget(){//console.log("resetFromBudget itemId: "+this.item.id);
+if(this.budgetElement){if(-1<this.budgetElement.selectedItems.indexOf(this.item)){this.setInBudget();this.setNotTooExpensive();if(this.budgetElement.currentBallot.favoriteItem==this.item){this.isFavorite=!0}else{this.isFavorite=!1}}else{var budgetLeft=this.budgetElement.totalBudget-this.budgetElement.selectedBudget;if(this.item.cost>budgetLeft){this.setTooExpensive()}else{this.setNotTooExpensive()}this.removeFromBudget()}}this._setImageMode(!0)}_setImageMode(disableActivity){if(!disableActivity||!1===disableActivity){this.activity("select","imageMode")}this.imageTabSelected=!0;this.descriptionTabSelected=!1;this.mapTabSelected=!1}_setMapMode(){this.activity("select","mapMode");this.imageTabSelected=!1;this.descriptionTabSelected=!1;this.mapTabSelected=!0}_setDescriptionMode(){this.activity("select","descriptionMode");this.imageTabSelected=!1;this.descriptionTabSelected=!0;this.mapTabSelected=!1}_toggleDescription(){this.activity("toggle","description");if(!0===this.descriptionTabSelected){this._setImageMode()}else{this._setDescriptionMode()}}_openMenu(){this.activity("open","itemMenu")}setInBudget(){//console.log("setInBudget itemId: "+this.item.id);
+this.selected=!0}removeFromBudget(){//console.log("removeFromBudget itemId: "+this.item.id);
+this.selected=!1;this.isFavorite=!1}setTooExpensive(){//console.log("setTooExpensive itemId: "+this.item.id);
+this.toExpensive=!0}setNotTooExpensive(){//console.log("setNotTooExpensive itemId: "+this.item.id);
+this.toExpensive=!1}_toggleFavorite(){if(this.budgetElement.currentBallot.favoriteItem&&this.budgetElement.currentBallot.favoriteItem.id==this.item.id){this.fire("oav-set-favorite-item-in-budget",{item:null});this.isFavorite=!1}else{var button=this.$$("#addFavoriteButton"),buttonRect=button.getBoundingClientRect(),left=buttonRect.left,top=buttonRect.top;// + window.scrollY;
+this.isFavorite=!0;this.fire("oav-set-favorite-item-in-budget",{item:this.item,orgAnimPos:{left:left,top:top},budgetAnimPos:this.budgetElement.getItemLeftTop(this.item)});setTimeout(()=>{this.requestUpdate()})}}_toggleInBudget(event){//console.log("_toggleInBudget itemId: "+this.item.id);
+this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteButton").style.left="12px";this.$$("#addFavoriteButton").style.bottom="12px";var animation=this.$$("#addFavoriteButton").animate([{transform:"translateX(200px)",easing:"ease-out"},{transform:"scale(2)",easing:"ease-out"},{transform:"translateY(0)",easing:"ease-out"}],{duration:400,iterations:1});animation.onfinish=function(){this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteButton").style.left="12px";this.$$("#addFavoriteButton").style.bottom="12px"}.bind(this);this.fire("oav-toggle-item-in-budget",{item:this.item});setTimeout(()=>{this.requestUpdate()})}}window.customElements.define("oap-article-item",OapArticleItem);class OapBallot extends OapPageViewElement{static get properties(){return{area:{type:Object},areaId:{type:String},configFromServer:String,areaIdRoutePath:{type:Object},selectedView:{type:Number},budgetElement:{type:Object},votePublicKey:{type:String},budgetBallotItems:Array,wide:Boolean,popupWindow:Object,favoriteItem:{type:Object},oldFavoriteItem:Object,showMap:Boolean}}static get styles(){return[OapBallotStyles]}render(){return html$1`${this.area?html$1`
+        <div class="topContainer layout vertical">
+          ${this.budgetBallotItems&&this.budgetElement?html$1`
+              <div id="itemContainer" class="layout horizontal center-center flex wrap" ?hidden="${1===this.selectedView}">
+                ${repeat(this.budgetBallotItems,item=>item.id,(item,index)=>html$1`
+                    <oap-article-item
+                      .name="${item.id}"
+                      class="ballotAreaItem"
+                      .configFromServer="${this.configFromServer}"
+                      .language="${this.language}"
+                      .budgetElement="${this.budgetElement}"
+                      .item="${item}">
+                    </oap-article-item>
+                  `)}
+              </div>
+            `:""}
+        </div>
+      `:""}
+    `}updated(changedProps){super.updated(changedProps);if(changedProps.has("areaIdRoutePath")){if(this.areaIdRoutePath){if("completePostingOfVoteAfterRedirect"===this.areaIdRoutePath){this.completeIfAuthenticatedVote()}else{this.areaId=this.areaIdRoutePath}}}if(changedProps.has("budgetElement")){//      this.loadArea();
+}if(changedProps.has("favoriteItem")){this.oldFavoriteItem=changedProps.get("favoriteItem");if(!this.favoriteItem&&this.oldFavoriteItem){this.fire("oav-hide-favorite-item")}}}constructor(){super();this.showMap=!1;this.area={name:"Blah",id:1}}connectedCallback(){super.connectedCallback();this.reset();window.appBallot=this;this.fire("oav-set-ballot-element",this)}firstUpdated(){this._setupListeners();installMediaQueryWatcher(`(min-width: 1024px)`,matches=>{this.wide=matches})}disconnectedCallback(){this._removeListeners()}loadArea(){this.oldFavoriteItem=null;this.favoriteItem=null;if(this.areaId){this.reset();this.fire("ak-clear-area");fetch("/votes/get_ballot?area_id="+this.areaId+"&locale="+this.language,{credentials:"same-origin"}).then(res=>res.json()).then(response=>{this.area=response.area;this.budgetBallotItems=this._setupLocationsAndTranslation(response.budget_ballot_items);this.fire("oav-set-title",this.localize("ballot_area_name","area_name",this.area.name));this.fire("oav-set-area",{areaName:this.area.name,totalBudget:this.area.budget_amount});setTimeout(()=>{this.$$("#tabs").shadowRoot.getElementById("selectionBar").style.setProperty("border-bottom","3px solid var(--paper-tabs-selection-bar-color)")})}).catch(error=>{this.fire("ak-error",error);console.error("Error:",error)})}}_setupListeners(){this.addEventListener("oav-toggle-item-in-budget",this._toggleItemInBudget);this.addEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.addEventListener("oav-submit-vote",this._postVoteToServer);this.addEventListener("oav-item-selected-in-budget",this._itemSelectedInBudget);this.addEventListener("oav-item-de-selected-from-budget",this._itemDeSelectedFromBudget)}_removeListeners(){this.removeEventListener("oav-toggle-item-in-budget",this._toggleItemInBudget);this.removeEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.removeEventListener("oav-submit-vote",this._postVoteToServer);this.removeEventListener("oav-item-selected-in-budget",this._itemSelectedInBudget);this.removeEventListener("oav-item-de-selected-from-budget",this._itemDeSelectedFromBudget)}reset(){if(this.budgetElement){this.budgetElement.reset()}this._resetBallotItems();this.area={id:1,name:"Hello"};this.favoriteItem=null;this.selectedView=0;this.fire("oav-set-area",{areaName:null,totalBudget:null})}_selectedChanged(event){this.selectedView=parseInt(event.detail.value)}_scrollItemIntoView(itemId){var iOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream,isIE11=/Trident.*rv[ :]*11\./.test(navigator.userAgent),items=this.shadowRoot.querySelectorAll("oap-article-item");items.forEach(function(item){if(item.name==itemId){if(iOS||isIE11){item.scrollIntoView(!1)}else{item.scrollIntoView({behavior:"smooth",block:"end",inline:"nearest"})}if(this.wide){item.animate([{transform:"translateX(-3px)",easing:"ease-in"},{transform:"translateX(3px)",easing:"ease-out"},{transform:"translateX(-5px)",easing:"ease-in"},{transform:"translateX(5px)",easing:"ease-out"},{transform:"translateX(-7px)",easing:"ease-in"},{transform:"translateX(7px)",easing:"ease-out"}],{duration:450,iterations:1})}}}.bind(this))}_resetBallotItems(){var listItems=this.$$("#itemContainer");if(listItems){for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.setNotTooExpensive();listItem.removeFromBudget()}}}}_toggleFavoriteItem(event){var item=event.detail.item;if(item){this.activity("toggle","favorite")}else{this.activity("detoggle","favorite")}if(this.favoriteItem!=item){this.favoriteItem=item;for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.resetFromBudget()}}}else{console.warn("Trying to set item as favorite a second time")}}_toggleItemInBudget(event){this.budgetElement.toggleBudgetItem(event.detail.item)}_itemSelectedInBudget(event){for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&listItem.item.id==event.detail.itemId){listItem.setInBudget();const map=this.$$("#itemsMap");if(map)map.setItemInBudget(listItem.item)}}this._setStateOfRemainingItems()}_itemDeSelectedFromBudget(event){for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&listItem.item.id==event.detail.itemId){if(this.favoriteItem==listItem.item){this.favoriteItem=null}listItem.removeFromBudget();const map=this.$$("#itemsMap");if(map)map.removeFromBudget(listItem.item);this.fire("oav-reset-favorite-icon-position")}}this._setStateOfRemainingItems()}_setStateOfRemainingItems(){for(var budgetLeft=this.budgetElement.totalBudget-this.budgetElement.selectedBudget,listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&!listItem.selectedInBudget){if(listItem.item.price<=budgetLeft){listItem.setNotTooExpensive()}else{listItem.setTooExpensive()}}}this.requestUpdate()}_postVoteToServer(){if(this.budgetElement.selectedItems&&0<this.budgetElement.selectedItems.length){this.completePostingOfVote(this._createEncryptedVotes())}else{this.fire("oav-error",this.localize("error_no_items_selected"));console.error("error_no_items_selected")}}_createEncryptedVotes(){var selectedItemIds=this.budgetElement.selectedItems.map(item=>{return item.id});return encryptVote(this.votePublicKey,{selectedItemIds:selectedItemIds,favoriteItemId:this.favoriteItem?this.favoriteItem.id:null})}completePostingOfVote(encryptedVotes){if(this.area&&this.area.id){if(encryptedVotes){return fetch("/votes/post_vote",{method:"POST",cache:"no-cache",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({encrypted_vote:encryptedVotes,area_id:this.area.id})}).then(response=>response.json()).then(response=>{if(response&&!0===response.vote_ok){if(!0===this.configFromServer.client_config.insecureEmailLoginEnabled){this.fire("oav-insecure-email-login",{areaId:this.area.id,areaName:this.area.name,onLoginFunction:this._setVotingCompleted.bind(this)})}else{window.location=this._getSamlUrlWithLanguage()}}else{this.fire("oav-error",this.localize("error_could_not_post_vote"))}})}else{this.fire("oav-error",this.localize("error_encryption"));console.error("No encrypted votes!")}}else{this.fire("oav-error",this.localize("error_could_not_post_vote"));console.warn("Not sending as no area id")}}_setVotingCompleted(){this.reset();this.areaId=null;const path="/voting-completed";window.history.pushState({},null,path);this.fire("location-changed",path);var dialog=document.querySelector("oap-app").getDialog("authDialog");if(dialog)dialog.close()}completeIfAuthenticatedVote(){fetch("/votes/is_vote_authenticated",{credentials:"same-origin"}).then(response=>response.json()).then(response=>{if(response&&!0===response.vote_ok){this._setVotingCompleted();this.activity("completed","voting")}else{this.fire("oav-error",this.localize("error_could_not_post_vote"))}})}_getSamlUrlWithLanguage(){var url=this.configFromServer.auth_url;if("en"==this.language){url+="&siteLanguage=en"}else if("pl"==this.language){url+="&siteLanguage=pl"}return url}shuffle(a){for(let i=a.length-1;0<i;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}_setupLocationsAndTranslation(budgetBallotItems){for(var arrayLength=budgetBallotItems.length,i=0;i<arrayLength;i++){if(budgetBallotItems[i].locations&&""!=budgetBallotItems[i].locations){var hashArray=[],locationsArray=budgetBallotItems[i].locations.replace(" ","").split(","),counter=0;while(counter<locationsArray.length){hashArray.push({latitude:locationsArray[counter],longitude:locationsArray[counter+1]});counter+=2}budgetBallotItems[i].locations=hashArray}else{budgetBallotItems[i].locations=[]}}return this.shuffle(budgetBallotItems)}}window.customElements.define("oap-ballot",OapBallot);const OapBudgetStyles=css`
+  :host {
+    width: 100%;
+    display: block;
+  }
+
+  .topLevel[wide] {
+  }
+
+  .budgetContainer {
+  }
+
+  .budgetContainer[wide] {
+  }
+
+  @media (max-width: 1100px) {
+    .budgetContainer {
+    }
+  }
+
+  .headerContainer {
+  }
+
+  .budgetMaterial {
+    background-color: var(--app-budget-material-background-color, rgba(249,249,249,1.0));
+    height: 139px;
+    margin: 0px 0px 0px 0px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .budgetMaterial[wide] {
+    width: 940px;
+    height: 184px;
+    margin-top: 24px;
+  }
+
+  #votes {
+    background-color: var(--app-budget-votes-background-color, #f0f0f0);
+    height: 81px;
+  }
+
+  #votes[wide] {
+    width: 940px;
+    height: 100px;
+  }
+
+  .budgetRuler {
+    background-color: var(--app-budget-ruler-background-color, #f0f0f0);
+    color: var(--app-budget-ruler-color, #111);
+    font-size: 14px;
+    padding: 4px;
+    padding-right: 8x;
+    padding-left: 8px;
+  }
+
+  .budgetRuler[wide] {
+    font-size: 18px;
+    padding: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .budgetHeader {
+    background-color: var(--app-budget-header-background-color, #FFF);
+    color: var(--app-budget-header-color, #000);
+    font-size: 26px;
+    padding: 12px;
+  }
+
+  .info {
+    background-color: var(--app-budget-info-background-color, rgba(249,249,249,1.0));
+    color: var(--app-budget-info-color, #111);
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  .info[wide] {
+    padding: 8px;
+    font-size: 19px;
+  }
+
+  paper-button.voteButton {
+    background-color: var(--app-accent-color);
+    color: var(--app-budget-vote-button-color, #FFF);
+    margin: 8px;
+    margin-right: 4px;
+  }
+
+  paper-button[disabled] {
+    background-color: #bbb;
+  }
+
+  .selectedInfo {
+    font-size: 12px;
+  }
+
+  .selectedInfo[wide] {
+    font-size: 19px;
+  }
+
+  #budgetLeftInfo {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 4px;
+  }
+
+  #budgetLeftInfo[wide] {
+    font-size: 19px;
+    font-weight: bold;
+    z-index: 100000;
+  }
+
+  .noItemsInfo {
+    color: var(--app-budget-noitemsinfo-color, #555);
+    font-size: 14px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 32px
+  }
+
+  .noItemsInfo[wide] {
+    font-size: 24px;
+  }
+
+  .itemInBudget {
+    border-left: solid 3px;
+    border-left-color: var(--app-accent-color);
+  }
+
+  .headerLogo {
+    width:  90px;
+    height: 90px;
+    padding: 0;
+    margin: 0;
+    margin-left: 16px;
+  }
+
+  @media (max-width: 1024px) {
+    .headerLogo {
+      width: 160px;
+      height: 48px;
+      margin-left: 4px;
+    }
+  }
+
+  .headerContainer {
+    background-color: var(--app-budget-header-container-background-color, #FFF);
+    color: var(--app-budget-vote-button-color, #222)
+  }
+
+  .demoButton {
+    background-color: var(--app-accent-color);
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .onOfferText {
+    color: var(--app-accent-color);
+    margin-right: 12px;
+    font-weight: bold;
+  }
+
+  paper-toast {
+    font-size: 17px;
+    height: 80px;
+    padding-bottom: 8px;
+  }
+
+  paper-toast[wide] {
+    font-size: 25px;
+    height: 108px;
+  }
+
+  .mobileActionIcons {
+    color: #555;
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  .mobileBudgetText {
+    margin-top: 6px;
+  }
+
+  .budgetText {
+    margin-top: 4px;
+  }
+`;_exports.OapBudgetStyles=OapBudgetStyles;var oapBudgetStyles={OapBudgetStyles:OapBudgetStyles};_exports.$oapBudgetStyles=oapBudgetStyles;class OapBudget extends OapBaseElement{static get properties(){return{selectedItems:{type:Array,value:[],notify:!0},toastCounter:{type:Number,value:0},noSelectedItems:{type:Boolean,value:!0},areaName:{type:String,value:null},selectedBudget:{type:Number,value:0},totalBudget:{type:Number},budgetLeft:{type:Number},selectedBudgetIsOne:{type:Boolean},votesWidth:{type:Number},wide:{type:Boolean},mediumWide:{type:Boolean},mini:{type:Boolean},orientationPortrait:{type:Boolean},orientationLandscape:{type:Boolean},currentBallot:Object,budgetHeaderImage:{type:String},showExit:Boolean,configFromServer:Object}}connectedCallback(){super.connectedCallback();this.fire("oav-set-budget-element",this)}updated(changedProps){super.updated(changedProps);if(changedProps.has("selectedBudget")){this.selectedBudgetIsOne=this.selectedBudget&&1===this.selectedBudget}if(changedProps.has("selectedItems")){this._selectedItemsChanged()}if(changedProps.has("selectedBudget")||changedProps.has("totalBudget")){var budgetLeft=this.totalBudget-this.selectedBudget;if(0<budgetLeft){this.budgetLeft=budgetLeft}else{this.budgetLeft=0}}}static get styles(){return[OapBudgetStyles,OapShadowStyles,OapFlexLayout]}render(){return html$1`
       <div class="budgetContainer center-center" ?wide="${this.wide}">
         <div class="budgetMaterial shadow-elevation-24dp" ?wide="${this.wide}">
           <div class="info layout horizontal headerContainer" ?wide="${this.wide}">
@@ -15243,182 +15407,9 @@ this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteBut
         ${this.localize("favorite_info")}
       </snack-bar>
     `}firstUpdated(){this.reset();installMediaQueryWatcher(`(min-width: 1024px)`,matches=>{if(matches)this.wide=!0;else this.wide=!1;this._resetWidth()});installMediaQueryWatcher(`(orientation: portrait)`,matches=>{if(matches)this.orientationPortrait=!0;else this.orientationPortrait=!1;this._resetWidth()});installMediaQueryWatcher(`(orientation: landscape)`,matches=>{if(matches)this.orientationLandscape=!0;else this.orientationLandscape=!1;this._resetWidth()});installMediaQueryWatcher(`(min-width: 640px)`,matches=>{if(matches)this.mediumWide=!0;else this.mediumWide=!1;this._resetWidth()});installMediaQueryWatcher(`(max-width: 340px)`,matches=>{if(matches)this.mini=!0;else this.mini=!1;this._resetWidth()})}constructor(){super()}_exit(){this.fire("oav-exit")}_help(){this.fire("oav-open-help")}_closeToast(){this.$$("#toast").active=!1}_resetWidth(){if(this.wide){this.votesWidth=940}else{this.votesWidth=window.innerWidth}this._resetBudgetDiv();this.selectedItems.forEach(function(item){this._addItemToDiv(item)}.bind(this))}_millionWord(){// var localizeMethod = this.__computeLocalize(this.language, this.resources, this.formats);
-if(this.wide){return this.localize("million")}else{return this.localize("million_short")}}_submitVote(){this.activity("click","submitVote");this.currentBallot.fire("oav-submit-vote")}_selectedItemsChanged(){if(this.selectedItems&&0<this.selectedItems.length){this.noSelectedItems=!1;this.$$("#votingButton").disabled=!1}else{this.noSelectedItems=!0;this.$$("#votingButton").disabled=!0}}reset(){this._resetBudgetDiv();this.selectedItems=[];this.selectedBudget=0;this.budgetHeaderImage=this.configFromServer.client_config.ballotBudgetLogo}_resetBudgetDiv(){let votes=this.$$("#votes");while(votes.lastChild&&"noItems"!=votes.lastChild.id&&"budgetLeftInfo"!=votes.lastChild.id){votes.removeChild(votes.lastChild)}}_removeItemFromArray(item){var newArray=[];this.selectedItems.forEach(function(i){if(i.id!=item.id){newArray.push(i)}});this.selectedItems=newArray}_addItemToDiv(item){var itemWidth=parseInt(this.votesWidth*(item.price/this.totalBudget));if(!this.wide){itemWidth-=1}var container=document.createElement("div");container.id="item_id_"+item.id;if(this.wide){container.style.height="100px"}else{container.style.height="81px"}container.style.width=itemWidth+"px";container.className="budgetBallotVote";container.backgroundColor="#F00";container.style.position="relative";var image=document.createElement("iron-image");image.src=item.image_url;image.setAttribute("sizing","cover");image.setAttribute("alt",item.name);image.setAttribute("title",item.name);image.setAttribute("style","cursor: pointer;");image.title=item.name;image.style.borderLeft="solid 1px";image.style.borderRight="solid 1px";image.style.borderColor="#ff6500";if(this.wide){image.style.height="100px"}else{image.style.height="81px"}image.style.width=itemWidth+"px";container.appendChild(image);container.addEventListener("tap",function(){this.fire("oav-scroll-item-into-view",item.id)}.bind(this));this.$$("#votes").appendChild(container);var animation=container.animate([{transform:"translateX(-75px) scale(2)",easing:"ease-out"},{transform:"scale(1)",easing:"ease-out"}],{duration:600,iterations:1});this.$$("#budgetLeftInfo").animate([{transform:"scale(1)"},{transform:"scale(1.75)",easing:"ease-in-out"},{transform:"scale(1)",easing:"ease-out"}],{duration:820,iterations:1});if(1>this.toastCounter){this.$$("#toast").active=!0;this.toastCounter+=1}}_removeItemFromDiv(item){var selectedItemDiv=this.$$("#item_id_"+item.id);selectedItemDiv.parentNode.removeChild(selectedItemDiv)}getItemLeftTop(item){var selectedItemDiv=this.$$("#item_id_"+item.id);if(selectedItemDiv){var buttonRect=selectedItemDiv.getBoundingClientRect(),left=(buttonRect.right-buttonRect.left)/2+buttonRect.left,top=(buttonRect.bottom-buttonRect.top)/2+buttonRect.top;if(this.wide){left=left-24;top=top-24}else{left=left-18;top=top-18}return{left:left,top:top}}else{console.error("Trying to get item that is not in the budget")}}toggleBudgetItem(item){this.activity("toggle","vote");if(-1<this.selectedItems.indexOf(item)){this.activity("remove","vote");this._removeItemFromArray(item);this._removeItemFromDiv(item);this.selectedItems=[...this.selectedItems];this.selectedBudget=this.selectedBudget-item.price;this.currentBallot.fire("oav-item-de-selected-from-budget",{itemId:item.id})}else{if(this.selectedBudget+item.price<=this.totalBudget){this.activity("add","vote");this.selectedItems.push(item);this.selectedItems=[...this.selectedItems];this._addItemToDiv(item);this.selectedBudget=this.selectedBudget+item.price;this.currentBallot.fire("oav-item-selected-in-budget",{itemId:item.id})}else{this.currentBallot.fire("oav-error",this.localize("error_does_not_fit_in_budget"))}}}toggleFavoriteItem(item){this.activity("toggle","favorite");if(this.favoriteItem!=item){if(item){this.activity("add","favorite")}else{this.activity("remove","favorite")}this.favoriteItem=item}}_removeItem(itemId){this.selectedItems.forEach(function(item){if(item.id==itemId){this.toggleBudgetItem(item)}}.bind(this))}convertDots(num){return num.replace(".",",")}}window.customElements.define("oav-area-budget",OavAreaBudget);const OavAreaVotingCompletedStyles=css`
-  .topMaterial {
-    background-color: var(--app-voting-completed-top-material-background-color, #fbfbfb);
-    color: var(--app-voting-completed-top-material-color, #222);
-    font-size: 26px;
-    margin: 48px;
-    margin-top: 0;
-    text-align: center;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .smaller {
-    font-size: 20px;
-    padding-top: 16px;
-  }
-
-  .helpIcon {
-    color: #fff;
-    width: 48px;
-    height: 48px;
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    color: #fff;
-  }
-
-  .exitIcon {
-    color: #fff;
-    width: 48px;
-    height: 48px;
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    color: #fff;
-  }
-
-  @media (max-width: 1000px) {
-    .topMaterial {
-      font-size: 20px;
-    }
-
-    .smaller {
-      font-size: 16px;
-    }
-  }
-
-  .mainContainer {
-    width: 100%;
-    background-size: 1920px 238px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-y: top;
-    background-image: var(--app-voting-completed-image-url, url("https://s3-eu-west-1.amazonaws.com/oav-direct-assets/hm2018/hm2018-1920x300-bg-2x.png"));
-    background-repeat: repeat-x;
-    padding-top: 48px;
-  }
-
-  @media (max-width: 600px) {
-    .mainContainer {
-      background-image: none;
-      background-color: var(--app-voting-completed-main-background-color, #e0e0e0);
-      padding-top: 20px;
-      padding-bottom: 75px;
-    }
-
-    :host {
-      height: 100%;
-    }
-
-    .topMaterial {
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-  }
-
-  @media (max-width: 320px) {
-    .mainContainer {
-      padding-right: 16px;
-    }
-  }
-
-  .textSharing {
-    width: 380px;
-    max-width: 380px;
-  }
-
-  .desktopLogo {
-    max-width: 360px;
-  }
-
-  @media (max-width: 600px) {
-
-    .textSharing {
-      max-width: 290px;
-      width: 290px;
-    }
-
-    .desktopLogo {
-      width: 320px;
-      margin-top: 0;
-    }
-
-    .topMaterial {
-      max-width: 320px;
-      margin-bottom: 16px;
-      margin-top: 40px;
-    }
-  }
-
-
-  .logoHolder {
-    background-color: var(--app-voting-completed-logo-holder-background-color, #213158);
-    padding-bottom: 8px;
-    padding-top: 8px;
-  }
-
-  .completedText {
-    padding: 16px;
-    text-align: center;
-  }
-
-  .fb-like {
-    padding-top: 16px;
-    color: #eee;
-  }
-
-  .shareIconFinal {
-    --paper-share-button-icon-color: var(--app-accent-color);
-    --paper-share-button-icon-height: 60px;
-    --paper-share-button-icon-width: 60px;
-    margin-left: 8px;
-  }
-
-  .textSharingContainer {
-    padding-top: 12px;
-    padding-bottom: 4px;
-  }
-
-  .shareIconButton {
-    height: 62px;
-    min-height: 62px;
-  }
-`;_exports.OavAreaVotingCompletedStyles=OavAreaVotingCompletedStyles;var oavVotingCompletedStyles={OavAreaVotingCompletedStyles:OavAreaVotingCompletedStyles};_exports.$oavVotingCompletedStyles=oavVotingCompletedStyles;class OavVotingCompleted extends PageViewElement{static get properties(){return{configFromServer:{type:Object}}}static get styles(){return[OavShadowStyles,OavFlexLayout,OavAreaVotingCompletedStyles]}render(){return html$1`
-      ${this.configFromServer?html$1`
-        <div class="layout vertical center-center mainContainer">
-          <paper-icon-button class="helpIcon" alt="${this.localize("help")}" icon="help-outline" @click="${()=>{this.fire("oav-open-help")}}"></paper-icon-button>
-          <paper-icon-button class="exitIcon" alt="${this.localize("close")}" icon="closeExit" @click="${()=>{window.location=""}}"></paper-icon-button>
-
-          <div class="topMaterial shadow-elevation-8dp vertical center-center">
-            <div>
-              <img class="desktopLogo self-center" src="${this.configFromServer.client_config.votingCompleteConfig.logo}"/>
-            </div>
-            <div class="completedText">
-              <div>${this.localize("thank_you_1")}</div>
-              <div class="smaller">${this.localize("thank_you_2")}</div>
-              <div class="smaller">${this.localize("thank_you_3")}</div>
-              <div class="center-center textSharingContainer" ?hidden="${!this.configFromServer.client_config.votingCompleteConfig.shareUrl}">
-                <div class="textSharing">
-                  ${this.localize("share_vote_by_pressing")}
-                </div>
-                <div class="shareIconButton">
-                  <paper-share-button raised on-share-tap="_shareTap" class="shareIconFinal"
-                                      horizontal-align="left" id="shareButton"
-                                      title="${this.localize("share_vote_by_pressing")}"
-                                      facebook twitter popup url="${this.configFromServer.client_config.votingCompleteConfig.shareUrl}">
-                  </paper-share-button>
-                </div>
-              </div>
-              <div class="smaller footerText" ?hidden="${!this.configFromServer.client_config.votingCompleteConfig.showFooterText}">${this.localize("thank_you_4")}</div>
-            </div>
-          </div>
-        </div>
-      `:html$1``}
-    `}}window.customElements.define("oav-voting-completed",OavVotingCompleted);class OavApp extends OavBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,budgetElement:Object,currentBallot:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String}}static get styles(){return[OavAppStyles,OavFlexLayout]}render(){let errorDialog=html$1`
+if(this.wide){return this.localize("million")}else{return this.localize("million_short")}}_submitVote(){this.activity("click","submitVote");this.currentBallot.fire("oav-submit-vote")}_selectedItemsChanged(){if(this.selectedItems&&0<this.selectedItems.length){this.noSelectedItems=!1;this.$$("#votingButton").disabled=!1}else{this.noSelectedItems=!0;this.$$("#votingButton").disabled=!0}}reset(){this._resetBudgetDiv();this.selectedItems=[];this.selectedBudget=0;this.budgetHeaderImage=this.configFromServer.client_config.ballotBudgetLogo}_resetBudgetDiv(){let votes=this.$$("#votes");while(votes.lastChild&&"noItems"!=votes.lastChild.id&&"budgetLeftInfo"!=votes.lastChild.id){votes.removeChild(votes.lastChild)}}_removeItemFromArray(item){var newArray=[];this.selectedItems.forEach(function(i){if(i.id!=item.id){newArray.push(i)}});this.selectedItems=newArray}_addItemToDiv(item){var itemWidth=parseInt(this.votesWidth*(item.price/this.totalBudget));if(!this.wide){itemWidth-=1}var container=document.createElement("div");container.id="item_id_"+item.id;if(this.wide){container.style.height="100px"}else{container.style.height="81px"}container.style.width=itemWidth+"px";container.className="budgetBallotVote";container.backgroundColor="#F00";container.style.position="relative";var image=document.createElement("iron-image");image.src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/scrollTexture2.png";image.setAttribute("sizing","cover");image.setAttribute("alt",item.name);image.setAttribute("title",item.name);image.setAttribute("style","cursor: pointer;");image.title=item.name;if(this.wide){image.style.height="100px"}else{image.style.height="81px"}image.style.width=itemWidth+"px";image.style.opacity=.5;//    container.appendChild(image);
+var colorBox=document.createElement("div");colorBox.setAttribute("alt",item.name);colorBox.setAttribute("title",item.name);colorBox.setAttribute("style","cursor: pointer;");colorBox.title=item.name;colorBox.style.borderLeft="solid 1px 1px solid rgba(255, 255, 255, .5);";colorBox.style.borderRight="solid 1px 1px solid rgba(255, 255, 255, .5);";colorBox.style.opacity=.7;let random=Math.floor(4*Math.random()),color;if(0==random){color="#FFDE03"}else if(1==random){color="#0336FF"}else if(2==random){color="#FF0266"}else if(3==random){color="#463177"}//    colorBox.style.borderColor = color;
+colorBox.style.backgroundColor=color;if(this.wide){colorBox.style.height="100px"}else{colorBox.style.height="81px"}colorBox.style.width=itemWidth+"px";colorBox.appendChild(image);container.appendChild(colorBox);container.addEventListener("tap",function(){this.fire("oav-scroll-item-into-view",item.id)}.bind(this));this.$$("#votes").appendChild(container);var animation=container.animate([{transform:"translateX(-75px) scale(2)",easing:"ease-out"},{transform:"scale(1)",easing:"ease-out"}],{duration:600,iterations:1});this.$$("#budgetLeftInfo").animate([{transform:"scale(1)"},{transform:"scale(1.75)",easing:"ease-in-out"},{transform:"scale(1)",easing:"ease-out"}],{duration:820,iterations:1});if(1>this.toastCounter){this.$$("#toast").active=!0;this.toastCounter+=1}}_removeItemFromDiv(item){var selectedItemDiv=this.$$("#item_id_"+item.id);selectedItemDiv.parentNode.removeChild(selectedItemDiv)}getItemLeftTop(item){var selectedItemDiv=this.$$("#item_id_"+item.id);if(selectedItemDiv){var buttonRect=selectedItemDiv.getBoundingClientRect(),left=(buttonRect.right-buttonRect.left)/2+buttonRect.left,top=(buttonRect.bottom-buttonRect.top)/2+buttonRect.top;if(this.wide){left=left-24;top=top-24}else{left=left-18;top=top-18}return{left:left,top:top}}else{console.error("Trying to get item that is not in the budget")}}toggleBudgetItem(item){this.activity("toggle","vote");if(-1<this.selectedItems.indexOf(item)){this.activity("remove","vote");this._removeItemFromArray(item);this._removeItemFromDiv(item);this.selectedItems=[...this.selectedItems];this.selectedBudget=this.selectedBudget-item.price;this.currentBallot.fire("oav-item-de-selected-from-budget",{itemId:item.id})}else{if(this.selectedBudget+item.price<=this.totalBudget){this.activity("add","vote");this.selectedItems.push(item);this.selectedItems=[...this.selectedItems];this._addItemToDiv(item);this.selectedBudget=this.selectedBudget+item.price;this.currentBallot.fire("oav-item-selected-in-budget",{itemId:item.id})}else{this.currentBallot.fire("oav-error",this.localize("error_does_not_fit_in_budget"))}}}toggleFavoriteItem(item){this.activity("toggle","favorite");if(this.favoriteItem!=item){if(item){this.activity("add","favorite")}else{this.activity("remove","favorite")}this.favoriteItem=item}}_removeItem(itemId){this.selectedItems.forEach(function(item){if(item.id==itemId){this.toggleBudgetItem(item)}}.bind(this))}convertDots(num){return num.replace(".",",")}}window.customElements.define("oap-budget",OapBudget);class OapApp extends OapBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,currentBallot:Object,currentBudget:Object,budgetElement:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String,filteredItems:Array,quizQuestions:Array,choicePoints:Number}}static get styles(){return[OapAppStyles,OapFlexLayout]}render(){let errorDialog=html$1`
       <paper-dialog id="errorDialog">
         <p id="errorText">${this.errorText}</p>
         <div class="buttons">
@@ -15473,8 +15464,11 @@ if(this.wide){return this.localize("million")}else{return this.localize("million
           </paper-dialog-scrollable>
         </paper-dialog>
 
-        <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${"area-ballot"!==this._page}">
+        <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${"areas-ballot"==this._page}">
           <app-toolbar class="toolbar-top">
+            <div id="choicePoints" class="choicePoints" ?hidden="${"area-ballot"===this._page}">
+              ${this.localize("youHave")} ${this.choicePoints}${this.localize("cp")}
+            </div>
             <div ?hidden="${!this.showExit}" class="layout horizontal exitIconInBudget">
               <paper-icon-button class="closeButton" alt="${this.localize("close")}" icon="closeExit" @click="${this._exit}"></paper-icon-button>
             </div>
@@ -15482,60 +15476,69 @@ if(this.wide){return this.localize("million")}else{return this.localize("million
               <paper-icon-button icon="help-outline" alt="${this.localize("help")}" @click="${this._help}}"></paper-icon-button>
             </div>
             <div class="budgetConstainer layout horizontal center-center" ?hidden="${this.hideBudget}">
-              <oav-area-budget
+              <oap-budget
                 id="budget"
                 .areaName="${this.areaName}"
                 .language="${this.language}"
                 .showExit="${this.showExit}"
-                .totalBudget="${this.totalBudget}"
+                .totalBudget="${this.choicePoints}"
                 .configFromServer="${this.configFromServer}"
                 .currentBallot="${this.currentBallot}">
-              </oav-area-budget>
+              </oap-budget>
             </div>
           </app-toolbar>
           <iron-icon id="favoriteIcon" icon="${this.favoriteIcon}" hidden></iron-icon>
         </app-header>
-
         <main role="main" class="main-content" ?has-ballot="${"area-ballot"==this._page}">
-          <oav-select-voting-area
-            id="selectVotingArea"
-            .language="${this.language}"
-            ?active="${"select-voting-area"===this._page}">
-          </oav-select-voting-area>
-          <oav-area-ballot id="budgetBallot"
-            .budgetElement="${this.budgetElement}"
-            .language="${this.language}"
-            .areaIdRoutePath="${this._subPath}"
+          <oap-policy-quiz
+            id="quiz"
+            .questions="${this.quizQuestions}"
             .configFromServer="${this.configFromServer}"
-            ?hidden="${"area-ballot"!==this._page}"
-            .votePublicKey="${this.votePublicKey}"
+            .nickname="Robert Bjarnason"
+            .language="${this.language}"
+            ?hidden="${"quiz"!==this._page}"
+            ?active="${"quiz"===this._page}">
+          </oap-policy-quiz>
+          <oap-filter-articles id="filterArticles"
+            .language="${this.language}"
+            .configFromServer="${this.configFromServer}"
+            ?hidden="${"filter-articles"!==this._page}"
+            .allItems="${this.allItems}"
+            ?active="${"filter-articles"===this._page}">
+          </oap-filter-articles>
+          <oap-article-selection
+            .configFromServer="${this.configFromServer}"
+            .language="${this.language}"
+            ?active="${"article-selection"===this._page}">
+          </oap-article-selection>
+          <oap-ballot id="budgetBallot"
+            .budgetBallotItems="${this.filteredItems}"
+            .configFromServer="${this.configFromServer}"
+            .budgetElement="${this.currentBudget}"
+            .language="${this.language}"
             ?active="${"area-ballot"===this._page}">
-          </oav-area-ballot>
-          <oav-voting-completed
-            .configFromServer="${this.configFromServer}"
-            .language="${this.language}"
-            ?active="${"voting-completed"===this._page}">
-          </oav-voting-completed>
+          </oap-ballot>
           ${"post"===this._page?html$1`
             <yp-post
               .id="post"
-              .budgetElement="${this.budgetElement}"
+              .ballotElement="${this.currentBallot}"
               .language="${this.language}"
               .postId="${this._subPath}"
               .host="${this.postsHost}">
             </yp-post>
           `:html$1``}
-          <oav-view404 class="page" ?active="${"view404"===this._page}"></oav-view404>
+          <oap-view404 class="page" ?active="${"view404"===this._page}"></oap-view404>
         </main>
 
         <snack-bar ?active="${this._snackbarOpened}">
           You are now ${this._offline?"offline":"online"}.
         </snack-bar>
       `:html$1`${errorDialog}<paper-spinner active class="largeSpinner"></paper-spinner>`}
-    `}constructor(){window.__localizationCache={messages:{}};super();setPassiveTouchGestures(!0);this._boot();var name="locale".replace(/[\[]/,"\\[").replace(/[\]]/,"\\]"),regex=new RegExp("[\\?&]"+name+"=([^&#]*)"),results=regex.exec(location.search),language=null===results?null:decodeURIComponent(results[1].replace(/\+/g," "));if(language){this.language=language;localStorage.setItem("languageOverride",language)}}_setupCustomCss(config){if(config.cssProperties){config.cssProperties.forEach(property=>{const propName=Object.keys(property)[0],values=Object.keys(property).map(function(e){return property[e]}),propValue=values[0];this.shadowRoot.host.style.setProperty(propName,propValue);if(window.ShadyCSS){window.ShadyCSS.styleSubtree(this,property)}})}}selectLocale(event){if(this.language!=event.target.dataset.locale){this.language=event.target.dataset.locale;localStorage.setItem("languageOverride",this.language);if("area-ballot"===this._page&&this.currentBallot){setTimeout(()=>{this.currentBallot.loadArea()},10)}}}_boot(){fetch("/votes/boot",{credentials:"same-origin"}).then(res=>res.json()).then(response=>{this.requestInProgress=!1;this.language="en";this.votePublicKey=response.public_key;this._setupCustomCss(response.config.client_config);window.localeResources=response.config.client_config.locales;this.configFromServer=response.config;this.updateAppMeta(this.configFromServer.client_config.shareMetaData);if(this.configFromServer.client_config.welcomeLocales&&this.configFromServer.client_config.ballotBudgetLogo){const tempImg=new Image;tempImg.src=this.configFromServer.client_config.ballotBudgetLogo}ga("create",this.configFromServer.client_config.googleAnalyticsId,"auto");this.postsHost="https://yrpri.org";this.favoriteIcon="heart";this.oneBallotId=1;if(this.configFromServer.client_config.defaultLanguage){if(localStorage.getItem("languageOverride")){this.language=localStorage.getItem("languageOverride")}else{this.language=this.configFromServer.client_config.defaultLanguage}this.setupLocaleTexts()}if(this.configFromServer.client_config.favoriteIcon){this.favoriteIcon=this.configFromServer.client_config.favoriteIcon}if(!(-1<location.href.indexOf("completePostingOfVoteAfterRedirect"))){const path="/area-ballot/"+this.oneBallotId;window.history.pushState({},null,path);this.fire("location-changed",path);if(this.configFromServer.client_config.welcomeLocales){setTimeout(()=>{if(!localStorage.getItem("haveClsosedWelcome")){this.$$("#welcomeDialog").open()}})}}window.language=this.language;window.localize=this.localize;if(!0===this.configFromServer.client_config.insecureEmailLoginEnabled){new Promise((res,rej)=>_require.default(["./oav-insecure-email-login.js"],res,rej)).then(bundle=>bundle&&bundle.$oavInsecureEmailLogin||{})}}).catch(error=>{console.error("Error:",error);this.fire("oav-error","unknown_error")})}disconnectedCallback(){this._removeListeners()}b64DecodeUnicode(str){// Going backwards: from bytestream, to percent-encoding, to original string.
-return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))}_setupListeners(){this.addEventListener("app-resources-loaded",this._transinsecationLoaded);this.addEventListener("oav-set-title",this._setTitle);this.addEventListener("oav-error",this._errorHandler);this.addEventListener("oav-set-area",this._setArea);this.addEventListener("oav-clear-area",this._clearArea);this.addEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.addEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.addEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.addEventListener("oav-exit",this._exit);this.addEventListener("oav-open-help",this._help);this.addEventListener("oav-set-ballot-element",this._setBallotElement);this.addEventListener("oav-set-budget-element",this._setBudgetElement);this.addEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);this.addEventListener("oav-insecure-email-login",this._insecureEmailLogin);this.addEventListener("location-changed",this._locationChanged);window.addEventListener("resize",this.resetSizeWithDelay.bind(this))}_setBallotElement(event){this.currentBallot=event.detail}_setBudgetElement(event){this.budgetElement=event.detail}_removeListeners(){this.removeEventListener("app-resources-loaded",this._translationLoaded);this.removeEventListener("oav-set-title",this._setTitle);this.removeEventListener("oav-error",this._errorHandler);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("oav-clear-area",this._clearArea);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("location-changed",this._locationChanged);this.removeEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.removeEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.removeEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.removeEventListener("oav-exit",this._exit);this.removeEventListener("oav-set-ballot-element",this._setBallotElement);this.removeEventListener("oav-set-budget-element",this._setBudgetElement);this.removeEventListener("oav-open-help",this._help);this.removeEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);window.removeEventListener("resize",this.resetSizeWithDelay);this.removeEventListener("oav-insecure-email-login",this._insecureEmailLogin)}_scrollItemIntoView(event){this.$$("#budgetBallot")._scrollItemIntoView(event.detail)}_hideFavoriteItem(){this.$$("#favoriteIcon").hidden=!0}_insecureEmailLogin(event){this.$$("#insecureEmailLogin").open(event.detail.areaId,event.detail.areaName,event.detail.onLoginFunction)}_toggleFavoriteItem(event){const detail=event.detail;if(detail.item){setTimeout(()=>{var transformLeft,transformTop;if(!0===this.$$("#favoriteIcon").hidden){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.orgAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.orgAnimPos.top+"px";transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}else{var oldBudgetAnimPos=this.currentBallot.oldFavoriteItem?this.budgetElement.getItemLeftTop(this.currentBallot.oldFavoriteItem):null;if(oldBudgetAnimPos){transformLeft=oldBudgetAnimPos.left-detail.budgetAnimPos.left;transformTop=oldBudgetAnimPos.top-detail.budgetAnimPos.top}else{console.warn("Can't find old item");transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}}this.$$("#favoriteIcon").hidden=!1;this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px";var animation=this.$$("#favoriteIcon").animate([{transform:"translateY("+transformTop+"px) translateX("+transformLeft+"px)",easing:"ease-out"},{transform:"scale(3)",easing:"ease-in"},{transform:"scale(1)",easing:"ease-out"}],{duration:720,iterations:1});animation.onfinish=function(){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px"}.bind(this)})}}resetFavoriteIconPosition(){if(this.$$("#budgetBallot").favoriteItem){const pos=this.$$("#budget").getItemLeftTop(this.$$("#budgetBallot").favoriteItem);if(pos){this.$$("#favoriteIcon").style.left=pos.left+"px";this.$$("#favoriteIcon").style.top=pos.top+"px"}else{console.error("Can't find position of favorite item")}}}_help(){this.$$("#helpDialog").open()}_setArea(event){this.areaName=event.detail.areaName;this.totalBudget=event.detail.totalBudget}_clearArea(){this.areaName=null;this.totalBudget=null}_errorHandler(event){this.errorText=this.localize(event.detail);this.$$("#errorDialog").open()}_exit(){if("post"===this._page&&window.appLastArea){window.history.pushState({},null,window.appLastArea);this.fire("location-changed",window.appLastArea);window.appLastArea=null}else{window.history.pushState({},null,"/");this.fire("location-changed","/")}}_setTitle(event,detail){//this.set('title', detail);
+    `}constructor(){window.__localizationCache={messages:{}};super();setPassiveTouchGestures(!0);this._boot();var name="locale".replace(/[\[]/,"\\[").replace(/[\]]/,"\\]"),regex=new RegExp("[\\?&]"+name+"=([^&#]*)"),results=regex.exec(location.search),language=null===results?null:decodeURIComponent(results[1].replace(/\+/g," "));if(language){this.language=language;localStorage.setItem("languageOverride",language)}this.filteredItems=[];this.setDummyData()}setDummyData(){this.choicePoints=200;this.quizQuestions=[{question:"What is the shortest Constitution in the world?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",correctAnswer:2,answers:["Luxemburg","Andorra","Monaco","Bangladesh"]},{question:"When Oliver Cromwell set up his short-lived government following the English Civil war he created a constitution, but he called his document?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/cromwell1.jpg",correctAnswer:3,answers:["The Law of the Land","Principia Jurisprudencia","The Fiat of God\u2019s Will","The Instrument of Government"]},{question:"The Edicts of Ashoka established a constitutional code for the 3rd Century BC in what is now what modern country?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/3bc1.jpg",correctAnswer:1,answers:["Nigeria","India","Thailand","Australia"]},{question:"The famous line \u201Clife, liberty and the pursuit of happiness\u201D in the US Constitution is actually an edit; the original line read, \u201Clife, liberty and...\"?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/wethepeople1.png",correctAnswer:3,answers:["The acquisition of wealth","The perfection of spirit","the promotion of the Common Good","the pursuit of property"]}],this.allItems=[{id:"1",branch:"Executive Core Articles",name:"Head of State: Empowered President",description:"An Empowered President, elected directly or indirectly by the entire electorate, meant to personify the will of the people in single individual's leadership abilities.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:8},{id:"2",branch:"Executive Core Articles",name:"Head of State: Prime Minister",description:"As the head of the Legislative/Parliamentary system, the Prime Minister\u2019s authority arises from the elected representatives choice of a leader amongst themselves. This helps reduce gridlock in government, while also disconnecting the Head of State from the direct will of the electorate.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:8},{id:"3",branch:"Executive Core Articles",name:"Head of State: King",description:"Historically the center of authority in pre-modern governments, the King's authority rests on a traditional architecture of original military conquest, hereditary transitions of power, and usually some notion of Divine Will or Mandate of Heaven. Though once always autocratic and ruling through all powerful fiat of their will, many monarchs have ceded power to more democratic and parliamentary governments, becoming largely figureheads of continuity and tradition.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe8.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:8},{id:"4",branch:"Executive Core Articles",name:"Head of State: High Priest",description:"In a proper Theocracy, the central authority rests with the highest authority of the clergy of the religious faith that underpins the government, the spiritual leader of the majority of the population of the country. This authority may function as an interpretive and judicial authority primarily; or it may be an absolute autocratic authority over all structures of government.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group2.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:18},{id:"5",branch:"Executive Core Articles",name:"Figurehead Executive: Vice President",description:"Whether elected individually or packaged with a President on a \"ticket\", the VP gives the electorate the comfort of knowing they have chosen a worthy successor to the President, and a smooth transition of power is guaranteed should something unexpected happen to the chief executive. The VP position is also a valuable political actor for diplomacy and affairs of state.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe6.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:18},{id:"6",branch:"Executive Core Articles",name:"Figurehead Executive: Figurehead President",description:"In the case of the Head of State being a Prime Minister, King or Supreme Theocrat, then there might be an executive position called President, that may be appointed or elected, and generally performs public relations for the government, as well as matters of diplomacy and affairs of state.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group3.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:8},{id:"7",branch:"Executive Core Articles",name:"Cabinet: Appointed by Head of State",description:"Sometimes called \"to the victor go the spoils\" approach, this allows the Executive Head of State to compose a team of cabinet members that they select, insuring a team of like minded individuals likely to work well with the Head of State and each other. Comes with increased risk of croneyism.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Module+image+size+-+864x580+Copy+4.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:18},{id:"8",branch:"Executive Core Articles",name:"Cabinet: Appointed by Legislature/Parliament",description:"In a Prime Minister's cabinet, integrated into the parliamentary process, the factions in the legislative body may also control the staffing of the PM's cabinet, again helping the government be as integrated, coherent and internal conflict-free as possible.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png",module_type:"Exclusive",exclusive_ids:"1,2,3,4",price:8},{id:"9",branch:"Executive Amendments",name:"Veto Power",description:"The ability of the Executive to serve as a check on laws generated by the Legislative/Parliamentary Branch. This gives the Executive a roll of oversight of the law making process, thus giving them the chance to lead from a \"bully pulpit\" against popular opinion if the new law polls well, or to function as an agent of that public opinion as their elected Executive in stopping an unpopular law.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group7.png",module_type:"Simple",exclusive_ids:"",price:24},{id:"10",branch:"Executive Amendments",name:"Term Limits",description:"In the case of an Empowered President, this provides for a set number of terms to which the executive may be elected, usually limited to no more than 2 or 3 terms, and usually no more than 4 to 6 years in length.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group9.png",module_type:"Simple",exclusive_ids:"",price:24},{id:"11",branch:"Executive Amendments",name:"Age Requirement",description:"Sets a minimum age for the Head of State/chief executive, making life experience a key requirement for service as national leader.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",module_type:"Simple",exclusive_ids:"",price:4},{id:"12",branch:"Executive Amendments",name:"Meritocracy Requirement",description:"Sets requirements of acheivement for prospective candidates for Head of State, in professional, academic, and political life as qualifications for public service as Head of State. This may involve actual objective testing, or evaluation by a peer review panel.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",module_type:"Simple",exclusive_ids:"",price:4},{id:"13",branch:"Executive Amendments",name:"Conflict of Interest Constraints",description:"Sets a constitutional prohibition against any business or organizational ties that might pit the Head of State's self-interest against the interest of the State.The Head of State must not abrogate their loyalties, and their commitment to the public good must be beyond question.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",module_type:"Simple",exclusive_ids:"",price:4},{id:"14",branch:"Executive Amendments",name:"Emoluments Prohibition",description:"The Head of State must not be allowed to accept gifts from foreign entities who might be trying to use such gifts to sway foreign policy decisions that the Head of State should make without such influence.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",module_type:"Simple",exclusive_ids:"",price:4},{id:"15",branch:"Executive Amendments",name:"Power of Executive Orders/Royal Decree",description:"Confers to the Executive branch the authority to issue edicts/executive orders/decrees that function roughly the same as laws passed by the Legislative/Paliamentary Branch, though they generally sunset when the Executive goes through a transition of power.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",module_type:"Simple",exclusive_ids:"",price:4},{id:"16",branch:"Executive Amendments",name:"Religious Authority",description:"Confers on the Head of State authority over the state religion, and the ability to make decrees that have both religious and legal significance to the society.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",module_type:"Simple",exclusive_ids:"",price:4},{id:"17",branch:"Executive Amendments",name:"Control of Taxation/Budget",description:"The Branch that has this power makes the ultimate decisions on the government's revenue sources, funding allocation and debt and deficit management, the so called 'power of the purse'.",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",module_type:"Simple",exclusive_ids:"",price:4}];this.cacheDataImages();//this.filteredItems = this.allItems;
+}cacheDataImages(){if(this.quizQuestions){this.quizQuestions.forEach(question=>{setTimeout(()=>{const img=new Image;img.src=question.imageUrl})})}if(this.allItems){this.allItems.forEach(module=>{setTimeout(()=>{const img=new Image;img.src=module.image_url})})}}processCorrectQuizAnswer(){this.fire("oap-overlay",{html:html$1`${this.localize("correctAnswer")}`,soundEffect:"",duration:300});this.choicePoints+=15;this.$$("#choicePoints").animate([{transform:"scale(5)",easing:"ease-in"},{transform:"scale(1)",easing:"ease-out"}],{duration:650,iterations:1})}_setupCustomCss(config){if(config.cssProperties){config.cssProperties.forEach(property=>{const propName=Object.keys(property)[0],values=Object.keys(property).map(function(e){return property[e]}),propValue=values[0];this.shadowRoot.host.style.setProperty(propName,propValue);if(window.ShadyCSS){window.ShadyCSS.styleSubtree(this,property)}})}}selectLocale(event){if(this.language!=event.target.dataset.locale){this.language=event.target.dataset.locale;localStorage.setItem("languageOverride",this.language);if("area-ballot"===this._page&&this.currentBallot){setTimeout(()=>{this.currentBallot.loadArea()},10)}}}_boot(){fetch("/votes/boot",{credentials:"same-origin"}).then(res=>res.json()).then(response=>{this.requestInProgress=!1;this.language="en";this.votePublicKey=response.public_key;this._setupCustomCss(response.config.client_config);window.localeResources=response.config.client_config.locales;this.configFromServer=response.config;this.updateAppMeta(this.configFromServer.client_config.shareMetaData);if(this.configFromServer.client_config.welcomeLocales&&this.configFromServer.client_config.ballotBudgetLogo){const tempImg=new Image;tempImg.src=this.configFromServer.client_config.ballotBudgetLogo}ga("create",this.configFromServer.client_config.googleAnalyticsId,"auto");this.postsHost="https://yrpri.org";this.favoriteIcon="heart";this.oneBallotId=1;if(this.configFromServer.client_config.defaultLanguage){if(localStorage.getItem("languageOverride")){this.language=localStorage.getItem("languageOverride")}else{this.language=this.configFromServer.client_config.defaultLanguage}this.setupLocaleTexts()}if(this.configFromServer.client_config.favoriteIcon){this.favoriteIcon=this.configFromServer.client_config.favoriteIcon}if(!1){const path="/quiz";window.history.pushState({},null,path);this.fire("location-changed",path)}if(this.configFromServer.client_config.welcomeLocales){setTimeout(()=>{if(!localStorage.getItem("haveClsosedWelcome")){this.$$("#welcomeDialog").open()}})}window.language=this.language;window.localize=this.localize;if(!0===this.configFromServer.client_config.insecureEmailLoginEnabled){new Promise((res,rej)=>_require.default(["./oap-insecure-email-login.js"],res,rej)).then(bundle=>bundle&&bundle.$oapInsecureEmailLogin||{})}}).catch(error=>{console.error("Error:",error);this.fire("oav-error","unknown_error")})}disconnectedCallback(){this._removeListeners()}b64DecodeUnicode(str){// Going backwards: from bytestream, to percent-encoding, to original string.
+return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))}_setupListeners(){this.addEventListener("app-resources-loaded",this._transinsecationLoaded);this.addEventListener("oav-set-title",this._setTitle);this.addEventListener("oav-error",this._errorHandler);this.addEventListener("oav-set-area",this._setArea);this.addEventListener("oav-clear-area",this._clearArea);this.addEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.addEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.addEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.addEventListener("oav-exit",this._exit);this.addEventListener("oav-open-help",this._help);this.addEventListener("oav-set-ballot-element",this._setBallotElement);this.addEventListener("oav-set-budget-element",this._setBudgetElement);this.addEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);this.addEventListener("oav-insecure-email-login",this._insecureEmailLogin);window.addEventListener("resize",this.resetSizeWithDelay.bind(this));this.addEventListener("location-changed",this._locationChanged);this.addEventListener("oap-process-correct-quiz-answer",this.processCorrectQuizAnswer);this.addEventListener("oap-quiz-finished",this.quizFinished);this.addEventListener("oap-filtering-finished",this.filteringFinished);this.addEventListener("item-selected",this.addItemToFinalList)}addItemToFinalList(event){this.filteredItems.push(event.detail)}_setBallotElement(event){this.currentBallot=event.detail}_setBudgetElement(event){setTimeout(()=>{this.currentBudget=event.detail},100)}filteringFinished(){const path="/area-ballot/1";window.history.pushState({},null,path);this.fire("location-changed",path)}quizFinished(){const path="/filter-articles";window.history.pushState({},null,path);this.fire("location-changed",path)}_removeListeners(){this.removeEventListener("app-resources-loaded",this._translationLoaded);this.removeEventListener("oav-set-title",this._setTitle);this.removeEventListener("oav-error",this._errorHandler);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("oav-clear-area",this._clearArea);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("location-changed",this._locationChanged);this.removeEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.removeEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.removeEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.removeEventListener("oav-exit",this._exit);this.removeEventListener("oav-set-ballot-element",this._setBallotElement);this.removeEventListener("oav-set-budget-element",this._setBudgetElement);this.removeEventListener("oav-open-help",this._help);this.removeEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);window.removeEventListener("resize",this.resetSizeWithDelay);this.removeEventListener("oav-insecure-email-login",this._insecureEmailLogin);this.removeEventListener("oap-process-correct-quiz-answer",this.processCorrectQuizAnswer);this.removeEventListener("oap-quiz-finished",this.quizFinished);this.removeEventListener("item-selected",this.addItemToFinalList);this.removeEventListener("oap-filtering-finished",this.filteringFinished)}_scrollItemIntoView(event){this.$$("#budgetBallot")._scrollItemIntoView(event.detail)}_hideFavoriteItem(){this.$$("#favoriteIcon").hidden=!0}_insecureEmailLogin(event){this.$$("#insecureEmailLogin").open(event.detail.areaId,event.detail.areaName,event.detail.onLoginFunction)}_toggleFavoriteItem(event){const detail=event.detail;if(detail.item){setTimeout(()=>{var transformLeft,transformTop;if(!0===this.$$("#favoriteIcon").hidden){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.orgAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.orgAnimPos.top+"px";transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}else{var oldBudgetAnimPos=this.currentBallot.oldFavoriteItem?this.ballotElement.getItemLeftTop(this.currentBallot.oldFavoriteItem):null;if(oldBudgetAnimPos){transformLeft=oldBudgetAnimPos.left-detail.budgetAnimPos.left;transformTop=oldBudgetAnimPos.top-detail.budgetAnimPos.top}else{console.warn("Can't find old item");transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}}this.$$("#favoriteIcon").hidden=!1;this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px";var animation=this.$$("#favoriteIcon").animate([{transform:"translateY("+transformTop+"px) translateX("+transformLeft+"px)",easing:"ease-out"},{transform:"scale(3)",easing:"ease-in"},{transform:"scale(1)",easing:"ease-out"}],{duration:720,iterations:1});animation.onfinish=function(){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px"}.bind(this)})}}resetFavoriteIconPosition(){if(this.$$("#budgetBallot").favoriteItem){const pos=this.$$("#budget").getItemLeftTop(this.$$("#budgetBallot").favoriteItem);if(pos){this.$$("#favoriteIcon").style.left=pos.left+"px";this.$$("#favoriteIcon").style.top=pos.top+"px"}else{console.error("Can't find position of favorite item")}}}_help(){this.$$("#helpDialog").open()}_setArea(event){this.areaName=event.detail.areaName;this.totalBudget=event.detail.totalBudget}_clearArea(){this.areaName=null;this.totalBudget=null}_errorHandler(event){this.errorText=this.localize(event.detail);this.$$("#errorDialog").open()}_exit(){if("post"===this._page&&window.appLastArea){window.history.pushState({},null,window.appLastArea);this.fire("location-changed",window.appLastArea);window.appLastArea=null}else{window.history.pushState({},null,"/");this.fire("location-changed","/")}}_setTitle(event,detail){//this.set('title', detail);
 }resetSizeWithDelay(){clearTimeout(this.resizeTimer);this.resizeTimer=setTimeout(()=>{this.resetFavoriteIconPosition()},250)}_translationLoaded(){if(!this.haveSetLanguage){this.haveSetLanguage=!0;if("undefined"!==typeof Storage){var selectedLanguage=localStorage.getItem("selectedLanguage");if(selectedLanguage){this.fire("iron-signal",{name:"set-language",data:selectedLanguage})}}}}closeWelcome(){localStorage.setItem("haveClosedWelcome",!0)}getDialog(name){return this.$$("#"+name)}firstUpdated(){this._setupListeners();installRouter(location=>this._locationChanged(location));installOfflineWatcher(offline=>this._offlineChanged(offline));installMediaQueryWatcher(`(min-width: 460px)`,matches=>this._layoutChanged(matches));installMediaQueryWatcher(`(min-width: 1024px)`,matches=>{this.wide=matches;this.wideAndBallot=this.wide&&"area-ballot"===this._page})}getHelpContent(){if(this.configFromServer.client_config.helpPageLocales[this.language]){return this.b64DecodeUnicode(this.configFromServer.client_config.helpPageLocales[this.language].b64text)}else if(this.configFromServer.client_config.helpPageLocales.en){return this.b64DecodeUnicode(this.configFromServer.client_config.helpPageLocales.en.b64text)}else{return"No help page found for selected language!"}}getWelcomeHeading(){if(this.configFromServer.client_config.welcomeLocales[this.language]){return this.configFromServer.client_config.welcomeLocales[this.language].heading}else if(this.configFromServer.client_config.welcomeLocales.en){return this.configFromServer.client_config.welcomeLocales.en.heading}else{return"No heading found"}}getWelcomeText(){if(this.configFromServer.client_config.welcomeLocales[this.language]){return this.configFromServer.client_config.welcomeLocales[this.language].text}else if(this.configFromServer.client_config.welcomeLocales.en){return this.configFromServer.client_config.welcomeLocales.en.text}else{return"No heading found"}}setupLocaleTexts(){this.welcomeHeading=this.getWelcomeHeading();this.welcomeText=this.getWelcomeText();this.helpContent=this.getHelpContent()}updateAppMeta(meta){document.title=meta.title;updateMetadata({title:meta.title,description:meta.description,image:meta.shareImageUrl// This object also takes an image property, that points to an img src.
-});var link=document.querySelector("link[rel*='icon']")||document.createElement("link");link.type="image/x-icon";link.rel="shortcut icon";link.href=meta.faviconUrl;document.getElementsByTagName("head")[0].appendChild(link)}updated(changedProps){if(changedProps.has("language")){this.setupLocaleTexts()}if(changedProps.has("_page")){const pageTitle=this.appTitle+" - "+this._page,page=this._page,oldPage=changedProps.get("_page");if(this.configFromServer&&this.configFromServer.client_config.landingPageData&&page&&"select-voting-area"!=page){this.showExit=!0}else{this.showExit=!1}// Setup top ballot if needed
+});var link=document.querySelector("link[rel*='icon']")||document.createElement("link");link.type="image/x-icon";link.rel="shortcut icon";link.href=meta.faviconUrl;document.getElementsByTagName("head")[0].appendChild(link)}updated(changedProps){if(changedProps.has("language")){this.setupLocaleTexts()}if(changedProps.has("budgetElement")){debugger}if(changedProps.has("_page")){const pageTitle=this.appTitle+" - "+this._page,page=this._page,oldPage=changedProps.get("_page");if(this.configFromServer&&this.configFromServer.client_config.landingPageData&&page&&"select-voting-area"!=page){this.showExit=!0}else{this.showExit=!1}// Setup top ballot if needed
 if(page&&"area-ballot"==page){this.hideBudget=!1}else{this.hideBudget=!0}// Reset post if needed
 if("post"==oldPage&&this.$$("#post")){this.$$("#post").reset()}// Refresh list when returning back to a ballot
 if("area-ballot"==page&&this.$$("#budgetBallot")&&this.$$("#budgetBallot").refreshList){this.$$("#budgetBallot").refreshList()}// Reset ballot tab view to list
@@ -15544,6 +15547,6 @@ if("area-ballot"==oldPage&&this.$$("#budgetBallot")){this._hideFavoriteItem()}se
 if("voting-completed"==page&&"area-ballot"!=oldPage){window.location="/"}// Refresh counts if coming from voting-completed
 if("voting-completed"==oldPage&&this.$$("#selectVotingArea")){this.$$("#selectVotingArea").refreshAreaCounters()}// Send page info to Google Analytics
 if(page&&"function"==typeof ga){ga("send","pageview",{page:location.pathname+location.search+location.hash})}this.wideAndBallot=this.wide&&"area-ballot"===page}}_layoutChanged(isWideLayout){}_offlineChanged(offline){const previousOffline=this._offline;this._offline=offline;// Don't show the snackbar on the first load of the page.
-if(previousOffline===void 0){return}clearTimeout(this.__snackbarTimer);this._snackbarOpened=!0;this.__snackbarTimer=setTimeout(()=>{this._snackbarOpened=!1},3e3)}_locationChanged(location){if(location instanceof CustomEvent)location={pathname:location.detail};if("/"===location.pathname&&this.oneBallotId){const path="/area-ballot/"+this.oneBallotId;window.history.pushState({},null,path);location={pathname:path}}const path=window.decodeURIComponent(location.pathname),page="/"===path?"/":path.slice(1).split("/")[0];this._loadPage(page);// Any other info you might want to extract from the path (like page type),
+if(previousOffline===void 0){return}clearTimeout(this.__snackbarTimer);this._snackbarOpened=!0;this.__snackbarTimer=setTimeout(()=>{this._snackbarOpened=!1},3e3)}_locationChanged(location){if(location instanceof CustomEvent)location={pathname:location.detail};if("/"===location.pathname){const path="/quiz";window.history.pushState({},null,path);location={pathname:path};this.fire("location-changed",path)}const path=window.decodeURIComponent(location.pathname),page="/"===path?"/":path.slice(1).split("/")[0];this._loadPage(page);// Any other info you might want to extract from the path (like page type),
 // you can do here.
-if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}}_loadPage(page){switch(page){case"post":new Promise((res,rej)=>_require.default(["./yp-post/yp-post.js"],res,rej)).then(bundle=>bundle&&bundle.$ypPost||{});break;case"area-ballot":case"voting-completed":case"select-voting-area":case"/":break;default:page="view404";new Promise((res,rej)=>_require.default(["./oav-view404.js"],res,rej)).then(bundle=>bundle&&bundle.$oavView404||{});}this._page=page}_menuButtonClicked(){this._updateDrawerState(!0)}_drawerOpenedChanged(e){this._updateDrawerState(e.target.opened)}}window.customElements.define("oav-app",OavApp)});
+if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}}_loadPage(page){switch(page){case"post":new Promise((res,rej)=>_require.default(["./yp-post/yp-post.js"],res,rej)).then(bundle=>bundle&&bundle.$ypPost||{});break;case"area-ballot":case"voting-completed":case"filter-articles":case"quiz":case"/":break;default:page="view404";new Promise((res,rej)=>_require.default(["./oap-view404.js"],res,rej)).then(bundle=>bundle&&bundle.$oapView404||{});}this._page=page}_menuButtonClicked(){this._updateDrawerState(!0)}_drawerOpenedChanged(e){this._updateDrawerState(e.target.opened)}}window.customElements.define("oap-app",OapApp)});

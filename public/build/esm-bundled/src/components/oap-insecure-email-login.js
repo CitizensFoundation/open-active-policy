@@ -1,4 +1,4 @@
-define(["exports","./oav-app.js"],function(_exports,_oavApp){"use strict";Object.defineProperty(_exports,"__esModule",{value:!0});_exports.PaperInputHelper=_exports.PaperInputBehaviorImpl=_exports.PaperInputBehavior=_exports.PaperInputAddonBehavior=_exports.OavInsecureEmailLoginStyles=_exports.IronA11yAnnouncer=_exports.$paperInputBehavior=_exports.$paperInputAddonBehavior=_exports.$oavInsecureEmailLoginStyles=_exports.$ironA11yAnnouncer=void 0;const IronA11yAnnouncer=(0,_oavApp.Polymer)({_template:_oavApp.html`
+import{Polymer,html,IronValidatableBehavior,dom,PaperCheckedElementBehavior,PaperInkyFocusBehaviorImpl,afterNextRender,IronA11yKeysBehavior,IronControlState,PolymerElement,dashToCamelCase,IronFormElementBehavior,css,html$1,OapBaseElement}from"./oap-app.js";const IronA11yAnnouncer=Polymer({_template:html`
     <style>
       :host {
         display: inline-block;
@@ -15,14 +15,14 @@ define(["exports","./oav-app.js"],function(_exports,_oavApp){"use strict";Object
    * Cause a text string to be announced by screen readers.
    *
    * @param {string} text The text that should be announced.
-   */announce:function(text){this._text="";this.async(function(){this._text=text},100)},_onIronAnnounce:function(event){if(event.detail&&event.detail.text){this.announce(event.detail.text)}}});_exports.IronA11yAnnouncer=IronA11yAnnouncer;IronA11yAnnouncer.instance=null;IronA11yAnnouncer.requestAvailability=function(){if(!IronA11yAnnouncer.instance){IronA11yAnnouncer.instance=document.createElement("iron-a11y-announcer")}document.body.appendChild(IronA11yAnnouncer.instance)};var ironA11yAnnouncer={IronA11yAnnouncer:IronA11yAnnouncer};_exports.$ironA11yAnnouncer=ironA11yAnnouncer;(0,_oavApp.Polymer)({_template:_oavApp.html`
+   */announce:function(text){this._text="";this.async(function(){this._text=text},100)},_onIronAnnounce:function(event){if(event.detail&&event.detail.text){this.announce(event.detail.text)}}});IronA11yAnnouncer.instance=null;IronA11yAnnouncer.requestAvailability=function(){if(!IronA11yAnnouncer.instance){IronA11yAnnouncer.instance=document.createElement("iron-a11y-announcer")}document.body.appendChild(IronA11yAnnouncer.instance)};var ironA11yAnnouncer={IronA11yAnnouncer:IronA11yAnnouncer};Polymer({_template:html`
     <style>
       :host {
         display: inline-block;
       }
     </style>
     <slot id="content"></slot>
-`,is:"iron-input",behaviors:[_oavApp.IronValidatableBehavior],/**
+`,is:"iron-input",behaviors:[IronValidatableBehavior],/**
    * Fired whenever `validate()` is called.
    *
    * @event iron-input-validate
@@ -57,7 +57,7 @@ define(["exports","./oav-app.js"],function(_exports,_oavApp){"use strict";Object
      */autoValidate:{type:Boolean,value:!1},/**
      * The native input element.
      */_inputElement:Object},observers:["_bindValueChanged(bindValue, _inputElement)"],listeners:{input:"_onInput",keypress:"_onKeypress"},created:function(){IronA11yAnnouncer.requestAvailability();this._previousValidInput="";this._patternAlreadyChecked=!1},attached:function(){// If the input is added at a later time, update the internal reference.
-this._observer=(0,_oavApp.dom)(this).observeNodes(function(info){this._initSlottedInput()}.bind(this))},detached:function(){if(this._observer){(0,_oavApp.dom)(this).unobserveNodes(this._observer);this._observer=null}},/**
+this._observer=dom(this).observeNodes(function(info){this._initSlottedInput()}.bind(this))},detached:function(){if(this._observer){dom(this).unobserveNodes(this._observer);this._observer=null}},/**
    * Returns the distributed input element.
    */get inputElement(){return this._inputElement},_initSlottedInput:function(){this._inputElement=this.getEffectiveChildren()[0];if(this.inputElement&&this.inputElement.value){this.bindValue=this.inputElement.value}this.fire("iron-input-ready")},get _patternRegExp(){var pattern;if(this.allowedPattern){pattern=new RegExp(this.allowedPattern)}else{switch(this.inputElement.type){case"number":pattern=/[0-9.,e-]/;break;}}return pattern},/**
    * @suppress {checkTypes}
@@ -100,7 +100,7 @@ this._patternAlreadyChecked=!0;var thisChar=String.fromCharCode(event.charCode);
    */validate:function(){if(!this.inputElement){this.invalid=!1;return!0}// Use the nested input's native validity.
 var valid=this.inputElement.checkValidity();// Only do extra checking if the browser thought this was valid.
 if(valid){// Empty, required input is invalid
-if(this.required&&""===this.bindValue){valid=!1}else if(this.hasValidator()){valid=_oavApp.IronValidatableBehavior.validate.call(this,this.bindValue)}}this.invalid=!valid;this.fire("iron-input-validate");return valid},_announceInvalidCharacter:function(message){this.fire("iron-announce",{text:message})},_computeValue:function(bindValue){return bindValue}});const template=_oavApp.html`<style>
+if(this.required&&""===this.bindValue){valid=!1}else if(this.hasValidator()){valid=IronValidatableBehavior.validate.call(this,this.bindValue)}}this.invalid=!valid;this.fire("iron-input-validate");return valid},_announceInvalidCharacter:function(message){this.fire("iron-announce",{text:message})},_computeValue:function(bindValue){return bindValue}});const template=html`<style>
   :host {
     display: inline-block;
     white-space: nowrap;
@@ -323,7 +323,7 @@ if(this.required&&""===this.bindValue){valid=!1}else if(this.hasValidator()){val
                                                element, make sure you've imported `paper-styles/typography.html`.
                                                
                                                @demo demo/index.html
-                                               */(0,_oavApp.Polymer)({_template:template,is:"paper-checkbox",behaviors:[_oavApp.PaperCheckedElementBehavior],/** @private */hostAttributes:{role:"checkbox","aria-checked":!1,tabindex:0},properties:{/**
+                                               */Polymer({_template:template,is:"paper-checkbox",behaviors:[PaperCheckedElementBehavior],/** @private */hostAttributes:{role:"checkbox","aria-checked":!1,tabindex:0},properties:{/**
      * Fired when the checked state changes due to user interaction.
      *
      * @event change
@@ -333,11 +333,11 @@ if(this.required&&""===this.bindValue){valid=!1}else if(this.hasValidator()){val
          * @event iron-change
          */ariaActiveAttribute:{type:String,value:"aria-checked"}},attached:function(){// Wait until styles have resolved to check for the default sentinel.
 // See polymer#4009 for more details.
-(0,_oavApp.afterNextRender)(this,function(){var inkSize=this.getComputedStyleValue("--calculated-paper-checkbox-ink-size").trim();// If unset, compute and set the default `--paper-checkbox-ink-size`.
+afterNextRender(this,function(){var inkSize=this.getComputedStyleValue("--calculated-paper-checkbox-ink-size").trim();// If unset, compute and set the default `--paper-checkbox-ink-size`.
 if("-1px"===inkSize){var checkboxSizeText=this.getComputedStyleValue("--calculated-paper-checkbox-size").trim(),units="px",unitsMatches=checkboxSizeText.match(/[A-Za-z]+$/);if(null!==unitsMatches){units=unitsMatches[0]}var checkboxSize=parseFloat(checkboxSizeText),defaultInkSize=8/3*checkboxSize;if("px"===units){defaultInkSize=Math.floor(defaultInkSize);// The checkbox and ripple need to have the same parity so that their
 // centers align.
 if(defaultInkSize%2!==checkboxSize%2){defaultInkSize++}}this.updateStyles({"--paper-checkbox-ink-size":defaultInkSize+units})}})},_computeCheckboxClass:function(checked,invalid){var className="";if(checked){className+="checked "}if(invalid){className+="invalid"}return className},_computeCheckmarkClass:function(checked){return checked?"":"hidden"},// create ripple inside the checkboxContainer
-_createRipple:function(){this._rippleContainer=this.$.checkboxContainer;return _oavApp.PaperInkyFocusBehaviorImpl._createRipple.call(this)}});const PaperInputAddonBehavior={attached:function(){this.fire("addon-attached")},/**
+_createRipple:function(){this._rippleContainer=this.$.checkboxContainer;return PaperInkyFocusBehaviorImpl._createRipple.call(this)}});const PaperInputAddonBehavior={attached:function(){this.fire("addon-attached")},/**
    * The function called by `<paper-input-container>` when the input value or
    * validity changes.
    * @param {{
@@ -348,17 +348,8 @@ _createRipple:function(){this._rippleContainer=this.$.checkboxContainer;return _
    *     inputElement: The input element.
    *     value: The input value.
    *     invalid: True if the input value is invalid.
-   */update:function(state){}};_exports.PaperInputAddonBehavior=PaperInputAddonBehavior;var paperInputAddonBehavior={PaperInputAddonBehavior:PaperInputAddonBehavior};// aria-labelledby) and add-ons.
-_exports.$paperInputAddonBehavior=paperInputAddonBehavior;const PaperInputHelper={};_exports.PaperInputHelper=PaperInputHelper;PaperInputHelper.NextLabelID=1;PaperInputHelper.NextAddonID=1;PaperInputHelper.NextInputID=1;/**
-                                   * Use `PaperInputBehavior` to implement inputs with `<paper-input-container>`.
-                                   * This behavior is implemented by `<paper-input>`. It exposes a number of
-                                   * properties from `<paper-input-container>` and `<input is="iron-input">` and
-                                   * they should be bound in your template.
-                                   *
-                                   * The input element can be accessed by the `inputElement` property if you need
-                                   * to access properties or methods that are not exposed.
-                                   * @polymerBehavior PaperInputBehavior
-                                   */const PaperInputBehaviorImpl={properties:{/**
+   */update:function(state){}};var paperInputAddonBehavior={PaperInputAddonBehavior:PaperInputAddonBehavior};// aria-labelledby) and add-ons.
+const PaperInputHelper={NextLabelID:1,NextAddonID:1,NextInputID:1},PaperInputBehaviorImpl={properties:{/**
      * Fired when the input changes due to user interaction.
      *
      * @event change
@@ -525,13 +516,13 @@ if(!this.$){this.$={}}if(!this.$.input){this._generateInputId();this.$.input=thi
 this._typesThatHaveText=["date","datetime","datetime-local","month","time","week","file"]},attached:function(){this._updateAriaLabelledBy();// In the 2.0 version of the element, this is handled in `onIronInputReady`,
 // i.e. after the native input has finished distributing. In the 1.0
 // version, the input is in the shadow tree, so it's already available.
-if(!_oavApp.PolymerElement&&this.inputElement&&-1!==this._typesThatHaveText.indexOf(this.inputElement.type)){this.alwaysFloatLabel=!0}},_appendStringWithSpace:function(str,more){if(str){str=str+" "+more}else{str=more}return str},_onAddonAttached:function(event){var target=(0,_oavApp.dom)(event).rootTarget;if(target.id){this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,target.id)}else{var id="paper-input-add-on-"+PaperInputHelper.NextAddonID++;target.id=id;this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,id)}},/**
+if(!PolymerElement&&this.inputElement&&-1!==this._typesThatHaveText.indexOf(this.inputElement.type)){this.alwaysFloatLabel=!0}},_appendStringWithSpace:function(str,more){if(str){str=str+" "+more}else{str=more}return str},_onAddonAttached:function(event){var target=dom(event).rootTarget;if(target.id){this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,target.id)}else{var id="paper-input-add-on-"+PaperInputHelper.NextAddonID++;target.id=id;this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,id)}},/**
    * Validates the input element and sets an error style if needed.
    *
    * @return {boolean}
    */validate:function(){return this.inputElement.validate()},/**
    * Forward focus to inputElement. Overriden from IronControlState.
-   */_focusBlurHandler:function(event){_oavApp.IronControlState._focusBlurHandler.call(this,event);// Forward the focus to the nested input.
+   */_focusBlurHandler:function(event){IronControlState._focusBlurHandler.call(this,event);// Forward the focus to the nested input.
 if(this.focused&&!this._shiftTabPressed&&this._focusableElement){this._focusableElement.focus()}},/**
    * Handler that is called when a shift+tab keypress is detected by the menu.
    *
@@ -547,7 +538,7 @@ if(this.focused&&!this._shiftTabPressed&&this._focusableElement){this._focusable
 try{var start=this.inputElement.selectionStart;this.value=newValue;// The cursor automatically jumps to the end after re-setting the value,
 // so restore it to its original position.
 this.inputElement.selectionStart=start;this.inputElement.selectionEnd=start}catch(e){// Just set the value and give up on the caret.
-this.value=newValue}},_computeAlwaysFloatLabel:function(alwaysFloatLabel,placeholder){return placeholder||alwaysFloatLabel},_updateAriaLabelledBy:function(){var label=(0,_oavApp.dom)(this.root).querySelector("label");if(!label){this._ariaLabelledBy="";return}var labelledBy;if(label.id){labelledBy=label.id}else{labelledBy="paper-input-label-"+PaperInputHelper.NextLabelID++;label.id=labelledBy}this._ariaLabelledBy=labelledBy},_generateInputId:function(){if(!this._inputId||""===this._inputId){this._inputId="input-"+PaperInputHelper.NextInputID++}},_onChange:function(event){// In the Shadow DOM, the `change` event is not leaked into the
+this.value=newValue}},_computeAlwaysFloatLabel:function(alwaysFloatLabel,placeholder){return placeholder||alwaysFloatLabel},_updateAriaLabelledBy:function(){var label=dom(this.root).querySelector("label");if(!label){this._ariaLabelledBy="";return}var labelledBy;if(label.id){labelledBy=label.id}else{labelledBy="paper-input-label-"+PaperInputHelper.NextLabelID++;label.id=labelledBy}this._ariaLabelledBy=labelledBy},_generateInputId:function(){if(!this._inputId||""===this._inputId){this._inputId="input-"+PaperInputHelper.NextInputID++}},_onChange:function(event){// In the Shadow DOM, the `change` event is not leaked into the
 // ancestor tree, so we must do this manually.
 // See
 // https://w3c.github.io/webcomponents/spec/shadow/#events-that-are-not-leaked-into-ancestor-trees.
@@ -562,7 +553,7 @@ if(this.autofocus&&this._focusableElement){// In IE 11, the default document.act
 // just a plain object. We identify the latter case as having no valid
 // activeElement.
 var activeElement=document.activeElement,isActiveElementValid=activeElement instanceof HTMLElement,isSomeElementActive=isActiveElementValid&&activeElement!==document.body&&activeElement!==document.documentElement;/* IE 11 */if(!isSomeElementActive){// No specific element has taken the focus yet, so we can take it.
-this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBehaviorImpl=PaperInputBehaviorImpl;const PaperInputBehavior=[_oavApp.IronControlState,_oavApp.IronA11yKeysBehavior,PaperInputBehaviorImpl];_exports.PaperInputBehavior=PaperInputBehavior;var paperInputBehavior={PaperInputHelper:PaperInputHelper,PaperInputBehaviorImpl:PaperInputBehaviorImpl,PaperInputBehavior:PaperInputBehavior};_exports.$paperInputBehavior=paperInputBehavior;(0,_oavApp.Polymer)({_template:_oavApp.html`
+this._focusableElement.focus()}}}},PaperInputBehavior=[IronControlState,IronA11yKeysBehavior,PaperInputBehaviorImpl];var paperInputBehavior={PaperInputHelper:PaperInputHelper,PaperInputBehaviorImpl:PaperInputBehaviorImpl,PaperInputBehavior:PaperInputBehavior};Polymer({_template:html`
     <style>
       :host {
         display: inline-block;
@@ -592,7 +583,7 @@ this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBeh
    *     inputElement: The input element.
    *     value: The input value.
    *     invalid: True if the input value is invalid.
-   */update:function(state){if(!state.inputElement){return}state.value=state.value||"";var counter=state.value.toString().length.toString();if(state.inputElement.hasAttribute("maxlength")){counter+="/"+state.inputElement.getAttribute("maxlength")}this._charCounterStr=counter}});const template$1=_oavApp.html`
+   */update:function(state){if(!state.inputElement){return}state.value=state.value||"";var counter=state.value.toString().length.toString();if(state.inputElement.hasAttribute("maxlength")){counter+="/"+state.inputElement.getAttribute("maxlength")}this._charCounterStr=counter}});const template$1=html`
 <custom-style>
   <style is="custom-style">
     html {
@@ -706,7 +697,7 @@ this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBeh
                                                `--paper-input-suffix` | Mixin applied to the input suffix | `{}`
                                                                                            This element is `display:block` by default, but you can set the `inline`
                                                attribute to make it `display:inline-block`.
-                                               */(0,_oavApp.Polymer)({_template:_oavApp.html`
+                                               */Polymer({_template:html`
     <style>
       :host {
         display: block;
@@ -964,7 +955,7 @@ this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBeh
      */focused:{readOnly:!0,type:Boolean,value:!1,notify:!0},_addons:{type:Array// do not set a default value here intentionally - it will be initialized
 // lazily when a distributed child is attached, which may occur before
 // configuration for this element in polyfill.
-},_inputHasContent:{type:Boolean,value:!1},_inputSelector:{type:String,value:"input,iron-input,textarea,.paper-input-input"},_boundOnFocus:{type:Function,value:function(){return this._onFocus.bind(this)}},_boundOnBlur:{type:Function,value:function(){return this._onBlur.bind(this)}},_boundOnInput:{type:Function,value:function(){return this._onInput.bind(this)}},_boundValueChanged:{type:Function,value:function(){return this._onValueChanged.bind(this)}}},listeners:{"addon-attached":"_onAddonAttached","iron-input-validate":"_onIronInputValidate"},get _valueChangedEvent(){return this.attrForValue+"-changed"},get _propertyForValue(){return(0,_oavApp.dashToCamelCase)(this.attrForValue)},get _inputElement(){return(0,_oavApp.dom)(this).querySelector(this._inputSelector)},get _inputElementValue(){return this._inputElement[this._propertyForValue]||this._inputElement.value},ready:function(){// Paper-input treats a value of undefined differently at startup than
+},_inputHasContent:{type:Boolean,value:!1},_inputSelector:{type:String,value:"input,iron-input,textarea,.paper-input-input"},_boundOnFocus:{type:Function,value:function(){return this._onFocus.bind(this)}},_boundOnBlur:{type:Function,value:function(){return this._onBlur.bind(this)}},_boundOnInput:{type:Function,value:function(){return this._onInput.bind(this)}},_boundValueChanged:{type:Function,value:function(){return this._onValueChanged.bind(this)}}},listeners:{"addon-attached":"_onAddonAttached","iron-input-validate":"_onIronInputValidate"},get _valueChangedEvent(){return this.attrForValue+"-changed"},get _propertyForValue(){return dashToCamelCase(this.attrForValue)},get _inputElement(){return dom(this).querySelector(this._inputSelector)},get _inputElementValue(){return this._inputElement[this._propertyForValue]||this._inputElement.value},ready:function(){// Paper-input treats a value of undefined differently at startup than
 // the rest of the time (specifically: it does not validate it at startup,
 // but it does after that. We need to track whether the first time we
 // encounter the value is basically this first time, so that we can validate
@@ -983,7 +974,7 @@ this._handleValue(inputElement)},/** @private */_onIronInputValidate:function(ev
    */updateAddons:function(state){for(var addon,index=0;addon=this._addons[index];index++){addon.update(state)}},/** @private */_computeInputContentClass:function(noLabelFloat,alwaysFloatLabel,focused,invalid,_inputHasContent){var cls="input-content";if(!noLabelFloat){var label=this.querySelector("label");if(alwaysFloatLabel||_inputHasContent){cls+=" label-is-floating";// If the label is floating, ignore any offsets that may have been
 // applied from a prefix element.
 this.$.labelAndInputContainer.style.position="static";if(invalid){cls+=" is-invalid"}else if(focused){cls+=" label-is-highlighted"}}else{// When the label is not floating, it should overlap the input element.
-if(label){this.$.labelAndInputContainer.style.position="relative"}if(invalid){cls+=" is-invalid"}}}else{if(_inputHasContent){cls+=" label-is-hidden"}if(invalid){cls+=" is-invalid"}}if(focused){cls+=" focused"}return cls},/** @private */_computeUnderlineClass:function(focused,invalid){var cls="underline";if(invalid){cls+=" is-invalid"}else if(focused){cls+=" is-highlighted"}return cls},/** @private */_computeAddOnContentClass:function(focused,invalid){var cls="add-on-content";if(invalid){cls+=" is-invalid"}else if(focused){cls+=" is-highlighted"}return cls}});(0,_oavApp.Polymer)({_template:_oavApp.html`
+if(label){this.$.labelAndInputContainer.style.position="relative"}if(invalid){cls+=" is-invalid"}}}else{if(_inputHasContent){cls+=" label-is-hidden"}if(invalid){cls+=" is-invalid"}}if(focused){cls+=" focused"}return cls},/** @private */_computeUnderlineClass:function(focused,invalid){var cls="underline";if(invalid){cls+=" is-invalid"}else if(focused){cls+=" is-highlighted"}return cls},/** @private */_computeAddOnContentClass:function(focused,invalid){var cls="add-on-content";if(invalid){cls+=" is-invalid"}else if(focused){cls+=" is-highlighted"}return cls}});Polymer({_template:html`
     <style>
       :host {
         display: inline-block;
@@ -1035,7 +1026,7 @@ if(label){this.$.labelAndInputContainer.style.position="relative"}if(invalid){cl
    *     inputElement: The input element.
    *     value: The input value.
    *     invalid: True if the input value is invalid.
-   */update:function(state){this._setInvalid(state.invalid)}});(0,_oavApp.Polymer)({is:"paper-input",_template:_oavApp.html`
+   */update:function(state){this._setInvalid(state.invalid)}});Polymer({is:"paper-input",_template:html`
     <style>
       :host {
         display: block;
@@ -1139,7 +1130,7 @@ if(label){this.$.labelAndInputContainer.style.position="relative"}if(invalid){cl
       </template>
 
     </paper-input-container>
-  `,behaviors:[PaperInputBehavior,_oavApp.IronFormElementBehavior],properties:{value:{// Required for the correct TypeScript type-generation
+  `,behaviors:[PaperInputBehavior,IronFormElementBehavior],properties:{value:{// Required for the correct TypeScript type-generation
 type:String}},/**
    * Returns a reference to the focusable element. Overridden from
    * PaperInputBehavior to correctly focus the native input.
@@ -1151,7 +1142,7 @@ type:String}},/**
 listeners:{"iron-input-ready":"_onIronInputReady"},_onIronInputReady:function(){// Even though this is only used in the next line, save this for
 // backwards compatibility, since the native input had this ID until 2.0.5.
 if(!this.$.nativeInput){this.$.nativeInput=this.$$("input")}if(this.inputElement&&-1!==this._typesThatHaveText.indexOf(this.$.nativeInput.type)){this.alwaysFloatLabel=!0}// Only validate when attached if the input already has a value.
-if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(this.inputElement)}}});const OavInsecureEmailLoginStyles=_oavApp.css`
+if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(this.inputElement)}}});const OapInsecureEmailLoginStyles=css`
   paper-dialog {
     padding-left: 8px;
     padding-right: 8px;
@@ -1201,7 +1192,7 @@ if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(t
   .postcodeWrongWard {
     color: var(--paper-red-a400);
   }
-`;_exports.OavInsecureEmailLoginStyles=OavInsecureEmailLoginStyles;var oavInsecureEmailLoginStyles={OavInsecureEmailLoginStyles:OavInsecureEmailLoginStyles};_exports.$oavInsecureEmailLoginStyles=oavInsecureEmailLoginStyles;class OavInsecureEmailLogin extends _oavApp.OavBaseElement{static get properties(){return{correctAreaId:{type:String},areaName:{type:String},correctAreaName:{type:String},postCode:{type:String},userSpinner:{type:Boolean},confirmedAge:{type:Boolean},postCodeValidationPattern:{type:String},emailValidationPattern:{type:String},emailErrorMessage:{type:String},passwordErrorMessage:{type:String},name:{type:String},email:{type:String},submitText:{type:String},onLoginFunction:{type:Function},areaId:String,configFromServer:Object,postCodes:{type:Object},postCodesAreas:{type:Object},postCodesAreasNames:{type:Object}}}static get styles(){return[OavInsecureEmailLoginStyles]}render(){return _oavApp.html$1`
+`;var oapInsecureEmailLoginStyles={OapInsecureEmailLoginStyles:OapInsecureEmailLoginStyles};class OapInsecureEmailLogin extends OapBaseElement{static get properties(){return{correctAreaId:{type:String},areaName:{type:String},correctAreaName:{type:String},postCode:{type:String},userSpinner:{type:Boolean},confirmedAge:{type:Boolean},postCodeValidationPattern:{type:String},emailValidationPattern:{type:String},emailErrorMessage:{type:String},passwordErrorMessage:{type:String},name:{type:String},email:{type:String},submitText:{type:String},onLoginFunction:{type:Function},areaId:String,configFromServer:Object,postCodes:{type:Object},postCodesAreas:{type:Object},postCodesAreasNames:{type:Object}}}static get styles(){return[OapInsecureEmailLoginStyles]}render(){return html$1`
       <paper-dialog id="dialog" with-backdrop>
         <div class="layout horizontal center-center">
           <h2>${this.localize("loginWithEmailAndPostCode")}</h2>
@@ -1229,11 +1220,11 @@ if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(t
             ${this.localize("orEnterApostCodeThatBelongsTo")} ${this.areaName}.
           </div>
 
-          ${this.configFromServer.client_config.insecureEmailAgeLimit?_oavApp.html$1`
+          ${this.configFromServer.client_config.insecureEmailAgeLimit?html$1`
             <paper-checkbox id="confirmedAge" class="checkBox" name="confirmedAge">
               ${this.localize("confirmAge")}
             </paper-checkbox>
-          `:_oavApp.html$1``}
+          `:html$1``}
 
 
         </form>
@@ -1241,4 +1232,4 @@ if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(t
           <paper-button autofocus @tap="${this._validateAndSend}">${this.localize("authenticateAndVote")}</paper-button>
         </div>
       </paper-dialog>
-    `}updated(changedProps){super.updated(changedProps)}firstUpdated(){super.firstUpdated();Object.entries(this.configFromServer.client_config.insecureEmailLoginPostCodes).forEach(entry=>{let areaId=entry[0],postCodes=entry[1];postCodes.forEach(postCode=>{this.postCodesAreas[postCode]=areaId;this.postCodesAreasNames[postCode]=this.configFromServer.client_config.insecureEmailLoginAreaNames[areaId]})})}constructor(){super();this.emailValidationPattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";this.confirmedAge=!1;this.postCodesAreas={};this.postCodesAreasNames={}}_resetCorrectArea(){setTimeout(()=>{this.correctAreaId=null;this.correctAreaName=null;this.close()},100)}_loginCompleted(){this.onLoginFunction();this.close()}isValidPostcode(areaId,postCode){postCode=postCode.replace(/\s/g,"").toUpperCase();return-1<this.configFromServer.client_config.insecureEmailLoginPostCodes[areaId].indexOf(postCode)}getAreaForPostCode(postCode){postCode=postCode.replace(/\s/g,"").toUpperCase();if(this.postCodesAreas[postCode]&&this.postCodesAreasNames[postCode]){return{id:this.postCodesAreas[postCode],name:this.postCodesAreasNames[postCode]}}else{return null}}open(areaId,areaName,onLoginFunction){this.onLoginFunction=onLoginFunction;this.areaId=areaId;this.areaName=areaName;this.userSpinner=!1;this.opened=!1;this.postCode="";this.confirmedAge=!1;this.email="";this.$$("#dialog").open()}_validateAndSend(e){this.email=this.$$("#email").value;this.postCode=this.$$("#postCode").value;if(this.email&&this.postCode&&this.$$("#confirmedAge").checked){const re=new RegExp(this.emailValidationPattern);if(re.test(this.email)){if(this.isValidPostcode(this.areaId,this.postCode)){fetch("/votes/insecure_email_login",{method:"POST",cache:"no-cache",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({insecure_email:this.email.toLowerCase(),postCode:this.postCode})}).then(response=>response.json()).then(response=>{if(response&&!0===response.ok){this._loginCompleted()}else{this.fire("oav-error",this.localize("error_not_authorized"))}}).catch(()=>{this.fire("oav-error",this.localize("general_error"))});return!0}else if(this.getAreaForPostCode(this.postCode)){var areaInfo=this.getAreaForPostCode(this.postCode);this.correctAreaId=areaInfo.id;this.correctAreaName=areaInfo.name}else{this.fire("oav-error",this.localize("enterValidPostcode"))}}else{this.fire("oav-error",this.localize("enterValidEmail"))}}else{this.fire("oav-error",this.localize("completeForm"));return!1}}close(){var dialog=this.$$("#dialog");if(dialog){dialog.close()}this.opened=!1;this.userSpinner=!1}}window.customElements.define("oav-insecure-email-login",OavInsecureEmailLogin)});
+    `}updated(changedProps){super.updated(changedProps)}firstUpdated(){super.firstUpdated();Object.entries(this.configFromServer.client_config.insecureEmailLoginPostCodes).forEach(entry=>{let areaId=entry[0],postCodes=entry[1];postCodes.forEach(postCode=>{this.postCodesAreas[postCode]=areaId;this.postCodesAreasNames[postCode]=this.configFromServer.client_config.insecureEmailLoginAreaNames[areaId]})})}constructor(){super();this.emailValidationPattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";this.confirmedAge=!1;this.postCodesAreas={};this.postCodesAreasNames={}}_resetCorrectArea(){setTimeout(()=>{this.correctAreaId=null;this.correctAreaName=null;this.close()},100)}_loginCompleted(){this.onLoginFunction();this.close()}isValidPostcode(areaId,postCode){postCode=postCode.replace(/\s/g,"").toUpperCase();return-1<this.configFromServer.client_config.insecureEmailLoginPostCodes[areaId].indexOf(postCode)}getAreaForPostCode(postCode){postCode=postCode.replace(/\s/g,"").toUpperCase();if(this.postCodesAreas[postCode]&&this.postCodesAreasNames[postCode]){return{id:this.postCodesAreas[postCode],name:this.postCodesAreasNames[postCode]}}else{return null}}open(areaId,areaName,onLoginFunction){this.onLoginFunction=onLoginFunction;this.areaId=areaId;this.areaName=areaName;this.userSpinner=!1;this.opened=!1;this.postCode="";this.confirmedAge=!1;this.email="";this.$$("#dialog").open()}_validateAndSend(e){this.email=this.$$("#email").value;this.postCode=this.$$("#postCode").value;if(this.email&&this.postCode&&this.$$("#confirmedAge").checked){const re=new RegExp(this.emailValidationPattern);if(re.test(this.email)){if(this.isValidPostcode(this.areaId,this.postCode)){fetch("/votes/insecure_email_login",{method:"POST",cache:"no-cache",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({insecure_email:this.email.toLowerCase(),postCode:this.postCode})}).then(response=>response.json()).then(response=>{if(response&&!0===response.ok){this._loginCompleted()}else{this.fire("oav-error",this.localize("error_not_authorized"))}}).catch(()=>{this.fire("oav-error",this.localize("general_error"))});return!0}else if(this.getAreaForPostCode(this.postCode)){var areaInfo=this.getAreaForPostCode(this.postCode);this.correctAreaId=areaInfo.id;this.correctAreaName=areaInfo.name}else{this.fire("oav-error",this.localize("enterValidPostcode"))}}else{this.fire("oav-error",this.localize("enterValidEmail"))}}else{this.fire("oav-error",this.localize("completeForm"));return!1}}close(){var dialog=this.$$("#dialog");if(dialog){dialog.close()}this.opened=!1;this.userSpinner=!1}}window.customElements.define("oap-insecure-email-login",OapInsecureEmailLogin);export{ironA11yAnnouncer as $ironA11yAnnouncer,oapInsecureEmailLoginStyles as $oapInsecureEmailLoginStyles,paperInputAddonBehavior as $paperInputAddonBehavior,paperInputBehavior as $paperInputBehavior,IronA11yAnnouncer,OapInsecureEmailLoginStyles,PaperInputAddonBehavior,PaperInputBehavior,PaperInputBehaviorImpl,PaperInputHelper};

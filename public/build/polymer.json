@@ -1,18 +1,18 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/components/oav-app.js",
+  "shell": "src/components/oap-app.js",
   "fragments": [
     "src/components/yp-post/yp-post.js",
-    "src/components/oav-insecure-email-login.js",
-    "src/components/oav-view404.js"
+    "src/components/oap-insecure-email-login.js",
+    "src/components/oap-view404.js"
   ],
   "sources": [
     "images/**/*",
     "index.html",
-    "src/components/oav-app.js",
+    "src/components/oap-app.js",
     "src/components/yp-post/yp-post.js",
-    "src/components/oav-insecure-email-login.js",
-    "src/components/oav-view404.js"
+    "src/components/oap-insecure-email-login.js",
+    "src/components/oap-view404.js"
   ],
   "extraDependencies": [
     "bower_components/webcomponentsjs/*.js",
