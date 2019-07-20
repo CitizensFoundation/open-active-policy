@@ -359,7 +359,7 @@ export const OapSwipableCardsStyles = css`
     margin: 4px;
     margin-left: 0;
     margin-right: 0;
-    text-align: center;
+    text-align: left;
   }
 
   .cardImage {

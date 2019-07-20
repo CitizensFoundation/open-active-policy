@@ -49,7 +49,8 @@ class OapSwipableCards extends OapBaseElement {
       leftOpacity: Number,
       touchingElement: Boolean,
       disableUpSwipe: Boolean,
-      hiddenImageIds: Object
+      hiddenImageIds: Object,
+      rendering: Boolean
     }
   }
 
@@ -63,45 +64,47 @@ class OapSwipableCards extends OapBaseElement {
     return html`
       <div class="stage">
         <div class="title">${this.localize("filterArticles")}</div>
+        ${this.rendering ? html`
           <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
-            <div class="stackedcards-container">
-              ${this.visibleItems.map((item, index) =>
-                html`
-                  <div class="card" id="card${item.id}">
-                    <div class="card-content">
-                      <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
-                      <div class="card-tistles">
-                        <div class="name">${item.id} ${item.name}</div>
-                        <div id="description${item.id}" class="description">${item.description}</div>
-                        ${ item.description.length>200 ? html`
-                          <div class="hideUnhideContainer">
-                            <div class="innerHideContainer">
-                              ${this.isImageHidden(item.id)==true ? html`
-                                <paper-icon-button @click="${()=> { this.unhideImage(item.id) }}" icon="keyboard-arrow-down"></paper-icon-button>
-                              ` : html`
-                                <paper-icon-button @click="${()=> { this.hideImage(item.id) }}" icon="keyboard-arrow-up"></paper-icon-button>
-                              `}
+              <div class="stackedcards-container">
+                ${this.visibleItems.map((item, index) =>
+                  html`
+                    <div class="card" id="card${item.id}">
+                      <div class="card-content">
+                        <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
+                        <div class="card-tistles">
+                          <div class="name">${item.id} ${item.name}</div>
+                          <div id="description${item.id}" class="description">${item.description}</div>
+                          ${ item.description.length>200 ? html`
+                            <div class="hideUnhideContainer">
+                              <div class="innerHideContainer">
+                                ${this.isImageHidden(item.id)==true ? html`
+                                  <paper-icon-button @click="${()=> { this.unhideImage(item.id) }}" icon="keyboard-arrow-down"></paper-icon-button>
+                                ` : html`
+                                  <paper-icon-button @click="${()=> { this.hideImage(item.id) }}" icon="keyboard-arrow-up"></paper-icon-button>
+                                `}
+                              </div>
                             </div>
-                          </div>
-                        ` : html``}
+                          ` : html``}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                `
-              )}
+                  `
+                )}
+              </div>
+              <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
+              <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
+              <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
             </div>
-            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+            <div class="global-actions">
+              <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
+              <div hidden>
+              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
+              </div>
+              <div style="width: 100px;"></div>
+              <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
           </div>
-          <div class="global-actions">
-            <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
-            <div hidden>
-             <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
-            </div>
-            <div style="width: 100px;"></div>
-            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
-        </div>
+        ` : html``}
       </div>
 
       <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
@@ -151,6 +154,7 @@ class OapSwipableCards extends OapBaseElement {
     this.visibleItems = [];
     this.disableUpSwipe = true;
     this.hiddenImageIds = {};
+    this.rendering = true;
   }
 
   activate() {
@@ -168,7 +172,7 @@ class OapSwipableCards extends OapBaseElement {
 			this.topObj.style.transform = 'translateX(0px) translateY(' + this.elTrans + 'px) translateZ(0px) rotate(0deg)';
 			this.topObj.style.webkitTransform = 'translateX(0px) translateY(' + this.elTrans + 'px) translateZ(0px) rotate(0deg)';
 
-		} else {
+		} else if (this.leftObj) {
 			this.leftObj.className = '';
 			this.rightObj.className = '';
 			this.topObj.className = '';
@@ -181,7 +185,7 @@ class OapSwipableCards extends OapBaseElement {
 		//Remove class init
 		setTimeout(function() {
 			this.obj.classList.remove('init');
-    }.bind(this), 150);
+    }.bind(this), 10);
 
    this.addEventListeners();
   }
@@ -458,23 +462,26 @@ class OapSwipableCards extends OapBaseElement {
       this.updateComplete.then(() => {
         if (this.itemsLeft.length>1) {
           this.visibleItems.push(this.itemsLeft.shift());
+          this.visibleItems.shift();
+          this.currentPosition = 0;
+          this.removeEventListeners();
           this.requestUpdate();
           this.updateComplete.then(() => {
-            this.refresh();
-            this.visibleItems.shift();
-            this.currentPosition = 0;
-            debugger;
+            this.rendering = false;
             this.requestUpdate();
+            this.refresh();
             this.updateComplete.then(() => {
-            //            this.currentPosition = 0;
-              this.refresh();
-            });
-
-
+              this.rendering = true;
+              this.requestUpdate();
+              this.updateComplete.then(() => {
+                this.rendering = true;
+                this.activate();
+             });
+           });
          });
         }
       });
-    }, 500);
+    }, 400);
   }
 
   //Swipe active card to right.
