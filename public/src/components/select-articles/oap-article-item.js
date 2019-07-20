@@ -362,6 +362,9 @@ class OapArticleItem extends OapBaseElement {
         orgAnimPos: { left: left, top: top },
         budgetAnimPos: this.budgetElement.getItemLeftTop(this.item)
       });
+      setTimeout(()=> {
+        this.requestUpdate();
+      });
     }
   }
 
@@ -386,6 +389,9 @@ class OapArticleItem extends OapBaseElement {
       this.$$("#addFavoriteButton").style.bottom = "12px";
     }.bind(this);
     this.fire('oav-toggle-item-in-budget', { item: this.item });
+    setTimeout(()=> {
+      this.requestUpdate();
+    });
   }
 }
 

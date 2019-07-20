@@ -3,6 +3,7 @@ import { OapPageViewElement } from '../oap-page-view-element.js';
 import { OapBallotStyles } from './oap-ballot-styles';
 import { encryptVote } from '../ballot-encryption-behavior.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
+import { repeat } from 'lit-html/directives/repeat';
 
 import '@polymer/paper-tabs/paper-tab';
 import '@polymer/paper-tabs/paper-tabs';
@@ -63,10 +64,10 @@ class OapBallot extends OapPageViewElement {
     return html`${this.area ?
       html`
         <div class="topContainer layout vertical">
-          ${this.budgetBallotItems ?
+          ${(this.budgetBallotItems && this.budgetElement) ?
             html`
               <div id="itemContainer" class="layout horizontal center-center flex wrap" ?hidden="${this.selectedView===1}">
-                ${this.budgetBallotItems.map((item, index) =>
+                ${repeat(this.budgetBallotItems, (item) => item.id,  (item, index) =>
                   html`
                     <oap-article-item
                       .name="${item.id}"

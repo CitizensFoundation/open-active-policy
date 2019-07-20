@@ -303,7 +303,7 @@ class OapApp extends OapBaseElement {
   }
 
   setDummyData() {
-    this.choicePoints = 100;
+    this.choicePoints = 40;
     this.quizQuestions = [
       {
         question: "What is the shortest Constitution in the world?",
