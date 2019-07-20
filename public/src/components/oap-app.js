@@ -254,7 +254,7 @@ class OapApp extends OapBaseElement {
             .language="${this.language}"
             ?active="${this._page === 'article-selection'}">
           </oap-article-selection>
-          <oap-ballot
+          <oap-ballot id="budgetBallot"
             .budgetBallotItems="${this.filteredItems}"
             .configFromServer="${this.configFromServer}"
             .budgetElement="${this.currentBudget}"
@@ -348,7 +348,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "2",
@@ -358,7 +358,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "3",
@@ -368,7 +368,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe8.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "4",
@@ -378,7 +378,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group2.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "5",
@@ -388,7 +388,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe6.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "6",
@@ -398,7 +398,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group3.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "7",
@@ -408,7 +408,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Module+image+size+-+864x580+Copy+4.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "8",
@@ -418,7 +418,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 20.0
+        price: 8.0
       },
       {
         id: "9",
@@ -428,7 +428,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group7.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "10",
@@ -438,7 +438,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group9.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "11",
@@ -448,7 +448,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "12",
@@ -458,7 +458,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "13",
@@ -468,7 +468,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "14",
@@ -478,7 +478,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "15",
@@ -488,7 +488,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "16",
@@ -498,7 +498,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       },
       {
         id: "17",
@@ -508,11 +508,10 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
         module_type: "Simple",
         exclusive_ids: "",
-        price: 10.0
+        price: 4.0
       }
     ]
     this.cacheDataImages();
-    this.filteredItems = this.allItems;
   }
 
   cacheDataImages() {
