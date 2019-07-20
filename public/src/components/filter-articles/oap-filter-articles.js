@@ -24,22 +24,16 @@ class OapFilterArticles extends OapPageViewElement {
   render() {
     return html`
       ${this.completed ? html`
-        <div class="vertical completed">
+        <div class="layout vertical center-center completed">
           <div class="completeHeader">
             ${this.localize("youHaveCompletedTheFiltering")}
           </div>
           <div>
-            ${this.localize("correctQuizAnswers")}: ${this.correctAnswers}
-          </div>
-          <div>
-            ${this.localize("incorrectQuizAnswers")}: ${this.incorrectAnswers}
-          </div>
-          <div>
-            <paper-button raise class="continueButton" @click="${()=> { this.fire('oap-filtering-finished') }}">${this.localize("continueToFiltering")}</paper-button>
+            <paper-button raised class="continueButton" @click="${()=> { this.fire('oap-filtering-finished') }}">${this.localize("continueToSelection")}</paper-button>
           </div>
         </div>
     ` : html`
-        <oap-swipable-cards @completed="${this.setCompleted}" .disableUpSwipe="true" .items="${this.allItems}"></oap-swipable-cards>
+        <oap-swipable-cards .language="${this.language}" @completed="${this.setCompleted}" .disableUpSwipe="true" .items="${this.allItems}"></oap-swipable-cards>
       `}
 
     `

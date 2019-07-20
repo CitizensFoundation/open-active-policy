@@ -63,6 +63,11 @@ export const OapPolicyQuizStyles = css`
     margin-top: 16px;
   }
 
+  .infoBar {
+    margin: 16px;
+    font-size: 18px;
+  }
+
   [hidden] {
     display: none !important;
   }

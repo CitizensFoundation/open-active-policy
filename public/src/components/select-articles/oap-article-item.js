@@ -168,10 +168,6 @@ class OapArticleItem extends OapBaseElement {
 
     if (changedProps.has('item')) {
       if (this.item) {
-        if (this.item.locations && this.item.locations.length>0) {
-          this.longitude = this.item.locations[0].longitude;
-          this.latitude = this.item.locations[0].latitude;
-        }
         this.resetFromBudget();
       }
     }

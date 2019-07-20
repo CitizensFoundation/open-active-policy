@@ -359,7 +359,42 @@ class OapBudget extends OapBaseElement {
     }
     image.style.width = itemWidth + 'px';
 
-    container.appendChild(image);
+//    container.appendChild(image);
+    var colorBox = document.createElement("div");
+    image.src = item.image_url;
+    image.setAttribute("sizing", "cover");
+    colorBox.setAttribute('alt', item.name);
+    colorBox.setAttribute('title', item.name);
+    colorBox.setAttribute('style', "cursor: pointer;");
+
+    colorBox.title= item.name;
+    colorBox.style.borderLeft = 'solid 1px';
+    colorBox.style.borderRight = 'solid 1px';
+    colorBox.style.opacity = 0.75;
+
+    let random = Math.floor(Math.random() * 4);
+    let color;
+    if (random==0) {
+      color = "#FFDE03";
+    } else if (random==1) {
+      color = "#0336FF";
+    } else if (random==2) {
+      color = "#FF0266";
+    } else if (random==3) {
+      color = "#463177";
+    }
+
+    colorBox.style.borderColor = "#ddd";
+    colorBox.style.backgroundColor = color;
+
+    if (this.wide) {
+      colorBox.style.height = '100px';
+    } else {
+      colorBox.style.height = '81px';
+    }
+    colorBox.style.width = itemWidth + 'px';
+
+    container.appendChild(colorBox);
 
     container.addEventListener('tap', function () {
       this.fire('oav-scroll-item-into-view', item.id);

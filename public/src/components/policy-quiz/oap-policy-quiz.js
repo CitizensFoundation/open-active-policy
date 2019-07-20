@@ -45,10 +45,9 @@ class OapPolicyQuiz extends OapPageViewElement {
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${this.currentIndex!==null ?  html`
           <div class="horizontal infoBar">
-            <div class="logo"><img src="${this.configFromServer.client_config.squareLogo}"/></div>
-            <div class="vertical">
+            <div class="layout horizontal">
               <div class="nickname">${this.nickname}</div>
-              <div class="progress">${this.currentIndex+1}/${this.questions.length}</div>
+              <div class="progress">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
             </div>
           </div>
           <div>
@@ -76,7 +75,7 @@ class OapPolicyQuiz extends OapPageViewElement {
               ${this.localize("incorrectQuizAnswers")}: ${this.incorrectAnswers}
             </div>
             <div>
-              <paper-button raise class="continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToFiltering")}</paper-button>
+              <paper-button raised class="continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToFiltering")}</paper-button>
             </div>
           </div>
           ` : html``}

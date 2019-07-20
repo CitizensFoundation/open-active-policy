@@ -43,7 +43,7 @@ export const OapBudgetStyles = css`
   }
 
   #votes {
-    background-color: var(--app-budget-votes-background-color, #e0e0e0);
+    background-color: var(--app-budget-votes-background-color, #f0f0f0);
     height: 81px;
   }
 
@@ -153,8 +153,8 @@ export const OapBudgetStyles = css`
   }
 
   .headerContainer {
-    background-color: var(--app-budget-header-container-background-color, #f0f0f0);
-    color: var(--app-budget-vote-button-color, #444)
+    background-color: var(--app-budget-header-container-background-color, #FFF);
+    color: var(--app-budget-vote-button-color, #222)
   }
 
   .demoButton {

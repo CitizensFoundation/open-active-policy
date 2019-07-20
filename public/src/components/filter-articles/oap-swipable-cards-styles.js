@@ -38,7 +38,7 @@ export const OapSwipableCardsStyles = css`
   .stage {
       position: absolute;
       opacity: 1;
-      max-width: 600px;
+      max-width: 335px;
       top: 50%;
       left: 50%;
       -webkit-transform: translate(-50%, -50%);

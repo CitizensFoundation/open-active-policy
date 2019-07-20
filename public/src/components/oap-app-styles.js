@@ -252,9 +252,9 @@ export const OapAppStyles = css`
     padding: 0;
     margin: 0;
     margin-top: 8px;
-    max-width: 280px;
-    width: 280px;
-    height: 116px;
+    max-width: 281px;
+    width: 281px;
+    height: 281px;
   }
 
   .welcomeLogoContainer {
@@ -296,8 +296,8 @@ export const OapAppStyles = css`
       font-size: 16px;
     }
     .welcomeLogo {
-      width: 200px;
-      height: 83px;
+      width: 281px;
+      height: 281px;
     }
   }
 

@@ -607,18 +607,19 @@ class OapApp extends OapBaseElement {
         }
 
         if (false && !(location.href.indexOf("completePostingOfVoteAfterRedirect") > -1)) {
-          const path = "/area-ballot/"+this.oneBallotId;
+          const path = "/quiz";
           window.history.pushState({}, null, path);
           this.fire('location-changed', path);
-
-          if (this.configFromServer.client_config.welcomeLocales) {
-            setTimeout( () => {
-              if (!localStorage.getItem("haveClsosedWelcome")) {
-                this.$$("#welcomeDialog").open();
-              }
-            });
-          }
         }
+
+        if (this.configFromServer.client_config.welcomeLocales) {
+          setTimeout( () => {
+            if (!localStorage.getItem("haveClsosedWelcome")) {
+              this.$$("#welcomeDialog").open();
+            }
+          });
+        }
+
 
         window.language = this.language;
         window.localize = this.localize;
@@ -1019,10 +1020,11 @@ class OapApp extends OapBaseElement {
     if (location instanceof CustomEvent)
       location = { pathname: location.detail };
 
-    if (location.pathname==="/" && this.oneBallotId) {
-      const path = '/area-ballot/'+this.oneBallotId;
+    if (location.pathname==="/") {
+      const path = '/quiz';
       window.history.pushState({}, null, path);
       location = { pathname: path };
+      this.fire('location-changed', path);
     }
 
     const path = window.decodeURIComponent(location.pathname);
