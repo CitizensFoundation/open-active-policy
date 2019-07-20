@@ -511,8 +511,32 @@ class OapApp extends OapBaseElement {
         price: 4.0
       }
     ]
+
+    this.soundEffects = {
+      oap_short_win_1: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3",
+      oap_new_level_1: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3",
+    }
+
     this.cacheDataImages();
+    this.cacheSoundEffects();
     //this.filteredItems = this.allItems;
+  }
+
+  cacheSoundEffects() {
+    if (this.soundEffects) {
+      Object.values(this.soundEffects).forEach((url) => {
+        setTimeout( () => {
+          const audio = new Audio(url);
+        });
+      });
+    }
+  }
+
+  playSoundEffect (event) {
+    if (this.soundEffects[event.detail]) {
+      const audio = new Audio(this.soundEffects[event.detail]);
+      audio.play();
+    }
   }
 
   cacheDataImages() {
@@ -535,6 +559,7 @@ class OapApp extends OapBaseElement {
   }
 
   processCorrectQuizAnswer() {
+    this.fire('oap-play-sound-effect', 'oap_short_win_1');
     this.fire("oap-overlay", {
       html: html`${this.localize("correctAnswer")}`,
       soundEffect: "",
@@ -675,6 +700,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-quiz-finished", this.quizFinished);
     this.addEventListener("oap-filtering-finished", this.filteringFinished);
     this.addEventListener("item-selected", this.addItemToFinalList);
+    this.addEventListener("oap-play-sound-effect", this.playSoundEffect);
   }
 
   addItemToFinalList(event) {
@@ -692,12 +718,14 @@ class OapApp extends OapBaseElement {
   }
 
   filteringFinished () {
+    this.fire('oap-play-sound-effect', 'oap_new_level_1');
     const path = '/area-ballot/1';
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
   }
 
   quizFinished () {
+    this.fire('oap-play-sound-effect', 'oap_new_level_1');
     const path = '/filter-articles';
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
@@ -725,6 +753,7 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-quiz-finished", this.quizFinished);
     this.removeEventListener("item-selected", this.addItemToFinalList);
     this.removeEventListener("oap-filtering-finished", this.filteringFinished);
+    this.removeEventListener("oap-play-sound-effect", this.playSoundEffect);
   }
 
   _scrollItemIntoView(event) {
