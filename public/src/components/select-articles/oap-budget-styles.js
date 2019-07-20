@@ -109,6 +109,7 @@ export const OapBudgetStyles = css`
   #budgetLeftInfo {
     font-size: 13px;
     font-weight: bold;
+    margin-top: 4px;
   }
 
   #budgetLeftInfo[wide] {
