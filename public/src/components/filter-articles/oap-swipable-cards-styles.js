@@ -384,7 +384,7 @@ export const OapSwipableCardsStyles = css`
   .card-content {
     height: 450px;
     width: 330px;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .hideUnhideContainer {

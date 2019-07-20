@@ -18,6 +18,7 @@ class OapSwipableCards extends OapBaseElement {
       stackedOptions: String,
       rotate: Boolean,
       items: Array,
+      itemsLeft: Array,
       visibleItems: Array,
       elementsMargin: Number,
       useOverlays: Boolean,
@@ -66,11 +67,11 @@ class OapSwipableCards extends OapBaseElement {
             <div class="stackedcards-container">
               ${this.visibleItems.map((item, index) =>
                 html`
-                  <div class="card">
+                  <div class="card" id="card${item.id}">
                     <div class="card-content">
                       <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                       <div class="card-tistles">
-                        <div class="name">${item.name}</div>
+                        <div class="name">${item.id} ${item.name}</div>
                         <div id="description${item.id}" class="description">${item.description}</div>
                         ${ item.description.length>200 ? html`
                           <div class="hideUnhideContainer">
@@ -90,7 +91,7 @@ class OapSwipableCards extends OapBaseElement {
               )}
             </div>
             <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/dCuESn/Path_3x.png" width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
             <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
           </div>
           <div class="global-actions">
@@ -121,7 +122,13 @@ class OapSwipableCards extends OapBaseElement {
     super.updated(changedProps);
     if (changedProps.has('items')) {
       if (this.items && this.items.length>0) {
-        this.visibleItems=this.items;
+        this.itemsLeft = [...this.items];
+        this.visibleItems=this.itemsLeft.slice(0, 5);
+        this.itemsLeft.shift();
+        this.itemsLeft.shift();
+        this.itemsLeft.shift();
+        this.itemsLeft.shift();
+        this.itemsLeft.shift();
         //TODO: Only show first 20 items and reload on demand
         this.requestUpdate();
         this.updateComplete.then(() => {
@@ -134,9 +141,10 @@ class OapSwipableCards extends OapBaseElement {
   reset() {
     this.stackedOptions = 'Top';
     this.rotate = true;
-    this.elementsMargin = 5;
+    this.elementsMargin = 7;
     this.currentPosition = 0;
     this.currentItemsPosition = 0;
+    this.useOverlays = false;
     this.velocity = 0.3;
     this.isFirstTime = true;
     this.touchingElement = false;
@@ -206,7 +214,7 @@ class OapSwipableCards extends OapBaseElement {
 
   refresh() {
 		this.stackedCardsObj = this.obj.querySelector('.stackedcards-container');
-		this.listElNodesObj = this.stackedCardsObj.children;
+    this.listElNodesObj = this.stackedCardsObj.children;
 
 		this.topObj = this.obj.querySelector('.stackedcards-overlay.top');
 		this.rightObj = this.obj.querySelector('.stackedcards-overlay.right');
@@ -263,7 +271,12 @@ class OapSwipableCards extends OapBaseElement {
 
 		if(this.listElNodesObj[this.currentPosition]){
 			this.listElNodesObj[this.currentPosition].classList.add('stackedcards-active');
-		}
+    }
+
+    setTimeout(function() {
+			this.obj.classList.remove('init');
+    }.bind(this), 250);
+
   }
 
   addEventListeners() {
@@ -329,13 +342,17 @@ class OapSwipableCards extends OapBaseElement {
   // Usable functions
   countElements() {
     this.maxElements = this.listElNodesObj.length;
+    console.error("countElements: "+this.maxElements);
+
     if(this.visibleItems.length > this.maxElements){
+      console.error("!!!!!");
       this.visibleItems.length = this.maxElements;
     }
   }
 
   //Keep the active card.
   setCurrentElement() {
+    console.error("setCurrentElement: "+this.currentPosition);
     this.currentElementObj = this.listElNodesObj[this.currentPosition];
   }
 
@@ -360,6 +377,7 @@ class OapSwipableCards extends OapBaseElement {
 
   //Functions to swipe left elements on logic external action.
   onActionLeft() {
+    console.error("onActionLeft: "+this.currentPosition);
     if(!(this.currentPosition >= this.maxElements)){
       if(this.useOverlays) {
         this.leftObj.classList.remove('no-transition');
@@ -378,6 +396,8 @@ class OapSwipableCards extends OapBaseElement {
 
   //Functions to swipe right elements on logic external action.
   onActionRight() {
+    console.error("onActionRight: "+this.currentPosition);
+
     if(!(this.currentPosition >= this.maxElements)){
       if(this.useOverlays) {
         this.rightObj.classList.remove('no-transition');
@@ -420,15 +440,41 @@ class OapSwipableCards extends OapBaseElement {
       this.transformUi(-1000, 0, 0, this.topObj); //Move topOverlay
       this.resetOverlayLeft();
     }
-    this.fire('item-discarded', this.items[this.currentItemPosition]);
-
+    this.fire('item-discarded', this.items[this.currentItemsPosition]);
     this.currentPosition = this.currentPosition + 1;
-    this.currentItemPosition = this.currentItemPosition + 1;
+    this.currentItemsPosition = this.currentItemsPosition + 1;
+    this.updateFromMainItemsList();
+  }
+
+  updateFromMainItemsList() {
     this.updateUi();
     this.setCurrentElement();
     this.changeBackground();
     this.changeStages();
     this.setActiveHidden();
+
+    setTimeout(()=> {
+      this.requestUpdate();
+      this.updateComplete.then(() => {
+        if (this.itemsLeft.length>1) {
+          this.visibleItems.push(this.itemsLeft.shift());
+          this.requestUpdate();
+          this.updateComplete.then(() => {
+            this.refresh();
+            this.visibleItems.shift();
+            this.currentPosition = 0;
+            debugger;
+            this.requestUpdate();
+            this.updateComplete.then(() => {
+            //            this.currentPosition = 0;
+              this.refresh();
+            });
+
+
+         });
+        }
+      });
+    }, 500);
   }
 
   //Swipe active card to right.
@@ -440,14 +486,13 @@ class OapSwipableCards extends OapBaseElement {
       this.transformUi(1000, 0, 0, this.topObj); //Move topOverlay
       this.resetOverlayRight();
     }
-    this.fire('item-selected', this.items[this.currentItemPosition]);
+    this.fire('item-selected', this.items[this.currentItemsPosition]);
+
     this.currentPosition = this.currentPosition + 1;
-    this.currentItemPosition = this.currentItemPosition + 1;
+    this.currentItemsPosition = this.currentItemsPosition + 1;
     this.updateUi();
     this.setCurrentElement();
-    this.changeBackground();
-    this.changeStages();
-    this.setActiveHidden();
+    this.updateFromMainItemsList();
   }
 
   //Swipe active card to top.
@@ -462,9 +507,9 @@ class OapSwipableCards extends OapBaseElement {
         this.resetOverlays();
       }
 
-      this.fire('item-bookmarked', this.items[this.currentItemPosition]);
+      this.fire('item-bookmarked', this.items[this.currentItemsPosition]);
       this.currentPosition = this.currentPosition + 1;
-      this.currentItemPosition = this.currentItemPosition + 1;
+      this.currentItemsPosition = this.currentItemsPosition + 1;
       this.updateUi();
       this.setCurrentElement();
       this.changeBackground();
@@ -621,16 +666,28 @@ class OapSwipableCards extends OapBaseElement {
     }
 
   setActiveHidden() {
+    console.error("setActiveHidden");
     if(!(this.currentPosition >= this.maxElements)){
+      console.error("setActiveHidden:"+this.currentPosition);
       this.listElNodesObj[this.currentPosition - 1].classList.remove('stackedcards-active');
       this.listElNodesObj[this.currentPosition - 1].classList.add('stackedcards-hidden');
       this.listElNodesObj[this.currentPosition].classList.add('stackedcards-active');
     }
   }
 
+  setLastActive() {
+    console.error("setActiveHidden");
+    if(!(this.currentPosition >= this.maxElements)){
+      console.error("setActiveHidden:"+this.currentPosition);
+      this.listElNodesObj[this.currentPosition-1].classList.remove('stackedcards-hidden');
+      this.listElNodesObj[this.currentPosition-1].classList.add('stackedcards-active');
+    }
+  }
+
   //Set the new z-index for specific card.
   setZindex(zIndex) {
     if(this.listElNodesObj[this.currentPosition]){
+      console.error("setZindex:"+this.currentPosition);
       this.listElNodesObj[this.currentPosition].style.zIndex = zIndex;
     }
   }
@@ -647,6 +704,7 @@ class OapSwipableCards extends OapBaseElement {
 
   //Add translate X and Y to active card for each frame.
   transformUi(moveX,moveY,opacity,elementObj) {
+    console.error("transformUi");
     requestAnimationFrame( function(){
       var element = elementObj;
 
@@ -670,7 +728,7 @@ class OapSwipableCards extends OapBaseElement {
       }
 
       if(this.stackedOptions === "Top"){
-        this.elTrans = this.elementsMargin * (this.visibleItems.length - 1);
+        this.elTrans = this.elementsMargin * (5);
         if(element){
           element.style.webkitTransform = "translateX(" + moveX + "px) translateY(" + (moveY + this.elTrans) + "px) translateZ(0) rotate(" + rotateElement + "deg)";
           element.style.transform = "translateX(" + moveX + "px) translateY(" + (moveY + this.elTrans) + "px) translateZ(0) rotate(" + rotateElement + "deg)";

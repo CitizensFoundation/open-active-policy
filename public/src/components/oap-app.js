@@ -331,7 +331,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Head of State: Empowered President",
         description: "An Empowered President, elected directly or indirectly by the entire electorate, meant to personify the will of the people in single individual's leadership abilities.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/marentest1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -340,7 +340,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Head of State: Prime Minister",
         description: "As the head of the Legislative/Parliamentary system, the Prime Minister’s authority arises from the elected representatives choice of a leader amongst themselves. This helps reduce gridlock in government, while also disconnecting the Head of State from the direct will of the electorate.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/marentest2.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -349,7 +349,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Head of State: King",
         description: "Historically the center of authority in pre-modern governments, the King's authority rests on a traditional architecture of original military conquest, hereditary transitions of power, and usually some notion of Divine Will or Mandate of Heaven. Though once always autocratic and ruling through all powerful fiat of their will, many monarchs have ceded power to more democratic and parliamentary governments, becoming largely figureheads of continuity and tradition.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/3bc1.jpg",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe8.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -358,7 +358,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Head of State: High Priest",
         description: "In a proper Theocracy, the central authority rests with the highest authority of the clergy of the religious faith that underpins the government, the spiritual leader of the majority of the population of the country. This authority may function as an interpretive and judicial authority primarily; or it may be an absolute autocratic authority over all structures of government.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/wethepeople1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group2.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -367,7 +367,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Figurehead Executive: Vice President",
         description: 'Whether elected individually or packaged with a President on a "ticket", the VP gives the electorate the comfort of knowing they have chosen a worthy successor to the President, and a smooth transition of power is guaranteed should something unexpected happen to the chief executive. The VP position is also a valuable political actor for diplomacy and affairs of state.',
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe6.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -376,7 +376,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Figurehead Executive: Figurehead President",
         description: "In the case of the Head of State being a Prime Minister, King or Supreme Theocrat, then there might be an executive position called President, that may be appointed or elected, and generally performs public relations for the government, as well as matters of diplomacy and affairs of state.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group3.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -385,7 +385,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Cabinet: Appointed by Head of State",
         description: 'Sometimes called "to the victor go the spoils" approach, this allows the Executive Head of State to compose a team of cabinet members that they select, insuring a team of like minded individuals likely to work well with the Head of State and each other. Comes with increased risk of croneyism.',
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Module+image+size+-+864x580+Copy+4.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -394,7 +394,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Core Articles",
         name: "Cabinet: Appointed by Legislature/Parliament",
         description: "In a Prime Minister's cabinet, integrated into the parliamentary process, the factions in the legislative body may also control the staffing of the PM's cabinet, again helping the government be as integrated, coherent and internal conflict-free as possible.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4"
       },
@@ -403,7 +403,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Veto Power",
         description: 'The ability of the Executive to serve as a check on laws generated by the Legislative/Parliamentary Branch. This gives the Executive a roll of oversight of the law making process, thus giving them the chance to lead from a "bully pulpit" against popular opinion if the new law polls well, or to function as an agent of that public opinion as their elected Executive in stopping an unpopular law.',
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group7.png",
         module_type: "Simple",
         exclusive_ids: ""
       },
@@ -412,7 +412,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Term Limits",
         description: "In the case of an Empowered President, this provides for a set number of terms to which the executive may be elected, usually limited to no more than 2 or 3 terms, and usually no more than 4 to 6 years in length.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group9.png",
         module_type: "Simple",
         exclusive_ids: ""
       },
@@ -480,7 +480,6 @@ class OapApp extends OapBaseElement {
         exclusive_ids: ""
       }
     ]
-
     this.cacheDataImages();
   }
 
