@@ -23,7 +23,7 @@ import '@polymer/paper-spinner/paper-spinner.js';
 import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import './oap-icons.js';
 import './snack-bar.js';
-//import './policy-quiz/oap-policy-quiz';
+import './policy-quiz/oap-policy-quiz';
 //import './browse-articles/oap-swipable-cards';
 //import './oav-voting-completed';
 
@@ -224,7 +224,9 @@ class OapApp extends OapBaseElement {
         <main role="main" class="main-content" ?has-ballot="${this._page == 'area-ballot'}">
           <oap-policy-quiz
             id="quiz"
-            .question="${this.quizQuestions}"
+            .questions="${this.quizQuestions}"
+            .configFromServer="${this.configFromServer}"
+            .nickname="Robert Bjarnason"
             .language="${this.language}"
             ?active="${this._page === 'quiz'}">
           </oap-policy-quiz>
@@ -328,6 +330,17 @@ class OapApp extends OapBaseElement {
     this.allItems = [
 
     ]
+
+    this.cacheDataImages();
+  }
+
+  cacheDataImages() {
+    if (this.quizQuestions) {
+      this.quizQuestions.forEach((question) => {
+        const img = new Image();
+        img.src=question.imageUrl;
+      });
+    }
   }
 
   _setupCustomCss(config) {

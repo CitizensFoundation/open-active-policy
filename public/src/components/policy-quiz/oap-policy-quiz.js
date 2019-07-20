@@ -4,6 +4,7 @@ import '@polymer/paper-button/paper-button';
 import { OapPageViewElement } from '../oap-page-view-element';
 import { OapPolicyQuizStyles } from './oap-policy-quiz-styles';
 import { OapFlexLayout } from '../oap-flex-layout';
+import { OapShadowStyles } from '../oap-shadow-styles';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -13,14 +14,16 @@ class OapPolicyQuiz extends OapPageViewElement {
       correctAnswers: Number,
       incorrectAnswers: Number,
       nickname: String,
-      configFromServer: Object
+      configFromServer: Object,
+      savedBackgroundColor: String
     };
   }
 
   static get styles() {
     return [
       OapPolicyQuizStyles,
-      OapFlexLayout
+      OapFlexLayout,
+      OapShadowStyles
     ];
   }
 
@@ -38,26 +41,31 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   render() {
     return html`
-      <div class="topContainer layout vertical">
+    <div class="layout vertical center-center" style="width: 100%;">
+      <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${this.currentIndex!==null ?  html`
-          <div class="layout horizontal infoBar">
-            <div class="logo"><img src="${configFromServer.client_config.squareLogo}"/></div>
-            <div class="layout vertical">
+          <div class="horizontal infoBar">
+            <div class="logo"><img src="${this.configFromServer.client_config.squareLogo}"/></div>
+            <div class="vertical">
               <div class="nickname">${this.nickname}</div>
               <div class="progress">${this.currentIndex+1}/${this.questions.length}</div>
             </div>
           </div>
-          <img class="image" src="${this.questions[this.currentIndex].imageUrl}"/>
+          <div>
+            <img class="image" src="${this.questions[this.currentIndex].imageUrl}"/>
+          </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
-          <div class="buttonsContainer">
-            <paper-button id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
-            <paper-button id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
-            <paper-button id="button2" class="answerButton" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
-            <paper-button id="button3" class="answerButton" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
+          <div class="vertical center-center">
+            <div class="buttonContainer">
+              <paper-button raised id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
+              <paper-button raised id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
+              <paper-button raised id="button2" class="answerButton" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
+              <paper-button raised id="button3" class="answerButton" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
+            </div>
           </div>
         ` : html``}
         ${this.completed ? html`
-          <div class="layout vertical">
+          <div class="vertical">
             <div>
               ${this.localize("youHaveCompletetTheQuiz")}
             </div>
@@ -73,17 +81,26 @@ class OapPolicyQuiz extends OapPageViewElement {
           </div>
           ` : html``}
       </div>
+    </div>
     `
   }
 
   submitAnswer (answer) {
-    if (answer==this.questions[this.currentIndex].correctAnswer) {
+    const correctAnswer = this.questions[this.currentIndex].correctAnswer;
+    if (answer==correctAnswer) {
       this.fire("oap-overlay", {
         html: html`${this.localize("correctAnswer")}`,
         soundEffect: "",
         duration: 300,
       });
       this.correctAnswers+=1;
+      this.$$("#button"+answer).animate([
+        { transform: "scale(1.3)", easing: 'ease-in' },
+        { transform: "scale(1.0)", easing: 'ease-out' }
+      ], {
+        duration: 450,
+        iterations: 1
+      });
     } else {
       this.fire("oap-overlay", {
         html: html`${this.localize("incorrectAnswer")}`,
@@ -91,24 +108,47 @@ class OapPolicyQuiz extends OapPageViewElement {
         duration: 300,
       })
       this.incorrectAnswers+=1;
+      this.$$("#button"+answer).animate([
+        { transform: "translateX(-3px)", easing: 'ease-in' },
+        { transform: "translateX(3px)", easing: 'ease-out' },
+        { transform: "translateX(-5px)", easing: 'ease-in' },
+        { transform: "translateX(5px)", easing: 'ease-out' },
+        { transform: "translateX(-7px)", easing: 'ease-in' },
+        { transform: "translateX(7px)", easing: 'ease-out' },
+      ], {
+        duration: 450,
+        iterations: 1
+      });
     }
 
-    this.$$("#button"+answer).style.backgroundColor="#0F0";
-    const incorrectButtons = [0,1,2,3].filter(item => item !== answer);
+    this.savedBackgroundColor = this.$$("#button"+correctAnswer).style.backgroundColor;
+
+    this.$$("#button"+correctAnswer).style.backgroundColor="#0F0";
+    const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
     incorrectButtons.forEach( (buttonId) => {
       this.$$("#button"+buttonId).style.backgroundColor="#F00";
+      this.$$("#button"+buttonId).classList.add("wrongAnswer");
     });
 
     setTimeout( ()=> {
+      this.resetAllButtons();
       if (this.currentIndex<this.questions.length-1) {
-        this.currentIndex+1;
+        this.currentIndex+=1;
         this.requestUpdate();
       } else {
         this.currentIndex=null;
         this.completed=true;
+        this.requestUpdate();
         this.fire("oap-sound-effect","quizCompleted");
       }
-    }, 500);
+    }, 1000);
+  }
+
+  resetAllButtons() {
+    [0,1,2,3].forEach( (buttonId) => {
+      this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;
+      this.$$("#button"+buttonId).classList.remove("wrongAnswer");
+    });
   }
 
   updated(changedProps) {

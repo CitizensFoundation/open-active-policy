@@ -7,10 +7,48 @@ import { css } from 'lit-element';
 
 export const OapPolicyQuizStyles = css`
 
-  .answerButton {
-    min-width: 200px;
+  :host {
+    width: 100%;
   }
 
+  .answerButton {
+    min-width: 350px;
+    max-width: 350px;
+    margin: 8px;
+  }
+
+  .wrongAnswer {
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+     opacity: 0.0;
+  }
+
+  .buttonContainer {
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .topContainer {
+    max-width: 432px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--quiz-background-color, #FFF);
+    color: var(--quiz-color, #111);
+    padding-bottom: 16px;
+  }
+
+  .question {
+    padding: 8px;
+  }
+
+  .image {
+    width: 432px;
+    height: 270px;
+
+  }
   [hidden] {
     display: none !important;
   }
