@@ -118,10 +118,10 @@ class OapPolicyQuiz extends OapPageViewElement {
 
     this.savedBackgroundColor = this.$$("#button"+correctAnswer).style.backgroundColor;
 
-    this.$$("#button"+correctAnswer).style.backgroundColor="#0F0";
+    this.$$("#button"+correctAnswer).style.backgroundColor="#39FF14";
     const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
     incorrectButtons.forEach( (buttonId) => {
-      this.$$("#button"+buttonId).style.backgroundColor="#F00";
+      this.$$("#button"+buttonId).style.backgroundColor="#d6483d";
       this.$$("#button"+buttonId).classList.add("wrongAnswer");
     });
 

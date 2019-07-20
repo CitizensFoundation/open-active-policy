@@ -15309,9 +15309,17 @@ this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteBut
 
   @media (max-width: 1024px) {
     .headerLogo {
-      width: 160px;
-      height: 48px;
-      margin-left: 4px;
+      width: 55px;
+      height: 55px;
+      margin-left: 16px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .headerLogo {
+      width: 50px;
+      height: 50px;
+      margin-left: 8px;
     }
   }
 
@@ -15375,7 +15383,7 @@ this.$$("#addFavoriteButton").style.position="absolute";this.$$("#addFavoriteBut
             <span ?hidden="${!this.showExit}">
               <paper-icon-button alt="${this.localize("close")}" ?hidden="${this.wide}" class="closeButton mobileActionIcons" icon="closeExit" @click="${this._exit}"></paper-icon-button>
             </span>
-            <iron-image ?hidden="${!this.mediumWide}" sizing="contain" class="headerLogo" src="${this.budgetHeaderImage}"></iron-image>
+            <iron-image sizing="contain" class="headerLogo" src="${this.budgetHeaderImage}"></iron-image>
             <div class="vertical center-center" style="width: 100%;">
               <div class="flex">
                 ${!this.selectedBudget&&this.areaName?html$1`
@@ -15566,7 +15574,7 @@ if("area-ballot"==page&&this.$$("#budgetBallot")&&this.$$("#budgetBallot").refre
 if("area-ballot"==oldPage&&this.$$("#budgetBallot")&&"post"!=page){this.$$("#budgetBallot").selectedView=0}// Cancel login polling if needed
 if("area-ballot"==oldPage&&this.$$("#budgetBallot")){this._hideFavoriteItem()}setTimeout(()=>{if("area-ballot"==page&&this.currentBallot&&this.currentBallot.favoriteItem){this.$$("#favoriteIcon").hidden=!1;this.resetFavoriteIconPosition()}});// Do not allow access to voting-completed from a reload
 if("voting-completed"==page&&"area-ballot"!=oldPage){window.location="/"}// Refresh counts if coming from voting-completed
-if("voting-completed"==oldPage&&this.$$("#selectVotingArea")){this.$$("#selectVotingArea").refreshAreaCounters()}// Send page info to Google Analytics
+if("voting-completed"==oldPage&&this.$$("#selectVotingArea")){this.$$("#selectVotingArea").refreshAreaCounters()}if("area-ballot"===page&&0===this.filteredItems.length){window.history.pushState({},null,"/quiz");this.fire("location-changed","/quiz")}// Send page info to Google Analytics
 if(page&&"function"==typeof ga){ga("send","pageview",{page:location.pathname+location.search+location.hash})}this.wideAndBallot=this.wide&&"area-ballot"===page}}_layoutChanged(isWideLayout){}_offlineChanged(offline){const previousOffline=this._offline;this._offline=offline;// Don't show the snackbar on the first load of the page.
 if(previousOffline===void 0){return}clearTimeout(this.__snackbarTimer);this._snackbarOpened=!0;this.__snackbarTimer=setTimeout(()=>{this._snackbarOpened=!1},3e3)}_locationChanged(location){if(location instanceof CustomEvent)location={pathname:location.detail};if("/"===location.pathname){const path="/quiz";window.history.pushState({},null,path);location={pathname:path};this.fire("location-changed",path)}const path=window.decodeURIComponent(location.pathname),page="/"===path?"/":path.slice(1).split("/")[0];this._loadPage(page);// Any other info you might want to extract from the path (like page type),
 // you can do here.
