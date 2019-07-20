@@ -446,6 +446,7 @@ class OapSwipableCards extends OapBaseElement {
     this.currentPosition = this.currentPosition + 1;
     this.currentItemsPosition = this.currentItemsPosition + 1;
     this.updateFromMainItemsList();
+    this.activity('swipeLeft', 'filtering');
   }
 
   updateFromMainItemsList() {
@@ -488,6 +489,7 @@ class OapSwipableCards extends OapBaseElement {
     this.updateUi();
     this.setCurrentElement();
     this.updateFromMainItemsList();
+    this.activity('swipeRight', 'filtering');
   }
 
   //Swipe active card to top.
@@ -510,6 +512,7 @@ class OapSwipableCards extends OapBaseElement {
       this.changeBackground();
       this.changeStages();
       this.setActiveHidden();
+      this.activity('swipeUp', 'filtering');
     }
   }
 

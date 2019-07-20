@@ -114,6 +114,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         duration: 450,
         iterations: 1
       });
+      this.activity('answerSubmitted', 'quiz');
     }
 
     this.savedBackgroundColor = this.$$("#button"+correctAnswer).style.backgroundColor;

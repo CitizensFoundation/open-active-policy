@@ -357,7 +357,7 @@ class OapBudget extends OapBaseElement {
     image.style.width = itemWidth + 'px';
     image.style.opacity = 0.5;
 
-//    container.appendChild(image);
+    container.appendChild(image);
     var colorBox = document.createElement("div");
     colorBox.setAttribute('alt', item.name);
     colorBox.setAttribute('title', item.name);

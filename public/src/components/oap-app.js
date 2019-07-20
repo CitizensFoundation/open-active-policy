@@ -706,6 +706,7 @@ class OapApp extends OapBaseElement {
       duration: 650,
       iterations: 1
     });
+    this.activity('correct', 'quizAnswer');
   }
 
   _setupCustomCss(config) {
@@ -858,6 +859,7 @@ class OapApp extends OapBaseElement {
     const path = '/area-ballot/1';
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
+    this.activity('finished', 'filtering');
   }
 
   quizFinished () {
@@ -865,6 +867,7 @@ class OapApp extends OapBaseElement {
     const path = '/filter-articles';
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
+    this.activity('finished', 'quiz');
   }
 
   _removeListeners() {
