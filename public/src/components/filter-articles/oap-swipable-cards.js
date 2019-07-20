@@ -74,7 +74,7 @@ class OapSwipableCards extends OapBaseElement {
                     <div class="card-content">
                       <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                       <div class="card-tistles">
-                        <div class="name">${item.id} ${item.name}</div>
+                        <div class="name">${item.name}</div>
                         <div id="description${item.id}" class="description">${item.description}</div>
                         ${ item.description.length>200 ? html`
                           <div class="hideUnhideContainer">
@@ -460,27 +460,18 @@ class OapSwipableCards extends OapBaseElement {
     setTimeout(()=> {
       this.requestUpdate();
       this.updateComplete.then(() => {
-        if (this.itemsLeft.length>1) {
+        if (this.itemsLeft.length>0) {
           this.visibleItems.push(this.itemsLeft.shift());
           this.visibleItems.shift();
           this.currentPosition = 0;
           this.requestUpdate();
           this.updateComplete.then(() => {
-            this.rendering = false;
-            this.requestUpdate();
             this.refresh();
-            this.updateComplete.then(() => {
-              this.rendering = true;
-              this.requestUpdate();
-              this.updateComplete.then(() => {
-                this.rendering = true;
-                this.refresh();
-             });
-           });
+            this.requestUpdate();
          });
         }
       });
-    }, 1000);
+    }, 300);
   }
 
   //Swipe active card to right.
