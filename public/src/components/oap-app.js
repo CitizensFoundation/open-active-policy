@@ -378,7 +378,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group2.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 8.0
+        price: 18.0
       },
       {
         id: "5",
@@ -388,7 +388,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/groupe6.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 8.0
+        price: 18.0
       },
       {
         id: "6",
@@ -408,7 +408,7 @@ class OapApp extends OapBaseElement {
         image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Module+image+size+-+864x580+Copy+4.png",
         module_type: "Exclusive",
         exclusive_ids: "1,2,3,4",
-        price: 8.0
+        price: 18.0
       },
       {
         id: "8",
@@ -512,6 +512,7 @@ class OapApp extends OapBaseElement {
       }
     ]
     this.cacheDataImages();
+    this.filteredItems = this.allItems;
   }
 
   cacheDataImages() {
