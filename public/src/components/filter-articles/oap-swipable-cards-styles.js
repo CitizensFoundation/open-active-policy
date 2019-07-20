@@ -8,9 +8,6 @@ import { css } from 'lit-element';
 export const OapSwipableCardsStyles = css`
   /*------ CSS Use Case Example START ------*/
 
-  /* import font ROBOTO */
-  @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
-
   body {
       font-family: 'Roboto', sans-serif;
       font-size: 12px;
@@ -344,6 +341,35 @@ export const OapSwipableCardsStyles = css`
   .stackedcards .stackedcards-container > :nth-child(1) {
       position: relative;
       display: block;
+  }
+
+  .description {
+    font-size: 16px;
+    color: #000;
+    margin: 4px;
+    height: 160px;
+    overflow-x: hidden;
+  }
+
+  .name {
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+    margin: 4px;
+    background-color: rgba(255,255,255,0.8);
+    margin-left: 0;
+    margin-right: 0;
+    width: 97%;
+    text-align: center;
+  }
+
+  .cardImage {
+    width: 324px;
+    height: 218px;
+  }
+
+  [hidden] {
+    display: none !important;
   }
 /*----- Stacked Cards component css END -----*/
 `;

@@ -24,6 +24,7 @@ import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import './oap-icons.js';
 import './snack-bar.js';
 import './policy-quiz/oap-policy-quiz';
+import './filter-articles/oap-filter-articles'
 //import './browse-articles/oap-swipable-cards';
 //import './oav-voting-completed';
 
@@ -230,15 +231,12 @@ class OapApp extends OapBaseElement {
             .language="${this.language}"
             ?active="${this._page === 'quiz'}">
           </oap-policy-quiz>
-          <oap-browse-articles id="browseArticles"
-            .ballotElement="${this.ballotElement}"
+          <oap-filter-articles id="filterArticles"
             .language="${this.language}"
-            .areaIdRoutePath="${this._subPath}"
             .configFromServer="${this.configFromServer}"
-            ?hidden="${this._page !== 'area-ballot'}"
-            .votePublicKey="${this.votePublicKey}"
-            ?active="${this._page === 'browser-articles'}">
-          </oap-browse-articles>
+            .allItems="${this.allItems}"
+            ?active="${this._page === 'filter-articles'}">
+          </oap-filter-articles>
           <oap-article-selection
             .configFromServer="${this.configFromServer}"
             .language="${this.language}"
@@ -328,7 +326,159 @@ class OapApp extends OapBaseElement {
     ],
 
     this.allItems = [
-
+      {
+        id: "1",
+        branch: "Executive Core Articles",
+        name: "Head of State: Empowered President",
+        description: "An Empowered President, elected directly or indirectly by the entire electorate, meant to personify the will of the people in single individual's leadership abilities.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/marentest1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "2",
+        branch: "Executive Core Articles",
+        name: "Head of State: Prime Minister",
+        description: "As the head of the Legislative/Parliamentary system, the Prime Minister’s authority arises from the elected representatives choice of a leader amongst themselves. This helps reduce gridlock in government, while also disconnecting the Head of State from the direct will of the electorate.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/marentest2.png",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "3",
+        branch: "Executive Core Articles",
+        name: "Head of State: King",
+        description: "Historically the center of authority in pre-modern governments, the King's authority rests on a traditional architecture of original military conquest, hereditary transitions of power, and usually some notion of Divine Will or Mandate of Heaven. Though once always autocratic and ruling through all powerful fiat of their will, many monarchs have ceded power to more democratic and parliamentary governments, becoming largely figureheads of continuity and tradition.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/3bc1.jpg",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "4",
+        branch: "Executive Core Articles",
+        name: "Head of State: High Priest",
+        description: "In a proper Theocracy, the central authority rests with the highest authority of the clergy of the religious faith that underpins the government, the spiritual leader of the majority of the population of the country. This authority may function as an interpretive and judicial authority primarily; or it may be an absolute autocratic authority over all structures of government.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/wethepeople1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "5",
+        branch: "Executive Core Articles",
+        name: "Figurehead Executive: Vice President",
+        description: 'Whether elected individually or packaged with a President on a "ticket", the VP gives the electorate the comfort of knowing they have chosen a worthy successor to the President, and a smooth transition of power is guaranteed should something unexpected happen to the chief executive. The VP position is also a valuable political actor for diplomacy and affairs of state.',
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "6",
+        branch: "Executive Core Articles",
+        name: "Figurehead Executive: Figurehead President",
+        description: "In the case of the Head of State being a Prime Minister, King or Supreme Theocrat, then there might be an executive position called President, that may be appointed or elected, and generally performs public relations for the government, as well as matters of diplomacy and affairs of state.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "7",
+        branch: "Executive Core Articles",
+        name: "Cabinet: Appointed by Head of State",
+        description: 'Sometimes called "to the victor go the spoils" approach, this allows the Executive Head of State to compose a team of cabinet members that they select, insuring a team of like minded individuals likely to work well with the Head of State and each other. Comes with increased risk of croneyism.',
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "8",
+        branch: "Executive Core Articles",
+        name: "Cabinet: Appointed by Legislature/Parliament",
+        description: "In a Prime Minister's cabinet, integrated into the parliamentary process, the factions in the legislative body may also control the staffing of the PM's cabinet, again helping the government be as integrated, coherent and internal conflict-free as possible.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Exclusive",
+        exclusive_ids: "1,2,3,4"
+      },
+      {
+        id: "9",
+        branch: "Executive Amendments",
+        name: "Veto Power",
+        description: 'The ability of the Executive to serve as a check on laws generated by the Legislative/Parliamentary Branch. This gives the Executive a roll of oversight of the law making process, thus giving them the chance to lead from a "bully pulpit" against popular opinion if the new law polls well, or to function as an agent of that public opinion as their elected Executive in stopping an unpopular law.',
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "10",
+        branch: "Executive Amendments",
+        name: "Term Limits",
+        description: "In the case of an Empowered President, this provides for a set number of terms to which the executive may be elected, usually limited to no more than 2 or 3 terms, and usually no more than 4 to 6 years in length.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "11",
+        branch: "Executive Amendments",
+        name: "Age Requirement",
+        description: "Sets a minimum age for the Head of State/chief executive, making life experience a key requirement for service as national leader.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "12",
+        branch: "Executive Amendments",
+        name: "Meritocracy Requirement",
+        description: "Sets requirements of acheivement for prospective candidates for Head of State, in professional, academic, and political life as qualifications for public service as Head of State. This may involve actual objective testing, or evaluation by a peer review panel.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "13",
+        branch: "Executive Amendments",
+        name: "Conflict of Interest Constraints",
+        description: "Sets a constitutional prohibition against any business or organizational ties that might pit the Head of State's self-interest against the interest of the State.The Head of State must not abrogate their loyalties, and their commitment to the public good must be beyond question.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "14",
+        branch: "Executive Amendments",
+        name: "Emoluments Prohibition",
+        description: "The Head of State must not be allowed to accept gifts from foreign entities who might be trying to use such gifts to sway foreign policy decisions that the Head of State should make without such influence.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "15",
+        branch: "Executive Amendments",
+        name: "Power of Executive Orders/Royal Decree",
+        description: "Confers to the Executive branch the authority to issue edicts/executive orders/decrees that function roughly the same as laws passed by the Legislative/Paliamentary Branch, though they generally sunset when the Executive goes through a transition of power.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "16",
+        branch: "Executive Amendments",
+        name: "Religious Authority",
+        description: "Confers on the Head of State authority over the state religion, and the ability to make decrees that have both religious and legal significance to the society.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      },
+      {
+        id: "17",
+        branch: "Executive Amendments",
+        name: "Control of Taxation/Budget",
+        description: "The Branch that has this power makes the ultimate decisions on the government's revenue sources, funding allocation and debt and deficit management, the so called 'power of the purse'.",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        module_type: "Simple",
+        exclusive_ids: ""
+      }
     ]
 
     this.cacheDataImages();
@@ -337,8 +487,18 @@ class OapApp extends OapBaseElement {
   cacheDataImages() {
     if (this.quizQuestions) {
       this.quizQuestions.forEach((question) => {
-        const img = new Image();
-        img.src=question.imageUrl;
+        setTimeout( () => {
+          const img = new Image();
+          img.src=question.imageUrl;
+        });
+      });
+    }
+    if (this.allItems) {
+      this.allItems.forEach((module) => {
+        setTimeout( () => {
+          const img = new Image();
+          img.src=module.image_url;
+        });
       });
     }
   }
@@ -811,6 +971,7 @@ class OapApp extends OapBaseElement {
         break;
       case 'area-ballot':
       case 'voting-completed':
+      case 'filter-articles':
       case 'quiz':
       case '/':
         break;

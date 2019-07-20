@@ -3,11 +3,11 @@
 @license
 Copyright (c) 2010-2019 Citizens Foundation. AGPL License. All rights reserved.
 */
-
+import { html } from 'lit-element';
 import { OapBaseElement } from '../oap-base-element';
 import { OapSwipableCardsStyles } from './oap-swipable-cards-styles';
 
-export class OapSwipableCards extends OapBaseElement {
+class OapSwipableCards extends OapBaseElement {
 
   static get properties() {
     return {
@@ -63,19 +63,11 @@ export class OapSwipableCards extends OapBaseElement {
                 html`
                   <div class="card">
                     <div class="card-content">
-                      <div class="card-image"><img src="${item.image_url}" width="100%"/></div>
-                      <div class="card-titles">
-                        <h1>${item.name}</h1>
-                        <p class="description">${item.description}</p>
+                      <div class="card-imagse"><img class="cardImage" src="${item.image_url}"/></div>
+                      <div class="card-tistles">
+                        <div class="name">${item.name}</div>
                       </div>
-                    </div>
-                    <div class="card-footer">
-                      <div class="popular-destinations-text">Cost: 16pt</div>
-                      <div class="popular-destinations-images">
-                        <div class="circle"><img src="https://image.ibb.co/jmEYL7/adventure_1.jpg" width="100%" height="100%"/></div>
-                        <div class="circle"><img src="https://image.ibb.co/nsCynn/adventure_2.jpg" width="100%" height="100%"/></div>
-                        <div class="circle"><img src="https://image.ibb.co/hmsL07/adventure_3.jpg" width="100%" height="100%"/></div>
-                      </div>
+                      <p class="description">${item.description}</p>
                     </div>
                   </div>
                 `
@@ -87,8 +79,11 @@ export class OapSwipableCards extends OapBaseElement {
           </div>
           <div class="global-actions">
             <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
-            <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
-            <div class="right-action"><img src="https://image.ibb.co/dCuESn/Path_3x.png" width="30" height="28"/></div>
+            <div hidden>
+             <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
+            </div>
+            <div style="width: 100px;"></div>
+            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
         </div>
       </div>
 
@@ -110,8 +105,9 @@ export class OapSwipableCards extends OapBaseElement {
     super.updated(changedProps);
     if (changedProps.has('items')) {
       if (this.items && this.items.length>0) {
-        this.visibleItems=this.items;
+        this.visibleItems=this.items.slice(10);
         //TODO: Only show first 20 items and reload on demand
+        this.requestUpdate();
         this.updateComplete.then(() => {
           this.activate();
         });
@@ -122,12 +118,13 @@ export class OapSwipableCards extends OapBaseElement {
   reset() {
     this.stackedOptions = 'Top';
     this.rotate = true;
-    this.elementsMargin = 10;
+    this.elementsMargin = 5;
     this.currentPosition = 0;
     this.currentItemsPosition = 0;
     this.velocity = 0.3;
     this.isFirstTime = true;
     this.touchingElement = false;
+    this.visibleItems = [];
   }
 
   activate() {
@@ -179,7 +176,8 @@ export class OapSwipableCards extends OapBaseElement {
 		this.updateUi();
 
 		//Prepare elements on DOM
-		var addMargin = this.elementsMargin * (this.visibleItems.length -1) + 'px';
+    var addMargin = this.elementsMargin * (this.visibleItems.length -1) + 'px';
+    var i;
 
 		if(this.stackedOptions === "Top"){
 
@@ -226,9 +224,9 @@ export class OapSwipableCards extends OapBaseElement {
 
   addEventListeners() {
      // JavaScript Document
-		this.obj.addEventListener('touchstart', this.gestureStart.bind(this), false);
-		this.obj.addEventListener('touchmove', this.gestureMove.bind(this), false);
-		this.obj.addEventListener('touchend', this.gestureEnd.bind(this), false);
+		document.addEventListener('touchstart', this.gestureStart.bind(this), false);
+		document.addEventListener('touchmove', this.gestureMove.bind(this), false);
+		document.addEventListener('touchend', this.gestureEnd.bind(this), false);
 
 		//Add listeners to call global action for swipe cards
 		var buttonLeft = this.$$('.left-action');
@@ -244,9 +242,9 @@ export class OapSwipableCards extends OapBaseElement {
 
   removeEventListeners() {
     // JavaScript Document
-   this.obj.removeEventListener('touchstart', this.gestureStart.bind(this));
-   this.obj.removeEventListener('touchmove', this.gestureMove.bind(this));
-   this.obj.removeEventListener('touchend', this.gestureEnd.bind(this));
+    document.removeEventListener('touchstart', this.gestureStart.bind(this));
+    document.removeEventListener('touchmove', this.gestureMove.bind(this));
+    document.removeEventListener('touchend', this.gestureEnd.bind(this));
 
    var buttonLeft = this.$$('.left-action');
    var buttonTop = this.$$('.top-action');
@@ -619,6 +617,8 @@ export class OapSwipableCards extends OapBaseElement {
           return value/10;
       }
 
+      var rotateElement;
+
       if(this.rotate){
         rotateElement = RotateRegulator(moveX);
       } else {
@@ -653,6 +653,8 @@ export class OapSwipableCards extends OapBaseElement {
       var elOpac = 1;
       var elTransTop = this.visibleItems.length;
       var elTransInc = this.elementsMargin;
+
+      var i;
 
       for(i = this.currentPosition; i < (this.currentPosition + this.visibleItems.length); i++){
         if(this.listElNodesObj[i]){
@@ -836,3 +838,6 @@ export class OapSwipableCards extends OapBaseElement {
     }
   }
 }
+
+
+window.customElements.define('oap-swipable-cards', OapSwipableCards);
