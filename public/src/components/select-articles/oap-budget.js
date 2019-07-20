@@ -342,27 +342,23 @@ class OapBudget extends OapBaseElement {
     container.style.position = "relative";
 
     var image = document.createElement("iron-image");
-    image.src = item.image_url;
+    image.src = "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/scrollTexture2.png";
     image.setAttribute("sizing", "cover");
     image.setAttribute('alt', item.name);
     image.setAttribute('title', item.name);
     image.setAttribute('style', "cursor: pointer;");
 
     image.title= item.name;
-    image.style.borderLeft = 'solid 1px';
-    image.style.borderRight = 'solid 1px';
-    image.style.borderColor = '#ff6500';
     if (this.wide) {
       image.style.height = '100px';
     } else {
       image.style.height = '81px';
     }
     image.style.width = itemWidth + 'px';
+    image.style.opacity = 0.5;
 
 //    container.appendChild(image);
     var colorBox = document.createElement("div");
-    image.src = item.image_url;
-    image.setAttribute("sizing", "cover");
     colorBox.setAttribute('alt', item.name);
     colorBox.setAttribute('title', item.name);
     colorBox.setAttribute('style', "cursor: pointer;");
@@ -370,7 +366,7 @@ class OapBudget extends OapBaseElement {
     colorBox.title= item.name;
     colorBox.style.borderLeft = 'solid 1px';
     colorBox.style.borderRight = 'solid 1px';
-    colorBox.style.opacity = 0.75;
+    colorBox.style.opacity = 0.9;
 
     let random = Math.floor(Math.random() * 4);
     let color;
@@ -394,6 +390,7 @@ class OapBudget extends OapBaseElement {
     }
     colorBox.style.width = itemWidth + 'px';
 
+    colorBox.appendChild(image);
     container.appendChild(colorBox);
 
     container.addEventListener('tap', function () {

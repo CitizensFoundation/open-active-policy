@@ -128,7 +128,7 @@ class OapArticleItem extends OapBaseElement {
           </paper-share-button>
 
           <div class="cost" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
-            ${this.localize("CP")}: ${this.formatNumber(this.item.price)}
+           ${this.formatNumber(this.item.price)}${this.localize("cp")}
             <span class="costCurrency" ?hidden="${!this._costIsOne(this.item.price)}">${this.localize('million')}</span>
             <span class="costCurrency" ?hidden="${this._costIsOne(this.item.price)}">${this.localize('millions')}</span>
           </div>
@@ -141,6 +141,7 @@ class OapArticleItem extends OapBaseElement {
                     ?disabled="${this.toExpensive}" title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
           </paper-fab>
 
+          <div hidden>
           <div id="favoriteButtons" class="favoriteButtons" ?hidden="${!this.selected}">
             <paper-fab mini id="addFavoriteButton" class="addFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${this.isFavorite}"
                       title="${this.localize('select_favorite')}" icon="${this.configFromServer.client_config.favoriteIconOutline}" @click="${this._toggleFavorite}">
@@ -148,6 +149,7 @@ class OapArticleItem extends OapBaseElement {
             <paper-fab mini class="removeFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${!this.isFavorite}"
                       title="${this.localize('deselect_favorite')}" icon="${this.configFromServer.client_config.favoriteIcon}" @click="${this._toggleFavorite}">
             </paper-fab>
+          </div>
           </div>
         </div>
       </div>
