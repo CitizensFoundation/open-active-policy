@@ -128,7 +128,7 @@ class OapArticleItem extends OapBaseElement {
           </paper-share-button>
 
           <div class="cost" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
-            ${this.localize("choicePoints")}: ${this.formatNumber(this.item.price)}
+            ${this.localize("CP")}: ${this.formatNumber(this.item.price)}
             <span class="costCurrency" ?hidden="${!this._costIsOne(this.item.price)}">${this.localize('million')}</span>
             <span class="costCurrency" ?hidden="${this._costIsOne(this.item.price)}">${this.localize('millions')}</span>
           </div>

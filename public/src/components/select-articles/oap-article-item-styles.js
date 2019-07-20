@@ -104,9 +104,10 @@ export const OapArticleItemStyles = css`
   }
 
   .name {
-    font-size: var(--app-item-name-font-size, 20px);
+    font-size: var(--app-item-name-font-size, 17px);
     padding: 8px;
-    color: var(--app-ballot-item-name-color, #222);
+    font-weight: bold;
+    color: var(--app-ballot-item-name-color, #000);
   }
 
   .name[small] {
@@ -295,6 +296,12 @@ export const OapArticleItemStyles = css`
 
   .cost {
     padding-left: 8px;
+    position: absolute;
+    bottom: 12px;
+    font-weight: bold;
+    font-size: 20px;
+    left: 120px;
+    color: var(--app-accent-color, #F00);
   }
 
   [hidden] {
