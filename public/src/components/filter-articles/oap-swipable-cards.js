@@ -4,8 +4,10 @@
 Copyright (c) 2010-2019 Citizens Foundation. AGPL License. All rights reserved.
 */
 import { html } from 'lit-element';
+import { repeat } from 'lit-html/directives/repeat';
 import { OapBaseElement } from '../oap-base-element';
 import { OapSwipableCardsStyles } from './oap-swipable-cards-styles';
+
 import '@polymer/paper-icon-button';
 
 import '../oap-icons';
@@ -66,7 +68,7 @@ class OapSwipableCards extends OapBaseElement {
         <div class="title">${this.localize("filterArticles")}</div>
           <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
             <div class="stackedcards-container">
-              ${this.visibleItems.map((item, index) =>
+              ${repeat(this.visibleItems, (item) => item.id, (item, index) =>
                 html`
                   <div class="card" id="card${item.id}">
                     <div class="card-content">
