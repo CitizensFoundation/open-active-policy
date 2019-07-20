@@ -105,7 +105,6 @@ class OapBallot extends OapPageViewElement {
 
     if (changedProps.has('budgetBallotItems')) {
 //      this.loadArea();
-      debugger;
     }
 
     if (changedProps.has('favoriteItem')) {

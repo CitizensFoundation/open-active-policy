@@ -57,35 +57,18 @@ export const OapArticleItemStyles = css`
   }
 
   iron-image {
-    height: 169px;
     width: 300px;
+    height: 201px;
   }
 
   iron-image[small] {
     width: 260px;
-    height: 146px;
+    height: 175px;
   }
 
   iron-image[small][tiny] {
     width: 220px;
-    height: 124px;
-  }
-
-  google-map {
-    height: 169px;
-    width: 300px;
-    margin-bottom: 7px;
-  }
-
-  google-map[small] {
-    width: 260px;
-    height: 146px;
-    z-index: 0 !important;
-  }
-
-  google-map[small][tiny] {
-    width: 220px;
-    height: 124px;
+    height: 148px;
   }
 
   .descriptionContainer {
@@ -308,6 +291,10 @@ export const OapArticleItemStyles = css`
   }
 
   .favoriteButtons {
+  }
+
+  .cost {
+    padding-left: 8px;
   }
 
   [hidden] {
