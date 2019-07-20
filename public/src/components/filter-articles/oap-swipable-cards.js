@@ -6,6 +6,10 @@ Copyright (c) 2010-2019 Citizens Foundation. AGPL License. All rights reserved.
 import { html } from 'lit-element';
 import { OapBaseElement } from '../oap-base-element';
 import { OapSwipableCardsStyles } from './oap-swipable-cards-styles';
+import '@polymer/paper-icon-button';
+
+import '../oap-icons';
+import { OapFlexLayout } from '../oap-flex-layout';
 
 class OapSwipableCards extends OapBaseElement {
 
@@ -43,7 +47,8 @@ class OapSwipableCards extends OapBaseElement {
       rightOpacity: Number,
       leftOpacity: Number,
       touchingElement: Boolean,
-      disableUpSwipe: Boolean
+      disableUpSwipe: Boolean,
+      hiddenImageIds: Object
     }
   }
 
@@ -63,11 +68,22 @@ class OapSwipableCards extends OapBaseElement {
                 html`
                   <div class="card">
                     <div class="card-content">
-                      <div class="card-imagse"><img class="cardImage" src="${item.image_url}"/></div>
+                      <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                       <div class="card-tistles">
                         <div class="name">${item.name}</div>
+                        <div id="description${item.id}" class="description">${item.description}</div>
+                        ${ item.description.length>200 ? html`
+                          <div class="hideUnhideContainer">
+                            <div class="innerHideContainer">
+                              ${this.isImageHidden(item.id)==true ? html`
+                                <paper-icon-button @click="${()=> { this.unhideImage(item.id) }}" icon="keyboard-arrow-down"></paper-icon-button>
+                              ` : html`
+                                <paper-icon-button @click="${()=> { this.hideImage(item.id) }}" icon="keyboard-arrow-up"></paper-icon-button>
+                              `}
+                            </div>
+                          </div>
+                        ` : html``}
                       </div>
-                      <p class="description">${item.description}</p>
                     </div>
                   </div>
                 `
@@ -125,6 +141,8 @@ class OapSwipableCards extends OapBaseElement {
     this.isFirstTime = true;
     this.touchingElement = false;
     this.visibleItems = [];
+    this.disableUpSwipe = true;
+    this.hiddenImageIds = {};
   }
 
   activate() {
@@ -158,6 +176,32 @@ class OapSwipableCards extends OapBaseElement {
     }.bind(this), 150);
 
    this.addEventListeners();
+  }
+
+  isImageHidden(imageId) {
+    return this.hiddenImageIds[imageId]!=null;
+  }
+
+  hideImage(imageId) {
+    const item = this.$$("#image"+imageId);
+    if (item) {
+      item.classList.add("imageCollapsed");
+      this.hiddenImageIds[imageId]=true;
+      const description = this.$$("#description"+imageId);
+      description.classList.add("fullsizeDescription");
+      this.requestUpdate();
+    }
+  }
+
+  unhideImage(imageId) {
+    const item = this.$$("#image"+imageId);
+    if (item) {
+      item.classList.remove("imageCollapsed");
+      this.hiddenImageIds[imageId]=null;
+      const description = this.$$("#description"+imageId);
+      description.classList.remove("fullsizeDescription");
+      this.requestUpdate();
+    }
   }
 
   refresh() {
@@ -812,7 +856,11 @@ class OapSwipableCards extends OapBaseElement {
       if(this.translateY < (this.elementHeight * -1) && this.translateX > ((this.listElNodesWidth / 2) * -1) && this.translateX < (this.listElNodesWidth / 2)){  //is Top?
 
         if(this.translateY < (this.elementHeight * -1) || (Math.abs(this.translateY) / this.timeTaken > this.velocity)){ // Did It Move To Top?
-          this.onSwipeTop();
+          if (this.disableUpSwipe) {
+            this.backToMiddle();
+          } else {
+            this.onSwipeTop();
+          }
         } else {
           this.backToMiddle();
         }
