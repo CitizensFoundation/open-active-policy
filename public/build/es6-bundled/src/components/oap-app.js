@@ -13359,6 +13359,13 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
     transition: all 400ms ease;
   }
 
+  :host {
+  }
+
+  .topestContainer {
+    overflow: -moz-scrollbars-none;
+    width: 100%;
+  }
   /* class created only for a better preview*/
   .stage {
       position: absolute;
@@ -13407,11 +13414,11 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
 
   .title {
       width: 100%;
-      padding-bottom: 8px;
+      padding-bottom: 16px;
       text-align: center;
-      font-weight: 600;
-      font-size: 22px;
-      color: #fff;
+      font-weight: 700;
+      font-size: 24px;
+      color: #333 !important;
   }
 
   .card-content {
@@ -13673,7 +13680,7 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
     color: #000;
     margin: 8px;
     margin-top: 4px;
-    height: 110px;
+    height: 105px;
     overflow: hidden;
     margin-bottom: 32px;
   }
@@ -14018,48 +14025,51 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
       };
 `;_exports.OapFlexLayout=OapFlexLayout;var oapFlexLayout={OapFlexLayout:OapFlexLayout};// Code originally from https://www.outsystems.com/blog/posts/gestures_glamour_swipeable_stacked_cards/
 _exports.$oapFlexLayout=oapFlexLayout;class OapSwipableCards extends OapBaseElement{static get properties(){return{stackedOptions:String,rotate:Boolean,items:Array,itemsLeft:Array,visibleItems:Array,elementsMargin:Number,useOverlays:Boolean,maxElements:Number,currentPosition:Number,currentItemsPosition:Number,isFirstTime:Boolean,elementHeight:Number,velocity:Number,topObj:Object,rightObj:Object,leftObj:Object,listElNodesObj:Object,listElNodesWidth:Object,currentElementObj:Object,stackedCardsObj:Object,obj:Object,elTrans:Object,startTime:Number,startX:Number,startY:Number,translateX:Number,translateY:Number,currentX:Number,currentY:Number,timeTaken:Number,rightOpacity:Number,leftOpacity:Number,touchingElement:Boolean,disableUpSwipe:Boolean,hiddenImageIds:Object,rendering:Boolean}}static get styles(){return[OapSwipableCardsStyles]}render(){return html$1`
+    <div class="topestContainer">
       <div class="stage">
-        <div class="title">${this.localize("filterArticles")}</div>
-          <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
-            <div class="stackedcards-container">
-              ${repeat(this.visibleItems,item=>item.id,(item,index)=>html$1`
-                  <div class="card" id="card${item.id}">
-                    <div class="card-content">
-                      <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
-                      <div class="card-tistles">
-                        <div class="name">${item.name}</div>
-                        <div id="description${item.id}" class="description">${item.description}</div>
-                        ${200<item.description.length?html$1`
-                          <div class="hideUnhideContainer">
-                            <div class="innerHideContainer">
-                              ${!0==this.isImageHidden(item.id)?html$1`
-                                <paper-icon-button @click="${()=>{this.unhideImage(item.id)}}" icon="keyboard-arrow-down"></paper-icon-button>
-                              `:html$1`
-                                <paper-icon-button @click="${()=>{this.hideImage(item.id)}}" icon="keyboard-arrow-up"></paper-icon-button>
-                              `}
+          <div class="title">${this.localize("filterArticles")}</div>
+            <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
+              <div class="stackedcards-container">
+                ${repeat(this.visibleItems,item=>item.id,(item,index)=>html$1`
+                    <div class="card" id="card${item.id}">
+                      <div class="card-content">
+                        <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
+                        <div class="card-tistles">
+                          <div class="name">${item.name}</div>
+                          <div id="description${item.id}" class="description">${item.description}</div>
+                          ${200<item.description.length?html$1`
+                            <div class="hideUnhideContainer">
+                              <div class="innerHideContainer">
+                                ${!0==this.isImageHidden(item.id)?html$1`
+                                  <paper-icon-button @click="${()=>{this.unhideImage(item.id)}}" icon="keyboard-arrow-down"></paper-icon-button>
+                                `:html$1`
+                                  <paper-icon-button @click="${()=>{this.hideImage(item.id)}}" icon="keyboard-arrow-up"></paper-icon-button>
+                                `}
+                              </div>
                             </div>
-                          </div>
-                        `:html$1``}
+                          `:html$1``}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                `)}
+                  `)}
+              </div>
+              <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
+              <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
+              <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
             </div>
-            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+            <div class="global-actions">
+              <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
+              <div hidden>
+              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
+              </div>
+              <div style="width: 100px;"></div>
+              <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
           </div>
-          <div class="global-actions">
-            <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
-            <div hidden>
-            <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
-            </div>
-            <div style="width: 100px;"></div>
-            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
         </div>
-      </div>
 
-      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
+      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div
+    </div>
+
     `}constructor(){super();this.reset()}disconnectedCallback(){this.removeEventListeners();super.disconnectedCallback()}updated(changedProps){super.updated(changedProps);if(changedProps.has("items")){if(this.items&&0<this.items.length){this.itemsLeft=[...this.items];this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
 this.requestUpdate();this.updateComplete.then(()=>{this.activate()})}}}reset(){this.stackedOptions="Top";this.rotate=!0;this.elementsMargin=7;this.currentPosition=0;this.currentItemsPosition=0;this.useOverlays=!1;this.velocity=.3;this.isFirstTime=!0;this.touchingElement=!1;this.visibleItems=[];this.disableUpSwipe=!0;this.hiddenImageIds={};this.rendering=!0}activate(){this.obj=this.$$("#stacked-cards-block");this.refresh();if(this.useOverlays){this.leftObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.leftObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)"}else if(this.leftObj){this.leftObj.className="";this.rightObj.className="";this.topObj.className="";this.leftObj.classList.add("stackedcards-overlay-hidden");this.rightObj.classList.add("stackedcards-overlay-hidden");this.topObj.classList.add("stackedcards-overlay-hidden")}//Remove class init
 setTimeout(function(){this.obj.classList.remove("init")}.bind(this),250);this.addEventListeners()}isImageHidden(imageId){return null!=this.hiddenImageIds[imageId]}hideImage(imageId){const item=this.$$("#image"+imageId);if(item){item.classList.add("imageCollapsed");this.hiddenImageIds[imageId]=!0;const description=this.$$("#description"+imageId);description.classList.add("fullsizeDescription");this.requestUpdate()}}unhideImage(imageId){const item=this.$$("#image"+imageId);if(item){item.classList.remove("imageCollapsed");this.hiddenImageIds[imageId]=null;const description=this.$$("#description"+imageId);description.classList.remove("fullsizeDescription");this.requestUpdate()}}refresh(){this.stackedCardsObj=this.obj.querySelector(".stackedcards-container");this.listElNodesObj=this.stackedCardsObj.children;this.topObj=this.obj.querySelector(".stackedcards-overlay.top");this.rightObj=this.obj.querySelector(".stackedcards-overlay.right");this.leftObj=this.obj.querySelector(".stackedcards-overlay.left");this.countElements();this.setCurrentElement();this.changeBackground();this.listElNodesWidth=this.stackedCardsObj.offsetWidth;this.currentElementObj=this.listElNodesObj[0];this.updateUi();//Prepare elements on DOM
