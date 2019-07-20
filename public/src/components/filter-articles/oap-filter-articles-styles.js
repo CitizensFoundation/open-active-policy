@@ -11,6 +11,10 @@ export const OapFilterArticlesStyles = css`
     width: 100%;
   }
 
+  .completed {
+    margin-top: 32px;
+  }
+
   [hidden] {
     display: none !important;
   }

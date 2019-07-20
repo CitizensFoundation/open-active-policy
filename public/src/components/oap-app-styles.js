@@ -178,6 +178,13 @@ export const OapAppStyles = css`
     color: #fff;
   }
 
+  .choicePoints {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+  }
+
   #helpContent h1 {
     line-height: 1em;
     font-size: 1.5em;
@@ -336,5 +343,10 @@ export const OapAppStyles = css`
 
   .langSelect[is-selected] {
     text-decoration: underline;
+  }
+
+  .choicePoints {
+    margin-left: 8px;
+    margin-top: 4px;
   }
 `;

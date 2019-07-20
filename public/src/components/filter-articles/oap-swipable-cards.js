@@ -368,6 +368,7 @@ class OapSwipableCards extends OapBaseElement {
   //Change states
   changeStages() {
     if(this.currentPosition == this.maxElements){
+        this.fire("completed");
         //Event listener created to know when transition ends and changes states
         this.listElNodesObj[this.maxElements - 1].addEventListener('transitionend', function(){
           this.classList.add("background-7");

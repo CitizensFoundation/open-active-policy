@@ -1,13 +1,12 @@
 import { html } from 'lit-element';
-import { OapPageViewElement } from './oap-page-view-element.js';
-import { OavAreaBallotStyles } from './oap-ballot-styles.js/index.js';
+import { OapPageViewElement } from '../oap-page-view-element.js';
+import { OapBallotStyles } from './oap-ballot-styles';
 import { encryptVote } from '../ballot-encryption-behavior.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 
 import '@polymer/paper-tabs/paper-tab';
 import '@polymer/paper-tabs/paper-tabs';
 import './oap-article-item';
-import '../oav-area-ballot-map';
 
 class OapBallot extends OapPageViewElement {
   static get properties() {
@@ -104,17 +103,9 @@ class OapBallot extends OapPageViewElement {
       }
     }
 
-    if (changedProps.has('areaId')) {
-      this.loadArea();
-    }
-
-    if (changedProps.has('selectedView')) {
-      if (this.selectedView===0) {
-        this.activity('click', 'ideasTab');
-      } else if (this.selectedView==1) {
-        this.showMap = true;
-        this.activity('click', 'mapTab');
-      }
+    if (changedProps.has('budgetBallotItems')) {
+//      this.loadArea();
+      debugger;
     }
 
     if (changedProps.has('favoriteItem')) {
@@ -128,6 +119,7 @@ class OapBallot extends OapPageViewElement {
   constructor() {
     super();
     this.showMap = false;
+    this.area = {name: "Blah", id: 1};
   }
 
   connectedCallback() {
@@ -194,8 +186,7 @@ class OapBallot extends OapPageViewElement {
       this.budgetElement.reset();
     }
     this._resetBallotItems();
-    this.budgetBallotItems = null;
-    this.area = null;
+    this.area = {id: 1, name: "Hello"};
     this.favoriteItem = null;
     this.selectedView = 0;
     this.fire('oav-set-area', { areaName: null, totalBudget: null });
@@ -275,14 +266,14 @@ class OapBallot extends OapPageViewElement {
   }
 
   _toggleItemInBudget(event) {
-    this.budgetElement.toggleBudgetItem(event.detail.item);OapBallot
+    this.budgetElement.toggleBudgetItem(event.detail.item);
   }
 
   _itemSelectedInBudget(event) {
     var listItems = this.$$("#itemContainer");
     for (var i = 0; i < listItems.children.length; i++) {
       var listItem = listItems.children[i];
-      if (listItem.id != 'domRepeat' && listItem.item.id ==OapBallot
+      if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
         listItem.setInBudget();
         const map = this.$$("#itemsMap");
         if (map)

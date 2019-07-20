@@ -24,7 +24,9 @@ import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import './oap-icons.js';
 import './snack-bar.js';
 import './policy-quiz/oap-policy-quiz';
-import './filter-articles/oap-filter-articles'
+import './filter-articles/oap-filter-articles';
+import './select-articles/oap-ballot';
+
 //import './browse-articles/oap-swipable-cards';
 //import './oav-voting-completed';
 
@@ -124,7 +126,9 @@ class OapApp extends OapBaseElement {
 
       filteredItems: Array,
 
-      quizQuestions: Array
+      quizQuestions: Array,
+
+      choicePoints: Number
     };
   }
 
@@ -200,8 +204,11 @@ class OapApp extends OapBaseElement {
           </paper-dialog-scrollable>
         </paper-dialog>
 
-        <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${this._page !== 'area-ballot'}">
+        <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${this._page == 'areas-ballot'}">
           <app-toolbar class="toolbar-top">
+            <div class="choicePoints">
+              ${this.localize('choicePoints')}: ${this.choicePoints}
+            </div>
             <div ?hidden="${!this.showExit}" class="layout horizontal exitIconInBudget">
               <paper-icon-button class="closeButton" alt="${this.localize('close')}" icon="closeExit" @click="${this._exit}"></paper-icon-button>
             </div>
@@ -229,11 +236,13 @@ class OapApp extends OapBaseElement {
             .configFromServer="${this.configFromServer}"
             .nickname="Robert Bjarnason"
             .language="${this.language}"
+            ?hidden="${this._page !== 'quiz'}"
             ?active="${this._page === 'quiz'}">
           </oap-policy-quiz>
           <oap-filter-articles id="filterArticles"
             .language="${this.language}"
             .configFromServer="${this.configFromServer}"
+            ?hidden="${this._page !== 'filter-articles'}"
             .allItems="${this.allItems}"
             ?active="${this._page === 'filter-articles'}">
           </oap-filter-articles>
@@ -246,7 +255,7 @@ class OapApp extends OapBaseElement {
             .budgetBallotItems="${this.filteredItems}"
             .configFromServer="${this.configFromServer}"
             .language="${this.language}"
-            ?active="${this._page === 'final-document'}">
+            ?active="${this._page === 'area-ballot'}">
           </oap-ballot>
           ${ this._page === 'post' ? html`
             <yp-post
@@ -285,11 +294,12 @@ class OapApp extends OapBaseElement {
       this.language = language;
       localStorage.setItem("languageOverride", language);
     }
-
+    this.filteredItems = [];
     this.setDummyData();
   }
 
   setDummyData() {
+    this.choicePoints = 100;
     this.quizQuestions = [
       {
         question: "What is the shortest Constitution in the world?",
@@ -481,6 +491,8 @@ class OapApp extends OapBaseElement {
       }
     ]
     this.cacheDataImages();
+    this.filteredItems = this.allItems;
+    debugger;
   }
 
   cacheDataImages() {
@@ -500,6 +512,16 @@ class OapApp extends OapBaseElement {
         });
       });
     }
+  }
+
+  processCorrectQuizAnswer() {
+    this.fire("oap-overlay", {
+      html: html`${this.localize("correctAnswer")}`,
+      soundEffect: "",
+      duration: 300,
+    });
+
+    this.choicePoints+=15;
   }
 
   _setupCustomCss(config) {
@@ -618,8 +640,18 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
     this.addEventListener("oav-insecure-email-login", this._insecureEmailLogin);
 
-    this.addEventListener("location-changed", this._locationChanged);
     window.addEventListener("resize", this.resetSizeWithDelay.bind(this));
+
+    this.addEventListener("location-changed", this._locationChanged);
+    this.addEventListener("oap-process-correct-quiz-answer", this.processCorrectQuizAnswer);
+    this.addEventListener("oap-quiz-finished", this.quizFinished);
+    this.addEventListener("oap-filtering-finished", this.filteringFinished);
+    this.addEventListener("item-selected", this.addItemToFinalList);
+  }
+
+  addItemToFinalList(event) {
+    this.filteredItems.push(event.detail);
+    debugger;
   }
 
   _setBallotElement(event) {
@@ -628,6 +660,18 @@ class OapApp extends OapBaseElement {
 
   _setBudgetElement(event) {
     this.ballotElement = event.detail;
+  }
+
+  filteringFinished () {
+    const path = '/area-ballot/1';
+    window.history.pushState({}, null, path);
+    this.fire('location-changed', path);
+  }
+
+  quizFinished () {
+    const path = '/filter-articles';
+    window.history.pushState({}, null, path);
+    this.fire('location-changed', path);
   }
 
   _removeListeners() {
@@ -648,6 +692,10 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
     window.removeEventListener("resize", this.resetSizeWithDelay);
     this.removeEventListener("oav-insecure-email-login", this._insecureEmailLogin);
+    this.removeEventListener("oap-process-correct-quiz-answer", this.processCorrectQuizAnswer);
+    this.removeEventListener("oap-quiz-finished", this.quizFinished);
+    this.removeEventListener("item-selected", this.addItemToFinalList);
+    this.removeEventListener("oap-filtering-finished", this.filteringFinished);
   }
 
   _scrollItemIntoView(event) {

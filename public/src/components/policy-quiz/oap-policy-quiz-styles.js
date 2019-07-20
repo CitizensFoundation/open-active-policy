@@ -38,6 +38,7 @@ export const OapPolicyQuizStyles = css`
     background-color: var(--quiz-background-color, #FFF);
     color: var(--quiz-color, #111);
     padding-bottom: 16px;
+    margin-top: 32px;
   }
 
   .question {
@@ -47,8 +48,21 @@ export const OapPolicyQuizStyles = css`
   .image {
     width: 432px;
     height: 270px;
-
   }
+
+  .completedQuiz {
+    padding: 16px;
+  }
+
+  .completeHeader {
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .continueButton {
+    margin-top: 16px;
+  }
+
   [hidden] {
     display: none !important;
   }

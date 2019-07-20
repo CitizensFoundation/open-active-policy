@@ -65,8 +65,8 @@ class OapPolicyQuiz extends OapPageViewElement {
           </div>
         ` : html``}
         ${this.completed ? html`
-          <div class="vertical">
-            <div>
+          <div class="vertical completedQuiz">
+            <div class="completeHeader">
               ${this.localize("youHaveCompletetTheQuiz")}
             </div>
             <div>
@@ -76,7 +76,7 @@ class OapPolicyQuiz extends OapPageViewElement {
               ${this.localize("incorrectQuizAnswers")}: ${this.incorrectAnswers}
             </div>
             <div>
-              <paper-button class="continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToFiltering")}</paper-button>
+              <paper-button raise class="continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToFiltering")}</paper-button>
             </div>
           </div>
           ` : html``}
@@ -88,11 +88,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   submitAnswer (answer) {
     const correctAnswer = this.questions[this.currentIndex].correctAnswer;
     if (answer==correctAnswer) {
-      this.fire("oap-overlay", {
-        html: html`${this.localize("correctAnswer")}`,
-        soundEffect: "",
-        duration: 300,
-      });
+      this.fire("oap-process-correct-quiz-answer");
       this.correctAnswers+=1;
       this.$$("#button"+answer).animate([
         { transform: "scale(1.3)", easing: 'ease-in' },
