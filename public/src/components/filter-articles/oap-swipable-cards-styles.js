@@ -34,6 +34,13 @@ export const OapSwipableCardsStyles = css`
     transition: all 400ms ease;
   }
 
+  :host {
+  }
+
+  .topestContainer {
+    overflow: -moz-scrollbars-none;
+    width: 100%;
+  }
   /* class created only for a better preview*/
   .stage {
       position: absolute;
@@ -348,7 +355,7 @@ export const OapSwipableCardsStyles = css`
     color: #000;
     margin: 8px;
     margin-top: 4px;
-    height: 110px;
+    height: 105px;
     overflow: hidden;
     margin-bottom: 32px;
   }
