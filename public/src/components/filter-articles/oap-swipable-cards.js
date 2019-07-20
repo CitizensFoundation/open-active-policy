@@ -105,7 +105,7 @@ class OapSwipableCards extends OapBaseElement {
     super.updated(changedProps);
     if (changedProps.has('items')) {
       if (this.items && this.items.length>0) {
-        this.visibleItems=this.items.slice(10);
+        this.visibleItems=this.items;
         //TODO: Only show first 20 items and reload on demand
         this.requestUpdate();
         this.updateComplete.then(() => {
@@ -224,9 +224,9 @@ class OapSwipableCards extends OapBaseElement {
 
   addEventListeners() {
      // JavaScript Document
-		document.addEventListener('touchstart', this.gestureStart.bind(this), false);
-		document.addEventListener('touchmove', this.gestureMove.bind(this), false);
-		document.addEventListener('touchend', this.gestureEnd.bind(this), false);
+		document.addEventListener('touchstart', this.gestureStart.bind(this), {passive: false});
+		document.addEventListener('touchmove', this.gestureMove.bind(this), {passive: false});
+		document.addEventListener('touchend', this.gestureEnd.bind(this), {passive: false});
 
 		//Add listeners to call global action for swipe cards
 		var buttonLeft = this.$$('.left-action');
