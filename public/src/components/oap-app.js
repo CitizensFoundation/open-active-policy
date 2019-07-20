@@ -445,7 +445,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Age Requirement",
         description: "Sets a minimum age for the Head of State/chief executive, making life experience a key requirement for service as national leader.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmark19.png",
         module_type: "Simple",
         exclusive_ids: "",
         price: 4.0
@@ -455,7 +455,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Meritocracy Requirement",
         description: "Sets requirements of acheivement for prospective candidates for Head of State, in professional, academic, and political life as qualifications for public service as Head of State. This may involve actual objective testing, or evaluation by a peer review panel.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar9.png",
         module_type: "Simple",
         exclusive_ids: "",
         price: 4.0
@@ -465,7 +465,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Conflict of Interest Constraints",
         description: "Sets a constitutional prohibition against any business or organizational ties that might pit the Head of State's self-interest against the interest of the State.The Head of State must not abrogate their loyalties, and their commitment to the public good must be beyond question.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png",
         module_type: "Simple",
         exclusive_ids: "",
         price: 4.0
@@ -475,7 +475,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Emoluments Prohibition",
         description: "The Head of State must not be allowed to accept gifts from foreign entities who might be trying to use such gifts to sway foreign policy decisions that the Head of State should make without such influence.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png",
         module_type: "Simple",
         exclusive_ids: "",
         price: 4.0
@@ -485,7 +485,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Power of Executive Orders/Royal Decree",
         description: "Confers to the Executive branch the authority to issue edicts/executive orders/decrees that function roughly the same as laws passed by the Legislative/Paliamentary Branch, though they generally sunset when the Executive goes through a transition of power.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar5.png",
         module_type: "Simple",
         exclusive_ids: "",
         price: 4.0
@@ -495,7 +495,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Religious Authority",
         description: "Confers on the Head of State authority over the state religion, and the ability to make decrees that have both religious and legal significance to the society.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar4.png",
         module_type: "Simple",
         exclusive_ids: "",
         price: 4.0
@@ -505,7 +505,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Control of Taxation/Budget",
         description: "The Branch that has this power makes the ultimate decisions on the government's revenue sources, funding allocation and debt and deficit management, the so called 'power of the purse'.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar20.png",
         module_type: "Delegated",
         exclusive_ids: "",
         price: 4.0
@@ -515,7 +515,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Control of Military",
         description: "The Branch with this authority functions as the sole civilian oversight and command of the government's defense force and standing army, if any.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar2.png",
         module_type: "Delegated",
         exclusive_ids: "",
         price: 2.0
@@ -525,7 +525,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Control of Diplomacy",
         description: "This conveys on the Branch the responsibility of negotiating treaties, appointing ambassadors, maintaining trade relationships and open lines of communication with neighboring countries and international allies alike.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar17.png",
         module_type: "Delegated",
         exclusive_ids: "",
         price: 2.0
@@ -535,7 +535,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Authority to Declare War",
         description: "Gives the Branch the sole authority to formally engage in hostilities with another nation state.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png",
         module_type: "Delegated",
         exclusive_ids: "",
         price: 24.0
@@ -545,7 +545,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Authority to Sign/Ratify Treaties",
         description: "When the fruits of either war or diplomacy generate a lasting legal document of new relationship between the government and another state or multiple state actors, this confers on the Branch the ultimate authority for confirming these agreements as the law of the land.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar14.png",
         module_type: "Delegated",
         exclusive_ids: "",
         price: 12.0
@@ -555,7 +555,7 @@ class OapApp extends OapBaseElement {
         branch: "Executive Amendments",
         name: "Control of Police Forces",
         description: "The government with this institutes a federalized power structure for it police enforcement, and for the oversight of local policing efforts and prosecutorial authority. This delegates which Branch has oversight and executive control over this chain of command.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png",
         module_type: "Delegated",
         exclusive_ids: "",
         price: 4.0
@@ -565,7 +565,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Basic Organization of Parliament/Legislature: Unicameral",
         description: "Creates a Legislature or Parliament with a single house representing the entire electorate, either by region or proportional representation.When this body agrees on something and successfully executes its processes and procedural requirements, the matter being voted on becomes law immediately. This allows the body to be more nimble, and to have a greater appearance of society on a level playing field.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar12.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
@@ -575,7 +575,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Basic Organization of Parliament/Legislature: Bicameral",
         description: "Creates two chambers or houses of legislative debate and process, generally one more directly democratic ('lower'), and the other more representative of the entrenched power in the society ('upper'). Laws generated in either house must be reconciled with both bodies, creating oversight and forcing compromise by different interests. This tends to promote stability and durable legislation.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar11.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
@@ -585,7 +585,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Representation of Constituents: Proportional Distribution",
         description: "The electorate creates the legislative body by voting for candidates and/or parties in a national election, and the proportion of the national vote by party/candidate affiliation determines the balance of power in the legislative body. If no one party achieves a majority, a coalition government of compromise become necessary.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar10.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
@@ -595,7 +595,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Representation of Constituents: Regional Empowerment",
         description: "Each region/province/state/municipality holds elections for its specific representative, that then go to the capital to form a government to decide the national interest.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar1.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
@@ -605,7 +605,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Representation of Constituents: Hybrid",
         description: "This frames a balance between popular vote and regional representation, usually giving an outsized influence to smaller rural areas with entrenched interests that feel they would be drown out in a straight popular vote.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar9.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
@@ -615,7 +615,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Parliamentary Procedure: Laborious & Byzantine",
         description: "This frames the parliamentary procedure for the legislative body or bodies as almost impossibly complex, by layering commitees, requiring super majorities, enforcing deliberation periods, barring amendments or revisions to bills, etc. This makes the legal system stable and unreactive, favoring the status quo.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group3.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
@@ -625,7 +625,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Parliamentary Procedure: Elaborate & Stringent",
         description: "Here we frame what some would think of as the 'right' amount of procedural forced debate and ability of a minority party to force compromise or revision in the deliberative process. Reconciling chambers divergent bills, filibuster tactics, while still allowing the function of law making to go on at a reasonable pace.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar12.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
@@ -635,7 +635,7 @@ class OapApp extends OapBaseElement {
         branch: "Legislative/ Parliamentary Core Articles",
         name: "Parliamentary Procedure: Functional & Expedient",
         description: "Here we frame the most nimble legislative body, usually unicameral, that has few impediments to swift up and down votes to enact new laws. This makes it very responsive to public opinion if that opinion is represented by the elected officials; unfortunately it does allow for a majority party to rapidly change the legal landscape with little recourse to the minority parties in opposition.",
-        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
+        image_url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group2.png",
         module_type: "Exclusive",
         exclusive_ids: "",
         price: 16.0
