@@ -24,11 +24,11 @@ class OapFilterArticles extends OapPageViewElement {
   render() {
     return html`
       ${this.completed ? html`
-        <div class="layout vertical center-center completed">
+        <div class="layout vertical center-center topContainer shadow-animation shadow-elevation-3d" style="width: 100%;">
           <div class="completeHeader">
             ${this.localize("youHaveCompletedTheFiltering")}
           </div>
-          <div>
+          <div class="buttonContainer">
             <paper-button raised class="continueButton" @click="${()=> { this.fire('oap-filtering-finished') }}">${this.localize("continueToSelection")}</paper-button>
           </div>
         </div>

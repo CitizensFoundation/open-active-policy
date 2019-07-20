@@ -60,7 +60,9 @@ export const OapPolicyQuizStyles = css`
   }
 
   .continueButton {
-    margin-top: 16px;
+    margin-top: 24px;
+    background-color: var(--app-accent-color);
+    color: #FFF;
   }
 
   .infoBar {

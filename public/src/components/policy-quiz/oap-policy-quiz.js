@@ -54,7 +54,7 @@ class OapPolicyQuiz extends OapPageViewElement {
             <img class="image" src="${this.questions[this.currentIndex].imageUrl}"/>
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
-          <div class="vertical center-center">
+          <div class="vertical center">
             <div class="buttonContainer">
               <paper-button raised id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
               <paper-button raised id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
@@ -64,7 +64,7 @@ class OapPolicyQuiz extends OapPageViewElement {
           </div>
         ` : html``}
         ${this.completed ? html`
-          <div class="vertical completedQuiz">
+          <div class="vertical center-center completedQuiz">
             <div class="completeHeader">
               ${this.localize("youHaveCompletetTheQuiz")}
             </div>
@@ -74,8 +74,8 @@ class OapPolicyQuiz extends OapPageViewElement {
             <div>
               ${this.localize("incorrectQuizAnswers")}: ${this.incorrectAnswers}
             </div>
-            <div>
-              <paper-button raised class="continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToFiltering")}</paper-button>
+            <div class="buttonContainer">
+              <paper-button raised class="answerButton continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToFiltering")}</paper-button>
             </div>
           </div>
           ` : html``}

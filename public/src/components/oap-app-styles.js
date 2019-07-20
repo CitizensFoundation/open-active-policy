@@ -105,6 +105,10 @@ export const OapAppStyles = css`
     display: block;
   }
 
+  .toolbar-top {
+    background-color: var(--app-toolbar-top-color, #000);
+  }
+
 
   @media (min-width: 1024px) {
     .toolbar-list {
@@ -123,10 +127,6 @@ export const OapAppStyles = css`
     [main-title] {
       padding-right: 0px;
     }
-  }
-
-  .toolbar-top {
-    background-color: var(--app-header-background-color);
   }
 
   app-toolbar {
@@ -354,5 +354,7 @@ export const OapAppStyles = css`
   .choicePoints {
     margin-left: 8px;
     margin-top: 4px;
+    color: var(--app-accent-color, #000);
+    font-weight: bold;
   }
 `;

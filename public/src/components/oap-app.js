@@ -209,8 +209,8 @@ class OapApp extends OapBaseElement {
 
         <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${this._page == 'areas-ballot'}">
           <app-toolbar class="toolbar-top">
-            <div class="choicePoints" ?hidden="${this._page==="area-ballot"}">
-              ${this.localize('choicePoints')}: ${this.choicePoints}
+            <div id="choicePoints" class="choicePoints" ?hidden="${this._page==="area-ballot"}">
+              ${this.localize('youHave')} ${this.choicePoints}${this.localize("cp")}
             </div>
             <div ?hidden="${!this.showExit}" class="layout horizontal exitIconInBudget">
               <paper-icon-button class="closeButton" alt="${this.localize('close')}" icon="closeExit" @click="${this._exit}"></paper-icon-button>
@@ -512,7 +512,7 @@ class OapApp extends OapBaseElement {
       }
     ]
     this.cacheDataImages();
-    this.filteredItems = this.allItems;
+    //this.filteredItems = this.allItems;
   }
 
   cacheDataImages() {
@@ -542,6 +542,13 @@ class OapApp extends OapBaseElement {
     });
 
     this.choicePoints+=15;
+    this.$$("#choicePoints").animate([
+      { transform: "scale(5)", easing: 'ease-in'  },
+      { transform: "scale(1)", easing: 'ease-out' }
+    ], {
+      duration: 650,
+      iterations: 1
+    });
   }
 
   _setupCustomCss(config) {
