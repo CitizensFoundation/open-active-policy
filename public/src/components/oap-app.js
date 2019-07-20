@@ -513,8 +513,8 @@ class OapApp extends OapBaseElement {
     ]
 
     this.soundEffects = {
-      oap_short_win_1: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3",
-      oap_new_level_1: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3",
+      oap_short_win_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3", volume: 1.0},
+      oap_new_level_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3", volume: 0.25}
     }
 
     this.cacheDataImages();
@@ -524,9 +524,9 @@ class OapApp extends OapBaseElement {
 
   cacheSoundEffects() {
     if (this.soundEffects) {
-      Object.values(this.soundEffects).forEach((url) => {
+      Object.values(this.soundEffects).forEach((effect) => {
         setTimeout( () => {
-          const audio = new Audio(url);
+          const audio = new Audio(effect.url);
         });
       });
     }
@@ -534,7 +534,9 @@ class OapApp extends OapBaseElement {
 
   playSoundEffect (event) {
     if (this.soundEffects[event.detail]) {
-      const audio = new Audio(this.soundEffects[event.detail]);
+      const effect = this.soundEffects[event.detail];
+      const audio = new Audio(effect.url);
+      audio.volume = effect.volume;
       audio.play();
     }
   }
