@@ -514,7 +514,7 @@ class OapApp extends OapBaseElement {
 
     this.soundEffects = {
       oap_short_win_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3", volume: 1.0},
-      oap_new_level_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3", volume: 0.25}
+      oap_new_level_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3", volume: 0.1}
     }
 
     this.cacheDataImages();
@@ -706,7 +706,11 @@ class OapApp extends OapBaseElement {
   }
 
   addItemToFinalList(event) {
-    this.filteredItems.push(event.detail);
+    if (event.detail) {
+      this.filteredItems.push(event.detail);
+    } else {
+      console.error("Can't find item to add to final list");
+    }
   }
 
   _setBallotElement(event) {

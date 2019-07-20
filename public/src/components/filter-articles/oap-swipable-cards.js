@@ -349,17 +349,14 @@ class OapSwipableCards extends OapBaseElement {
   // Usable functions
   countElements() {
     this.maxElements = this.listElNodesObj.length;
-    console.error("countElements: "+this.maxElements);
 
     if(this.visibleItems.length > this.maxElements){
-      console.error("!!!!!");
       this.visibleItems.length = this.maxElements;
     }
   }
 
   //Keep the active card.
   setCurrentElement() {
-    console.error("setCurrentElement: "+this.currentPosition);
     this.currentElementObj = this.listElNodesObj[this.currentPosition];
   }
 
@@ -385,7 +382,6 @@ class OapSwipableCards extends OapBaseElement {
 
   //Functions to swipe left elements on logic external action.
   onActionLeft() {
-    console.error("onActionLeft: "+this.currentPosition);
     if(!(this.currentPosition >= this.maxElements)){
       if(this.useOverlays) {
         this.leftObj.classList.remove('no-transition');
@@ -404,8 +400,6 @@ class OapSwipableCards extends OapBaseElement {
 
   //Functions to swipe right elements on logic external action.
   onActionRight() {
-    console.error("onActionRight: "+this.currentPosition);
-
     if(!(this.currentPosition >= this.maxElements)){
       if(this.useOverlays) {
         this.rightObj.classList.remove('no-transition');
@@ -667,28 +661,16 @@ class OapSwipableCards extends OapBaseElement {
     }
 
   setActiveHidden() {
-    console.error("setActiveHidden");
     if(!(this.currentPosition >= this.maxElements)){
-      console.error("setActiveHidden:"+this.currentPosition);
       this.listElNodesObj[this.currentPosition - 1].classList.remove('stackedcards-active');
       this.listElNodesObj[this.currentPosition - 1].classList.add('stackedcards-hidden');
       this.listElNodesObj[this.currentPosition].classList.add('stackedcards-active');
     }
   }
 
-  setLastActive() {
-    console.error("setActiveHidden");
-    if(!(this.currentPosition >= this.maxElements)){
-      console.error("setActiveHidden:"+this.currentPosition);
-      this.listElNodesObj[this.currentPosition-1].classList.remove('stackedcards-hidden');
-      this.listElNodesObj[this.currentPosition-1].classList.add('stackedcards-active');
-    }
-  }
-
   //Set the new z-index for specific card.
   setZindex(zIndex) {
     if(this.listElNodesObj[this.currentPosition]){
-      console.error("setZindex:"+this.currentPosition);
       this.listElNodesObj[this.currentPosition].style.zIndex = zIndex;
     }
   }
@@ -705,7 +687,6 @@ class OapSwipableCards extends OapBaseElement {
 
   //Add translate X and Y to active card for each frame.
   transformUi(moveX,moveY,opacity,elementObj) {
-    console.error("transformUi");
     requestAnimationFrame( function(){
       var element = elementObj;
 
