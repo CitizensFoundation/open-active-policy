@@ -143,6 +143,12 @@ export const OapBudgetStyles = css`
     padding: 0;
     margin: 0;
     margin-left: 16px;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
   }
 
   @media (max-width: 1024px) {
