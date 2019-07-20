@@ -137,11 +137,11 @@ export const OapBudgetStyles = css`
   }
 
   .headerLogo {
-    width: 220px;
-    height: 66px;
+    width:  90px;
+    height: 90px;
     padding: 0;
     margin: 0;
-    margin-left: 4px;
+    margin-left: 16px;
   }
 
   @media (max-width: 1024px) {

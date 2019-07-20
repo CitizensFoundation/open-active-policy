@@ -364,9 +364,9 @@ class OapBudget extends OapBaseElement {
     colorBox.setAttribute('style', "cursor: pointer;");
 
     colorBox.title= item.name;
-    colorBox.style.borderLeft = 'solid 1px';
-    colorBox.style.borderRight = 'solid 1px';
-    colorBox.style.opacity = 0.9;
+    colorBox.style.borderLeft = 'solid 1px 1px solid rgba(255, 255, 255, .5);';
+    colorBox.style.borderRight = 'solid 1px 1px solid rgba(255, 255, 255, .5);';
+    colorBox.style.opacity = 0.7;
 
     let random = Math.floor(Math.random() * 4);
     let color;
@@ -380,7 +380,7 @@ class OapBudget extends OapBaseElement {
       color = "#463177";
     }
 
-    colorBox.style.borderColor = "#ddd";
+//    colorBox.style.borderColor = color;
     colorBox.style.backgroundColor = color;
 
     if (this.wide) {
