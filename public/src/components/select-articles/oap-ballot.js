@@ -103,7 +103,7 @@ class OapBallot extends OapPageViewElement {
       }
     }
 
-    if (changedProps.has('budgetBallotItems')) {
+    if (changedProps.has('budgetElement')) {
 //      this.loadArea();
     }
 

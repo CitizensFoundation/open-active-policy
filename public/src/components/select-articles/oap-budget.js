@@ -1,18 +1,18 @@
 import { html } from 'lit-element';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 
-import { OapArticlesFolderStyles } from './oap-budget-styles';
+import { OapBudgetStyles } from './oap-budget-styles';
 import { OapShadowStyles } from '../oap-shadow-styles';
-import { OapFlexLayout } from './oap-flex-layout.js';
+import { OapFlexLayout } from '../oap-flex-layout.js';
 
 import '@polymer/paper-fab';
 import '@polymer/paper-icon-button';
 import '@polymer/paper-button';
 import '@polymer/iron-image';
 
-import { OapBaseElement } from './oap-base-element.js';
+import { OapBaseElement } from '../oap-base-element.js';
 
-class OapArticlesFolder extends OapBaseElement {
+class OapBudget extends OapBaseElement {
   static get properties() {
     return {
       selectedItems: {
@@ -116,7 +116,7 @@ class OapArticlesFolder extends OapBaseElement {
 
   static get styles() {
     return [
-      OapArticlesFolderStyles,
+      OapBudgetStyles,
       OapShadowStyles,
       OapFlexLayout
     ];
@@ -466,4 +466,4 @@ class OapArticlesFolder extends OapBaseElement {
   }
 }
 
-window.customElements.define('oav-area-budget', OavAreaBudget);
+window.customElements.define('oap-budget', OapBudget);

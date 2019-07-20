@@ -5,7 +5,7 @@ Copyright (c) 2010-2019 Citizens Foundation
 
 import { css } from 'lit-element';
 
-export const OapArticleStyles = css`
+export const OapBudgetStyles = css`
   :host {
     width: 100%;
     display: block;

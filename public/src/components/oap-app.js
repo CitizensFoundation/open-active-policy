@@ -26,6 +26,7 @@ import './snack-bar.js';
 import './policy-quiz/oap-policy-quiz';
 import './filter-articles/oap-filter-articles';
 import './select-articles/oap-ballot';
+import './select-articles/oap-budget';
 
 //import './browse-articles/oap-swipable-cards';
 //import './oav-voting-completed';
@@ -97,9 +98,11 @@ class OapApp extends OapBaseElement {
 
       areaName: String,
 
-      ballotElement: Object,
-
       currentBallot: Object,
+
+      currentBudget: Object,
+
+      budgetElement: Object,
 
       totalBudget: Number,
 
@@ -206,7 +209,7 @@ class OapApp extends OapBaseElement {
 
         <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${this._page == 'areas-ballot'}">
           <app-toolbar class="toolbar-top">
-            <div class="choicePoints">
+            <div class="choicePoints" ?hidden="${this._page==="area-ballot"}">
               ${this.localize('choicePoints')}: ${this.choicePoints}
             </div>
             <div ?hidden="${!this.showExit}" class="layout horizontal exitIconInBudget">
@@ -221,7 +224,7 @@ class OapApp extends OapBaseElement {
                 .areaName="${this.areaName}"
                 .language="${this.language}"
                 .showExit="${this.showExit}"
-                .totalBudget="${this.totalBudget}"
+                .totalBudget="${this.choicePoints}"
                 .configFromServer="${this.configFromServer}"
                 .currentBallot="${this.currentBallot}">
               </oap-budget>
@@ -254,13 +257,14 @@ class OapApp extends OapBaseElement {
           <oap-ballot
             .budgetBallotItems="${this.filteredItems}"
             .configFromServer="${this.configFromServer}"
+            .budgetElement="${this.currentBudget}"
             .language="${this.language}"
             ?active="${this._page === 'area-ballot'}">
           </oap-ballot>
           ${ this._page === 'post' ? html`
             <yp-post
               .id="post"
-              .ballotElement="${this.ballotElement}"
+              .ballotElement="${this.currentBallot}"
               .language="${this.language}"
               .postId="${this._subPath}"
               .host="${this.postsHost}">
@@ -667,7 +671,6 @@ class OapApp extends OapBaseElement {
 
   addItemToFinalList(event) {
     this.filteredItems.push(event.detail);
-    debugger;
   }
 
   _setBallotElement(event) {
@@ -675,7 +678,9 @@ class OapApp extends OapBaseElement {
   }
 
   _setBudgetElement(event) {
-    this.ballotElement = event.detail;
+    setTimeout(()=> {
+      this.currentBudget = event.detail;
+    }, 100);
   }
 
   filteringFinished () {
@@ -920,6 +925,10 @@ class OapApp extends OapBaseElement {
   updated(changedProps) {
     if (changedProps.has('language')) {
       this.setupLocaleTexts();
+    }
+
+    if (changedProps.has('budgetElement')) {
+      debugger;
     }
 
     if (changedProps.has('_page')) {
