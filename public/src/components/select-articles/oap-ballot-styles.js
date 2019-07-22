@@ -39,6 +39,7 @@ export const OapBallotStyles = css`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    background-color: var(-app-item-container, #000 !important);
   }
 
   oav-area-ballot-item {

@@ -270,12 +270,29 @@ class OapBallot extends OapPageViewElement {
       var listItem = listItems.children[i];
       if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
         listItem.setInBudget();
-        const map = this.$$("#itemsMap");
-        if (map)
-          map.setItemInBudget(listItem.item);
+        const itemId = listItem.item.id;
+        listItem.animate([
+          { transform: "translateY(-1px)" },
+          { transform: "translateY(-500px)", easing: 'ease-in' }
+        ], {
+          duration: 490,
+          iterations: 1
+        });
+        setTimeout(() => {
+          this.removeFromAvailableItems(itemId);
+          this.requestUpdate();
+        }, 500);
       }
     }
     this._setStateOfRemainingItems();
+  }
+
+  removeFromAvailableItems(itemId) {
+    for( var i = 0; i < this.budgetBallotItems.length; i++){
+      if (this.budgetBallotItems[i].id==itemId) {
+        this.budgetBallotItems.splice(i,1);
+      }
+    }
   }
 
   _itemDeSelectedFromBudget(event) {

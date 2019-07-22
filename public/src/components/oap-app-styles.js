@@ -32,9 +32,9 @@ export const OapAppStyles = css`
 
   :host {
     display: block;
-    --app-primary-color: #333;
+    --app-primary-color: #000;
     --app-secondary-color: black;
-    --app-main-backround-color: #e0e0e0;
+    --app-main-backround-color: var(-app-outside-main-background-color, #000);
     --app-accent-color: var(--paper-orange-a700);
     --app-accent-color-light: var(--paper-orange-a200);
     --app-text-color: #ffffff;
@@ -63,15 +63,15 @@ export const OapAppStyles = css`
     left: 0;
     width: 100%;
     text-align: center;
-    background-color: var(--app-header-background-color);
-    color: var(--app-header-text-color);
+    background-color: var(--app-header-background-color, #000);
+    color: var(--app-header-text-color, #FFF);
     border-bottom: 1px solid #eee;
   }
 
   app-header[wide-and-ballot] {
-    height: var(--app-budget-container-height, 238px);
+    height: var(--app-budget-container-height, 184px);
     width: 100%;
-    background-size: 1920px 238px;
+    background-size: 1920px 184px;
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: top;

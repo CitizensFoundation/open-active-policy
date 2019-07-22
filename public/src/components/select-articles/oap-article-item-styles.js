@@ -9,8 +9,8 @@ export const OapArticleItemStyles = css`
 
   .itemContent {
     position: relative;
-    width: 300px !important;
-    height: 320px;
+    width: 300px;
+    height: 107px;
     margin: 16px;
   }
 
@@ -196,7 +196,7 @@ export const OapArticleItemStyles = css`
 
   .shareIcon {
     position: absolute;
-    top: 6px;
+    bottom: 6px;
     left: 0;
     --paper-share-button-icon-color: var(--app-accent-color-light);
     --paper-share-button-icon-height: 46px;
@@ -295,12 +295,28 @@ export const OapArticleItemStyles = css`
 
   .cost {
     padding-left: 8px;
-    position: absolute;
+    position: relative;
     bottom: 12px;
     font-weight: bold;
     font-size: 20px;
     left: 120px;
     color: var(--app-accent-color, #F00);
+  }
+
+  #opacityLayer {
+    display: none;
+    position: absolute;
+    background-color: #FF1744;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 107px;
+    z-index: 2000;
+    transition: opacity 500ms;
+  }
+
+  #opacityLayer.cover {
+    opacity: 1;
   }
 
   [hidden] {

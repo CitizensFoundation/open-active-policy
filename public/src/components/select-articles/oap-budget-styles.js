@@ -9,6 +9,7 @@ export const OapBudgetStyles = css`
   :host {
     width: 100%;
     display: block;
+    background-color: #000 !important;
   }
 
   .topLevel[wide] {

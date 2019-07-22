@@ -94,15 +94,16 @@ class OapArticleItem extends OapBaseElement {
   render() {
     return html`
       <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp" ?small="${this.small}" ?tiny="${this.tiny}">
+        <div id="opacityLayer"></div>
         <iron-image preload @loaded-changed="${this._imageLoadedChanged}" ?small="${this.small}"
-          ?tiny$="${this.tiny}" ?hidden="${!this.imageTabSelected}" name="image" sizing="cover" src="${this.item.image_url}">
+          ?tiny$="${this.tiny}" hidden ?bhidden="${!this.imageTabSelected}" name="image" sizing="cover" src="${this.item.image_url}">
         </iron-image>
         <div ?hidden="${!this.descriptionTabSelected}" name="description" class="descriptionContainer" ?tiny="${this.tiny}" ?small="${this.small}">
           <div id="description" class="description">
             ${this.item.description}
           </div>
         </div>
-        <paper-menu-button ?hidden="${this.isOnMap}" @tap="${this._openMenu}" ?small="${this.small}" ?tiny="${this.tiny}" class="dropdownMenuButton" horizontal-align="right">
+        <paper-menu-button hidden ?bhidden="${this.isOnMap}" @tap="${this._openMenu}" ?small="${this.small}" ?tiny="${this.tiny}" class="dropdownMenuButton" horizontal-align="right">
           <paper-icon-button class="dropdown-trigger dropdownButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize('openDetailMenu')}" icon="menu"></paper-icon-button>
           <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" .selected="${this.listBoxSelection}">
             <paper-item @tap="${this._setImageMode}">
@@ -127,7 +128,7 @@ class OapArticleItem extends OapBaseElement {
           <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
         </div>
         <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-          <paper-share-button ?hidden="${!this.imageLoaded}" ?small="${this.small}" @share-tap="${this._shareTap}" class="shareIcon" horizontal-align="left" id="shareButton"
+          <paper-share-button hidden ?bhidden="${!this.imageLoaded}" ?small="${this.small}" @share-tap="${this._shareTap}" class="shareIcon" horizontal-align="left" id="shareButton"
             title="${this.localize('share_idea')}" facebook twitter popup .url="${this._itemShareUrl()}">
           </paper-share-button>
 
@@ -339,6 +340,21 @@ class OapArticleItem extends OapBaseElement {
   setInBudget() {
     //console.log("setInBudget itemId: "+this.item.id);
     this.selected = true;
+
+    let random = Math.floor(Math.random() * 4);
+    let color;
+    if (random==0) {
+      color = "#FF1744";
+    } else if (random==1) {
+      color = "#2979FF";
+    } else if (random==2) {
+      color = "#FF3D00";
+    } else if (random==3) {
+      color = "#76FF03";
+    }
+    this.$$("#opacityLayer").style.backgroundColor=color;
+    this.$$("#opacityLayer").classList.add("cover");
+    this.$$("#opacityLayer").style.display="block";
   }
 
   removeFromBudget() {

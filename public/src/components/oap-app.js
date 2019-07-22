@@ -26,7 +26,7 @@ import './snack-bar.js';
 import './policy-quiz/oap-policy-quiz';
 import './filter-articles/oap-filter-articles';
 import './select-articles/oap-ballot';
-import './select-articles/oap-budget';
+import './select-articles/oap-3d-budget';
 
 //import './browse-articles/oap-swipable-cards';
 //import './oav-voting-completed';
@@ -219,7 +219,7 @@ class OapApp extends OapBaseElement {
               <paper-icon-button icon="help-outline" alt="${this.localize('help')}" @click="${this._help}}"></paper-icon-button>
             </div>
             <div class="budgetConstainer layout horizontal center-center" ?hidden="${this.hideBudget}">
-              <oap-budget
+              <oap-3d-budget
                 id="budget"
                 .areaName="${this.areaName}"
                 .language="${this.language}"
@@ -227,7 +227,7 @@ class OapApp extends OapBaseElement {
                 .totalBudget="${this.choicePoints}"
                 .configFromServer="${this.configFromServer}"
                 .currentBallot="${this.currentBallot}">
-              </oap-budget>
+              </oap-3d-budget>
             </div>
           </app-toolbar>
           <iron-icon id="favoriteIcon" icon="${this.favoriteIcon}" hidden></iron-icon>
@@ -337,6 +337,54 @@ class OapApp extends OapBaseElement {
           "The acquisition of wealth","The perfection of spirit","the promotion of the Common Good","the pursuit of property"
         ]
       },
+      {
+        question: 'Some constitutions are written such that they are extremely difficult to modify or rewrite. This feature is known to scholars as?',
+        imageUrl: "",
+        correctAnswer: 1,
+        answers: [
+          "Intransciance","Entrenchment","Obstinance","Intractability"
+        ]
+      },
+      {
+        question: 'If a country draws on a legal and cultural tradition to form its constitutional norms, but those norms are not organized into a single document, that constitution is called?',
+        imageUrl: "",
+        correctAnswer: 2,
+        answers: [
+          "Unorganized","Unincorporated","Uncodified","Traditionalistic"
+        ]
+      },
+      {
+        question: 'If a legislature has only one ruling body it’s referred to as?',
+        imageUrl: "",
+        correctAnswer: 1,
+        answers: [
+          "Unilateral","Unicameral","Absolutist","Minimalist"
+        ]
+      },
+      {
+        question: 'Many Constitutions have a formal introduction known as a?',
+        imageUrl: "",
+        correctAnswer: 3,
+        answers: [
+          "Overture","Mis En Place","Foundation","Preamble"
+        ]
+      },
+      {
+        question: 'Dividing the government into branches is commonly referred to as',
+        imageUrl: "",
+        correctAnswer: 0,
+        answers: [
+          "Separation of Powers","Dendrology of Authority","Division of Labor","Civic Branching"
+        ]
+      },
+      {
+        question: 'The longest known constitution in the world governs what country?',
+        imageUrl: "",
+        correctAnswer: 0,
+        answers: [
+          "India","Iran","China","Brazil"
+        ]
+      }
     ],
 
     this.allItems = [
@@ -649,7 +697,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    //this.filteredItems = this.allItems;
+    this.filteredItems = this.allItems;
   }
 
   cacheSoundEffects() {
@@ -780,7 +828,7 @@ class OapApp extends OapBaseElement {
         if (this.configFromServer.client_config.welcomeLocales) {
           setTimeout( () => {
             if (!localStorage.getItem("haveClsosedWelcome")) {
-              this.$$("#welcomeDialog").open();
+              //this.$$("#welcomeDialog").open();
             }
           });
         }
