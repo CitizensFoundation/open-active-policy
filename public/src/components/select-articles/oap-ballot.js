@@ -273,7 +273,7 @@ class OapBallot extends OapPageViewElement {
         const itemId = listItem.item.id;
         listItem.animate([
           { transform: "translateY(-1px)" },
-          { transform: "translateY(-500px)", easing: 'ease-in' }
+          { transform: "translateY(-600px)", easing: 'ease-in' }
         ], {
           duration: 490,
           iterations: 1

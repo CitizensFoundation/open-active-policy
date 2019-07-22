@@ -383,13 +383,13 @@ class Oap3dBudget extends OapBaseElement {
       color = "#76FF03";
     }
 
-    var fudgetFactorPx = 0.05;
+    var fudgetFactorPx = 0.035;
     itemWidth = itemWidth*fudgetFactorPx;
 
     var object = new Mesh(new BoxGeometry(itemWidth, 5, 5), new MeshBasicMaterial({
       color: color,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.98,
       wireframe: false
     }));
 
