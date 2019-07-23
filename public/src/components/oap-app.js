@@ -1532,13 +1532,15 @@ class OapApp extends OapBaseElement {
     });
 
     this.choicePoints+=5;
-    this.$$("#choicePoints").animate([
-      { transform: "scale(5)", easing: 'ease-in'  },
-      { transform: "scale(1)", easing: 'ease-out' }
-    ], {
-      duration: 650,
-      iterations: 1
-    });
+    setTimeout(()=>{
+      this.$$("#choicePoints").animate([
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" }
+      ], {
+        duration: 300,
+        iterations: 1
+      });
+    }, 200);
     this.activity('correct', 'quizAnswer');
   }
 

@@ -1,4 +1,4 @@
-polymer build
+ NODE_OPTIONS="--max-old-space-size=8072" polymer build
 cd build/esm-bundled/src/components
 uglifyjs --compress --mangle -- oap-app.js > oap-app.min.js
 rm oap-app.js

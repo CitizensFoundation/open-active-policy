@@ -512,8 +512,9 @@ class Oap3dBudget extends OapBaseElement {
     if (this.itemsInScene.length>5) {
       setTimeout(()=>{
         this.rotateTimeShift();
-        if (this.itemsInScene.length==6)
+        if (this.itemsInScene.length>5 && this.itemsInScene.length<7) {
           this.fire('oap-play-sound-effect', 'oap_short_win_1');
+        }
       }, 300);
     }
   }
