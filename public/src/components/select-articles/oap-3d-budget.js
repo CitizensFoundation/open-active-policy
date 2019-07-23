@@ -490,9 +490,19 @@ class Oap3dBudget extends OapBaseElement {
     object.layers.enable(1);
     object.position.x=60.0;
     object.position.z=20.0;
-    this.scene.add(object);
-    this.itemsInScene.push({id: item.id, object: object, width: itemWidth});
-    this.positionItems();
+
+    if (!this.wide) {
+      setTimeout(()=>{
+        this.scene.add(object);
+        this.itemsInScene.push({id: item.id, object: object, width: itemWidth});
+        this.positionItems();
+      }, 50);
+    } else {
+      this.scene.add(object);
+      this.itemsInScene.push({id: item.id, object: object, width: itemWidth});
+      this.positionItems();
+    }
+
     if (this.itemsInScene.length>3) {
       setTimeout(()=>{
       //  this.rotateAllItems();

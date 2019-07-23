@@ -148,7 +148,7 @@ class OapArticleItem extends OapBaseElement {
                       +${this.item.price}
             </paper-button>
 
-            <paper-button mini elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
+            <paper-button elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
                       title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
                       -${this.item.price}
             </paper-button>
@@ -439,28 +439,7 @@ class OapArticleItem extends OapBaseElement {
 
   _toggleInBudget(event) {
     //console.log("_toggleInBudget itemId: "+this.item.id);
-    this.$$("#addFavoriteButton").style.position = "absolute";
-    this.$$("#addFavoriteButton").style.left = "12px";
-    this.$$("#addFavoriteButton").style.bottom = "12px";
-
-    var animation = this.$$("#addFavoriteButton").animate([
-      { transform: "translateX(200px)", easing: 'ease-out' },
-      { transform: "scale(2)", easing: 'ease-out' },
-      { transform: "translateY(0)", easing: 'ease-out' }
-    ], {
-      duration: 400,
-      iterations: 1
-    });
-
-    animation.onfinish = function () {
-      this.$$("#addFavoriteButton").style.position = "absolute";
-      this.$$("#addFavoriteButton").style.left = "12px";
-      this.$$("#addFavoriteButton").style.bottom = "12px";
-    }.bind(this);
     this.fire('oav-toggle-item-in-budget', { item: this.item });
-    setTimeout(()=> {
-      this.requestUpdate();
-    });
   }
 }
 

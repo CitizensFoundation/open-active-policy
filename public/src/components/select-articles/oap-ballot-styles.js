@@ -42,8 +42,22 @@ export const OapBallotStyles = css`
     background-color: var(-app-item-container, #000 !important);
   }
 
-  oav-area-ballot-item {
+  oap-article-item {
     outline: 0px;
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 950ms ease-in-out;
+    -moz-transition: all 950ms ease-in-out;
+    -o-transition: all 950ms ease-in-out;
+    -ms-transition: all 950ms ease-in-out;
+  }
+
+
+  .sendToTop {
+    transform: translate(0,-2000px);
+    -webkit-transform: translate(0,-2000px);
+    -moz-transform: translate(0,-2000px);
+    -o-transform: translate(0,-2000px);
+    -ms-transform: translate(0,-2000px);
   }
 
   paper-button.addButton {

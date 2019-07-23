@@ -94,6 +94,10 @@ export const OapAppStyles = css`
   }
 
   .main-content[has-ballot] {
+    padding-top: 170px;
+  }
+
+  .main-content[has-ballot][wide] {
     padding-top: 150px;
   }
 

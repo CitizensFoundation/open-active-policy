@@ -310,13 +310,7 @@ class OapBallot extends OapPageViewElement {
       if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
         listItem.setInBudget();
         const itemId = listItem.item.id;
-        listItem.animate([
-          { transform: "translateY(-1px)" },
-          { transform: "translateY(-700px)", easing: 'ease-in' }
-        ], {
-          duration: 500,
-          iterations: 1
-        });
+        listItem.classList.add("sendToTop");
         setTimeout(() => {
           this.removeFromAvailableItems(itemId);
           this.requestUpdate();
@@ -350,34 +344,35 @@ class OapBallot extends OapPageViewElement {
   }
 
   _setStateOfRemainingItems() {
-    var budgetLeft = this.budgetElement.totalBudget-this.budgetElement.selectedBudget;
-    var listItems = this.$$("#itemContainer");
-    const allSelectedIds = this.budgetElement.selectedItems.map((item) => {
-      return item.id;
-    });
-    for (var i = 0; i < listItems.children.length; i++) {
-      var listItem = listItems.children[i];
-      if (listItem.id != 'domRepeat' && !listItem.selected) {
+    setTimeout(()=>{
+      var budgetLeft = this.budgetElement.totalBudget-this.budgetElement.selectedBudget;
+      var listItems = this.$$("#itemContainer");
+      const allSelectedIds = this.budgetElement.selectedItems.map((item) => {
+        return item.id;
+      });
+      for (var i = 0; i < listItems.children.length; i++) {
+        var listItem = listItems.children[i];
+        if (listItem.id != 'domRepeat' && !listItem.selected) {
 
-        if (listItem.item.exclusive_ids && listItem.item.exclusive_ids.length>0) {
-          listItem.item.exclusive_ids.split(",").forEach((id) => {
-            if (allSelectedIds.indexOf(id) > -1) {
-              console.log("excluding: "+listItem.item.id+" for "+listItem.item.exclusive_ids);
-              listItem.setExcluded();
-            } else {
-              listItem.setNotExcluded();
-            }
-          });
-        }
+          if (listItem.item.exclusive_ids && listItem.item.exclusive_ids.length>0) {
+            listItem.item.exclusive_ids.split(",").forEach((id) => {
+              if (allSelectedIds.indexOf(id) > -1) {
+                console.log("excluding: "+listItem.item.id+" for "+listItem.item.exclusive_ids);
+                listItem.setExcluded();
+              } else {
+                listItem.setNotExcluded();
+              }
+            });
+          }
 
-        if (listItem.item.price<=budgetLeft) {
-          listItem.setNotTooExpensive();
-        } else {
-          listItem.setTooExpensive();
+          if (listItem.item.price<=budgetLeft) {
+            listItem.setNotTooExpensive();
+          } else {
+            listItem.setTooExpensive();
+          }
         }
       }
-    }
-    this.requestUpdate();
+    }, 100);
   }
 
   _postVoteToServer() {

@@ -48,12 +48,12 @@ export const OapArticleItemStyles = css`
   }
 
   .itemSelectedFrame[small] {
-    width: 254px;
-    height: 271px;
+    width: 254px;19
+    height: 271px19
   }
 
-  .itemSelectedFrame[small][tiny] {
-    width: 214px;
+  .itemSelectedFr19
+    width: 214px;19
     height: 214px;
   }
 
@@ -324,9 +324,8 @@ export const OapArticleItemStyles = css`
     top: 0;
     right: 0;
     width: 300px;
-    height: 107px;
+    height: 70px;
     z-index: 2000;
-    transition: opacity 500ms;
   }
 
   #opacityLayer.cover {
