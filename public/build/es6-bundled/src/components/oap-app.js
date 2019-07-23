@@ -18613,49 +18613,10 @@ new MeshPhongMaterial({color:16777215})// side
         <div id="opacityLayer"></div>
         <div id="leftColor" class="leftColor"></div>
         <div>
-          <iron-image preload @loaded-changed="${this._imageLoadedChanged}" ?small="${this.small}"
-            ?tiny$="${this.tiny}" hidden ?bhidden="${!this.imageTabSelected}" name="image" sizing="cover" src="${this.item.image_url}">
-          </iron-image>
-          <div ?hidden="${!this.descriptionTabSelected}" name="description" class="descriptionContainer" ?tiny="${this.tiny}" ?small="${this.small}">
-            <div id="description" class="description">
-              ${this.item.description}
-            </div>
-          </div>
-          <paper-menu-button hidden ?bhidden="${this.isOnMap}" @tap="${this._openMenu}" ?small="${this.small}" ?tiny="${this.tiny}" class="dropdownMenuButton" horizontal-align="right">
-            <paper-icon-button class="dropdown-trigger dropdownButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize("openDetailMenu")}" icon="menu"></paper-icon-button>
-            <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" .selected="${this.listBoxSelection}">
-              <paper-item @tap="${this._setImageMode}">
-                <iron-icon alt="${this.localize("image_item_tab")}" class="infoIcon" icon="photo"></iron-icon>
-                ${this.localize("image_item_tab")}
-              </paper-item>
-              <paper-item @tap="${this._setDescriptionMode}">
-                <iron-icon alt="${this.localize("description_item_tab")}" class="infoIcon" icon="description"></iron-icon>
-                ${this.localize("description_item_tab")}
-              </paper-item>
-              <paper-item @tap="${this._openPdf}" ?hidden="${!this.descriptionPdfLink}">
-                <iron-icon alt="${this.localize("design_pdf")}" class="infoIcon" icon="picture-as-pdf"></iron-icon>
-                ${this.localize("design_pdf")}
-              </paper-item>
-              <paper-item @tap="${this._showPost}" ?hidden="${this.configFromServer.client_config.hideShowPost}">
-                <iron-icon raised alt="${this.localize("more_info_description")}" class="infoIcon" icon="info"></iron-icon>
-                ${this.localize("more_info_description")}
-              </paper-item>
-            </paper-listbox>
-          </paper-menu-button>
           <div class="layout horizontal" ?hidden="${this.descriptionTabSelected}">
             <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
           </div>
           <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-            <paper-share-button hidden ?bhidden="${!this.imageLoaded}" ?small="${this.small}" @share-tap="${this._shareTap}" class="shareIcon" horizontal-align="left" id="shareButton"
-              title="${this.localize("share_idea")}" facebook twitter popup .url="${this._itemShareUrl()}">
-            </paper-share-button>
-
-            <div hidden class="cost" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
-              ${this.formatNumber(this.item.price)}${this.localize("cp")}
-              <span class="costCurrency" ?hidden="${!this._costIsOne(this.item.price)}">${this.localize("million")}</span>
-              <span class="costCurrency" ?hidden="${this._costIsOne(this.item.price)}">${this.localize("millions")}</span>
-            </div>
-
             <paper-button raised id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
                       ?disabled="${this.toExpensive||this.isExcluded}" title="${this.localize("add_to_budget")}" icon="add" @click="${this._toggleInBudget}">
                       +${this.item.price}
@@ -18665,19 +18626,7 @@ new MeshPhongMaterial({color:16777215})// side
                       title="${this.localize("remove_from_budget")}" icon="remove" @click="${this._toggleInBudget}">
                       -${this.item.price}
             </paper-button>
-
-            <div hidden>
-            <div id="favoriteButtons" class="favoriteButtons" ?hidden="${!this.selected}">
-              <paper-fab mini id="addFavoriteButton" class="addFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${this.isFavorite}"
-                        title="${this.localize("select_favorite")}" icon="${this.configFromServer.client_config.favoriteIconOutline}" @click="${this._toggleFavorite}">
-              </paper-fab>
-              <paper-fab mini class="removeFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${!this.isFavorite}"
-                        title="${this.localize("deselect_favorite")}" icon="${this.configFromServer.client_config.favoriteIcon}" @click="${this._toggleFavorite}">
-              </paper-fab>
-            </div>
-            </div>
           </div>
-
         </div>
       </div>
     `}updated(changedProps){super.updated(changedProps);if(changedProps.has("selected")){if(this.selected){this.elevation=4;this.$$("#topContainer").classList.add("shadow-elevation-12dp")}else{this.elevation=1;this.$$("#topContainer").classList.remove("shadow-elevation-12dp")}}if(changedProps.has("item")){if(this.item){this.resetFromBudget()}}if(changedProps.has("small")){if(this.small){this.mapsHeight="260";this.mapsWidth="146"}else{this.mapsHeight="169";this.mapsWidth="300"}}if(changedProps.has("tiny")){if(this.tiny){this.mapsHeight="220";this.mapsWidth="124"}else{this.mapsHeight="169";this.mapsWidth="300"}}}constructor(){super();this.reset();this.listBoxSelection=0}reset(){this.small=!1;this.descriptionTabSelected=!1;this.imageTabSelected=!0;this.isFavorite=!1;this.toExpensive=!1;this.isBookmarked=!1;this.selected=!1;this.isExcluded=!1}_imageLoadedChanged(event){if(event.detail.value){this.imageLoaded=!0}}_clickedDropDownMenu(){this.activity("click","dropdown")}_costIsOne(cost){if(cost&&1>=cost){return!0}else{return!1}}_openPdf(){this.activity("click","openPdf");if(this.item.descriptionPdfLink){window.open(this.item.descriptionPdfLink,"_blank")}}_showPost(){this.activity("click","showPost");window.appLastArea="/"+window.location.hash;const path="/post/"+this.item.idea_id;window.history.pushState({},null,path);this.fire("location-changed",path);setTimeout(()=>{this.$$("#listBox").select(0)})}_itemShareUrl(){if(this.item){return encodeURIComponent("https://"+window.location.host+"/items/"+this.item.id)}else{return null}}_shareTap(event,detail){this.activity("click","shareItem")}resetFromBudget(){//console.log("resetFromBudget itemId: "+this.item.id);
@@ -18956,7 +18905,7 @@ this.fire("oav-toggle-item-in-budget",{item:this.item})}}window.customElements.d
     margin-top: 4px;
   }
 `;_exports.OapBudgetStyles=OapBudgetStyles;var oapBudgetStyles={OapBudgetStyles:OapBudgetStyles};_exports.$oapBudgetStyles=oapBudgetStyles;class Oap3dBudget extends OapBaseElement{static get properties(){return{selectedItems:{type:Array,value:[],notify:!0},toastCounter:{type:Number,value:0},noSelectedItems:{type:Boolean,value:!0},areaName:{type:String,value:null},selectedBudget:{type:Number,value:0},totalBudget:{type:Number},budgetLeft:{type:Number},selectedBudgetIsOne:{type:Boolean},votesWidth:{type:Number},wide:{type:Boolean},mediumWide:{type:Boolean},mini:{type:Boolean},orientationPortrait:{type:Boolean},orientationLandscape:{type:Boolean},currentBallot:Object,budgetHeaderImage:{type:String},showExit:Boolean,configFromServer:Object,scene:Object,camera:Object,composer:Object,controls:Object,renderer:Object,directionalLight:Object,ambientLight:Object,itemsInScene:Object,tween:Object,font3d:Object,fontMesh:Object}}setupScene(){const width=this.votesWidth,height=184,xCamera=.023*width;this.scene=new Scene;this.camera=new PerspectiveCamera(30,width/height,1,1e4);this.camera.position.set(xCamera,.1,21);this.camera.layers.enable(1);this.renderer=new WebGLRenderer({antialias:!0});this.renderer.setSize(width,height);this.renderer.setClearColor(1048576);this.controls=new FlyControls(this.camera,this.renderer.domElement);this.directionalLight=new DirectionalLight(16777215,.75);this.directionalLight.position.setScalar(100);this.scene.add(this.directionalLight);this.ambientLight=new AmbientLight(16777215,.25);this.scene.add(this.ambientLight);const renderScene=new RenderPass(this.scene,this.camera),effectFXAA=new ShaderPass(FXAAShader);effectFXAA.uniforms.resolution.value.set(1/width,1/height);const bloomPass=new UnrealBloomPass(new Vector2(width,height),1.5,.4,.85);bloomPass.threshold=.22;bloomPass.strength=1.2;bloomPass.radius=.45;bloomPass.renderToScreen=!0;this.composer=new EffectComposer(this.renderer);this.composer.setSize(width,height);this.composer.addPass(renderScene);this.composer.addPass(effectFXAA);this.composer.addPass(bloomPass);this.renderer.gammaInput=!0;this.renderer.gammaOutput=!0;this.renderer.toneMappingExposure=Math.pow(.9,4);var mainMaterial=this.$$("#mainMaterial");mainMaterial.appendChild(this.renderer.domElement);var loader=new FontLoader;loader.load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",function(font){this.font3d=font;this.rebuildChoicePoints(!0)}.bind(this));//    scene.add( new AxesHelper( 1 ) );
-this.renderScene()}rebuildChoicePoints(firstTime){if(null!=this.budgetLeft&&this.font3d){var geometry=new TextGeometry(this.budgetLeft+"cp",{font:this.font3d,size:10,height:2,curveSegments:12,bevelEnabled:!0,bevelThickness:1,bevelSize:1,bevelOffset:0,bevelSegments:7});geometry.computeBoundingBox();geometry.computeVertexNormals();geometry.center();geometry=new BufferGeometry().fromGeometry(geometry);var materials=[new MeshPhongMaterial({color:16733986,flatShading:!0}),// front
+this.renderScene()}rebuildChoicePoints(firstTime){if(null!=this.budgetLeft&&this.font3d){var geometry=new TextGeometry(this.budgetLeft+"cp",{font:this.font3d,size:600<window.innerWidth?10:5,height:600<window.innerWidth?2:1.2,curveSegments:600<window.innerWidth?15:12,bevelEnabled:!0,bevelThickness:600<window.innerWidth?1:.7,bevelSize:600<window.innerWidth?.9:.5,bevelOffset:0,bevelSegments:600<window.innerWidth?7:7});geometry.computeBoundingBox();geometry.computeVertexNormals();geometry.center();geometry=new BufferGeometry().fromGeometry(geometry);var materials=[new MeshPhongMaterial({color:16733986,flatShading:!0}),// front
 new MeshPhongMaterial({color:16733986})// side
 ],textMesh1=new Mesh(geometry,materials);const xText=.07*this.votesWidth;textMesh1.position.x=xText;textMesh1.position.y=-1;textMesh1.position.z=-33;textMesh1.rotation.x=0;textMesh1.rotation.y=2*Math.PI;if(null!=this.fontMesh){this.scene.remove(this.fontMesh)}this.fontMesh=textMesh1;this.scene.add(this.fontMesh);if(60>this.budgetLeft||firstTime){let duration=900;if(40>this.budgetLeft){duration=600}if(20>this.budgetLeft){duration=300}new Tween(this.fontMesh.rotation).to({y:"-"+Math.PI},duration)// relative animation
 .delay(0).on("complete",()=>{// Check that the full 360 degrees of rotation,
