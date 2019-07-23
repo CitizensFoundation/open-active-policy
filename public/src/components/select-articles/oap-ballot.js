@@ -64,9 +64,20 @@ class OapBallot extends OapPageViewElement {
     return html`${this.area ?
       html`
         <div class="topContainer layout vertical">
+          <div class="layout horizontal center-center tabsContainer">
+            <paper-tabs id="tabs" selected="${this.selectedView}" @selected-changed="${this._selectedChanged}">
+              <paper-tab>
+                <div>${this.localize('favorite')} ${this.budgetBallotItems ? html` (${this.budgetBallotItems.length})` : html``}</div>
+              </paper-tab>
+              <paper-tab>
+                <div>${this.localize('finalSelection')} ${(this.budgetElement && this.budgetElement.selectedItems) ? html` (${this.budgetElement.selectedItems.length})` : html``}</div>
+              </paper-tab>
+            </paper-tabs>
+          </div>
+
           ${(this.budgetBallotItems && this.budgetElement) ?
             html`
-              <div id="itemContainer" class="layout horizontal center-center flex wrap" ?hidden="${this.selectedView===1}">
+              <div id="itemContainer" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${this.selectedView===1}">
                 ${repeat(this.budgetBallotItems, (item) => item.id,  (item, index) =>
                   html`
                     <oap-article-item
@@ -84,6 +95,28 @@ class OapBallot extends OapPageViewElement {
             :
             ''
           }
+
+          ${(this.budgetElement && this.budgetElement.selectedItems) ?
+            html`
+              <div id="itemContainerFinal" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${this.selectedView===0}">
+                ${repeat(this.budgetElement.selectedItems, (item) => item.id,  (item, index) =>
+                  html`
+                    <oap-article-item
+                      .name="${item.id}"
+                      class="ballotAreaItem"
+                      .configFromServer="${this.configFromServer}"
+                      .language="${this.language}"
+                      .budgetElement="${this.budgetElement}"
+                      .item="${item}">
+                    </oap-article-item>
+                  `
+                )}
+              </div>
+            `
+            :
+            ''
+          }
+
         </div>
       `
       :
@@ -262,6 +295,12 @@ class OapBallot extends OapPageViewElement {
 
   _toggleItemInBudget(event) {
     this.budgetElement.toggleBudgetItem(event.detail.item);
+    var found =  this.budgetBallotItems.find((item)=> {
+      return item.id==event.detail.item.id;
+    });
+    if (!found) {
+      this.budgetBallotItems.unshift(event.detail.item);
+    }
   }
 
   _itemSelectedInBudget(event) {
@@ -304,9 +343,6 @@ class OapBallot extends OapPageViewElement {
           this.favoriteItem = null;
         }
         listItem.removeFromBudget();
-        const map = this.$$("#itemsMap");
-        if (map)
-          map.removeFromBudget(listItem.item);
         this.fire("oav-reset-favorite-icon-position");
       }
     }

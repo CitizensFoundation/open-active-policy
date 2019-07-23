@@ -4,7 +4,7 @@ import { OapBudgetStyles } from './oap-budget-styles';
 import { OapShadowStyles } from '../oap-shadow-styles';
 import { OapFlexLayout } from '../oap-flex-layout.js';
 
-import { Scene,PerspectiveCamera,WebGLRenderer,Box3,DirectionalLight,AmbientLight,Vector2,Vector3,BoxGeometry,Mesh,MeshBasicMaterial} from 'three';
+import { Scene,PerspectiveCamera,BufferGeometry,MeshPhongMaterial,WebGLRenderer,TextGeometry,Box3,FontLoader,DirectionalLight,AmbientLight,Vector2,Vector3,BoxGeometry,Mesh,MeshBasicMaterial} from 'three';
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
@@ -101,21 +101,23 @@ class Oap3dBudget extends OapBaseElement {
       directionalLight: Object,
       ambientLight: Object,
       itemsInScene: Object,
-      tween: Object
+      tween: Object,
+      font3d: Object,
+      fontMesh: Object
     };
   }
 
   setupScene () {
     const width=this.votesWidth;
     const height=184;
-    const xCamera = width*0.0247;
+    const xCamera = width*0.0230;
     this.scene = new Scene();
-    this.camera = new PerspectiveCamera(20, width/height, 1, 10000);
-    this.camera.position.set(xCamera, 0.1, 30);
+    this.camera = new PerspectiveCamera(30, width/height, 1, 10000);
+    this.camera.position.set(xCamera, 0.1, 21);
     this.camera.layers.enable(1);
     this.renderer = new WebGLRenderer({antialias: true});
     this.renderer.setSize(width, height);
-    this.renderer.setClearColor( 0x101000 );
+    this.renderer.setClearColor( 0x100000 );
 
     this.controls = new FlyControls(this.camera, this.renderer.domElement);
 
@@ -132,7 +134,7 @@ class Oap3dBudget extends OapBaseElement {
     const bloomPass = new UnrealBloomPass( new Vector2( width, height ), 1.5, 0.4, 0.85 );
     bloomPass.threshold = 0.22;
     bloomPass.strength = 1.2;
-    bloomPass.radius = 0.55;
+    bloomPass.radius = 0.45;
     bloomPass.renderToScreen = true;
 
     this.composer = new EffectComposer( this.renderer );
@@ -148,8 +150,89 @@ class Oap3dBudget extends OapBaseElement {
     var mainMaterial = this.$$("#mainMaterial");
     mainMaterial.appendChild(this.renderer.domElement);
 
+    var loader = new FontLoader();
+
+    loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+
+      this.font3d = font;
+      this.rebuildChoicePoints(true);
+    }.bind(this));
+
 //    scene.add( new AxesHelper( 1 ) );
     this.renderScene();
+  }
+
+  rebuildChoicePoints(firstTime) {
+    if (this.budgetLeft!=null && this.font3d) {
+      var geometry = new TextGeometry( this.budgetLeft+'cp', {
+        font: this.font3d,
+        size: 10,
+        height: 2,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 1,
+        bevelSize: 1,
+        bevelOffset: 0,
+        bevelSegments: 7
+      });
+
+      geometry.computeBoundingBox();
+      geometry.computeVertexNormals();
+      geometry.center();
+
+      geometry = new BufferGeometry().fromGeometry( geometry );
+
+      var materials = [
+        new MeshPhongMaterial( { color: 0xFF5722, flatShading: true } ), // front
+        new MeshPhongMaterial( { color: 0xFF5722 } ) // side
+      ];
+
+      var textMesh1 = new Mesh( geometry, materials );
+
+      const xText = this.votesWidth*0.070;
+
+      textMesh1.position.x = xText;
+      textMesh1.position.y = -1;
+      textMesh1.position.z = -33;
+
+      textMesh1.rotation.x = 0;
+      textMesh1.rotation.y = Math.PI * 2;
+
+      if (this.fontMesh!=null) {
+        this.scene.remove(this.fontMesh);
+      }
+
+      this.fontMesh = textMesh1;
+      this.scene.add(this.fontMesh);
+
+      if (this.budgetLeft<60 || firstTime) {
+
+        let duration=900;
+        if (this.budgetLeft<40) {
+          duration=600;
+        }
+
+        if (this.budgetLeft<20) {
+          duration=300;
+        }
+
+        new Tween(this.fontMesh.rotation)
+        .to({ y: "-" + Math.PI}, duration) // relative animation
+        .delay(0)
+        .on('complete', () => {
+            // Check that the full 360 degrees of rotation,
+            // and calculate the remainder of the division to avoid overflow.
+            console.log("Rotate test reset");
+            textMesh1.rotation.y=0;
+            if (Math.abs(textMesh1.rotation.y)>=2*Math.PI) {
+              textMesh1.rotation.y = textMesh1.rotation.y % (2*Math.PI);
+            }
+        })
+        .start();
+      } else {
+
+      }
+    }
   }
 
   renderScene() {
@@ -195,11 +278,16 @@ class Oap3dBudget extends OapBaseElement {
   updated(changedProps) {
     super.updated(changedProps);
     if (changedProps.has('selectedBudget')) {
-      this.selectedBudgetIsOne = this.selectedBudget && this.selectedBudget===1.0;
+      this.selectedBudgetIsOne = (this.selectedBudget && this.selectedBudget===1.0);
     }
 
     if (changedProps.has('selectedItems')) {
       this._selectedItemsChanged();
+    }
+
+
+    if (changedProps.has('budgetLeft')) {
+      this.rebuildChoicePoints();
     }
 
     if (changedProps.has('selectedBudget') || changedProps.has('totalBudget')) {
@@ -326,10 +414,12 @@ class Oap3dBudget extends OapBaseElement {
   _selectedItemsChanged() {
     if (this.selectedItems && this.selectedItems.length>0) {
       this.noSelectedItems = false;
-      this.$$("#votingButton").disabled = false;
+      if (this.$$("#votingButton"))
+        this.$$("#votingButton").disabled = false;
     } else {
       this.noSelectedItems = true;
-      this.$$("#votingButton").disabled = true;
+      if (this.$$("#votingButton"))
+        this.$$("#votingButton").disabled = true;
     }
   }
 
@@ -386,13 +476,13 @@ class Oap3dBudget extends OapBaseElement {
       color = "#76FF03";
     }
 
-    var fudgetFactorPx = 0.04;
+    var fudgetFactorPx = 0.033;
     itemWidth = itemWidth*fudgetFactorPx;
 
     var object = new Mesh(new BoxGeometry(itemWidth, 5, 5), new MeshBasicMaterial({
       color: color,
       transparent: true,
-      opacity: 0.98,
+      opacity: 1,
       wireframe: false
     }));
 
@@ -403,6 +493,17 @@ class Oap3dBudget extends OapBaseElement {
     this.scene.add(object);
     this.itemsInScene.push({id: item.id, object: object, width: itemWidth});
     this.positionItems();
+    if (this.itemsInScene.length>3) {
+      setTimeout(()=>{
+      //  this.rotateAllItems();
+      }, 300);
+    }
+
+    if (this.itemsInScene.length>5) {
+      setTimeout(()=>{
+        this.rotateTimeShift();
+      }, 300);
+    }
   }
 
   positionItems() {
@@ -427,6 +528,60 @@ class Oap3dBudget extends OapBaseElement {
       });
       rightEdgeAndSpace=(setX+currentWidth/2);
       console.error(index+": after x="+rightEdgeAndSpace);
+      if (false) {
+        setTimeout(()=>{
+          const target = new Vector3(item.object.position.x, (index*0.4), item.object.position.z);
+          let random = Math.floor(Math.random() * 50);
+
+          this.animateVector3(item.object.position, target, {
+            duration: 300,
+            easing : Easing.Quadratic.InOut,
+            update: function(d) {
+            },
+            callback : function(){
+                console.log("Completed");
+            }
+          });
+        },10000+(Math.floor(Math.random() * 100)));
+      }
+    });
+  }
+
+  rotateAllItems() {
+    this.itemsInScene.forEach((item, index)=> {
+      console.log("Rotate:"+item.id);
+        new Tween(item.object.rotation)
+      .to({ x: "-" + Math.PI/2}, 500) // relative animation
+      .delay(0)
+      .on('complete', () => {
+          // Check that the full 360 degrees of rotation,
+          // and calculate the remainder of the division to avoid overflow.
+          console.log("Rotate reset");
+          item.object.rotation.y=0;
+          if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
+            item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
+          }
+      })
+      .start();
+    });
+  }
+
+  rotateTimeShift() {
+    this.itemsInScene.forEach((item, index)=> {
+      console.log("Rotate timeshift:"+item.id);
+        new Tween(item.object.rotation)
+      .to({ x: "-" + Math.PI/2}, 350+(index*65)) // relative animation
+      .delay(0)
+      .on('complete', () => {
+          // Check that the full 360 degrees of rotation,
+          // and calculate the remainder of the division to avoid overflow.
+          console.log("Rotate reset");
+          item.object.rotation.y=0;
+          if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
+            item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
+          }
+      })
+      .start();
     });
   }
 

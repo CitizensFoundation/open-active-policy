@@ -51,9 +51,9 @@ export const OapAppStyles = css`
 
     color: var(--app-text-color);
 
-    --app-header-background-color: var(--app-primary-color);
+    --app-header-background-color: #000;
     --app-header-text-color: var(--app-text-color);
-    --app-header-selected-color: var(--app-primary-color);
+    --app-header-selected-color: #000;
     --paper-icon-button-ink-color: var(--app-text-color);
   }
 
@@ -65,7 +65,7 @@ export const OapAppStyles = css`
     text-align: center;
     background-color: var(--app-header-background-color, #000);
     color: var(--app-header-text-color, #FFF);
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #000;
   }
 
   app-header[wide-and-ballot] {
@@ -119,7 +119,7 @@ export const OapAppStyles = css`
     }
 
     .main-content[has-ballot] {
-      padding-top: 240px;
+      padding-top: 188px;
     }
 
     /* The drawer button isn't shown in the wide layout, so we don't
@@ -130,6 +130,7 @@ export const OapAppStyles = css`
   }
 
   app-toolbar {
+    border-bottom: 0px;
   }
 
   .title {

@@ -31,7 +31,7 @@ export const OapBallotStyles = css`
     left: 8px;
   }
 
-  #itemContainer {
+  .itemContainer {
     margin-top: 8px;
     margin-bottom: 16px;
     display: flex;
@@ -72,13 +72,15 @@ export const OapBallotStyles = css`
     margin: 8px;
     margin-right: 16px;
     margin-left: 16px;
+    color: #FFF;
+    width: 100%;
   }
 
   paper-tab {
-    font-size: 21px !important;
-    margin-left: 24px;
-    margin-right: 24px;
-    width: 320px;
+    font-size: 18px;
+    margin-left: 32px;
+    margin-right: 32px;
+    width: 100px;
   }
 
   @media (max-width: 1045px) {

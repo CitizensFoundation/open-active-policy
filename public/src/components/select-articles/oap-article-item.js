@@ -14,6 +14,7 @@ import '@polymer/paper-icon-button';
 import '@polymer/paper-listbox';
 import '@polymer/paper-item';
 import '@polymer/paper-fab';
+import '@polymer/paper-button';
 import 'paper-share-button';
 
 class OapArticleItem extends OapBaseElement {
@@ -132,19 +133,21 @@ class OapArticleItem extends OapBaseElement {
             title="${this.localize('share_idea')}" facebook twitter popup .url="${this._itemShareUrl()}">
           </paper-share-button>
 
-          <div class="cost" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
+          <div hidden class="cost" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
             ${this.formatNumber(this.item.price)}${this.localize("cp")}
             <span class="costCurrency" ?hidden="${!this._costIsOne(this.item.price)}">${this.localize('million')}</span>
             <span class="costCurrency" ?hidden="${this._costIsOne(this.item.price)}">${this.localize('millions')}</span>
           </div>
 
-          <paper-fab mini id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
+          <paper-button raised id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
                     ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
-          </paper-fab>
+                    +${this.item.price}
+          </paper-button>
 
-          <paper-fab mini elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
-                    ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
-          </paper-fab>
+          <paper-button mini elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
+                     title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
+                    -${this.item.price}
+          </paper-button>
 
           <div hidden>
           <div id="favoriteButtons" class="favoriteButtons" ?hidden="${!this.selected}">
@@ -355,6 +358,9 @@ class OapArticleItem extends OapBaseElement {
     this.$$("#opacityLayer").style.backgroundColor=color;
     this.$$("#opacityLayer").classList.add("cover");
     this.$$("#opacityLayer").style.display="block";
+    setTimeout(()=>{
+      this.$$("#opacityLayer").style.display="none";
+    }, 600);
   }
 
   removeFromBudget() {

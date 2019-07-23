@@ -10,8 +10,12 @@ export const OapArticleItemStyles = css`
   .itemContent {
     position: relative;
     width: 300px;
-    height: 107px;
-    margin: 16px;
+    height: 70px;
+    margin: 8px;
+  }
+
+  .name {
+    max-width: 220px;
   }
 
   .itemContent[small] {
@@ -104,13 +108,13 @@ export const OapArticleItemStyles = css`
   }
 
   .name {
-    font-size: var(--app-item-name-font-size, 19px);
+    font-size: var(--app-item-name-font-size, 14px);
     padding: 8px;
     color: var(--app-ballot-item-name-color, #000);
   }
 
   .name[small] {
-    font-size: var(--app-item-name-font-size-small, 17px);
+    font-size: var(--app-item-name-font-size-small, 13px);
     padding-top: 4px;
     padding-right: 4px;
     padding-top: 4px;
@@ -149,26 +153,29 @@ export const OapArticleItemStyles = css`
     color: var(--app-accent-color);
   }
 
-  paper-fab.addRemoveButton {
+  paper-button.addRemoveButton {
     position: absolute;
-    bottom: 12px;
-    right: 12px;
+    bottom: 9px;
+    right: 5px;
+    font-size: 18px;
+    width: 50px;
+    min-width: 50px;
     background-color: var(--app-accent-color);
     color: var(--app-ballot-item-button-color, #fff);
   }
 
-  paper-fab.removeButton {
+  paper-button.removeButton {
     background-color: #fff !important;
     color: var(--app-accent-color) !important;
   }
 
-  paper-fab.addFavoriteButton {
+  paper-button.addFavoriteButton {
     position: absolute;
     bottom: 12px;
     left: 12px;
-    background-color: var(--app-accent-color);
-    color: var(--app-ballot-item-button-color, #fff);
-    --paper-fab-iron-icon: {
+    background-color: var(--app-ballot-item-button-back, #FFF);
+    color: var(--app-ballot-item-button-color, var(--app-accent-color));
+    --paper-button-iron-icon: {
       height: 29px;
       width: 29px;
     };
@@ -176,13 +183,13 @@ export const OapArticleItemStyles = css`
     padding-top: 1px;
   }
 
-  paper-fab.removeFavoriteButton {
+  paper-button.removeFavoriteButton {
     position: absolute;
     bottom: 12px;
     left: 12px;
     color: var(--app-ballot-item-remove-fav-button-color, rgb(255,215,0));
     background-color: var(--app-ballot-item-remove-fav-button-background-color, #FFF);
-    --paper-fab-iron-icon: {
+    --paper-button-iron-icon: {
       height: 29px;
       width: 29px;
     };
@@ -190,7 +197,7 @@ export const OapArticleItemStyles = css`
     padding-top: var(--app-ballot-item-remove-fav-padding-top, 1px);
   }
 
-  paper-fab[disabled] {
+  paper-button[disabled] {
     background-color: #b7b7b7;
   }
 
@@ -286,7 +293,7 @@ export const OapArticleItemStyles = css`
     z-index: 5;
   }
 
-  paper-fab {
+  paper-button {
     z-index: 5;
   }
 
