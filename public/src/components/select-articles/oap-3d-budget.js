@@ -108,9 +108,10 @@ class Oap3dBudget extends OapBaseElement {
   setupScene () {
     const width=this.votesWidth;
     const height=184;
+    const xCamera = width*0.0247;
     this.scene = new Scene();
-    this.camera = new PerspectiveCamera(35, width/height, 1, 10000);
-    this.camera.position.set(36, 1, 20);
+    this.camera = new PerspectiveCamera(20, width/height, 1, 10000);
+    this.camera.position.set(xCamera, 0.1, 30);
     this.camera.layers.enable(1);
     this.renderer = new WebGLRenderer({antialias: true});
     this.renderer.setSize(width, height);
@@ -153,6 +154,8 @@ class Oap3dBudget extends OapBaseElement {
 
   renderScene() {
     requestAnimationFrame(this.renderScene.bind(this));
+
+    // This is Tween.update
     update();
 
     this.renderer.autoClear = false;
@@ -383,7 +386,7 @@ class Oap3dBudget extends OapBaseElement {
       color = "#76FF03";
     }
 
-    var fudgetFactorPx = 0.035;
+    var fudgetFactorPx = 0.04;
     itemWidth = itemWidth*fudgetFactorPx;
 
     var object = new Mesh(new BoxGeometry(itemWidth, 5, 5), new MeshBasicMaterial({
@@ -395,7 +398,8 @@ class Oap3dBudget extends OapBaseElement {
 
     console.error("Item "+item.id+": x="+itemWidth);
     object.layers.enable(1);
-    object.position.x=70.0;
+    object.position.x=60.0;
+    object.position.z=20.0;
     this.scene.add(object);
     this.itemsInScene.push({id: item.id, object: object, width: itemWidth});
     this.positionItems();
@@ -409,11 +413,11 @@ class Oap3dBudget extends OapBaseElement {
       console.error(index+": bounding box x="+currentWidth);
       const setX = rightEdgeAndSpace+(currentWidth/2);
       console.error(index+": set x="+setX);
-      const target = new Vector3(setX, item.object.position.y, item.object.position.y);
-      let random = Math.floor(Math.random() * 150);
+      const target = new Vector3(setX, 0.0, 0.0);
+      let random = Math.floor(Math.random() * 100);
 
       this.animateVector3(item.object.position, target, {
-        duration: 375+random,
+        duration: 700+random,
         easing : Easing.Quadratic.InOut,
         update: function(d) {
         },
@@ -421,7 +425,7 @@ class Oap3dBudget extends OapBaseElement {
             console.log("Completed");
         }
       });
-      rightEdgeAndSpace=(setX+currentWidth/2)+1.0;
+      rightEdgeAndSpace=(setX+currentWidth/2);
       console.error(index+": after x="+rightEdgeAndSpace);
     });
   }
