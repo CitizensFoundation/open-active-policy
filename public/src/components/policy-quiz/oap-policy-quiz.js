@@ -44,32 +44,32 @@ class OapPolicyQuiz extends OapPageViewElement {
     setTimeout(()=>{
       this.scene = new Scene();
       this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-      this.camera.position.set( 0, -10, 160 );
+      this.camera.position.set( 6, -10, 155 );
       this.scene.add( this.camera );
 
-      var light = new DirectionalLight(0x1d5588, 2);
+      var light = new DirectionalLight(0x1d5588, 2.0);
       light.position.x = -500;
       light.position.y = 500;
       this.camera.add( light );
 
-      var light = new DirectionalLight(0x1d5588, 1);
+      var light = new DirectionalLight(0x1d5588, 1.0);
       light.position.x = 500;
       light.position.y = -500;
       light.position.z = -150;
       this.camera.add( light );
 
-      this.scene.background = new Color( '#999999' );
+      this.scene.background = new Color( '#1d5588' );
       var loader = new FontLoader();
       loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
         var geometry = new TextGeometry( "?", {
           font: font,
-          size: 170,
+          size: 180,
           height: 20,
-          curveSegments: 20,
+          curveSegments: 30,
           bevelEnabled: true,
-          bevelThickness: 7,
-          bevelSize: 2,
+          bevelThickness: 9,
+          bevelSize: 5,
           bevelOffset: 0,
           bevelSegments: 15
         });

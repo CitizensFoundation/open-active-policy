@@ -222,7 +222,7 @@ class Oap3dBudget extends OapBaseElement {
         .on('complete', () => {
             // Check that the full 360 degrees of rotation,
             // and calculate the remainder of the division to avoid overflow.
-            console.log("Rotate test reset");
+            //console.log("Rotate test reset");
             textMesh1.rotation.y=0;
             if (Math.abs(textMesh1.rotation.y)>=2*Math.PI) {
               textMesh1.rotation.y = textMesh1.rotation.y % (2*Math.PI);
@@ -486,7 +486,7 @@ class Oap3dBudget extends OapBaseElement {
       wireframe: false
     }));
 
-    console.error("Item "+item.id+": x="+itemWidth);
+    //console.error("Item "+item.id+": x="+itemWidth);
     object.layers.enable(1);
     object.position.x=60.0;
     object.position.z=20.0;
@@ -524,9 +524,9 @@ class Oap3dBudget extends OapBaseElement {
     this.itemsInScene.forEach((item, index)=> {
       let currentWidth;
       currentWidth = new Box3().setFromObject(item.object).getSize(currentWidth).x;
-      console.error(index+": bounding box x="+currentWidth);
+      //console.error(index+": bounding box x="+currentWidth);
       const setX = rightEdgeAndSpace+(currentWidth/2);
-      console.error(index+": set x="+setX);
+      //console.error(index+": set x="+setX);
       const target = new Vector3(setX, 0.0, 0.0);
       let random = Math.floor(Math.random() * 100);
 
@@ -540,7 +540,7 @@ class Oap3dBudget extends OapBaseElement {
         }
       });
       rightEdgeAndSpace=(setX+currentWidth/2);
-      console.error(index+": after x="+rightEdgeAndSpace);
+      //console.error(index+": after x="+rightEdgeAndSpace);
       if (false) {
         setTimeout(()=>{
           const target = new Vector3(item.object.position.x, (index*0.4), item.object.position.z);
@@ -562,14 +562,14 @@ class Oap3dBudget extends OapBaseElement {
 
   rotateAllItems() {
     this.itemsInScene.forEach((item, index)=> {
-      console.log("Rotate:"+item.id);
+      //console.log("Rotate:"+item.id);
         new Tween(item.object.rotation)
       .to({ x: "-" + Math.PI/2}, 500) // relative animation
       .delay(0)
       .on('complete', () => {
           // Check that the full 360 degrees of rotation,
           // and calculate the remainder of the division to avoid overflow.
-          console.log("Rotate reset");
+          //console.log("Rotate reset");
           item.object.rotation.y=0;
           if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
             item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
@@ -581,14 +581,14 @@ class Oap3dBudget extends OapBaseElement {
 
   rotateTimeShift() {
     this.itemsInScene.forEach((item, index)=> {
-      console.log("Rotate timeshift:"+item.id);
+      //console.log("Rotate timeshift:"+item.id);
         new Tween(item.object.rotation)
       .to({ x: "-" + Math.PI/2}, 350+(index*65)) // relative animation
       .delay(0)
       .on('complete', () => {
           // Check that the full 360 degrees of rotation,
           // and calculate the remainder of the division to avoid overflow.
-          console.log("Rotate reset");
+          //console.log("Rotate reset");
           item.object.rotation.y=0;
           if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
             item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
