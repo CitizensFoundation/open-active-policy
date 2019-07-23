@@ -370,14 +370,14 @@ class OapBudget extends OapBaseElement {
 
     let random = Math.floor(Math.random() * 4);
     let color;
-    if (random==0) {
-      color = "#39FF14";
-    } else if (random==1) {
-      color = "#e9bf29";
-    } else if (random==2) {
-      color = "#d6483d";
-    } else if (random==3) {
-      color = "#1d5588";
+    if (item.design_area=="Executive") {
+      color = "#FF1744";
+    } else if (item.design_area=="Judicial") {
+      color = "#2979FF";
+    } else if (item.design_area=="Civil") {
+      color = "#FF3D00";
+    } else  {
+      color = "#76FF03";
     }
 
 //    colorBox.style.borderColor = color;

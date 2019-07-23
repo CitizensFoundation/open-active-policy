@@ -279,13 +279,13 @@ class OapArticleItem extends OapBaseElement {
 
     let random = Math.floor(Math.random() * 4);
     let color;
-    if (random==0) {
+    if (this.item.design_area=="Executive") {
       color = "#FF1744";
-    } else if (random==1) {
+    } else if (this.item.design_area=="Judicial") {
       color = "#2979FF";
-    } else if (random==2) {
+    } else if (this.item.design_area=="Civil") {
       color = "#FF3D00";
-    } else if (random==3) {
+    } else  {
       color = "#76FF03";
     }
 
@@ -367,13 +367,13 @@ class OapArticleItem extends OapBaseElement {
 
     let random = Math.floor(Math.random() * 4);
     let color;
-    if (random==0) {
+    if (this.item.design_area=="Executive") {
       color = "#FF1744";
-    } else if (random==1) {
+    } else if (this.item.design_area=="Judicial") {
       color = "#2979FF";
-    } else if (random==2) {
+    } else if (this.item.design_area=="Civil") {
       color = "#FF3D00";
-    } else if (random==3) {
+    } else  {
       color = "#76FF03";
     }
     this.$$("#opacityLayer").style.backgroundColor=color;
