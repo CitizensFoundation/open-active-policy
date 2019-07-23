@@ -1615,7 +1615,7 @@ class OapApp extends OapBaseElement {
         if (this.configFromServer.client_config.welcomeLocales) {
           setTimeout( () => {
             if (!localStorage.getItem("haveClsosedWelcome")) {
-              //this.$$("#welcomeDialog").open();
+              this.$$("#welcomeDialog").open();
             }
           });
         }
