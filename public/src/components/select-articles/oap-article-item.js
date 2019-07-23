@@ -148,7 +148,7 @@ class OapArticleItem extends OapBaseElement {
                       +${this.item.price}
             </paper-button>
 
-            <paper-button elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
+            <paper-button raised elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
                       title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
                       -${this.item.price}
             </paper-button>

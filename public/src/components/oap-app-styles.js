@@ -66,6 +66,7 @@ export const OapAppStyles = css`
     background-color: var(--app-header-background-color, #000);
     color: var(--app-header-text-color, #FFF);
     border-bottom: 1px solid #000;
+    outline: none;
   }
 
   app-header[wide-and-ballot] {

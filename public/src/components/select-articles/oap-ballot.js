@@ -317,6 +317,7 @@ class OapBallot extends OapPageViewElement {
         }, 500);
       }
     }
+    this.requestUpdate();
     this._setStateOfRemainingItems();
   }
 
@@ -340,6 +341,7 @@ class OapBallot extends OapPageViewElement {
         this.fire("oav-reset-favorite-icon-position");
       }
     }
+    this.requestUpdate();
     this._setStateOfRemainingItems();
   }
 
@@ -372,7 +374,7 @@ class OapBallot extends OapPageViewElement {
           }
         }
       }
-    }, 100);
+    }, 75);
   }
 
   _postVoteToServer() {

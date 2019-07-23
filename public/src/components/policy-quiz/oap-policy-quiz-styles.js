@@ -50,7 +50,7 @@ export const OapPolicyQuizStyles = css`
     font-size: 20px;
   }
 
-  .image {
+  #canvas3d {
     width: 324px;
     height: 218px;
   }
@@ -75,7 +75,7 @@ export const OapPolicyQuizStyles = css`
     font-size: 18px;
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 450px) {
     .topContainer {
       max-width: 100%;
       width: 100%;
@@ -90,6 +90,14 @@ export const OapPolicyQuizStyles = css`
       width: 90%;
     }
 
+    #canvas3d {
+      width: 100%;
+      height: 218px;
+    }
+
+    .answerButton {
+      width: 300px;
+    }
   }
 
 

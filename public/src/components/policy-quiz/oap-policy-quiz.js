@@ -1,5 +1,7 @@
-import { html } from 'lit-element';
+import { html, supportsAdoptingStyleSheets } from 'lit-element';
 import '@polymer/paper-button/paper-button';
+
+import { Scene, DirectionalLight, PerspectiveCamera, Color, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
 
 import { OapPageViewElement } from '../oap-page-view-element';
 import { OapPolicyQuizStyles } from './oap-policy-quiz-styles';
@@ -15,7 +17,11 @@ class OapPolicyQuiz extends OapPageViewElement {
       incorrectAnswers: Number,
       nickname: String,
       configFromServer: Object,
-      savedBackgroundColor: String
+      savedBackgroundColor: String,
+      shapes3d: Object,
+      renderer: Object,
+      scene: Object,
+      camera: Object
     };
   }
 
@@ -30,6 +36,97 @@ class OapPolicyQuiz extends OapPageViewElement {
   constructor() {
     super();
     this.currentIndex = null;
+    this.shapes3d = [];
+  }
+
+  start() {
+    this.reset();
+    setTimeout(()=>{
+      this.scene = new Scene();
+      this.camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
+      this.camera.position.set( 0, 50, 250 );
+      this.scene.add( this.camera );
+
+      var light = new DirectionalLight(0x9955ff, 2);
+      light.position.x = -500;
+      light.position.y = 500;
+      this.camera.add( light );
+
+      var light = new DirectionalLight(0x9955ff, 1);
+      light.position.x = 500;
+      light.position.y = -500;
+      light.position.z = -150;
+      this.camera.add( light );
+
+      this.scene.background = new Color( '#993355' );
+
+      var x = -25, y = -250;
+      var heartShape = new Shape();
+      heartShape.moveTo( x + 25, y + 25 );
+      heartShape.bezierCurveTo( x + 25, y + 25, x + 20, y, x, y );
+      heartShape.bezierCurveTo( x - 30, y, x - 30, y + 35,x - 30,y + 35 );
+      heartShape.bezierCurveTo( x - 30, y + 55, x - 10, y + 77, x + 25, y + 95 );
+      heartShape.bezierCurveTo( x + 60, y + 77, x + 80, y + 55, x + 80, y + 35 );
+      heartShape.bezierCurveTo( x + 80, y + 35, x + 80, y, x + 50, y );
+      heartShape.bezierCurveTo( x + 35, y, x + 25, y + 25, x + 25, y + 25 );
+
+      var extrudeSettings = { amount: 1, bevelEnabled: true, bevelSegments: 20, steps: 2, bevelSize: 20, bevelThickness: 10 };
+
+      var width=324;
+      var height =218;
+
+      if (window.innerWidth<600)
+        width=window.innerWidth;
+
+      for (var i=-width/2; i<width/2; i+=60+Math.random()*50){
+        for (var j=0; j<height; j+=60+Math.random()*50){
+          this.addShape( heartShape,  extrudeSettings, '#ff0022',   i, j, 0,
+                   Math.random()*0.8, Math.random()*0.8, Math.PI, 0.1+Math.random()*0.3 );
+        }
+      }
+
+      this.renderer = new WebGLRenderer( { antialias: true } );
+      this.renderer.setPixelRatio( window.devicePixelRatio );
+      this.renderer.setSize( width, height );
+      var canvas = this.$$("#canvas3d");
+
+      canvas.appendChild( this.renderer.domElement );
+
+      this.renderCanvas3d();
+    }, 100);
+  }
+
+  addShape( shape, extrudeSettings, color, x, y, z, rx, ry, rz, s ) {
+    var geometry = new ExtrudeGeometry( shape, extrudeSettings );
+    var mesh = new Mesh( geometry, new MeshPhongMaterial( { color: color } ) );
+    mesh.position.set( x+25, y-50, z );
+    mesh.rotation.set( rx, ry, rz );
+    mesh.scale.set( s, s, s );
+    this.shapes3d.push({shape: mesh, x: Math.random(), y: Math.random(), z: Math.random()});
+    this.scene.add(mesh);
+  }
+
+  stop() {
+    debugger;
+    while(this.scene.children.length > 0){
+      this.scene.remove(this.scene.children[0]);
+    }
+    this.scene.remove();
+  }
+
+  animate() {
+    var speed = 0.05;
+    this.shapes3d.forEach(el => {
+      el.shape.rotation.x += el.x * speed;
+      el.shape.rotation.y += el.y * speed;
+      el.shape.rotation.z += el.z * speed;
+    });
+  }
+
+  renderCanvas3d() {
+    requestAnimationFrame(this.renderCanvas3d.bind(this));
+    this.animate();
+    this.renderer.render(this.scene, this.camera);
   }
 
   reset() {
@@ -50,8 +147,8 @@ class OapPolicyQuiz extends OapPageViewElement {
               <div class="progress">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
             </div>
           </div>
-          <div>
-            <img class="image" src="${this.questions[this.currentIndex].imageUrl}"/>
+          <div id="canvas3d">
+
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
@@ -152,6 +249,14 @@ class OapPolicyQuiz extends OapPageViewElement {
     if (changedProps.has('questions')) {
       if (this.questions) {
         this.reset();
+      }
+    }
+
+    if (changedProps.has('active')) {
+      if (this.active===true) {
+        this.start();
+      } else {
+        this.stop();
       }
     }
   }
