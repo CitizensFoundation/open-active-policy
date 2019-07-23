@@ -73,13 +73,13 @@ export const OapBallotStyles = css`
     margin-right: 16px;
     margin-left: 16px;
     color: #FFF;
-    width: 100%;
   }
 
   paper-tab {
     font-size: 18px;
     margin-left: 32px;
     margin-right: 32px;
+    font-size: 17px;
     width: 100px;
   }
 

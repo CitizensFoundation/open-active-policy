@@ -7,6 +7,13 @@ import { css } from 'lit-element';
 
 export const OapArticleItemStyles = css`
 
+  .leftColor {
+    width: 4px;
+    max-width: 4px;
+    margin: 0;
+    padding: 0;
+  }
+
   .itemContent {
     position: relative;
     width: 300px;

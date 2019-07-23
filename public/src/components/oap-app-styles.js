@@ -39,11 +39,11 @@ export const OapAppStyles = css`
     --app-accent-color-light: var(--paper-orange-a200);
     --app-text-color: #ffffff;
 
-    --paper-tabs-selection-bar-color: var(--paper-orange-a700);
+    --paper-tabs-selection-bar-color: #aaa;
     --paper-tabs-selection-bar: {
-      color:var(--paper-orange-a700);
+      color: #aaa;
       border-bottom: 3px solid !important;
-      border-bottom-color: var(--paper-orange-a700);
+      border-bottom-color: #aaa;
     };
 
     --primary-color-more-darker: var(--app-main-backround-color, #333);
