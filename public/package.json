@@ -39,6 +39,8 @@
     "@polymer/paper-tabs": "^3.0.1",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.4",
+    "convert-csv-to-json": "0.0.15",
+    "csvtojson": "^2.0.10",
     "es6-tween": "^5.5.10",
     "google-map": "git+git@github.com:rbjarnason/google-map.git",
     "intl-messageformat": "^2.2.0",

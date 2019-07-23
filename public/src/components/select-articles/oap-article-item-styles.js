@@ -48,12 +48,12 @@ export const OapArticleItemStyles = css`
   }
 
   .itemSelectedFrame[small] {
-    width: 254px;19
-    height: 271px19
+    width: 254px;
+    height: 271px;
   }
 
-  .itemSelectedFr19
-    width: 214px;19
+  .itemSelectedFrame[tiny] {
+    width: 214px;
     height: 214px;
   }
 
