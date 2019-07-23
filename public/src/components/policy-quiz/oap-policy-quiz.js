@@ -1,7 +1,7 @@
 import { html, supportsAdoptingStyleSheets } from 'lit-element';
 import '@polymer/paper-button/paper-button';
 
-import { Scene, DirectionalLight, PerspectiveCamera, Color, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
+import { Scene, DirectionalLight, PerspectiveCamera, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
 
 import { OapPageViewElement } from '../oap-page-view-element';
 import { OapPolicyQuizStyles } from './oap-policy-quiz-styles';
@@ -43,67 +43,81 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.reset();
     setTimeout(()=>{
       this.scene = new Scene();
-      this.camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
-      this.camera.position.set( 0, 50, 250 );
+      this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+      this.camera.position.set( 0, -10, 160 );
       this.scene.add( this.camera );
 
-      var light = new DirectionalLight(0x9955ff, 2);
+      var light = new DirectionalLight(0x1d5588, 2);
       light.position.x = -500;
       light.position.y = 500;
       this.camera.add( light );
 
-      var light = new DirectionalLight(0x9955ff, 1);
+      var light = new DirectionalLight(0x1d5588, 1);
       light.position.x = 500;
       light.position.y = -500;
       light.position.z = -150;
       this.camera.add( light );
 
-      this.scene.background = new Color( '#993355' );
+      this.scene.background = new Color( '#999999' );
+      var loader = new FontLoader();
+      loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-      var x = -25, y = -250;
-      var heartShape = new Shape();
-      heartShape.moveTo( x + 25, y + 25 );
-      heartShape.bezierCurveTo( x + 25, y + 25, x + 20, y, x, y );
-      heartShape.bezierCurveTo( x - 30, y, x - 30, y + 35,x - 30,y + 35 );
-      heartShape.bezierCurveTo( x - 30, y + 55, x - 10, y + 77, x + 25, y + 95 );
-      heartShape.bezierCurveTo( x + 60, y + 77, x + 80, y + 55, x + 80, y + 35 );
-      heartShape.bezierCurveTo( x + 80, y + 35, x + 80, y, x + 50, y );
-      heartShape.bezierCurveTo( x + 35, y, x + 25, y + 25, x + 25, y + 25 );
+        var geometry = new TextGeometry( "?", {
+          font: font,
+          size: 170,
+          height: 20,
+          curveSegments: 20,
+          bevelEnabled: true,
+          bevelThickness: 7,
+          bevelSize: 2,
+          bevelOffset: 0,
+          bevelSegments: 15
+        });
 
-      var extrudeSettings = { amount: 1, bevelEnabled: true, bevelSegments: 20, steps: 2, bevelSize: 20, bevelThickness: 10 };
+        geometry.computeBoundingBox();
+        geometry.computeVertexNormals();
+        geometry.center();
 
-      var width=324;
-      var height =218;
+        geometry = new BufferGeometry().fromGeometry( geometry );
 
-      if (window.innerWidth<600)
-        width=window.innerWidth;
+        var materials = [
+          new MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
+          new MeshPhongMaterial( { color: 0xffffff } ) // side
+        ];
 
-      for (var i=-width/2; i<width/2; i+=60+Math.random()*50){
-        for (var j=0; j<height; j+=60+Math.random()*50){
-          this.addShape( heartShape,  extrudeSettings, '#ff0022',   i, j, 0,
-                   Math.random()*0.8, Math.random()*0.8, Math.PI, 0.1+Math.random()*0.3 );
+        var width=324;
+        var height=100;
+
+        if (window.innerWidth<600)
+          width=window.innerWidth;
+
+        for (var i=-width/2; i<width/2; i+=30+Math.random()*50){
+          for (var j=0; j<height; j+=30+Math.random()*50){
+            this.addShape( geometry,  materials, '#aaaaaa',   i, j, 0,
+                     Math.random()*0.8, Math.random()*0.8, Math.PI, 0.1+Math.random()*0.3 );
+          }
         }
-      }
 
-      this.renderer = new WebGLRenderer( { antialias: true } );
-      this.renderer.setPixelRatio( window.devicePixelRatio );
-      this.renderer.setSize( width, height );
-      var canvas = this.$$("#canvas3d");
+        this.renderer = new WebGLRenderer( { antialias: true } );
+        this.renderer.setPixelRatio( window.devicePixelRatio );
+        this.renderer.setSize( width, height );
+        var canvas = this.$$("#canvas3d");
 
-      canvas.appendChild( this.renderer.domElement );
+        canvas.appendChild( this.renderer.domElement );
 
-      this.renderCanvas3d();
+        this.renderCanvas3d();
+      }.bind(this));
+
     }, 100);
   }
 
-  addShape( shape, extrudeSettings, color, x, y, z, rx, ry, rz, s ) {
-    var geometry = new ExtrudeGeometry( shape, extrudeSettings );
-    var mesh = new Mesh( geometry, new MeshPhongMaterial( { color: color } ) );
+  addShape( geometry, materials, color, x, y, z, rx, ry, rz, s ) {
+    var mesh = new Mesh( geometry, materials );
     mesh.position.set( x+25, y-50, z );
     mesh.rotation.set( rx, ry, rz );
     mesh.scale.set( s, s, s );
     this.shapes3d.push({shape: mesh, x: Math.random(), y: Math.random(), z: Math.random()});
-    this.scene.add(mesh);
+    this.scene.add(mesh)
   }
 
   stop() {

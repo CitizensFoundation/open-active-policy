@@ -52,7 +52,7 @@ export const OapPolicyQuizStyles = css`
 
   #canvas3d {
     width: 324px;
-    height: 218px;
+    height: 100px;
   }
 
   .completedQuiz {
@@ -92,7 +92,7 @@ export const OapPolicyQuizStyles = css`
 
     #canvas3d {
       width: 100%;
-      height: 218px;
+      height: 100px;
     }
 
     .answerButton {
