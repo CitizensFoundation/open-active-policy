@@ -917,8 +917,7 @@ class OapSwipableCards extends OapBaseElement {
             this.backToMiddle();
           }
         } else if(this.translateX > 0) {
-
-          if (this.translateX > (this.listElNodesWidth / 2) && (Math.abs(this.translateX) / this.timeTaken > this.velocity)){ // Did It Move To Right?
+          if (this.translateX > (this.listElNodesWidth / 2) || (Math.abs(this.translateX) / this.timeTaken > this.velocity)){ // Did It Move To Right?
             this.onSwipeRight();
           } else {
             this.backToMiddle();
