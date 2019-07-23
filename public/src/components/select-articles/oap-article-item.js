@@ -100,49 +100,10 @@ class OapArticleItem extends OapBaseElement {
         <div id="opacityLayer"></div>
         <div id="leftColor" class="leftColor"></div>
         <div>
-          <iron-image preload @loaded-changed="${this._imageLoadedChanged}" ?small="${this.small}"
-            ?tiny$="${this.tiny}" hidden ?bhidden="${!this.imageTabSelected}" name="image" sizing="cover" src="${this.item.image_url}">
-          </iron-image>
-          <div ?hidden="${!this.descriptionTabSelected}" name="description" class="descriptionContainer" ?tiny="${this.tiny}" ?small="${this.small}">
-            <div id="description" class="description">
-              ${this.item.description}
-            </div>
-          </div>
-          <paper-menu-button hidden ?bhidden="${this.isOnMap}" @tap="${this._openMenu}" ?small="${this.small}" ?tiny="${this.tiny}" class="dropdownMenuButton" horizontal-align="right">
-            <paper-icon-button class="dropdown-trigger dropdownButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize('openDetailMenu')}" icon="menu"></paper-icon-button>
-            <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" .selected="${this.listBoxSelection}">
-              <paper-item @tap="${this._setImageMode}">
-                <iron-icon alt="${this.localize('image_item_tab')}" class="infoIcon" icon="photo"></iron-icon>
-                ${this.localize('image_item_tab')}
-              </paper-item>
-              <paper-item @tap="${this._setDescriptionMode}">
-                <iron-icon alt="${this.localize('description_item_tab')}" class="infoIcon" icon="description"></iron-icon>
-                ${this.localize('description_item_tab')}
-              </paper-item>
-              <paper-item @tap="${this._openPdf}" ?hidden="${!this.descriptionPdfLink}">
-                <iron-icon alt="${this.localize('design_pdf')}" class="infoIcon" icon="picture-as-pdf"></iron-icon>
-                ${this.localize('design_pdf')}
-              </paper-item>
-              <paper-item @tap="${this._showPost}" ?hidden="${this.configFromServer.client_config.hideShowPost}">
-                <iron-icon raised alt="${this.localize('more_info_description')}" class="infoIcon" icon="info"></iron-icon>
-                ${this.localize('more_info_description')}
-              </paper-item>
-            </paper-listbox>
-          </paper-menu-button>
           <div class="layout horizontal" ?hidden="${this.descriptionTabSelected}">
             <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
           </div>
           <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-            <paper-share-button hidden ?bhidden="${!this.imageLoaded}" ?small="${this.small}" @share-tap="${this._shareTap}" class="shareIcon" horizontal-align="left" id="shareButton"
-              title="${this.localize('share_idea')}" facebook twitter popup .url="${this._itemShareUrl()}">
-            </paper-share-button>
-
-            <div hidden class="cost" ?small="${this.small}" ?tiny="${this.tiny}" ?no-millions="${this.configFromServer.client_config.dontUserMillions}">
-              ${this.formatNumber(this.item.price)}${this.localize("cp")}
-              <span class="costCurrency" ?hidden="${!this._costIsOne(this.item.price)}">${this.localize('million')}</span>
-              <span class="costCurrency" ?hidden="${this._costIsOne(this.item.price)}">${this.localize('millions')}</span>
-            </div>
-
             <paper-button raised id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
                       ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
                       +${this.item.price}
@@ -152,19 +113,7 @@ class OapArticleItem extends OapBaseElement {
                       title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
                       -${this.item.price}
             </paper-button>
-
-            <div hidden>
-            <div id="favoriteButtons" class="favoriteButtons" ?hidden="${!this.selected}">
-              <paper-fab mini id="addFavoriteButton" class="addFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${this.isFavorite}"
-                        title="${this.localize('select_favorite')}" icon="${this.configFromServer.client_config.favoriteIconOutline}" @click="${this._toggleFavorite}">
-              </paper-fab>
-              <paper-fab mini class="removeFavoriteButton" .elevation="5" class="favoriteButton" ?hidden="${!this.isFavorite}"
-                        title="${this.localize('deselect_favorite')}" icon="${this.configFromServer.client_config.favoriteIcon}" @click="${this._toggleFavorite}">
-              </paper-fab>
-            </div>
-            </div>
           </div>
-
         </div>
       </div>
     `;

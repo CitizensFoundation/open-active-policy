@@ -166,14 +166,14 @@ class Oap3dBudget extends OapBaseElement {
     if (this.budgetLeft!=null && this.font3d) {
       var geometry = new TextGeometry( this.budgetLeft+'cp', {
         font: this.font3d,
-        size: 10,
-        height: 2,
-        curveSegments: 12,
+        size: window.innerWidth>600 ? 10 : 5,
+        height: window.innerWidth>600 ? 2 : 1.2,
+        curveSegments: window.innerWidth>600 ? 15 : 12,
         bevelEnabled: true,
-        bevelThickness: 1,
-        bevelSize: 1,
+        bevelThickness: window.innerWidth>600 ? 1 : 0.7,
+        bevelSize:  window.innerWidth>600 ? 0.9 : 0.5,
         bevelOffset: 0,
-        bevelSegments: 7
+        bevelSegments:  window.innerWidth>600 ? 7 :7
       });
 
       geometry.computeBoundingBox();
