@@ -27,6 +27,7 @@ import './policy-quiz/oap-policy-quiz';
 import './filter-articles/oap-filter-articles';
 import './select-articles/oap-ballot';
 import './select-articles/oap-3d-budget';
+import './country-creation/oap-country-creation';
 
 //import './browse-articles/oap-swipable-cards';
 //import './oav-voting-completed';
@@ -233,6 +234,14 @@ class OapApp extends OapBaseElement {
           <iron-icon id="favoriteIcon" icon="${this.favoriteIcon}" hidden></iron-icon>
         </app-header>
         <main role="main" class="main-content" ?has-ballot="${this._page == 'area-ballot'}">
+          <oap-country-creation
+            id="createCountry"
+            .configFromServer="${this.configFromServer}"
+            .nickname="Robert Bjarnason"
+            .language="${this.language}"
+            ?hidden="${this._page !== 'create-country'}"
+            ?active="${this._page === 'create-country'}">
+          </oap-country-creation>
           <oap-policy-quiz
             id="quiz"
             .questions="${this.quizQuestions}"
@@ -1669,6 +1678,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-filtering-finished", this.filteringFinished);
     this.addEventListener("item-selected", this.addItemToFinalList);
     this.addEventListener("oap-play-sound-effect", this.playSoundEffect);
+    this.addEventListener("oap-country-created", this.createCountryFinished);
   }
 
   addItemToFinalList(event) {
@@ -1705,6 +1715,14 @@ class OapApp extends OapBaseElement {
     this.activity('finished', 'quiz');
   }
 
+  createCountryFinished() {
+    this.fire('oap-play-sound-effect', 'oap_new_level_1');
+    const path = '/quiz';
+    window.history.pushState({}, null, path);
+    this.fire('location-changed', path);
+    this.activity('finished', 'createCountry');
+  }
+
   _removeListeners() {
     this.removeEventListener("app-resources-loaded", this._translationLoaded);
     this.removeEventListener("oav-set-title", this._setTitle);
@@ -1725,6 +1743,7 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oav-insecure-email-login", this._insecureEmailLogin);
     this.removeEventListener("oap-process-correct-quiz-answer", this.processCorrectQuizAnswer);
     this.removeEventListener("oap-quiz-finished", this.quizFinished);
+    this.removeEventListener("oap-country-created", this.createCountryFinished);
     this.removeEventListener("item-selected", this.addItemToFinalList);
     this.removeEventListener("oap-filtering-finished", this.filteringFinished);
     this.removeEventListener("oap-play-sound-effect", this.playSoundEffect);
@@ -1999,8 +2018,8 @@ class OapApp extends OapBaseElement {
       }
 
       if (page==='area-ballot' && this.filteredItems.length===0) {
-        window.history.pushState({}, null, "/quiz");
-        this.fire('location-changed', "/quiz");
+        window.history.pushState({}, null, "/create-country");
+        this.fire('location-changed', "/create-country");
       }
 
       // Send page info to Google Analytics
@@ -2036,7 +2055,7 @@ class OapApp extends OapBaseElement {
       location = { pathname: location.detail };
 
     if (location.pathname==="/") {
-      const path = '/quiz';
+      const path = '/create-country';
       window.history.pushState({}, null, path);
       location = { pathname: path };
       this.fire('location-changed', path);
@@ -2061,6 +2080,7 @@ class OapApp extends OapBaseElement {
       case 'area-ballot':
       case 'voting-completed':
       case 'filter-articles':
+      case 'create-country':
       case 'quiz':
       case '/':
         break;
