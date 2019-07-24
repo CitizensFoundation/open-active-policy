@@ -3146,6 +3146,14 @@
     margin-right: auto;
   }
 
+  paper-button {
+    background-color: var(--app-accent-color);
+    color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+  }
+
   .sliderHeader {
     margin-top: 8px;
   }
@@ -3153,9 +3161,22 @@
   @media (max-width: 450px) {
     .topContainer {
       max-width: 100%;
+      margin-top: 50px;
+      margin-left: 0;
+      margin-right: 0;
       width: 100%;
       height: 100%;
     }
+
+    paper-input {
+      max-width: 300px;
+    }
+
+    paper-textarea {
+      max-width: 300px;
+    }
+
+
   }
 
 
@@ -3495,7 +3516,7 @@
 
         <div class="subHeader">${this.localize("culturalAttitude")}</div>
 
-        <div class="layout horizontal">
+        <div class="laysout verstical ">
           <div class="vertical" style="width:100%;">
             <div class="sliderHeader">${this.localize("authority")}</div>
             <paper-slider
