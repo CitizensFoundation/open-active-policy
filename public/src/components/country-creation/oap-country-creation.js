@@ -85,7 +85,7 @@ class OapCountryCreation extends OapPageViewElement {
 
         <div class="subHeader">${this.localize("culturalAttitude")}</div>
 
-        <div class="layout horizontal">
+        <div class="laysout verstical ">
           <div class="vertical" style="width:100%;">
             <div class="sliderHeader">${this.localize("authority")}</div>
             <paper-slider

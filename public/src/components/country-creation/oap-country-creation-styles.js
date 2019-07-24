@@ -35,6 +35,14 @@ export const OapCountryCreationStyles = css`
     margin-right: auto;
   }
 
+  paper-button {
+    background-color: var(--app-accent-color);
+    color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+  }
+
   .sliderHeader {
     margin-top: 8px;
   }
@@ -42,9 +50,22 @@ export const OapCountryCreationStyles = css`
   @media (max-width: 450px) {
     .topContainer {
       max-width: 100%;
+      margin-top: 50px;
+      margin-left: 0;
+      margin-right: 0;
       width: 100%;
       height: 100%;
     }
+
+    paper-input {
+      max-width: 300px;
+    }
+
+    paper-textarea {
+      max-width: 300px;
+    }
+
+
   }
 
 
