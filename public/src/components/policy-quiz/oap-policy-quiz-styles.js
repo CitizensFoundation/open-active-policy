@@ -44,6 +44,7 @@ export const OapPolicyQuizStyles = css`
     color: var(--quiz-color, #FFF);
     padding-bottom: 16px;
     margin-top: 32px;
+    height: 100%;
   }
 
   .question {

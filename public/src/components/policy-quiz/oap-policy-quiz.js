@@ -64,7 +64,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.scene.background = new Color( '#1d5588' );
       var loader = new FontLoader();
       loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
-
+        this.savedBackgroundColor = this.$$("#button0").style.backgroundColor;
         var geometry = new TextGeometry( "?", {
           font: font,
           size: 180,
@@ -179,7 +179,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   render() {
     return html`
-    <div class="layout vertical center-center">
+    <div class="layout vertical center-center" style="height: 100%;">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${this.currentIndex!==null ?  html`
           <div id="canvas3d"></div>
