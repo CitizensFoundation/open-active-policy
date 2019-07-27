@@ -14,25 +14,64 @@ export const OapCountryCreationStyles = css`
 
   .header {
     font-size: 24px;
-    margin-top: 24px;
+    margin-top: 0;
     margin-bottom: 16px;
     font-weight: bold;
+    background-color: var(--app-country-header-background-color, #e9bf29);
+    color: var(--app-country-header-color, #000);
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .subHeader {
     font-size: 20px;
     margin-top: 24px;
     margin-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .subHeader.noBottom {
+    margin-bottom: 0;
   }
 
   .topContainer {
-    margin-top: 100px;
+    margin-top: 32px;
     max-width: 600px;
-    background-color: var(--app-create-country-background-color, #fff);
-    color: var(--app-create-country-color, #333);
-    padding: 24px;
+    background-color: var(--app-create-country-background-color, #1d5588);
+    color: var(--app-create-country-color, #fff);
+    padding-top: 16px;
+    padding-bottom: 24px;
+    padding-left: 0;
+    padding-right: 0;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .flexRow {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+
+    justify-content: center;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .column {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   paper-button {
@@ -45,6 +84,36 @@ export const OapCountryCreationStyles = css`
 
   .sliderHeader {
     margin-top: 8px;
+  }
+
+
+  paper-input {
+    padding-left: 16px;
+    padding-right: 16px;
+    color: #FFF;
+    --paper-input-container-color: #FFF;
+    --paper-input-container-focus-color: #FFF;
+    --paper-input-container-input-color: #FFF;
+  }
+
+  paper-textarea {
+    padding-left: 16px;
+    padding-right: 16px;
+    --paper-input-container-color: #FFF;
+    --paper-input-container-focus-color: #FFF;
+    --paper-input-container-input-color: #FFF;
+    color: #FFF;
+  }
+
+  paper-slider {
+    --paper-slider-container-color: #FFF;
+    --paper-slider-active-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-knob-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-font-color: var(--app-create-country-slider-active-color, #e9bf29);
+    color: #FFF;
+    --paper-input-container-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
   }
 
   @media (max-width: 450px) {
@@ -65,7 +134,13 @@ export const OapCountryCreationStyles = css`
       max-width: 300px;
     }
 
+    paper-slider {
+      width: 320px;
+    }
 
+    .cultural {
+      margin-top: 32px;
+    }
   }
 
 

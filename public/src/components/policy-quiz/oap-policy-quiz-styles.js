@@ -68,6 +68,7 @@ export const OapPolicyQuizStyles = css`
     margin-top: 24px;
     background-color: var(--app-accent-color);
     color: #FFF;
+    width: 100%;
   }
 
   .infoBar {

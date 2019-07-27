@@ -464,7 +464,6 @@ class Oap3dBudget extends OapBaseElement {
       itemHeight = '81';
     }
 
-    let random = Math.floor(Math.random() * 4);
     let color;
     if (item.design_area=="Executive") {
       color = "#FF1744";

@@ -177,7 +177,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         ${this.completed ? html`
           <div class="vertical center-center completedQuiz">
             <div class="completeHeader">
-              ${this.localize("youHaveCompletetTheQuiz")}
+              ${this.localize("youHaveCompletedTheQuiz")}
             </div>
             <div>
               ${this.localize("correctQuizAnswers")}: ${this.correctAnswers}
@@ -186,7 +186,7 @@ class OapPolicyQuiz extends OapPageViewElement {
               ${this.localize("incorrectQuizAnswers")}: ${this.incorrectAnswers}
             </div>
             <div class="buttonContainer">
-              <paper-button raised class="answerButton continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToFiltering")}</paper-button>
+              <paper-button raised class="answerButton continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToCountryCreation")}</paper-button>
             </div>
           </div>
           ` : html``}

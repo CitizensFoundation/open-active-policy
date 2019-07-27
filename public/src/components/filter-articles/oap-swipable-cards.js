@@ -52,13 +52,16 @@ class OapSwipableCards extends OapBaseElement {
       touchingElement: Boolean,
       disableUpSwipe: Boolean,
       hiddenImageIds: Object,
-      rendering: Boolean
+      rendering: Boolean,
+      configFromServer: Object
+
     }
   }
 
   static get styles() {
     return [
-      OapSwipableCardsStyles
+      OapSwipableCardsStyles,
+      OapFlexLayout
     ];
   }
 
@@ -67,6 +70,7 @@ class OapSwipableCards extends OapBaseElement {
     <div class="topestContainer">
       <div class="stage">
           <div class="title">${this.localize("filterArticles")}</div>
+            <div id="navigator" class="mainNavigator layout horizontal"></div>
             <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
               <div class="stackedcards-container">
                 ${repeat(this.visibleItems, (item) => item.id, (item, index) =>
@@ -75,7 +79,7 @@ class OapSwipableCards extends OapBaseElement {
                       <div class="card-content">
                         <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                         <div class="card-tistles">
-                          <div class="name">${item.name}</div>
+                          <div id="moduleName" class="name">${item.name}</div>
                           <div id="description${item.id}" class="description">${item.description}</div>
                           ${ item.description.length>200 ? html`
                             <div class="hideUnhideContainer">
@@ -139,9 +143,40 @@ class OapSwipableCards extends OapBaseElement {
         this.requestUpdate();
         this.updateComplete.then(() => {
           this.activate();
+          this.updateNavigator();
         });
       }
     }
+  }
+
+  updateNavigator() {
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.items[this.currentItemsPosition].module_content_type];
+    const textShadow = "-1px 1px 20px "+color;
+    this.$$("#moduleName").style.textShadow = textShadow;
+    this.$$("#moduleName").title = this.items[this.currentItemsPosition].module_content_type;
+    const navigatorDiv = this.$$("#navigator");
+    while (navigatorDiv.firstChild) {
+      navigatorDiv.removeChild(navigatorDiv.firstChild);
+    }
+    let leftItems;
+    if (this.itemsLeft.length>0) {
+      leftItems = this.visibleItems.concat(this.itemsLeft);
+    } else {
+      leftItems = this.visibleItems.slice(1, Math.abs(6-this.currentPosition));
+    }
+    console.error(leftItems);
+    const pixels = 315.0/this.items.length;
+    leftItems.forEach((item,index) => {
+      const div = document.createElement("span");
+      div.style.backgroundColor = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
+      div.style.width = pixels+"px";
+      div.style.height = "5px";
+      div.title = item.name;
+      div.onclick = (event) => {
+        //this.goTo(item.id);
+      }
+      navigatorDiv.appendChild(div);
+    });
   }
 
   reset() {
@@ -466,6 +501,7 @@ class OapSwipableCards extends OapBaseElement {
           this.requestUpdate();
           this.updateComplete.then(() => {
             this.refresh();
+            this.updateNavigator();
             this.requestUpdate();
          });
         }
@@ -786,7 +822,6 @@ class OapSwipableCards extends OapBaseElement {
           elZindex--;
         }
       }
-
     }.bind(this));
 
   }

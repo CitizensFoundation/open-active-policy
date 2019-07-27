@@ -10,7 +10,8 @@ class OapFilterArticles extends OapPageViewElement {
   static get properties() {
     return {
       allItems: Array,
-      completed: Boolean
+      completed: Boolean,
+      configFromServer: Object
     };
   }
 
@@ -33,7 +34,7 @@ class OapFilterArticles extends OapPageViewElement {
           </div>
         </div>
     ` : html`
-        <oap-swipable-cards .language="${this.language}" @completed="${this.setCompleted}" .disableUpSwipe="true" .items="${this.allItems}"></oap-swipable-cards>
+        <oap-swipable-cards .configFromServer="${this.configFromServer}" .language="${this.language}" @completed="${this.setCompleted}" .disableUpSwipe="true" .items="${this.allItems}"></oap-swipable-cards>
       `}
 
     `

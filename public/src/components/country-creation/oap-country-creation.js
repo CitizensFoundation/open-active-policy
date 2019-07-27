@@ -56,155 +56,165 @@ class OapCountryCreation extends OapPageViewElement {
 
   render() {
     return html`
-    <div class="vertical">
+    <div class="layout vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
+        <div class="layout-inline vertical" style="width: 100%;">
+        <div class="header"><div style="padding: 8px">${this.localize("createYourCountry")}</div></div>
 
-        <div class="header">${this.localize("createYourCountry")}</div>
+          <div class="subHeader noBottom">${this.localize("basicInformation")}</div>
 
-        <div class="subHeader">${this.localize("basicInformation")}</div>
+          <paper-input id="name"
+                      name="name"
+                      type="text"
+                      label="${this.localize('countryName')}"
+                      .value="${this.country.name}"
+                      maxlength="50"
+                      char-counter>
+          </paper-input>
 
-        <paper-input id="name"
-                    name="name"
-                    type="text"
-                    label="${this.localize('countryName')}"
-                    .value="${this.country.name}"
-                    maxlength="50"
-                    char-counter>
-        </paper-input>
+          <paper-textarea id="description"
+                          name="description"
+                          .value="${this.country.description}"
+                          ?always-float-label="${(this.country && this.country.description)}"
+                          label="${this.localize('countryDescription')}"
+                          char-counter
+                          rows="2"
+                          max-rows="5"
+                          maxlength="400">
+          </paper-textarea>
 
-        <paper-textarea id="description"
-                        name="description"
-                        .value="${this.country.description}"
-                        ?always-float-label="${(this.country && this.country.description)}"
-                        label="${this.localize('countryDescription')}"
-                        char-counter
-                        rows="2"
-                        max-rows="5"
-                        maxlength="400">
-        </paper-textarea>
+          <div class="subHeader cultural">${this.localize("culturalAttitude")}</div>
 
-        <div class="subHeader">${this.localize("culturalAttitude")}</div>
+          <div id="culturalAttitudes" class="flexRow">
+            <div class="column">
+              <div class="sliderHeader">${this.localize("authority")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.authority}"
+                max="10"
+                editable>
+            </paper-slider>
 
-        <div class="laysout verstical ">
-          <div class="vertical" style="width:100%;">
-            <div class="sliderHeader">${this.localize("authority")}</div>
+            <div class="sliderHeader">${this.localize("science")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.science}"
+                max="10"
+                editable>
+            </paper-slider>
+
+            <div class="sliderHeader">${this.localize("collective")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.collective}"
+                max="10"
+                editable>
+            </paper-slider>
+
+            <div class="sliderHeader">${this.localize("privacy")}</div>
             <paper-slider
-              .value="${this.country.culturalAttitutes.authority}"
-              max="10"
-              editable>
-          </paper-slider>
-
-          <div class="sliderHeader">${this.localize("science")}</div>
-            <paper-slider
-              .value="${this.country.culturalAttitutes.science}"
-              max="10"
-              editable>
-          </paper-slider>
-
-          <div class="sliderHeader">${this.localize("collective")}</div>
-            <paper-slider
-              .value="${this.country.culturalAttitutes.collective}"
-              max="10"
-              editable>
-          </paper-slider>
-
-          <div class="sliderHeader">${this.localize("privacy")}</div>
-          <paper-slider
-            .value="${this.country.culturalAttitutes.privacy}"
-            max="10"
-            editable>
-          </paper-slider>
-
-          <div class="sliderHeader">${this.localize("socialProgressEgalitarianism")}</div>
-            <paper-slider
-              .value="${this.country.culturalAttitutes.socialProgressEgalitariansism}"
-              max="10"
-              editable>
-          </paper-slider>
-        </div>
-
-        <div class="vertical" style="width:100%;">
-            <div class="sliderHeader">${this.localize("liberty")}</div>
-            <paper-slider
-              .value="${this.country.culturalAttitutes.liberty}"
+              .value="${this.country.culturalAttitutes.privacy}"
               max="10"
               editable>
             </paper-slider>
 
-            <div class="sliderHeader">${this.localize("tradition")}</div>
-            <paper-slider
-              .value="${this.country.culturalAttitutes.tradition}"
-              max="10"
-              editable>
+            <div class="sliderHeader">${this.localize("socialProgressEgalitarianism")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.socialProgressEgalitariansism}"
+                max="10"
+                editable>
             </paper-slider>
-
-            <div class="sliderHeader">${this.localize("independence")}</div>
-            <paper-slider
-              .value="${this.country.culturalAttitutes.independence}"
-              max="10"
-              editable>
-            </paper-slider>
-
-            <div class="sliderHeader">${this.localize("lawAndOrder")}</div>
-            <paper-slider
-              .value="${this.country.culturalAttitutes.lawAndOrder}"
-              max="10"
-              editable>
-            </paper-slider>
-
           </div>
+
+          <div class="column">
+              <div class="sliderHeader">${this.localize("liberty")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.liberty}"
+                max="10"
+                editable>
+              </paper-slider>
+
+              <div class="sliderHeader">${this.localize("tradition")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.tradition}"
+                max="10"
+                editable>
+              </paper-slider>
+
+              <div class="sliderHeader">${this.localize("independence")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.independence}"
+                max="10"
+                editable>
+              </paper-slider>
+
+              <div class="sliderHeader">${this.localize("lawAndOrder")}</div>
+              <paper-slider
+                .value="${this.country.culturalAttitutes.lawAndOrder}"
+                max="10"
+                editable>
+              </paper-slider>
+
+            </div>
+          </div>
+
+          <div class="subHeader noBottom">${this.localize("countryRawStats")}</div>
+
+          <paper-input id="population"
+                      name="population"
+                      type="text"
+                      label="${this.localize('populationSize')}"
+                      .value="${this.country.population}"
+                      maxlength="8"
+                      char-counter>
+          </paper-input>
+
+          <paper-input id="geographicalSize"
+                      name="geographicalSize"
+                      type="text"
+                      label="${this.localize('geographicalSize')}"
+                      .value="${this.country.geographicalSize}"
+                      maxlength="8"
+                      char-counter>
+          </paper-input>
+
+          <div class="flexRow">
+            <div class="column">
+              <div class="sliderHeader">${this.localize("naturalResourceWealth")}</div>
+                <paper-slider
+                  .value="${this.country.naturalResourceWealth}"
+                  max="10"
+                  editable>
+                </paper-slider>
+
+                <div class="sliderHeader">${this.localize("borderDensity")}</div>
+                <paper-slider
+                  .value="${this.country.borderDensity}"
+                  max="10"
+                  editable>
+                </paper-slider>
+              </div>
+            <div class="column">
+              <div class="sliderHeader">${this.localize("hostilityNeighboringCountries")}</div>
+              <paper-slider
+                .value="${this.country.hostilityNeighboringCountries}"
+                max="10"
+                editable>
+              </paper-slider>
+
+              <div class="sliderHeader">${this.localize("barrieresToCitizenship")}</div>
+              <paper-slider
+                .value="${this.country.barrieresToCitizenship}"
+                max="10"
+                editable>
+              </paper-slider>
+            </div>
+          </div>
+
+          <div class="layout horizontal center-center">
+            <paper-button raised id="submitButton" class="buttton" @click="${()=> { this.fire('oap-country-created') }}">${this.localize("submit")}</paper-button>
+          </div>
+
         </div>
-
-        <div class="subHeader">${this.localize("countryRawStats")}</div>
-
-        <paper-input id="population"
-                    name="population"
-                    type="text"
-                    label="${this.localize('populationSize')}"
-                    .value="${this.country.population}"
-                    maxlength="8"
-                    char-counter>
-        </paper-input>
-
-        <paper-input id="geographicalSize"
-                    name="geographicalSize"
-                    type="text"
-                    label="${this.localize('geographicalSize')}"
-                    .value="${this.country.geographicalSize}"
-                    maxlength="8"
-                    char-counter>
-        </paper-input>
-
-        <div class="sliderHeader">${this.localize("naturalResourceWealth")}</div>
-        <paper-slider
-          .value="${this.country.naturalResourceWealth}"
-          max="10"
-          editable>
-        </paper-slider>
-
-        <div class="sliderHeader">${this.localize("borderDensity")}</div>
-        <paper-slider
-          .value="${this.country.borderDensity}"
-          max="10"
-          editable>
-        </paper-slider>
-
-        <div class="sliderHeader">${this.localize("hostilityNeighboringCountries")}</div>
-        <paper-slider
-          .value="${this.country.hostilityNeighboringCountries}"
-          max="10"
-          editable>
-        </paper-slider>
-
-        <div class="sliderHeader">${this.localize("barrieresToCitizenship")}</div>
-        <paper-slider
-          .value="${this.country.barrieresToCitizenship}"
-          max="10"
-          editable>
-        </paper-slider>
-
-        <paper-button raised id="submitButton" class="buttton" @click="${()=> { this.fire('oap-country-created') }}">${this.localize("submit")}</paper-button>
       </div>
+
     </div>
     `
   }
