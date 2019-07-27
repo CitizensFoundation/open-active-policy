@@ -19259,14 +19259,14 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
           </div>
 
           <div class="layout horizontal center-center">
-            <paper-button raised id="submitButton" class="buttton" @click="${()=>{this.fire("oap-country-created",this.country)}}">${this.localize("submit")}</paper-button>
+            <paper-button raised id="submitButton" class="buttton" @click="${()=>{this.fire("oap-country-created",this.country)}}">${this.localize("buildConstitutionForCountry")}</paper-button>
           </div>
 
         </div>
       </div>
 
     </div>
-    `}countrySelected(event){const countryId=event.detail.value.dataset.id;this.country=this.countryList[event.detail.value.dataset.id];if(9==countryId){this.customCountry=!0;this.country.name=""}}updated(changedProps){super.updated(changedProps)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
+    `}countrySelected(event){const countryId=event.detail.value.dataset.id;this.country=this.countryList[event.detail.value.dataset.id];if(9==countryId){this.customCountry=!0;this.country.name=""}else{this.countryList[9].name="Custom country";this.customCountry=!1}}updated(changedProps){super.updated(changedProps)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
 
   :host {
     width: 100%;

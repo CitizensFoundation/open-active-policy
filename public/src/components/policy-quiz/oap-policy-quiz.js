@@ -1,12 +1,13 @@
 import { html, supportsAdoptingStyleSheets } from 'lit-element';
 import '@polymer/paper-button/paper-button';
 
-import { Scene, DirectionalLight, PerspectiveCamera, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
+import { Scene, DirectionalLight, PerspectiveCamera, Vector3, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
 
 import { OapPageViewElement } from '../oap-page-view-element';
 import { OapPolicyQuizStyles } from './oap-policy-quiz-styles';
 import { OapFlexLayout } from '../oap-flex-layout';
 import { OapShadowStyles } from '../oap-shadow-styles';
+import { Tween, Easing, update } from 'es6-tween';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -21,7 +22,9 @@ class OapPolicyQuiz extends OapPageViewElement {
       shapes3d: Object,
       renderer: Object,
       scene: Object,
-      camera: Object
+      camera: Object,
+      dirLightOne: Object,
+      dirLightTwo: Object,
     };
   }
 
@@ -44,19 +47,19 @@ class OapPolicyQuiz extends OapPageViewElement {
     setTimeout(()=>{
       this.scene = new Scene();
       this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-      this.camera.position.set( 6, -10, 155 );
+      this.camera.position.set( 6, -10, 355 );
       this.scene.add( this.camera );
 
-      var light = new DirectionalLight(0x1d5588, 2.0);
-      light.position.x = -500;
-      light.position.y = 500;
-      this.camera.add( light );
+      this.dirLightOne = new DirectionalLight(0x1d5588, 2.0);
+      this.dirLightOne.position.x = -500;
+      this.dirLightOne.position.y = 500;
+      this.camera.add( this.dirLightOne );
 
-      var light = new DirectionalLight(0x1d5588, 1.0);
-      light.position.x = 500;
-      light.position.y = -500;
-      light.position.z = -150;
-      this.camera.add( light );
+      this.dirLightTwo = new DirectionalLight(0x1d5588, 1.0);
+      this.dirLightTwo.position.x = 500;
+      this.dirLightTwo.position.y = -500;
+      this.dirLightTwo.position.z = -150;
+      this.camera.add( this.dirLightTwo );
 
       this.scene.background = new Color( '#1d5588' );
       var loader = new FontLoader();
@@ -66,12 +69,12 @@ class OapPolicyQuiz extends OapPageViewElement {
           font: font,
           size: 180,
           height: 20,
-          curveSegments: 30,
+          curveSegments: 32,
           bevelEnabled: true,
           bevelThickness: 9,
           bevelSize: 5,
           bevelOffset: 0,
-          bevelSegments: 15
+          bevelSegments: 18
         });
 
         geometry.computeBoundingBox();
@@ -85,11 +88,13 @@ class OapPolicyQuiz extends OapPageViewElement {
           new MeshPhongMaterial( { color: 0xffffff } ) // side
         ];
 
-        var width=324;
-        var height=100;
+        var width=600;
+        var height=150;
 
-        if (window.innerWidth<600)
+        if (window.innerWidth<=600) {
           width=window.innerWidth;
+          height=100;
+        }
 
         for (var i=-width/2; i<width/2; i+=30+Math.random()*50){
           for (var j=0; j<height; j+=30+Math.random()*50){
@@ -106,6 +111,24 @@ class OapPolicyQuiz extends OapPageViewElement {
         canvas.appendChild( this.renderer.domElement );
 
         this.renderCanvas3d();
+
+        let target = new Vector3(6, -10, 15);
+
+        new Tween(this.camera.position)
+        .to({ x: target.x, y: target.y, z: target.z, }, 15*1000)
+        .delay(0)
+        .easing(Easing.Quadratic.InOut)
+        .on('complete', () => {
+          target = new Vector3(6, -10, 75);
+          new Tween(this.camera.position)
+          .to({ x: target.x, y: target.y, z: target.z, }, 900)
+          .delay(0)
+          .easing(Easing.Quadratic.InOut)
+          .on('complete', () => {
+          })
+          .start();
+        })
+        .start();
       }.bind(this));
 
     }, 100);
@@ -139,6 +162,10 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   renderCanvas3d() {
     requestAnimationFrame(this.renderCanvas3d.bind(this));
+
+    // This is Tween.update
+    update();
+
     this.animate();
     this.renderer.render(this.scene, this.camera);
   }
@@ -152,17 +179,15 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   render() {
     return html`
-    <div class="layout vertical center-center" style="width: 100%;">
+    <div class="layout vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${this.currentIndex!==null ?  html`
-          <div class="horizontal infoBar">
-            <div class="layout horizontal">
+          <div id="canvas3d"></div>
+          <div class="layout horizontal center-center infoBar">
+            <div class="layout horizontal center-center">
               <div class="nickname">${this.nickname}</div>
               <div class="progress">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
             </div>
-          </div>
-          <div id="canvas3d">
-
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
@@ -195,10 +220,53 @@ class OapPolicyQuiz extends OapPageViewElement {
     `
   }
 
+  correctAnswerColorAnimation() {
+    let col = new Color('#39FF14');
+
+    [this.dirLightOne, this.dirLightTwo].forEach((ligth) => {
+      new Tween(ligth.color)
+      .to({ r: col.r, g: col.g, b: col.b, }, 450)
+      .delay(0)
+      .easing(Easing.Quadratic.InOut)
+      .on('complete', () => {
+         col = new Color('#1d5588');
+         new Tween(ligth.color)
+        .to({ r: col.r, g: col.g, b: col.b, }, 1400)
+        .delay(0)
+        .easing(Easing.Quadratic.InOut)
+        .on('complete', () => {
+        })
+        .start();
+      })
+      .start();
+    });
+  }
+
+  wrongAnswerColorAnimation() {
+    let col = new Color('#d6483d');
+
+    [this.dirLightOne, this.dirLightTwo].forEach((ligth) => {
+      new Tween(ligth.color)
+      .to({ r: col.r, g: col.g, b: col.b, }, 250)
+      .delay(0)
+      .on('complete', () => {
+         col = new Color('#1d5588');
+         new Tween(ligth.color)
+        .to({ r: col.r, g: col.g, b: col.b, }, 450)
+        .delay(1000)
+        .on('complete', () => {
+        })
+        .start();
+      })
+      .start();
+    });
+  }
+
   submitAnswer (answer) {
     const correctAnswer = this.questions[this.currentIndex].correctAnswer;
     if (answer==correctAnswer) {
       this.fire("oap-process-correct-quiz-answer");
+      this.correctAnswerColorAnimation();
       this.correctAnswers+=1;
       this.$$("#button"+answer).animate([
         { transform: "scale(1.3)", easing: 'ease-in' },
@@ -213,6 +281,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         soundEffect: "",
         duration: 300,
       })
+      this.wrongAnswerColorAnimation();
       this.incorrectAnswers+=1;
       this.$$("#button"+answer).animate([
         { transform: "translateX(-3px)", easing: 'ease-in' },

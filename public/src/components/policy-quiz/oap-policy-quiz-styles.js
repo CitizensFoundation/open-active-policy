@@ -9,10 +9,11 @@ export const OapPolicyQuizStyles = css`
 
   :host {
     width: 100%;
+    height: 100%;
   }
 
   .answerButton {
-    width: 254px;
+    width: 320px;
     margin: 8px;
     margin-left: 32px;
     margin-right: 32px;
@@ -30,13 +31,13 @@ export const OapPolicyQuizStyles = css`
   }
 
   .buttonContainer {
-    width: 320px;
+    width: 384px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .topContainer {
-    max-width: 324px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     background-color: var(--quiz-background-color, #1d5588);
@@ -48,11 +49,28 @@ export const OapPolicyQuizStyles = css`
   .question {
     padding: 16px;
     font-size: 20px;
+    padding-top: 0;
+    width: 100%;
+  }
+
+  .infoBar {
+    margin: 16px;
+    font-size: 18px;
+    text-align: right;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .progress {
+    text-align: right;
+    color: #bbb;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #canvas3d {
-    width: 324px;
-    height: 100px;
+    width: 600px;
+    height: 150px;
   }
 
   .completedQuiz {
@@ -68,19 +86,15 @@ export const OapPolicyQuizStyles = css`
     margin-top: 24px;
     background-color: var(--app-accent-color);
     color: #FFF;
-    width: 100%;
   }
 
-  .infoBar {
-    margin: 16px;
-    font-size: 18px;
-  }
-
-  @media (max-width: 450px) {
+  @media (max-width: 600px) {
     .topContainer {
       max-width: 100%;
       width: 100%;
       height: 100%;
+      margin-left: 0;
+      margin-right: 0;
     }
 
     .image {

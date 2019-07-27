@@ -3772,14 +3772,14 @@
           </div>
 
           <div class="layout horizontal center-center">
-            <paper-button raised id="submitButton" class="buttton" @click="${()=>{this.fire("oap-country-created",this.country)}}">${this.localize("submit")}</paper-button>
+            <paper-button raised id="submitButton" class="buttton" @click="${()=>{this.fire("oap-country-created",this.country)}}">${this.localize("buildConstitutionForCountry")}</paper-button>
           </div>
 
         </div>
       </div>
 
     </div>
-    `}countrySelected(e){const t=e.detail.value.dataset.id;this.country=this.countryList[e.detail.value.dataset.id],9==t&&(this.customCountry=!0,this.country.name="")}updated(e){super.updated(e)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
+    `}countrySelected(e){const t=e.detail.value.dataset.id;this.country=this.countryList[e.detail.value.dataset.id],9==t?(this.customCountry=!0,this.country.name=""):(this.countryList[9].name="Custom country",this.customCountry=!1)}updated(e){super.updated(e)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
 
   :host {
     width: 100%;
