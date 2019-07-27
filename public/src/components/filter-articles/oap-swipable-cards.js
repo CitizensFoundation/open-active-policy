@@ -114,7 +114,6 @@ class OapSwipableCards extends OapBaseElement {
               </div>
           </div>
           <div id="navigator" class="mainNavigator layout horizontal"></div>
-
         </div>
 
       <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
@@ -156,8 +155,6 @@ class OapSwipableCards extends OapBaseElement {
 
   updateNavigator() {
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.items[this.currentItemsPosition].module_content_type];
-    const textShadow = "-1px 1px 20px "+color;
-    this.$$("#moduleName").style.textShadow = textShadow;
     this.$$("#moduleName").title = this.items[this.currentItemsPosition].module_content_type;
     const navigatorDiv = this.$$("#navigator");
     while (navigatorDiv.firstChild) {
@@ -170,13 +167,20 @@ class OapSwipableCards extends OapBaseElement {
       leftItems = this.visibleItems.slice(1, Math.abs(6-this.currentPosition));
     }
     console.error(leftItems);
-    const pixels = 315.0/this.items.length;
+    const pixels = 310.0/this.items.length;
     leftItems.forEach((item,index) => {
       const div = document.createElement("span");
       div.style.backgroundColor = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
-      div.style.width = pixels+"px";
-      div.style.height = "5px";
-      div.title = item.name;
+      if (index===0) {
+        div.style.width = pixels+5+"px";
+        div.style.height = "9px";
+        div.title = item.name;
+      } else {
+        div.style.width = pixels+"px";
+        div.style.height = "6px";
+        div.style.marginTop = "3px";
+        div.title = item.module_content_type;
+      }
       div.onclick = (event) => {
         //this.goTo(item.id);
       }
