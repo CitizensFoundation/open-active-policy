@@ -166,19 +166,18 @@ class OapSwipableCards extends OapBaseElement {
     } else {
       leftItems = this.visibleItems.slice(1, Math.abs(6-this.currentPosition));
     }
-    console.error(leftItems);
     const pixels = 310.0/this.items.length;
     leftItems.forEach((item,index) => {
       const div = document.createElement("span");
       div.style.backgroundColor = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
       if (index===0) {
         div.style.width = pixels+5+"px";
-        div.style.height = "9px";
+        div.style.height = "8px";
         div.title = item.name;
       } else {
         div.style.width = pixels+"px";
         div.style.height = "6px";
-        div.style.marginTop = "3px";
+        div.style.marginTop = "2px";
         div.title = item.module_content_type;
       }
       div.onclick = (event) => {
@@ -332,9 +331,9 @@ class OapSwipableCards extends OapBaseElement {
 
   addEventListeners() {
      // JavaScript Document
-		document.addEventListener('touchstart', this.gestureStart.bind(this), {passive: false});
-		document.addEventListener('touchmove', this.gestureMove.bind(this), {passive: false});
-		document.addEventListener('touchend', this.gestureEnd.bind(this), {passive: false});
+		this.$$("#stacked-cards-block").addEventListener('touchstart', this.gestureStart.bind(this), {passive: false});
+		this.$$("#stacked-cards-block").addEventListener('touchmove', this.gestureMove.bind(this), {passive: false});
+		this.$$("#stacked-cards-block").addEventListener('touchend', this.gestureEnd.bind(this), {passive: false});
 
 		//Add listeners to call global action for swipe cards
 		var buttonLeft = this.$$('.left-action');
@@ -350,9 +349,9 @@ class OapSwipableCards extends OapBaseElement {
 
   removeEventListeners() {
     // JavaScript Document
-    document.removeEventListener('touchstart', this.gestureStart.bind(this));
-    document.removeEventListener('touchmove', this.gestureMove.bind(this));
-    document.removeEventListener('touchend', this.gestureEnd.bind(this));
+    this.$$("#stacked-cards-block").removeEventListener('touchstart', this.gestureStart.bind(this));
+    this.$$("#stacked-cards-block").removeEventListener('touchmove', this.gestureMove.bind(this));
+    this.$$("#stacked-cards-block").removeEventListener('touchend', this.gestureEnd.bind(this));
 
    var buttonLeft = this.$$('.left-action');
    var buttonTop = this.$$('.top-action');

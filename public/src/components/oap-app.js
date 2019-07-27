@@ -214,7 +214,7 @@ class OapApp extends OapBaseElement {
 
         <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${this._page == 'areas-ballot'}">
           <app-toolbar class="toolbar-top">
-            <div id="choicePoints" class="choicePoints" ?hidden="${this._page==="area-ballot"}">
+            <div id="choicePoints" class="choicePoints" ?hidden="${(['area-ballot','filter-articles'].indexOf(this._page)>-1)}">
               ${this.localize('youHave')} ${this.choicePoints}${this.localize("cp")}
             </div>
             <div ?hidden="${!this.showExit}" class="layout horizontal exitIconInBudget">
@@ -272,6 +272,7 @@ class OapApp extends OapBaseElement {
             .configFromServer="${this.configFromServer}"
             .budgetElement="${this.currentBudget}"
             .language="${this.language}"
+            ?hidden="${this._page !== 'area-ballot'}"
             ?active="${this._page === 'area-ballot'}">
           </oap-ballot>
           ${ this._page === 'post' ? html`

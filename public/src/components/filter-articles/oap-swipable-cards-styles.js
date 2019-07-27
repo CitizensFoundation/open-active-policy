@@ -91,7 +91,7 @@ export const OapSwipableCardsStyles = css`
       width: 100%;
       text-align: center;
       font-weight: 700;
-      font-size: 17px;
+      font-size: 18px;
       margin-bottom: 16px;
       color: #eee !important;
   }
@@ -354,7 +354,7 @@ export const OapSwipableCardsStyles = css`
     font-size: 15px;
     color: #000;
     margin: 8px;
-    margin-top: 4px;
+    margin-top: 0;
     height: 105px;
     overflow: hidden;
     margin-bottom: 32px;
@@ -366,8 +366,10 @@ export const OapSwipableCardsStyles = css`
     font-weight: bold;
     margin: 8px;
     text-align: left;
-    padding-top: 4px;
+    padding-top: 6px;
     margin-top: 0;
+    margin-bottom: 2px;
+    line-height: 1.15;
   }
 
   .cardImage {
@@ -407,7 +409,13 @@ export const OapSwipableCardsStyles = css`
   .hideUnhideContainer {
     position: absolute;
     bottom: 0;
+    margin-bottom: 0;
     width: 100%;
+  }
+
+  paper-icon-button {
+    margin-bottom: -6px;
+    padding-bottom: 0;
   }
 
   .imageCollapsed {
