@@ -90,6 +90,11 @@ export const OapCountryCreationStyles = css`
     margin-top: 8px;
   }
 
+  .emoji {
+    margin-right: 8px;
+    width: 45px;
+    height: 45px;
+  }
 
   paper-input {
     padding-left: 16px;

@@ -321,35 +321,35 @@ class OapCountryCreation extends OapPageViewElement {
 
           <div id="culturalAttitudes" class="flexRow">
             <div class="column">
-              <div class="sliderHeader">${this.localize("authority")}</div>
+              <div class="sliderHeader"><span class="emoji">🏛️</span>${this.localize("authority")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.authority}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
             </paper-slider>
 
-            <div class="sliderHeader">${this.localize("science")}</div>
+            <div class="sliderHeader"><span class="emoji">🔬</span>${this.localize("science")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.science}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
             </paper-slider>
 
-            <div class="sliderHeader">${this.localize("collective")}</div>
+            <div class="sliderHeader"><span class="emoji">👥</span>${this.localize("collective")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.collective}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
             </paper-slider>
 
-            <div class="sliderHeader">${this.localize("privacy")}</div>
+            <div class="sliderHeader"><span class="emoji">🔐</span>${this.localize("privacy")}</div>
             <paper-slider
               .value="${this.country.culturalAttitutes.privacy}"
               max="2" ?disabled="${!this.customCountry}"
               >
             </paper-slider>
 
-            <div class="sliderHeader">${this.localize("socialProgressEgalitarianism")}</div>
+            <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("socialProgressEgalitarianism")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.socialProgressEgalitariansism}"
                 max="2" ?disabled="${!this.customCountry}"
@@ -358,28 +358,28 @@ class OapCountryCreation extends OapPageViewElement {
           </div>
 
           <div class="column">
-              <div class="sliderHeader">${this.localize("liberty")}</div>
+              <div class="sliderHeader"><span class="emoji">🌅</span>${this.localize("liberty")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.liberty}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
               </paper-slider>
 
-              <div class="sliderHeader">${this.localize("tradition")}</div>
+              <div class="sliderHeader"><span class="emoji">🏺</span>${this.localize("tradition")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.tradition}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
               </paper-slider>
 
-              <div class="sliderHeader">${this.localize("independence")}</div>
+              <div class="sliderHeader"><span class="emoji">🛡️</span>${this.localize("independence")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.independence}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
               </paper-slider>
 
-              <div class="sliderHeader">${this.localize("lawAndOrder")}</div>
+              <div class="sliderHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.lawAndOrder}"
                 max="2" ?disabled="${!this.customCountry}"
@@ -411,14 +411,14 @@ class OapCountryCreation extends OapPageViewElement {
 
           <div class="flexRow">
             <div class="column">
-              <div class="sliderHeader">${this.localize("naturalResourceWealth")}</div>
+              <div class="sliderHeader"><span class="emoji">🔋</span>${this.localize("naturalResourceWealth")}</div>
                 <paper-slider
                   .value="${this.country.naturalResourceWealth}"
                   max="2" ?disabled="${!this.customCountry}"
                   >
                 </paper-slider>
 
-                <div class="sliderHeader">${this.localize("borderDensity")}</div>
+                <div class="sliderHeader"><span class="emoji">🛂</span>${this.localize("borderDensity")}</div>
                 <paper-slider
                   .value="${this.country.borderDensity}"
                   max="2" ?disabled="${!this.customCountry}"
@@ -426,14 +426,14 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
               </div>
             <div class="column">
-              <div class="sliderHeader">${this.localize("hostilityNeighboringCountries")}</div>
+              <div class="sliderHeader"><span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}</div>
               <paper-slider
                 .value="${this.country.hostilityNeighboringCountries}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
               </paper-slider>
 
-              <div class="sliderHeader">${this.localize("barrieresToCitizenship")}</div>
+              <div class="sliderHeader"><span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}</div>
               <paper-slider
                 .value="${this.country.barrieresToCitizenship}"
                 max="2" ?disabled="${!this.customCountry}"
