@@ -1835,7 +1835,7 @@ class OapApp extends OapBaseElement {
   }
 
   _help(event) {
-    if (event.detail) {
+    if (event.detail && event.detail!="1") {
       this.helpContent = event.detail;
     }
     this.$$("#helpDialog").open();

@@ -196,6 +196,11 @@ export const OapAppStyles = css`
     font-size: 1.5em;
   }
 
+  #helpContent h2 {
+    margin-bottom: 0;
+    margin-top: 24px;
+  }
+
   #favoriteIcon {
     color: var(--app-facvorite-icon-color, rgb(255,215,0));
     background-color: transparent;
