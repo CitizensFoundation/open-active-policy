@@ -405,7 +405,7 @@ class OapApp extends OapBaseElement {
     description:
      'An Empowered President, elected directly or indirectly by the entire electorate, meant to personify the will of the people in single individual\'s leadership abilities.',
     module_type: 'Exclusive',
-    exlusive_ids: 'e{1,2,3,4}',
+    exlusive_ids: '1,2,3,4',
     time_period: 'Early Modern',
     module_content_type: 'Executive',
     'Sub Category': '',
@@ -418,7 +418,7 @@ class OapApp extends OapBaseElement {
     description:
      'As the head of the Legislative/Parliamentary system, the Prime Minister’s authority arises from the elected representatives choice of a leader amongst themselves. This helps reduce gridlock in government, while also disconnecting the Head of State from the direct will of the electorate.',
     module_type: 'Exclusive',
-    exlusive_ids: 'm{1,3},m{1,2,3,4}',
+    exlusive_ids: '1,2,3,4',
     time_period: 'Early Modern',
     module_content_type: 'Executive',
     'Sub Category': '',
@@ -1493,7 +1493,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    //this.filteredItems = this.allItems;
+    this.filteredItems = this.allItems;
   }
 
   cacheSoundEffects() {

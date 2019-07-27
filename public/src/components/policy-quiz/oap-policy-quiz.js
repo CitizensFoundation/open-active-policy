@@ -297,8 +297,6 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.activity('answerSubmitted', 'quiz');
     }
 
-    this.savedBackgroundColor = this.$$("#button"+correctAnswer).style.backgroundColor;
-
     this.$$("#button"+correctAnswer).style.backgroundColor="#39FF14";
     const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
     incorrectButtons.forEach( (buttonId) => {
@@ -317,7 +315,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         this.requestUpdate();
         this.fire("oap-sound-effect","quizCompleted");
       }
-    }, 1000);
+    }, 455);
   }
 
   resetAllButtons() {

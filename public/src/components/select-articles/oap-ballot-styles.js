@@ -69,6 +69,10 @@ export const OapBallotStyles = css`
     color: var(--app-ballot-add-button-color, #FFF);
   }
 
+  paper-button[disabled] {
+    background-color: #555;
+  }
+
   .budgetContainer {
   }
 

@@ -104,7 +104,7 @@ class OapArticleItem extends OapBaseElement {
             <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
           </div>
           <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-            <paper-button raised id="addToBudgetButton" elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
+            <paper-button raised id="addToBudgetButton" .elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
                       ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
                       +${this.item.price}
             </paper-button>
@@ -228,6 +228,7 @@ class OapArticleItem extends OapBaseElement {
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
 
     this.$$("#leftColor").style.backgroundColor=color;
+    this.$$("#addToBudgetButton").style.backgroundColor=color;
 
     if (this.budgetElement) {
       if (this.budgetElement.selectedItems.indexOf(this.item) > -1) {
@@ -303,6 +304,7 @@ class OapArticleItem extends OapBaseElement {
     //console.log("setInBudget itemId: "+this.item.id);
     this.selected = true;
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
+    this.$$("#addToBudgetButton").style.backgroundColor=color;
 
     this.$$("#opacityLayer").style.backgroundColor=color;
     this.$$("#opacityLayer").classList.add("cover");
@@ -321,15 +323,19 @@ class OapArticleItem extends OapBaseElement {
   setTooExpensive() {
     //console.log("setTooExpensive itemId: "+this.item.id);
     this.toExpensive = true;
+    this.$$("#addToBudgetButton").style.backgroundColor="#999";
   }
 
   setNotTooExpensive() {
     //console.log("setNotTooExpensive itemId: "+this.item.id);
     this.toExpensive = false;
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
+    this.$$("#addToBudgetButton").style.backgroundColor=color;
   }
 
   setExcluded() {
     //console.log("setTooExpensive itemId: "+this.item.id);
+    this.$$("#addToBudgetButton").style.backgroundColor="#888";
     this.isExcluded = true;
     this.requestUpdate();
   }
@@ -337,6 +343,8 @@ class OapArticleItem extends OapBaseElement {
   setNotExcluded () {
     //console.log("setNotTooExpensive itemId: "+this.item.id);
     this.isExcluded = false;
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
+    this.$$("#addToBudgetButton").style.backgroundColor=color;
     this.requestUpdate();
   }
 

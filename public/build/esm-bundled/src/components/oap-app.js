@@ -4730,10 +4730,11 @@
 
   :host {
     width: 100%;
+    height: 100%;
   }
 
   .answerButton {
-    width: 254px;
+    width: 320px;
     margin: 8px;
     margin-left: 32px;
     margin-right: 32px;
@@ -4751,13 +4752,13 @@
   }
 
   .buttonContainer {
-    width: 320px;
+    width: 384px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .topContainer {
-    max-width: 324px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     background-color: var(--quiz-background-color, #1d5588);
@@ -4769,11 +4770,28 @@
   .question {
     padding: 16px;
     font-size: 20px;
+    padding-top: 0;
+    width: 100%;
+  }
+
+  .infoBar {
+    margin: 16px;
+    font-size: 18px;
+    text-align: right;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .progress {
+    text-align: right;
+    color: #bbb;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #canvas3d {
-    width: 324px;
-    height: 100px;
+    width: 600px;
+    height: 150px;
   }
 
   .completedQuiz {
@@ -4789,19 +4807,15 @@
     margin-top: 24px;
     background-color: var(--app-accent-color);
     color: #FFF;
-    width: 100%;
   }
 
-  .infoBar {
-    margin: 16px;
-    font-size: 18px;
-  }
-
-  @media (max-width: 450px) {
+  @media (max-width: 600px) {
     .topContainer {
       max-width: 100%;
       width: 100%;
       height: 100%;
+      margin-left: 0;
+      margin-right: 0;
     }
 
     .image {
@@ -4826,18 +4840,16 @@
   [hidden] {
     display: none !important;
   }
-`;var oapPolicyQuizStyles={OapPolicyQuizStyles:OapPolicyQuizStyles};class OapPolicyQuiz extends OapPageViewElement{static get properties(){return{questions:Array,currentQuestionIndex:Number,correctAnswers:Number,incorrectAnswers:Number,nickname:String,configFromServer:Object,savedBackgroundColor:String,shapes3d:Object,renderer:Object,scene:Object,camera:Object}}static get styles(){return[OapPolicyQuizStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.currentIndex=null,this.shapes3d=[]}start(){this.reset(),setTimeout(()=>{var e;this.scene=new Scene,this.camera=new PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,1e3),this.camera.position.set(6,-10,155),this.scene.add(this.camera),(e=new DirectionalLight(1922440,2)).position.x=-500,e.position.y=500,this.camera.add(e),(e=new DirectionalLight(1922440,1)).position.x=500,e.position.y=-500,e.position.z=-150,this.camera.add(e),this.scene.background=new Color("#1d5588"),(new FontLoader).load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",function(e){var t=new TextGeometry("?",{font:e,size:180,height:20,curveSegments:30,bevelEnabled:!0,bevelThickness:9,bevelSize:5,bevelOffset:0,bevelSegments:15});t.computeBoundingBox(),t.computeVertexNormals(),t.center(),t=(new BufferGeometry).fromGeometry(t);var i=[new MeshPhongMaterial({color:16777215,flatShading:!0}),new MeshPhongMaterial({color:16777215})],r=324;600>window.innerWidth&&(r=window.innerWidth);for(var n=-r/2;n<r/2;n+=30+50*Math.random())for(var a=0;a<100;a+=30+50*Math.random())this.addShape(t,i,"#aaaaaa",n,a,0,.8*Math.random(),.8*Math.random(),Math.PI,.1+.3*Math.random());this.renderer=new WebGLRenderer({antialias:!0}),this.renderer.setPixelRatio(window.devicePixelRatio),this.renderer.setSize(r,100),this.$$("#canvas3d").appendChild(this.renderer.domElement),this.renderCanvas3d()}.bind(this))},100)}addShape(e,t,i,r,n,a,o,s,l,c){var h=new Mesh(e,t);h.position.set(r+25,n-50,a),h.rotation.set(o,s,l),h.scale.set(c,c,c),this.shapes3d.push({shape:h,x:Math.random(),y:Math.random(),z:Math.random()}),this.scene.add(h)}stop(){for(;0<this.scene.children.length;)this.scene.remove(this.scene.children[0]);this.scene.remove()}animate(){this.shapes3d.forEach(e=>{e.shape.rotation.x+=.05*e.x,e.shape.rotation.y+=.05*e.y,e.shape.rotation.z+=.05*e.z})}renderCanvas3d(){requestAnimationFrame(this.renderCanvas3d.bind(this)),this.animate(),this.renderer.render(this.scene,this.camera)}reset(){this.completed=!1,this.correctAnswers=0,this.incorrectAnswers=0,this.currentIndex=0}render(){return html$1`
-    <div class="layout vertical center-center" style="width: 100%;">
+`;var oapPolicyQuizStyles={OapPolicyQuizStyles:OapPolicyQuizStyles};class OapPolicyQuiz extends OapPageViewElement{static get properties(){return{questions:Array,currentQuestionIndex:Number,correctAnswers:Number,incorrectAnswers:Number,nickname:String,configFromServer:Object,savedBackgroundColor:String,shapes3d:Object,renderer:Object,scene:Object,camera:Object,dirLightOne:Object,dirLightTwo:Object}}static get styles(){return[OapPolicyQuizStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.currentIndex=null,this.shapes3d=[]}start(){this.reset(),setTimeout(()=>{this.scene=new Scene,this.camera=new PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,1e3),this.camera.position.set(6,-10,355),this.scene.add(this.camera),this.dirLightOne=new DirectionalLight(1922440,2),this.dirLightOne.position.x=-500,this.dirLightOne.position.y=500,this.camera.add(this.dirLightOne),this.dirLightTwo=new DirectionalLight(1922440,1),this.dirLightTwo.position.x=500,this.dirLightTwo.position.y=-500,this.dirLightTwo.position.z=-150,this.camera.add(this.dirLightTwo),this.scene.background=new Color("#1d5588"),(new FontLoader).load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",function(e){var t=new TextGeometry("?",{font:e,size:180,height:20,curveSegments:32,bevelEnabled:!0,bevelThickness:9,bevelSize:5,bevelOffset:0,bevelSegments:18});t.computeBoundingBox(),t.computeVertexNormals(),t.center(),t=(new BufferGeometry).fromGeometry(t);var i=[new MeshPhongMaterial({color:16777215,flatShading:!0}),new MeshPhongMaterial({color:16777215})],r=600,n=150;600>=window.innerWidth&&(r=window.innerWidth,n=100);for(var a=-r/2;a<r/2;a+=30+50*Math.random())for(var o=0;o<n;o+=30+50*Math.random())this.addShape(t,i,"#aaaaaa",a,o,0,.8*Math.random(),.8*Math.random(),Math.PI,.1+.3*Math.random());this.renderer=new WebGLRenderer({antialias:!0}),this.renderer.setPixelRatio(window.devicePixelRatio),this.renderer.setSize(r,n),this.$$("#canvas3d").appendChild(this.renderer.domElement),this.renderCanvas3d();let s=new Vector3(6,-10,15);new Tween(this.camera.position).to({x:s.x,y:s.y,z:s.z},15e3).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{s=new Vector3(6,-10,75),new Tween(this.camera.position).to({x:s.x,y:s.y,z:s.z},900).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{}).start()}).start()}.bind(this))},100)}addShape(e,t,i,r,n,a,o,s,l,c){var h=new Mesh(e,t);h.position.set(r+25,n-50,a),h.rotation.set(o,s,l),h.scale.set(c,c,c),this.shapes3d.push({shape:h,x:Math.random(),y:Math.random(),z:Math.random()}),this.scene.add(h)}stop(){for(;0<this.scene.children.length;)this.scene.remove(this.scene.children[0]);this.scene.remove()}animate(){this.shapes3d.forEach(e=>{e.shape.rotation.x+=.05*e.x,e.shape.rotation.y+=.05*e.y,e.shape.rotation.z+=.05*e.z})}renderCanvas3d(){requestAnimationFrame(this.renderCanvas3d.bind(this)),update(),this.animate(),this.renderer.render(this.scene,this.camera)}reset(){this.completed=!1,this.correctAnswers=0,this.incorrectAnswers=0,this.currentIndex=0}render(){return html$1`
+    <div class="layout vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${null!==this.currentIndex?html$1`
-          <div class="horizontal infoBar">
-            <div class="layout horizontal">
+          <div id="canvas3d"></div>
+          <div class="layout horizontal center-center infoBar">
+            <div class="layout horizontal center-center">
               <div class="nickname">${this.nickname}</div>
               <div class="progress">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
             </div>
-          </div>
-          <div id="canvas3d">
-
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
@@ -4867,7 +4879,7 @@
           `:html$1``}
       </div>
     </div>
-    `}submitAnswer(e){const t=this.questions[this.currentIndex].correctAnswer;e==t?(this.fire("oap-process-correct-quiz-answer"),this.correctAnswers+=1,this.$$("#button"+e).animate([{transform:"scale(1.3)",easing:"ease-in"},{transform:"scale(1.0)",easing:"ease-out"}],{duration:450,iterations:1})):(this.fire("oap-overlay",{html:html$1`${this.localize("incorrectAnswer")}`,soundEffect:"",duration:300}),this.incorrectAnswers+=1,this.$$("#button"+e).animate([{transform:"translateX(-3px)",easing:"ease-in"},{transform:"translateX(3px)",easing:"ease-out"},{transform:"translateX(-5px)",easing:"ease-in"},{transform:"translateX(5px)",easing:"ease-out"},{transform:"translateX(-7px)",easing:"ease-in"},{transform:"translateX(7px)",easing:"ease-out"}],{duration:450,iterations:1}),this.activity("answerSubmitted","quiz")),this.savedBackgroundColor=this.$$("#button"+t).style.backgroundColor,this.$$("#button"+t).style.backgroundColor="#39FF14",[0,1,2,3].filter(e=>e!==t).forEach(e=>{this.$$("#button"+e).style.backgroundColor="#d6483d",this.$$("#button"+e).classList.add("wrongAnswer")}),setTimeout(()=>{this.resetAllButtons(),this.currentIndex<this.questions.length-1?(this.currentIndex+=1,this.requestUpdate()):(this.currentIndex=null,this.completed=!0,this.requestUpdate(),this.fire("oap-sound-effect","quizCompleted"))},1e3)}resetAllButtons(){[0,1,2,3].forEach(e=>{this.$$("#button"+e).style.backgroundColor=this.savedBackgroundColor,this.$$("#button"+e).classList.remove("wrongAnswer")})}updated(e){super.updated(e),e.has("questions")&&this.questions&&this.reset(),e.has("active")&&(!0===this.active?this.start():this.stop())}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
+    `}correctAnswerColorAnimation(){let e=new Color("#39FF14");[this.dirLightOne,this.dirLightTwo].forEach(t=>{new Tween(t.color).to({r:e.r,g:e.g,b:e.b},450).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{e=new Color("#1d5588"),new Tween(t.color).to({r:e.r,g:e.g,b:e.b},1400).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{}).start()}).start()})}wrongAnswerColorAnimation(){let e=new Color("#d6483d");[this.dirLightOne,this.dirLightTwo].forEach(t=>{new Tween(t.color).to({r:e.r,g:e.g,b:e.b},250).delay(0).on("complete",()=>{e=new Color("#1d5588"),new Tween(t.color).to({r:e.r,g:e.g,b:e.b},450).delay(1e3).on("complete",()=>{}).start()}).start()})}submitAnswer(e){const t=this.questions[this.currentIndex].correctAnswer;e==t?(this.fire("oap-process-correct-quiz-answer"),this.correctAnswerColorAnimation(),this.correctAnswers+=1,this.$$("#button"+e).animate([{transform:"scale(1.3)",easing:"ease-in"},{transform:"scale(1.0)",easing:"ease-out"}],{duration:450,iterations:1})):(this.fire("oap-overlay",{html:html$1`${this.localize("incorrectAnswer")}`,soundEffect:"",duration:300}),this.wrongAnswerColorAnimation(),this.incorrectAnswers+=1,this.$$("#button"+e).animate([{transform:"translateX(-3px)",easing:"ease-in"},{transform:"translateX(3px)",easing:"ease-out"},{transform:"translateX(-5px)",easing:"ease-in"},{transform:"translateX(5px)",easing:"ease-out"},{transform:"translateX(-7px)",easing:"ease-in"},{transform:"translateX(7px)",easing:"ease-out"}],{duration:450,iterations:1}),this.activity("answerSubmitted","quiz")),this.savedBackgroundColor=this.$$("#button"+t).style.backgroundColor,this.$$("#button"+t).style.backgroundColor="#39FF14",[0,1,2,3].filter(e=>e!==t).forEach(e=>{this.$$("#button"+e).style.backgroundColor="#d6483d",this.$$("#button"+e).classList.add("wrongAnswer")}),setTimeout(()=>{this.resetAllButtons(),this.currentIndex<this.questions.length-1?(this.currentIndex+=1,this.requestUpdate()):(this.currentIndex=null,this.completed=!0,this.requestUpdate(),this.fire("oap-sound-effect","quizCompleted"))},1e3)}resetAllButtons(){[0,1,2,3].forEach(e=>{this.$$("#button"+e).style.backgroundColor=this.savedBackgroundColor,this.$$("#button"+e).classList.remove("wrongAnswer")})}updated(e){super.updated(e),e.has("questions")&&this.questions&&this.reset(),e.has("active")&&(!0===this.active?this.start():this.stop())}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
 
   :host {}
 
