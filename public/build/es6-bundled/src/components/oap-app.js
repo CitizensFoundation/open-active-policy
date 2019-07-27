@@ -10999,212 +10999,76 @@ this.dialogElement=this.dialogElement||this.parentElement;// Check if dialog imp
 if(this.dialogElement&&this.dialogElement.behaviors&&0<=this.dialogElement.behaviors.indexOf(PaperDialogBehaviorImpl)){this.dialogElement.sizingTarget=this.scrollTarget;this.scrollTarget.classList.remove("fit")}else if(this.dialogElement){this.scrollTarget.classList.add("fit")}}});Polymer({_template:html`
     <style include="paper-dialog-shared-styles"></style>
     <slot></slot>
-`,is:"paper-dialog",behaviors:[PaperDialogBehavior,NeonAnimationRunnerBehavior],listeners:{"neon-animation-finish":"_onNeonAnimationFinish"},_renderOpened:function(){this.cancelAnimation();this.playAnimation("entry")},_renderClosed:function(){this.cancelAnimation();this.playAnimation("exit")},_onNeonAnimationFinish:function(){if(this.opened){this._finishRenderOpened()}else{this._finishRenderClosed()}}});const template$7=html`
-  <style include="paper-material-styles">
-    :host {
-      @apply --layout-vertical;
-      @apply --layout-center-center;
-
-      background: var(--paper-fab-background, var(--accent-color));
-      border-radius: 50%;
-      box-sizing: border-box;
-      color: var(--text-primary-color);
-      cursor: pointer;
-      height: 56px;
-      min-width: 0;
-      outline: none;
-      padding: 16px;
-      position: relative;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      width: 56px;
-      z-index: 0;
-
-      /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-      -webkit-tap-highlight-color: transparent;
-
-      @apply --paper-fab;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    :host([mini]) {
-      width: 40px;
-      height: 40px;
-      padding: 8px;
-
-      @apply --paper-fab-mini;
-    }
-
-    :host([disabled]) {
-      color: var(--paper-fab-disabled-text, var(--paper-grey-500));
-      background: var(--paper-fab-disabled-background, var(--paper-grey-300));
-
-      @apply --paper-fab-disabled;
-    }
-
-    iron-icon {
-      @apply --paper-fab-iron-icon;
-    }
-
-    span {
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-
-      @apply --paper-fab-label;
-    }
-
-    :host(.keyboard-focus) {
-      background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
-    }
-
-    :host([elevation="1"]) {
-      @apply --paper-material-elevation-1;
-    }
-
-    :host([elevation="2"]) {
-      @apply --paper-material-elevation-2;
-    }
-
-    :host([elevation="3"]) {
-      @apply --paper-material-elevation-3;
-    }
-
-    :host([elevation="4"]) {
-      @apply --paper-material-elevation-4;
-    }
-
-    :host([elevation="5"]) {
-      @apply --paper-material-elevation-5;
-    }
-  </style>
-
-  <iron-icon id="icon" hidden\$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
-  <span hidden\$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
-`;template$7.setAttribute("strip-whitespace","");/**
-                                                 Material design: [Floating Action
-                                                 Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
-                                                                                               `paper-fab` is a floating action button. It contains an image placed in the
-                                                 center and comes in two sizes: regular size and a smaller size by applying the
-                                                 attribute `mini`. When the user touches the button, a ripple effect emanates
-                                                 from the center of the button.
-                                                                                               You may import `iron-icons` to use with this element, or provide a URL to a
-                                                 custom icon. See `iron-iconset` for more information about how to use a custom
-                                                 icon set.
-                                                                                               Example:
-                                                                                                   <script type="module">
-                                                     import '@polymer/iron-icons/iron-icons.js';
-                                                   </script>
-                                                                                                   <paper-fab icon="add"></paper-fab>
-                                                   <paper-fab mini icon="favorite"></paper-fab>
-                                                   <paper-fab src="star.png"></paper-fab>
-                                                                                               
-                                                 ### Styling
-                                                                                               The following custom properties and mixins are available for styling:
-                                                                                               Custom property | Description | Default
-                                                 ----------------|-------------|----------
-                                                 `--paper-fab-background` | The background color of the button | `--accent-color`
-                                                 `--paper-fab-keyboard-focus-background` | The background color of the button when focused | `--paper-pink-900`
-                                                 `--paper-fab-disabled-background` | The background color of the button when it's disabled | `--paper-grey-300`
-                                                 `--paper-fab-disabled-text` | The text color of the button when it's disabled | `--paper-grey-500`
-                                                 `--paper-fab` | Mixin applied to the button | `{}`
-                                                 `--paper-fab-mini` | Mixin applied to a mini button | `{}`
-                                                 `--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
-                                                 `--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button | `{}`
-                                                 `--paper-fab-label` | Mixin applied to the label within the button | `{}`
-                                                                                               @group Paper Elements
-                                                 @demo demo/index.html
-                                                 */Polymer({_template:template$7,is:"paper-fab",behaviors:[PaperButtonBehavior],properties:{/**
-     * The URL of an image for the icon. If the src property is specified,
-     * the icon property should not be.
-     */src:{type:String,value:""},/**
-     * Specifies the icon name or index in the set of icons available in
-     * the icon's icon set. If the icon property is specified,
-     * the src property should not be.
-     */icon:{type:String,value:""},/**
-     * Set this to true to style this is a "mini" FAB.
-     */mini:{type:Boolean,value:!1,reflectToAttribute:!0},/**
-     * The label displayed in the badge. The label is centered, and ideally
-     * should have very few characters.
-     */label:{type:String,observer:"_labelChanged"}},_labelChanged:function(){this.setAttribute("aria-label",this.label)},_computeIsIconFab:function(icon,src){return 0<icon.length||0<src.length}});Polymer({is:"paper-icon-button",_template:html`
+`,is:"paper-dialog",behaviors:[PaperDialogBehavior,NeonAnimationRunnerBehavior],listeners:{"neon-animation-finish":"_onNeonAnimationFinish"},_renderOpened:function(){this.cancelAnimation();this.playAnimation("entry")},_renderClosed:function(){this.cancelAnimation();this.playAnimation("exit")},_onNeonAnimationFinish:function(){if(this.opened){this._finishRenderOpened()}else{this._finishRenderClosed()}}});const $_documentContainer$1=document.createElement("template");$_documentContainer$1.setAttribute("style","display: none;");$_documentContainer$1.innerHTML=`<iron-iconset-svg name="paper-dropdown-menu" size="24">
+<svg><defs>
+<g id="arrow-drop-down"><path d="M7 10l5 5 5-5z"></path></g>
+</defs></svg>
+</iron-iconset-svg>`;document.head.appendChild($_documentContainer$1.content);const $_documentContainer$2=document.createElement("template");$_documentContainer$2.setAttribute("style","display: none;");$_documentContainer$2.innerHTML=`<dom-module id="paper-dropdown-menu-shared-styles">
+  <template>
     <style>
       :host {
         display: inline-block;
         position: relative;
-        padding: 8px;
-        outline: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        cursor: pointer;
-        z-index: 0;
-        line-height: 1;
+        text-align: left;
 
-        width: 40px;
-        height: 40px;
-
-        /*
-          NOTE: Both values are needed, since some phones require the value to
-          be \`transparent\`.
-        */
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        /* NOTE(cdata): Both values are needed, since some phones require the
+         * value to be \`transparent\`.
+         */
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
         -webkit-tap-highlight-color: transparent;
 
-        /* Because of polymer/2558, this style has lower specificity than * */
-        box-sizing: border-box !important;
+        --paper-input-container-input: {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          box-sizing: border-box;
+          cursor: pointer;
+        };
 
-        @apply --paper-icon-button;
-      }
-
-      :host #ink {
-        color: var(--paper-icon-button-ink-color, var(--primary-text-color));
-        opacity: 0.6;
+        @apply --paper-dropdown-menu;
       }
 
       :host([disabled]) {
-        color: var(--paper-icon-button-disabled-text, var(--disabled-text-color));
-        pointer-events: none;
-        cursor: auto;
-
-        @apply --paper-icon-button-disabled;
+        @apply --paper-dropdown-menu-disabled;
       }
 
-      :host([hidden]) {
-        display: none !important;
+      :host([noink]) paper-ripple {
+        display: none;
       }
 
-      :host(:hover) {
-        @apply --paper-icon-button-hover;
+      :host([no-label-float]) paper-ripple {
+        top: 8px;
+      }
+
+      paper-ripple {
+        top: 12px;
+        left: 0px;
+        bottom: 8px;
+        right: 0px;
+
+        @apply --paper-dropdown-menu-ripple;
+      }
+
+      paper-menu-button {
+        display: block;
+        padding: 0;
+
+        @apply --paper-dropdown-menu-button;
+      }
+
+      paper-input {
+        @apply --paper-dropdown-menu-input;
       }
 
       iron-icon {
-        --iron-icon-width: 100%;
-        --iron-icon-height: 100%;
+        color: var(--disabled-text-color);
+
+        @apply --paper-dropdown-menu-icon;
       }
     </style>
-
-    <iron-icon id="icon" src="[[src]]" icon="[[icon]]"
-               alt$="[[alt]]"></iron-icon>
-  `,hostAttributes:{role:"button",tabindex:"0"},behaviors:[PaperInkyFocusBehavior],registered:function(){this._template.setAttribute("strip-whitespace","")},properties:{/**
-     * The URL of an image for the icon. If the src property is specified,
-     * the icon property should not be.
-     */src:{type:String},/**
-     * Specifies the icon name or index in the set of icons available in
-     * the icon's icon set. If the icon property is specified,
-     * the src property should not be.
-     */icon:{type:String},/**
-     * Specifies the alternate text for the button, for accessibility.
-     */alt:{type:String,observer:"_altChanged"}},_altChanged:function(newValue,oldValue){var label=this.getAttribute("aria-label");// Don't stomp over a user-set aria-label.
-if(!label||oldValue==label){this.setAttribute("aria-label",newValue)}}});const PaperInputAddonBehavior={attached:function(){this.fire("addon-attached")},/**
+  </template>
+</dom-module>`;document.head.appendChild($_documentContainer$2.content);const PaperInputAddonBehavior={attached:function(){this.fire("addon-attached")},/**
    * The function called by `<paper-input-container>` when the input value or
    * validity changes.
    * @param {{
@@ -11215,221 +11079,7 @@ if(!label||oldValue==label){this.setAttribute("aria-label",newValue)}}});const P
    *     inputElement: The input element.
    *     value: The input value.
    *     invalid: True if the input value is invalid.
-   */update:function(state){}};_exports.PaperInputAddonBehavior=PaperInputAddonBehavior;var paperInputAddonBehavior={PaperInputAddonBehavior:PaperInputAddonBehavior};// aria-labelledby) and add-ons.
-_exports.$paperInputAddonBehavior=paperInputAddonBehavior;const PaperInputHelper={};_exports.PaperInputHelper=PaperInputHelper;PaperInputHelper.NextLabelID=1;PaperInputHelper.NextAddonID=1;PaperInputHelper.NextInputID=1;/**
-                                   * Use `PaperInputBehavior` to implement inputs with `<paper-input-container>`.
-                                   * This behavior is implemented by `<paper-input>`. It exposes a number of
-                                   * properties from `<paper-input-container>` and `<input is="iron-input">` and
-                                   * they should be bound in your template.
-                                   *
-                                   * The input element can be accessed by the `inputElement` property if you need
-                                   * to access properties or methods that are not exposed.
-                                   * @polymerBehavior PaperInputBehavior
-                                   */const PaperInputBehaviorImpl={properties:{/**
-     * Fired when the input changes due to user interaction.
-     *
-     * @event change
-     */ /**
-         * The label for this input. If you're using PaperInputBehavior to
-         * implement your own paper-input-like element, bind this to
-         * `<label>`'s content and `hidden` property, e.g.
-         * `<label hidden$="[[!label]]">[[label]]</label>` in your `template`
-         */label:{type:String},/**
-     * The value for this input. If you're using PaperInputBehavior to
-     * implement your own paper-input-like element, bind this to
-     * the `<iron-input>`'s `bindValue`
-     * property, or the value property of your input that is `notify:true`.
-     * @type {*}
-     */value:{notify:!0,type:String},/**
-     * Set to true to disable this input. If you're using PaperInputBehavior to
-     * implement your own paper-input-like element, bind this to
-     * both the `<paper-input-container>`'s and the input's `disabled` property.
-     */disabled:{type:Boolean,value:!1},/**
-     * Returns true if the value is invalid. If you're using PaperInputBehavior
-     * to implement your own paper-input-like element, bind this to both the
-     * `<paper-input-container>`'s and the input's `invalid` property.
-     *
-     * If `autoValidate` is true, the `invalid` attribute is managed
-     * automatically, which can clobber attempts to manage it manually.
-     */invalid:{type:Boolean,value:!1,notify:!0},/**
-     * Set this to specify the pattern allowed by `preventInvalidInput`. If
-     * you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `allowedPattern`
-     * property.
-     */allowedPattern:{type:String},/**
-     * The type of the input. The supported types are the
-     * [native input's
-     * types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_<input>_types).
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the (Polymer 1) `<input is="iron-input">`'s or
-     * (Polymer 2)
-     * `<iron-input>`'s `type` property.
-     */type:{type:String},/**
-     * The datalist of the input (if any). This should match the id of an
-     * existing `<datalist>`. If you're using PaperInputBehavior to implement
-     * your own paper-input-like element, bind this to the `<input
-     * is="iron-input">`'s `list` property.
-     */list:{type:String},/**
-     * A pattern to validate the `input` with. If you're using
-     * PaperInputBehavior to implement your own paper-input-like element, bind
-     * this to the `<input is="iron-input">`'s `pattern` property.
-     */pattern:{type:String},/**
-     * Set to true to mark the input as required. If you're using
-     * PaperInputBehavior to implement your own paper-input-like element, bind
-     * this to the `<input is="iron-input">`'s `required` property.
-     */required:{type:Boolean,value:!1},/**
-     * The error message to display when the input is invalid. If you're using
-     * PaperInputBehavior to implement your own paper-input-like element,
-     * bind this to the `<paper-input-error>`'s content, if using.
-     */errorMessage:{type:String},/**
-     * Set to true to show a character counter.
-     */charCounter:{type:Boolean,value:!1},/**
-     * Set to true to disable the floating label. If you're using
-     * PaperInputBehavior to implement your own paper-input-like element, bind
-     * this to the `<paper-input-container>`'s `noLabelFloat` property.
-     */noLabelFloat:{type:Boolean,value:!1},/**
-     * Set to true to always float the label. If you're using PaperInputBehavior
-     * to implement your own paper-input-like element, bind this to the
-     * `<paper-input-container>`'s `alwaysFloatLabel` property.
-     */alwaysFloatLabel:{type:Boolean,value:!1},/**
-     * Set to true to auto-validate the input value. If you're using
-     * PaperInputBehavior to implement your own paper-input-like element, bind
-     * this to the `<paper-input-container>`'s `autoValidate` property.
-     */autoValidate:{type:Boolean,value:!1},/**
-     * Name of the validator to use. If you're using PaperInputBehavior to
-     * implement your own paper-input-like element, bind this to
-     * the `<input is="iron-input">`'s `validator` property.
-     */validator:{type:String},// HTMLInputElement attributes for binding if needed
-/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `autocomplete`
-     * property.
-     */autocomplete:{type:String,value:"off"},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `autofocus`
-     * property.
-     */autofocus:{type:Boolean,observer:"_autofocusChanged"},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `inputmode`
-     * property.
-     */inputmode:{type:String},/**
-     * The minimum length of the input value.
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `minlength`
-     * property.
-     */minlength:{type:Number},/**
-     * The maximum length of the input value.
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `maxlength`
-     * property.
-     */maxlength:{type:Number},/**
-     * The minimum (numeric or date-time) input value.
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `min` property.
-     */min:{type:String},/**
-     * The maximum (numeric or date-time) input value.
-     * Can be a String (e.g. `"2000-01-01"`) or a Number (e.g. `2`).
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `max` property.
-     */max:{type:String},/**
-     * Limits the numeric or date-time increments.
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `step` property.
-     */step:{type:String},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `name` property.
-     */name:{type:String},/**
-     * A placeholder string in addition to the label. If this is set, the label
-     * will always float.
-     */placeholder:{type:String,// need to set a default so _computeAlwaysFloatLabel is run
-value:""},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `readonly`
-     * property.
-     */readonly:{type:Boolean,value:!1},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `size` property.
-     */size:{type:Number},// Nonstandard attributes for binding if needed
-/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `autocapitalize`
-     * property.
-     *
-     * @type {string}
-     */autocapitalize:{type:String,value:"none"},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `autocorrect`
-     * property.
-     */autocorrect:{type:String,value:"off"},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `autosave`
-     * property, used with type=search.
-     */autosave:{type:String},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `results` property,
-     * used with type=search.
-     */results:{type:Number},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the `<input is="iron-input">`'s `accept` property,
-     * used with type=file.
-     */accept:{type:String},/**
-     * If you're using PaperInputBehavior to implement your own paper-input-like
-     * element, bind this to the`<input is="iron-input">`'s `multiple` property,
-     * used with type=file.
-     */multiple:{type:Boolean},/** @private */_ariaDescribedBy:{type:String,value:""},/** @private */_ariaLabelledBy:{type:String,value:""},/** @private */_inputId:{type:String,value:""}},listeners:{"addon-attached":"_onAddonAttached"},/**
-   * @type {!Object}
-   */keyBindings:{"shift+tab:keydown":"_onShiftTabDown"},/** @private */hostAttributes:{tabindex:0},/**
-   * Returns a reference to the input element.
-   * @return {!HTMLElement}
-   */get inputElement(){// Chrome generates audit errors if an <input type="password"> has a
-// duplicate ID, which is almost always true in Shady DOM. Generate
-// a unique ID instead.
-if(!this.$){this.$={}}if(!this.$.input){this._generateInputId();this.$.input=this.$$("#"+this._inputId)}return this.$.input},/**
-   * Returns a reference to the focusable element.
-   * @return {!HTMLElement}
-   */get _focusableElement(){return this.inputElement},created:function(){// These types have some default placeholder text; overlapping
-// the label on top of it looks terrible. Auto-float the label in this case.
-this._typesThatHaveText=["date","datetime","datetime-local","month","time","week","file"]},attached:function(){this._updateAriaLabelledBy();// In the 2.0 version of the element, this is handled in `onIronInputReady`,
-// i.e. after the native input has finished distributing. In the 1.0
-// version, the input is in the shadow tree, so it's already available.
-if(!PolymerElement&&this.inputElement&&-1!==this._typesThatHaveText.indexOf(this.inputElement.type)){this.alwaysFloatLabel=!0}},_appendStringWithSpace:function(str,more){if(str){str=str+" "+more}else{str=more}return str},_onAddonAttached:function(event){var target=dom(event).rootTarget;if(target.id){this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,target.id)}else{var id="paper-input-add-on-"+PaperInputHelper.NextAddonID++;target.id=id;this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,id)}},/**
-   * Validates the input element and sets an error style if needed.
-   *
-   * @return {boolean}
-   */validate:function(){return this.inputElement.validate()},/**
-   * Forward focus to inputElement. Overriden from IronControlState.
-   */_focusBlurHandler:function(event){IronControlState._focusBlurHandler.call(this,event);// Forward the focus to the nested input.
-if(this.focused&&!this._shiftTabPressed&&this._focusableElement){this._focusableElement.focus()}},/**
-   * Handler that is called when a shift+tab keypress is detected by the menu.
-   *
-   * @param {CustomEvent} event A key combination event.
-   */_onShiftTabDown:function(event){var oldTabIndex=this.getAttribute("tabindex");this._shiftTabPressed=!0;this.setAttribute("tabindex","-1");this.async(function(){this.setAttribute("tabindex",oldTabIndex);this._shiftTabPressed=!1},1)},/**
-   * If `autoValidate` is true, then validates the element.
-   */_handleAutoValidate:function(){if(this.autoValidate)this.validate()},/**
-   * Restores the cursor to its original position after updating the value.
-   * @param {string} newValue The value that should be saved.
-   */updateValueAndPreserveCaret:function(newValue){// Not all elements might have selection, and even if they have the
-// right properties, accessing them might throw an exception (like for
-// <input type=number>)
-try{var start=this.inputElement.selectionStart;this.value=newValue;// The cursor automatically jumps to the end after re-setting the value,
-// so restore it to its original position.
-this.inputElement.selectionStart=start;this.inputElement.selectionEnd=start}catch(e){// Just set the value and give up on the caret.
-this.value=newValue}},_computeAlwaysFloatLabel:function(alwaysFloatLabel,placeholder){return placeholder||alwaysFloatLabel},_updateAriaLabelledBy:function(){var label=dom(this.root).querySelector("label");if(!label){this._ariaLabelledBy="";return}var labelledBy;if(label.id){labelledBy=label.id}else{labelledBy="paper-input-label-"+PaperInputHelper.NextLabelID++;label.id=labelledBy}this._ariaLabelledBy=labelledBy},_generateInputId:function(){if(!this._inputId||""===this._inputId){this._inputId="input-"+PaperInputHelper.NextInputID++}},_onChange:function(event){// In the Shadow DOM, the `change` event is not leaked into the
-// ancestor tree, so we must do this manually.
-// See
-// https://w3c.github.io/webcomponents/spec/shadow/#events-that-are-not-leaked-into-ancestor-trees.
-if(this.shadowRoot){this.fire(event.type,{sourceEvent:event},{node:this,bubbles:event.bubbles,cancelable:event.cancelable})}},_autofocusChanged:function(){// Firefox doesn't respect the autofocus attribute if it's applied after
-// the page is loaded (Chrome/WebKit do respect it), preventing an
-// autofocus attribute specified in markup from taking effect when the
-// element is upgraded. As a workaround, if the autofocus property is set,
-// and the focus hasn't already been moved elsewhere, we take focus.
-if(this.autofocus&&this._focusableElement){// In IE 11, the default document.activeElement can be the page's
-// outermost html element, but there are also cases (under the
-// polyfill?) in which the activeElement is not a real HTMLElement, but
-// just a plain object. We identify the latter case as having no valid
-// activeElement.
-var activeElement=document.activeElement,isActiveElementValid=activeElement instanceof HTMLElement,isSomeElementActive=isActiveElementValid&&activeElement!==document.body&&activeElement!==document.documentElement;/* IE 11 */if(!isSomeElementActive){// No specific element has taken the focus yet, so we can take it.
-this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBehaviorImpl=PaperInputBehaviorImpl;const PaperInputBehavior=[IronControlState,IronA11yKeysBehavior,PaperInputBehaviorImpl];_exports.PaperInputBehavior=PaperInputBehavior;var paperInputBehavior={PaperInputHelper:PaperInputHelper,PaperInputBehaviorImpl:PaperInputBehaviorImpl,PaperInputBehavior:PaperInputBehavior};_exports.$paperInputBehavior=paperInputBehavior;Polymer({_template:html`
+   */update:function(state){}};_exports.PaperInputAddonBehavior=PaperInputAddonBehavior;var paperInputAddonBehavior={PaperInputAddonBehavior:PaperInputAddonBehavior};_exports.$paperInputAddonBehavior=paperInputAddonBehavior;Polymer({_template:html`
     <style>
       :host {
         display: inline-block;
@@ -11459,7 +11109,7 @@ this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBeh
    *     inputElement: The input element.
    *     value: The input value.
    *     invalid: True if the input value is invalid.
-   */update:function(state){if(!state.inputElement){return}state.value=state.value||"";var counter=state.value.toString().length.toString();if(state.inputElement.hasAttribute("maxlength")){counter+="/"+state.inputElement.getAttribute("maxlength")}this._charCounterStr=counter}});const template$8=html`
+   */update:function(state){if(!state.inputElement){return}state.value=state.value||"";var counter=state.value.toString().length.toString();if(state.inputElement.hasAttribute("maxlength")){counter+="/"+state.inputElement.getAttribute("maxlength")}this._charCounterStr=counter}});const template$7=html`
 <custom-style>
   <style is="custom-style">
     html {
@@ -11483,7 +11133,7 @@ this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBeh
     }
   </style>
 </custom-style>
-`;template$8.setAttribute("style","display: none;");document.head.appendChild(template$8.content);/*
+`;template$7.setAttribute("style","display: none;");document.head.appendChild(template$7.content);/*
                                                `<paper-input-container>` is a container for a `<label>`, an `<iron-input>` or
                                                `<textarea>` and optional add-on elements such as an error message or character
                                                counter, used to implement Material Design text fields.
@@ -11902,7 +11552,221 @@ if(label){this.$.labelAndInputContainer.style.position="relative"}if(invalid){cl
    *     inputElement: The input element.
    *     value: The input value.
    *     invalid: True if the input value is invalid.
-   */update:function(state){this._setInvalid(state.invalid)}});Polymer({is:"paper-input",_template:html`
+   */update:function(state){this._setInvalid(state.invalid)}});// aria-labelledby) and add-ons.
+const PaperInputHelper={};_exports.PaperInputHelper=PaperInputHelper;PaperInputHelper.NextLabelID=1;PaperInputHelper.NextAddonID=1;PaperInputHelper.NextInputID=1;/**
+                                   * Use `PaperInputBehavior` to implement inputs with `<paper-input-container>`.
+                                   * This behavior is implemented by `<paper-input>`. It exposes a number of
+                                   * properties from `<paper-input-container>` and `<input is="iron-input">` and
+                                   * they should be bound in your template.
+                                   *
+                                   * The input element can be accessed by the `inputElement` property if you need
+                                   * to access properties or methods that are not exposed.
+                                   * @polymerBehavior PaperInputBehavior
+                                   */const PaperInputBehaviorImpl={properties:{/**
+     * Fired when the input changes due to user interaction.
+     *
+     * @event change
+     */ /**
+         * The label for this input. If you're using PaperInputBehavior to
+         * implement your own paper-input-like element, bind this to
+         * `<label>`'s content and `hidden` property, e.g.
+         * `<label hidden$="[[!label]]">[[label]]</label>` in your `template`
+         */label:{type:String},/**
+     * The value for this input. If you're using PaperInputBehavior to
+     * implement your own paper-input-like element, bind this to
+     * the `<iron-input>`'s `bindValue`
+     * property, or the value property of your input that is `notify:true`.
+     * @type {*}
+     */value:{notify:!0,type:String},/**
+     * Set to true to disable this input. If you're using PaperInputBehavior to
+     * implement your own paper-input-like element, bind this to
+     * both the `<paper-input-container>`'s and the input's `disabled` property.
+     */disabled:{type:Boolean,value:!1},/**
+     * Returns true if the value is invalid. If you're using PaperInputBehavior
+     * to implement your own paper-input-like element, bind this to both the
+     * `<paper-input-container>`'s and the input's `invalid` property.
+     *
+     * If `autoValidate` is true, the `invalid` attribute is managed
+     * automatically, which can clobber attempts to manage it manually.
+     */invalid:{type:Boolean,value:!1,notify:!0},/**
+     * Set this to specify the pattern allowed by `preventInvalidInput`. If
+     * you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `allowedPattern`
+     * property.
+     */allowedPattern:{type:String},/**
+     * The type of the input. The supported types are the
+     * [native input's
+     * types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_<input>_types).
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the (Polymer 1) `<input is="iron-input">`'s or
+     * (Polymer 2)
+     * `<iron-input>`'s `type` property.
+     */type:{type:String},/**
+     * The datalist of the input (if any). This should match the id of an
+     * existing `<datalist>`. If you're using PaperInputBehavior to implement
+     * your own paper-input-like element, bind this to the `<input
+     * is="iron-input">`'s `list` property.
+     */list:{type:String},/**
+     * A pattern to validate the `input` with. If you're using
+     * PaperInputBehavior to implement your own paper-input-like element, bind
+     * this to the `<input is="iron-input">`'s `pattern` property.
+     */pattern:{type:String},/**
+     * Set to true to mark the input as required. If you're using
+     * PaperInputBehavior to implement your own paper-input-like element, bind
+     * this to the `<input is="iron-input">`'s `required` property.
+     */required:{type:Boolean,value:!1},/**
+     * The error message to display when the input is invalid. If you're using
+     * PaperInputBehavior to implement your own paper-input-like element,
+     * bind this to the `<paper-input-error>`'s content, if using.
+     */errorMessage:{type:String},/**
+     * Set to true to show a character counter.
+     */charCounter:{type:Boolean,value:!1},/**
+     * Set to true to disable the floating label. If you're using
+     * PaperInputBehavior to implement your own paper-input-like element, bind
+     * this to the `<paper-input-container>`'s `noLabelFloat` property.
+     */noLabelFloat:{type:Boolean,value:!1},/**
+     * Set to true to always float the label. If you're using PaperInputBehavior
+     * to implement your own paper-input-like element, bind this to the
+     * `<paper-input-container>`'s `alwaysFloatLabel` property.
+     */alwaysFloatLabel:{type:Boolean,value:!1},/**
+     * Set to true to auto-validate the input value. If you're using
+     * PaperInputBehavior to implement your own paper-input-like element, bind
+     * this to the `<paper-input-container>`'s `autoValidate` property.
+     */autoValidate:{type:Boolean,value:!1},/**
+     * Name of the validator to use. If you're using PaperInputBehavior to
+     * implement your own paper-input-like element, bind this to
+     * the `<input is="iron-input">`'s `validator` property.
+     */validator:{type:String},// HTMLInputElement attributes for binding if needed
+/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `autocomplete`
+     * property.
+     */autocomplete:{type:String,value:"off"},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `autofocus`
+     * property.
+     */autofocus:{type:Boolean,observer:"_autofocusChanged"},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `inputmode`
+     * property.
+     */inputmode:{type:String},/**
+     * The minimum length of the input value.
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `minlength`
+     * property.
+     */minlength:{type:Number},/**
+     * The maximum length of the input value.
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `maxlength`
+     * property.
+     */maxlength:{type:Number},/**
+     * The minimum (numeric or date-time) input value.
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `min` property.
+     */min:{type:String},/**
+     * The maximum (numeric or date-time) input value.
+     * Can be a String (e.g. `"2000-01-01"`) or a Number (e.g. `2`).
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `max` property.
+     */max:{type:String},/**
+     * Limits the numeric or date-time increments.
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `step` property.
+     */step:{type:String},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `name` property.
+     */name:{type:String},/**
+     * A placeholder string in addition to the label. If this is set, the label
+     * will always float.
+     */placeholder:{type:String,// need to set a default so _computeAlwaysFloatLabel is run
+value:""},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `readonly`
+     * property.
+     */readonly:{type:Boolean,value:!1},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `size` property.
+     */size:{type:Number},// Nonstandard attributes for binding if needed
+/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `autocapitalize`
+     * property.
+     *
+     * @type {string}
+     */autocapitalize:{type:String,value:"none"},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `autocorrect`
+     * property.
+     */autocorrect:{type:String,value:"off"},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `autosave`
+     * property, used with type=search.
+     */autosave:{type:String},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `results` property,
+     * used with type=search.
+     */results:{type:Number},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the `<input is="iron-input">`'s `accept` property,
+     * used with type=file.
+     */accept:{type:String},/**
+     * If you're using PaperInputBehavior to implement your own paper-input-like
+     * element, bind this to the`<input is="iron-input">`'s `multiple` property,
+     * used with type=file.
+     */multiple:{type:Boolean},/** @private */_ariaDescribedBy:{type:String,value:""},/** @private */_ariaLabelledBy:{type:String,value:""},/** @private */_inputId:{type:String,value:""}},listeners:{"addon-attached":"_onAddonAttached"},/**
+   * @type {!Object}
+   */keyBindings:{"shift+tab:keydown":"_onShiftTabDown"},/** @private */hostAttributes:{tabindex:0},/**
+   * Returns a reference to the input element.
+   * @return {!HTMLElement}
+   */get inputElement(){// Chrome generates audit errors if an <input type="password"> has a
+// duplicate ID, which is almost always true in Shady DOM. Generate
+// a unique ID instead.
+if(!this.$){this.$={}}if(!this.$.input){this._generateInputId();this.$.input=this.$$("#"+this._inputId)}return this.$.input},/**
+   * Returns a reference to the focusable element.
+   * @return {!HTMLElement}
+   */get _focusableElement(){return this.inputElement},created:function(){// These types have some default placeholder text; overlapping
+// the label on top of it looks terrible. Auto-float the label in this case.
+this._typesThatHaveText=["date","datetime","datetime-local","month","time","week","file"]},attached:function(){this._updateAriaLabelledBy();// In the 2.0 version of the element, this is handled in `onIronInputReady`,
+// i.e. after the native input has finished distributing. In the 1.0
+// version, the input is in the shadow tree, so it's already available.
+if(!PolymerElement&&this.inputElement&&-1!==this._typesThatHaveText.indexOf(this.inputElement.type)){this.alwaysFloatLabel=!0}},_appendStringWithSpace:function(str,more){if(str){str=str+" "+more}else{str=more}return str},_onAddonAttached:function(event){var target=dom(event).rootTarget;if(target.id){this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,target.id)}else{var id="paper-input-add-on-"+PaperInputHelper.NextAddonID++;target.id=id;this._ariaDescribedBy=this._appendStringWithSpace(this._ariaDescribedBy,id)}},/**
+   * Validates the input element and sets an error style if needed.
+   *
+   * @return {boolean}
+   */validate:function(){return this.inputElement.validate()},/**
+   * Forward focus to inputElement. Overriden from IronControlState.
+   */_focusBlurHandler:function(event){IronControlState._focusBlurHandler.call(this,event);// Forward the focus to the nested input.
+if(this.focused&&!this._shiftTabPressed&&this._focusableElement){this._focusableElement.focus()}},/**
+   * Handler that is called when a shift+tab keypress is detected by the menu.
+   *
+   * @param {CustomEvent} event A key combination event.
+   */_onShiftTabDown:function(event){var oldTabIndex=this.getAttribute("tabindex");this._shiftTabPressed=!0;this.setAttribute("tabindex","-1");this.async(function(){this.setAttribute("tabindex",oldTabIndex);this._shiftTabPressed=!1},1)},/**
+   * If `autoValidate` is true, then validates the element.
+   */_handleAutoValidate:function(){if(this.autoValidate)this.validate()},/**
+   * Restores the cursor to its original position after updating the value.
+   * @param {string} newValue The value that should be saved.
+   */updateValueAndPreserveCaret:function(newValue){// Not all elements might have selection, and even if they have the
+// right properties, accessing them might throw an exception (like for
+// <input type=number>)
+try{var start=this.inputElement.selectionStart;this.value=newValue;// The cursor automatically jumps to the end after re-setting the value,
+// so restore it to its original position.
+this.inputElement.selectionStart=start;this.inputElement.selectionEnd=start}catch(e){// Just set the value and give up on the caret.
+this.value=newValue}},_computeAlwaysFloatLabel:function(alwaysFloatLabel,placeholder){return placeholder||alwaysFloatLabel},_updateAriaLabelledBy:function(){var label=dom(this.root).querySelector("label");if(!label){this._ariaLabelledBy="";return}var labelledBy;if(label.id){labelledBy=label.id}else{labelledBy="paper-input-label-"+PaperInputHelper.NextLabelID++;label.id=labelledBy}this._ariaLabelledBy=labelledBy},_generateInputId:function(){if(!this._inputId||""===this._inputId){this._inputId="input-"+PaperInputHelper.NextInputID++}},_onChange:function(event){// In the Shadow DOM, the `change` event is not leaked into the
+// ancestor tree, so we must do this manually.
+// See
+// https://w3c.github.io/webcomponents/spec/shadow/#events-that-are-not-leaked-into-ancestor-trees.
+if(this.shadowRoot){this.fire(event.type,{sourceEvent:event},{node:this,bubbles:event.bubbles,cancelable:event.cancelable})}},_autofocusChanged:function(){// Firefox doesn't respect the autofocus attribute if it's applied after
+// the page is loaded (Chrome/WebKit do respect it), preventing an
+// autofocus attribute specified in markup from taking effect when the
+// element is upgraded. As a workaround, if the autofocus property is set,
+// and the focus hasn't already been moved elsewhere, we take focus.
+if(this.autofocus&&this._focusableElement){// In IE 11, the default document.activeElement can be the page's
+// outermost html element, but there are also cases (under the
+// polyfill?) in which the activeElement is not a real HTMLElement, but
+// just a plain object. We identify the latter case as having no valid
+// activeElement.
+var activeElement=document.activeElement,isActiveElementValid=activeElement instanceof HTMLElement,isSomeElementActive=isActiveElementValid&&activeElement!==document.body&&activeElement!==document.documentElement;/* IE 11 */if(!isSomeElementActive){// No specific element has taken the focus yet, so we can take it.
+this._focusableElement.focus()}}}};/** @polymerBehavior */_exports.PaperInputBehaviorImpl=PaperInputBehaviorImpl;const PaperInputBehavior=[IronControlState,IronA11yKeysBehavior,PaperInputBehaviorImpl];_exports.PaperInputBehavior=PaperInputBehavior;var paperInputBehavior={PaperInputHelper:PaperInputHelper,PaperInputBehaviorImpl:PaperInputBehaviorImpl,PaperInputBehavior:PaperInputBehavior};_exports.$paperInputBehavior=paperInputBehavior;Polymer({is:"paper-input",_template:html`
     <style>
       :host {
         display: block;
@@ -12018,250 +11882,7 @@ type:String}},/**
 listeners:{"iron-input-ready":"_onIronInputReady"},_onIronInputReady:function(){// Even though this is only used in the next line, save this for
 // backwards compatibility, since the native input had this ID until 2.0.5.
 if(!this.$.nativeInput){this.$.nativeInput=this.$$("input")}if(this.inputElement&&-1!==this._typesThatHaveText.indexOf(this.$.nativeInput.type)){this.alwaysFloatLabel=!0}// Only validate when attached if the input already has a value.
-if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(this.inputElement)}}});Polymer({_template:html`
-    <style>
-      :host {
-        display: block;
-      }
-
-      :host([hidden]) {
-        display: none !important;
-      }
-
-      label {
-        pointer-events: none;
-      }
-    </style>
-
-    <paper-input-container no-label-float$="[[noLabelFloat]]" always-float-label="[[_computeAlwaysFloatLabel(alwaysFloatLabel,placeholder)]]" auto-validate$="[[autoValidate]]" disabled$="[[disabled]]" invalid="[[invalid]]">
-
-      <label hidden$="[[!label]]" aria-hidden="true" for$="[[_inputId]]" slot="label">[[label]]</label>
-
-      <iron-autogrow-textarea class="paper-input-input" slot="input" id$="[[_inputId]]" aria-labelledby$="[[_ariaLabelledBy]]" aria-describedby$="[[_ariaDescribedBy]]" bind-value="{{value}}" invalid="{{invalid}}" validator$="[[validator]]" disabled$="[[disabled]]" autocomplete$="[[autocomplete]]" autofocus$="[[autofocus]]" inputmode$="[[inputmode]]" name$="[[name]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" required$="[[required]]" minlength$="[[minlength]]" maxlength$="[[maxlength]]" autocapitalize$="[[autocapitalize]]" rows$="[[rows]]" max-rows$="[[maxRows]]" on-change="_onChange"></iron-autogrow-textarea>
-
-      <template is="dom-if" if="[[errorMessage]]">
-        <paper-input-error aria-live="assertive" slot="add-on">[[errorMessage]]</paper-input-error>
-      </template>
-
-      <template is="dom-if" if="[[charCounter]]">
-        <paper-input-char-counter slot="add-on"></paper-input-char-counter>
-      </template>
-
-    </paper-input-container>
-`,is:"paper-textarea",behaviors:[PaperInputBehavior,IronFormElementBehavior],properties:{_ariaLabelledBy:{observer:"_ariaLabelledByChanged",type:String},_ariaDescribedBy:{observer:"_ariaDescribedByChanged",type:String},value:{// Required for the correct TypeScript type-generation
-type:String},/**
-     * The initial number of rows.
-     *
-     * @attribute rows
-     * @type {number}
-     * @default 1
-     */rows:{type:Number,value:1},/**
-     * The maximum number of rows this element can grow to until it
-     * scrolls. 0 means no maximum.
-     *
-     * @attribute maxRows
-     * @type {number}
-     * @default 0
-     */maxRows:{type:Number,value:0}},/**
-   * @return {number}
-   */get selectionStart(){return this.$.input.textarea.selectionStart},set selectionStart(start){this.$.input.textarea.selectionStart=start},/**
-   * @return {number}
-   */get selectionEnd(){return this.$.input.textarea.selectionEnd},set selectionEnd(end){this.$.input.textarea.selectionEnd=end},_ariaLabelledByChanged:function(ariaLabelledBy){this._focusableElement.setAttribute("aria-labelledby",ariaLabelledBy)},_ariaDescribedByChanged:function(ariaDescribedBy){this._focusableElement.setAttribute("aria-describedby",ariaDescribedBy)},get _focusableElement(){return this.inputElement.textarea}});const $_documentContainer$1=document.createElement("template");$_documentContainer$1.setAttribute("style","display: none;");$_documentContainer$1.innerHTML=`<dom-module id="paper-item-shared-styles">
-  <template>
-    <style>
-      :host, .paper-item {
-        display: block;
-        position: relative;
-        min-height: var(--paper-item-min-height, 48px);
-        padding: 0px 16px;
-      }
-
-      .paper-item {
-        @apply --paper-font-subhead;
-        border:none;
-        outline: none;
-        background: white;
-        width: 100%;
-        text-align: left;
-      }
-
-      :host([hidden]), .paper-item[hidden] {
-        display: none !important;
-      }
-
-      :host(.iron-selected), .paper-item.iron-selected {
-        font-weight: var(--paper-item-selected-weight, bold);
-
-        @apply --paper-item-selected;
-      }
-
-      :host([disabled]), .paper-item[disabled] {
-        color: var(--paper-item-disabled-color, var(--disabled-text-color));
-
-        @apply --paper-item-disabled;
-      }
-
-      :host(:focus), .paper-item:focus {
-        position: relative;
-        outline: 0;
-
-        @apply --paper-item-focused;
-      }
-
-      :host(:focus):before, .paper-item:focus:before {
-        @apply --layout-fit;
-
-        background: currentColor;
-        content: '';
-        opacity: var(--dark-divider-opacity);
-        pointer-events: none;
-
-        @apply --paper-item-focused-before;
-      }
-    </style>
-  </template>
-</dom-module>`;document.head.appendChild($_documentContainer$1.content);const PaperItemBehaviorImpl={hostAttributes:{role:"option",tabindex:"0"}};/** @polymerBehavior */_exports.PaperItemBehaviorImpl=PaperItemBehaviorImpl;const PaperItemBehavior=[IronButtonState,IronControlState,PaperItemBehaviorImpl];_exports.PaperItemBehavior=PaperItemBehavior;var paperItemBehavior={PaperItemBehaviorImpl:PaperItemBehaviorImpl,PaperItemBehavior:PaperItemBehavior};_exports.$paperItemBehavior=paperItemBehavior;Polymer({_template:html`
-    <style include="paper-item-shared-styles">
-      :host {
-        @apply --layout-horizontal;
-        @apply --layout-center;
-        @apply --paper-font-subhead;
-
-        @apply --paper-item;
-      }
-    </style>
-    <slot></slot>
-`,is:"paper-item",behaviors:[PaperItemBehavior]});Polymer({_template:html`
-    <style>
-      :host {
-        overflow: hidden; /* needed for text-overflow: ellipsis to work on ff */
-        @apply --layout-vertical;
-        @apply --layout-center-justified;
-        @apply --layout-flex;
-      }
-
-      :host([two-line]) {
-        min-height: var(--paper-item-body-two-line-min-height, 72px);
-      }
-
-      :host([three-line]) {
-        min-height: var(--paper-item-body-three-line-min-height, 88px);
-      }
-
-      :host > ::slotted(*) {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      :host > ::slotted([secondary]) {
-        @apply --paper-font-body1;
-
-        color: var(--paper-item-body-secondary-color, var(--secondary-text-color));
-
-        @apply --paper-item-body-secondary;
-      }
-    </style>
-
-    <slot></slot>
-`,is:"paper-item-body"});Polymer({_template:html`
-    <style include="paper-item-shared-styles"></style>
-    <style>
-      :host {
-        @apply --layout-horizontal;
-        @apply --layout-center;
-        @apply --paper-font-subhead;
-
-        @apply --paper-item;
-        @apply --paper-icon-item;
-      }
-
-      .content-icon {
-        @apply --layout-horizontal;
-        @apply --layout-center;
-
-        width: var(--paper-item-icon-width, 56px);
-        @apply --paper-item-icon;
-      }
-    </style>
-
-    <div id="contentIcon" class="content-icon">
-      <slot name="item-icon"></slot>
-    </div>
-    <slot></slot>
-`,is:"paper-icon-item",behaviors:[PaperItemBehavior]});Polymer({_template:html`
-    <style>
-      :host {
-        display: block;
-        padding: 8px 0;
-
-        background: var(--paper-listbox-background-color, var(--primary-background-color));
-        color: var(--paper-listbox-color, var(--primary-text-color));
-
-        @apply --paper-listbox;
-      }
-    </style>
-
-    <slot></slot>
-`,is:"paper-listbox",behaviors:[IronMenuBehavior],/** @private */hostAttributes:{role:"listbox"}});const template$9=html`
-<dom-module id="paper-material-shared-styles">
-  <template>
-    <style>
-      :host {
-        display: block;
-        position: relative;
-      }
-
-      :host([elevation="1"]) {
-        @apply --shadow-elevation-2dp;
-      }
-
-      :host([elevation="2"]) {
-        @apply --shadow-elevation-4dp;
-      }
-
-      :host([elevation="3"]) {
-        @apply --shadow-elevation-6dp;
-      }
-
-      :host([elevation="4"]) {
-        @apply --shadow-elevation-8dp;
-      }
-
-      :host([elevation="5"]) {
-        @apply --shadow-elevation-16dp;
-      }
-    </style>
-  </template>
-</dom-module>
-`;template$9.setAttribute("style","display: none;");document.body.appendChild(template$9.content);Polymer({_template:html`
-    <style include="paper-material-shared-styles"></style>
-    <style>
-      :host([animated]) {
-        @apply --shadow-transition;
-      }
-      :host {
-        @apply --paper-material;
-      }
-    </style>
-
-    <slot></slot>
-`,is:"paper-material",properties:{/**
-     * The z-depth of this element, from 0-5. Setting to 0 will remove the
-     * shadow, and each increasing number greater than 0 will be "deeper"
-     * than the last.
-     *
-     * @attribute elevation
-     * @type number
-     * @default 1
-     */elevation:{type:Number,reflectToAttribute:!0,value:1},/**
-     * Set this to true to animate the shadow when setting a new
-     * `elevation` value.
-     *
-     * @attribute animated
-     * @type boolean
-     * @default false
-     */animated:{type:Boolean,reflectToAttribute:!0,value:!1}}});Polymer({is:"paper-menu-grow-height-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),height=rect.height;this._effect=new KeyframeEffect(node,[{height:height/2+"px"},{height:height+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-grow-width-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),width=rect.width;this._effect=new KeyframeEffect(node,[{width:width/2+"px"},{width:width+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-shrink-width-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),width=rect.width;this._effect=new KeyframeEffect(node,[{width:width+"px"},{width:width-width/20+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-shrink-height-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),height=rect.height;this.setPrefixedProperty(node,"transformOrigin","0 0");this._effect=new KeyframeEffect(node,[{height:height+"px",transform:"translateY(0)"},{height:height/2+"px",transform:"translateY(-20px)"}],this.timingFromConfig(config));return this._effect}});var config={ANIMATION_CUBIC_BEZIER:"cubic-bezier(.3,.95,.5,1)",MAX_ANIMATION_TIME_MS:400};/**
+if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(this.inputElement)}}});Polymer({is:"paper-menu-grow-height-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),height=rect.height;this._effect=new KeyframeEffect(node,[{height:height/2+"px"},{height:height+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-grow-width-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),width=rect.width;this._effect=new KeyframeEffect(node,[{width:width/2+"px"},{width:width+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-shrink-width-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),width=rect.width;this._effect=new KeyframeEffect(node,[{width:width+"px"},{width:width-width/20+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-shrink-height-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),height=rect.height;this.setPrefixedProperty(node,"transformOrigin","0 0");this._effect=new KeyframeEffect(node,[{height:height+"px",transform:"translateY(0)"},{height:height/2+"px",transform:"translateY(-20px)"}],this.timingFromConfig(config));return this._effect}});var config={ANIMATION_CUBIC_BEZIER:"cubic-bezier(.3,.95,.5,1)",MAX_ANIMATION_TIME_MS:400};/**
    Material design: [Dropdown
    buttons](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
    
@@ -12455,6 +12076,571 @@ this._dropdownContent=this.contentElement;this.fire("paper-dropdown-open")}else 
    *
    * @param {boolean} disabled True if disabled, otherwise false.
    */_disabledChanged:function(disabled){IronControlState._disabledChanged.apply(this,arguments);if(disabled&&this.opened){this.close()}},__onIronOverlayCanceled:function(event){var uiEvent=event.detail,trigger=this.$.trigger,path=dom(uiEvent).path;if(-1<path.indexOf(trigger)){event.preventDefault()}}});_exports.PaperMenuButton=PaperMenuButton;Object.keys(config).forEach(function(key){PaperMenuButton[key]=config[key]});var paperMenuButton={PaperMenuButton:PaperMenuButton};_exports.$paperMenuButton=paperMenuButton;Polymer({_template:html`
+    <style include="paper-dropdown-menu-shared-styles"></style>
+
+    <!-- this div fulfills an a11y requirement for combobox, do not remove -->
+    <span role="button"></span>
+    <paper-menu-button id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" dynamic-align="[[dynamicAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]" restore-focus-on-close="[[restoreFocusOnClose]]">
+      <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
+      <div class="dropdown-trigger" slot="dropdown-trigger">
+        <paper-ripple></paper-ripple>
+        <!-- paper-input has type="text" for a11y, do not remove -->
+        <paper-input type="text" invalid="[[invalid]]" readonly disabled="[[disabled]]" value="[[value]]" placeholder="[[placeholder]]" error-message="[[errorMessage]]" always-float-label="[[alwaysFloatLabel]]" no-label-float="[[noLabelFloat]]" label="[[label]]">
+          <!-- support hybrid mode: user might be using paper-input 1.x which distributes via <content> -->
+          <iron-icon icon="paper-dropdown-menu:arrow-drop-down" suffix slot="suffix"></iron-icon>
+        </paper-input>
+      </div>
+      <slot id="content" name="dropdown-content" slot="dropdown-content"></slot>
+    </paper-menu-button>
+`,is:"paper-dropdown-menu",behaviors:[IronButtonState,IronControlState,IronFormElementBehavior,IronValidatableBehavior],properties:{/**
+     * The derived "label" of the currently selected item. This value
+     * is the `label` property on the selected item if set, or else the
+     * trimmed text content of the selected item.
+     */selectedItemLabel:{type:String,notify:!0,readOnly:!0},/**
+     * The last selected item. An item is selected if the dropdown menu has
+     * a child with slot `dropdown-content`, and that child triggers an
+     * `iron-select` event with the selected `item` in the `detail`.
+     *
+     * @type {?Object}
+     */selectedItem:{type:Object,notify:!0,readOnly:!0},/**
+     * The value for this element that will be used when submitting in
+     * a form. It reflects the value of `selectedItemLabel`. If set directly,
+     * it will not update the `selectedItemLabel` value.
+     */value:{type:String,notify:!0},/**
+     * The label for the dropdown.
+     */label:{type:String},/**
+     * The placeholder for the dropdown.
+     */placeholder:{type:String},/**
+     * The error message to display when invalid.
+     */errorMessage:{type:String},/**
+     * True if the dropdown is open. Otherwise, false.
+     */opened:{type:Boolean,notify:!0,value:!1,observer:"_openedChanged"},/**
+     * By default, the dropdown will constrain scrolling on the page
+     * to itself when opened.
+     * Set to true in order to prevent scroll from being constrained
+     * to the dropdown when it opens.
+     */allowOutsideScroll:{type:Boolean,value:!1},/**
+     * Set to true to disable the floating label. Bind this to the
+     * `<paper-input-container>`'s `noLabelFloat` property.
+     */noLabelFloat:{type:Boolean,value:!1,reflectToAttribute:!0},/**
+     * Set to true to always float the label. Bind this to the
+     * `<paper-input-container>`'s `alwaysFloatLabel` property.
+     */alwaysFloatLabel:{type:Boolean,value:!1},/**
+     * Set to true to disable animations when opening and closing the
+     * dropdown.
+     */noAnimations:{type:Boolean,value:!1},/**
+     * The orientation against which to align the menu dropdown
+     * horizontally relative to the dropdown trigger.
+     */horizontalAlign:{type:String,value:"right"},/**
+     * The orientation against which to align the menu dropdown
+     * vertically relative to the dropdown trigger.
+     */verticalAlign:{type:String,value:"top"},/**
+     * Overrides the vertical offset computed in
+     * _computeMenuVerticalOffset.
+     */verticalOffset:Number,/**
+     * If true, the `horizontalAlign` and `verticalAlign` properties will
+     * be considered preferences instead of strict requirements when
+     * positioning the dropdown and may be changed if doing so reduces
+     * the area of the dropdown falling outside of `fitInto`.
+     */dynamicAlign:{type:Boolean},/**
+     * Whether focus should be restored to the dropdown when the menu closes.
+     */restoreFocusOnClose:{type:Boolean,value:!0}},listeners:{tap:"_onTap"},/**
+   * @type {!Object}
+   */keyBindings:{"up down":"open",esc:"close"},hostAttributes:{role:"combobox","aria-autocomplete":"none","aria-haspopup":"true"},observers:["_selectedItemChanged(selectedItem)"],attached:function(){// NOTE(cdata): Due to timing, a preselected value in a `IronSelectable`
+// child will cause an `iron-select` event to fire while the element is
+// still in a `DocumentFragment`. This has the effect of causing
+// handlers not to fire. So, we double check this value on attached:
+var contentElement=this.contentElement;if(contentElement&&contentElement.selectedItem){this._setSelectedItem(contentElement.selectedItem)}},/**
+   * The content element that is contained by the dropdown menu, if any.
+   */get contentElement(){// Polymer 2.x returns slot.assignedNodes which can contain text nodes.
+for(var nodes=dom(this.$.content).getDistributedNodes(),i=0,l=nodes.length;i<l;i++){if(nodes[i].nodeType===Node.ELEMENT_NODE){return nodes[i]}}},/**
+   * Show the dropdown content.
+   */open:function(){this.$.menuButton.open()},/**
+   * Hide the dropdown content.
+   */close:function(){this.$.menuButton.close()},/**
+   * A handler that is called when `iron-select` is fired.
+   *
+   * @param {CustomEvent} event An `iron-select` event.
+   */_onIronSelect:function(event){this._setSelectedItem(event.detail.item)},/**
+   * A handler that is called when `iron-deselect` is fired.
+   *
+   * @param {CustomEvent} event An `iron-deselect` event.
+   */_onIronDeselect:function(event){this._setSelectedItem(null)},/**
+   * A handler that is called when the dropdown is tapped.
+   *
+   * @param {CustomEvent} event A tap event.
+   */_onTap:function(event){if(findOriginalTarget(event)===this){this.open()}},/**
+   * Compute the label for the dropdown given a selected item.
+   *
+   * @param {Element} selectedItem A selected Element item, with an
+   * optional `label` property.
+   */_selectedItemChanged:function(selectedItem){var value="";if(!selectedItem){value=""}else{value=selectedItem.label||selectedItem.getAttribute("label")||selectedItem.textContent.trim()}this.value=value;this._setSelectedItemLabel(value)},/**
+   * Compute the vertical offset of the menu based on the value of
+   * `noLabelFloat`.
+   *
+   * @param {boolean} noLabelFloat True if the label should not float
+   * @param {number=} opt_verticalOffset Optional offset from the user
+   * above the input, otherwise false.
+   */_computeMenuVerticalOffset:function(noLabelFloat,opt_verticalOffset){// Override offset if it's passed from the user.
+if(opt_verticalOffset){return opt_verticalOffset}// NOTE(cdata): These numbers are somewhat magical because they are
+// derived from the metrics of elements internal to `paper-input`'s
+// template. The metrics will change depending on whether or not the
+// input has a floating label.
+return noLabelFloat?-4:8},/**
+   * Returns false if the element is required and does not have a selection,
+   * and true otherwise.
+   * @param {*=} _value Ignored.
+   * @return {boolean} true if `required` is false, or if `required` is true
+   * and the element has a valid selection.
+   */_getValidity:function(_value){return this.disabled||!this.required||this.required&&!!this.value},_openedChanged:function(){var openState=this.opened?"true":"false",e=this.contentElement;if(e){e.setAttribute("aria-expanded",openState)}}});const template$8=html`
+  <style include="paper-material-styles">
+    :host {
+      @apply --layout-vertical;
+      @apply --layout-center-center;
+
+      background: var(--paper-fab-background, var(--accent-color));
+      border-radius: 50%;
+      box-sizing: border-box;
+      color: var(--text-primary-color);
+      cursor: pointer;
+      height: 56px;
+      min-width: 0;
+      outline: none;
+      padding: 16px;
+      position: relative;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      width: 56px;
+      z-index: 0;
+
+      /* NOTE: Both values are needed, since some phones require the value \`transparent\`. */
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
+
+      @apply --paper-fab;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    :host([mini]) {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+
+      @apply --paper-fab-mini;
+    }
+
+    :host([disabled]) {
+      color: var(--paper-fab-disabled-text, var(--paper-grey-500));
+      background: var(--paper-fab-disabled-background, var(--paper-grey-300));
+
+      @apply --paper-fab-disabled;
+    }
+
+    iron-icon {
+      @apply --paper-fab-iron-icon;
+    }
+
+    span {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+
+      @apply --paper-fab-label;
+    }
+
+    :host(.keyboard-focus) {
+      background: var(--paper-fab-keyboard-focus-background, var(--paper-pink-900));
+    }
+
+    :host([elevation="1"]) {
+      @apply --paper-material-elevation-1;
+    }
+
+    :host([elevation="2"]) {
+      @apply --paper-material-elevation-2;
+    }
+
+    :host([elevation="3"]) {
+      @apply --paper-material-elevation-3;
+    }
+
+    :host([elevation="4"]) {
+      @apply --paper-material-elevation-4;
+    }
+
+    :host([elevation="5"]) {
+      @apply --paper-material-elevation-5;
+    }
+  </style>
+
+  <iron-icon id="icon" hidden\$="{{!_computeIsIconFab(icon, src)}}" src="[[src]]" icon="[[icon]]"></iron-icon>
+  <span hidden\$="{{_computeIsIconFab(icon, src)}}">{{label}}</span>
+`;template$8.setAttribute("strip-whitespace","");/**
+                                                 Material design: [Floating Action
+                                                 Button](https://www.google.com/design/spec/components/buttons-floating-action-button.html)
+                                                                                               `paper-fab` is a floating action button. It contains an image placed in the
+                                                 center and comes in two sizes: regular size and a smaller size by applying the
+                                                 attribute `mini`. When the user touches the button, a ripple effect emanates
+                                                 from the center of the button.
+                                                                                               You may import `iron-icons` to use with this element, or provide a URL to a
+                                                 custom icon. See `iron-iconset` for more information about how to use a custom
+                                                 icon set.
+                                                                                               Example:
+                                                                                                   <script type="module">
+                                                     import '@polymer/iron-icons/iron-icons.js';
+                                                   </script>
+                                                                                                   <paper-fab icon="add"></paper-fab>
+                                                   <paper-fab mini icon="favorite"></paper-fab>
+                                                   <paper-fab src="star.png"></paper-fab>
+                                                                                               
+                                                 ### Styling
+                                                                                               The following custom properties and mixins are available for styling:
+                                                                                               Custom property | Description | Default
+                                                 ----------------|-------------|----------
+                                                 `--paper-fab-background` | The background color of the button | `--accent-color`
+                                                 `--paper-fab-keyboard-focus-background` | The background color of the button when focused | `--paper-pink-900`
+                                                 `--paper-fab-disabled-background` | The background color of the button when it's disabled | `--paper-grey-300`
+                                                 `--paper-fab-disabled-text` | The text color of the button when it's disabled | `--paper-grey-500`
+                                                 `--paper-fab` | Mixin applied to the button | `{}`
+                                                 `--paper-fab-mini` | Mixin applied to a mini button | `{}`
+                                                 `--paper-fab-disabled` | Mixin applied to a disabled button | `{}`
+                                                 `--paper-fab-iron-icon` | Mixin applied to the iron-icon within the button | `{}`
+                                                 `--paper-fab-label` | Mixin applied to the label within the button | `{}`
+                                                                                               @group Paper Elements
+                                                 @demo demo/index.html
+                                                 */Polymer({_template:template$8,is:"paper-fab",behaviors:[PaperButtonBehavior],properties:{/**
+     * The URL of an image for the icon. If the src property is specified,
+     * the icon property should not be.
+     */src:{type:String,value:""},/**
+     * Specifies the icon name or index in the set of icons available in
+     * the icon's icon set. If the icon property is specified,
+     * the src property should not be.
+     */icon:{type:String,value:""},/**
+     * Set this to true to style this is a "mini" FAB.
+     */mini:{type:Boolean,value:!1,reflectToAttribute:!0},/**
+     * The label displayed in the badge. The label is centered, and ideally
+     * should have very few characters.
+     */label:{type:String,observer:"_labelChanged"}},_labelChanged:function(){this.setAttribute("aria-label",this.label)},_computeIsIconFab:function(icon,src){return 0<icon.length||0<src.length}});Polymer({is:"paper-icon-button",_template:html`
+    <style>
+      :host {
+        display: inline-block;
+        position: relative;
+        padding: 8px;
+        outline: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+        line-height: 1;
+
+        width: 40px;
+        height: 40px;
+
+        /*
+          NOTE: Both values are needed, since some phones require the value to
+          be \`transparent\`.
+        */
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+
+        /* Because of polymer/2558, this style has lower specificity than * */
+        box-sizing: border-box !important;
+
+        @apply --paper-icon-button;
+      }
+
+      :host #ink {
+        color: var(--paper-icon-button-ink-color, var(--primary-text-color));
+        opacity: 0.6;
+      }
+
+      :host([disabled]) {
+        color: var(--paper-icon-button-disabled-text, var(--disabled-text-color));
+        pointer-events: none;
+        cursor: auto;
+
+        @apply --paper-icon-button-disabled;
+      }
+
+      :host([hidden]) {
+        display: none !important;
+      }
+
+      :host(:hover) {
+        @apply --paper-icon-button-hover;
+      }
+
+      iron-icon {
+        --iron-icon-width: 100%;
+        --iron-icon-height: 100%;
+      }
+    </style>
+
+    <iron-icon id="icon" src="[[src]]" icon="[[icon]]"
+               alt$="[[alt]]"></iron-icon>
+  `,hostAttributes:{role:"button",tabindex:"0"},behaviors:[PaperInkyFocusBehavior],registered:function(){this._template.setAttribute("strip-whitespace","")},properties:{/**
+     * The URL of an image for the icon. If the src property is specified,
+     * the icon property should not be.
+     */src:{type:String},/**
+     * Specifies the icon name or index in the set of icons available in
+     * the icon's icon set. If the icon property is specified,
+     * the src property should not be.
+     */icon:{type:String},/**
+     * Specifies the alternate text for the button, for accessibility.
+     */alt:{type:String,observer:"_altChanged"}},_altChanged:function(newValue,oldValue){var label=this.getAttribute("aria-label");// Don't stomp over a user-set aria-label.
+if(!label||oldValue==label){this.setAttribute("aria-label",newValue)}}});Polymer({_template:html`
+    <style>
+      :host {
+        display: block;
+      }
+
+      :host([hidden]) {
+        display: none !important;
+      }
+
+      label {
+        pointer-events: none;
+      }
+    </style>
+
+    <paper-input-container no-label-float$="[[noLabelFloat]]" always-float-label="[[_computeAlwaysFloatLabel(alwaysFloatLabel,placeholder)]]" auto-validate$="[[autoValidate]]" disabled$="[[disabled]]" invalid="[[invalid]]">
+
+      <label hidden$="[[!label]]" aria-hidden="true" for$="[[_inputId]]" slot="label">[[label]]</label>
+
+      <iron-autogrow-textarea class="paper-input-input" slot="input" id$="[[_inputId]]" aria-labelledby$="[[_ariaLabelledBy]]" aria-describedby$="[[_ariaDescribedBy]]" bind-value="{{value}}" invalid="{{invalid}}" validator$="[[validator]]" disabled$="[[disabled]]" autocomplete$="[[autocomplete]]" autofocus$="[[autofocus]]" inputmode$="[[inputmode]]" name$="[[name]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" required$="[[required]]" minlength$="[[minlength]]" maxlength$="[[maxlength]]" autocapitalize$="[[autocapitalize]]" rows$="[[rows]]" max-rows$="[[maxRows]]" on-change="_onChange"></iron-autogrow-textarea>
+
+      <template is="dom-if" if="[[errorMessage]]">
+        <paper-input-error aria-live="assertive" slot="add-on">[[errorMessage]]</paper-input-error>
+      </template>
+
+      <template is="dom-if" if="[[charCounter]]">
+        <paper-input-char-counter slot="add-on"></paper-input-char-counter>
+      </template>
+
+    </paper-input-container>
+`,is:"paper-textarea",behaviors:[PaperInputBehavior,IronFormElementBehavior],properties:{_ariaLabelledBy:{observer:"_ariaLabelledByChanged",type:String},_ariaDescribedBy:{observer:"_ariaDescribedByChanged",type:String},value:{// Required for the correct TypeScript type-generation
+type:String},/**
+     * The initial number of rows.
+     *
+     * @attribute rows
+     * @type {number}
+     * @default 1
+     */rows:{type:Number,value:1},/**
+     * The maximum number of rows this element can grow to until it
+     * scrolls. 0 means no maximum.
+     *
+     * @attribute maxRows
+     * @type {number}
+     * @default 0
+     */maxRows:{type:Number,value:0}},/**
+   * @return {number}
+   */get selectionStart(){return this.$.input.textarea.selectionStart},set selectionStart(start){this.$.input.textarea.selectionStart=start},/**
+   * @return {number}
+   */get selectionEnd(){return this.$.input.textarea.selectionEnd},set selectionEnd(end){this.$.input.textarea.selectionEnd=end},_ariaLabelledByChanged:function(ariaLabelledBy){this._focusableElement.setAttribute("aria-labelledby",ariaLabelledBy)},_ariaDescribedByChanged:function(ariaDescribedBy){this._focusableElement.setAttribute("aria-describedby",ariaDescribedBy)},get _focusableElement(){return this.inputElement.textarea}});const $_documentContainer$3=document.createElement("template");$_documentContainer$3.setAttribute("style","display: none;");$_documentContainer$3.innerHTML=`<dom-module id="paper-item-shared-styles">
+  <template>
+    <style>
+      :host, .paper-item {
+        display: block;
+        position: relative;
+        min-height: var(--paper-item-min-height, 48px);
+        padding: 0px 16px;
+      }
+
+      .paper-item {
+        @apply --paper-font-subhead;
+        border:none;
+        outline: none;
+        background: white;
+        width: 100%;
+        text-align: left;
+      }
+
+      :host([hidden]), .paper-item[hidden] {
+        display: none !important;
+      }
+
+      :host(.iron-selected), .paper-item.iron-selected {
+        font-weight: var(--paper-item-selected-weight, bold);
+
+        @apply --paper-item-selected;
+      }
+
+      :host([disabled]), .paper-item[disabled] {
+        color: var(--paper-item-disabled-color, var(--disabled-text-color));
+
+        @apply --paper-item-disabled;
+      }
+
+      :host(:focus), .paper-item:focus {
+        position: relative;
+        outline: 0;
+
+        @apply --paper-item-focused;
+      }
+
+      :host(:focus):before, .paper-item:focus:before {
+        @apply --layout-fit;
+
+        background: currentColor;
+        content: '';
+        opacity: var(--dark-divider-opacity);
+        pointer-events: none;
+
+        @apply --paper-item-focused-before;
+      }
+    </style>
+  </template>
+</dom-module>`;document.head.appendChild($_documentContainer$3.content);const PaperItemBehaviorImpl={hostAttributes:{role:"option",tabindex:"0"}};/** @polymerBehavior */_exports.PaperItemBehaviorImpl=PaperItemBehaviorImpl;const PaperItemBehavior=[IronButtonState,IronControlState,PaperItemBehaviorImpl];_exports.PaperItemBehavior=PaperItemBehavior;var paperItemBehavior={PaperItemBehaviorImpl:PaperItemBehaviorImpl,PaperItemBehavior:PaperItemBehavior};_exports.$paperItemBehavior=paperItemBehavior;Polymer({_template:html`
+    <style include="paper-item-shared-styles">
+      :host {
+        @apply --layout-horizontal;
+        @apply --layout-center;
+        @apply --paper-font-subhead;
+
+        @apply --paper-item;
+      }
+    </style>
+    <slot></slot>
+`,is:"paper-item",behaviors:[PaperItemBehavior]});Polymer({_template:html`
+    <style>
+      :host {
+        overflow: hidden; /* needed for text-overflow: ellipsis to work on ff */
+        @apply --layout-vertical;
+        @apply --layout-center-justified;
+        @apply --layout-flex;
+      }
+
+      :host([two-line]) {
+        min-height: var(--paper-item-body-two-line-min-height, 72px);
+      }
+
+      :host([three-line]) {
+        min-height: var(--paper-item-body-three-line-min-height, 88px);
+      }
+
+      :host > ::slotted(*) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      :host > ::slotted([secondary]) {
+        @apply --paper-font-body1;
+
+        color: var(--paper-item-body-secondary-color, var(--secondary-text-color));
+
+        @apply --paper-item-body-secondary;
+      }
+    </style>
+
+    <slot></slot>
+`,is:"paper-item-body"});Polymer({_template:html`
+    <style include="paper-item-shared-styles"></style>
+    <style>
+      :host {
+        @apply --layout-horizontal;
+        @apply --layout-center;
+        @apply --paper-font-subhead;
+
+        @apply --paper-item;
+        @apply --paper-icon-item;
+      }
+
+      .content-icon {
+        @apply --layout-horizontal;
+        @apply --layout-center;
+
+        width: var(--paper-item-icon-width, 56px);
+        @apply --paper-item-icon;
+      }
+    </style>
+
+    <div id="contentIcon" class="content-icon">
+      <slot name="item-icon"></slot>
+    </div>
+    <slot></slot>
+`,is:"paper-icon-item",behaviors:[PaperItemBehavior]});Polymer({_template:html`
+    <style>
+      :host {
+        display: block;
+        padding: 8px 0;
+
+        background: var(--paper-listbox-background-color, var(--primary-background-color));
+        color: var(--paper-listbox-color, var(--primary-text-color));
+
+        @apply --paper-listbox;
+      }
+    </style>
+
+    <slot></slot>
+`,is:"paper-listbox",behaviors:[IronMenuBehavior],/** @private */hostAttributes:{role:"listbox"}});const template$9=html`
+<dom-module id="paper-material-shared-styles">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+      }
+
+      :host([elevation="1"]) {
+        @apply --shadow-elevation-2dp;
+      }
+
+      :host([elevation="2"]) {
+        @apply --shadow-elevation-4dp;
+      }
+
+      :host([elevation="3"]) {
+        @apply --shadow-elevation-6dp;
+      }
+
+      :host([elevation="4"]) {
+        @apply --shadow-elevation-8dp;
+      }
+
+      :host([elevation="5"]) {
+        @apply --shadow-elevation-16dp;
+      }
+    </style>
+  </template>
+</dom-module>
+`;template$9.setAttribute("style","display: none;");document.body.appendChild(template$9.content);Polymer({_template:html`
+    <style include="paper-material-shared-styles"></style>
+    <style>
+      :host([animated]) {
+        @apply --shadow-transition;
+      }
+      :host {
+        @apply --paper-material;
+      }
+    </style>
+
+    <slot></slot>
+`,is:"paper-material",properties:{/**
+     * The z-depth of this element, from 0-5. Setting to 0 will remove the
+     * shadow, and each increasing number greater than 0 will be "deeper"
+     * than the last.
+     *
+     * @attribute elevation
+     * @type number
+     * @default 1
+     */elevation:{type:Number,reflectToAttribute:!0,value:1},/**
+     * Set this to true to animate the shadow when setting a new
+     * `elevation` value.
+     *
+     * @attribute animated
+     * @type boolean
+     * @default false
+     */animated:{type:Boolean,reflectToAttribute:!0,value:!1}}});Polymer({_template:html`
     <style>
       :host {
         display: block;
@@ -13034,7 +13220,7 @@ if("loading"===alt){this.alt=this.getAttribute("aria-label")||alt}else{this.__se
    found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
    part of the polymer project is also subject to an additional IP rights grant
    found at http://polymer.github.io/PATENTS.txt
-   */_exports.$paperSpinnerBehavior=paperSpinnerBehavior;const $_documentContainer$2=document.createElement("template");$_documentContainer$2.setAttribute("style","display: none;");$_documentContainer$2.innerHTML=`<dom-module id="paper-spinner-styles">
+   */_exports.$paperSpinnerBehavior=paperSpinnerBehavior;const $_documentContainer$4=document.createElement("template");$_documentContainer$4.setAttribute("style","display: none;");$_documentContainer$4.innerHTML=`<dom-module id="paper-spinner-styles">
   <template>
     <style>
       /*
@@ -13362,7 +13548,7 @@ if("loading"===alt){this.alt=this.getAttribute("aria-label")||alt}else{this.__se
       }
     </style>
   </template>
-</dom-module>`;document.head.appendChild($_documentContainer$2.content);const template$b=html`
+</dom-module>`;document.head.appendChild($_documentContainer$4.content);const template$b=html`
   <style include="paper-spinner-styles"></style>
 
   <div id="spinnerContainer" class-name="[[__computeContainerClasses(active, __coolingDown)]]" on-animationend="__reset" on-webkit-animation-end="__reset">
@@ -15083,7 +15269,7 @@ const fragment=document.importNode(template.content,!0);part.setValue(fragment);
                                        * Note, this is unsafe to use with any user-provided input that hasn't been
                                        * sanitized or escaped, as it may lead to cross-site-scripting
                                        * vulnerabilities.
-                                       */_exports.unsafeHTML=unsafeHTML;var unsafeHtml={unsafeHTML:unsafeHTML};_exports.$unsafeHtml=unsafeHtml;const $_documentContainer$3=document.createElement("template");$_documentContainer$3.innerHTML=`<dom-module id="paper-share-button">
+                                       */_exports.unsafeHTML=unsafeHTML;var unsafeHtml={unsafeHTML:unsafeHTML};_exports.$unsafeHtml=unsafeHtml;const $_documentContainer$5=document.createElement("template");$_documentContainer$5.innerHTML=`<dom-module id="paper-share-button">
     <iron-iconset-svg name="custom" size="24">
         <svg><defs>
     <g id="share"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"></path></g>
@@ -15166,7 +15352,7 @@ const fragment=document.importNode(template.content,!0);part.setValue(fragment);
   </template>
 
     
-</dom-module>`;document.head.appendChild($_documentContainer$3.content);Polymer({is:"paper-share-button",properties:{/** URL to share. Don't forget to use http:// or https:// at the beginning of the url! */url:{type:String},/** Use window.location.href as url. (Only if the url is not set) */autoUrl:{type:Boolean},/** The icon for the button (share icon by default)*/buttonIcon:{type:String,value:"custom:share"},/** text to share with the URL. (Compatible w/ Twitter / Reddit / Blogger) */sharingText:{type:String,value:""},/** Set to true to make all the logo black & white */monochrome:{type:Boolean,value:!1},/** Enable Popup sharing. Only working with compatible website (Facebook, Google Plus, Twitter)*/popup:{type:Boolean,value:!1},/** Set to true to enable share with email (mailto) */email:{type:Boolean,value:!1},/** Set to true to enable share with Facebook */facebook:{type:Boolean,value:!1},/** Set to true to enable share with Google Plus */google:{type:Boolean,value:!1},/** Set to true to enable share with Twitter */twitter:{type:Boolean,value:!1},/** Set to true to enable share with Reddit */reddit:{type:Boolean,value:!1},/** Set to true to enable share with VK */vk:{type:Boolean,value:!1},/** Set to true to enable share with Blogger */blogger:{type:Boolean,value:!1},/** Set to true to enable share with Tumblr */tumblr:{type:Boolean,value:!1},horizontalAlign:{type:String,value:"left"}},_share:function(event){var element=dom(event).localTarget;if(!this.url&&this.autoUrl){this.url=window.location.href}if(this.url){this.fire("share-tap",{brand:element.icon});if(this.popup){switch(element.icon){case"brand:facebook":this._openPopup(element.getAttribute("href"),"Sharing",600,375);break;case"brand:google":this._openPopup(element.getAttribute("href"),"Sharing",400,445);break;case"brand:twitter":this._openPopup(element.getAttribute("href"),"Sharing",500,230);break;default:window.open(element.getAttribute("href"),"Sharing");}}else{window.open(element.getAttribute("href"),"Sharing")}}else{console.error("Impossible to share, no url set")}this.$.shareMenu.close()},_openPopup:function(url,title,w,h){//Center and open the popup.
+</dom-module>`;document.head.appendChild($_documentContainer$5.content);Polymer({is:"paper-share-button",properties:{/** URL to share. Don't forget to use http:// or https:// at the beginning of the url! */url:{type:String},/** Use window.location.href as url. (Only if the url is not set) */autoUrl:{type:Boolean},/** The icon for the button (share icon by default)*/buttonIcon:{type:String,value:"custom:share"},/** text to share with the URL. (Compatible w/ Twitter / Reddit / Blogger) */sharingText:{type:String,value:""},/** Set to true to make all the logo black & white */monochrome:{type:Boolean,value:!1},/** Enable Popup sharing. Only working with compatible website (Facebook, Google Plus, Twitter)*/popup:{type:Boolean,value:!1},/** Set to true to enable share with email (mailto) */email:{type:Boolean,value:!1},/** Set to true to enable share with Facebook */facebook:{type:Boolean,value:!1},/** Set to true to enable share with Google Plus */google:{type:Boolean,value:!1},/** Set to true to enable share with Twitter */twitter:{type:Boolean,value:!1},/** Set to true to enable share with Reddit */reddit:{type:Boolean,value:!1},/** Set to true to enable share with VK */vk:{type:Boolean,value:!1},/** Set to true to enable share with Blogger */blogger:{type:Boolean,value:!1},/** Set to true to enable share with Tumblr */tumblr:{type:Boolean,value:!1},horizontalAlign:{type:String,value:"left"}},_share:function(event){var element=dom(event).localTarget;if(!this.url&&this.autoUrl){this.url=window.location.href}if(this.url){this.fire("share-tap",{brand:element.icon});if(this.popup){switch(element.icon){case"brand:facebook":this._openPopup(element.getAttribute("href"),"Sharing",600,375);break;case"brand:google":this._openPopup(element.getAttribute("href"),"Sharing",400,445);break;case"brand:twitter":this._openPopup(element.getAttribute("href"),"Sharing",500,230);break;default:window.open(element.getAttribute("href"),"Sharing");}}else{window.open(element.getAttribute("href"),"Sharing")}}else{console.error("Impossible to share, no url set")}this.$.shareMenu.close()},_openPopup:function(url,title,w,h){//Center and open the popup.
 var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+window.top.screenX-w/2;window.open(url,title,"width="+w+", height="+h+", top="+y+", left="+x)}});/**
     @license
     Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
@@ -18444,10 +18630,12 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
     margin-bottom: 16px;
     font-weight: bold;
     background-color: var(--app-country-header-background-color, #e9bf29);
-    color: var(--app-country-header-color, #000);
+    color: var(--app-country-header-color, #1d5588);
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
+    padding-top: 2px;
+    text-align: center;
   }
 
   .subHeader {
@@ -18456,6 +18644,7 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
     margin-bottom: 16px;
     padding-left: 16px;
     padding-right: 16px;
+    font-weight: bold;
   }
 
   .subHeader.noBottom {
@@ -18465,6 +18654,7 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
   .topContainer {
     margin-top: 32px;
     max-width: 600px;
+    width: 600px;
     background-color: var(--app-create-country-background-color, #1d5588);
     color: var(--app-create-country-color, #fff);
     padding-top: 16px;
@@ -18496,8 +18686,8 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
   .column {
     margin-left: 16px;
     margin-right: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   paper-button {
@@ -18540,6 +18730,31 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
     --paper-input-container-color:  var(--app-create-country-slider-active-color, #e9bf29);
     --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #e9bf29);
     --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #e9bf29);
+  }
+
+  .dropDownContainer {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  paper-dropdown-menu {
+    --paper-input-container-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-input: {
+      font-size: 30px;
+    };
+    --paper-dropdown-menu-input: {
+      --paper-input-container-input: {
+        font-size: 30px;
+      }
+    }
+    color: #FFF;
+    width: 100%;
   }
 
   @media (max-width: 450px) {
@@ -18879,12 +19094,21 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
                 0 9px 46px 8px rgba(0, 0, 0, 0.12),
                 0 11px 15px -7px rgba(0, 0, 0, 0.4);
   }
-`;_exports.OapShadowStyles=OapShadowStyles;var oapShadowStyles={OapShadowStyles:OapShadowStyles};_exports.$oapShadowStyles=oapShadowStyles;class OapCountryCreation extends OapPageViewElement{static get properties(){return{country:Object}}static get styles(){return[OapCountryCreationStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.reset()}reset(){this.country={name:"",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,socialProgressEgalitariansism:0}}}render(){return html$1`
+`;_exports.OapShadowStyles=OapShadowStyles;var oapShadowStyles={OapShadowStyles:OapShadowStyles};_exports.$oapShadowStyles=oapShadowStyles;class OapCountryCreation extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean}}static get styles(){return[OapCountryCreationStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.reset()}reset(){this.customCountry=!1;this.country={name:"",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,socialProgressEgalitariansism:0}};this.countryList=[{name:"Happy Arctic Island Nation Now (Iceland)",description:"Behind just a few of their Scandanavian cousins to the East on the list of the world\u2019s happiest nations, these island people are an engaged, educated, industrious, forward-thinking, largely homogeneous population in the throes of redesigning their constitution. Can you help them?",population:"340.000",geographicalSize:"103K",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:1,liberty:2,science:2,tradition:2,collective:2,independence:2,privacy:2,lawAndOrder:1,socialProgressEgalitariansism:1}},{name:"Nordic Peninsular Kingdom 1849 (Denmark\u2019s June 5)",description:"Against the backdrop of revolutions sweeping other Western European nations, with the territorial questions around Holstein and Schleswig threatening to boil over, and on the advice of his dying father, Fredrick VII undertakes the major step of relinquishing his absolutist monarchy, and framing a constitution to take Denmark into an era of fledgling democracy. Do you think you could do a better job than he did?",population:"1.4M",geographicalSize:"43K",naturalResourceWealth:1,borderDensity:1,hostilityNeighboringCountries:1,barrieresToCitizenship:0,culturalAttitutes:{authority:2,liberty:1,science:0,tradition:2,collective:1,independence:0,privacy:1,lawAndOrder:2,socialProgressEgalitariansism:0}},{name:"13 Colonies 1783 (US Constitutional Convention)",description:"A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",population:"2.7M",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:0,hostilityNeighboringCountries:2,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:2,science:2,tradition:0,collective:1,independence:2,privacy:2,lawAndOrder:1,socialProgressEgalitariansism:1}},{name:"\u2018Murica Now (US currently)",description:"The first Democratic nation in the world, this nation has grown from 13 to 50 states since its constitution was first written. It rode the wave of Economic development following World War 2 to become the undeniable Super Power of the 20th Century; now it finds itself floundering in a constitutional crisis at the beginning of the 21st. Help this nation write a new constitution that reflects the new nation it has become!",population:"350M",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:2,liberty:2,science:1,tradition:2,collective:0,independence:2,privacy:0,lawAndOrder:1,socialProgressEgalitariansism:1}},{name:"Islamic Revolutionary Republic 1979 (Iran at fall of Shah)",description:"After the Fall of the Shah, the Ayatollah Khomeini returns from exile in Paris with a rough draft of a constitution that mixes elements of the Quran and the Fifth French Constitution; it goes through many revisions as the Islamic Revolutionary movement crafts a Theocracy that reflects the cultural values that lead them to revolt against a Shah propped up by the infidels in the CIA. Think you understand a population like that well enough to frame a constitution they will think is just and righteous?",population:"37M",geographicalSize:"1.6M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:2,barrieresToCitizenship:2,culturalAttitutes:{authority:2,liberty:0,science:1,tradition:2,collective:2,independence:2,privacy:0,lawAndOrder:2,socialProgressEgalitariansism:0}},{name:"Jolly Island Kingdom Now (Brexit Era UK - time to codify?)",description:"It\u2019s a certain Kingdom that\u2019s not looking very \u201CUnited\u201D these days -- can a well engineered 19th Century Constitutional Monarchy with an uncodified jurisprudence tradition make it in the 21st Century? Could you codify their constitution for the future to make a better island nation?",population:"66M",geographicalSize:"242K",naturalResourceWealth:1,borderDensity:1,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:2,liberty:2,science:1,tradition:2,collective:1,independence:2,privacy:0,lawAndOrder:2,socialProgressEgalitariansism:1}},{name:"Pseudo-Communist Asian Superpower Now (Mainland China)",description:"Once this nation was Chung-Kuo, the Middle Kingdom, the center of the universe. After a tumultuous history of 19th Century abuse at the hands of the colonial powers, and a 20th Century of war, famine, and autocratic rule, at the beginning of the 21st Century it is poised to become the greatest economic superpower the world has ever known, while internal democratic forces threaten to tear its autocracy apart. Can you imagine a new constitution for the future of the world\u2019s most populous nation?",population:"1.4B",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:1,barrieresToCitizenship:2,culturalAttitutes:{authority:2,liberty:0,science:2,tradition:2,collective:2,independence:2,privacy:0,lawAndOrder:2,socialProgressEgalitariansism:0}},{name:"Future Land (Imaginary Utopian State)",description:"Dream of a perfect world, where everyone is equal, lives their lives in peace and tranquility with little suffering and injustice? Well, here\u2019s your chance to design a constitution for such a brave, new land.",population:"5M",geographicalSize:"500K",naturalResourceWealth:1,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:2,culturalAttitutes:{authority:1,liberty:2,science:2,tradition:0,collective:2,independence:0,privacy:2,lawAndOrder:2,socialProgressEgalitariansism:2}},{name:"Splinter State (Imaginary Anarchist State)",description:"Does the modern world seem like a terrible prison of rules, expectations and oppression? Do you yearn for a world with less structure, less people in your face telling you what to do? Well here is a country full of punk rock activists that want to live like you do! Can you design a constitution that holds this crazy kingdom together?",population:"5M",geographicalSize:"500K",naturalResourceWealth:1,borderDensity:0,hostilityNeighboringCountries:2,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:2,science:2,tradition:0,collective:0,independence:2,privacy:0,lawAndOrder:0,socialProgressEgalitariansism:1}},{name:"Custom country",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,socialProgressEgalitariansism:0}}]}render(){return html$1`
     <div class="layout vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="layout-inline vertical" style="width: 100%;">
-        <div class="header"><div style="padding: 8px">${this.localize("createYourCountry")}</div></div>
+          <div class="header"><div style="padding: 8px">${this.localize("createYourCountry")}</div></div>
 
+          <div class="dropDownContainer">
+            <paper-dropdown-menu .label="${this.localize("Choose a country or create your own")}" @selected-item-changed="${this.countrySelected}">
+              <paper-listbox slot="dropdown-content">
+                ${this.countryList.map((country,index)=>{return html$1`
+                    <paper-item data-id="${index}">${country.name}</paper-item>
+                  `})}
+              </paper-listbox>
+            </paper-dropdown-menu>
+          </div>
           <div class="subHeader noBottom">${this.localize("basicInformation")}</div>
 
           <paper-input id="name"
@@ -18892,6 +19116,7 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
                       type="text"
                       label="${this.localize("countryName")}"
                       .value="${this.country.name}"
+                      ?hidden="${!this.customCountry}"
                       maxlength="50"
                       char-counter>
           </paper-input>
@@ -18902,9 +19127,10 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
                           ?always-float-label="${this.country&&this.country.description}"
                           label="${this.localize("countryDescription")}"
                           char-counter
+                          ?char-counter="${this.customCountry}"
                           rows="2"
                           max-rows="5"
-                          maxlength="400">
+                          maxlength="500">
           </paper-textarea>
 
           <div class="subHeader cultural">${this.localize("culturalAttitude")}</div>
@@ -18914,36 +19140,36 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
               <div class="sliderHeader">${this.localize("authority")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.authority}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
             </paper-slider>
 
             <div class="sliderHeader">${this.localize("science")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.science}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
             </paper-slider>
 
             <div class="sliderHeader">${this.localize("collective")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.collective}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
             </paper-slider>
 
             <div class="sliderHeader">${this.localize("privacy")}</div>
             <paper-slider
               .value="${this.country.culturalAttitutes.privacy}"
-              max="10"
-              editable>
+              max="2" ?disabled="${!this.customCountry}"
+              >
             </paper-slider>
 
             <div class="sliderHeader">${this.localize("socialProgressEgalitarianism")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.socialProgressEgalitariansism}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
             </paper-slider>
           </div>
 
@@ -18951,29 +19177,29 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
               <div class="sliderHeader">${this.localize("liberty")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.liberty}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
               </paper-slider>
 
               <div class="sliderHeader">${this.localize("tradition")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.tradition}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
               </paper-slider>
 
               <div class="sliderHeader">${this.localize("independence")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.independence}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
               </paper-slider>
 
               <div class="sliderHeader">${this.localize("lawAndOrder")}</div>
               <paper-slider
                 .value="${this.country.culturalAttitutes.lawAndOrder}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
               </paper-slider>
 
             </div>
@@ -19004,43 +19230,43 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
               <div class="sliderHeader">${this.localize("naturalResourceWealth")}</div>
                 <paper-slider
                   .value="${this.country.naturalResourceWealth}"
-                  max="10"
-                  editable>
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
                 </paper-slider>
 
                 <div class="sliderHeader">${this.localize("borderDensity")}</div>
                 <paper-slider
                   .value="${this.country.borderDensity}"
-                  max="10"
-                  editable>
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
                 </paper-slider>
               </div>
             <div class="column">
               <div class="sliderHeader">${this.localize("hostilityNeighboringCountries")}</div>
               <paper-slider
                 .value="${this.country.hostilityNeighboringCountries}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
               </paper-slider>
 
               <div class="sliderHeader">${this.localize("barrieresToCitizenship")}</div>
               <paper-slider
                 .value="${this.country.barrieresToCitizenship}"
-                max="10"
-                editable>
+                max="2" ?disabled="${!this.customCountry}"
+                >
               </paper-slider>
             </div>
           </div>
 
           <div class="layout horizontal center-center">
-            <paper-button raised id="submitButton" class="buttton" @click="${()=>{this.fire("oap-country-created")}}">${this.localize("submit")}</paper-button>
+            <paper-button raised id="submitButton" class="buttton" @click="${()=>{this.fire("oap-country-created",this.country)}}">${this.localize("submit")}</paper-button>
           </div>
 
         </div>
       </div>
 
     </div>
-    `}updated(changedProps){super.updated(changedProps)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
+    `}countrySelected(event){const countryId=event.detail.value.dataset.id;this.country=this.countryList[event.detail.value.dataset.id];if(9==countryId){this.customCountry=!0;this.country.name=""}}updated(changedProps){super.updated(changedProps)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
 
   :host {
     width: 100%;
@@ -20943,7 +21169,7 @@ new Tween(item.object.rotation).to({x:"-"+Math.PI/2},350+65*index)// relative an
 .delay(0).on("complete",()=>{// Check that the full 360 degrees of rotation,
 // and calculate the remainder of the division to avoid overflow.
 //console.log("Rotate reset");
-item.object.rotation.y=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.object.rotation.y=item.object.rotation.y%(2*Math.PI)}}).start()})}_removeItemFromDiv(item){this.itemsInScene.forEach((sceneItem,index)=>{if(sceneItem.id==item.id){this.itemsInScene.splice(index,1);this.scene.remove(sceneItem.object);this.positionItems()}})}getItemLeftTop(item){var selectedItemDiv=this.$$("#item_id_"+item.id);if(selectedItemDiv){var buttonRect=selectedItemDiv.getBoundingClientRect(),left=(buttonRect.right-buttonRect.left)/2+buttonRect.left,top=(buttonRect.bottom-buttonRect.top)/2+buttonRect.top;if(this.wide){left=left-24;top=top-24}else{left=left-18;top=top-18}return{left:left,top:top}}else{console.error("Trying to get item that is not in the budget")}}toggleBudgetItem(item){this.activity("toggle","vote");if(-1<this.selectedItems.indexOf(item)){this.activity("remove","vote");this._removeItemFromArray(item);this._removeItemFromDiv(item);this.selectedItems=[...this.selectedItems];this.selectedBudget=this.selectedBudget-item.price;this.currentBallot.fire("oav-item-de-selected-from-budget",{itemId:item.id})}else{if(this.selectedBudget+item.price<=this.totalBudget){this.activity("add","vote");this.selectedItems.push(item);this.selectedItems=[...this.selectedItems];this._addItemToDiv(item);this.selectedBudget=this.selectedBudget+item.price;this.currentBallot.fire("oav-item-selected-in-budget",{itemId:item.id})}else{this.currentBallot.fire("oav-error",this.localize("error_does_not_fit_in_budget"))}}}toggleFavoriteItem(item){this.activity("toggle","favorite");if(this.favoriteItem!=item){if(item){this.activity("add","favorite")}else{this.activity("remove","favorite")}this.favoriteItem=item}}_removeItem(itemId){this.selectedItems.forEach(function(item){if(item.id==itemId){this.toggleBudgetItem(item)}}.bind(this))}convertDots(num){return num.replace(".",",")}}window.customElements.define("oap-3d-budget",Oap3dBudget);class OapApp extends OapBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,currentBallot:Object,currentBudget:Object,budgetElement:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String,filteredItems:Array,quizQuestions:Array,choicePoints:Number}}static get styles(){return[OapAppStyles,OapFlexLayout]}render(){let errorDialog=html$1`
+item.object.rotation.y=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.object.rotation.y=item.object.rotation.y%(2*Math.PI)}}).start()})}_removeItemFromDiv(item){this.itemsInScene.forEach((sceneItem,index)=>{if(sceneItem.id==item.id){this.itemsInScene.splice(index,1);this.scene.remove(sceneItem.object);this.positionItems()}})}getItemLeftTop(item){var selectedItemDiv=this.$$("#item_id_"+item.id);if(selectedItemDiv){var buttonRect=selectedItemDiv.getBoundingClientRect(),left=(buttonRect.right-buttonRect.left)/2+buttonRect.left,top=(buttonRect.bottom-buttonRect.top)/2+buttonRect.top;if(this.wide){left=left-24;top=top-24}else{left=left-18;top=top-18}return{left:left,top:top}}else{console.error("Trying to get item that is not in the budget")}}toggleBudgetItem(item){this.activity("toggle","vote");if(-1<this.selectedItems.indexOf(item)){this.activity("remove","vote");this._removeItemFromArray(item);this._removeItemFromDiv(item);this.selectedItems=[...this.selectedItems];this.selectedBudget=this.selectedBudget-item.price;this.currentBallot.fire("oav-item-de-selected-from-budget",{itemId:item.id})}else{if(this.selectedBudget+item.price<=this.totalBudget){this.activity("add","vote");this.selectedItems.push(item);this.selectedItems=[...this.selectedItems];this._addItemToDiv(item);this.selectedBudget=this.selectedBudget+item.price;this.currentBallot.fire("oav-item-selected-in-budget",{itemId:item.id})}else{this.currentBallot.fire("oav-error",this.localize("error_does_not_fit_in_budget"))}}}toggleFavoriteItem(item){this.activity("toggle","favorite");if(this.favoriteItem!=item){if(item){this.activity("add","favorite")}else{this.activity("remove","favorite")}this.favoriteItem=item}}_removeItem(itemId){this.selectedItems.forEach(function(item){if(item.id==itemId){this.toggleBudgetItem(item)}}.bind(this))}convertDots(num){return num.replace(".",",")}}window.customElements.define("oap-3d-budget",Oap3dBudget);class OapApp extends OapBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,currentBallot:Object,currentBudget:Object,budgetElement:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String,filteredItems:Array,quizQuestions:Array,choicePoints:Number,country:Object}}static get styles(){return[OapAppStyles,OapFlexLayout]}render(){let errorDialog=html$1`
       <paper-dialog id="errorDialog">
         <p id="errorText">${this.errorText}</p>
         <div class="buttons">
@@ -21078,7 +21304,7 @@ item.object.rotation.y=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
       `:html$1`${errorDialog}<paper-spinner active class="largeSpinner"></paper-spinner>`}
     `}constructor(){window.__localizationCache={messages:{}};super();setPassiveTouchGestures(!0);this._boot();var name="locale".replace(/[\[]/,"\\[").replace(/[\]]/,"\\]"),regex=new RegExp("[\\?&]"+name+"=([^&#]*)"),results=regex.exec(location.search),language=null===results?null:decodeURIComponent(results[1].replace(/\+/g," "));if(language){this.language=language;localStorage.setItem("languageOverride",language)}this.filteredItems=[];this.setDummyData()}setDummyData(){this.choicePoints=200;this.quizQuestions=[{question:"What is the shortest Constitution in the world?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",correctAnswer:2,answers:["Luxemburg","Andorra","Monaco","Bangladesh"]},{question:"When Oliver Cromwell set up his short-lived government following the English Civil war he created a constitution, but he called his document?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/cromwell1.jpg",correctAnswer:3,answers:["The Law of the Land","Principia Jurisprudencia","The Fiat of God\u2019s Will","The Instrument of Government"]},{question:"The Edicts of Ashoka established a constitutional code for the 3rd Century BC in what is now what modern country?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/3bc1.jpg",correctAnswer:1,answers:["Nigeria","India","Thailand","Australia"]},{question:"The famous line \u201Clife, liberty and the pursuit of happiness\u201D in the US Constitution is actually an edit; the original line read, \u201Clife, liberty and...\"?",imageUrl:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/wethepeople1.png",correctAnswer:3,answers:["The acquisition of wealth","The perfection of spirit","the promotion of the Common Good","the pursuit of property"]},{question:"Some constitutions are written such that they are extremely difficult to modify or rewrite. This feature is known to scholars as?",imageUrl:"",correctAnswer:1,answers:["Intransciance","Entrenchment","Obstinance","Intractability"]},{question:"If a country draws on a legal and cultural tradition to form its constitutional norms, but those norms are not organized into a single document, that constitution is called?",imageUrl:"",correctAnswer:2,answers:["Unorganized","Unincorporated","Uncodified","Traditionalistic"]},{question:"If a legislature has only one ruling body it\u2019s referred to as?",imageUrl:"",correctAnswer:1,answers:["Unilateral","Unicameral","Absolutist","Minimalist"]},{question:"Many Constitutions have a formal introduction known as a?",imageUrl:"",correctAnswer:3,answers:["Overture","Mis En Place","Foundation","Preamble"]},{question:"Dividing the government into branches is commonly referred to as",imageUrl:"",correctAnswer:0,answers:["Separation of Powers","Dendrology of Authority","Division of Labor","Civic Branching"]},{question:"The longest known constitution in the world governs what country?",imageUrl:"",correctAnswer:0,answers:["India","Iran","China","Brazil"]}],this.allItems=[{id:"1",branch:"Executive Core Articles",name:"Head of State: Empowered President",description:"An Empowered President, elected directly or indirectly by the entire electorate, meant to personify the will of the people in single individual's leadership abilities.",module_type:"Exclusive",exlusive_ids:"e{1,2,3,4}",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png",price:20},{id:"2",branch:"Executive Core Articles",name:"Head of State: Prime Minister",description:"As the head of the Legislative/Parliamentary system, the Prime Minister\u2019s authority arises from the elected representatives choice of a leader amongst themselves. This helps reduce gridlock in government, while also disconnecting the Head of State from the direct will of the electorate.",module_type:"Exclusive",exlusive_ids:"m{1,3},m{1,2,3,4}",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png",price:20},{id:"3",branch:"Executive Core Articles",name:"Head of State: King",description:"Historically the center of authority in pre-modern governments, the King's authority rests on a traditional architecture of original military conquest, hereditary transitions of power, and usually some notion of Divine Will. Though once always autocratic and ruling through all powerful fiat of their will, many monarchs have ceded power to more democratic and parliamentary governments, becoming largely figureheads of continuity and tradition.",module_type:"Exclusive",exlusive_ids:"1,2,3,4",time_period:"Ancient",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png",price:20},{id:"4",branch:"Executive Core Articles",name:"Head of State: High Priest",description:"In a proper Theocracy, the central authority rests with the highest authority of the clergy of the religious faith that underpins the government, the spiritual leader of the majority of the population of the country. This authority may function as an interpretive and judicial authority primarily; or it may be an absolute autocratic authority over all structures of government.",module_type:"Exclusive",exlusive_ids:"1,2,3,4",time_period:"Ancient",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x17.png",price:20},{id:"5",branch:"Executive Core Articles",name:"Figurehead Executive: Vice President",description:"Whether elected individually or packaged with a President on a \"ticket\", the VP gives the electorate the comfort of knowing they have chosen a worthy successor to the President, and a smooth transition of power is guaranteed should something unexpected happen to the chief executive. The VP position is also a valuable political actor for diplomacy and affairs of state.",module_type:"Exclusive",exlusive_ids:"5,6",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png",price:5},{id:"6",branch:"Executive Core Articles",name:"Figurehead Executive: Figurehead President",description:"In the case of the Head of State being a Prime Minister, King or Supreme Theocrat, then there might be an executive position called President, that may be appointed or elected, and generally performs public relations for the government, as well as matters of diplomacy and affairs of state.",module_type:"Exclusive",exlusive_ids:"5,6",time_period:"Modern/Contemporary",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png",price:5},{id:"7",branch:"Executive Core Articles",name:"Cabinet: Appointed by Head of State",description:"Sometimes called \"to the victor go the spoils\" approach, this allows the Executive Head of State to compose a team of cabinet members that they select, insuring a team of like minded individuals likely to work well with the Head of State and each other. Comes with increased risk of cronyism.",module_type:"Exclusive",exlusive_ids:"7,8",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png",price:5},{id:"8",branch:"Executive Core Articles",name:"Cabinet: Appointed by Legislature/Parliament",description:"In a Prime Minister's cabinet, integrated into the parliamentary process, the factions in the legislative body may also control the staffing of the PM's cabinet, again helping the government be as integrated, coherent and internal conflict-free as possible.",module_type:"Exclusive",exlusive_ids:"7,8",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png",price:5},{id:"9",branch:"Executive Amendments",name:"Veto Power",description:"The ability of the Executive to serve as a check on laws generated by the Legislative/Parliamentary Branch. This gives the Executive a roll of oversight of the law making process, thus giving them the chance to lead from a \"bully pulpit\" against popular opinion if the new law polls well, or to function as an agent of that public opinion as their elected Executive in stopping an unpopular law.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png",price:10},{id:"10",branch:"Executive Amendments",name:"Term Limits",description:"In the case of an Empowered President, this provides for a set number of terms to which the executive may be elected, usually limited to no more than 2 or 3 terms, and usually no more than 4 to 6 years in length.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x5.png",price:5},{id:"11",branch:"Executive Amendments",name:"Age Requirement",description:"Sets a minimum age for the Head of State/chief executive, making life experience a key requirement for service as national leader.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x10.png",price:5},{id:"12",branch:"Executive Amendments",name:"Meritocracy Requirement",description:"Sets requirements of achievement for prospective candidates for Head of State, in professional, academic, and political life as qualifications for public service as Head of State. This may involve actual objective testing, or evaluation by a peer review panel.",module_type:"Simple",exlusive_ids:"",time_period:"Futurist",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png",price:5},{id:"13",branch:"Executive Amendments",name:"Conflict of Interest Constraints",description:"Sets a constitutional prohibition against any business or organizational ties that might pit the Head of State's self-interest against the interest of the State.The Head of State must not abrogate their loyalties, and their commitment to the public good must be beyond question.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png",price:5},{id:"14",branch:"Executive Amendments",name:"Emoluments Prohibition",description:"The Head of State must not be allowed to accept gifts from foreign entities who might be trying to use such gifts to sway foreign policy decisions that the Head of State should make without such influence.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png",price:5},{id:"15",branch:"Executive Amendments",name:"Power of Executive Orders/Royal Decree",description:"Confers to the Executive branch the authority to issue edicts/executive orders/decrees that function roughly the same as laws passed by the Legislative/Parliamentary Branch, though they generally sunset when the Executive goes through a transition of power.",module_type:"Simple",exlusive_ids:"",time_period:"Ancient",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar5.png",price:10},{id:"16",branch:"Executive Amendments",name:"Religious Authority",description:"Confers on the Head of State authority over the state religion, and the ability to make decrees that have both religious and legal significance to the society.",module_type:"Simple",exlusive_ids:"",time_period:"Ancient",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar4.png",price:20},{id:"17",branch:"Executive Amendments",name:"Control of Taxation/Budget",description:"The Branch that has this power makes the ultimate decisions on the government's revenue sources, funding allocation and debt and deficit management, the so called \"power of the purse.\"",module_type:"Delegated",exlusive_ids:"E v. L/P",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar20.png",price:10},{id:"18",branch:"Executive Amendments",name:"Control of Military",description:"The Branch with this authority functions as the sole civilian oversight and command of the government's defense force and standing army, if any.",module_type:"Delegated",exlusive_ids:"E v. L/P",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar2.png",price:10},{id:"19",branch:"Executive Amendments",name:"Control of Diplomacy",description:"This conveys on the Branch the responsibility of negotiating treaties, appointing ambassadors, maintaining trade relationships and open lines of communication with neighboring countries and international allies alike.",module_type:"Delegated",exlusive_ids:"E v. L/P",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar17.png",price:10},{id:"20",branch:"Executive Amendments",name:"Authority to Declare War",description:"Gives the Branch the sole authority to formally engage in hostilities with another nation state.",module_type:"Delegated",exlusive_ids:"E v. L/P",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png",price:10},{id:"21",branch:"Executive Amendments",name:"Authority to Sign/Ratify Treaties",description:"When the fruits of either war or diplomacy generate a lasting legal document of new relationship between the government and another state or multiple state actors, this confers on the Branch the ultimate authority for confirming these agreements as the law of the land.",module_type:"Delegated",exlusive_ids:"E v. L/P",time_period:"Early Modern",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Module+image+size+-+864x580+Copy+5.png",price:10},{id:"22",branch:"Executive Amendments",name:"Control of Police Forces",description:"The government with this institutes a federalized power structure for it police enforcement, and for the oversight of local policing efforts and prosecutorial authority. This delegates which Branch has oversight and executive control over this chain of command.",module_type:"Delegated",exlusive_ids:"E v. J",time_period:"Modern/Contemporary",module_content_type:"Executive","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x8.png",price:10},{id:"23",branch:"Legislative/ Parliamentary Core Articles",name:"Basic Organization of Parliament/ Legislature: Unicameral",description:"Creates a Legislature or Parliament with a single house representing the entire electorate, either by region or proportional representation.When this body agrees on something and successfully executes its processes and procedural requirements, the matter being voted on becomes law immediately. This allows the body to be more nimble, and to have a greater appearance of society on a level playing field.",module_type:"Exclusive",exlusive_ids:"23,24",time_period:"Modern/Contemporary",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x16.png",price:20},{id:"24",branch:"Legislative/ Parliamentary Core Articles",name:"Basic Organization of Parliament/ Legislature: Bicameral",description:"Creates two chambers or houses of legislative debate and process, generally one more directly democratic (\"lower\"), and the other more representative of the entrenched power in the society (\"upper\"). Laws generated in either house must be reconciled with both bodies, creating oversight and forcing compromise by different interests. This tends to promote stability and durable legislation.",module_type:"Exclusive",exlusive_ids:"23,24",time_period:"Modern/Contemporary",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar11.png",price:20},{id:"25",branch:"Legislative/ Parliamentary Core Articles",name:"Representation of Constituents: Proportional Distribution",description:"The electorate creates the legislative body by voting for candidates and/or parties in a national election, and the proportion of the national vote by party/candidate affiliation determines the balance of power in the legislative body. If no one party achieves a majority, a coalition government of compromise become necessary.",module_type:"Exclusive",exlusive_ids:"25,26,27",time_period:"Modern/Contemporary",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7+copy.png",price:10},{id:"26",branch:"Legislative/ Parliamentary Core Articles",name:"Representation of Constituents: Regional Empowerment",description:"Each region/province/state/municipality holds elections for its specific representative, that then go to the capital to form a government to decide the national interest.",module_type:"Exclusive",exlusive_ids:"25,26,27",time_period:"Ancient",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x13.png",price:20},{id:"27",branch:"Legislative/ Parliamentary Core Articles",name:"Representation of Constituents: Hybrid",description:"This frames a balance between popular vote and regional representation, usually giving an outsized influence to smaller rural areas with entrenched interests that feel they would be drown out in a straight popular vote.",module_type:"Exclusive",exlusive_ids:"25,26,27",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar12.png",price:10},{id:"28",branch:"Legislative/ Parliamentary Core Articles",name:"Parliamentary Procedure: Laborious & Byzantine",description:"This frames the parliamentary procedure for the legislative body or bodies as almost impossibly complex, by layering committees, requiring super majorities, enforcing deliberation periods, barring amendments or revisions to bills, etc. This makes the legal system stable and unreactive, favoring the status quo.",module_type:"Exclusive",exlusive_ids:"28,29,30",time_period:"Ancient",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png",price:20},{id:"29",branch:"Legislative/ Parliamentary Core Articles",name:"Parliamentary Procedure: Elaborate & Stringent",description:"Here we frame what some would think of as the \"right\" amount of procedural forced debate and ability of a minority party to force compromise or revision in the deliberative process. Reconciling chambers divergent bills, filibuster tactics, while still allowing the function of law making to go on at a reasonable pace.",module_type:"Exclusive",exlusive_ids:"28,29.30",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png",price:10},{id:"30",branch:"Legislative/ Parliamentary Core Articles",name:"Parliamentary Procedure: Functional & Expedient",description:"Here we frame the most nimble legislative body, usually unicameral, that has few impediments to swift up and down votes to enact new laws. This makes it very responsive to public opinion if that opinion is represented by the elected officials; unfortunately it does allow for a majority party to rapidly change the legal landscape with little recourse to the minority parties in opposition.",module_type:"Exclusive",exlusive_ids:"28,29,30",time_period:"Futurist",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png",price:20},{id:"31",branch:"Legislative/ Parliamentary Core Articles",name:"Entrenchment of Constitution: Very Difficult",description:"This means it requires multiple very unlikely political conditions to come together to allow for the constitution to be altered in the future. Supermajorities in all chambers, unanimous consent across all branches, majorities among all local and regional political actors, and possibly popular vote referendum for final confirmation. This insures the constitution's guarantees of rights and due process cannot be easily stripped; it also means government is less nimble in confronting societal change.",module_type:"Exclusive",exlusive_ids:"31,32,33",time_period:"Ancient",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png",price:20},{id:"32",branch:"Legislative/ Parliamentary Core Articles",name:"Entrenchment of Constitution: Difficult",description:"This frames changing the constitution as high bar, with a supermajority OR regional majorities and/or public referendums. It seeks to find the balance between stable rule of law, and capacity for the law to adapt to a changing society.",module_type:"Exclusive",exlusive_ids:"31,32,33",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png",price:10},{id:"33",branch:"Legislative/ Parliamentary Core Articles",name:"Entrenchment of Constitution: Expedient",description:"This frames a constitution that can be modified generally with simple legislative procedure, allowing the framework of the law to evolve with the society in real time, making the government both agile in addressing public opinion, and vulnerable to norms being dismantled by demagogues and autocrats.",module_type:"Exclusive",exlusive_ids:"31,32,33",time_period:"Futurist",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png",price:20},{id:"34",branch:"Legislative/ Parliamentary Amendments",name:"No Confidence Vote",description:"This allows the parliamentary body to call a floor vote on whether or not the body has confidence in its leadership, and generally demands a snap election.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png",price:5},{id:"35",branch:"Legislative/ Parliamentary Amendments",name:"Quorum Requirements",description:"This demands that a minimum number of representatives of any given chamber must be present in order for the business of the chamber to proceed. This is meant to force attendance and engaged debate; it also gives members of minority and opposition parties the ability to hijack the process by not showing up to vote.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x8.png",price:5},{id:"36",branch:"Legislative/ Parliamentary Amendments",name:"Lobbying Constraints",description:"This codifies in the constitution limits on contributions from private and corporate interests to representatives, and limits on former representatives becoming lobbyists. To be effective in protecting the will of the people from being sold to special interests it must carry stiff penalties for those caught violating these constitutional rules.",module_type:"Simple",exlusive_ids:"",time_period:"Futurist",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png",price:10},{id:"37",branch:"Legislative/ Parliamentary Amendments",name:"Power of Oversight/ Investigation",description:"This conveys the power to the legislature of review, investigation and oversight of all political activities the Executive and Judicial branches.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x10.png",price:5},{id:"38",branch:"Legislative/ Parliamentary Amendments",name:"Impeachment Powers",description:"This frames the Legislative/Parliamentary branch as the authority over Heads of States or members of the Judiciary who have violated laws or norms as set forth in the constitution. Specific parliamentary procedure is laid out, with its own due process; the case for and against the removal of the political actor is made, and a vote that determines their removal or survival.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png",price:10},{id:"39",branch:"Legislative/ Parliamentary Amendments",name:"Power to Repeal Executive Orders",description:"Akin to a \"reverse veto\", this frames the authority of the legislative body or bodies to repeal or reverse the legal and political effects of an Executive Order/Edict/Decree of the Executive Branch.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png",price:5},{id:"40",branch:"Legislative/ Parliamentary Amendments",name:"Public Access/ Oversight/ Audit",description:"This frames a constitutional process for the public to review legislative action and question process and methods in law making. Regional and/or municipal bodies will appoint auditors, who will address/enforce any ethical and accounting transgression in full public review.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png",price:5},{id:"41",branch:"Legislative/ Parliamentary Amendments",name:"Ombudsman",description:"This appoints an individual as chief ethics officer for the legislative body, final authority on matters of conduct, propriety and functionality of the parliamentary process.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png",price:5},{id:"42",branch:"Legislative/ Parliamentary Amendments",name:"Control of Taxation/Budget",description:"The Branch that has this power makes the ultimate decisions on the government's revenue sources, funding allocation and debt and deficit management, the so called \"power of the purse.\"",module_type:"Delegated",exlusive_ids:"E v L/P",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png",price:10},{id:"43",branch:"Legislative/ Parliamentary Amendments",name:"Control of Military",description:"The Branch with this authority functions as the sole civilian oversight and command of the government's defense force and standing army, if any.",module_type:"Delegated",exlusive_ids:"E v L/P",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar17.png",price:10},{id:"44",branch:"Legislative/ Parliamentary Amendments",name:"Control of Diplomacy",description:"This conveys on the Branch the responsibility of negotiating treaties, appointing ambassadors, maintaining trade relationships and open lines of communication with neighboring countries and international allies alike.",module_type:"Delegated",exlusive_ids:"E v L/P",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar2.png",price:10},{id:"45",branch:"Legislative/ Parliamentary Amendments",name:"Authority to Declare War",description:"Gives the Branch the sole authority to formally engage in hostilities with another nation state.",module_type:"Delegated",exlusive_ids:"E v L/P",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x8.png",price:10},{id:"46",branch:"Legislative/ Parliamentary Amendments",name:"Authority to Sign/Ratify Treaties",description:"When the fruits of either war or diplomacy generate a lasting legal document of new relationship between the government and another state or multiple state actors, this confers on the Branch the ultimate authority for confirming these agreements as the law of the land.",module_type:"Delegated",exlusive_ids:"E v L/P",time_period:"Early Modern",module_content_type:"Legislative/Parliamentary","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x13.png",price:10},{id:"47",branch:"Judicial Core Articles",name:"Judicial Authority: Independent Judiciary",description:"This frames a Judicial Branch that has full equal authority to the Executive and Legislative Branches; it may preside over the rule of law, legislation and executive orders, judging their validity and viability based on constraints of this constitution and traditions of jurisprudence, striking them down if needed.",module_type:"Exclusive",exlusive_ids:"b{48,49}",time_period:"Early Modern",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png",price:20},{id:"48",branch:"Judicial Core Articles",name:"Judicial Authority: Subordinate Judiciary",description:"With this framing, the judiciary is subordinate to the Executive and/or Legislative/Parliamentary Branches, performing in an interpretive and advisory capacity, focusing on executing and enforcing the laws.",module_type:"Exclusive",exlusive_ids:"48,49",time_period:"Ancient",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png",price:20},{id:"49",branch:"Judicial Core Articles",name:"Judicial Assignment: Appointed",description:"Judges are appointed by the Executive, Legislative/Parliamentary or regional authorities. This makes the Judiciary more in synch with the political climate of the government, reducing conflict between branches, increasing risk of political cronyism.",module_type:"Exclusive",exlusive_ids:" 50,51,52",time_period:"Early Modern",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar17.png",price:20},{id:"50",branch:"Judicial Core Articles",name:"Judicial Assignment: Elected",description:"Judges are elected directly by the people, meaning they are responsive to variations in public opinion in the electorate, and less beholden to the political makeup of other Branches.",module_type:"Exclusive",exlusive_ids:"49",time_period:"Modern/Contemporary",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png",price:20},{id:"51",branch:"Judicial Core Articles",name:"Judicial Assignment: Hybrid",description:"With this framing, judges come to the bench through a combination of direct election in some strata of the judiciary, and appointment in others, usually arranged in a tiered system that allows regional elected judges to review decisions by appointees, and vice versa.",module_type:"Exclusive",exlusive_ids:"49,50",time_period:"Modern/Contemporary",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png",price:10},{id:"52",branch:"Judicial Core Articles",name:"Judicial Jurisdiction: Federalized",description:"This frames a judiciary that is top-down from a central government. If judges are elected, it is in nationwide elections; federal jurisdiction presides over matters down to regional courts.",module_type:"Exclusive",exlusive_ids:"53",time_period:"Early Modern",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x17.png",price:20},{id:"53",branch:"Judicial Core Articles",name:"Judicial Jurisdiction: Regional",description:"This frames a judiciary that builds its authority from regional courts upward, with precedent decided on the local level, and central courts adjudicating national matters based on consensus ruling among regional top jurists.",module_type:"Exclusive",exlusive_ids:"52",time_period:"Early Modern",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png",price:20},{id:"54",branch:"Judicial Core Articles",name:"Judicial Jurisdiction: Hybrid",description:"This frames a bifurcated system in which areas of jurisdiction are divided between regional and federal matters, with the courts having a tiered review process in which regional and federal jurists may challenge one another over interpretation and enforcement of the law.",module_type:"Exclusive",exlusive_ids:"52,53",time_period:"Modern/Contemporary",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png",price:10},{id:"55",branch:"Judicial Core Amendments",name:"Habeas Corpus",description:"Core principle of jurisprudence from the High Middle Ages, this frames the citizens right not to be tried in absentia, that the defendant must be present to arrange for their defense, and confront witnesses brought against them.",module_type:"Simple",exlusive_ids:"",time_period:"Ancient",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png",price:5},{id:"56",branch:"Judicial Core Amendments",name:"Supreme Court",description:"This frames the top of the judicial tiered system of courts as the ultimate final arbiter of the rule of law, able to overrule or strike down the legislation and orders/edicts generated by the Executive and Legislative/Parliamentary Branches.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png",price:10},{id:"57",branch:"Judicial Core Amendments",name:"Universal Legal Standing",description:"Confers on to all citizens the equal protection and entitlement to due process under the law, regardless of gender, property or class.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png",price:5},{id:"58",branch:"Judicial Core Amendments",name:"Elected Public Prosecutor/ Attorney General",description:"Constructs the position of the government's top law enforcement official as a position directly elected by the people, rather than a political appointee. This gives the electorate the ability to set the tone for enforcement and justice climate of the society.",module_type:"Simple",exlusive_ids:"",time_period:"Futurist",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x5.png",price:10},{id:"59",branch:"Judicial Core Amendments",name:"Religious Foundation of Jurisprudence",description:"This ties the constitutions framing of the rule of law to a religious text or creed, with a pre-existing set of legal codes, which become the foundation for jurisprudence for the judiciary of this government. All new laws must build on this framework, or are unconstitutional by this framing.",module_type:"Simple",exlusive_ids:"",time_period:"Ancient",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x10.png",price:20},{id:"60",branch:"Judicial Core Amendments",name:"Control of Police Forces",description:"The government with this institutes a federalized power structure for it police enforcement, and for the oversight of local policing efforts and prosecutorial authority. This delegates which Branch has oversight and executive control over this chain of command.",module_type:"Delegated",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Judicial","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png",price:10},{id:"61",branch:"Civil Core Articles",name:"Suffrage: Universal",description:"Every citizen above a certain age (usually between 17-21) has the right to vote regardless of race, gender, class or property.",module_type:"Exclusive",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png",price:10},{id:"62",branch:"Civil Core Articles",name:"Suffrage: Land Owners Only",description:"Frames the electorate as landed property owners only, on the principle that only those paying property tax have \"bought in\" to the system, creating a class-based limited electorate, usually favoring a status quo.",module_type:"Exclusive",exlusive_ids:"",time_period:"Ancient",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x17.png",price:20},{id:"63",branch:"Civil Core Articles",name:"Suffrage: Men Only",description:"Frames the electorate in terms of a regressive patriarchy, allowing only men to vote.",module_type:"Exclusive",exlusive_ids:"",time_period:"Ancient",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png",price:20},{id:"64",branch:"Civil Core Articles",name:"Citizenship: Automatic by Birth",description:"Frames into the constitution the right of jus sanguinis, or the blood right of birth in place conveying on the individual irrevocable rights of citizenship.",module_type:"Exclusive",exlusive_ids:"",time_period:"Ancient",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png",price:10},{id:"65",branch:"Civil Core Articles",name:"Citizenship: Generational/ Ethnic Group Only",description:"Creates a tiered system of citizenship, requiring multiple generations of immigrant ancestory before full citizenship is conveyed upon the descendent of the original immigrant.",module_type:"Exclusive",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png",price:20},{id:"66",branch:"Civil Core Articles",name:"Citizenship: Rigorous Application Only",description:"An exclusive meritocratic framing of citizenship that requires all citizens to pass a test to certify their citizenship and attain all rights to voting and legal standing.",module_type:"",exlusive_ids:"",time_period:"Futurist",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png",price:20},{id:"67",branch:"Civil Core Articles",name:"Citizenship: Hybrid",description:"Creates a more complex constitutional approach to citizenship, with some combination of resident alien, partial citizenship, birthright citizenship and naturalization through meritocratic application in tiers to accommodate as many residents of the nation's situations as possible.",module_type:"Exclusive",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png",price:10},{id:"68",branch:"Civil Core Articles",name:"Balance of Federal/ National Power with Regional/  Local Authority: Federal Autocracy",description:"Creates a government in which all authority rests with the central state, and all civil legal matters between citizen and government are resolved with this centralized authority.",module_type:"Exclusive",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x5.png",price:20},{id:"69",branch:"Civil Core Articles",name:"Balance of Federal/ National Power with Regional/  Local Authority: Balance of Federal- Regional States Authority",description:"Divides authority for resolving civil matters with citizens between a federal authority and regional authority, carving out different areas of jurisdiction for each, with differences between regions allowing for minor variations in design and application of the law, while leaving matters of basic civil rights to federal resolution.",module_type:"Exclusive",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x10.png",price:10},{id:"70",branch:"Civil Core Articles",name:"Balance of Federal/ National Power with Regional/  Local Authority: Regional Autonomy",description:"Frames a government with a weak central authority whose main focus is on international diplomacy and national defense, without much control or influence over the rule of law on the regional and local level. Presupposes fiercely independent regions bound together by loose coalition of neighbors with differing cultural needs.",module_type:"Exclusive",exlusive_ids:"",time_period:"Futurist",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png",price:20},{id:"71",branch:"Civil Amendments",name:"Due Process/ Search & Seizure/ Probable Cause",description:"Frames the right of the individual not to be searched without a warrant or other legal due process around the concept of \"Probable Cause\". Meant to protect the citizen from unnecessary harassment by law enforcement.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar11.png",price:5},{id:"72",branch:"Civil Amendments",name:"Right to Equal Treatment Under the Law",description:"Confers on the citizen the right of civil equality, which can be enforced against any discrimination based on class, race, gender, orientation or ethnicity by the government or other civil individual or cultural actor.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7+copy.png",price:5},{id:"73",branch:"Civil Amendments",name:"Right to Security",description:"Frames the government's responsibility for the protection of its citizens from outside attack, lawlessness and mayhem. Underpins support for military and police force, but also a fair and just rule of law.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x13.png",price:5},{id:"74",branch:"Civil Amendments",name:"Right to Bear Arms",description:"Confers on the citizen the right to protect their own security, and the autonomy of their civil liberties, through the use of lethal force; the balance of self-defense and libertarian detente will vary based on the society governed.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar12.png",price:10},{id:"75",branch:"Civil Amendments",name:"Right to Privacy",description:"Confers on the citizen the reasonable expectation that their personal, civil, business and governmental records can only be made public with their consent, and that others may not profit off this information without their consent; easily enforceable 100 years ago, a difficult moving target in the digital age.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png",price:10},{id:"76",branch:"Civil Amendments",name:"Rights of Children",description:"Excluded from the electorate by age, this frames rights for children in the legal process, including most of the following: education, legal standing and due process, safety from bodily harm, adequate medical care.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png",price:10},{id:"77",branch:"Civil Amendments",name:"Ethical Treatment of Animals/ Endangered Species Protections",description:"Whether viewed as a natural resource or sentient co-citizens without a voice, this frames rights for the animal populations under the jurisdiction of the government.",module_type:"Simple",exlusive_ids:"",time_period:"Futurist",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png",price:20},{id:"78",branch:"Civil Amendments",name:"Right to an Attorney",description:"Grants the citizen the right to legal representation, whether they can afford it or not, as a matter of due process and civil standing.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png",price:5},{id:"79",branch:"Civil Amendments",name:"Prohibition of Retroactive Punishment/ Double Indemnity/ Cruel & Unusual Punishment",description:"Frames a legal system that cannot try a person for the same crime twice, cannot torture, humiliate or dehumanize prisoners; generally prohibitions against using prisoners for slave labor in current times, prohibition against trying descendents for the crimes of their ancestors.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png",price:5},{id:"80",branch:"Civil Amendments",name:"Right of Restorative Justice",description:"Conveys on citizens, whether the perpetrator or victim of a crime, the right of access to a judicial system that allows them to confront the consequences of the crime, attempt to ameliorate the damage done to all parties by that crime, and as much as possible restore the social order that existed before the crime was committed.",module_type:"Simple",exlusive_ids:"",time_period:"Futurist",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png",price:20},{id:"81",branch:"Civil Amendments",name:"Right to Die/ Right of Human Dignity",description:"Frames the right of every citizen in failing health to negotiate with their medical care a comfortable way to end their lives if they so choose.",module_type:"Simple",exlusive_ids:"",time_period:"Modern/Contemporary",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png",price:5},{id:"82",branch:"Civil Amendments",name:"Right of Non-Citizens to Amnesty",description:"Constitution recognizes the human rights of non-citizen residents, immigrants or refugees to claim amnesty to remain in the country and begin the process, whether rigorous application or generational naturalization, of becoming a citizen.",module_type:"Simple",exlusive_ids:"",time_period:"Early Modern",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x8.png",price:10},{id:"83",branch:"Civil Amendments",name:"Right to Proportional Share of National Natural Resource Wealth",description:"Confers on citizens the right to share in any wealth, profit or dividends generated by mineral, agricultural, forestry or animal resources, to be shared through some proportional scheme, on a monthly, quarterly or annual basis.",module_type:"Simple",exlusive_ids:"",time_period:"Futurist",module_content_type:"Civil","Sub Category":"",image_url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png",price:20}];this.soundEffects={oap_short_win_1:{url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3",volume:1},oap_new_level_1:{url:"https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3",volume:.1}};this.cacheDataImages();this.cacheSoundEffects();//this.filteredItems = this.allItems;
 }cacheSoundEffects(){if(this.soundEffects){Object.values(this.soundEffects).forEach(effect=>{setTimeout(()=>{const audio=new Audio(effect.url)})})}}playSoundEffect(event){if(this.soundEffects[event.detail]){const effect=this.soundEffects[event.detail],audio=new Audio(effect.url);audio.volume=effect.volume;audio.play()}}cacheDataImages(){if(this.quizQuestions){this.quizQuestions.forEach(question=>{setTimeout(()=>{const img=new Image;img.src=question.imageUrl})})}if(this.allItems){this.allItems.forEach(module=>{setTimeout(()=>{const img=new Image;img.src=module.image_url})})}}processCorrectQuizAnswer(){this.fire("oap-play-sound-effect","oap_short_win_1");this.fire("oap-overlay",{html:html$1`${this.localize("correctAnswer")}`,soundEffect:"",duration:300});this.choicePoints+=5;setTimeout(()=>{this.$$("#choicePoints").animate([{transform:"scale(1.2)"},{transform:"scale(1)"}],{duration:300,iterations:1})},200);this.activity("correct","quizAnswer")}_setupCustomCss(config){if(config.cssProperties){config.cssProperties.forEach(property=>{const propName=Object.keys(property)[0],values=Object.keys(property).map(function(e){return property[e]}),propValue=values[0];this.shadowRoot.host.style.setProperty(propName,propValue);if(window.ShadyCSS){window.ShadyCSS.styleSubtree(this,property)}})}}selectLocale(event){if(this.language!=event.target.dataset.locale){this.language=event.target.dataset.locale;localStorage.setItem("languageOverride",this.language);if("area-ballot"===this._page&&this.currentBallot){setTimeout(()=>{this.currentBallot.loadArea()},10)}}}_boot(){fetch("/votes/boot",{credentials:"same-origin"}).then(res=>res.json()).then(response=>{this.requestInProgress=!1;this.language="en";this.votePublicKey=response.public_key;this._setupCustomCss(response.config.client_config);window.localeResources=response.config.client_config.locales;this.configFromServer=response.config;this.updateAppMeta(this.configFromServer.client_config.shareMetaData);if(this.configFromServer.client_config.welcomeLocales&&this.configFromServer.client_config.ballotBudgetLogo){const tempImg=new Image;tempImg.src=this.configFromServer.client_config.ballotBudgetLogo}ga("create",this.configFromServer.client_config.googleAnalyticsId,"auto");this.postsHost="https://yrpri.org";this.favoriteIcon="heart";this.oneBallotId=1;if(this.configFromServer.client_config.defaultLanguage){if(localStorage.getItem("languageOverride")){this.language=localStorage.getItem("languageOverride")}else{this.language=this.configFromServer.client_config.defaultLanguage}this.setupLocaleTexts()}if(this.configFromServer.client_config.favoriteIcon){this.favoriteIcon=this.configFromServer.client_config.favoriteIcon}if(!1){const path="/quiz";window.history.pushState({},null,path);this.fire("location-changed",path)}if(this.configFromServer.client_config.welcomeLocales){setTimeout(()=>{if(!localStorage.getItem("haveClsosedWelcome")){this.$$("#welcomeDialog").open()}})}window.language=this.language;window.localize=this.localize;if(!0===this.configFromServer.client_config.insecureEmailLoginEnabled){new Promise((res,rej)=>_require.default(["./oap-insecure-email-login.js"],res,rej)).then(bundle=>bundle&&bundle.$oapInsecureEmailLogin||{})}}).catch(error=>{console.error("Error:",error);this.fire("oav-error","unknown_error")})}disconnectedCallback(){this._removeListeners()}b64DecodeUnicode(str){// Going backwards: from bytestream, to percent-encoding, to original string.
-return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))}_setupListeners(){this.addEventListener("app-resources-loaded",this._transinsecationLoaded);this.addEventListener("oav-set-title",this._setTitle);this.addEventListener("oav-error",this._errorHandler);this.addEventListener("oav-set-area",this._setArea);this.addEventListener("oav-clear-area",this._clearArea);this.addEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.addEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.addEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.addEventListener("oav-exit",this._exit);this.addEventListener("oav-open-help",this._help);this.addEventListener("oav-set-ballot-element",this._setBallotElement);this.addEventListener("oav-set-budget-element",this._setBudgetElement);this.addEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);this.addEventListener("oav-insecure-email-login",this._insecureEmailLogin);window.addEventListener("resize",this.resetSizeWithDelay.bind(this));this.addEventListener("location-changed",this._locationChanged);this.addEventListener("oap-process-correct-quiz-answer",this.processCorrectQuizAnswer);this.addEventListener("oap-quiz-finished",this.quizFinished);this.addEventListener("oap-filtering-finished",this.filteringFinished);this.addEventListener("item-selected",this.addItemToFinalList);this.addEventListener("oap-play-sound-effect",this.playSoundEffect);this.addEventListener("oap-country-created",this.createCountryFinished)}addItemToFinalList(event){if(event.detail){this.filteredItems.push(event.detail)}else{console.error("Can't find item to add to final list")}}_setBallotElement(event){this.currentBallot=event.detail}_setBudgetElement(event){setTimeout(()=>{this.currentBudget=event.detail},100)}filteringFinished(){this.fire("oap-play-sound-effect","oap_new_level_1");const path="/area-ballot/1";window.history.pushState({},null,path);this.fire("location-changed",path);this.activity("finished","filtering")}quizFinished(){this.fire("oap-play-sound-effect","oap_new_level_1");const path="/create-country";window.history.pushState({},null,path);this.fire("location-changed",path);this.activity("finished","quiz")}createCountryFinished(){this.fire("oap-play-sound-effect","oap_new_level_1");const path="/filter-articles";window.history.pushState({},null,path);this.fire("location-changed",path);this.activity("finished","createCountry")}_removeListeners(){this.removeEventListener("app-resources-loaded",this._translationLoaded);this.removeEventListener("oav-set-title",this._setTitle);this.removeEventListener("oav-error",this._errorHandler);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("oav-clear-area",this._clearArea);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("location-changed",this._locationChanged);this.removeEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.removeEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.removeEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.removeEventListener("oav-exit",this._exit);this.removeEventListener("oav-set-ballot-element",this._setBallotElement);this.removeEventListener("oav-set-budget-element",this._setBudgetElement);this.removeEventListener("oav-open-help",this._help);this.removeEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);window.removeEventListener("resize",this.resetSizeWithDelay);this.removeEventListener("oav-insecure-email-login",this._insecureEmailLogin);this.removeEventListener("oap-process-correct-quiz-answer",this.processCorrectQuizAnswer);this.removeEventListener("oap-quiz-finished",this.quizFinished);this.removeEventListener("oap-country-created",this.createCountryFinished);this.removeEventListener("item-selected",this.addItemToFinalList);this.removeEventListener("oap-filtering-finished",this.filteringFinished);this.removeEventListener("oap-play-sound-effect",this.playSoundEffect)}_scrollItemIntoView(event){this.$$("#budgetBallot")._scrollItemIntoView(event.detail)}_hideFavoriteItem(){this.$$("#favoriteIcon").hidden=!0}_insecureEmailLogin(event){this.$$("#insecureEmailLogin").open(event.detail.areaId,event.detail.areaName,event.detail.onLoginFunction)}_toggleFavoriteItem(event){const detail=event.detail;if(detail.item){setTimeout(()=>{var transformLeft,transformTop;if(!0===this.$$("#favoriteIcon").hidden){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.orgAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.orgAnimPos.top+"px";transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}else{var oldBudgetAnimPos=this.currentBallot.oldFavoriteItem?this.ballotElement.getItemLeftTop(this.currentBallot.oldFavoriteItem):null;if(oldBudgetAnimPos){transformLeft=oldBudgetAnimPos.left-detail.budgetAnimPos.left;transformTop=oldBudgetAnimPos.top-detail.budgetAnimPos.top}else{console.warn("Can't find old item");transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}}this.$$("#favoriteIcon").hidden=!1;this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px";var animation=this.$$("#favoriteIcon").animate([{transform:"translateY("+transformTop+"px) translateX("+transformLeft+"px)",easing:"ease-out"},{transform:"scale(3)",easing:"ease-in"},{transform:"scale(1)",easing:"ease-out"}],{duration:720,iterations:1});animation.onfinish=function(){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px"}.bind(this)})}}resetFavoriteIconPosition(){if(this.$$("#budgetBallot").favoriteItem){const pos=this.$$("#budget").getItemLeftTop(this.$$("#budgetBallot").favoriteItem);if(pos){this.$$("#favoriteIcon").style.left=pos.left+"px";this.$$("#favoriteIcon").style.top=pos.top+"px"}else{console.error("Can't find position of favorite item")}}}_help(){this.$$("#helpDialog").open()}_setArea(event){this.areaName=event.detail.areaName;this.totalBudget=event.detail.totalBudget}_clearArea(){this.areaName=null;this.totalBudget=null}_errorHandler(event){this.errorText=this.localize(event.detail);this.$$("#errorDialog").open()}_exit(){if("post"===this._page&&window.appLastArea){window.history.pushState({},null,window.appLastArea);this.fire("location-changed",window.appLastArea);window.appLastArea=null}else{window.history.pushState({},null,"/");this.fire("location-changed","/")}}_setTitle(event,detail){//this.set('title', detail);
+return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))}_setupListeners(){this.addEventListener("app-resources-loaded",this._transinsecationLoaded);this.addEventListener("oav-set-title",this._setTitle);this.addEventListener("oav-error",this._errorHandler);this.addEventListener("oav-set-area",this._setArea);this.addEventListener("oav-clear-area",this._clearArea);this.addEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.addEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.addEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.addEventListener("oav-exit",this._exit);this.addEventListener("oav-open-help",this._help);this.addEventListener("oav-set-ballot-element",this._setBallotElement);this.addEventListener("oav-set-budget-element",this._setBudgetElement);this.addEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);this.addEventListener("oav-insecure-email-login",this._insecureEmailLogin);window.addEventListener("resize",this.resetSizeWithDelay.bind(this));this.addEventListener("location-changed",this._locationChanged);this.addEventListener("oap-process-correct-quiz-answer",this.processCorrectQuizAnswer);this.addEventListener("oap-quiz-finished",this.quizFinished);this.addEventListener("oap-filtering-finished",this.filteringFinished);this.addEventListener("item-selected",this.addItemToFinalList);this.addEventListener("oap-play-sound-effect",this.playSoundEffect);this.addEventListener("oap-country-created",this.createCountryFinished)}addItemToFinalList(event){if(event.detail){this.filteredItems.push(event.detail)}else{console.error("Can't find item to add to final list")}}_setBallotElement(event){this.currentBallot=event.detail}_setBudgetElement(event){setTimeout(()=>{this.currentBudget=event.detail},100)}filteringFinished(){this.fire("oap-play-sound-effect","oap_new_level_1");const path="/area-ballot/1";window.history.pushState({},null,path);this.fire("location-changed",path);this.activity("finished","filtering")}quizFinished(){this.fire("oap-play-sound-effect","oap_new_level_1");const path="/create-country";window.history.pushState({},null,path);this.fire("location-changed",path);this.activity("finished","quiz")}createCountryFinished(event){this.fire("oap-play-sound-effect","oap_new_level_1");const path="/filter-articles";window.history.pushState({},null,path);this.fire("location-changed",path);this.activity("finished","createCountry");this.country=event.detail}_removeListeners(){this.removeEventListener("app-resources-loaded",this._translationLoaded);this.removeEventListener("oav-set-title",this._setTitle);this.removeEventListener("oav-error",this._errorHandler);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("oav-clear-area",this._clearArea);this.removeEventListener("oav-set-area",this._setArea);this.removeEventListener("location-changed",this._locationChanged);this.removeEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.removeEventListener("oav-hide-favorite-item",this._hideFavoriteItem);this.removeEventListener("oav-reset-favorite-icon-position",this.resetFavoriteIconPosition);this.removeEventListener("oav-exit",this._exit);this.removeEventListener("oav-set-ballot-element",this._setBallotElement);this.removeEventListener("oav-set-budget-element",this._setBudgetElement);this.removeEventListener("oav-open-help",this._help);this.removeEventListener("oav-scroll-item-into-view",this._scrollItemIntoView);window.removeEventListener("resize",this.resetSizeWithDelay);this.removeEventListener("oav-insecure-email-login",this._insecureEmailLogin);this.removeEventListener("oap-process-correct-quiz-answer",this.processCorrectQuizAnswer);this.removeEventListener("oap-quiz-finished",this.quizFinished);this.removeEventListener("oap-country-created",this.createCountryFinished);this.removeEventListener("item-selected",this.addItemToFinalList);this.removeEventListener("oap-filtering-finished",this.filteringFinished);this.removeEventListener("oap-play-sound-effect",this.playSoundEffect)}_scrollItemIntoView(event){this.$$("#budgetBallot")._scrollItemIntoView(event.detail)}_hideFavoriteItem(){this.$$("#favoriteIcon").hidden=!0}_insecureEmailLogin(event){this.$$("#insecureEmailLogin").open(event.detail.areaId,event.detail.areaName,event.detail.onLoginFunction)}_toggleFavoriteItem(event){const detail=event.detail;if(detail.item){setTimeout(()=>{var transformLeft,transformTop;if(!0===this.$$("#favoriteIcon").hidden){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.orgAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.orgAnimPos.top+"px";transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}else{var oldBudgetAnimPos=this.currentBallot.oldFavoriteItem?this.ballotElement.getItemLeftTop(this.currentBallot.oldFavoriteItem):null;if(oldBudgetAnimPos){transformLeft=oldBudgetAnimPos.left-detail.budgetAnimPos.left;transformTop=oldBudgetAnimPos.top-detail.budgetAnimPos.top}else{console.warn("Can't find old item");transformLeft=detail.orgAnimPos.left-detail.budgetAnimPos.left;transformTop=detail.orgAnimPos.top-detail.budgetAnimPos.top}}this.$$("#favoriteIcon").hidden=!1;this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px";var animation=this.$$("#favoriteIcon").animate([{transform:"translateY("+transformTop+"px) translateX("+transformLeft+"px)",easing:"ease-out"},{transform:"scale(3)",easing:"ease-in"},{transform:"scale(1)",easing:"ease-out"}],{duration:720,iterations:1});animation.onfinish=function(){this.$$("#favoriteIcon").style.position="absolute";this.$$("#favoriteIcon").style.left=detail.budgetAnimPos.left+"px";this.$$("#favoriteIcon").style.top=detail.budgetAnimPos.top+"px"}.bind(this)})}}resetFavoriteIconPosition(){if(this.$$("#budgetBallot").favoriteItem){const pos=this.$$("#budget").getItemLeftTop(this.$$("#budgetBallot").favoriteItem);if(pos){this.$$("#favoriteIcon").style.left=pos.left+"px";this.$$("#favoriteIcon").style.top=pos.top+"px"}else{console.error("Can't find position of favorite item")}}}_help(){this.$$("#helpDialog").open()}_setArea(event){this.areaName=event.detail.areaName;this.totalBudget=event.detail.totalBudget}_clearArea(){this.areaName=null;this.totalBudget=null}_errorHandler(event){this.errorText=this.localize(event.detail);this.$$("#errorDialog").open()}_exit(){if("post"===this._page&&window.appLastArea){window.history.pushState({},null,window.appLastArea);this.fire("location-changed",window.appLastArea);window.appLastArea=null}else{window.history.pushState({},null,"/");this.fire("location-changed","/")}}_setTitle(event,detail){//this.set('title', detail);
 }resetSizeWithDelay(){clearTimeout(this.resizeTimer);this.resizeTimer=setTimeout(()=>{this.resetFavoriteIconPosition()},250)}_translationLoaded(){if(!this.haveSetLanguage){this.haveSetLanguage=!0;if("undefined"!==typeof Storage){var selectedLanguage=localStorage.getItem("selectedLanguage");if(selectedLanguage){this.fire("iron-signal",{name:"set-language",data:selectedLanguage})}}}}closeWelcome(){localStorage.setItem("haveClosedWelcome",!0)}getDialog(name){return this.$$("#"+name)}firstUpdated(){this._setupListeners();installRouter(location=>this._locationChanged(location));installOfflineWatcher(offline=>this._offlineChanged(offline));installMediaQueryWatcher$1(`(min-width: 460px)`,matches=>this._layoutChanged(matches));installMediaQueryWatcher$1(`(min-width: 1024px)`,matches=>{this.wide=matches;this.wideAndBallot=this.wide&&"area-ballot"===this._page})}getHelpContent(){if(this.configFromServer.client_config.helpPageLocales[this.language]){return this.b64DecodeUnicode(this.configFromServer.client_config.helpPageLocales[this.language].b64text)}else if(this.configFromServer.client_config.helpPageLocales.en){return this.b64DecodeUnicode(this.configFromServer.client_config.helpPageLocales.en.b64text)}else{return"No help page found for selected language!"}}getWelcomeHeading(){if(this.configFromServer.client_config.welcomeLocales[this.language]){return this.configFromServer.client_config.welcomeLocales[this.language].heading}else if(this.configFromServer.client_config.welcomeLocales.en){return this.configFromServer.client_config.welcomeLocales.en.heading}else{return"No heading found"}}getWelcomeText(){if(this.configFromServer.client_config.welcomeLocales[this.language]){return this.configFromServer.client_config.welcomeLocales[this.language].text}else if(this.configFromServer.client_config.welcomeLocales.en){return this.configFromServer.client_config.welcomeLocales.en.text}else{return"No heading found"}}setupLocaleTexts(){this.welcomeHeading=this.getWelcomeHeading();this.welcomeText=this.getWelcomeText();this.helpContent=this.getHelpContent()}updateAppMeta(meta){document.title=meta.title;updateMetadata({title:meta.title,description:meta.description,image:meta.shareImageUrl// This object also takes an image property, that points to an img src.
 });var link=document.querySelector("link[rel*='icon']")||document.createElement("link");link.type="image/x-icon";link.rel="shortcut icon";link.href=meta.faviconUrl;document.getElementsByTagName("head")[0].appendChild(link)}updated(changedProps){if(changedProps.has("language")){this.setupLocaleTexts()}if(changedProps.has("budgetElement")){debugger}if(changedProps.has("_page")){const pageTitle=this.appTitle+" - "+this._page,page=this._page,oldPage=changedProps.get("_page");if(this.configFromServer&&this.configFromServer.client_config.landingPageData&&page&&"select-voting-area"!=page){this.showExit=!0}else{this.showExit=!1}// Setup top ballot if needed
 if(page&&"area-ballot"==page){this.hideBudget=!1}else{this.hideBudget=!0}// Reset post if needed
