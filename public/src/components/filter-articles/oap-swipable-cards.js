@@ -70,7 +70,6 @@ class OapSwipableCards extends OapBaseElement {
     <div class="topestContainer">
       <div class="stage">
           <div class="title">${this.localize("filterArticles")}</div>
-            <div id="navigator" class="mainNavigator layout horizontal"></div>
             <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
               <div class="stackedcards-container">
                 ${repeat(this.visibleItems, (item) => item.id, (item, index) =>
@@ -102,6 +101,7 @@ class OapSwipableCards extends OapBaseElement {
               <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
               <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
             </div>
+            <div id="navigator" class="mainNavigator layout horizontal"></div>
             <div class="global-actions">
               <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
               <div hidden>

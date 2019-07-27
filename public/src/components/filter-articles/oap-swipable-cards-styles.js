@@ -418,6 +418,7 @@ export const OapSwipableCardsStyles = css`
     max-height: 5px !important;
     margin: 8px;
     padding: 0;
+    padding-top: 12px;
     width: 100%;
   }
 
