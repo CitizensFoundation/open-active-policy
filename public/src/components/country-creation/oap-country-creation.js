@@ -4,6 +4,7 @@ import '@polymer/paper-slider/paper-slider';
 import '@polymer/paper-input/paper-input';
 import '@polymer/paper-input/paper-textarea';
 import '@polymer/paper-item/paper-item';
+import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/paper-dropdown-menu/paper-dropdown-menu';
 
 import { Scene, DirectionalLight, PerspectiveCamera, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
@@ -281,7 +282,7 @@ class OapCountryCreation extends OapPageViewElement {
           <div class="dropDownContainer">
             <paper-dropdown-menu .label="${this.localize("Choose a country or create your own")}" @selected-item-changed="${this.countrySelected}">
               <paper-listbox slot="dropdown-content">
-                ${ this.countryList.map((country, index)=>{
+                ${this.countryList.map((country, index)=>{
                   return html`
                     <paper-item data-id="${index}">${country.name}</paper-item>
                   `
@@ -313,7 +314,10 @@ class OapCountryCreation extends OapPageViewElement {
                           maxlength="500">
           </paper-textarea>
 
-          <div class="subHeader cultural">${this.localize("culturalAttitude")}</div>
+          <div class="subHeader cultural">
+            ${this.localize("culturalAttitude")}
+            <paper-icon-button icon="help-outline" @click="${this.culturalHelp}"></paper-icon-button>
+          </div>
 
           <div id="culturalAttitudes" class="flexRow">
             <div class="column">
@@ -450,15 +454,29 @@ class OapCountryCreation extends OapPageViewElement {
   }
 
   countrySelected(event) {
-    const countryId = event.detail.value.dataset.id;
-    this.country = this.countryList[event.detail.value.dataset.id];
-    if (countryId==9) {
-      this.customCountry = true;
-      this.country.name = "";
-    } else {
-      this.countryList[9].name="Custom country";
-      this.customCountry = false;
+    if (event.detail.value) {
+      const countryId = event.detail.value.dataset.id;
+      this.country = this.countryList[event.detail.value.dataset.id];
+      if (countryId==9) {
+        this.customCountry = true;
+        this.country.name = "";
+      } else {
+        this.countryList[9].name="Custom country";
+        this.customCountry = false;
+      }
     }
+  }
+
+  culturalHelp() {
+    let content;
+    if (this.configFromServer.client_config.helpPageLocales[this.language]) {
+      content = this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text);
+    } else if (this.configFromServer.client_config.helpPageLocales["en"]) {
+      content = this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales["en"].b64text)
+    } else {
+      content = "No help page found for selected language!"
+    }
+    this.fire('oap-open-help', content)
   }
 
   updated(changedProps) {

@@ -122,6 +122,8 @@ class OapApp extends OapBaseElement {
 
       helpContent: String,
 
+      masterHelpContent: String,
+
       wideAndBallot: Boolean,
 
       errorText: String,
@@ -168,7 +170,7 @@ class OapApp extends OapBaseElement {
           ` :
           html``
         }
-        <paper-dialog id="helpDialog">
+        <paper-dialog id="helpDialog" @close="${this.helpClosed}">
           <paper-dialog-scrollable>
             <div id="helpContent">
               ${unsafeHTML(this.helpContent)}
@@ -311,6 +313,10 @@ class OapApp extends OapBaseElement {
     }
     this.filteredItems = [];
     this.setDummyData();
+  }
+
+  helpClosed() {
+    this.helpContent = this.masterHelpContent;
   }
 
   setDummyData() {
@@ -1666,7 +1672,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oav-hide-favorite-item", this._hideFavoriteItem);
     this.addEventListener("oav-reset-favorite-icon-position", this.resetFavoriteIconPosition);
     this.addEventListener("oav-exit", this._exit);
-    this.addEventListener("oav-open-help", this._help);
+    this.addEventListener("oap-open-help", this._help);
     this.addEventListener("oav-set-ballot-element", this._setBallotElement);
     this.addEventListener("oav-set-budget-element", this._setBudgetElement);
     this.addEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
@@ -1740,7 +1746,7 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oav-exit", this._exit);
     this.removeEventListener("oav-set-ballot-element", this._setBallotElement);
     this.removeEventListener("oav-set-budget-element", this._setBudgetElement);
-    this.removeEventListener("oav-open-help", this._help);
+    this.removeEventListener("oap-open-help", this._help);
     this.removeEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
     window.removeEventListener("resize", this.resetSizeWithDelay);
     this.removeEventListener("oav-insecure-email-login", this._insecureEmailLogin);
@@ -1828,7 +1834,10 @@ class OapApp extends OapBaseElement {
     }
   }
 
-  _help() {
+  _help(event) {
+    if (event.detail) {
+      this.helpContent = event.detail;
+    }
     this.$$("#helpDialog").open();
   }
 
@@ -1936,7 +1945,7 @@ class OapApp extends OapBaseElement {
   setupLocaleTexts() {
     this.welcomeHeading = this.getWelcomeHeading();
     this.welcomeText = this.getWelcomeText();
-    this.helpContent = this.getHelpContent();
+    this.masterHelpContent = this.helpContent = this.getHelpContent();
   }
 
   updateAppMeta(meta) {

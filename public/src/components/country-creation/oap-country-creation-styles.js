@@ -120,6 +120,8 @@ export const OapCountryCreationStyles = css`
     --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
     --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #e9bf29);
     --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-disabled-knob-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-secondary-color: : var(--app-create-country-slider-active-color, #e9bf29);
   }
 
   .dropDownContainer {

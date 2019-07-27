@@ -256,7 +256,7 @@ class OapBudget extends OapBaseElement {
   }
 
   _help() {
-    this.fire("oav-open-help");
+    this.fire("oap-open-help");
   }
 
   _closeToast() {

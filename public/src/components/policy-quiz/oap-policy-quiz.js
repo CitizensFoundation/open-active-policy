@@ -112,14 +112,14 @@ class OapPolicyQuiz extends OapPageViewElement {
 
         this.renderCanvas3d();
 
-        let target = new Vector3(6, -10, 15);
+        let target = new Vector3(6, -10, 22);
 
         new Tween(this.camera.position)
         .to({ x: target.x, y: target.y, z: target.z, }, 15*1000)
         .delay(0)
         .easing(Easing.Quadratic.InOut)
         .on('complete', () => {
-          target = new Vector3(6, -10, 75);
+          target = new Vector3(6, -10, 80);
           new Tween(this.camera.position)
           .to({ x: target.x, y: target.y, z: target.z, }, 900)
           .delay(0)

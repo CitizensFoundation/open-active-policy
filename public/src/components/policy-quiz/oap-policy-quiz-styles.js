@@ -51,7 +51,6 @@ export const OapPolicyQuizStyles = css`
     padding: 16px;
     font-size: 20px;
     padding-top: 0;
-    width: 100%;
   }
 
   .infoBar {
