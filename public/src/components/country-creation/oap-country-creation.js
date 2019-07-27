@@ -455,6 +455,9 @@ class OapCountryCreation extends OapPageViewElement {
     if (countryId==9) {
       this.customCountry = true;
       this.country.name = "";
+    } else {
+      this.countryList[9].name="Custom country";
+      this.customCountry = false;
     }
   }
 
