@@ -101,18 +101,23 @@ class OapSwipableCards extends OapBaseElement {
               <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
               <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
             </div>
-            <div id="navigator" class="mainNavigator layout horizontal"></div>
             <div class="global-actions">
-              <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/></div>
-              <div hidden>
-              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/></div>
+              <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
               </div>
-              <div style="width: 100px;"></div>
-              <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
+              <div hidden>
+                <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/>
+                </div>
+              </div>
+              <div style="width: 100px;">
+               </div>
+              <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
+              </div>
           </div>
+          <div id="navigator" class="mainNavigator layout horizontal"></div>
+
         </div>
 
-      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div
+      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
     </div>
 
     `;

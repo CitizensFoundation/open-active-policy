@@ -91,7 +91,8 @@ export const OapSwipableCardsStyles = css`
       width: 100%;
       text-align: center;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 16px;
+      margin-bottom: 24px;
       color: #eee !important;
   }
 
