@@ -368,17 +368,7 @@ class OapBudget extends OapBaseElement {
     colorBox.style.borderRight = 'solid 1px 1px solid rgba(255, 255, 255, .5);';
     colorBox.style.opacity = 0.7;
 
-    let random = Math.floor(Math.random() * 4);
-    let color;
-    if (item.design_area=="Executive") {
-      color = "#FF1744";
-    } else if (item.design_area=="Judicial") {
-      color = "#2979FF";
-    } else if (item.design_area=="Civil") {
-      color = "#FF3D00";
-    } else  {
-      color = "#76FF03";
-    }
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
 
 //    colorBox.style.borderColor = color;
     colorBox.style.backgroundColor = color;

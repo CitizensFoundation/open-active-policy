@@ -225,18 +225,7 @@ class OapArticleItem extends OapBaseElement {
 
   resetFromBudget() {
     //console.log("resetFromBudget itemId: "+this.item.id);
-
-    let random = Math.floor(Math.random() * 4);
-    let color;
-    if (this.item.design_area=="Executive") {
-      color = "#FF1744";
-    } else if (this.item.design_area=="Judicial") {
-      color = "#2979FF";
-    } else if (this.item.design_area=="Civil") {
-      color = "#FF3D00";
-    } else  {
-      color = "#76FF03";
-    }
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
 
     this.$$("#leftColor").style.backgroundColor=color;
 
@@ -313,18 +302,8 @@ class OapArticleItem extends OapBaseElement {
   setInBudget() {
     //console.log("setInBudget itemId: "+this.item.id);
     this.selected = true;
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
 
-    let random = Math.floor(Math.random() * 4);
-    let color;
-    if (this.item.design_area=="Executive") {
-      color = "#FF1744";
-    } else if (this.item.design_area=="Judicial") {
-      color = "#2979FF";
-    } else if (this.item.design_area=="Civil") {
-      color = "#FF3D00";
-    } else  {
-      color = "#76FF03";
-    }
     this.$$("#opacityLayer").style.backgroundColor=color;
     this.$$("#opacityLayer").classList.add("cover");
     this.$$("#opacityLayer").style.display="block";

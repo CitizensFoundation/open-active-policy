@@ -1491,7 +1491,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    this.filteredItems = this.allItems;
+    //this.filteredItems = this.allItems;
   }
 
   cacheSoundEffects() {

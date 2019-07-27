@@ -464,16 +464,7 @@ class Oap3dBudget extends OapBaseElement {
       itemHeight = '81';
     }
 
-    let color;
-    if (item.design_area=="Executive") {
-      color = "#FF1744";
-    } else if (item.design_area=="Judicial") {
-      color = "#2979FF";
-    } else if (item.design_area=="Civil") {
-      color = "#FF3D00";
-    } else  {
-      color = "#76FF03";
-    }
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
 
     var fudgetFactorPx = 0.033;
     itemWidth = itemWidth*fudgetFactorPx;
