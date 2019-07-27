@@ -132,7 +132,9 @@ class OapApp extends OapBaseElement {
 
       quizQuestions: Array,
 
-      choicePoints: Number
+      choicePoints: Number,
+
+      country: Object
     };
   }
 
@@ -1715,12 +1717,13 @@ class OapApp extends OapBaseElement {
     this.activity('finished', 'quiz');
   }
 
-  createCountryFinished() {
+  createCountryFinished(event) {
     this.fire('oap-play-sound-effect', 'oap_new_level_1');
     const path = '/filter-articles';
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
     this.activity('finished', 'createCountry');
+    this.country = event.detail;
   }
 
   _removeListeners() {

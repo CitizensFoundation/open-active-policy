@@ -18,10 +18,12 @@ export const OapCountryCreationStyles = css`
     margin-bottom: 16px;
     font-weight: bold;
     background-color: var(--app-country-header-background-color, #e9bf29);
-    color: var(--app-country-header-color, #000);
+    color: var(--app-country-header-color, #1d5588);
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
+    padding-top: 2px;
+    text-align: center;
   }
 
   .subHeader {
@@ -30,6 +32,7 @@ export const OapCountryCreationStyles = css`
     margin-bottom: 16px;
     padding-left: 16px;
     padding-right: 16px;
+    font-weight: bold;
   }
 
   .subHeader.noBottom {
@@ -39,6 +42,7 @@ export const OapCountryCreationStyles = css`
   .topContainer {
     margin-top: 32px;
     max-width: 600px;
+    width: 600px;
     background-color: var(--app-create-country-background-color, #1d5588);
     color: var(--app-create-country-color, #fff);
     padding-top: 16px;
@@ -70,8 +74,8 @@ export const OapCountryCreationStyles = css`
   .column {
     margin-left: 16px;
     margin-right: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   paper-button {
@@ -114,6 +118,31 @@ export const OapCountryCreationStyles = css`
     --paper-input-container-color:  var(--app-create-country-slider-active-color, #e9bf29);
     --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #e9bf29);
     --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #e9bf29);
+  }
+
+  .dropDownContainer {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  paper-dropdown-menu {
+    --paper-input-container-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-input: {
+      font-size: 30px;
+    };
+    --paper-dropdown-menu-input: {
+      --paper-input-container-input: {
+        font-size: 30px;
+      }
+    }
+    color: #FFF;
+    width: 100%;
   }
 
   @media (max-width: 450px) {
