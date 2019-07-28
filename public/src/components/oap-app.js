@@ -1612,8 +1612,8 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    this.filteredItems = this.allItems;
-    this.country = {
+    //this.filteredItems = this.allItems;
+    this.countryD = {
       name: "13 Colonies 1783 (US Constitutional Convention)",
       description: "A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",
       population: "2.7M",
