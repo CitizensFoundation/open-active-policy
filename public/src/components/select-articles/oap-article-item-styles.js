@@ -301,7 +301,6 @@ export const OapArticleItemStyles = css`
   }
 
   paper-button {
-    z-index: 5;
   }
 
   .favoriteButtons {

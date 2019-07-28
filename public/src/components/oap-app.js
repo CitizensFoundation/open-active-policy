@@ -1812,6 +1812,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("item-selected", this.addItemToFinalList);
     this.addEventListener("oap-play-sound-effect", this.playSoundEffect);
     this.addEventListener("oap-country-created", this.createCountryFinished);
+    this.addEventListener("oap-set-total-budget", this.setTotalBudget);
   }
 
   addItemToFinalList(event) {
@@ -1882,11 +1883,17 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-filtering-finished", this.filteringFinished);
     this.removeEventListener("oap-play-sound-effect", this.playSoundEffect);
     this.removeEventListener("oap-open-snackbar", this._openSnackBar);
+    this.removeEventListener("oap-set-total-budget", this.setTotalBudget);
+
 
   }
 
   _scrollItemIntoView(event) {
     this.$$("#budgetBallot")._scrollItemIntoView(event.detail);
+  }
+
+  setTotalBudget(event) {
+    this.$$("#budget").setTotalBudget(event.detail);
   }
 
   _hideFavoriteItem() {

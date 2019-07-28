@@ -412,9 +412,9 @@ class OapBallot extends OapPageViewElement {
       let htmlString="";
       bonusesAndPenalties.forEach((item)=>{
         if (item.type==="bonus") {
-          this.budgetElement.totalBudget+=item.value;
+          this.fire("oap-set-total-budget", this.budgetElement.totalBudget+=item.value);
         } else if (item.type==="penapenaltylty") {
-          this.budgetElement.totalBudget-=item.value;
+          this.fire("oap-set-total-budget", this.budgetElement.totalBudget-=item.value);
         }
         htmlString+='<span style="width: 40px;height: 40px">'+this._getEmojiFromAttitute(item.attitute)
         htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'<br>';

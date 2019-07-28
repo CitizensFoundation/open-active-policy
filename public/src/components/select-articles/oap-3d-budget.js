@@ -290,6 +290,10 @@ class Oap3dBudget extends OapBaseElement {
       this.rebuildChoicePoints();
     }
 
+    if (changedProps.has('totalBudget')) {
+      this.resetItemsWidth();
+    }
+
     if (changedProps.has('selectedBudget') || changedProps.has('totalBudget')) {
       var budgetLeft = this.totalBudget-this.selectedBudget;
       if (budgetLeft>0) {
@@ -440,6 +444,10 @@ class Oap3dBudget extends OapBaseElement {
     }
   }
 
+  setTotalBudget(budget) {
+    this.totalBudget = budget;
+  }
+
   _removeItemFromArray(item) {
     var newArray = [];
     this.selectedItems.forEach(function (i) {
@@ -484,12 +492,12 @@ class Oap3dBudget extends OapBaseElement {
     if (!this.wide) {
       setTimeout(()=>{
         this.scene.add(object);
-        this.itemsInScene.push({id: item.id, object: object, width: itemWidth});
+        this.itemsInScene.push({id: item.id, object: object, width: itemWidth, item: item});
         this.positionItems();
       }, 50);
     } else {
       this.scene.add(object);
-      this.itemsInScene.push({id: item.id, object: object, width: itemWidth});
+      this.itemsInScene.push({id: item.id, object: object, width: itemWidth, item: item});
       this.positionItems();
     }
 
@@ -507,6 +515,30 @@ class Oap3dBudget extends OapBaseElement {
         }
       }, 300);
     }
+  }
+
+  resetItemsWidth() {
+    this.itemsInScene.forEach((dItem)=> {
+      let itemWidth = parseInt(this.votesWidth * (dItem.item.price / this.totalBudget));
+      var fudgetFactorPx = 0.033;
+      itemWidth = itemWidth*fudgetFactorPx;
+      if (dItem.width!=itemWidth) {
+        const color = this.configFromServer.client_config.moduleTypeColorLookup[dItem.item.module_content_type];
+        var object = new Mesh(new BoxGeometry(itemWidth, 5, 5), new MeshBasicMaterial({
+          color: color,
+          transparent: true,
+          opacity: 1,
+          wireframe: false
+        }));
+        object.rotation.copy(dItem.object.rotation);
+        object.position.copy(dItem.object.position);
+        dItem.object = object;
+        this.scene.remove(dItem.object);
+        this.scene.add(object);
+      }
+      dItem.width = itemWidth;
+    });
+    this.positionItems();
   }
 
   positionItems() {
