@@ -177,8 +177,7 @@ class OapSwipableCards extends OapBaseElement {
         div.title = item.name;
       } else {
         div.style.width = pixels+"px";
-        div.style.height = "6px";
-        div.style.marginTop = "2px";
+        div.style.height = "8px";
         div.title = item.module_content_type;
       }
       div.onclick = (event) => {
