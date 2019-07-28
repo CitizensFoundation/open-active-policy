@@ -228,7 +228,9 @@ class OapArticleItem extends OapBaseElement {
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
 
     this.$$("#leftColor").style.backgroundColor=color;
-    this.$$("#addToBudgetButton").style.backgroundColor=color;
+    if (!this.isExcluded) {
+      this.$$("#addToBudgetButton").style.backgroundColor=color;
+    }
 
     if (this.budgetElement) {
       if (this.budgetElement.selectedItems.indexOf(this.item) > -1) {
@@ -329,8 +331,10 @@ class OapArticleItem extends OapBaseElement {
   setNotTooExpensive() {
     //console.log("setNotTooExpensive itemId: "+this.item.id);
     this.toExpensive = false;
-    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
-    this.$$("#addToBudgetButton").style.backgroundColor=color;
+    if (!this.isExcluded) {
+      const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
+      this.$$("#addToBudgetButton").style.backgroundColor=color;
+    }
   }
 
   setExcluded() {

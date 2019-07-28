@@ -329,6 +329,18 @@ class OapBallot extends OapPageViewElement {
     this.requestUpdate();
   }
 
+  _resetExclusive(itemIds) {
+    setTimeout(()=>{
+      var listItems = this.$$("#itemContainer");
+      for (var i = 0; i < listItems.children.length; i++) {
+        var listItem = listItems.children[i];
+        if (listItem.id != 'domRepeat' && itemIds.indexOf(listItem.item.id) > -1) {
+          listItem.setNotExcluded();
+       }
+      }
+    }, 50);
+  }
+
   removeFromAvailableItems(itemId) {
     for( var i = 0; i < this.budgetBallotItems.length; i++){
       if (this.budgetBallotItems[i].id==itemId) {
@@ -338,13 +350,13 @@ class OapBallot extends OapPageViewElement {
   }
 
   _itemDeSelectedFromBudget(event) {
-    var listItems = this.$$("#itemContainer");
+    var listItems = this.$$("#itemContainerFinal");
     let item;
     for (var i = 0; i < listItems.children.length; i++) {
       var listItem = listItems.children[i];
       if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
-        if (this.favoriteItem==listItem.item) {
-          this.favoriteItem = null;
+        if (listItem.item.exclusive_ids) {
+          this._resetExclusive(listItem.item.exclusive_ids.split(","));
         }
         listItem.removeFromBudget();
         this.fire("oav-reset-favorite-icon-position");
@@ -471,7 +483,7 @@ class OapBallot extends OapPageViewElement {
                 console.log("excluding: "+listItem.item.id+" for "+listItem.item.exclusive_ids);
                 listItem.setExcluded();
               } else {
-                listItem.setNotExcluded();
+                //listItem.setNotExcluded();
               }
             });
           }
