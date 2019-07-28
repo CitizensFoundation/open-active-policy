@@ -80,6 +80,7 @@ class OapSwipableCards extends OapBaseElement {
                         <div class="card-tistles">
                           <div id="moduleName" class="name">${item.name}</div>
                           <div id="description${item.id}" class="description">${item.description}</div>
+                          <div id="contentType">${item.module_content_type}</div>
                           ${ item.description.length>200 ? html`
                             <div class="hideUnhideContainer">
                               <div class="innerHideContainer">

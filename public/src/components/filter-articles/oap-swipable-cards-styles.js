@@ -413,6 +413,14 @@ export const OapSwipableCardsStyles = css`
     width: 100%;
   }
 
+  #contentType {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 11px;
+    color: #777;
+  }
+
   paper-icon-button {
     margin-bottom: -6px;
     padding-bottom: 0;

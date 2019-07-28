@@ -115,15 +115,15 @@ class OapPolicyQuiz extends OapPageViewElement {
         let target = new Vector3(6, -10, 35);
 
         new Tween(this.camera.position)
-        .to({ x: target.x, y: target.y, z: target.z, }, 25*1000)
+        .to({ x: target.x, y: target.y, z: target.z, }, 10*1000)
         .delay(0)
-        .easing(Easing.Quadratic.InOut)
+        .easing(Easing.Quadratic.In)
         .on('complete', () => {
-          target = new Vector3(6, -10, 100);
+          target = new Vector3(6, -10, 117);
           new Tween(this.camera.position)
-          .to({ x: target.x, y: target.y, z: target.z, }, 900)
+          .to({ x: target.x, y: target.y, z: target.z, }, 3500)
           .delay(0)
-          .easing(Easing.Elastic.InOut)
+          .easing(Easing.Elastic.Out)
           .on('complete', () => {
           })
           .start();
@@ -277,7 +277,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         { transform: "scale(1.3)", easing: 'ease-in' },
         { transform: "scale(1.0)", easing: 'ease-out' }
       ], {
-        duration: 450,
+        duration: 500,
         iterations: 1
       });
     } else {
@@ -296,7 +296,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         { transform: "translateX(-7px)", easing: 'ease-in' },
         { transform: "translateX(7px)", easing: 'ease-out' },
       ], {
-        duration: 450,
+        duration: 600,
         iterations: 1
       });
       this.activity('answerSubmitted', 'quiz');
@@ -320,7 +320,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         this.requestUpdate();
         this.fire("oap-sound-effect","quizCompleted");
       }
-    }, 455);
+    }, 1500);
   }
 
   resetAllButtons() {

@@ -1638,10 +1638,12 @@ class OapApp extends OapBaseElement {
 
   playSoundEffect (event) {
     if (this.soundEffects[event.detail]) {
-      const effect = this.soundEffects[event.detail];
-      const audio = new Audio(effect.url);
-      audio.volume = effect.volume;
-      audio.play();
+      setTimeout(()=> {
+        const effect = this.soundEffects[event.detail];
+        const audio = new Audio(effect.url);
+        audio.volume = effect.volume;
+        audio.play();
+      });
     }
   }
 
