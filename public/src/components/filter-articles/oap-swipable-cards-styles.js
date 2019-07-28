@@ -418,7 +418,7 @@ export const OapSwipableCardsStyles = css`
     bottom: 8px;
     left: 12px;
     font-size: 11px;
-    color: #777;
+    color: #bbb;
   }
 
   paper-icon-button {

@@ -4255,6 +4255,14 @@
     width: 100%;
   }
 
+  #contentType {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 11px;
+    color: #bbb;
+  }
+
   paper-icon-button {
     margin-bottom: -6px;
     padding-bottom: 0;
@@ -4340,6 +4348,7 @@
                         <div class="card-tistles">
                           <div id="moduleName" class="name">${e.name}</div>
                           <div id="description${e.id}" class="description">${e.description}</div>
+                          <div id="contentType">${e.module_content_type}</div>
                           ${200<e.description.length?html$1`
                             <div class="hideUnhideContainer">
                               <div class="innerHideContainer">

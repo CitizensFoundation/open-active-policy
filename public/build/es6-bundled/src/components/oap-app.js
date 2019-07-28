@@ -19743,6 +19743,14 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
     width: 100%;
   }
 
+  #contentType {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 11px;
+    color: #bbb;
+  }
+
   paper-icon-button {
     margin-bottom: -6px;
     padding-bottom: 0;
@@ -19829,6 +19837,7 @@ class OapSwipableCards extends OapBaseElement{static get properties(){return{sta
                         <div class="card-tistles">
                           <div id="moduleName" class="name">${item.name}</div>
                           <div id="description${item.id}" class="description">${item.description}</div>
+                          <div id="contentType">${item.module_content_type}</div>
                           ${200<item.description.length?html$1`
                             <div class="hideUnhideContainer">
                               <div class="innerHideContainer">
