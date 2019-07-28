@@ -119,7 +119,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         .delay(0)
         .easing(Easing.Quadratic.In)
         .on('complete', () => {
-          target = new Vector3(6, -10, 195);
+          target = new Vector3(6, -10, 175);
           new Tween(this.camera.position)
           .to({ x: target.x, y: target.y, z: target.z, }, 7*1000)
           .delay(0)
