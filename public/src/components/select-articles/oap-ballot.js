@@ -8,6 +8,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import '@polymer/paper-tabs/paper-tab';
 import '@polymer/paper-tabs/paper-tabs';
 import './oap-article-item';
+import { OapFlexLayout } from '../oap-flex-layout';
 
 class OapBallot extends OapPageViewElement {
   static get properties() {
@@ -61,14 +62,14 @@ class OapBallot extends OapPageViewElement {
   static get styles() {
     return [
       OapBallotStyles
-    ];
+     ];
   }
 
   render() {
     return html`${this.area ?
       html`
-        <div class="topContainer layout vertical">
-          <div class="layout horizontal center-center tabsContainer">
+        <div class="topContainer">
+          <div class="tabsContainer">
             <paper-tabs id="tabs" selected="${this.selectedView}" @selected-changed="${this._selectedChanged}">
               <paper-tab>
                 <div>${this.localize('favorite')} ${this.budgetBallotItems ? html` (${this.budgetBallotItems.length})` : html``}</div>
@@ -115,6 +116,9 @@ class OapBallot extends OapPageViewElement {
                     </oap-article-item>
                   `
                 )}
+              </div>
+              <div id="submitButtonContainer" class="layout horizontal center-center">
+                 <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-submit-ballot') }}">${this.localize("submitConstitution")}</paper-button>
               </div>
             `
             :

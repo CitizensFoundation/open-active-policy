@@ -69,6 +69,21 @@ export const OapBallotStyles = css`
     color: var(--app-ballot-add-button-color, #FFF);
   }
 
+
+  #submitButtonContainer {
+    width: 100%;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  #submitButton {
+    color: #FFF;
+    background-color: var(--app-accent-color, #000);
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+  }
+
   paper-button[disabled] {
     background-color: #555;
   }

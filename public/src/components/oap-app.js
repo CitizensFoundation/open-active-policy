@@ -27,6 +27,7 @@ import './policy-quiz/oap-policy-quiz';
 import './filter-articles/oap-filter-articles';
 import './select-articles/oap-ballot';
 import './select-articles/oap-3d-budget';
+import './review/oap-review';
 import './country-creation/oap-country-creation';
 
 //import './browse-articles/oap-swipable-cards';
@@ -279,6 +280,15 @@ class OapApp extends OapBaseElement {
             class="page"
             ?active="${this._page === 'area-ballot'}">
           </oap-ballot>
+          <oap-review id="review"
+            .budgetBallotItems="${this.filteredItems}"
+            .configFromServer="${this.configFromServer}"
+            .budgetElement="${this.currentBudget}"
+            .language="${this.language}"
+            .country="${this.country}"
+            class="page"
+            ?active="${this._page === 'review'}">
+          </oap-review>
           ${ this._page === 'post' ? html`
             <yp-post
               .id="post"
@@ -1602,8 +1612,8 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    //this.filteredItems = this.allItems;
-    this.countryD = {
+    this.filteredItems = this.allItems;
+    this.country = {
       name: "13 Colonies 1783 (US Constitutional Convention)",
       description: "A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",
       population: "2.7M",
@@ -1817,6 +1827,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-play-sound-effect", this.playSoundEffect);
     this.addEventListener("oap-country-created", this.createCountryFinished);
     this.addEventListener("oap-set-total-budget", this.setTotalBudget);
+    this.addEventListener("oap-submit-ballot", this.submitBallot);
   }
 
   _removeListeners() {
@@ -1846,6 +1857,15 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-open-snackbar", this._openSnackBar);
     this.removeEventListener("oap-set-total-budget", this.setTotalBudget);
     this.removeEventListener("oap-close-snackbar", this._closeSnackBar);
+    this.removeEventListener("oap-submit-ballot", this.submitBallot);
+  }
+
+  submitBallot() {
+    this.fire('oap-play-sound-effect', 'oap_new_level_1');
+    const path = '/review';
+    window.history.pushState({}, null, path);
+    this.fire('location-changed', path);
+    this.activity('finished', 'ballot');
   }
 
   addItemToFinalList(event) {
@@ -1890,7 +1910,6 @@ class OapApp extends OapBaseElement {
     this.activity('finished', 'createCountry');
     this.country = event.detail;
   }
-
 
   _scrollItemIntoView(event) {
     this.$$("#budgetBallot")._scrollItemIntoView(event.detail);
@@ -2243,6 +2262,7 @@ class OapApp extends OapBaseElement {
       case 'filter-articles':
       case 'create-country':
       case 'quiz':
+      case 'review':
       case '/':
         break;
       default:
