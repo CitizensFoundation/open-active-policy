@@ -14,7 +14,7 @@ import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityHighPassShader';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls';
-import { Tween, Easing, update } from 'es6-tween';
+import { Tween, Easing, update, removeAll } from 'es6-tween';
 
 import { OapBaseElement } from '../oap-base-element.js';
 
@@ -292,9 +292,14 @@ class Oap3dBudget extends OapBaseElement {
 
     if (changedProps.has('totalBudget')) {
       this.resetItemsWidth();
+      if (this.itemsInScene.length>0) {
+        this.rotateTimeShift();
+        this.fire('oap-play-sound-effect', 'oap_short_win_1');
+      }
     }
 
     if (changedProps.has('selectedBudget') || changedProps.has('totalBudget')) {
+      console.error(this.selectedBudget+" : "+this.totalBudget);
       var budgetLeft = this.totalBudget-this.selectedBudget;
       if (budgetLeft>0) {
         this.budgetLeft = budgetLeft;
@@ -445,7 +450,9 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   setTotalBudget(budget) {
+    console.error("OLD: "+this.totalBudget+" NEW: "+budget);
     this.totalBudget = budget;
+    this.requestUpdate();
   }
 
   _removeItemFromArray(item) {
@@ -501,18 +508,9 @@ class Oap3dBudget extends OapBaseElement {
       this.positionItems();
     }
 
-    if (this.itemsInScene.length>3) {
+    if (this.itemsInScene.length>10) {
       setTimeout(()=>{
-      //  this.rotateAllItems();
-      }, 300);
-    }
-
-    if (this.itemsInScene.length>5) {
-      setTimeout(()=>{
-        this.rotateTimeShift();
-        if (this.itemsInScene.length>5 && this.itemsInScene.length<8) {
-          this.fire('oap-play-sound-effect', 'oap_short_win_1');
-        }
+        //this.rotateAllItems();
       }, 300);
     }
   }
@@ -523,18 +521,9 @@ class Oap3dBudget extends OapBaseElement {
       var fudgetFactorPx = 0.033;
       itemWidth = itemWidth*fudgetFactorPx;
       if (dItem.width!=itemWidth) {
-        const color = this.configFromServer.client_config.moduleTypeColorLookup[dItem.item.module_content_type];
-        var object = new Mesh(new BoxGeometry(itemWidth, 5, 5), new MeshBasicMaterial({
-          color: color,
-          transparent: true,
-          opacity: 1,
-          wireframe: false
-        }));
-        object.rotation.copy(dItem.object.rotation);
-        object.position.copy(dItem.object.position);
-        dItem.object = object;
-        this.scene.remove(dItem.object);
-        this.scene.add(object);
+        var box = new BoxGeometry(itemWidth, 5, 5);
+        dItem.object.geometry.dispose();
+        dItem.object.geometry = box;
       }
       dItem.width = itemWidth;
     });
@@ -585,38 +574,49 @@ class Oap3dBudget extends OapBaseElement {
   rotateAllItems() {
     this.itemsInScene.forEach((item, index)=> {
       //console.log("Rotate:"+item.id);
-        new Tween(item.object.rotation)
-      .to({ x: "-" + Math.PI/2}, 500) // relative animation
+      const oldX = item.object.rotation.x;
+      const newX = oldX+Math.PI/2;
+       item.tween = new Tween(item.object.rotation)
+      .to({ x: "-" + newX }, 650) // relative animation
       .delay(0)
       .on('complete', () => {
           // Check that the full 360 degrees of rotation,
           // and calculate the remainder of the division to avoid overflow.
           //console.log("Rotate reset");
-          item.object.rotation.y=0;
           if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
             item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
           }
+          item.tween.stop();
+          item.tween=null;
       })
       .start();
     });
   }
 
   rotateTimeShift() {
+    // Tween remove all
+   // removeAll();
     this.itemsInScene.forEach((item, index)=> {
       //console.log("Rotate timeshift:"+item.id);
-        new Tween(item.object.rotation)
-      .to({ x: "-" + Math.PI/2}, 350+(index*65)) // relative animation
-      .delay(0)
-      .on('complete', () => {
-          // Check that the full 360 degrees of rotation,
-          // and calculate the remainder of the division to avoid overflow.
-          //console.log("Rotate reset");
-          item.object.rotation.y=0;
-          if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
-            item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
-          }
-      })
-      .start();
+      if (!item.tween) {
+        const oldX = item.object.rotation.x;
+        const newX = oldX+Math.PI;
+        item.tween =  new Tween(item.object.rotation)
+        .to({ x: "-" + newX}, 650) // relative animation
+        .delay(0)
+        .on('complete', () => {
+            // Check that the full 360 degrees of rotation,
+            // and calculate the remainder of the division to avoid overflow.
+            console.log("Rotate reset");
+            item.object.rotation.y=0;
+            if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
+              item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
+            }
+            item.tween.stop();
+            item.tween=null;
+        })
+        .start();
+      }
     });
   }
 

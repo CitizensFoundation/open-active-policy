@@ -52,7 +52,9 @@ class OapBallot extends OapPageViewElement {
 
       oldFavoriteItem: Object,
 
-      showMap: Boolean
+      showMap: Boolean,
+
+      usedBonusesAndPenalties: Object,
     };
   }
 
@@ -225,6 +227,7 @@ class OapBallot extends OapPageViewElement {
     this.favoriteItem = null;
     this.selectedView = 0;
     this.fire('oav-set-area', { areaName: null, totalBudget: null });
+    this.usedBonusesAndPenalties = [];
   }
 
   _selectedChanged(event) {
@@ -343,12 +346,10 @@ class OapBallot extends OapPageViewElement {
         if (this.favoriteItem==listItem.item) {
           this.favoriteItem = null;
         }
-        item = listItem.item;
         listItem.removeFromBudget();
         this.fire("oav-reset-favorite-icon-position");
       }
     }
-    this._checkBonusesAndPenalties(item, "deselect");
     this._setStateOfRemainingItems();
     this.requestUpdate();
   }
@@ -375,15 +376,15 @@ class OapBallot extends OapPageViewElement {
       if (level==="bonus") {
       } else if (level==="high") {
         if (this.country.culturalAttitutes[attitute]==2) {
-          bonusesAndPenalties.push({type:"bonus", value: 5, attitute: attitute, level: level});
+          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 7, attitute: attitute, level: level});
         }
       } else if (level==="medium") {
         if (this.country.culturalAttitutes[attitute]==1) {
-          bonusesAndPenalties.push({type:"bonus", value: 2, attitute: attitute, level: level});
+          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 5, attitute: attitute, level: level});
         }
       } else if (level==="low") {
         if (this.country.culturalAttitutes[attitute]==0) {
-          bonusesAndPenalties.push({type:"bonus", value: 1, attitute: attitute, level: level});
+          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 1, attitute: attitute, level: level});
         }
       }
     });
@@ -395,15 +396,15 @@ class OapBallot extends OapPageViewElement {
       if (level==="bonus") {
       } else if (level==="high") {
         if (this.country.culturalAttitutes[attitute]==2) {
-          bonusesAndPenalties.push({type:"penalty", value: 5, attitute: attitute, level: level});
+          bonusesAndPenalties.push({id: item.id, type:"penalty", value: 7, attitute: attitute, level: level});
         }
       } else if (level==="medium") {
         if (this.country.culturalAttitutes[attitute]==1) {
-          bonusesAndPenalties.push({type:"penalty", value: 2, attitute: attitute, level: level});
+          bonusesAndPenalties.push({id: item.id, type:"penalty", value: 5, attitute: attitute, level: level});
         }
       } else if (level==="low") {
         if (this.country.culturalAttitutes[attitute]==0) {
-          bonusesAndPenalties.push({type:"penalty", value: 1, attitute: attitute, level: level});
+          bonusesAndPenalties.push({id: item.id, type:"penalty", value: 1, attitute: attitute, level: level});
         }
       }
     });
@@ -411,15 +412,25 @@ class OapBallot extends OapPageViewElement {
     if (bonusesAndPenalties.length>0) {
       let htmlString="";
       bonusesAndPenalties.forEach((item)=>{
-        if (item.type==="bonus") {
-          this.fire("oap-set-total-budget", this.budgetElement.totalBudget+=item.value);
-        } else if (item.type==="penapenaltylty") {
-          this.fire("oap-set-total-budget", this.budgetElement.totalBudget-=item.value);
+        const usedKey = item.id+item.type+item.value+item.attitute+item.level;
+        if (!this.usedBonusesAndPenalties[usedKey]) {
+          this.usedBonusesAndPenalties[usedKey] = true;
+          if (item.type==="bonus") {
+            this.budgetElement.totalBudget+=item.value;
+  //          this.fire("oap-set-total-budget", this.budgetElement.totalBudget+=item.value);
+          } else if (item.type==="penalty") {
+            this.budgetElement.totalBudget-=item.value;
+  //          this.fire("oap-set-total-budget", this.budgetElement.totalBudget-=item.value);
+          }
+          htmlString+='<span style="width: 40px;height: 40px">'+this._getEmojiFromAttitute(item.attitute)
+          htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'<br>';
+        } else {
+          console.warn("Trying to use bonus again: "+usedKey);
         }
-        htmlString+='<span style="width: 40px;height: 40px">'+this._getEmojiFromAttitute(item.attitute)
-        htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'<br>';
       });
-      this.fire('oap-open-snackbar', htmlString);
+      if (htmlString.length>0) {
+        this.fire('oap-open-snackbar', htmlString);
+      }
     }
 
   }
