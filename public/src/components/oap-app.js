@@ -258,13 +258,15 @@ class OapApp extends OapBaseElement {
             class="page"
             ?active="${this._page === 'quiz'}">
           </oap-policy-quiz>
-          <oap-filter-articles id="filterArticles"
-            .language="${this.language}"
-            .configFromServer="${this.configFromServer}"
-            class="page"
-            .allItems="${this.allItems}"
-            ?active="${this._page === 'filter-articles'}">
-          </oap-filter-articles>
+          ${ this._page==="filter-articles" ?  html`
+            <oap-filter-articles id="filterArticles"
+              .language="${this.language}"
+              .configFromServer="${this.configFromServer}"
+              class="page"
+              .allItems="${this.allItems}"
+              ?active="${this._page === 'filter-articles'}">
+            </oap-filter-articles>
+          ` : html`` }
           <oap-article-selection
             .configFromServer="${this.configFromServer}"
             class="page"
@@ -1641,7 +1643,7 @@ class OapApp extends OapBaseElement {
       Object.values(this.soundEffects).forEach((effect) => {
         setTimeout( () => {
           const audio = new Audio(effect.url);
-        });
+        }, 500+Math.floor(Math.random() * 2500));
       });
     }
   }
@@ -1658,20 +1660,12 @@ class OapApp extends OapBaseElement {
   }
 
   cacheDataImages() {
-    if (this.quizQuestions) {
-      this.quizQuestions.forEach((question) => {
-        setTimeout( () => {
-          const img = new Image();
-          img.src=question.imageUrl;
-        });
-      });
-    }
     if (this.allItems) {
       this.allItems.forEach((module) => {
         setTimeout( () => {
           const img = new Image();
           img.src=module.image_url;
-        });
+        }, 2500+Math.floor(Math.random() * 22500));
       });
     }
   }
