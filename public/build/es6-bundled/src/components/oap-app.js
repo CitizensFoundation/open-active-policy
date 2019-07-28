@@ -19745,8 +19745,8 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
 
   #contentType {
     position: absolute;
-    bottom: 8px;
-    left: 12px;
+    bottom: 10px;
+    left: 13px;
     font-size: 11px;
     color: #bbb;
   }
