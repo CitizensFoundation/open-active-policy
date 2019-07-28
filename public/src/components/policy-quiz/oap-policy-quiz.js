@@ -24,7 +24,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       scene: Object,
       camera: Object,
       dirLightOne: Object,
-      dirLightTwo: Object,
+      dirLightTwo: Object
     };
   }
 
@@ -112,18 +112,18 @@ class OapPolicyQuiz extends OapPageViewElement {
 
         this.renderCanvas3d();
 
-        let target = new Vector3(6, -10, 22);
+        let target = new Vector3(6, -10, 35);
 
         new Tween(this.camera.position)
-        .to({ x: target.x, y: target.y, z: target.z, }, 15*1000)
+        .to({ x: target.x, y: target.y, z: target.z, }, 25*1000)
         .delay(0)
         .easing(Easing.Quadratic.InOut)
         .on('complete', () => {
-          target = new Vector3(6, -10, 80);
+          target = new Vector3(6, -10, 100);
           new Tween(this.camera.position)
           .to({ x: target.x, y: target.y, z: target.z, }, 900)
           .delay(0)
-          .easing(Easing.Quadratic.InOut)
+          .easing(Easing.Elastic.InOut)
           .on('complete', () => {
           })
           .start();
@@ -211,13 +211,18 @@ class OapPolicyQuiz extends OapPageViewElement {
               ${this.localize("incorrectQuizAnswers")}: ${this.incorrectAnswers}
             </div>
             <div class="buttonContainer">
-              <paper-button raised class="answerButton continueButton" @click="${()=> { this.fire('oap-quiz-finished') }}">${this.localize("continueToCountryCreation")}</paper-button>
+              <paper-button raised class="answerButton continueButton" @click="${this.quizFinished}">${this.localize("continueToCountryCreation")}</paper-button>
             </div>
           </div>
           ` : html``}
       </div>
     </div>
     `
+  }
+
+  quizFinished() {
+    this.fire('oap-quiz-finished');
+    this.stop();
   }
 
   correctAnswerColorAnimation() {
@@ -336,8 +341,6 @@ class OapPolicyQuiz extends OapPageViewElement {
     if (changedProps.has('active')) {
       if (this.active===true) {
         this.start();
-      } else {
-        this.stop();
       }
     }
   }

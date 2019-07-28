@@ -11,7 +11,7 @@ export class OapPageViewElement extends OapBaseElement {
 
   static get properties() {
     return {
-      active: { type: Boolean },
+      active: { type: Boolean }
     }
   }
 }

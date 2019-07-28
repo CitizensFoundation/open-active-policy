@@ -245,7 +245,7 @@ class OapApp extends OapBaseElement {
             .configFromServer="${this.configFromServer}"
             .nickname="Robert Bjarnason"
             .language="${this.language}"
-            ?hidden="${this._page !== 'create-country'}"
+            class="page"
             ?active="${this._page === 'create-country'}">
           </oap-country-creation>
           <oap-policy-quiz
@@ -254,18 +254,19 @@ class OapApp extends OapBaseElement {
             .configFromServer="${this.configFromServer}"
             .nickname="Robert Bjarnason"
             .language="${this.language}"
-            ?hidden="${this._page !== 'quiz'}"
+            class="page"
             ?active="${this._page === 'quiz'}">
           </oap-policy-quiz>
           <oap-filter-articles id="filterArticles"
             .language="${this.language}"
             .configFromServer="${this.configFromServer}"
-            ?hidden="${this._page !== 'filter-articles'}"
+            class="page"
             .allItems="${this.allItems}"
             ?active="${this._page === 'filter-articles'}">
           </oap-filter-articles>
           <oap-article-selection
             .configFromServer="${this.configFromServer}"
+            class="page"
             .language="${this.language}"
             ?active="${this._page === 'article-selection'}">
           </oap-article-selection>
@@ -275,7 +276,7 @@ class OapApp extends OapBaseElement {
             .budgetElement="${this.currentBudget}"
             .language="${this.language}"
             .country="${this.country}"
-            ?hidden="${this._page !== 'area-ballot'}"
+            class="page"
             ?active="${this._page === 'area-ballot'}">
           </oap-ballot>
           ${ this._page === 'post' ? html`
@@ -2108,6 +2109,7 @@ class OapApp extends OapBaseElement {
     }
 
     if (changedProps.has('_page')) {
+      console.error("this._page: "+this._page);
       const pageTitle = this.appTitle + ' - ' + this._page;
 
       const page = this._page;

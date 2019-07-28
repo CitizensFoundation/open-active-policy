@@ -449,12 +449,6 @@ class Oap3dBudget extends OapBaseElement {
     }
   }
 
-  setTotalBudget(budget) {
-    console.error("OLD: "+this.totalBudget+" NEW: "+budget);
-    this.totalBudget = budget;
-    this.requestUpdate();
-  }
-
   _removeItemFromArray(item) {
     var newArray = [];
     this.selectedItems.forEach(function (i) {
