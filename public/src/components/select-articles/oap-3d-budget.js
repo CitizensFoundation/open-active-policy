@@ -614,7 +614,7 @@ class Oap3dBudget extends OapBaseElement {
         .on('complete', () => {
             // Check that the full 360 degrees of rotation,
             // and calculate the remainder of the division to avoid overflow.
-            console.log("Rotate reset");
+            //console.log("Rotate reset");
             item.object.rotation.y=0;
             if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
               item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
