@@ -326,6 +326,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   resetAllButtons() {
     [0,1,2,3].forEach( (buttonId) => {
       this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;
+      this.$$("#button"+buttonId).selected=false;
       this.$$("#button"+buttonId).classList.remove("wrongAnswer");
     });
   }
