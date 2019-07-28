@@ -86,6 +86,10 @@ export const OapCountryCreationStyles = css`
     margin-top: 24px;
   }
 
+  paper-button[disabled] {
+    background-color: #888;
+  }
+
   .sliderHeader {
     margin-top: 8px;
   }

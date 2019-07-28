@@ -18,7 +18,8 @@ class OapCountryCreation extends OapPageViewElement {
   static get properties() {
     return {
       country: Object,
-      customCountry: Boolean
+      customCountry: Boolean,
+      submitDisabled: Boolean
     };
   }
 
@@ -37,6 +38,7 @@ class OapCountryCreation extends OapPageViewElement {
 
   reset() {
     this.customCountry = false;
+    this.submitDisabled = true;
     this.country = {
       name: "",
       description: "",
@@ -297,6 +299,7 @@ class OapCountryCreation extends OapPageViewElement {
                       type="text"
                       label="${this.localize('countryName')}"
                       .value="${this.country.name}"
+                      @value-changed="${this.setName}"
                       ?hidden="${!this.customCountry}"
                       maxlength="50"
                       char-counter>
@@ -308,6 +311,7 @@ class OapCountryCreation extends OapPageViewElement {
                           ?always-float-label="${(this.country && this.country.description)}"
                           label="${this.localize('countryDescription')}"
                           char-counter
+                          @value-changed="${this.setDescription}"
                           ?char-counter="${this.customCountry}"
                           rows="2"
                           max-rows="5"
@@ -323,6 +327,7 @@ class OapCountryCreation extends OapPageViewElement {
             <div class="column">
               <div class="sliderHeader"><span class="emoji">🏛️</span>${this.localize("authority")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeAttitute('authority', event)}}"
                 .value="${this.country.culturalAttitutes.authority}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -330,6 +335,7 @@ class OapCountryCreation extends OapPageViewElement {
 
             <div class="sliderHeader"><span class="emoji">🔬</span>${this.localize("science")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeAttitute('science', event)}}"
                 .value="${this.country.culturalAttitutes.science}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -337,20 +343,23 @@ class OapCountryCreation extends OapPageViewElement {
 
             <div class="sliderHeader"><span class="emoji">👥</span>${this.localize("collective")}</div>
               <paper-slider
-                .value="${this.country.culturalAttitutes.collective}"
+                @value-changed="${(event) => { this.changeAttitute('collective', event)}}"
+               .value="${this.country.culturalAttitutes.collective}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
             </paper-slider>
 
             <div class="sliderHeader"><span class="emoji">🔐</span>${this.localize("privacy")}</div>
             <paper-slider
-              .value="${this.country.culturalAttitutes.privacy}"
+              @value-changed="${(event) => { this.changeAttitute('privacy', event)}}"
+             .value="${this.country.culturalAttitutes.privacy}"
               max="2" ?disabled="${!this.customCountry}"
               >
             </paper-slider>
 
             <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("socialProgressEgalitarianism")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeAttitute('socialProgress', event)}}"
                 .value="${this.country.culturalAttitutes.socialProgress}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -360,6 +369,7 @@ class OapCountryCreation extends OapPageViewElement {
           <div class="column">
               <div class="sliderHeader"><span class="emoji">🌅</span>${this.localize("liberty")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeAttitute('liberty', event)}}"
                 .value="${this.country.culturalAttitutes.liberty}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -367,6 +377,7 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div class="sliderHeader"><span class="emoji">🏺</span>${this.localize("tradition")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeAttitute('tradition', event)}}"
                 .value="${this.country.culturalAttitutes.tradition}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -374,6 +385,7 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div class="sliderHeader"><span class="emoji">🛡️</span>${this.localize("independence")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeAttitute('independence', event)}}"
                 .value="${this.country.culturalAttitutes.independence}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -381,6 +393,7 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div class="sliderHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeAttitute('lawAndOrder', event)}}"
                 .value="${this.country.culturalAttitutes.lawAndOrder}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -397,6 +410,7 @@ class OapCountryCreation extends OapPageViewElement {
                       label="${this.localize('populationSize')}"
                       .value="${this.country.population}"
                       maxlength="8"
+                      @value-changed="${this.setPopulation}"
                       char-counter>
           </paper-input>
 
@@ -405,6 +419,7 @@ class OapCountryCreation extends OapPageViewElement {
                       type="text"
                       label="${this.localize('geographicalSize')}"
                       .value="${this.country.geographicalSize}"
+                      @value-changed="${this.setGeographicalSize}"
                       maxlength="8"
                       char-counter>
           </paper-input>
@@ -413,6 +428,7 @@ class OapCountryCreation extends OapPageViewElement {
             <div class="column">
               <div class="sliderHeader"><span class="emoji">🔋</span>${this.localize("naturalResourceWealth")}</div>
                 <paper-slider
+                  @value-changed="${(event) => { this.changeStats('naturalResourceWealth', event)}}"
                   .value="${this.country.naturalResourceWealth}"
                   max="2" ?disabled="${!this.customCountry}"
                   >
@@ -420,6 +436,7 @@ class OapCountryCreation extends OapPageViewElement {
 
                 <div class="sliderHeader"><span class="emoji">🛂</span>${this.localize("borderDensity")}</div>
                 <paper-slider
+                  @value-changed="${(event) => { this.changeStats('borderDensity', event)}}"
                   .value="${this.country.borderDensity}"
                   max="2" ?disabled="${!this.customCountry}"
                   >
@@ -428,6 +445,7 @@ class OapCountryCreation extends OapPageViewElement {
             <div class="column">
               <div class="sliderHeader"><span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeStats('hostilityNeighboringCountries', event)}}"
                 .value="${this.country.hostilityNeighboringCountries}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -435,6 +453,7 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div class="sliderHeader"><span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}</div>
               <paper-slider
+                @value-changed="${(event) => { this.changeStats('barrieresToCitizenship', event)}}"
                 .value="${this.country.barrieresToCitizenship}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
@@ -443,7 +462,7 @@ class OapCountryCreation extends OapPageViewElement {
           </div>
 
           <div class="layout horizontal center-center">
-            <paper-button raised id="submitButton" class="buttton" @click="${()=> { this.fire('oap-country-created', this.country) }}">${this.localize("buildConstitutionForCountry")}</paper-button>
+            <paper-button raised id="submitButton" ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { debugger;this.fire('oap-country-created', this.country) }}">${this.localize("buildConstitutionForCountry")}</paper-button>
           </div>
 
         </div>
@@ -460,10 +479,62 @@ class OapCountryCreation extends OapPageViewElement {
       if (countryId==9) {
         this.customCountry = true;
         this.country.name = "";
+        this.submitDisabled = true;
+        this.checkIfOkToProceed();
       } else {
         this.countryList[9].name="Custom country";
         this.customCountry = false;
+        this.submitDisabled = false;
       }
+    }
+  }
+
+  checkIfOkToProceed() {
+    if (this.country.name.length>1 &&
+        this.country.description.length>1 &&
+        this.country.population.length>0 &&
+        this.country.geographicalSize.length>0) {
+      this.submitDisabled = false;
+    }
+  }
+
+  setName(event) {
+    if (event.detail.value && this.customCountry) {
+      this.country.name = event.detail.value;
+      this.checkIfOkToProceed();
+    }
+  }
+
+  setDescription(event) {
+    if (event.detail.value && this.customCountry) {
+      this.country.description = event.detail.value;
+      this.checkIfOkToProceed();
+    }
+  }
+
+  setPopulation(event) {
+    if (event.detail.value && this.customCountry) {
+      this.country.population = event.detail.value;
+      this.checkIfOkToProceed();
+    }
+  }
+
+  changeStats(stat, event) {
+    if (event.detail.value && this.customCountry) {
+      this.country[stat] = event.detail.value;
+    }
+  }
+
+  changeAttitute(attitute, event) {
+    if (event.detail.value && this.customCountry) {
+      this.country.culturalAttitutes[attitute] = event.detail.value;
+    }
+  }
+
+  setGeographicalSize(event) {
+    if (event.detail.value && this.customCountry) {
+      this.country.geographicalSize = event.detail.value;
+      this.checkIfOkToProceed();
     }
   }
 
