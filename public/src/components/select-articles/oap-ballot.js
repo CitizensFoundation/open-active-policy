@@ -384,7 +384,7 @@ class OapBallot extends OapPageViewElement {
         }
       } else if (level==="low") {
         if (this.country.culturalAttitutes[attitute]==0) {
-          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 1, attitute: attitute, level: level});
+          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 2, attitute: attitute, level: level});
         }
       }
     });

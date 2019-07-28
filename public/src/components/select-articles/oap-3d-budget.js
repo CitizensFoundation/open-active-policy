@@ -293,8 +293,11 @@ class Oap3dBudget extends OapBaseElement {
     if (changedProps.has('totalBudget')) {
       this.resetItemsWidth();
       if (this.itemsInScene.length>0) {
-        this.rotateTimeShift();
-        this.fire('oap-play-sound-effect', 'oap_short_win_1');
+        const oldTotalBudget = changedProps.get("totalBudget");
+        if (oldTotalBudget<this.totalBudget) {
+          this.rotateTimeShift();
+          this.fire('oap-play-sound-effect', 'oap_short_win_1');
+        }
       }
     }
 
@@ -592,11 +595,21 @@ class Oap3dBudget extends OapBaseElement {
    // removeAll();
     this.itemsInScene.forEach((item, index)=> {
       //console.log("Rotate timeshift:"+item.id);
-      if (!item.tween) {
+      let random;
+      if (this.itemsInScene.length>30) {
+        random = Math.floor((Math.random() * 5));
+      } else if (this.itemsInScene.length>20) {
+        random = Math.floor((Math.random() * 4));
+      } else if (this.itemsInScene.length>10) {
+        random = Math.floor((Math.random() * 3));
+      } else {
+        random = Math.floor((Math.random() * 2));
+      }
+      if (!item.tween && random==0) {
         const oldX = item.object.rotation.x;
         const newX = oldX+Math.PI;
         item.tween =  new Tween(item.object.rotation)
-        .to({ x: "-" + newX}, 650) // relative animation
+        .to({ x: "-" + newX}, 900) // relative animation
         .delay(0)
         .on('complete', () => {
             // Check that the full 360 degrees of rotation,
