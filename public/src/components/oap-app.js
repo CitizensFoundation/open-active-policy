@@ -1801,6 +1801,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-open-help", this._help);
 
     this.addEventListener("oap-open-snackbar", this._openSnackBar);
+    this.addEventListener("oap-close-snackbar", this._closeSnackBar);
     this.addEventListener("oav-set-ballot-element", this._setBallotElement);
     this.addEventListener("oav-set-budget-element", this._setBudgetElement);
     this.addEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
@@ -1816,6 +1817,35 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-play-sound-effect", this.playSoundEffect);
     this.addEventListener("oap-country-created", this.createCountryFinished);
     this.addEventListener("oap-set-total-budget", this.setTotalBudget);
+  }
+
+  _removeListeners() {
+    this.removeEventListener("app-resources-loaded", this._translationLoaded);
+    this.removeEventListener("oav-set-title", this._setTitle);
+    this.removeEventListener("oav-error", this._errorHandler);
+    this.removeEventListener("oav-set-area", this._setArea);
+    this.removeEventListener("oav-clear-area", this._clearArea);
+    this.removeEventListener("oav-set-area", this._setArea);
+    this.removeEventListener("location-changed", this._locationChanged);
+    this.removeEventListener("oav-set-favorite-item-in-budget", this._toggleFavoriteItem);
+    this.removeEventListener("oav-hide-favorite-item", this._hideFavoriteItem);
+    this.removeEventListener("oav-reset-favorite-icon-position", this.resetFavoriteIconPosition);
+    this.removeEventListener("oav-exit", this._exit);
+    this.removeEventListener("oav-set-ballot-element", this._setBallotElement);
+    this.removeEventListener("oav-set-budget-element", this._setBudgetElement);
+    this.removeEventListener("oap-open-help", this._help);
+    this.removeEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
+    window.removeEventListener("resize", this.resetSizeWithDelay);
+    this.removeEventListener("oav-insecure-email-login", this._insecureEmailLogin);
+    this.removeEventListener("oap-process-correct-quiz-answer", this.processCorrectQuizAnswer);
+    this.removeEventListener("oap-quiz-finished", this.quizFinished);
+    this.removeEventListener("oap-country-created", this.createCountryFinished);
+    this.removeEventListener("item-selected", this.addItemToFinalList);
+    this.removeEventListener("oap-filtering-finished", this.filteringFinished);
+    this.removeEventListener("oap-play-sound-effect", this.playSoundEffect);
+    this.removeEventListener("oap-open-snackbar", this._openSnackBar);
+    this.removeEventListener("oap-set-total-budget", this.setTotalBudget);
+    this.removeEventListener("oap-close-snackbar", this._closeSnackBar);
   }
 
   addItemToFinalList(event) {
@@ -1861,35 +1891,6 @@ class OapApp extends OapBaseElement {
     this.country = event.detail;
   }
 
-  _removeListeners() {
-    this.removeEventListener("app-resources-loaded", this._translationLoaded);
-    this.removeEventListener("oav-set-title", this._setTitle);
-    this.removeEventListener("oav-error", this._errorHandler);
-    this.removeEventListener("oav-set-area", this._setArea);
-    this.removeEventListener("oav-clear-area", this._clearArea);
-    this.removeEventListener("oav-set-area", this._setArea);
-    this.removeEventListener("location-changed", this._locationChanged);
-    this.removeEventListener("oav-set-favorite-item-in-budget", this._toggleFavoriteItem);
-    this.removeEventListener("oav-hide-favorite-item", this._hideFavoriteItem);
-    this.removeEventListener("oav-reset-favorite-icon-position", this.resetFavoriteIconPosition);
-    this.removeEventListener("oav-exit", this._exit);
-    this.removeEventListener("oav-set-ballot-element", this._setBallotElement);
-    this.removeEventListener("oav-set-budget-element", this._setBudgetElement);
-    this.removeEventListener("oap-open-help", this._help);
-    this.removeEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
-    window.removeEventListener("resize", this.resetSizeWithDelay);
-    this.removeEventListener("oav-insecure-email-login", this._insecureEmailLogin);
-    this.removeEventListener("oap-process-correct-quiz-answer", this.processCorrectQuizAnswer);
-    this.removeEventListener("oap-quiz-finished", this.quizFinished);
-    this.removeEventListener("oap-country-created", this.createCountryFinished);
-    this.removeEventListener("item-selected", this.addItemToFinalList);
-    this.removeEventListener("oap-filtering-finished", this.filteringFinished);
-    this.removeEventListener("oap-play-sound-effect", this.playSoundEffect);
-    this.removeEventListener("oap-open-snackbar", this._openSnackBar);
-    this.removeEventListener("oap-set-total-budget", this.setTotalBudget);
-
-
-  }
 
   _scrollItemIntoView(event) {
     this.$$("#budgetBallot")._scrollItemIntoView(event.detail);
@@ -2197,10 +2198,17 @@ class OapApp extends OapBaseElement {
   }
 
   _openSnackBar(event) {
+    setTimeout(()=>{
+      clearTimeout(this.__snackbarTimer);
+      this._snackbarOpened = true;
+      this.snackBarContent = event.detail;
+      this.__snackbarTimer = setTimeout(() => { this._snackbarOpened = false;  this.snackBarContent =null }, 5000);
+    });
+  }
+
+  _closeSnackBar(event) {
     clearTimeout(this.__snackbarTimer);
-    this._snackbarOpened = true;
-    this.snackBarContent = event.detail;
-    this.__snackbarTimer = setTimeout(() => { this._snackbarOpened = false;  this.snackBarContent =null }, 5000);
+    this._snackbarOpened = false;
   }
 
   _locationChanged(location) {

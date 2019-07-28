@@ -376,6 +376,7 @@ class OapArticleItem extends OapBaseElement {
   _toggleInBudget(event) {
     //console.log("_toggleInBudget itemId: "+this.item.id);
     this.fire('oav-toggle-item-in-budget', { item: this.item });
+    this.fire('oap-close-snackbar');
   }
 }
 
