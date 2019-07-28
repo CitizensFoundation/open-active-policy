@@ -136,6 +136,8 @@ class OapApp extends OapBaseElement {
 
       choicePoints: Number,
 
+      snackBarContent: String,
+
       country: Object
     };
   }
@@ -272,6 +274,7 @@ class OapApp extends OapBaseElement {
             .configFromServer="${this.configFromServer}"
             .budgetElement="${this.currentBudget}"
             .language="${this.language}"
+            .country="${this.country}"
             ?hidden="${this._page !== 'area-ballot'}"
             ?active="${this._page === 'area-ballot'}">
           </oap-ballot>
@@ -288,7 +291,7 @@ class OapApp extends OapBaseElement {
         </main>
 
         <snack-bar ?active="${this._snackbarOpened}">
-          You are now ${this._offline ? 'offline' : 'online'}.
+          ${unsafeHTML(this.snackBarContent)}
         </snack-bar>
       `
       :
@@ -418,7 +421,7 @@ class OapApp extends OapBaseElement {
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png',
     price: 20,
-    bonus: 'High Authority,High Independence,High lawAndOrder',
+    bonus: 'High Authority,High Independence,High Law and Order',
     penalty: 'High Social Progress,High Collective' },
   { id: '2',
     branch: 'Executive Core Articles',
@@ -432,7 +435,7 @@ class OapApp extends OapBaseElement {
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png',
     price: 20,
-    bonus: 'Medium Authority,High lawAndOrder',
+    bonus: 'Medium Authority,High Law and Order',
     penalty: 'High Social Progress' },
   { id: '3',
     branch: 'Executive Core Articles',
@@ -447,7 +450,7 @@ class OapApp extends OapBaseElement {
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png',
     price: 20,
     bonus:
-     'High Authority,High Tradition,High Collective,High lawAndOrder',
+     'High Authority,High Tradition,High Collective,High Law and Order',
     penalty: 'High Social Progress,High Liberty,High Privacy' },
   { id: '4',
     branch: 'Executive Core Articles',
@@ -1599,6 +1602,27 @@ class OapApp extends OapBaseElement {
     this.cacheDataImages();
     this.cacheSoundEffects();
     this.filteredItems = this.allItems;
+    this.country = {
+      name: "13 Colonies 1783 (US Constitutional Convention)",
+      description: "A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",
+      population: "2.7M",
+      geographicalSize: "9.5M",
+      naturalResourceWealth: 2,
+      borderDensity: 0,
+      hostilityNeighboringCountries: 2,
+      barrieresToCitizenship: 0,
+      culturalAttitutes: {
+        authority: 0,
+        liberty: 2,
+        science: 2,
+        tradition: 0,
+        collective: 1,
+        independence: 2,
+        privacy: 2,
+        lawAndOrder: 1,
+        socialProgress: 1
+      }
+    }
   }
 
   cacheSoundEffects() {
@@ -1772,6 +1796,8 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oav-reset-favorite-icon-position", this.resetFavoriteIconPosition);
     this.addEventListener("oav-exit", this._exit);
     this.addEventListener("oap-open-help", this._help);
+
+    this.addEventListener("oap-open-snackbar", this._openSnackBar);
     this.addEventListener("oav-set-ballot-element", this._setBallotElement);
     this.addEventListener("oav-set-budget-element", this._setBudgetElement);
     this.addEventListener("oav-scroll-item-into-view", this._scrollItemIntoView);
@@ -1855,6 +1881,8 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("item-selected", this.addItemToFinalList);
     this.removeEventListener("oap-filtering-finished", this.filteringFinished);
     this.removeEventListener("oap-play-sound-effect", this.playSoundEffect);
+    this.removeEventListener("oap-open-snackbar", this._openSnackBar);
+
   }
 
   _scrollItemIntoView(event) {
@@ -2155,10 +2183,13 @@ class OapApp extends OapBaseElement {
     if (previousOffline === undefined) {
       return;
     }
+  }
 
+  _openSnackBar(event) {
     clearTimeout(this.__snackbarTimer);
     this._snackbarOpened = true;
-    this.__snackbarTimer = setTimeout(() => { this._snackbarOpened = false }, 3000);
+    this.snackBarContent = event.detail;
+    this.__snackbarTimer = setTimeout(() => { this._snackbarOpened = false;  this.snackBarContent =null }, 5000);
   }
 
   _locationChanged(location) {

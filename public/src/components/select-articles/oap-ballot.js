@@ -48,6 +48,8 @@ class OapBallot extends OapPageViewElement {
         type: Object
       },
 
+      country: Object,
+
       oldFavoriteItem: Object,
 
       showMap: Boolean
@@ -305,11 +307,13 @@ class OapBallot extends OapPageViewElement {
 
   _itemSelectedInBudget(event) {
     var listItems = this.$$("#itemContainer");
+    let item;
     for (var i = 0; i < listItems.children.length; i++) {
       var listItem = listItems.children[i];
       if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
         listItem.setInBudget();
         const itemId = listItem.item.id;
+        item = listItem.item;
         listItem.classList.add("sendToTop");
         setTimeout(() => {
           this.removeFromAvailableItems(itemId);
@@ -317,8 +321,9 @@ class OapBallot extends OapPageViewElement {
         }, 500);
       }
     }
-    this.requestUpdate();
+    this._checkBonusesAndPenalties(item, "select");
     this._setStateOfRemainingItems();
+    this.requestUpdate();
   }
 
   removeFromAvailableItems(itemId) {
@@ -331,18 +336,111 @@ class OapBallot extends OapPageViewElement {
 
   _itemDeSelectedFromBudget(event) {
     var listItems = this.$$("#itemContainer");
+    let item;
     for (var i = 0; i < listItems.children.length; i++) {
       var listItem = listItems.children[i];
       if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
         if (this.favoriteItem==listItem.item) {
           this.favoriteItem = null;
         }
+        item = listItem.item;
         listItem.removeFromBudget();
         this.fire("oav-reset-favorite-icon-position");
       }
     }
-    this.requestUpdate();
+    this._checkBonusesAndPenalties(item, "deselect");
     this._setStateOfRemainingItems();
+    this.requestUpdate();
+  }
+
+  _checkBonusesAndPenalties(item, action) {
+    const test = "High Authority,High Tradition,High Collective,High Law/Order,Low Science";
+
+    let bonusesRules = item.bonus.split(",");
+    bonusesRules = bonusesRules.map((rule) => {
+      return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","socialProgress");
+    });
+
+    let penaltyRules = item.penalty.split(",");
+    penaltyRules = penaltyRules.map((rule) => {
+      return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","socialProgress");
+    });
+
+    let bonusesAndPenalties = [];
+
+    bonusesRules.forEach((bonus) => {
+      const splitBonus = bonus.split(" ");
+      const level = splitBonus[0];
+      const attitute = splitBonus[1];
+      if (level==="bonus") {
+      } else if (level==="high") {
+        if (this.country.culturalAttitutes[attitute]==2) {
+          bonusesAndPenalties.push({type:"bonus", value: 25, attitute: attitute, level: level});
+        }
+      } else if (level==="medium") {
+        if (this.country.culturalAttitutes[attitute]==1) {
+          bonusesAndPenalties.push({type:"bonus", value: 15, attitute: attitute, level: level});
+        }
+      } else if (level==="low") {
+        if (this.country.culturalAttitutes[attitute]==0) {
+          bonusesAndPenalties.push({type:"bonus", value: 5, attitute: attitute, level: level});
+        }
+      }
+    });
+
+    penaltyRules.forEach((bonus) => {
+      const splitBonus = bonus.split(" ");
+      const level = splitBonus[0];
+      const attitute = splitBonus[1];
+      if (level==="bonus") {
+      } else if (level==="high") {
+        if (this.country.culturalAttitutes[attitute]==2) {
+          bonusesAndPenalties.push({type:"penalty", value: 15, attitute: attitute, level: level});
+        }
+      } else if (level==="medium") {
+        if (this.country.culturalAttitutes[attitute]==1) {
+          bonusesAndPenalties.push({type:"penalty", value: 10, attitute: attitute, level: level});
+        }
+      } else if (level==="low") {
+        if (this.country.culturalAttitutes[attitute]==0) {
+          bonusesAndPenalties.push({type:"penalty", value: 5, attitute: attitute, level: level});
+        }
+      }
+    });
+
+    if (bonusesAndPenalties.length>0) {
+      let htmlString="";
+      bonusesAndPenalties.forEach((item)=>{
+        if (item.type==="bonus") {
+          this.budgetElement.totalBudget+=item.value;
+        } else if (item.type==="penapenaltylty") {
+          this.budgetElement.totalBudget-=item.value;
+        }
+        htmlString+='<span style="width: 40px;height: 40px">'+this._getEmojiFromAttitute(item.attitute)
+        htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'<br>';
+      });
+      this.fire('oap-open-snackbar', htmlString);
+    }
+
+  }
+
+  _getEmojiFromAttitute(attitute) {
+    const emojis = {
+          authority: "🏛️",
+          liberty: "🌅",
+          science: "🔬",
+          tradition: "🏺",
+          collective: "👥",
+          independence: "🛡️",
+          privacy: "🔐",
+          lawAndOrder: "👮",
+          socialProgress: "✊",
+          naturalResourceWealth: "🔋",
+          borderDensity: "🛂",
+          hostilityNeighboringCountries: "🌐",
+          barrieresToCitizenship: "🧱"
+    }
+    return emojis[attitute];
   }
 
   _setStateOfRemainingItems() {
@@ -374,7 +472,7 @@ class OapBallot extends OapPageViewElement {
           }
         }
       }
-    }, 75);
+    }, 50);
   }
 
   _postVoteToServer() {

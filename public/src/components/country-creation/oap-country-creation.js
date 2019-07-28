@@ -55,7 +55,7 @@ class OapCountryCreation extends OapPageViewElement {
         independence: 0,
         privacy: 0,
         lawAndOrder: 0,
-        socialProgressEgalitariansism: 0
+        socialProgress: 0
       }};
 
     this.countryList = [
@@ -77,7 +77,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 2,
           privacy: 2,
           lawAndOrder: 1,
-          socialProgressEgalitariansism: 1
+          socialProgress: 1
         }
       },
       {
@@ -98,7 +98,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 0,
           privacy: 1,
           lawAndOrder: 2,
-          socialProgressEgalitariansism: 0
+          socialProgress: 0
         }
       },
       {
@@ -119,7 +119,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 2,
           privacy: 2,
           lawAndOrder: 1,
-          socialProgressEgalitariansism: 1
+          socialProgress: 1
         }
       },
       {
@@ -140,7 +140,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 2,
           privacy: 0,
           lawAndOrder: 1,
-          socialProgressEgalitariansism: 1
+          socialProgress: 1
         }
       },
       {
@@ -161,7 +161,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 2,
           privacy: 0,
           lawAndOrder: 2,
-          socialProgressEgalitariansism: 0
+          socialProgress: 0
         }
       },
       {
@@ -182,7 +182,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 2,
           privacy: 0,
           lawAndOrder: 2,
-          socialProgressEgalitariansism: 1
+          socialProgress: 1
         }
       },
       {
@@ -203,7 +203,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 2,
           privacy: 0,
           lawAndOrder: 2,
-          socialProgressEgalitariansism: 0
+          socialProgress: 0
         }
       },
       {
@@ -224,7 +224,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 0,
           privacy: 2,
           lawAndOrder: 2,
-          socialProgressEgalitariansism: 2
+          socialProgress: 2
         }
       },
       {
@@ -245,7 +245,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 2,
           privacy: 0,
           lawAndOrder: 0,
-          socialProgressEgalitariansism: 1
+          socialProgress: 1
         }
       },
       {
@@ -266,7 +266,7 @@ class OapCountryCreation extends OapPageViewElement {
           independence: 0,
           privacy: 0,
           lawAndOrder: 0,
-          socialProgressEgalitariansism: 0
+          socialProgress: 0
         }
       }
     ]
@@ -351,7 +351,7 @@ class OapCountryCreation extends OapPageViewElement {
 
             <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("socialProgressEgalitarianism")}</div>
               <paper-slider
-                .value="${this.country.culturalAttitutes.socialProgressEgalitariansism}"
+                .value="${this.country.culturalAttitutes.socialProgress}"
                 max="2" ?disabled="${!this.customCountry}"
                 >
             </paper-slider>
