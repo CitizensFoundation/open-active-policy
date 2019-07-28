@@ -375,15 +375,15 @@ class OapBallot extends OapPageViewElement {
       if (level==="bonus") {
       } else if (level==="high") {
         if (this.country.culturalAttitutes[attitute]==2) {
-          bonusesAndPenalties.push({type:"bonus", value: 10, attitute: attitute, level: level});
+          bonusesAndPenalties.push({type:"bonus", value: 5, attitute: attitute, level: level});
         }
       } else if (level==="medium") {
         if (this.country.culturalAttitutes[attitute]==1) {
-          bonusesAndPenalties.push({type:"bonus", value: 5, attitute: attitute, level: level});
+          bonusesAndPenalties.push({type:"bonus", value: 2, attitute: attitute, level: level});
         }
       } else if (level==="low") {
         if (this.country.culturalAttitutes[attitute]==0) {
-          bonusesAndPenalties.push({type:"bonus", value: 2, attitute: attitute, level: level});
+          bonusesAndPenalties.push({type:"bonus", value: 1, attitute: attitute, level: level});
         }
       }
     });
@@ -395,15 +395,15 @@ class OapBallot extends OapPageViewElement {
       if (level==="bonus") {
       } else if (level==="high") {
         if (this.country.culturalAttitutes[attitute]==2) {
-          bonusesAndPenalties.push({type:"penalty", value: 10, attitute: attitute, level: level});
+          bonusesAndPenalties.push({type:"penalty", value: 5, attitute: attitute, level: level});
         }
       } else if (level==="medium") {
         if (this.country.culturalAttitutes[attitute]==1) {
-          bonusesAndPenalties.push({type:"penalty", value: 5, attitute: attitute, level: level});
+          bonusesAndPenalties.push({type:"penalty", value: 2, attitute: attitute, level: level});
         }
       } else if (level==="low") {
         if (this.country.culturalAttitutes[attitute]==0) {
-          bonusesAndPenalties.push({type:"penalty", value: 2, attitute: attitute, level: level});
+          bonusesAndPenalties.push({type:"penalty", value: 1, attitute: attitute, level: level});
         }
       }
     });
