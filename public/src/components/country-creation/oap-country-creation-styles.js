@@ -164,6 +164,8 @@ export const OapCountryCreationStyles = css`
       margin-right: 0;
       width: 100%;
       height: 100%;
+      padding-bottom: 16px;
+      margin-bottom: 32px;
     }
 
     paper-input {

@@ -24,7 +24,8 @@ class OapPolicyQuiz extends OapPageViewElement {
       scene: Object,
       camera: Object,
       dirLightOne: Object,
-      dirLightTwo: Object
+      dirLightTwo: Object,
+      submitDisabled: Boolean
     };
   }
 
@@ -40,6 +41,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     super();
     this.currentIndex = null;
     this.shapes3d = [];
+    this.submitDisabled = false;
   }
 
   start() {
@@ -175,6 +177,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
     this.currentIndex = 0;
+    this.submitDisabled = false;
   }
 
   render() {
@@ -192,10 +195,10 @@ class OapPolicyQuiz extends OapPageViewElement {
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
             <div class="buttonContainer">
-              <paper-button raised id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
-              <paper-button raised id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
-              <paper-button raised id="button2" class="answerButton" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
-              <paper-button raised id="button3" class="answerButton" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button2" class="answerButton" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button3" class="answerButton" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
             </div>
           </div>
         ` : html``}
@@ -268,6 +271,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   }
 
   submitAnswer (answer) {
+    this.submitDisabled = true;
     const correctAnswer = this.questions[this.currentIndex].correctAnswer;
     if (answer==correctAnswer) {
       this.fire("oap-process-correct-quiz-answer");
@@ -320,6 +324,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         this.requestUpdate();
         this.fire("oap-sound-effect","quizCompleted");
       }
+      this.submitDisabled=false;
     }, 1500);
   }
 
@@ -327,6 +332,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     [0,1,2,3].forEach( (buttonId) => {
       this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;
       this.$$("#button"+buttonId).selected=false;
+      this.$$("#button"+buttonId).focused=false;
       this.$$("#button"+buttonId).classList.remove("wrongAnswer");
     });
   }
