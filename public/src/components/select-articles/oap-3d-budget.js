@@ -95,6 +95,8 @@ class Oap3dBudget extends OapBaseElement {
 
       scene: Object,
       camera: Object,
+      defaultCameraPos: Object,
+      defaultCameraRot: Object,
       composer: Object,
       controls: Object,
       renderer: Object,
@@ -114,6 +116,8 @@ class Oap3dBudget extends OapBaseElement {
     this.scene = new Scene();
     this.camera = new PerspectiveCamera(30, width/height, 1, 10000);
     this.camera.position.set(xCamera, 0.1, 21);
+    this.defaultCameraPos = JSON.parse(JSON.stringify(this.camera.position));
+    this.defaultCameraRot = JSON.parse(JSON.stringify(this.camera.rotation));
     this.camera.layers.enable(1);
     this.renderer = new WebGLRenderer({antialias: true});
     this.renderer.setSize(width, height);
@@ -295,7 +299,8 @@ class Oap3dBudget extends OapBaseElement {
       if (this.itemsInScene.length>0) {
         const oldTotalBudget = changedProps.get("totalBudget");
         if (oldTotalBudget<this.totalBudget) {
-          this.rotateTimeShift();
+          //this.rotateTimeShift();
+          this.rotateAllItems();
           this.fire('oap-play-sound-effect', 'oap_short_win_1');
         }
       }
@@ -569,10 +574,11 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   rotateAllItems() {
+    this.moveCameraCloseAndBack();
     this.itemsInScene.forEach((item, index)=> {
       //console.log("Rotate:"+item.id);
       const oldX = item.object.rotation.x;
-      const newX = oldX+Math.PI/2;
+      const newX = oldX+Math.PI;
        item.tween = new Tween(item.object.rotation)
       .to({ x: "-" + newX }, 650) // relative animation
       .delay(0)
@@ -583,6 +589,7 @@ class Oap3dBudget extends OapBaseElement {
           if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
             item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
           }
+          item.object.rotation.y=0;
           item.tween.stop();
           item.tween=null;
       })
@@ -625,6 +632,26 @@ class Oap3dBudget extends OapBaseElement {
         .start();
       }
     });
+  }
+
+  moveCameraCloseAndBack() {
+    const newX = this.itemsInScene.length>10 ?  (this.defaultCameraPos.x-(this.defaultCameraPos.x*0.1)) : (this.defaultCameraPos.x-(this.defaultCameraPos.x*0.2));
+    const newZ = 18;
+    new Tween(this.camera.position)
+    .to({ x: newX, y: this.camera.position.y, z: newZ }, 350)
+    .delay(0)
+    .easing(Easing.Quadratic.InOut)
+    .on('complete', () => {
+      new Tween(this.camera.position)
+      .to({ x: this.defaultCameraPos.x, y: this.defaultCameraPos.y, z: this.defaultCameraPos.z }, 650) // relative animation
+      .delay(1100)
+      .easing(Easing.Quadratic.InOut)
+      .on('complete', () => {
+
+      })
+      .start();
+    })
+    .start();
   }
 
   _removeItemFromDiv(item) {
