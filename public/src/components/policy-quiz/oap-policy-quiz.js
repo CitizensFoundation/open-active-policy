@@ -233,14 +233,14 @@ class OapPolicyQuiz extends OapPageViewElement {
 
     [this.dirLightOne, this.dirLightTwo].forEach((ligth) => {
       new Tween(ligth.color)
-      .to({ r: col.r, g: col.g, b: col.b, }, 450)
+      .to({ r: col.r, g: col.g, b: col.b, }, 25)
       .delay(0)
       .easing(Easing.Quadratic.InOut)
       .on('complete', () => {
          col = new Color('#1d5588');
          new Tween(ligth.color)
-        .to({ r: col.r, g: col.g, b: col.b, }, 1400)
-        .delay(0)
+        .to({ r: col.r, g: col.g, b: col.b, }, 450)
+        .delay(1200)
         .easing(Easing.Quadratic.InOut)
         .on('complete', () => {
         })
@@ -255,13 +255,13 @@ class OapPolicyQuiz extends OapPageViewElement {
 
     [this.dirLightOne, this.dirLightTwo].forEach((ligth) => {
       new Tween(ligth.color)
-      .to({ r: col.r, g: col.g, b: col.b, }, 250)
+      .to({ r: col.r, g: col.g, b: col.b, }, 25)
       .delay(0)
       .on('complete', () => {
          col = new Color('#1d5588');
          new Tween(ligth.color)
-        .to({ r: col.r, g: col.g, b: col.b, }, 450)
-        .delay(1000)
+        .to({ r: col.r, g: col.g, b: col.b, }, 320)
+        .delay(1350)
         .on('complete', () => {
         })
         .start();
@@ -281,7 +281,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         { transform: "scale(1.3)", easing: 'ease-in' },
         { transform: "scale(1.0)", easing: 'ease-out' }
       ], {
-        duration: 500,
+        duration: 600,
         iterations: 1
       });
     } else {
@@ -300,7 +300,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         { transform: "translateX(-7px)", easing: 'ease-in' },
         { transform: "translateX(7px)", easing: 'ease-out' },
       ], {
-        duration: 600,
+        duration: 500,
         iterations: 1
       });
       this.activity('answerSubmitted', 'quiz');

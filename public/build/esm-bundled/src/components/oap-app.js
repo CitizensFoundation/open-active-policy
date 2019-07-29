@@ -3292,6 +3292,8 @@
       margin-right: 0;
       width: 100%;
       height: 100%;
+      padding-bottom: 16px;
+      margin-bottom: 32px;
     }
 
     paper-input {
@@ -3618,7 +3620,7 @@
                 0 9px 46px 8px rgba(0, 0, 0, 0.12),
                 0 11px 15px -7px rgba(0, 0, 0, 0.4);
   }
-`;var oapShadowStyles={OapShadowStyles:OapShadowStyles};class OapCountryCreation extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean}}static get styles(){return[OapCountryCreationStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.reset()}reset(){this.customCountry=!1,this.submitDisabled=!0,this.country={name:"",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,socialProgress:0}},this.countryList=[{name:"Happy Arctic Island Nation Now (Iceland)",description:"Behind just a few of their Scandanavian cousins to the East on the list of the world’s happiest nations, these island people are an engaged, educated, industrious, forward-thinking, largely homogeneous population in the throes of redesigning their constitution. Can you help them?",population:"340.000",geographicalSize:"103K",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:1,liberty:2,science:2,tradition:2,collective:2,independence:2,privacy:2,lawAndOrder:1,socialProgress:1}},{name:"Nordic Peninsular Kingdom 1849 (Denmark’s June 5)",description:"Against the backdrop of revolutions sweeping other Western European nations, with the territorial questions around Holstein and Schleswig threatening to boil over, and on the advice of his dying father, Fredrick VII undertakes the major step of relinquishing his absolutist monarchy, and framing a constitution to take Denmark into an era of fledgling democracy. Do you think you could do a better job than he did?",population:"1.4M",geographicalSize:"43K",naturalResourceWealth:1,borderDensity:1,hostilityNeighboringCountries:1,barrieresToCitizenship:0,culturalAttitutes:{authority:2,liberty:1,science:0,tradition:2,collective:1,independence:0,privacy:1,lawAndOrder:2,socialProgress:0}},{name:"13 Colonies 1783 (US Constitutional Convention)",description:"A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",population:"2.7M",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:0,hostilityNeighboringCountries:2,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:2,science:2,tradition:0,collective:1,independence:2,privacy:2,lawAndOrder:1,socialProgress:1}},{name:"‘Murica Now (US currently)",description:"The first Democratic nation in the world, this nation has grown from 13 to 50 states since its constitution was first written. It rode the wave of Economic development following World War 2 to become the undeniable Super Power of the 20th Century; now it finds itself floundering in a constitutional crisis at the beginning of the 21st. Help this nation write a new constitution that reflects the new nation it has become!",population:"350M",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:2,liberty:2,science:1,tradition:2,collective:0,independence:2,privacy:0,lawAndOrder:1,socialProgress:1}},{name:"Islamic Revolutionary Republic 1979 (Iran at fall of Shah)",description:"After the Fall of the Shah, the Ayatollah Khomeini returns from exile in Paris with a rough draft of a constitution that mixes elements of the Quran and the Fifth French Constitution; it goes through many revisions as the Islamic Revolutionary movement crafts a Theocracy that reflects the cultural values that lead them to revolt against a Shah propped up by the infidels in the CIA. Think you understand a population like that well enough to frame a constitution they will think is just and righteous?",population:"37M",geographicalSize:"1.6M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:2,barrieresToCitizenship:2,culturalAttitutes:{authority:2,liberty:0,science:1,tradition:2,collective:2,independence:2,privacy:0,lawAndOrder:2,socialProgress:0}},{name:"Jolly Island Kingdom Now (Brexit Era UK - time to codify?)",description:"It’s a certain Kingdom that’s not looking very “United” these days -- can a well engineered 19th Century Constitutional Monarchy with an uncodified jurisprudence tradition make it in the 21st Century? Could you codify their constitution for the future to make a better island nation?",population:"66M",geographicalSize:"242K",naturalResourceWealth:1,borderDensity:1,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:2,liberty:2,science:1,tradition:2,collective:1,independence:2,privacy:0,lawAndOrder:2,socialProgress:1}},{name:"Pseudo-Communist Asian Superpower Now (Mainland China)",description:"Once this nation was Chung-Kuo, the Middle Kingdom, the center of the universe. After a tumultuous history of 19th Century abuse at the hands of the colonial powers, and a 20th Century of war, famine, and autocratic rule, at the beginning of the 21st Century it is poised to become the greatest economic superpower the world has ever known, while internal democratic forces threaten to tear its autocracy apart. Can you imagine a new constitution for the future of the world’s most populous nation?",population:"1.4B",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:1,barrieresToCitizenship:2,culturalAttitutes:{authority:2,liberty:0,science:2,tradition:2,collective:2,independence:2,privacy:0,lawAndOrder:2,socialProgress:0}},{name:"Future Land (Imaginary Utopian State)",description:"Dream of a perfect world, where everyone is equal, lives their lives in peace and tranquility with little suffering and injustice? Well, here’s your chance to design a constitution for such a brave, new land.",population:"5M",geographicalSize:"500K",naturalResourceWealth:1,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:2,culturalAttitutes:{authority:1,liberty:2,science:2,tradition:0,collective:2,independence:0,privacy:2,lawAndOrder:2,socialProgress:2}},{name:"Splinter State (Imaginary Anarchist State)",description:"Does the modern world seem like a terrible prison of rules, expectations and oppression? Do you yearn for a world with less structure, less people in your face telling you what to do? Well here is a country full of punk rock activists that want to live like you do! Can you design a constitution that holds this crazy kingdom together?",population:"5M",geographicalSize:"500K",naturalResourceWealth:1,borderDensity:0,hostilityNeighboringCountries:2,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:2,science:2,tradition:0,collective:0,independence:2,privacy:0,lawAndOrder:0,socialProgress:1}},{name:"Custom country",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,socialProgress:0}}]}render(){return html$1`
+`;var oapShadowStyles={OapShadowStyles:OapShadowStyles};class OapCountryCreation extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean}}static get styles(){return[OapCountryCreationStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.reset()}reset(){this.customCountry=null,this.submitDisabled=!0,this.country={name:"",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,socialProgress:0}},this.countryList=[{name:"Happy Arctic Island Nation Now (Iceland)",description:"Behind just a few of their Scandanavian cousins to the East on the list of the world’s happiest nations, these island people are an engaged, educated, industrious, forward-thinking, largely homogeneous population in the throes of redesigning their constitution. Can you help them?",population:"340.000",geographicalSize:"103K",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:1,liberty:2,science:2,tradition:2,collective:2,independence:2,privacy:2,lawAndOrder:1,socialProgress:1}},{name:"Nordic Peninsular Kingdom 1849 (Denmark’s June 5)",description:"Against the backdrop of revolutions sweeping other Western European nations, with the territorial questions around Holstein and Schleswig threatening to boil over, and on the advice of his dying father, Fredrick VII undertakes the major step of relinquishing his absolutist monarchy, and framing a constitution to take Denmark into an era of fledgling democracy. Do you think you could do a better job than he did?",population:"1.4M",geographicalSize:"43K",naturalResourceWealth:1,borderDensity:1,hostilityNeighboringCountries:1,barrieresToCitizenship:0,culturalAttitutes:{authority:2,liberty:1,science:0,tradition:2,collective:1,independence:0,privacy:1,lawAndOrder:2,socialProgress:0}},{name:"13 Colonies 1783 (US Constitutional Convention)",description:"A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",population:"2.7M",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:0,hostilityNeighboringCountries:2,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:2,science:2,tradition:0,collective:1,independence:2,privacy:2,lawAndOrder:1,socialProgress:1}},{name:"‘Murica Now (US currently)",description:"The first Democratic nation in the world, this nation has grown from 13 to 50 states since its constitution was first written. It rode the wave of Economic development following World War 2 to become the undeniable Super Power of the 20th Century; now it finds itself floundering in a constitutional crisis at the beginning of the 21st. Help this nation write a new constitution that reflects the new nation it has become!",population:"350M",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:2,liberty:2,science:1,tradition:2,collective:0,independence:2,privacy:0,lawAndOrder:1,socialProgress:1}},{name:"Islamic Revolutionary Republic 1979 (Iran at fall of Shah)",description:"After the Fall of the Shah, the Ayatollah Khomeini returns from exile in Paris with a rough draft of a constitution that mixes elements of the Quran and the Fifth French Constitution; it goes through many revisions as the Islamic Revolutionary movement crafts a Theocracy that reflects the cultural values that lead them to revolt against a Shah propped up by the infidels in the CIA. Think you understand a population like that well enough to frame a constitution they will think is just and righteous?",population:"37M",geographicalSize:"1.6M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:2,barrieresToCitizenship:2,culturalAttitutes:{authority:2,liberty:0,science:1,tradition:2,collective:2,independence:2,privacy:0,lawAndOrder:2,socialProgress:0}},{name:"Jolly Island Kingdom Now (Brexit Era UK - time to codify?)",description:"It’s a certain Kingdom that’s not looking very “United” these days -- can a well engineered 19th Century Constitutional Monarchy with an uncodified jurisprudence tradition make it in the 21st Century? Could you codify their constitution for the future to make a better island nation?",population:"66M",geographicalSize:"242K",naturalResourceWealth:1,borderDensity:1,hostilityNeighboringCountries:0,barrieresToCitizenship:1,culturalAttitutes:{authority:2,liberty:2,science:1,tradition:2,collective:1,independence:2,privacy:0,lawAndOrder:2,socialProgress:1}},{name:"Pseudo-Communist Asian Superpower Now (Mainland China)",description:"Once this nation was Chung-Kuo, the Middle Kingdom, the center of the universe. After a tumultuous history of 19th Century abuse at the hands of the colonial powers, and a 20th Century of war, famine, and autocratic rule, at the beginning of the 21st Century it is poised to become the greatest economic superpower the world has ever known, while internal democratic forces threaten to tear its autocracy apart. Can you imagine a new constitution for the future of the world’s most populous nation?",population:"1.4B",geographicalSize:"9.5M",naturalResourceWealth:2,borderDensity:2,hostilityNeighboringCountries:1,barrieresToCitizenship:2,culturalAttitutes:{authority:2,liberty:0,science:2,tradition:2,collective:2,independence:2,privacy:0,lawAndOrder:2,socialProgress:0}},{name:"Future Land (Imaginary Utopian State)",description:"Dream of a perfect world, where everyone is equal, lives their lives in peace and tranquility with little suffering and injustice? Well, here’s your chance to design a constitution for such a brave, new land.",population:"5M",geographicalSize:"500K",naturalResourceWealth:1,borderDensity:2,hostilityNeighboringCountries:0,barrieresToCitizenship:2,culturalAttitutes:{authority:1,liberty:2,science:2,tradition:0,collective:2,independence:0,privacy:2,lawAndOrder:2,socialProgress:2}},{name:"Splinter State (Imaginary Anarchist State)",description:"Does the modern world seem like a terrible prison of rules, expectations and oppression? Do you yearn for a world with less structure, less people in your face telling you what to do? Well here is a country full of punk rock activists that want to live like you do! Can you design a constitution that holds this crazy kingdom together?",population:"5M",geographicalSize:"500K",naturalResourceWealth:1,borderDensity:0,hostilityNeighboringCountries:2,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:2,science:2,tradition:0,collective:0,independence:2,privacy:0,lawAndOrder:0,socialProgress:1}},{name:"Custom country",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,socialProgress:0}}]}render(){return html$1`
     <div class="layout vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="layout-inline vertical" style="width: 100%;">
@@ -3633,178 +3635,182 @@
               </paper-listbox>
             </paper-dropdown-menu>
           </div>
-          <div class="subHeader noBottom">${this.localize("basicInformation")}</div>
 
-          <paper-input id="name"
-                      name="name"
-                      type="text"
-                      label="${this.localize("countryName")}"
-                      .value="${this.country.name}"
-                      @value-changed="${this.setName}"
-                      ?hidden="${!this.customCountry}"
-                      maxlength="50"
-                      char-counter>
-          </paper-input>
+          <div class="hiddenDiv" ?hidden="${null===this.customCountry}">
+            <div class="subHeader noBottom">${this.localize("basicInformation")}</div>
 
-          <paper-textarea id="description"
-                          name="description"
-                          .value="${this.country.description}"
-                          ?always-float-label="${this.country&&this.country.description}"
-                          label="${this.localize("countryDescription")}"
-                          char-counter
-                          @value-changed="${this.setDescription}"
-                          ?char-counter="${this.customCountry}"
-                          rows="2"
-                          max-rows="5"
-                          maxlength="500">
-          </paper-textarea>
+            <paper-input id="name"
+                        name="name"
+                        type="text"
+                        label="${this.localize("countryName")}"
+                        .value="${this.country.name}"
+                        @value-changed="${this.setName}"
+                        ?hidden="${!this.customCountry}"
+                        maxlength="50"
+                        char-counter>
+            </paper-input>
 
-          <div class="subHeader cultural">
-            ${this.localize("culturalAttitude")}
-            <paper-icon-button icon="help-outline" @click="${this.culturalHelp}"></paper-icon-button>
-          </div>
+            <paper-textarea id="description"
+                            name="description"
+                            .value="${this.country.description}"
+                            ?always-float-label="${this.country&&this.country.description}"
+                            label="${this.localize("countryDescription")}"
+                            char-counter
+                            @value-changed="${this.setDescription}"
+                            ?char-counter="${this.customCountry}"
+                            rows="2"
+                            max-rows="5"
+                            maxlength="500">
+            </paper-textarea>
 
-          <div id="culturalAttitudes" class="flexRow">
-            <div class="column">
-              <div class="sliderHeader"><span class="emoji">🏛️</span>${this.localize("authority")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("authority",e)}}"
-                .value="${this.country.culturalAttitutes.authority}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-            </paper-slider>
-
-            <div class="sliderHeader"><span class="emoji">🔬</span>${this.localize("science")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("science",e)}}"
-                .value="${this.country.culturalAttitutes.science}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-            </paper-slider>
-
-            <div class="sliderHeader"><span class="emoji">👥</span>${this.localize("collective")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("collective",e)}}"
-               .value="${this.country.culturalAttitutes.collective}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-            </paper-slider>
-
-            <div class="sliderHeader"><span class="emoji">🔐</span>${this.localize("privacy")}</div>
-            <paper-slider
-              @value-changed="${e=>{this.changeAttitute("privacy",e)}}"
-             .value="${this.country.culturalAttitutes.privacy}"
-              max="2" ?disabled="${!this.customCountry}"
-              >
-            </paper-slider>
-
-            <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("socialProgressEgalitarianism")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("socialProgress",e)}}"
-                .value="${this.country.culturalAttitutes.socialProgress}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-            </paper-slider>
-          </div>
-
-          <div class="column">
-              <div class="sliderHeader"><span class="emoji">🌅</span>${this.localize("liberty")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("liberty",e)}}"
-                .value="${this.country.culturalAttitutes.liberty}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-              </paper-slider>
-
-              <div class="sliderHeader"><span class="emoji">🏺</span>${this.localize("tradition")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("tradition",e)}}"
-                .value="${this.country.culturalAttitutes.tradition}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-              </paper-slider>
-
-              <div class="sliderHeader"><span class="emoji">🛡️</span>${this.localize("independence")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("independence",e)}}"
-                .value="${this.country.culturalAttitutes.independence}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-              </paper-slider>
-
-              <div class="sliderHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeAttitute("lawAndOrder",e)}}"
-                .value="${this.country.culturalAttitutes.lawAndOrder}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-              </paper-slider>
-
+            <div class="subHeader cultural">
+              ${this.localize("culturalAttitude")}
+              <paper-icon-button icon="help-outline" @click="${this.culturalHelp}"></paper-icon-button>
             </div>
-          </div>
 
-          <div class="subHeader noBottom">${this.localize("countryRawStats")}</div>
-
-          <paper-input id="population"
-                      name="population"
-                      type="text"
-                      label="${this.localize("populationSize")}"
-                      .value="${this.country.population}"
-                      maxlength="8"
-                      @value-changed="${this.setPopulation}"
-                      char-counter>
-          </paper-input>
-
-          <paper-input id="geographicalSize"
-                      name="geographicalSize"
-                      type="text"
-                      label="${this.localize("geographicalSize")}"
-                      .value="${this.country.geographicalSize}"
-                      @value-changed="${this.setGeographicalSize}"
-                      maxlength="8"
-                      char-counter>
-          </paper-input>
-
-          <div class="flexRow">
-            <div class="column">
-              <div class="sliderHeader"><span class="emoji">🔋</span>${this.localize("naturalResourceWealth")}</div>
+            <div id="culturalAttitudes" class="flexRow">
+              <div class="column">
+                <div class="sliderHeader"><span class="emoji">🏛️</span>${this.localize("authority")}</div>
                 <paper-slider
-                  @value-changed="${e=>{this.changeStats("naturalResourceWealth",e)}}"
-                  .value="${this.country.naturalResourceWealth}"
+                  @value-changed="${e=>{this.changeAttitute("authority",e)}}"
+                  .value="${this.country.culturalAttitutes.authority}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+              </paper-slider>
+
+              <div class="sliderHeader"><span class="emoji">🔬</span>${this.localize("science")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeAttitute("science",e)}}"
+                  .value="${this.country.culturalAttitutes.science}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+              </paper-slider>
+
+              <div class="sliderHeader"><span class="emoji">👥</span>${this.localize("collective")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeAttitute("collective",e)}}"
+                .value="${this.country.culturalAttitutes.collective}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+              </paper-slider>
+
+              <div class="sliderHeader"><span class="emoji">🔐</span>${this.localize("privacy")}</div>
+              <paper-slider
+                @value-changed="${e=>{this.changeAttitute("privacy",e)}}"
+              .value="${this.country.culturalAttitutes.privacy}"
+                max="2" ?disabled="${!this.customCountry}"
+                >
+              </paper-slider>
+
+              <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("socialProgressEgalitarianism")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeAttitute("socialProgress",e)}}"
+                  .value="${this.country.culturalAttitutes.socialProgress}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+              </paper-slider>
+            </div>
+
+            <div class="column">
+                <div class="sliderHeader"><span class="emoji">🌅</span>${this.localize("liberty")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeAttitute("liberty",e)}}"
+                  .value="${this.country.culturalAttitutes.liberty}"
                   max="2" ?disabled="${!this.customCountry}"
                   >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">🛂</span>${this.localize("borderDensity")}</div>
+                <div class="sliderHeader"><span class="emoji">🏺</span>${this.localize("tradition")}</div>
                 <paper-slider
-                  @value-changed="${e=>{this.changeStats("borderDensity",e)}}"
-                  .value="${this.country.borderDensity}"
+                  @value-changed="${e=>{this.changeAttitute("tradition",e)}}"
+                  .value="${this.country.culturalAttitutes.tradition}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+                </paper-slider>
+
+                <div class="sliderHeader"><span class="emoji">🛡️</span>${this.localize("independence")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeAttitute("independence",e)}}"
+                  .value="${this.country.culturalAttitutes.independence}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+                </paper-slider>
+
+                <div class="sliderHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeAttitute("lawAndOrder",e)}}"
+                  .value="${this.country.culturalAttitutes.lawAndOrder}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+                </paper-slider>
+
+              </div>
+            </div>
+
+            <div class="subHeader noBottom">${this.localize("countryRawStats")}</div>
+
+            <paper-input id="population"
+                        name="population"
+                        type="text"
+                        label="${this.localize("populationSize")}"
+                        .value="${this.country.population}"
+                        maxlength="8"
+                        @value-changed="${this.setPopulation}"
+                        char-counter>
+            </paper-input>
+
+            <paper-input id="geographicalSize"
+                        name="geographicalSize"
+                        type="text"
+                        label="${this.localize("geographicalSize")}"
+                        .value="${this.country.geographicalSize}"
+                        @value-changed="${this.setGeographicalSize}"
+                        maxlength="8"
+                        char-counter>
+            </paper-input>
+
+            <div class="flexRow">
+              <div class="column">
+                <div class="sliderHeader"><span class="emoji">🔋</span>${this.localize("naturalResourceWealth")}</div>
+                  <paper-slider
+                    @value-changed="${e=>{this.changeStats("naturalResourceWealth",e)}}"
+                    .value="${this.country.naturalResourceWealth}"
+                    max="2" ?disabled="${!this.customCountry}"
+                    >
+                  </paper-slider>
+
+                  <div class="sliderHeader"><span class="emoji">🛂</span>${this.localize("borderDensity")}</div>
+                  <paper-slider
+                    @value-changed="${e=>{this.changeStats("borderDensity",e)}}"
+                    .value="${this.country.borderDensity}"
+                    max="2" ?disabled="${!this.customCountry}"
+                    >
+                  </paper-slider>
+                </div>
+              <div class="column">
+                <div class="sliderHeader"><span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeStats("hostilityNeighboringCountries",e)}}"
+                  .value="${this.country.hostilityNeighboringCountries}"
+                  max="2" ?disabled="${!this.customCountry}"
+                  >
+                </paper-slider>
+
+                <div class="sliderHeader"><span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}</div>
+                <paper-slider
+                  @value-changed="${e=>{this.changeStats("barrieresToCitizenship",e)}}"
+                  .value="${this.country.barrieresToCitizenship}"
                   max="2" ?disabled="${!this.customCountry}"
                   >
                 </paper-slider>
               </div>
-            <div class="column">
-              <div class="sliderHeader"><span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeStats("hostilityNeighboringCountries",e)}}"
-                .value="${this.country.hostilityNeighboringCountries}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-              </paper-slider>
+            </div>
 
-              <div class="sliderHeader"><span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}</div>
-              <paper-slider
-                @value-changed="${e=>{this.changeStats("barrieresToCitizenship",e)}}"
-                .value="${this.country.barrieresToCitizenship}"
-                max="2" ?disabled="${!this.customCountry}"
-                >
-              </paper-slider>
+            <div class="layout horizontal center-center">
+              <paper-button raised id="submitButton" ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-country-created",this.country)}}">${this.localize("buildConstitutionForCountry")}</paper-button>
             </div>
           </div>
 
-          <div class="layout horizontal center-center">
-            <paper-button raised id="submitButton" ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-country-created",this.country)}}">${this.localize("buildConstitutionForCountry")}</paper-button>
-          </div>
 
         </div>
       </div>
@@ -4911,7 +4917,7 @@
   [hidden] {
     display: none !important;
   }
-`;var oapPolicyQuizStyles={OapPolicyQuizStyles:OapPolicyQuizStyles};class OapPolicyQuiz extends OapPageViewElement{static get properties(){return{questions:Array,currentQuestionIndex:Number,correctAnswers:Number,incorrectAnswers:Number,nickname:String,configFromServer:Object,savedBackgroundColor:String,shapes3d:Object,renderer:Object,scene:Object,camera:Object,dirLightOne:Object,dirLightTwo:Object}}static get styles(){return[OapPolicyQuizStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.currentIndex=null,this.shapes3d=[]}start(){this.reset(),setTimeout(()=>{this.scene=new Scene,this.camera=new PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,1e3),this.camera.position.set(6,-10,355),this.scene.add(this.camera),this.dirLightOne=new DirectionalLight(1922440,2),this.dirLightOne.position.x=-500,this.dirLightOne.position.y=500,this.camera.add(this.dirLightOne),this.dirLightTwo=new DirectionalLight(1922440,1),this.dirLightTwo.position.x=500,this.dirLightTwo.position.y=-500,this.dirLightTwo.position.z=-150,this.camera.add(this.dirLightTwo),this.scene.background=new Color("#1d5588"),(new FontLoader).load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",function(e){this.savedBackgroundColor=this.$$("#button0").style.backgroundColor;var t=new TextGeometry("?",{font:e,size:180,height:20,curveSegments:32,bevelEnabled:!0,bevelThickness:9,bevelSize:5,bevelOffset:0,bevelSegments:18});t.computeBoundingBox(),t.computeVertexNormals(),t.center(),t=(new BufferGeometry).fromGeometry(t);var i=[new MeshPhongMaterial({color:16777215,flatShading:!0}),new MeshPhongMaterial({color:16777215})],r=600,n=150;600>=window.innerWidth&&(r=window.innerWidth,n=100);for(var a=-r/2;a<r/2;a+=30+50*Math.random())for(var o=0;o<n;o+=30+50*Math.random())this.addShape(t,i,"#aaaaaa",a,o,0,.8*Math.random(),.8*Math.random(),Math.PI,.1+.3*Math.random());this.renderer=new WebGLRenderer({antialias:!0}),this.renderer.setPixelRatio(window.devicePixelRatio),this.renderer.setSize(r,n),this.$$("#canvas3d").appendChild(this.renderer.domElement),this.renderCanvas3d();let s=new Vector3(6,-10,35);new Tween(this.camera.position).to({x:s.x,y:s.y,z:s.z},35e3).delay(0).easing(Easing.Quadratic.In).on("complete",()=>{s=new Vector3(6,-10,175),new Tween(this.camera.position).to({x:s.x,y:s.y,z:s.z},7e3).delay(0).easing(Easing.Elastic.Out).on("complete",()=>{}).start()}).start()}.bind(this))},100)}addShape(e,t,i,r,n,a,o,s,l,c){var h=new Mesh(e,t);h.position.set(r+25,n-50,a),h.rotation.set(o,s,l),h.scale.set(c,c,c),this.shapes3d.push({shape:h,x:Math.random(),y:Math.random(),z:Math.random()}),this.scene.add(h)}stop(){for(;0<this.scene.children.length;)this.scene.remove(this.scene.children[0]);this.scene.remove()}animate(){this.shapes3d.forEach(e=>{e.shape.rotation.x+=.05*e.x,e.shape.rotation.y+=.05*e.y,e.shape.rotation.z+=.05*e.z})}renderCanvas3d(){requestAnimationFrame(this.renderCanvas3d.bind(this)),update(),this.animate(),this.renderer.render(this.scene,this.camera)}reset(){this.completed=!1,this.correctAnswers=0,this.incorrectAnswers=0,this.currentIndex=0}render(){return html$1`
+`;var oapPolicyQuizStyles={OapPolicyQuizStyles:OapPolicyQuizStyles};class OapPolicyQuiz extends OapPageViewElement{static get properties(){return{questions:Array,currentQuestionIndex:Number,correctAnswers:Number,incorrectAnswers:Number,nickname:String,configFromServer:Object,savedBackgroundColor:String,shapes3d:Object,renderer:Object,scene:Object,camera:Object,dirLightOne:Object,dirLightTwo:Object,submitDisabled:Boolean}}static get styles(){return[OapPolicyQuizStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.currentIndex=null,this.shapes3d=[],this.submitDisabled=!1}start(){this.reset(),setTimeout(()=>{this.scene=new Scene,this.camera=new PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,1e3),this.camera.position.set(6,-10,355),this.scene.add(this.camera),this.dirLightOne=new DirectionalLight(1922440,2),this.dirLightOne.position.x=-500,this.dirLightOne.position.y=500,this.camera.add(this.dirLightOne),this.dirLightTwo=new DirectionalLight(1922440,1),this.dirLightTwo.position.x=500,this.dirLightTwo.position.y=-500,this.dirLightTwo.position.z=-150,this.camera.add(this.dirLightTwo),this.scene.background=new Color("#1d5588"),(new FontLoader).load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",function(e){this.savedBackgroundColor=this.$$("#button0").style.backgroundColor;var t=new TextGeometry("?",{font:e,size:180,height:20,curveSegments:32,bevelEnabled:!0,bevelThickness:9,bevelSize:5,bevelOffset:0,bevelSegments:18});t.computeBoundingBox(),t.computeVertexNormals(),t.center(),t=(new BufferGeometry).fromGeometry(t);var i=[new MeshPhongMaterial({color:16777215,flatShading:!0}),new MeshPhongMaterial({color:16777215})],r=600,n=150;600>=window.innerWidth&&(r=window.innerWidth,n=100);for(var a=-r/2;a<r/2;a+=30+50*Math.random())for(var o=0;o<n;o+=30+50*Math.random())this.addShape(t,i,"#aaaaaa",a,o,0,.8*Math.random(),.8*Math.random(),Math.PI,.1+.3*Math.random());this.renderer=new WebGLRenderer({antialias:!0}),this.renderer.setPixelRatio(window.devicePixelRatio),this.renderer.setSize(r,n),this.$$("#canvas3d").appendChild(this.renderer.domElement),this.renderCanvas3d();let s=new Vector3(6,-10,35);new Tween(this.camera.position).to({x:s.x,y:s.y,z:s.z},35e3).delay(0).easing(Easing.Quadratic.In).on("complete",()=>{s=new Vector3(6,-10,175),new Tween(this.camera.position).to({x:s.x,y:s.y,z:s.z},7e3).delay(0).easing(Easing.Elastic.Out).on("complete",()=>{}).start()}).start()}.bind(this))},100)}addShape(e,t,i,r,n,a,o,s,l,c){var h=new Mesh(e,t);h.position.set(r+25,n-50,a),h.rotation.set(o,s,l),h.scale.set(c,c,c),this.shapes3d.push({shape:h,x:Math.random(),y:Math.random(),z:Math.random()}),this.scene.add(h)}stop(){for(;0<this.scene.children.length;)this.scene.remove(this.scene.children[0]);this.scene.remove()}animate(){this.shapes3d.forEach(e=>{e.shape.rotation.x+=.05*e.x,e.shape.rotation.y+=.05*e.y,e.shape.rotation.z+=.05*e.z})}renderCanvas3d(){requestAnimationFrame(this.renderCanvas3d.bind(this)),update(),this.animate(),this.renderer.render(this.scene,this.camera)}reset(){this.completed=!1,this.correctAnswers=0,this.incorrectAnswers=0,this.currentIndex=0,this.submitDisabled=!1}render(){return html$1`
     <div class="layout vertical center-center" style="height: 100%;">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${null!==this.currentIndex?html$1`
@@ -4925,10 +4931,10 @@
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
             <div class="buttonContainer">
-              <paper-button raised id="button0" class="answerButton" @click="${()=>{this.submitAnswer(0)}}">${this.questions[this.currentIndex].answers[0]}</paper-button>
-              <paper-button raised id="button1" class="answerButton" @click="${()=>{this.submitAnswer(1)}}">${this.questions[this.currentIndex].answers[1]}</paper-button>
-              <paper-button raised id="button2" class="answerButton" @click="${()=>{this.submitAnswer(2)}}">${this.questions[this.currentIndex].answers[2]}</paper-button>
-              <paper-button raised id="button3" class="answerButton" @click="${()=>{this.submitAnswer(3)}}">${this.questions[this.currentIndex].answers[3]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button0" class="answerButton" @click="${()=>{this.submitAnswer(0)}}">${this.questions[this.currentIndex].answers[0]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button1" class="answerButton" @click="${()=>{this.submitAnswer(1)}}">${this.questions[this.currentIndex].answers[1]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button2" class="answerButton" @click="${()=>{this.submitAnswer(2)}}">${this.questions[this.currentIndex].answers[2]}</paper-button>
+              <paper-button raised ?disabled="${this.submitDisabled}" id="button3" class="answerButton" @click="${()=>{this.submitAnswer(3)}}">${this.questions[this.currentIndex].answers[3]}</paper-button>
             </div>
           </div>
         `:html$1``}
@@ -4950,7 +4956,7 @@
           `:html$1``}
       </div>
     </div>
-    `}quizFinished(){this.fire("oap-quiz-finished"),this.stop()}correctAnswerColorAnimation(){let e=new Color("#39FF14");[this.dirLightOne,this.dirLightTwo].forEach(t=>{new Tween(t.color).to({r:e.r,g:e.g,b:e.b},450).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{e=new Color("#1d5588"),new Tween(t.color).to({r:e.r,g:e.g,b:e.b},1400).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{}).start()}).start()})}wrongAnswerColorAnimation(){let e=new Color("#d6483d");[this.dirLightOne,this.dirLightTwo].forEach(t=>{new Tween(t.color).to({r:e.r,g:e.g,b:e.b},250).delay(0).on("complete",()=>{e=new Color("#1d5588"),new Tween(t.color).to({r:e.r,g:e.g,b:e.b},450).delay(1e3).on("complete",()=>{}).start()}).start()})}submitAnswer(e){const t=this.questions[this.currentIndex].correctAnswer;e==t?(this.fire("oap-process-correct-quiz-answer"),this.correctAnswerColorAnimation(),this.correctAnswers+=1,this.$$("#button"+e).animate([{transform:"scale(1.3)",easing:"ease-in"},{transform:"scale(1.0)",easing:"ease-out"}],{duration:500,iterations:1})):(this.fire("oap-overlay",{html:html$1`${this.localize("incorrectAnswer")}`,soundEffect:"",duration:300}),this.wrongAnswerColorAnimation(),this.incorrectAnswers+=1,this.$$("#button"+e).animate([{transform:"translateX(-3px)",easing:"ease-in"},{transform:"translateX(3px)",easing:"ease-out"},{transform:"translateX(-5px)",easing:"ease-in"},{transform:"translateX(5px)",easing:"ease-out"},{transform:"translateX(-7px)",easing:"ease-in"},{transform:"translateX(7px)",easing:"ease-out"}],{duration:600,iterations:1}),this.activity("answerSubmitted","quiz")),this.$$("#button"+t).style.backgroundColor="#39FF14",[0,1,2,3].filter(e=>e!==t).forEach(e=>{this.$$("#button"+e).style.backgroundColor="#d6483d",this.$$("#button"+e).classList.add("wrongAnswer")}),setTimeout(()=>{this.resetAllButtons(),this.currentIndex<this.questions.length-1?(this.currentIndex+=1,this.requestUpdate()):(this.currentIndex=null,this.completed=!0,this.requestUpdate(),this.fire("oap-sound-effect","quizCompleted"))},1500)}resetAllButtons(){[0,1,2,3].forEach(e=>{this.$$("#button"+e).style.backgroundColor=this.savedBackgroundColor,this.$$("#button"+e).selected=!1,this.$$("#button"+e).classList.remove("wrongAnswer")})}updated(e){super.updated(e),e.has("questions")&&this.questions&&this.reset(),e.has("active")&&!0===this.active&&this.start()}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
+    `}quizFinished(){this.fire("oap-quiz-finished"),this.stop()}correctAnswerColorAnimation(){let e=new Color("#39FF14");[this.dirLightOne,this.dirLightTwo].forEach(t=>{new Tween(t.color).to({r:e.r,g:e.g,b:e.b},25).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{e=new Color("#1d5588"),new Tween(t.color).to({r:e.r,g:e.g,b:e.b},450).delay(1200).easing(Easing.Quadratic.InOut).on("complete",()=>{}).start()}).start()})}wrongAnswerColorAnimation(){let e=new Color("#d6483d");[this.dirLightOne,this.dirLightTwo].forEach(t=>{new Tween(t.color).to({r:e.r,g:e.g,b:e.b},25).delay(0).on("complete",()=>{e=new Color("#1d5588"),new Tween(t.color).to({r:e.r,g:e.g,b:e.b},320).delay(1350).on("complete",()=>{}).start()}).start()})}submitAnswer(e){this.submitDisabled=!0;const t=this.questions[this.currentIndex].correctAnswer;e==t?(this.fire("oap-process-correct-quiz-answer"),this.correctAnswerColorAnimation(),this.correctAnswers+=1,this.$$("#button"+e).animate([{transform:"scale(1.3)",easing:"ease-in"},{transform:"scale(1.0)",easing:"ease-out"}],{duration:600,iterations:1})):(this.fire("oap-overlay",{html:html$1`${this.localize("incorrectAnswer")}`,soundEffect:"",duration:300}),this.wrongAnswerColorAnimation(),this.incorrectAnswers+=1,this.$$("#button"+e).animate([{transform:"translateX(-3px)",easing:"ease-in"},{transform:"translateX(3px)",easing:"ease-out"},{transform:"translateX(-5px)",easing:"ease-in"},{transform:"translateX(5px)",easing:"ease-out"},{transform:"translateX(-7px)",easing:"ease-in"},{transform:"translateX(7px)",easing:"ease-out"}],{duration:500,iterations:1}),this.activity("answerSubmitted","quiz")),this.$$("#button"+t).style.backgroundColor="#39FF14",[0,1,2,3].filter(e=>e!==t).forEach(e=>{this.$$("#button"+e).style.backgroundColor="#d6483d",this.$$("#button"+e).classList.add("wrongAnswer")}),setTimeout(()=>{this.resetAllButtons(),this.currentIndex<this.questions.length-1?(this.currentIndex+=1,this.requestUpdate()):(this.currentIndex=null,this.completed=!0,this.requestUpdate(),this.fire("oap-sound-effect","quizCompleted")),this.submitDisabled=!1},1500)}resetAllButtons(){[0,1,2,3].forEach(e=>{this.$$("#button"+e).style.backgroundColor=this.savedBackgroundColor,this.$$("#button"+e).selected=!1,this.$$("#button"+e).focused=!1,this.$$("#button"+e).classList.remove("wrongAnswer")})}updated(e){super.updated(e),e.has("questions")&&this.questions&&this.reset(),e.has("active")&&!0===this.active&&this.start()}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
 
   :host {}
 
