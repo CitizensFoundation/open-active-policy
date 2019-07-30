@@ -263,6 +263,7 @@ class OapApp extends OapBaseElement {
               .language="${this.language}"
               .configFromServer="${this.configFromServer}"
               class="page"
+              .country="${this.country}"
               .allItems="${this.allItems}"
               ?active="${this._page === 'filter-articles'}">
             </oap-filter-articles>

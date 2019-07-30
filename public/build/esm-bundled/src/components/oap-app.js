@@ -4848,8 +4848,8 @@
           transform: translate3d(0, 0, 0);
           transition-property: visibility, transform;
           transition-duration: 0.2s;
-          visibility: hidden
-          z-index: 5000 !important
+          visibility: hidden;
+          z-index: 6 !important;
         }
 
         :host([active]) {

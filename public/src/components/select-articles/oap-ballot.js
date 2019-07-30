@@ -5,6 +5,8 @@ import { encryptVote } from '../ballot-encryption-behavior.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { repeat } from 'lit-html/directives/repeat';
 
+import { GetBonusesAndPenaltiesForItem } from '../oap-bonuses-and-penalties';
+
 import '@polymer/paper-tabs/paper-tab';
 import '@polymer/paper-tabs/paper-tabs';
 import './oap-article-item';
@@ -372,58 +374,7 @@ class OapBallot extends OapPageViewElement {
 
   _checkBonusesAndPenalties(item, action) {
     const test = "High Authority,High Tradition,High Collective,High Law/Order,Low Science";
-
-    let bonusesRules = item.bonus.split(",");
-    bonusesRules = bonusesRules.map((rule) => {
-      return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","socialProgress");
-    });
-
-    let penaltyRules = item.penalty.split(",");
-    penaltyRules = penaltyRules.map((rule) => {
-      return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","socialProgress");
-    });
-
-    let bonusesAndPenalties = [];
-
-    bonusesRules.forEach((bonus) => {
-      const splitBonus = bonus.split(" ");
-      const level = splitBonus[0];
-      const attitute = splitBonus[1];
-      if (level==="bonus") {
-      } else if (level==="high") {
-        if (this.country.culturalAttitutes[attitute]==2) {
-          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 7, attitute: attitute, level: level});
-        }
-      } else if (level==="medium") {
-        if (this.country.culturalAttitutes[attitute]==1) {
-          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 5, attitute: attitute, level: level});
-        }
-      } else if (level==="low") {
-        if (this.country.culturalAttitutes[attitute]==0) {
-          bonusesAndPenalties.push({id: item.id, type:"bonus", value: 2, attitute: attitute, level: level});
-        }
-      }
-    });
-
-    penaltyRules.forEach((bonus) => {
-      const splitBonus = bonus.split(" ");
-      const level = splitBonus[0];
-      const attitute = splitBonus[1];
-      if (level==="bonus") {
-      } else if (level==="high") {
-        if (this.country.culturalAttitutes[attitute]==2) {
-          bonusesAndPenalties.push({id: item.id, type:"penalty", value: 7, attitute: attitute, level: level});
-        }
-      } else if (level==="medium") {
-        if (this.country.culturalAttitutes[attitute]==1) {
-          bonusesAndPenalties.push({id: item.id, type:"penalty", value: 5, attitute: attitute, level: level});
-        }
-      } else if (level==="low") {
-        if (this.country.culturalAttitutes[attitute]==0) {
-          bonusesAndPenalties.push({id: item.id, type:"penalty", value: 1, attitute: attitute, level: level});
-        }
-      }
-    });
+    let bonusesAndPenalties = GetBonusesAndPenaltiesForItem(item, this.country).bonusesAndPenalties;
 
     if (bonusesAndPenalties.length>0) {
       let htmlString="";

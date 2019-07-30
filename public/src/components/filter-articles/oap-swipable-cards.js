@@ -12,6 +12,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import '@polymer/paper-icon-button';
 
 import '../oap-icons';
+import { GetBonusesAndPenaltiesForItem } from '../oap-bonuses-and-penalties';
 import { OapFlexLayout } from '../oap-flex-layout';
 
 class OapSwipableCards extends OapBaseElement {
@@ -56,8 +57,8 @@ class OapSwipableCards extends OapBaseElement {
       hiddenImageIds: Object,
       rendering: Boolean,
       configFromServer: Object,
-      automaticSelectionActive: Boolean
-
+      automaticSelectionActive: Boolean,
+      country: Object
     }
   }
 
@@ -155,7 +156,7 @@ class OapSwipableCards extends OapBaseElement {
 
   startManualSelection() {
     this.fire("oap-bonus-points", 3);
-    this.onActionLeft();
+    this.onActionTop(true);
     this.addEventListeners();
   }
 
@@ -169,8 +170,14 @@ class OapSwipableCards extends OapBaseElement {
 
     if ((currentModuleTypeCard && !this.automaticSelectionActive) || (this.items[this.currentItemsPosition] && futureModuleType!=="ModuleTypeCard")) {
       this.automaticSelectionActive = true;
-      let random = Math.floor(Math.random() * 5);
-      if (random===1 || currentModuleTypeCard) {
+
+      let random = Math.floor(Math.random() * 2);
+      const bonusCount = GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition], this.country).bonusCount;
+
+      console.error("Bonuscount: "+bonusCount);
+      if (currentModuleTypeCard) {
+        this.onActionTop(true);      
+      } else if (bonusCount===0 && random===1) {
         this.onActionLeft();
       } else {
         this.onActionRight();
@@ -530,7 +537,7 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   //Functions to swipe top elements on logic external action.
-  onActionTop() {
+  onActionTop(force) {
     if(!(this.currentPosition >= this.maxElements)){
       if(this.useOverlays) {
         this.leftObj.classList.remove('no-transition');
@@ -541,7 +548,7 @@ class OapSwipableCards extends OapBaseElement {
       }
 
       setTimeout(function(){
-        this.onSwipeTop();
+        this.onSwipeTop(force);
         this.resetOverlays();
       }.bind(this),300); //wait animations end
     }
@@ -610,8 +617,8 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   //Swipe active card to top.
-  onSwipeTop() {
-    if (!this.disableUpSwipe) {
+  onSwipeTop(forceUp) {
+    if (!this.disableUpSwipe || forceUp) {
       this.removeNoTransition();
       this.transformUi(0, -1000, 0, this.currentElementObj);
       if(this.useOverlays){
@@ -627,9 +634,7 @@ class OapSwipableCards extends OapBaseElement {
       this.currentItem = this.items[this.currentItemsPosition];
       this.updateUi();
       this.setCurrentElement();
-      this.changeBackground();
-      this.changeStages();
-      this.setActiveHidden();
+      this.updateFromMainItemsList();
       this.activity('swipeUp', 'filtering');
     }
   }

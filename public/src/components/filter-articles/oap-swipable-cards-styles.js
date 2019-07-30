@@ -181,7 +181,7 @@ export const OapSwipableCardsStyles = css`
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
-      padding-top: 24px;
+      padding-top: 12px;
       min-width: 200px;
   }
 
