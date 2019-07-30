@@ -4,7 +4,7 @@ import { OapBudgetStyles } from './oap-budget-styles';
 import { OapShadowStyles } from '../oap-shadow-styles';
 import { OapFlexLayout } from '../oap-flex-layout.js';
 
-import { Scene,PerspectiveCamera,BufferGeometry,MeshPhongMaterial,WebGLRenderer,TextGeometry,Box3,FontLoader,DirectionalLight,AmbientLight,Vector2,Vector3,BoxGeometry,Mesh,MeshBasicMaterial} from 'three';
+import { Scene,PerspectiveCamera,Group,Object3D,BufferGeometry,MeshPhongMaterial,WebGLRenderer,TextGeometry,Box3,FontLoader,DirectionalLight,AmbientLight,Vector2,Vector3,BoxGeometry,Mesh,MeshBasicMaterial} from 'three';
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
@@ -97,6 +97,8 @@ class Oap3dBudget extends OapBaseElement {
       camera: Object,
       defaultCameraPos: Object,
       defaultCameraRot: Object,
+      defaultGroupPos: Object,
+      defaultGroupRot: Object,
       composer: Object,
       controls: Object,
       renderer: Object,
@@ -105,6 +107,7 @@ class Oap3dBudget extends OapBaseElement {
       itemsInScene: Object,
       tween: Object,
       font3d: Object,
+      budgetGroup3d: Object,
       fontMesh: Object
     };
   }
@@ -153,6 +156,10 @@ class Oap3dBudget extends OapBaseElement {
     this.renderer.toneMappingExposure = Math.pow( 0.9, 4.0 );
     var mainMaterial = this.$$("#mainMaterial");
     mainMaterial.appendChild(this.renderer.domElement);
+    this.budgetGroup3d = new Object3D();
+    this.scene.add(this.budgetGroup3d);
+    this.defaultGroupPos = JSON.parse(JSON.stringify(this.budgetGroup3d.position));
+    this.defaultGroupRot = JSON.parse(JSON.stringify(this.budgetGroup3d.rotation));
 
     var loader = new FontLoader();
 
@@ -300,7 +307,8 @@ class Oap3dBudget extends OapBaseElement {
         const oldTotalBudget = changedProps.get("totalBudget");
         if (oldTotalBudget<this.totalBudget) {
           //this.rotateTimeShift();
-          this.rotateAllItems();
+//          this.rotateAllItems();
+          this.rotateAllItemsGroup();
           this.fire('oap-play-sound-effect', 'oap_short_win_1');
         }
       }
@@ -500,12 +508,12 @@ class Oap3dBudget extends OapBaseElement {
 
     if (!this.wide) {
       setTimeout(()=>{
-        this.scene.add(object);
+        this.budgetGroup3d.add(object);
         this.itemsInScene.push({id: item.id, object: object, width: itemWidth, item: item});
         this.positionItems();
       }, 50);
     } else {
-      this.scene.add(object);
+      this.budgetGroup3d.add(object);
       this.itemsInScene.push({id: item.id, object: object, width: itemWidth, item: item});
       this.positionItems();
     }
@@ -534,7 +542,10 @@ class Oap3dBudget extends OapBaseElement {
 
   positionItems() {
     let rightEdgeAndSpace=0.0;
-    this.itemsInScene.forEach((item, index)=> {
+    const sortedItems = this.itemsInScene.sort((item3dA, item3dB)=> {
+      return item3dA.item.module_type_index-item3dB.item.module_type_index;
+    });
+    sortedItems.forEach((item, index)=> {
       let currentWidth;
       currentWidth = new Box3().setFromObject(item.object).getSize(currentWidth).x;
       //console.error(index+": bounding box x="+currentWidth);
@@ -544,7 +555,7 @@ class Oap3dBudget extends OapBaseElement {
       let random = Math.floor(Math.random() * 100);
 
       this.animateVector3(item.object.position, target, {
-        duration: 700+random,
+        duration: 750,
         easing : Easing.Quadratic.InOut,
         update: function(d) {
         },
@@ -574,7 +585,7 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   rotateAllItems() {
-    this.moveCameraCloseAndBack();
+    this.moveBudgetGroupBack();
     this.itemsInScene.forEach((item, index)=> {
       //console.log("Rotate:"+item.id);
       const oldX = item.object.rotation.x;
@@ -596,6 +607,25 @@ class Oap3dBudget extends OapBaseElement {
       .start();
     });
   }
+
+  rotateAllItemsGroup() {
+ //   this.budgetGroup3d.updateMatrix();
+    this.moveBudgetGroupBack();
+//    this.rotateBudgetGroupBack();
+   if (!this.budgetGroup3d.runningRotateX) {
+      const oldX = this.budgetGroup3d.rotation.x;
+      const newX = oldX+Math.PI;
+      this.budgetGroup3d.runningRotateX = new Tween(this.budgetGroup3d.rotation)
+      .to({ x: "-" + newX }, 450) // relative animation
+      .delay(0)
+      .on('complete', () => {
+          this.budgetGroup3d.rotation.x=0;
+          this.budgetGroup3d.runningRotateX = null;
+        })
+      .start();
+    }
+  }
+
 
   rotateTimeShift() {
     // Tween remove all
@@ -622,7 +652,7 @@ class Oap3dBudget extends OapBaseElement {
             // Check that the full 360 degrees of rotation,
             // and calculate the remainder of the division to avoid overflow.
             //console.log("Rotate reset");
-            item.object.rotation.y=0;
+            item.object.rotation.x=0;
             if (Math.abs(item.object.rotation.y)>=2*Math.PI) {
               item.object.rotation.y = item.object.rotation.y % (2*Math.PI);
             }
@@ -632,6 +662,45 @@ class Oap3dBudget extends OapBaseElement {
         .start();
       }
     });
+  }
+
+  moveBudgetGroupBack() {
+    const newX = this.itemsInScene.length>10 ?  (this.defaultGroupPos.x-(this.defaultGroupPos.x*0.1)) : (this.defaultGroupPos.x-(this.defaultGroupPos.x*0.2));
+    const newZ = -10;
+    if (!this.budgetGroup3d.runningMoveX) {
+      this.budgetGroup3d.runningMoveX=true;
+      new Tween(this.budgetGroup3d.position)
+      .to({ x: this.budgetGroup3d.position.x, y: this.budgetGroup3d.position.y, z: newZ }, 350)
+      .delay(0)
+      .easing(Easing.Quadratic.InOut)
+      .on('complete', () => {
+        new Tween(this.budgetGroup3d.position)
+        .to({ x: this.defaultGroupPos.x, y: this.defaultGroupPos.y, z: this.defaultGroupPos.z }, 650) // relative animation
+        .delay(1100)
+        .easing(Easing.Quadratic.InOut)
+        .on('complete', () => {
+          this.budgetGroup3d.runningMoveX=false;
+        })
+        .start();
+      })
+      .start();
+    }
+  }
+
+  rotateBudgetGroupBack() {
+    const oldZ = this.budgetGroup3d.rotation.z;
+    const newZ = oldZ+Math.PI;
+    if (!this.budgetGroup3d.runningRotY) {
+      this.budgetGroup3d.runningRotY = new Tween(this.budgetGroup3d.rotation)
+      .to({y: "-" + newZ}, 420)
+      .delay(0)
+      .easing(Easing.Quadratic.InOut)
+      .on('complete', () => {
+        this.budgetGroup3d.rotation.y=0;
+        this.budgetGroup3d.runningRotY=null;
+      })
+      .start();
+    }
   }
 
   moveCameraCloseAndBack() {

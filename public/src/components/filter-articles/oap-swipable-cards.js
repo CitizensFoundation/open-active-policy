@@ -80,18 +80,6 @@ class OapSwipableCards extends OapBaseElement {
                         <div class="card-tistles">
                           <div id="moduleName" class="name">${item.name}</div>
                           <div id="description${item.id}" class="description">${item.description}</div>
-                          <div id="contentType">${item.module_content_type}</div>
-                          ${ item.description.length>200 ? html`
-                            <div class="hideUnhideContainer">
-                              <div class="innerHideContainer">
-                                ${this.isImageHidden(item.id)==true ? html`
-                                  <paper-icon-button @click="${()=> { this.unhideImage(item.id) }}" icon="keyboard-arrow-down"></paper-icon-button>
-                                ` : html`
-                                  <paper-icon-button @click="${()=> { this.hideImage(item.id) }}" icon="keyboard-arrow-up"></paper-icon-button>
-                                `}
-                              </div>
-                            </div>
-                          ` : html``}
                         </div>
                       </div>
                     </div>

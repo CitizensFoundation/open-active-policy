@@ -117,7 +117,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         let target = new Vector3(6, -10, 35);
 
         new Tween(this.camera.position)
-        .to({ x: target.x, y: target.y, z: target.z, }, 35*1000)
+        .to({ x: target.x, y: target.y, z: target.z, }, 25*1000)
         .delay(0)
         .easing(Easing.Quadratic.In)
         .on('complete', () => {

@@ -430,7 +430,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '1,2,3,4',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png',
     price: 20,
@@ -444,7 +444,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '1,2,3,4',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png',
     price: 20,
@@ -458,7 +458,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '1,2,3,4',
     time_period: 'Ancient',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png',
     price: 20,
@@ -473,7 +473,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '1,2,3,4',
     time_period: 'Ancient',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x17.png',
     price: 20,
@@ -488,7 +488,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '5,6',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png',
     price: 5,
@@ -502,7 +502,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '5,6',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
     price: 5,
@@ -516,7 +516,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '7,8',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png',
     price: 5,
@@ -530,7 +530,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '7,8',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png',
     price: 5,
@@ -544,7 +544,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
     price: 10,
@@ -558,7 +558,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x5.png',
     price: 5,
@@ -572,7 +572,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x10.png',
     price: 5,
@@ -586,7 +586,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png',
     price: 5,
@@ -601,7 +601,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png',
     price: 5,
@@ -615,7 +615,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png',
     price: 5,
@@ -629,7 +629,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Ancient',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar5.png',
     price: 10,
@@ -643,7 +643,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Ancient',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar4.png',
     price: 20,
@@ -658,7 +658,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v. L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar20.png',
     price: 10,
@@ -672,7 +672,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v. L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar2.png',
     price: 10,
@@ -686,7 +686,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v. L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar17.png',
     price: 10,
@@ -700,7 +700,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v. L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png',
     price: 10,
@@ -714,7 +714,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v. L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Module+image+size+-+864x580+Copy+5.png',
     price: 10,
@@ -728,7 +728,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v. J',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Executive',
+    module_content_type: 'Executive', module_type_index: 0,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x8.png',
     price: 10,
@@ -742,7 +742,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '23,24',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x16.png',
     price: 20,
@@ -757,7 +757,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '23,24',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar11.png',
     price: 20,
@@ -771,7 +771,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '25,26,27',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b7.png',
     price: 10,
@@ -786,7 +786,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '25,26,27',
     time_period: 'Ancient',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x13.png',
     price: 20,
@@ -800,7 +800,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '25,26,27',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b8.png',
     price: 10,
@@ -814,7 +814,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '28,29,30',
     time_period: 'Ancient',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png',
     price: 20,
@@ -828,7 +828,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '28,29.30',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b9.png',
     price: 10,
@@ -843,7 +843,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '28,29,30',
     time_period: 'Futurist',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png',
     price: 20,
@@ -857,7 +857,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '31,32,33',
     time_period: 'Ancient',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png',
     price: 20,
@@ -871,7 +871,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '31,32,33',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/d1.png',
     price: 10,
@@ -885,7 +885,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '31,32,33',
     time_period: 'Futurist',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
     price: 20,
@@ -899,7 +899,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/d2.png',
     price: 5,
@@ -913,7 +913,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/d3.png',
     price: 5,
@@ -927,7 +927,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png',
     price: 10,
@@ -941,7 +941,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/a7.png',
     price: 5,
@@ -955,7 +955,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/a9.png',
     price: 10,
@@ -969,7 +969,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/aaaa.png',
     price: 5,
@@ -983,7 +983,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
     price: 5,
@@ -997,7 +997,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png',
     price: 5,
@@ -1011,7 +1011,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b2.png',
     price: 10,
@@ -1025,7 +1025,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b3.png',
     price: 10,
@@ -1039,7 +1039,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b4.png',
     price: 10,
@@ -1053,7 +1053,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b5.png',
     price: 10,
@@ -1067,7 +1067,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: 'E v L/P',
     time_period: 'Early Modern',
-    module_content_type: 'Legislative/Parliamentary',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b6.png',
     price: 10,
@@ -1081,7 +1081,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: 'b{48,49}',
     time_period: 'Early Modern',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png',
     price: 20,
@@ -1095,7 +1095,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '48,49',
     time_period: 'Ancient',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png',
     price: 20,
@@ -1109,7 +1109,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: ' 50,51,52',
     time_period: 'Early Modern',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar17.png',
     price: 20,
@@ -1123,7 +1123,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '49',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png',
     price: 20,
@@ -1137,7 +1137,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '49,50',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png',
     price: 10,
@@ -1151,7 +1151,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '53',
     time_period: 'Early Modern',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x17.png',
     price: 20,
@@ -1165,7 +1165,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '52',
     time_period: 'Early Modern',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png',
     price: 20,
@@ -1179,7 +1179,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '52,53',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
     price: 10,
@@ -1193,7 +1193,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Ancient',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png',
     price: 5,
@@ -1207,7 +1207,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png',
     price: 10,
@@ -1221,7 +1221,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
     price: 5,
@@ -1235,7 +1235,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x5.png',
     price: 10,
@@ -1249,7 +1249,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Ancient',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x10.png',
     price: 20,
@@ -1263,7 +1263,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Delegated',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Judicial',
+    module_content_type: 'Judicial', module_type_index: 2,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png',
     price: 10,
@@ -1277,7 +1277,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png',
     price: 10,
@@ -1291,7 +1291,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Ancient',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x17.png',
     price: 20,
@@ -1305,7 +1305,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Ancient',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png',
     price: 20,
@@ -1319,7 +1319,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Ancient',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
     price: 10,
@@ -1333,7 +1333,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png',
     price: 20,
@@ -1347,7 +1347,7 @@ class OapApp extends OapBaseElement {
     module_type: '',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png',
     price: 20,
@@ -1362,7 +1362,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
     price: 10,
@@ -1378,7 +1378,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x5.png',
     price: 20,
@@ -1394,7 +1394,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/aaaa.png',
     price: 10,
@@ -1410,7 +1410,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Exclusive',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png',
     price: 20,
@@ -1425,7 +1425,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b6.png',
     price: 5,
@@ -1439,7 +1439,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7+copy.png',
     price: 5,
@@ -1453,7 +1453,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b3.png',
     price: 5,
@@ -1467,7 +1467,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar12.png',
     price: 10,
@@ -1481,7 +1481,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png',
     price: 10,
@@ -1495,7 +1495,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png',
     price: 10,
@@ -1510,7 +1510,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png',
     price: 20,
@@ -1524,7 +1524,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png',
     price: 5,
@@ -1539,7 +1539,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png',
     price: 5,
@@ -1553,7 +1553,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
     price: 20,
@@ -1567,7 +1567,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Modern/Contemporary',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
     price: 5,
@@ -1582,7 +1582,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Early Modern',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/a.png',
     price: 10,
@@ -1598,7 +1598,7 @@ class OapApp extends OapBaseElement {
     module_type: 'Simple',
     exclusive_ids: '',
     time_period: 'Futurist',
-    module_content_type: 'Civil',
+    module_content_type: 'Civil', module_type_index: 3,
     image_url:
      'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png',
     price: 20,
