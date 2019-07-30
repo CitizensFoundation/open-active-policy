@@ -84,23 +84,22 @@ class OapSwipableCards extends OapBaseElement {
                           <div id="moduleName" class="name" ?module-type="${item.module_type=="ModuleTypeCard"}">${item.name}</div>
                           <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
                         </div>
-                      </div>
-                    </div>
-                    ${(this.currentItem && this.currentItem.module_type==="ModuleTypeCard") ? html`
-                      <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
-                        <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
-                        <div class="layout  horizontal actionButtonInnerContainer">
-                          <div class="left-actionx">
-                            <paper-button class="typeButtons" raised @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
-                          </div>
-                          <div class="right-actionx vertical">
-                            <paper-button class="typeButtons" raised @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
-                            <div class="winInfo">${this.localize("win")} 3cp</div>
+                      ${(item.module_type==="ModuleTypeCard") ? html`
+                        <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
+                          <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
+                          <div class="layout  horizontal actionButtonInnerContainer">
+                            <div class="left-actionx">
+                              <paper-button class="typeButtons"  @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                            </div>
+                            <div class="right-actionx vertical">
+                              <paper-button class="typeButtons"  @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                              <div class="winInfo">${this.localize("win")} 3cp</div>
+                            </div>
                           </div>
                         </div>
+                        ` : html`` }
                       </div>
-                    ` : html`` }
-
+                    </div>
                   `
                 )}
               </div>

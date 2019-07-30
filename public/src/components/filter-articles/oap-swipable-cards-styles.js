@@ -506,12 +506,13 @@ export const OapSwipableCardsStyles = css`
 
   .actionButtonContainer {
     width: 100%;
+    margin-top: 64px;
     text-align: center;
   }
 
   .actionButtonInnerContainer {
     text-align: center;
-    margin-left: 49px;
+    margin-left: 42px;
   }
 
   [hidden] {
