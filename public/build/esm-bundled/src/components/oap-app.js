@@ -3944,7 +3944,8 @@
       text-align: center;
       font-weight: 700;
       font-size: 18px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      margin-top: 16px;
       color: #eee !important;
   }
 
@@ -4353,12 +4354,13 @@
 
   .actionButtonContainer {
     width: 100%;
+    margin-top: 64px;
     text-align: center;
   }
 
   .actionButtonInnerContainer {
     text-align: center;
-    margin-left: 49px;
+    margin-left: 42px;
   }
 
   [hidden] {
@@ -4409,6 +4411,20 @@
                           <div id="moduleName" class="name" ?module-type="${"ModuleTypeCard"==e.module_type}">${e.name}</div>
                           <div id="description${e.id}" class="description" ?module-type="${"ModuleTypeCard"==e.module_type}">${unsafeHTML(e.description)}</div>
                         </div>
+                      ${"ModuleTypeCard"===e.module_type?html$1`
+                        <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
+                          <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
+                          <div class="layout  horizontal actionButtonInnerContainer">
+                            <div class="left-actionx">
+                              <paper-button class="typeButtons"  @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                            </div>
+                            <div class="right-actionx vertical">
+                              <paper-button class="typeButtons"  @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                              <div class="winInfo">${this.localize("win")} 3cp</div>
+                            </div>
+                          </div>
+                        </div>
+                        `:html$1``}
                       </div>
                     </div>
                   `)}
@@ -4430,20 +4446,6 @@
               <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
               </div>
             </div>
-            <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer" ?hidden="${!0===this.automaticSelectionActive||!this.currentItem||"ModuleTypeCard"!==this.currentItem.module_type}">
-              <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
-              <div class="layout  horizontal actionButtonInnerContainer">
-                <div class="left-actionx">
-                  <paper-button class="typeButtons" raised @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
-                </div>
-                <div class="right-actionx vertical">
-                  <paper-button class="typeButtons" raised @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
-                  <div class="winInfo">${this.localize("win")} 3cp</div>
-                </div>
-              </div>
-
-            </div>
-
         </div>
 
       <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
