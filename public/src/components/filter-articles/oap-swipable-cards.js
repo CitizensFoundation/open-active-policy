@@ -88,8 +88,9 @@ class OapSwipableCards extends OapBaseElement {
                         <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
                           <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
                           <div class="layout  horizontal actionButtonInnerContainer">
-                            <div class="left-actionx">
+                            <div class="left-actionx vertical">
                               <paper-button class="typeButtons"  @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                              <div class="winInfo">${this.localize("automaticInfo")}</div>
                             </div>
                             <div class="right-actionx vertical">
                               <paper-button class="typeButtons"  @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
@@ -149,11 +150,13 @@ class OapSwipableCards extends OapBaseElement {
 
   startAutomaticSelection() {
     this.automaticallySelectNext();
+    this.removeEventListeners();
   }
 
   startManualSelection() {
     this.fire("oap-bonus-points", 3);
     this.onActionLeft();
+    this.addEventListeners();
   }
 
   automaticallySelectNext() {
@@ -182,6 +185,12 @@ class OapSwipableCards extends OapBaseElement {
 
   updated(changedProps) {
     super.updated(changedProps);
+    if (changedProps.has('currentItem')) {
+      if (this.currentItem && this.currentItem.module_type==="ModuleTypeCard") {
+        this.removeEventListeners();
+      }
+    }
+
     if (changedProps.has('items')) {
       if (this.items && this.items.length>0) {
         if (this.currentItemsPosition===0)
@@ -284,7 +293,7 @@ class OapSwipableCards extends OapBaseElement {
 			this.obj.classList.remove('init');
     }.bind(this), 250);
 
-   this.addEventListeners();
+   //this.addEventListeners();
   }
 
   isImageHidden(imageId) {
@@ -381,10 +390,14 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   addEventListeners() {
+    console.error("Add event listeners");
      // JavaScript Document
-		this.$$("#stacked-cards-block").addEventListener('touchstart', this.gestureStart.bind(this), {passive: false});
-		this.$$("#stacked-cards-block").addEventListener('touchmove', this.gestureMove.bind(this), {passive: false});
-		this.$$("#stacked-cards-block").addEventListener('touchend', this.gestureEnd.bind(this), {passive: false});
+    this.gestureStartHandler = this.gestureStart.bind(this);
+    this.gestureMoveHandler = this.gestureMove.bind(this);
+    this.gestureEndHandler = this.gestureEnd.bind(this);
+		this.$$("#stacked-cards-block").addEventListener('touchstart', this.gestureStartHandler, {passive: true});
+		this.$$("#stacked-cards-block").addEventListener('touchmove', this.gestureMoveHandler, {passive: true});
+		this.$$("#stacked-cards-block").addEventListener('touchend', this.gestureEndHandler, {passive: true});
 
 		//Add listeners to call global action for swipe cards
 		var buttonLeft = this.$$('.left-action');
@@ -400,9 +413,16 @@ class OapSwipableCards extends OapBaseElement {
 
   removeEventListeners() {
     // JavaScript Document
-    this.$$("#stacked-cards-block").removeEventListener('touchstart', this.gestureStart.bind(this));
-    this.$$("#stacked-cards-block").removeEventListener('touchmove', this.gestureMove.bind(this));
-    this.$$("#stacked-cards-block").removeEventListener('touchend', this.gestureEnd.bind(this));
+    console.error("Remove eventlisteners");
+    if (this.gestureStartHandler) {
+      this.$$("#stacked-cards-block").removeEventListener('touchstart', this.gestureStartHandler, {passive: true});
+      this.$$("#stacked-cards-block").removeEventListener('touchmove', this.gestureMoveHandler, {passive: true});
+      this.$$("#stacked-cards-block").removeEventListener('touchend', this.gestureEndHandler, {passive: true});
+      this.gestureStartHandler = null;
+      this.gestureMoveHandler = null;
+      this.gestureEndHandler = null;
+      console.error("Remove eventlisteners DONE");
+    }
 
    var buttonLeft = this.$$('.left-action');
    var buttonTop = this.$$('.top-action');
@@ -952,7 +972,7 @@ class OapSwipableCards extends OapBaseElement {
     this.setOverlayOpacity();
 
     if(!(this.currentPosition >= this.maxElements)){
-      evt.preventDefault();
+      //evt.preventDefault();
       this.transformUi(this.translateX, this.translateY, 1, this.currentElementObj);
 
       if(this.useOverlays){

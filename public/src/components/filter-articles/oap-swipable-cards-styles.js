@@ -500,19 +500,22 @@ export const OapSwipableCardsStyles = css`
 
   .winInfo {
     font-style: italic;
-    font-size: 12px;
-    margin-top: -5px;
+    font-size: 10px;
+    margin-top: -4px;
+    width: 105px;
+    margin-left: 8px;
+    text-align: center;
   }
 
   .actionButtonContainer {
     width: 100%;
-    margin-top: 64px;
+    margin-top: 48px;
     text-align: center;
   }
 
   .actionButtonInnerContainer {
     text-align: center;
-    margin-left: 42px;
+    margin-left: 40px;
   }
 
   [hidden] {
