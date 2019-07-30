@@ -35,22 +35,26 @@ export const OapSwipableCardsStyles = css`
   }
 
   :host {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
-  .topestContainer {
-    overflow: -moz-scrollbars-none;
+  .toppestContainer {
     width: 100%;
+    height: 100%;
+    overflow: hidden !important;
   }
   /* class created only for a better preview*/
   .stage {
       position: absolute;
       opacity: 1;
       max-width: 335px;
-      top: 50%;
+      top: 0;
       left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-              transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, 0%);
+          -ms-transform: translate(-50%, 0%);
+              transform: translate(-50%, 0%);
   }
 
   .stage.hidden {
@@ -360,6 +364,12 @@ export const OapSwipableCardsStyles = css`
     margin-bottom: 32px;
   }
 
+  .description[module-type] {
+    font-size: 16px;
+    color: #FFF;
+    padding-left: 8xp;
+  }
+
   .name {
     font-size: 17px;
     color: #000;
@@ -370,6 +380,18 @@ export const OapSwipableCardsStyles = css`
     margin-top: 0;
     margin-bottom: 2px;
     line-height: 1.15;
+  }
+
+  .name[module-type] {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 12px;
+    color: #FFF;
+  }
+
+  .cardTitles[module-type] {
+    margin-top: 96px;
+    text-align: center;
   }
 
   .cardImage {
@@ -426,6 +448,7 @@ export const OapSwipableCardsStyles = css`
     padding-bottom: 0;
   }
 
+
   .imageCollapsed {
     height: 0px;
     overflow: hidden;
@@ -444,7 +467,7 @@ export const OapSwipableCardsStyles = css`
     max-height: 6px !important;
     margin: 8px;
     padding: 0;
-    padding-top: 18px;
+    padding-top: 16px;
     width: 100%;
     vertical-align: bottom;
   }
@@ -456,6 +479,38 @@ export const OapSwipableCardsStyles = css`
 
   .mainNavigator.div {
     float: right;
+  }
+
+  .typeButtons {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #FFF;
+    text-align: center;
+    margin: 8px;
+    font-size: 16px;
+    width: 105px;
+  }
+
+  .moduleSelectionTitle {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .winInfo {
+    font-style: italic;
+    font-size: 12px;
+    margin-top: -5px;
+  }
+
+  .actionButtonContainer {
+    width: 100%;
+    text-align: center;
+  }
+
+  .actionButtonInnerContainer {
+    text-align: center;
+    margin-left: 49px;
   }
 
   [hidden] {

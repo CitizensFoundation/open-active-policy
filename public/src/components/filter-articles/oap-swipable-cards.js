@@ -7,6 +7,7 @@ import { html } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { OapBaseElement } from '../oap-base-element';
 import { OapSwipableCardsStyles } from './oap-swipable-cards-styles';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 import '@polymer/paper-icon-button';
 
@@ -27,6 +28,7 @@ class OapSwipableCards extends OapBaseElement {
       maxElements: Number,
       currentPosition: Number,
       currentItemsPosition: Number,
+      currentItem: Object,
       isFirstTime: Boolean,
       elementHeight: Number,
       velocity: Number,
@@ -53,7 +55,8 @@ class OapSwipableCards extends OapBaseElement {
       disableUpSwipe: Boolean,
       hiddenImageIds: Object,
       rendering: Boolean,
-      configFromServer: Object
+      configFromServer: Object,
+      automaticSelectionActive: Boolean
 
     }
   }
@@ -67,19 +70,19 @@ class OapSwipableCards extends OapBaseElement {
 
   render() {
     return html`
-    <div class="topestContainer">
+    <div class="toppestContainer">
       <div class="stage">
           <div class="title">${this.localize("filterArticles")}</div>
             <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
               <div class="stackedcards-container">
                 ${repeat(this.visibleItems, (item) => item.id, (item, index) =>
                   html`
-                    <div class="card" id="card${item.id}">
+                    <div class="card" id="card${item.id}" style="${this.getCardStyle(item)}">
                       <div class="card-content">
-                        <div id="imageContainer${item.id}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
-                        <div class="card-tistles">
-                          <div id="moduleName" class="name">${item.name}</div>
-                          <div id="description${item.id}" class="description">${item.description}</div>
+                        <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
+                        <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
+                          <div id="moduleName" class="name" ?module-type="${item.module_type=="ModuleTypeCard"}">${item.name}</div>
+                          <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
                         </div>
                       </div>
                     </div>
@@ -90,7 +93,8 @@ class OapSwipableCards extends OapBaseElement {
               <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
               <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
             </div>
-            <div class="global-actions">
+            <div id="navigator" class="mainNavigator layout horizontal"></div>
+            <div class="global-actions" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
               <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
               </div>
               <div hidden>
@@ -101,8 +105,21 @@ class OapSwipableCards extends OapBaseElement {
                </div>
               <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
               </div>
-          </div>
-          <div id="navigator" class="mainNavigator layout horizontal"></div>
+            </div>
+            <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer" ?hidden="${this.automaticSelectionActive===true || !this.currentItem || this.currentItem.module_type!=="ModuleTypeCard"}">
+              <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
+              <div class="layout  horizontal actionButtonInnerContainer">
+                <div class="left-actionx">
+                  <paper-button class="typeButtons" raised @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                </div>
+                <div class="right-actionx vertical">
+                  <paper-button class="typeButtons" raised @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                  <div class="winInfo">${this.localize("win")} 3cp</div>
+                </div>
+              </div>
+
+            </div>
+
         </div>
 
       <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
@@ -121,10 +138,54 @@ class OapSwipableCards extends OapBaseElement {
     super.disconnectedCallback();
   }
 
+  getCardStyle(item) {
+    if (item.module_type==="ModuleTypeCard") {
+      const color = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
+      return "color: #FFF;font-size: 20px;background-color:"+color;
+    } else {
+      return "";
+    }
+  }
+
+  startAutomaticSelection() {
+    this.automaticallySelectNext();
+  }
+
+  startManualSelection() {
+    this.fire("oap-bonus-points", 3);
+    this.onActionLeft();
+  }
+
+  automaticallySelectNext() {
+    let futureModuleType;
+    let currentModuleTypeCard;
+    if (this.currentItemsPosition<this.items.length-1) {
+      futureModuleType = this.items[this.currentItemsPosition].module_type;
+      currentModuleTypeCard=this.items[this.currentItemsPosition].module_type==="ModuleTypeCard";
+    }
+
+    if ((currentModuleTypeCard && !this.automaticSelectionActive) || (this.items[this.currentItemsPosition] && futureModuleType!=="ModuleTypeCard")) {
+      this.automaticSelectionActive = true;
+      let random = Math.floor(Math.random() * 5);
+      if (random===1 || currentModuleTypeCard) {
+        this.onActionLeft();
+      } else {
+        this.onActionRight();
+      }
+      setTimeout(()=>{
+          this.automaticallySelectNext();
+      }, 400);
+    } else {
+     this.automaticSelectionActive = false;
+    }
+  }
+
   updated(changedProps) {
     super.updated(changedProps);
     if (changedProps.has('items')) {
       if (this.items && this.items.length>0) {
+        if (this.currentItemsPosition===0)
+          this.currentItem = this.items[0];
         this.itemsLeft = [...this.items];
         this.visibleItems=this.itemsLeft.slice(0, 5);
         this.itemsLeft.shift();
@@ -181,6 +242,7 @@ class OapSwipableCards extends OapBaseElement {
     this.elementsMargin = 7;
     this.currentPosition = 0;
     this.currentItemsPosition = 0;
+    this.currentItem=null;
     this.useOverlays = false;
     this.velocity = 0.3;
     this.isFirstTime = true;
@@ -189,6 +251,7 @@ class OapSwipableCards extends OapBaseElement {
     this.disableUpSwipe = true;
     this.hiddenImageIds = {};
     this.rendering = true;
+    this.automaticSelectionActive = false;
   }
 
   activate() {
@@ -476,6 +539,7 @@ class OapSwipableCards extends OapBaseElement {
     this.fire('item-discarded', this.items[this.currentItemsPosition]);
     this.currentPosition = this.currentPosition + 1;
     this.currentItemsPosition = this.currentItemsPosition + 1;
+    this.currentItem = this.items[this.currentItemsPosition];
     this.updateFromMainItemsList();
     this.activity('swipeLeft', 'filtering');
   }
@@ -518,6 +582,7 @@ class OapSwipableCards extends OapBaseElement {
 
     this.currentPosition = this.currentPosition + 1;
     this.currentItemsPosition = this.currentItemsPosition + 1;
+    this.currentItem = this.items[this.currentItemsPosition];
     this.updateUi();
     this.setCurrentElement();
     this.updateFromMainItemsList();
@@ -539,6 +604,7 @@ class OapSwipableCards extends OapBaseElement {
       this.fire('item-bookmarked', this.items[this.currentItemsPosition]);
       this.currentPosition = this.currentPosition + 1;
       this.currentItemsPosition = this.currentItemsPosition + 1;
+      this.currentItem = this.items[this.currentItemsPosition];
       this.updateUi();
       this.setCurrentElement();
       this.changeBackground();

@@ -422,6 +422,15 @@ class OapApp extends OapBaseElement {
     ],
 
     this.allItems = [
+      { id: '-1000000',
+      branch: 'Executive',
+      name: 'Executive Branch',
+      description:
+       '<em>You can delegate authority, but you cannot delegate responsibility</em><br>(Byron Dorgan)',
+      module_type: 'ModuleTypeCard',
+      exclusive_ids: '',
+      module_content_type: 'Executive', module_type_index: 0,
+      image_url: '' },
       { id: '1',
     branch: 'Executive Core Articles',
     name: 'Head of State: Empowered President',
@@ -734,7 +743,18 @@ class OapApp extends OapBaseElement {
     price: 10,
     bonus: 'High Authority,High Law/Order',
     penalty: 'High Social Progress,High Liberty,High Collective' },
-  { id: '23',
+
+    { id: '-1000001',
+    branch: 'Legislative/Parliamentary',
+    name: 'Legislative Branch',
+    description:
+     '<em>Now and then an innocent man is sent to the Legislature…</em><br>(Kin Hubbard)',
+    module_type: 'ModuleTypeCard',
+    exclusive_ids: '',
+    module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
+    image_url: '' },
+
+    { id: '23',
     branch: 'Legislative/ Parliamentary Core Articles',
     name: 'Basic Organization of Parliament/ Legislature: Unicameral',
     description:
@@ -1073,6 +1093,17 @@ class OapApp extends OapBaseElement {
     price: 10,
     bonus: 'High Social Progress,High Collective',
     penalty: 'High Independence,High Law/Order' },
+
+    { id: '-1000002',
+    branch: 'Judicial',
+    name: 'Judicial Branch',
+    description:
+     '<em>There is a higher court than the courts of justice and this is the court of conscience. It supercedes all other courts.</em><br>(Mahatma Gandhi)',
+    module_type: 'ModuleTypeCard',
+    exclusive_ids: '',
+    module_content_type: 'Judicial', module_type_index: 1,
+    image_url: '' },
+
   { id: '47',
     branch: 'Judicial Core Articles',
     name: 'Judicial Authority: Independent Judiciary',
@@ -1269,6 +1300,17 @@ class OapApp extends OapBaseElement {
     price: 10,
     bonus: 'High Law & Order,High Collective',
     penalty: 'High Liberty' },
+
+    { id: '-1000003',
+    branch: 'Civil',
+    name: 'Civil Branch',
+    description:
+     '<em>The Good of the People is the Greatest Law</em><br>(Cicero)',
+    module_type: 'ModuleTypeCard',
+    exclusive_ids: '',
+    module_content_type: 'Civil', module_type_index: 3,
+    image_url: '' },
+
   { id: '61',
     branch: 'Civil Core Articles',
     name: 'Suffrage: Universal',
@@ -1691,6 +1733,21 @@ class OapApp extends OapBaseElement {
     this.activity('correct', 'quizAnswer');
   }
 
+  processBonusPoints(event) {
+    this.fire('oap-play-sound-effect', 'oap_short_win_1');
+    this.choicePoints+= event.detail ? event.detail : 5;
+    setTimeout(()=>{
+      this.$$("#choicePoints").animate([
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" }
+      ], {
+        duration: 300,
+        iterations: 1
+      });
+    }, 200);
+    this.activity('bonus', 'forManualSwiping');
+  }
+
   _setupCustomCss(config) {
     if (config.cssProperties) {
       config.cssProperties.forEach(property => {
@@ -1822,6 +1879,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-country-created", this.createCountryFinished);
     this.addEventListener("oap-set-total-budget", this.setTotalBudget);
     this.addEventListener("oap-submit-ballot", this.submitBallot);
+    this.addEventListener("oap-bonus-points", this.processBonusPoints);
   }
 
   _removeListeners() {
@@ -1852,6 +1910,7 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-set-total-budget", this.setTotalBudget);
     this.removeEventListener("oap-close-snackbar", this._closeSnackBar);
     this.removeEventListener("oap-submit-ballot", this.submitBallot);
+    this.removeEventListener("oap-bonus-points", this.processBonusPoints);
   }
 
   submitBallot() {
