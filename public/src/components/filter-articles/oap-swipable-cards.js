@@ -86,6 +86,21 @@ class OapSwipableCards extends OapBaseElement {
                         </div>
                       </div>
                     </div>
+                    ${(this.currentItem && this.currentItem.module_type==="ModuleTypeCard") ? html`
+                      <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
+                        <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
+                        <div class="layout  horizontal actionButtonInnerContainer">
+                          <div class="left-actionx">
+                            <paper-button class="typeButtons" raised @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                          </div>
+                          <div class="right-actionx vertical">
+                            <paper-button class="typeButtons" raised @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                            <div class="winInfo">${this.localize("win")} 3cp</div>
+                          </div>
+                        </div>
+                      </div>
+                    ` : html`` }
+
                   `
                 )}
               </div>
@@ -106,20 +121,6 @@ class OapSwipableCards extends OapBaseElement {
               <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
               </div>
             </div>
-            <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer" ?hidden="${this.automaticSelectionActive===true || !this.currentItem || this.currentItem.module_type!=="ModuleTypeCard"}">
-              <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
-              <div class="layout  horizontal actionButtonInnerContainer">
-                <div class="left-actionx">
-                  <paper-button class="typeButtons" raised @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
-                </div>
-                <div class="right-actionx vertical">
-                  <paper-button class="typeButtons" raised @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
-                  <div class="winInfo">${this.localize("win")} 3cp</div>
-                </div>
-              </div>
-
-            </div>
-
         </div>
 
       <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
