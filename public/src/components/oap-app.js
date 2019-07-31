@@ -1668,15 +1668,15 @@ class OapApp extends OapBaseElement {
       hostilityNeighboringCountries: 2,
       barrieresToCitizenship: 0,
       culturalAttitutes: {
-        authority: 0,
-        liberty: 2,
-        science: 2,
-        tradition: 0,
-        collective: 1,
-        independence: 2,
-        privacy: 2,
-        lawAndOrder: 1,
-        socialProgress: 1
+        authority: 3,
+        liberty: 5,
+        science: 8,
+        tradition: 5,
+        collective: 9,
+        independence: 5,
+        privacy: 8,
+        lawAndOrder: 5,
+        socialProgress:2
       }
     }
   }

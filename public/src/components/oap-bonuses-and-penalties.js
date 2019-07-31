@@ -23,7 +23,6 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
       if (level==="bonus") {
       } else if (level==="high") {
         if (country.culturalAttitutes[attitute]>=7) {
-          debugger;
           bonusesAndPenalties.push({id: item.id, type:"bonus", value: 7, attitute: attitute, level: level});
           bonusCount+=1;
         }

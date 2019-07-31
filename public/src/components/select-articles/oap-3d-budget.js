@@ -134,7 +134,7 @@ class Oap3dBudget extends OapBaseElement {
     this.directionalLight = new DirectionalLight(0xffffff, 0.75);
     this.directionalLight.position.setScalar(100);
     this.scene.add(this.directionalLight);
-    this.ambientLight = new AmbientLight(0xffffff, 0.25);
+    this.ambientLight = new AmbientLight(0xffffff, 0.42);
     this.scene.add(this.ambientLight);
 
     const renderScene = new RenderPass( this.scene, this.camera );
@@ -176,6 +176,16 @@ class Oap3dBudget extends OapBaseElement {
     this.renderScene();
   }
 
+  rebuild3dEmoji(emoji,xText,startFudge) {
+    this.bonusPenaltyEmoji2D = Get2DEmoji(emoji, '64px Arial');
+    this.bonusPenaltyEmoji2D.position.x = xText-(startFudge+9);
+    this.bonusPenaltyEmoji2D.position.y = 0.2;
+    this.bonusPenaltyEmoji2D.position.z = 0;
+    this.bonusPenaltyEmoji2D.scale.x = 0.1;
+    this.bonusPenaltyEmoji2D.scale.y = 0.1;
+    this.bonusPenaltyEmoji2D.scale.z = 0.1;
+  }
+
   bonusPenalty3dText(value, emoji) {
     console.error("bonusPenalty3dText: "+value);
     if (value!=0) {
@@ -193,10 +203,6 @@ class Oap3dBudget extends OapBaseElement {
           bevelOffset: 0,
           bevelSegments:  window.innerWidth>600 ? 7 :7
         });
-
-
-        //var text2 = new MeshText2D("❤️", { align: textAlign.right, font: '30px Arial', fillStyle: '#000000', antialias: true })
-        //this.scene.add(text2d);
 
         geometry.computeBoundingBox();
         geometry.computeVertexNormals();
@@ -233,21 +239,16 @@ class Oap3dBudget extends OapBaseElement {
           this.bonusPenaltyFontMesh.rotation.x = 0;
           this.bonusPenaltyFontMesh.rotation.y = Math.PI * 2;
 
-          this.bonusPenaltyEmoji2D = Get2DEmoji(emoji, '64px Arial');
-          this.bonusPenaltyEmoji2D.position.x = xText-(startFudge+7);
-          this.bonusPenaltyEmoji2D.position.y = -1;
-          this.bonusPenaltyEmoji2D.position.z = 0;
-          this.bonusPenaltyEmoji2D.scale.x = 0.1;
-          this.bonusPenaltyEmoji2D.scale.y = 0.1;
-          this.bonusPenaltyEmoji2D.scale.z = 0.1;
-
+          this.rebuild3dEmoji(emoji, xText, startFudge);
+          this.bonusPenaltyFontMesh.remove(this.bonusPenaltyEmoji2D);
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
           this.scene.add(this.bonusPenaltyFontMesh);
         } else {
           this.bonusPenaltyFontMesh.material[0].color.set(color);
           this.bonusPenaltyFontMesh.material[1].color.set(color);
           this.bonusPenaltyFontMesh.geometry=geometry;
-          this.bonusPenaltyEmoji2D = Get2DEmoji(emoji);
+          this.rebuild3dEmoji(emoji, xText, startFudge);
+          this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
           this.scene.add(this.bonusPenaltyFontMesh);
         }
 
@@ -271,6 +272,7 @@ class Oap3dBudget extends OapBaseElement {
           .delay(0)
           .on('complete', () => {
             this.scene.remove(this.bonusPenaltyFontMesh);
+            this.bonusPenaltyFontMesh.remove(this.bonusPenaltyEmoji2D);
             this.bonusPenaltyFontMesh.position.x = xText-startFudge;
             this.bonusPenaltyFontMesh.position.z = 0;
             this.bonusPenaltyFontTween=null;
@@ -741,7 +743,7 @@ class Oap3dBudget extends OapBaseElement {
           })
         .start();
       }
-    }, 1000);
+    }, 1900);
   }
 
 
@@ -794,7 +796,7 @@ class Oap3dBudget extends OapBaseElement {
       .on('complete', () => {
         new Tween(this.budgetGroup3d.position)
         .to({ x: this.defaultGroupPos.x, y: this.defaultGroupPos.y, z: this.defaultGroupPos.z }, 650) // relative animation
-        .delay(1100)
+        .delay(1800)
         .easing(Easing.Quadratic.InOut)
         .on('complete', () => {
           this.budgetGroup3d.runningMoveX=false;
