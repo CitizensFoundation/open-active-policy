@@ -274,16 +274,16 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.submitDisabled = true;
     const correctAnswer = this.questions[this.currentIndex].correctAnswer;
     if (answer==correctAnswer) {
-      this.fire("oap-process-correct-quiz-answer");
       this.correctAnswerColorAnimation();
       this.correctAnswers+=1;
-      this.$$("#button"+answer).animate([
+      /*this.$$("#button"+answer).animate([
         { transform: "scale(1.3)", easing: 'ease-in' },
         { transform: "scale(1.0)", easing: 'ease-out' }
       ], {
         duration: 600,
         iterations: 1
-      });
+      });*/
+      this.fire("oap-process-correct-quiz-answer");
     } else {
       this.fire("oap-overlay", {
         html: html`${this.localize("incorrectAnswer")}`,
@@ -306,12 +306,14 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.activity('answerSubmitted', 'quiz');
     }
 
-    this.$$("#button"+correctAnswer).style.backgroundColor="#39FF14";
-    const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
-    incorrectButtons.forEach( (buttonId) => {
-      this.$$("#button"+buttonId).style.backgroundColor="#d6483d";
-      this.$$("#button"+buttonId).classList.add("wrongAnswer");
-    });
+    setTimeout(()=>{
+      this.$$("#button"+correctAnswer).style.backgroundColor="#39FF14";
+      const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
+      incorrectButtons.forEach( (buttonId) => {
+        this.$$("#button"+buttonId).style.backgroundColor="#d6483d";
+        this.$$("#button"+buttonId).classList.add("wrongAnswer");
+      });
+    })
 
     setTimeout( ()=> {
       this.resetAllButtons();

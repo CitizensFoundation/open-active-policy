@@ -206,10 +206,10 @@ class Oap3dBudget extends OapBaseElement {
         }
 
         let startFudge = 90;
-        let endFudge = 20;
+        let endFudge = 18;
         if (window.innerWidth<600) {
-          startFudge = 50;
-          endFudge = 12;
+          startFudge = 35;
+          endFudge = 7;
         }
 
         if (this.bonusPenaltyFontMesh==null) {
@@ -262,14 +262,14 @@ class Oap3dBudget extends OapBaseElement {
 
         setTimeout(()=> {
           this.bonusPenaltyFontRotation = new Tween(this.bonusPenaltyFontMesh.rotation)
-          .to({ y: "-" + this.bonusPenaltyFontMesh.rotation.y+(Math.PI*2)}, 600)
+          .to({ y: "-" + this.bonusPenaltyFontMesh.rotation.y+(Math.PI*2)}, 300)
           .delay(0)
           .on('complete', () => {
             this.bonusPenaltyFontMesh.rotation.y = 0;
             this.bonusPenaltyFontRotation = null;
           })
           .start();
-        }, 500);
+        }, 800);
       } 
       }
   }

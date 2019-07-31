@@ -1722,30 +1722,12 @@ class OapApp extends OapBaseElement {
     });
 
     this.choicePoints+=5;
-    setTimeout(()=>{
-      this.$$("#choicePoints").animate([
-        { transform: "scale(1.2)" },
-        { transform: "scale(1)" }
-      ], {
-        duration: 300,
-        iterations: 1
-      });
-    }, 200);
     this.activity('correct', 'quizAnswer');
   }
 
   processBonusPoints(event) {
     this.fire('oap-play-sound-effect', 'oap_short_win_1');
     this.choicePoints+= event.detail ? event.detail : 5;
-    setTimeout(()=>{
-      this.$$("#choicePoints").animate([
-        { transform: "scale(1.2)" },
-        { transform: "scale(1)" }
-      ], {
-        duration: 300,
-        iterations: 1
-      });
-    }, 200);
     this.activity('bonus', 'forManualSwiping');
   }
 
