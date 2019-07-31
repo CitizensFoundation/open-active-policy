@@ -814,7 +814,7 @@ class Oap3dBudget extends OapBaseElement {
       this.budgetGroup3d.runningMoveX=null;
       this.budgetGroup3d.runningMoveXTwo = new Tween(this.budgetGroup3d.position)
       .to({ x: this.defaultGroupPos.x, y: this.defaultGroupPos.y, z: this.defaultGroupPos.z }, 650) // relative animation
-      .delay(1000)
+      .delay(700)
       .easing(Easing.Quadratic.InOut)
       .on('complete', () => {
         this.budgetGroup3d.runningMoveX=null;
