@@ -225,11 +225,17 @@ class Oap3dBudget extends OapBaseElement {
           color=0xFF0000;
         }
 
-        let startFudge = 90;
-        let endFudge = 18;
+        let startFudge = 100;
+        let endFudge = 0;
         if (window.innerWidth<600) {
           startFudge = 35;
-          endFudge = 7;
+          endFudge = -10;
+        }
+
+        if (this.bonusPenaltyFontTween) {
+          this.bonusPenaltyFontTween.stop();
+          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
+          this.bonusPenaltyFontMesh.position.z = 0;
         }
 
         if (this.bonusPenaltyFontMesh==null) {
@@ -246,8 +252,8 @@ class Oap3dBudget extends OapBaseElement {
           this.bonusPenaltyFontMesh.rotation.x = 0;
           this.bonusPenaltyFontMesh.rotation.y = Math.PI * 2;
 
-          this.rebuild3dEmoji(emoji, xText, startFudge);
           this.bonusPenaltyFontMesh.remove(this.bonusPenaltyEmoji2D);
+          this.rebuild3dEmoji(emoji, xText, startFudge);
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
           this.scene.add(this.bonusPenaltyFontMesh);
         } else {
@@ -257,12 +263,6 @@ class Oap3dBudget extends OapBaseElement {
           this.rebuild3dEmoji(emoji, xText, startFudge);
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
           this.scene.add(this.bonusPenaltyFontMesh);
-        }
-
-        if (this.bonusPenaltyFontTween) {
-          this.bonusPenaltyFontTween.stop();
-          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
-          this.bonusPenaltyFontMesh.position.z = 0;
         }
 
         if (this.bonusPenaltyFontRotation) {
@@ -275,7 +275,7 @@ class Oap3dBudget extends OapBaseElement {
 
         setTimeout(()=>{
           this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyFontMesh.position)
-          .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1900) // relative animation
+          .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1700) // relative animation
           .delay(0)
           .on('complete', () => {
             this.scene.remove(this.bonusPenaltyFontMesh);
@@ -289,17 +289,19 @@ class Oap3dBudget extends OapBaseElement {
           .start();
         });
 
-        setTimeout(()=> {
-          this.bonusPenaltyFontRotation = new Tween(this.bonusPenaltyFontMesh.rotation)
-          .to({ y: "-" + this.bonusPenaltyFontMesh.rotation.y+(Math.PI*2)}, 300)
-          .delay(0)
-          .on('complete', () => {
-            this.bonusPenaltyFontMesh.rotation.y = 0;
-            this.bonusPenaltyFontRotation = null;
-          })
-          .start();
-        }, 1500);
-      } 
+        if (false) {
+          setTimeout(()=> {
+            this.bonusPenaltyFontRotation = new Tween(this.bonusPenaltyFontMesh.rotation)
+            .to({ y: "-" + this.bonusPenaltyFontMesh.rotation.y+(Math.PI*2)}, 300)
+            .delay(0)
+            .on('complete', () => {
+              this.bonusPenaltyFontMesh.rotation.y = 0;
+              this.bonusPenaltyFontRotation = null;
+            })
+            .start();
+          }, 1500);
+        }
+      }
       }
   }
 
@@ -793,25 +795,34 @@ class Oap3dBudget extends OapBaseElement {
 
   moveBudgetGroupBack() {
     const newX = this.itemsInScene.length>10 ?  (this.defaultGroupPos.x-(this.defaultGroupPos.x*0.1)) : (this.defaultGroupPos.x-(this.defaultGroupPos.x*0.2));
-    const newZ = -7;
-    if (!this.budgetGroup3d.runningMoveX) {
-      this.budgetGroup3d.runningMoveX=true;
-      new Tween(this.budgetGroup3d.position)
-      .to({ x: this.budgetGroup3d.position.x, y: this.budgetGroup3d.position.y, z: newZ }, 350)
-      .delay(0)
+    const newZ = -8;
+    if (this.budgetGroup3d.runningMoveX) {
+      this.budgetGroup3d.runningMoveX.stop();
+      this.budgetGroup3d.runningMoveX=null;
+    }
+
+    if (this.budgetGroup3d.runningMoveXTwo) {
+      this.budgetGroup3d.runningMoveXTwo.stop();
+      this.budgetGroup3d.runningMoveXTwo=null;
+    }
+
+    this.budgetGroup3d.runningMoveX = new Tween(this.budgetGroup3d.position)
+    .to({ x: this.budgetGroup3d.position.x, y: this.budgetGroup3d.position.y, z: newZ }, 350)
+    .delay(0)
+    .easing(Easing.Quadratic.InOut)
+    .on('complete', () => {
+      this.budgetGroup3d.runningMoveX=null;
+      this.budgetGroup3d.runningMoveXTwo = new Tween(this.budgetGroup3d.position)
+      .to({ x: this.defaultGroupPos.x, y: this.defaultGroupPos.y, z: this.defaultGroupPos.z }, 650) // relative animation
+      .delay(1800)
       .easing(Easing.Quadratic.InOut)
       .on('complete', () => {
-        new Tween(this.budgetGroup3d.position)
-        .to({ x: this.defaultGroupPos.x, y: this.defaultGroupPos.y, z: this.defaultGroupPos.z }, 650) // relative animation
-        .delay(1800)
-        .easing(Easing.Quadratic.InOut)
-        .on('complete', () => {
-          this.budgetGroup3d.runningMoveX=false;
-        })
-        .start();
+        this.budgetGroup3d.runningMoveX=null;
+        this.budgetGroup3d.runningMoveXTwo=null;
       })
       .start();
-    }
+    })
+    .start();
   }
 
   rotateBudgetGroupBack() {
