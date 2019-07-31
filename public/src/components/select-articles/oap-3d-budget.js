@@ -357,13 +357,15 @@ class Oap3dBudget extends OapBaseElement {
           duration=300;
         }
 
-        new Tween(this.fontMesh.rotation)
+        if (this.fontMeshTweenRotation) {
+          this.fontMeshTweenRotation.stop();
+          this.fontMeshTweenRotation = null;
+          this.fontMesh.rotation.y=0;
+        }
+        this.fontMeshTweenRotation = new Tween(this.fontMesh.rotation)
         .to({ y: "-" + this.fontMesh.rotation.y+(Math.PI*2)}, duration) // relative animation
         .delay(0)
         .on('complete', () => {
-            // Check that the full 360 degrees of rotation,
-            // and calculate the remainder of the division to avoid overflow.
-            //console.log("Rotate test reset");
             this.fontMesh.rotation.y=0;
         })
         .start();
