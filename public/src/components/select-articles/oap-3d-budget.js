@@ -15,6 +15,7 @@ import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityH
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls';
 import { Tween, Easing, update, removeAll } from 'es6-tween';
+//import { MeshText2D, textAlign } from 'three-text2d';
 
 import { OapBaseElement } from '../oap-base-element.js';
 
@@ -173,7 +174,7 @@ class Oap3dBudget extends OapBaseElement {
     this.renderScene();
   }
 
-  bonusPenalty3dText(value) {
+  bonusPenalty3dText(value, emoji) {
     console.error("bonusPenalty3dText: "+value);
     if (value!=0) {
       this.rotateAllItemsGroup();
@@ -190,6 +191,10 @@ class Oap3dBudget extends OapBaseElement {
           bevelOffset: 0,
           bevelSegments:  window.innerWidth>600 ? 7 :7
         });
+
+
+        //var text2 = new MeshText2D("❤️", { align: textAlign.right, font: '30px Arial', fillStyle: '#000000', antialias: true })
+        //this.scene.add(text2d);
 
         geometry.computeBoundingBox();
         geometry.computeVertexNormals();
