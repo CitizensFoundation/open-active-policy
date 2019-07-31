@@ -1,5 +1,4 @@
-import { Object3D, Vector2, LinearMipMapLinearFilter, DoubleSide, Sprite, SpriteMaterial, Texture, NearestFilter} from 'three'
-import { Math as ThreeMath } from 'three';
+import { Object3D, Math as ThreeMath, Vector2, LinearMipMapLinearFilter, DoubleSide, Sprite, SpriteMaterial, Texture, NearestFilter} from 'three';
 
 const textAlign = {
   center: new Vector2(0, 0),
