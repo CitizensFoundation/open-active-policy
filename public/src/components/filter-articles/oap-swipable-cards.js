@@ -90,11 +90,11 @@ class OapSwipableCards extends OapBaseElement {
                           <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
                           <div class="layout  horizontal actionButtonInnerContainer">
                             <div class="left-actionx vertical">
-                              <paper-button class="typeButtons"  @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                              <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
                               <div class="winInfo">${this.localize("automaticInfo")}</div>
                             </div>
                             <div class="right-actionx vertical">
-                              <paper-button class="typeButtons"  @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                              <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
                               <div class="winInfo">${this.localize("win")} 3cp</div>
                             </div>
                           </div>
@@ -155,9 +155,23 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   startManualSelection() {
+    this.$$("#manualSelectionButton").disabled = true;
     this.fire("oap-bonus-points", 3);
     this.onActionTop(true);
     this.addEventListeners();
+    setTimeout(()=>{
+      if (this.$$("#manualSelectionButton"))
+        this.$$("#manualSelectionButton").disabled = false;
+    }, 750);
+  }
+
+  startAutoSelection() {
+    this.$$("#autoSelectionButton").disabled = true;
+    setTimeout(()=>{
+      if (this.$$("#autoSelectionButton"))
+        this.$$("#autoSelectionButton").disabled = false;
+    }, 750);
+    this.automaticallySelectNext();
   }
 
   automaticallySelectNext() {
@@ -176,7 +190,7 @@ class OapSwipableCards extends OapBaseElement {
 
       console.error("Bonuscount: "+bonusCount);
       if (currentModuleTypeCard) {
-        this.onActionTop(true);      
+        this.onActionTop(true);
       } else if (bonusCount===0 && Math.random()<0.7) {
         this.onActionLeft();
       } else {
@@ -186,7 +200,7 @@ class OapSwipableCards extends OapBaseElement {
           this.automaticallySelectNext();
       }, 400);
     } else {
-     this.automaticSelectionActive = false;
+      this.automaticSelectionActive = false;
     }
   }
 
