@@ -42,9 +42,8 @@ export const OapPolicyQuizStyles = css`
     margin-right: auto;
     background-color: var(--quiz-background-color, #1d5588);
     color: var(--quiz-color, #FFF);
-    padding-bottom: 16px;
-    margin-top: 32px;
     height: 100%;
+    padding-bottom: 42px;
   }
 
   .question {
@@ -62,15 +61,26 @@ export const OapPolicyQuizStyles = css`
   }
 
   .progress {
-    text-align: right;
+    font-size: 18px;
     color: #bbb;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 16px;
+  }
+
+  .middle {
+    width: 100%;
+  }
+
+  .textRight {
+    text-align: right;
+  }
+
+  .textLeft {
+    text-align: left;
   }
 
   #canvas3d {
     width: 600px;
-    height: 150px;
+    height: 175px;
   }
 
   .completedQuiz {
@@ -97,6 +107,10 @@ export const OapPolicyQuizStyles = css`
       margin-right: 0;
     }
 
+    :host {
+      height: 100%;
+    }
+
     .image {
       width: 100%;
     }
@@ -107,7 +121,7 @@ export const OapPolicyQuizStyles = css`
 
     #canvas3d {
       width: 100%;
-      height: 100px;
+      height: 175px;
     }
 
     .answerButton {

@@ -14,7 +14,7 @@ export const OapCountryCreationStyles = css`
 
   .header {
     font-size: 24px;
-    margin-top: 0;
+    margin-top: 16px;
     margin-bottom: 16px;
     font-weight: bold;
     background-color: var(--app-country-header-background-color, #e9bf29);
@@ -40,13 +40,12 @@ export const OapCountryCreationStyles = css`
   }
 
   .topContainer {
-    margin-top: 32px;
     max-width: 600px;
     width: 600px;
     background-color: var(--app-create-country-background-color, #1d5588);
     color: var(--app-create-country-color, #fff);
     padding-top: 16px;
-    padding-bottom: 24px;
+    padding-bottom: 42px;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;

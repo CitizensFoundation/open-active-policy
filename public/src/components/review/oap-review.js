@@ -45,6 +45,9 @@ class OapReview extends OapPageViewElement {
           <div class="header"><div style="padding: 8px">${this.localize("reviewOfYourConstitution")}</div></div>
           <p>TO BE DONE</p>
 
+          <div class="header"><div style="padding: 8px">${this.localize("whatConstitutionIsTheMostSimilarToYours")}</div></div>
+          <p>TO BE DONE</p>
+
           <div class="header"><div style="padding: 8px">${this.localize("shareOnSocialMedia")}</div></div>
           <p>TO BE DONE</p>
 

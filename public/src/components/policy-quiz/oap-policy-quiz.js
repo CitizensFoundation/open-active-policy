@@ -25,7 +25,8 @@ class OapPolicyQuiz extends OapPageViewElement {
       camera: Object,
       dirLightOne: Object,
       dirLightTwo: Object,
-      submitDisabled: Boolean
+      submitDisabled: Boolean,
+      choicePoints: Number
     };
   }
 
@@ -49,7 +50,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     setTimeout(()=>{
       this.scene = new Scene();
       this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-      this.camera.position.set( 6, -10, 355 );
+      this.camera.position.set( 6, -15, 355 );
       this.scene.add( this.camera );
 
       this.dirLightOne = new DirectionalLight(0x1d5588, 2.0);
@@ -91,11 +92,10 @@ class OapPolicyQuiz extends OapPageViewElement {
         ];
 
         var width=600;
-        var height=150;
+        var height=175;
 
         if (window.innerWidth<=600) {
           width=window.innerWidth;
-          height=100;
         }
 
         for (var i=-width/2; i<width/2; i+=30+Math.random()*50){
@@ -146,7 +146,6 @@ class OapPolicyQuiz extends OapPageViewElement {
   }
 
   stop() {
-    debugger;
     while(this.scene.children.length > 0){
       this.scene.remove(this.scene.children[0]);
     }
@@ -186,11 +185,9 @@ class OapPolicyQuiz extends OapPageViewElement {
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${this.currentIndex!==null ?  html`
           <div id="canvas3d"></div>
-          <div class="layout horizontal center-center infoBar">
-            <div class="layout horizontal center-center">
-              <div class="nickname">${this.nickname}</div>
-              <div class="progress">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
-            </div>
+          <div class="layout horizontal progress">
+            <div class="middle textLeft">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
+            <div class="middle textRight">${this.localize("youHave")} ${this.choicePoints}cp</div>
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">

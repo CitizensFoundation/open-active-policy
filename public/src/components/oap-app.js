@@ -217,9 +217,6 @@ class OapApp extends OapBaseElement {
 
         <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${this._page == 'areas-ballot'}">
           <app-toolbar class="toolbar-top">
-            <div id="choicePoints" class="choicePoints" ?hidden="${(['area-ballot','filter-articles'].indexOf(this._page)>-1)}">
-              ${this.localize('youHave')} ${this.choicePoints}${this.localize("cp")}
-            </div>
             <div ?hidden="${!this.showExit}" class="layout horizontal exitIconInBudget">
               <paper-icon-button class="closeButton" alt="${this.localize('close')}" icon="closeExit" @click="${this._exit}"></paper-icon-button>
             </div>
@@ -255,6 +252,7 @@ class OapApp extends OapBaseElement {
             .configFromServer="${this.configFromServer}"
             .nickname="Robert Bjarnason"
             .language="${this.language}"
+            .choicePoints="${this.choicePoints}"
             class="page"
             ?active="${this._page === 'quiz'}">
           </oap-policy-quiz>
@@ -2230,7 +2228,12 @@ class OapApp extends OapBaseElement {
         this.$$("#selectVotingArea").refreshAreaCounters();
       }
 
-      if (page==='area-ballot' && this.filteredItems.length===0) {
+      if (page==='area-ballot' && (this.filteredItems.length===0 || this.country==null)) {
+        window.history.pushState({}, null, "/quiz");
+        this.fire('location-changed', "/quiz");
+      }
+
+      if (page==='filter-articles' && this.country==null) {
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
       }
