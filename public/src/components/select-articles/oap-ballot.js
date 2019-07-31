@@ -378,6 +378,7 @@ class OapBallot extends OapPageViewElement {
     const test = "High Authority,High Tradition,High Collective,High Law/Order,Low Science";
     let bonusesAndPenalties = GetBonusesAndPenaltiesForItem(item, this.country).bonusesAndPenalties;
     let totalValue = 0;
+    let emojis = [];
     if (bonusesAndPenalties.length>0) {
       let htmlString="";
       bonusesAndPenalties.forEach((item)=>{
@@ -386,10 +387,18 @@ class OapBallot extends OapPageViewElement {
           this.usedBonusesAndPenalties[usedKey] = true;
           if (item.type==="bonus") {
             this.budgetElement.totalBudget+=item.value;
+            let emoji = this._getEmojiFromAttitute(item.attitute);
+            if (!emojis.indexOf(emoji)>-1) {
+              emojis.push(emoji);
+            }
             totalValue+=item.value;
           } else if (item.type==="penalty") {
             this.budgetElement.totalBudget-=item.value;
             totalValue-=item.value;
+            let emoji = this._getEmojiFromAttitute(item.attitute);
+            if (!emojis.indexOf(emoji)>-1) {
+              emojis.push(emoji);
+            }
           }
           htmlString+='<span style="width: 40px;height: 40px">'+this._getEmojiFromAttitute(item.attitute)
           htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'<br>';
@@ -401,7 +410,7 @@ class OapBallot extends OapPageViewElement {
         if (totalValue!=0) {
           this.fire('oap-open-snackbar', htmlString);
           setTimeout(()=>{
-            this.budgetElement.bonusPenalty3dText(totalValue);
+            this.budgetElement.bonusPenalty3dText(totalValue, emojis[0]);
           })
         }
       }

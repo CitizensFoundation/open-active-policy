@@ -15,6 +15,8 @@ import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityH
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls';
 import { Tween, Easing, update, removeAll } from 'es6-tween';
+import { Get2DEmoji } from '../oap-2d-emojis';
+
 //import { MeshText2D, textAlign } from 'three-text2d';
 
 import { OapBaseElement } from '../oap-base-element.js';
@@ -230,11 +232,22 @@ class Oap3dBudget extends OapBaseElement {
 
           this.bonusPenaltyFontMesh.rotation.x = 0;
           this.bonusPenaltyFontMesh.rotation.y = Math.PI * 2;
+
+          this.bonusPenaltyEmoji2D = Get2DEmoji(emoji, '64px Arial');
+          this.bonusPenaltyEmoji2D.position.x = xText-(startFudge+7);
+          this.bonusPenaltyEmoji2D.position.y = -1;
+          this.bonusPenaltyEmoji2D.position.z = 0;
+          this.bonusPenaltyEmoji2D.scale.x = 0.1;
+          this.bonusPenaltyEmoji2D.scale.y = 0.1;
+          this.bonusPenaltyEmoji2D.scale.z = 0.1;
+
+          this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
           this.scene.add(this.bonusPenaltyFontMesh);
         } else {
           this.bonusPenaltyFontMesh.material[0].color.set(color);
           this.bonusPenaltyFontMesh.material[1].color.set(color);
           this.bonusPenaltyFontMesh.geometry=geometry;
+          this.bonusPenaltyEmoji2D = Get2DEmoji(emoji);
           this.scene.add(this.bonusPenaltyFontMesh);
         }
 
@@ -254,7 +267,7 @@ class Oap3dBudget extends OapBaseElement {
 
         setTimeout(()=>{
           this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyFontMesh.position)
-          .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1200) // relative animation
+          .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1900) // relative animation
           .delay(0)
           .on('complete', () => {
             this.scene.remove(this.bonusPenaltyFontMesh);
@@ -276,7 +289,7 @@ class Oap3dBudget extends OapBaseElement {
             this.bonusPenaltyFontRotation = null;
           })
           .start();
-        }, 800);
+        }, 1500);
       } 
       }
   }
