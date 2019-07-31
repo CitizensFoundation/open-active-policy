@@ -177,8 +177,15 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   rebuild3dEmoji(emoji,xText,startFudge) {
+    if (window.innerWidth<450) {
+      xText = -(this.votesWidth*0.02);
+    } else if (window.innerWidth<950) {
+      xText = -(this.votesWidth*0.012);
+    } else {
+      xText = -(this.votesWidth*0.009);
+    }
     this.bonusPenaltyEmoji2D = Get2DEmoji(emoji, '64px Arial');
-    this.bonusPenaltyEmoji2D.position.x = xText-(startFudge+9);
+    this.bonusPenaltyEmoji2D.position.x = xText;
     this.bonusPenaltyEmoji2D.position.y = 0.2;
     this.bonusPenaltyEmoji2D.position.z = 0;
     this.bonusPenaltyEmoji2D.scale.x = 0.1;

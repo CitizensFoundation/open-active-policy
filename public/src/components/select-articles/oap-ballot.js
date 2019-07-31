@@ -451,7 +451,7 @@ class OapBallot extends OapPageViewElement {
         var listItem = listItems.children[i];
         if (!listItem) {
           console.error("NO LIST ITEM");
-          this._setStateOfRemainingItems();
+          this.setStateOfRemainingItems();
         } else {
         if (listItem.id != 'domRepeat' && !listItem.selected) {
 
