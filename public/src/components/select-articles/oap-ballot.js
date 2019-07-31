@@ -327,12 +327,14 @@ class OapBallot extends OapPageViewElement {
         setTimeout(() => {
           this.removeFromAvailableItems(itemId);
           this.requestUpdate();
-        }, 500);
+        }, 450);
+        break;
       }
     }
-    this._checkBonusesAndPenalties(item, "select");
-    this._setStateOfRemainingItems();
-    this.requestUpdate();
+
+    setTimeout(()=>{
+      this._checkBonusesAndPenalties(item, "select");
+    }, 650)
   }
 
   _resetExclusive(itemIds) {
@@ -366,9 +368,9 @@ class OapBallot extends OapPageViewElement {
         }
         listItem.removeFromBudget();
         this.fire("oav-reset-favorite-icon-position");
+        break;
       }
     }
-    this._setStateOfRemainingItems();
     this.requestUpdate();
   }
 
@@ -400,7 +402,9 @@ class OapBallot extends OapPageViewElement {
       if (htmlString.length>0) {
         this.fire('oap-open-snackbar', htmlString);
         if (totalValue!=0) {
-          this.budgetElement.bonusPenalty3dText(totalValue);
+          setTimeout(()=>{
+            this.budgetElement.bonusPenalty3dText(totalValue);
+          })
         }
       }
     }
@@ -426,21 +430,27 @@ class OapBallot extends OapPageViewElement {
     return emojis[attitute];
   }
 
-  _setStateOfRemainingItems() {
-    setTimeout(()=>{
-      var budgetLeft = this.budgetElement.totalBudget-this.budgetElement.selectedBudget;
-      var listItems = this.$$("#itemContainer");
+  async setStateOfRemainingItems(startTimeout, inbetweenTimeout) {
+    await new Promise(resolve => setTimeout(resolve, startTimeout ? startTimeout: 100 ));
+    var budgetLeft = this.budgetElement.totalBudget-this.budgetElement.selectedBudget;
+    console.error("_setStateOfRemainingItems: "+budgetLeft);
+    var listItems = this.$$("#itemContainer");
+    if (listItems) {
       const allSelectedIds = this.budgetElement.selectedItems.map((item) => {
         return item.id;
       });
       for (var i = 0; i < listItems.children.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, inbetweenTimeout ? inbetweenTimeout : 5));
         var listItem = listItems.children[i];
+        if (!listItem) {
+          console.error("NO LIST ITEM");
+          this._setStateOfRemainingItems();
+        } else {
         if (listItem.id != 'domRepeat' && !listItem.selected) {
 
           if (listItem.item.exclusive_ids && listItem.item.exclusive_ids.length>0) {
             listItem.item.exclusive_ids.split(",").forEach((id) => {
               if (allSelectedIds.indexOf(id) > -1) {
-                console.log("excluding: "+listItem.item.id+" for "+listItem.item.exclusive_ids);
                 listItem.setExcluded();
               } else {
                 //listItem.setNotExcluded();
@@ -454,8 +464,11 @@ class OapBallot extends OapPageViewElement {
             listItem.setTooExpensive();
           }
         }
-      }
-    }, 50);
+        }
+      } 
+    } else {
+      console.warn("Trying to setStateOfItems with no listItems");
+    }
   }
 
   _postVoteToServer() {

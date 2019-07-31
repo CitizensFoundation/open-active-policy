@@ -22,17 +22,18 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
       const attitute = splitBonus[1];
       if (level==="bonus") {
       } else if (level==="high") {
-        if (country.culturalAttitutes[attitute]==2) {
+        if (country.culturalAttitutes[attitute]>=7) {
+          debugger;
           bonusesAndPenalties.push({id: item.id, type:"bonus", value: 7, attitute: attitute, level: level});
           bonusCount+=1;
         }
       } else if (level==="medium") {
-        if (country.culturalAttitutes[attitute]==1) {
+        if (country.culturalAttitutes[attitute]>=3 && country.culturalAttitutes[attitute]<7) {
           bonusesAndPenalties.push({id: item.id, type:"bonus", value: 5, attitute: attitute, level: level});
           bonusCount+=1;
         }
       } else if (level==="low") {
-        if (country.culturalAttitutes[attitute]==0) {
+        if (country.culturalAttitutes[attitute]>=0 && country.culturalAttitutes[attitute]<3) {
           bonusesAndPenalties.push({id: item.id, type:"bonus", value: 2, attitute: attitute, level: level});
           bonusCount+=1;
         }
@@ -45,17 +46,17 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
       const attitute = splitBonus[1];
       if (level==="bonus") {
       } else if (level==="high") {
-        if (country.culturalAttitutes[attitute]==2) {
+        if (country.culturalAttitutes[attitute]>=7) {
           bonusesAndPenalties.push({id: item.id, type:"penalty", value: 7, attitute: attitute, level: level});
           penaltyCount+=1;
         }
       } else if (level==="medium") {
-        if (country.culturalAttitutes[attitute]==1) {
+        if (country.culturalAttitutes[attitute]>=3 && country.culturalAttitutes[attitute]<7) {
           bonusesAndPenalties.push({id: item.id, type:"penalty", value: 5, attitute: attitute, level: level});
           penaltyCount+=1;
         }
       } else if (level==="low") {
-        if (country.culturalAttitutes[attitute]==0) {
+        if (country.culturalAttitutes[attitute]>=0 && country.culturalAttitutes[attitute]<3) {
           bonusesAndPenalties.push({id: item.id, type:"penalty", value: 1, attitute: attitute, level: level});
           penaltyCount+=1;
         }

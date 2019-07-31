@@ -195,10 +195,10 @@ class OapPolicyQuiz extends OapPageViewElement {
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
             <div class="buttonContainer">
-              <paper-button raised ?disabled="${this.submitDisabled}" id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
-              <paper-button raised ?disabled="${this.submitDisabled}" id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
-              <paper-button raised ?disabled="${this.submitDisabled}" id="button2" class="answerButton" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
-              <paper-button raised ?disabled="${this.submitDisabled}" id="button3" class="answerButton" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
+              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
+              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
+              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button2" class="answerButton" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
+              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button3" class="answerButton" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
             </div>
           </div>
         ` : html``}

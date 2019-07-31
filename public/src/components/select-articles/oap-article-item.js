@@ -14,7 +14,6 @@ import '@polymer/paper-icon-button';
 import '@polymer/paper-listbox';
 import '@polymer/paper-item';
 import '@polymer/paper-fab';
-import '@polymer/paper-button';
 import 'paper-share-button';
 import { OapFlexLayout } from '../oap-flex-layout.js';
 
@@ -104,15 +103,15 @@ class OapArticleItem extends OapBaseElement {
             <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
           </div>
           <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-            <paper-button raised id="addToBudgetButton" .elevation="5" class="addRemoveButton" ?hidden="${this.selected}"
+            <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
                       ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
                       +${this.item.price}
-            </paper-button>
+            </div>
 
-            <paper-button raised elevation="5" class="addRemoveButton removeButton" ?hidden="${!this.selected}"
+            <div raised elevation="5" class="addRemoveButton removeButton shadow-animation  shadow-elevation-4dp" ?hidden="${!this.selected}"
                       title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
                       -${this.item.price}
-            </paper-button>
+            </div>
           </div>
         </div>
       </div>
@@ -307,8 +306,7 @@ class OapArticleItem extends OapBaseElement {
     this.selected = true;
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
     this.$$("#addToBudgetButton").style.backgroundColor=color;
-
-    this.$$("#opacityLayer").style.backgroundColor=color;
+   this.$$("#opacityLayer").style.backgroundColor=color;
     this.$$("#opacityLayer").classList.add("cover");
     this.$$("#opacityLayer").style.display="block";
     setTimeout(()=>{
@@ -379,8 +377,12 @@ class OapArticleItem extends OapBaseElement {
 
   _toggleInBudget(event) {
     //console.log("_toggleInBudget itemId: "+this.item.id);
-    this.fire('oav-toggle-item-in-budget', { item: this.item });
-    this.fire('oap-close-snackbar');
+    if (event.target && !event.target.attributes['disabled']) {
+      this.fire('oav-toggle-item-in-budget', { item: this.item });
+      this.fire('oap-close-snackbar');
+    } else {
+      console.warn("Trying to click disabled button");
+    }
   }
 }
 

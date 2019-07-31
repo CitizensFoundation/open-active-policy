@@ -45,10 +45,10 @@ export const OapBallotStyles = css`
   oap-article-item {
     outline: 0px;
     transition: all 1s ease-in-out;
-    -webkit-transition: all 950ms ease-in-out;
-    -moz-transition: all 950ms ease-in-out;
-    -o-transition: all 950ms ease-in-out;
-    -ms-transition: all 950ms ease-in-out;
+    -webkit-transition: all 750ms ease-in-out;
+    -moz-transition: all 750ms ease-in-out;
+    -o-transition: all 750ms ease-in-out;
+    -ms-transition: all 750ms ease-in-out;
   }
 
 

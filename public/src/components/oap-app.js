@@ -338,7 +338,7 @@ class OapApp extends OapBaseElement {
   }
 
   setDummyData() {
-    this.choicePoints = 200;
+    this.choicePoints = 100;
     this.quizQuestions = [
       {
         question: "What is the shortest Constitution in the world?",
@@ -1651,14 +1651,14 @@ class OapApp extends OapBaseElement {
     ]
 
     this.soundEffects = {
-      oap_short_win_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3", volume: 1.0},
+      oap_short_win_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3", volume: 0.4},
       oap_new_level_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3", volume: 0.1}
     }
 
     this.cacheDataImages();
     this.cacheSoundEffects();
     //this.filteredItems = this.allItems;
-    this.countryD = {
+    this.countryd = {
       name: "13 Colonies 1783 (US Constitutional Convention)",
       description: "A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",
       population: "2.7M",
@@ -1685,7 +1685,7 @@ class OapApp extends OapBaseElement {
     if (this.soundEffects) {
       Object.values(this.soundEffects).forEach((effect) => {
         setTimeout( () => {
-          const audio = new Audio(effect.url);
+          effect.audio = new Audio(effect.url);
         }, 500+Math.floor(Math.random() * 2500));
       });
     }
@@ -1695,7 +1695,12 @@ class OapApp extends OapBaseElement {
     if (this.soundEffects[event.detail]) {
       setTimeout(()=> {
         const effect = this.soundEffects[event.detail];
-        const audio = new Audio(effect.url);
+        let audio;
+        if (effect.audio) {
+          audio = effect.audio;
+        } else {
+          audio = new Audio(effect.url);
+        }
         audio.volume = effect.volume;
         audio.play();
       });

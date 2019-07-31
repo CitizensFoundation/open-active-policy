@@ -183,7 +183,7 @@ class Oap3dBudget extends OapBaseElement {
           font: this.font3d,
           size: window.innerWidth>600 ? 4 : 3,
           height: window.innerWidth>600 ? 1.5 : 1.2,
-          curveSegments: window.innerWidth>600 ? 15 : 12,
+          curveSegments: window.innerWidth>600 ? 10 : 8,
           bevelEnabled: true,
           bevelThickness: window.innerWidth>600 ? 0.5 : 0.4,
           bevelSize:  window.innerWidth>600 ? 0.5 : 0.3,
@@ -247,18 +247,20 @@ class Oap3dBudget extends OapBaseElement {
         this.fontMesh.material[0].color.set(color);
         this.fontMesh.material[1].color.set(color);
 
-        this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyFontMesh.position)
-        .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1200) // relative animation
-        .delay(0)
-        .on('complete', () => {
-          this.scene.remove(this.bonusPenaltyFontMesh);
-          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
-          this.bonusPenaltyFontMesh.position.z = 0;
-          this.bonusPenaltyFontTween=null;
-          this.fontMesh.material[0].color.set(0xFF5722);
-          this.fontMesh.material[1].color.set(0xFF5722);
-        })
-        .start();
+        setTimeout(()=>{
+          this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyFontMesh.position)
+          .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1200) // relative animation
+          .delay(0)
+          .on('complete', () => {
+            this.scene.remove(this.bonusPenaltyFontMesh);
+            this.bonusPenaltyFontMesh.position.x = xText-startFudge;
+            this.bonusPenaltyFontMesh.position.z = 0;
+            this.bonusPenaltyFontTween=null;
+            this.fontMesh.material[0].color.set(0xFF5722);
+            this.fontMesh.material[1].color.set(0xFF5722);
+          })
+          .start();
+        });
 
         setTimeout(()=> {
           this.bonusPenaltyFontRotation = new Tween(this.bonusPenaltyFontMesh.rotation)
@@ -417,6 +419,7 @@ class Oap3dBudget extends OapBaseElement {
       } else {
         this.budgetLeft = 0;
       }
+      this.currentBallot.setStateOfRemainingItems();
     }
   }
 
@@ -598,15 +601,15 @@ class Oap3dBudget extends OapBaseElement {
 
     //console.error("Item "+item.id+": x="+itemWidth);
     object.layers.enable(1);
-    object.position.x=60.0;
-    object.position.z=20.0;
+    object.position.x=50.0;
+    object.position.z=-40.0;
 
-    if (!this.wide) {
+    if (true) {
       setTimeout(()=>{
         this.budgetGroup3d.add(object);
         this.itemsInScene.push({id: item.id, object: object, width: itemWidth, item: item});
         this.positionItems();
-      }, 50);
+      }, 30);
     } else {
       this.budgetGroup3d.add(object);
       this.itemsInScene.push({id: item.id, object: object, width: itemWidth, item: item});
@@ -642,7 +645,9 @@ class Oap3dBudget extends OapBaseElement {
     });
     sortedItems.forEach((item, index)=> {
       let currentWidth;
-      currentWidth = new Box3().setFromObject(item.object).getSize(currentWidth).x;
+      const currentSize = new Vector3();
+      new Box3().setFromObject(item.object).getSize(currentSize);
+      currentWidth = currentSize.x;
       //console.error(index+": bounding box x="+currentWidth);
       const setX = rightEdgeAndSpace+(currentWidth/2);
       //console.error(index+": set x="+setX);
@@ -650,12 +655,11 @@ class Oap3dBudget extends OapBaseElement {
       let random = Math.floor(Math.random() * 100);
 
       this.animateVector3(item.object.position, target, {
-        duration: 750,
+        duration: 650,
         easing : Easing.Quadratic.InOut,
         update: function(d) {
         },
         callback : function(){
-            console.log("Completed");
         }
       });
       rightEdgeAndSpace=(setX+currentWidth/2);
@@ -671,7 +675,6 @@ class Oap3dBudget extends OapBaseElement {
             update: function(d) {
             },
             callback : function(){
-                console.log("Completed");
             }
           });
         },10000+(Math.floor(Math.random() * 100)));
@@ -707,18 +710,20 @@ class Oap3dBudget extends OapBaseElement {
  //   this.budgetGroup3d.updateMatrix();
     this.moveBudgetGroupBack();
 //    this.rotateBudgetGroupBack();
-   if (!this.budgetGroup3d.runningRotateX) {
-      const oldX = this.budgetGroup3d.rotation.x;
-      const newX = oldX+Math.PI;
-      this.budgetGroup3d.runningRotateX = new Tween(this.budgetGroup3d.rotation)
-      .to({ x: "-" + newX }, 1000) // relative animation
-      .delay(0)
-      .on('complete', () => {
-          this.budgetGroup3d.rotation.x=0;
-          this.budgetGroup3d.runningRotateX = null;
-        })
-      .start();
-    }
+    setTimeout(()=>{
+      if (!this.budgetGroup3d.runningRotateX) {
+        const oldX = this.budgetGroup3d.rotation.x;
+        const newX = oldX+Math.PI;
+        this.budgetGroup3d.runningRotateX = new Tween(this.budgetGroup3d.rotation)
+        .to({ x: "-" + newX }, 650) // relative animation
+        .delay(0)
+        .on('complete', () => {
+            this.budgetGroup3d.rotation.x=0;
+            this.budgetGroup3d.runningRotateX = null;
+          })
+        .start();
+      }
+    }, 1000);
   }
 
 
@@ -822,7 +827,7 @@ class Oap3dBudget extends OapBaseElement {
     this.itemsInScene.forEach((sceneItem, index) => {
       if (sceneItem.id==item.id) {
         this.itemsInScene.splice(index, 1);
-        this.scene.remove(sceneItem.object);
+        this.budgetGroup3d.remove(sceneItem.object);
         this.positionItems();
       }
     });
