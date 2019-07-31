@@ -177,7 +177,7 @@ class OapSwipableCards extends OapBaseElement {
       console.error("Bonuscount: "+bonusCount);
       if (currentModuleTypeCard) {
         this.onActionTop(true);      
-      } else if (bonusCount===0 && random===1) {
+      } else if (bonusCount===0 && Math.random()<0.7) {
         this.onActionLeft();
       } else {
         this.onActionRight();

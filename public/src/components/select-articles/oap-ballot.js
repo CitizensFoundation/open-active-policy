@@ -375,7 +375,7 @@ class OapBallot extends OapPageViewElement {
   _checkBonusesAndPenalties(item, action) {
     const test = "High Authority,High Tradition,High Collective,High Law/Order,Low Science";
     let bonusesAndPenalties = GetBonusesAndPenaltiesForItem(item, this.country).bonusesAndPenalties;
-
+    let totalValue = 0;
     if (bonusesAndPenalties.length>0) {
       let htmlString="";
       bonusesAndPenalties.forEach((item)=>{
@@ -384,9 +384,11 @@ class OapBallot extends OapPageViewElement {
           this.usedBonusesAndPenalties[usedKey] = true;
           if (item.type==="bonus") {
             this.budgetElement.totalBudget+=item.value;
+            totalValue+=item.value;
   //          this.fire("oap-set-total-budget", this.budgetElement.totalBudget+=item.value);
           } else if (item.type==="penalty") {
             this.budgetElement.totalBudget-=item.value;
+            totalValue-=item.value;
   //          this.fire("oap-set-total-budget", this.budgetElement.totalBudget-=item.value);
           }
           htmlString+='<span style="width: 40px;height: 40px">'+this._getEmojiFromAttitute(item.attitute)
@@ -397,6 +399,9 @@ class OapBallot extends OapPageViewElement {
       });
       if (htmlString.length>0) {
         this.fire('oap-open-snackbar', htmlString);
+        if (totalValue!=0) {
+          this.budgetElement.bonusPenalty3dText(totalValue);
+        }
       }
     }
 

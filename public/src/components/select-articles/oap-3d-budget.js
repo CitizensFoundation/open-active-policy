@@ -173,6 +173,107 @@ class Oap3dBudget extends OapBaseElement {
     this.renderScene();
   }
 
+  bonusPenalty3dText(value) {
+    console.error("bonusPenalty3dText: "+value);
+    if (value!=0) {
+      this.rotateAllItemsGroup();
+
+      if (this.font3d) {
+        var geometry = new TextGeometry( value+'cp', {
+          font: this.font3d,
+          size: window.innerWidth>600 ? 4 : 3,
+          height: window.innerWidth>600 ? 1.5 : 1.2,
+          curveSegments: window.innerWidth>600 ? 15 : 12,
+          bevelEnabled: true,
+          bevelThickness: window.innerWidth>600 ? 0.5 : 0.4,
+          bevelSize:  window.innerWidth>600 ? 0.5 : 0.3,
+          bevelOffset: 0,
+          bevelSegments:  window.innerWidth>600 ? 7 :7
+        });
+
+        geometry.computeBoundingBox();
+        geometry.computeVertexNormals();
+        geometry.center();
+
+        geometry = new BufferGeometry().fromGeometry( geometry );
+        const xText = this.votesWidth*0.070;
+
+        let color;
+        if (value>0) {
+          color=0x00FF00;
+        } else {
+          color=0xFF0000;
+        }
+
+        let startFudge = 90;
+        let endFudge = 20;
+        if (window.innerWidth<600) {
+          startFudge = 50;
+          endFudge = 12;
+        }
+
+        if (this.bonusPenaltyFontMesh==null) {
+          var materials = [
+            new MeshPhongMaterial( { color: color, flatShading: true } ), // front
+            new MeshPhongMaterial( { color: color} ) // side
+          ];
+
+          this.bonusPenaltyFontMesh = new Mesh( geometry, materials );
+          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
+          this.bonusPenaltyFontMesh.position.y = -1;
+          this.bonusPenaltyFontMesh.position.z = 0;
+
+          this.bonusPenaltyFontMesh.rotation.x = 0;
+          this.bonusPenaltyFontMesh.rotation.y = Math.PI * 2;
+          this.scene.add(this.bonusPenaltyFontMesh);
+        } else {
+          this.bonusPenaltyFontMesh.material[0].color.set(color);
+          this.bonusPenaltyFontMesh.material[1].color.set(color);
+          this.bonusPenaltyFontMesh.geometry=geometry;
+          this.scene.add(this.bonusPenaltyFontMesh);
+        }
+
+        if (this.bonusPenaltyFontTween) {
+          this.bonusPenaltyFontTween.stop();
+          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
+          this.bonusPenaltyFontMesh.position.z = 0;
+        }
+
+        if (this.bonusPenaltyFontRotation) {
+          this.bonusPenaltyFontRotation.stop();
+          this.bonusPenaltyFontMesh.rotation.y = 0;
+        }
+
+        this.fontMesh.material[0].color.set(color);
+        this.fontMesh.material[1].color.set(color);
+
+        this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyFontMesh.position)
+        .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1200) // relative animation
+        .delay(0)
+        .on('complete', () => {
+          this.scene.remove(this.bonusPenaltyFontMesh);
+          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
+          this.bonusPenaltyFontMesh.position.z = 0;
+          this.bonusPenaltyFontTween=null;
+          this.fontMesh.material[0].color.set(0xFF5722);
+          this.fontMesh.material[1].color.set(0xFF5722);
+        })
+        .start();
+
+        setTimeout(()=> {
+          this.bonusPenaltyFontRotation = new Tween(this.bonusPenaltyFontMesh.rotation)
+          .to({ y: "-" + this.bonusPenaltyFontMesh.rotation.y+(Math.PI*2)}, 600)
+          .delay(0)
+          .on('complete', () => {
+            this.bonusPenaltyFontMesh.rotation.y = 0;
+            this.bonusPenaltyFontRotation = null;
+          })
+          .start();
+        }, 500);
+      } 
+      }
+  }
+
   rebuildChoicePoints(firstTime) {
     if (this.budgetLeft!=null && this.font3d) {
       var geometry = new TextGeometry( this.budgetLeft+'cp', {
@@ -193,32 +294,30 @@ class Oap3dBudget extends OapBaseElement {
 
       geometry = new BufferGeometry().fromGeometry( geometry );
 
-      var materials = [
-        new MeshPhongMaterial( { color: 0xFF5722, flatShading: true } ), // front
-        new MeshPhongMaterial( { color: 0xFF5722 } ) // side
-      ];
+      if (this.fontMesh==null) {
+        var materials = [
+          new MeshPhongMaterial( { color: 0xFF5722, flatShading: true } ), // front
+          new MeshPhongMaterial( { color: 0xFF5722 } ) // side
+        ];
 
-      var textMesh1 = new Mesh( geometry, materials );
+        this.fontMesh = new Mesh( geometry, materials );
 
-      const xText = this.votesWidth*0.070;
+        const xText = this.votesWidth*0.070;
 
-      textMesh1.position.x = xText;
-      textMesh1.position.y = -1;
-      textMesh1.position.z = -33;
+        this.fontMesh.position.x = xText;
+        this.fontMesh.position.y = -1;
+        this.fontMesh.position.z = -33;
 
-      textMesh1.rotation.x = 0;
-      textMesh1.rotation.y = Math.PI * 2;
-
-      if (this.fontMesh!=null) {
-        this.scene.remove(this.fontMesh);
+        this.fontMesh.rotation.x = 0;
+        this.fontMesh.rotation.y = Math.PI * 2;
+        this.scene.add(this.fontMesh);
+      } else {
+        this.fontMesh.geometry=geometry;
       }
 
-      this.fontMesh = textMesh1;
-      this.scene.add(this.fontMesh);
+      if (this.budgetLeft<75 || firstTime) {
 
-      if (this.budgetLeft<60 || firstTime) {
-
-        let duration=900;
+        let duration=750;
         if (this.budgetLeft<40) {
           duration=600;
         }
@@ -228,16 +327,13 @@ class Oap3dBudget extends OapBaseElement {
         }
 
         new Tween(this.fontMesh.rotation)
-        .to({ y: "-" + Math.PI}, duration) // relative animation
+        .to({ y: "-" + this.fontMesh.rotation.y+(Math.PI*2)}, duration) // relative animation
         .delay(0)
         .on('complete', () => {
             // Check that the full 360 degrees of rotation,
             // and calculate the remainder of the division to avoid overflow.
             //console.log("Rotate test reset");
-            textMesh1.rotation.y=0;
-            if (Math.abs(textMesh1.rotation.y)>=2*Math.PI) {
-              textMesh1.rotation.y = textMesh1.rotation.y % (2*Math.PI);
-            }
+            this.fontMesh.rotation.y=0;
         })
         .start();
       } else {
@@ -308,7 +404,6 @@ class Oap3dBudget extends OapBaseElement {
         if (oldTotalBudget<this.totalBudget) {
           //this.rotateTimeShift();
 //          this.rotateAllItems();
-          this.rotateAllItemsGroup();
           this.fire('oap-play-sound-effect', 'oap_short_win_1');
         }
       }
@@ -616,7 +711,7 @@ class Oap3dBudget extends OapBaseElement {
       const oldX = this.budgetGroup3d.rotation.x;
       const newX = oldX+Math.PI;
       this.budgetGroup3d.runningRotateX = new Tween(this.budgetGroup3d.rotation)
-      .to({ x: "-" + newX }, 450) // relative animation
+      .to({ x: "-" + newX }, 1000) // relative animation
       .delay(0)
       .on('complete', () => {
           this.budgetGroup3d.rotation.x=0;
@@ -666,7 +761,7 @@ class Oap3dBudget extends OapBaseElement {
 
   moveBudgetGroupBack() {
     const newX = this.itemsInScene.length>10 ?  (this.defaultGroupPos.x-(this.defaultGroupPos.x*0.1)) : (this.defaultGroupPos.x-(this.defaultGroupPos.x*0.2));
-    const newZ = -10;
+    const newZ = -7;
     if (!this.budgetGroup3d.runningMoveX) {
       this.budgetGroup3d.runningMoveX=true;
       new Tween(this.budgetGroup3d.position)
