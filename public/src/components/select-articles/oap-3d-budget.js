@@ -246,7 +246,7 @@ class Oap3dBudget extends OapBaseElement {
 
           this.bonusPenaltyFontMesh = new Mesh( geometry, materials );
           this.bonusPenaltyFontMesh.position.x = xText-startFudge;
-          this.bonusPenaltyFontMesh.position.y = -1;
+          this.bonusPenaltyFontMesh.position.y = -0.1;
           this.bonusPenaltyFontMesh.position.z = 0;
 
           this.bonusPenaltyFontMesh.rotation.x = 0;
