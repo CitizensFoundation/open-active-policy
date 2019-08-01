@@ -18626,7 +18626,7 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
 
   .header {
     font-size: 24px;
-    margin-top: 0;
+    margin-top: 16px;
     margin-bottom: 16px;
     font-weight: bold;
     background-color: var(--app-country-header-background-color, #e9bf29);
@@ -18652,13 +18652,12 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
   }
 
   .topContainer {
-    margin-top: 32px;
     max-width: 600px;
     width: 600px;
     background-color: var(--app-create-country-background-color, #1d5588);
     color: var(--app-create-country-color, #fff);
     padding-top: 16px;
-    padding-bottom: 24px;
+    padding-bottom: 42px;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
@@ -19908,11 +19907,11 @@ _exports.$oapBonusesAndPenalties=oapBonusesAndPenalties;class OapSwipableCards e
                           <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
                           <div class="layout  horizontal actionButtonInnerContainer">
                             <div class="left-actionx vertical">
-                              <paper-button class="typeButtons"  @click="${this.startAutomaticSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                              <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
                               <div class="winInfo">${this.localize("automaticInfo")}</div>
                             </div>
                             <div class="right-actionx vertical">
-                              <paper-button class="typeButtons"  @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                              <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
                               <div class="winInfo">${this.localize("win")} 3cp</div>
                             </div>
                           </div>
@@ -19944,7 +19943,7 @@ _exports.$oapBonusesAndPenalties=oapBonusesAndPenalties;class OapSwipableCards e
       <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
     </div>
 
-    `}constructor(){super();this.reset()}disconnectedCallback(){this.removeEventListeners();super.disconnectedCallback()}getCardStyle(item){if("ModuleTypeCard"===item.module_type){const color=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];return"color: #FFF;font-size: 20px;background-color:"+color}else{return""}}startAutomaticSelection(){this.automaticallySelectNext();this.removeEventListeners()}startManualSelection(){this.fire("oap-bonus-points",3);this.onActionTop(!0);this.addEventListeners()}automaticallySelectNext(){let futureModuleType,currentModuleTypeCard;if(this.currentItemsPosition<this.items.length-1){futureModuleType=this.items[this.currentItemsPosition].module_type;currentModuleTypeCard="ModuleTypeCard"===this.items[this.currentItemsPosition].module_type}if(currentModuleTypeCard&&!this.automaticSelectionActive||this.items[this.currentItemsPosition]&&"ModuleTypeCard"!==futureModuleType){this.automaticSelectionActive=!0;let random=Math.floor(2*Math.random());const bonusCount=GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition],this.country).bonusCount;console.error("Bonuscount: "+bonusCount);if(currentModuleTypeCard){this.onActionTop(!0)}else if(0===bonusCount&&.7>Math.random()){this.onActionLeft()}else{this.onActionRight()}setTimeout(()=>{this.automaticallySelectNext()},400)}else{this.automaticSelectionActive=!1}}updated(changedProps){super.updated(changedProps);if(changedProps.has("currentItem")){if(this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type){this.removeEventListeners()}}if(changedProps.has("items")){if(this.items&&0<this.items.length){if(0===this.currentItemsPosition)this.currentItem=this.items[0];this.itemsLeft=[...this.items];this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
+    `}constructor(){super();this.reset()}disconnectedCallback(){this.removeEventListeners();super.disconnectedCallback()}getCardStyle(item){if("ModuleTypeCard"===item.module_type){const color=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];return"color: #FFF;font-size: 20px;background-color:"+color}else{return""}}startAutomaticSelection(){this.automaticallySelectNext();this.removeEventListeners()}startManualSelection(){this.$$("#manualSelectionButton").disabled=!0;this.fire("oap-bonus-points",3);this.onActionTop(!0);this.addEventListeners();setTimeout(()=>{if(this.$$("#manualSelectionButton"))this.$$("#manualSelectionButton").disabled=!1},750)}startAutoSelection(){this.$$("#autoSelectionButton").disabled=!0;setTimeout(()=>{if(this.$$("#autoSelectionButton"))this.$$("#autoSelectionButton").disabled=!1},750);this.automaticallySelectNext()}automaticallySelectNext(){let futureModuleType,currentModuleTypeCard;if(this.currentItemsPosition<this.items.length-1){futureModuleType=this.items[this.currentItemsPosition].module_type;currentModuleTypeCard="ModuleTypeCard"===this.items[this.currentItemsPosition].module_type}if(currentModuleTypeCard&&!this.automaticSelectionActive||this.items[this.currentItemsPosition]&&"ModuleTypeCard"!==futureModuleType){this.automaticSelectionActive=!0;let random=Math.floor(2*Math.random());const bonusCount=GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition],this.country).bonusCount;console.error("Bonuscount: "+bonusCount);if(currentModuleTypeCard){this.onActionTop(!0)}else if(0===bonusCount&&.7>Math.random()){this.onActionLeft()}else{this.onActionRight()}setTimeout(()=>{this.automaticallySelectNext()},400)}else{this.automaticSelectionActive=!1}}updated(changedProps){super.updated(changedProps);if(changedProps.has("currentItem")){if(this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type){this.removeEventListeners()}}if(changedProps.has("items")){if(this.items&&0<this.items.length){if(0===this.currentItemsPosition)this.currentItem=this.items[0];this.itemsLeft=[...this.items];this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
 this.requestUpdate();this.updateComplete.then(()=>{this.activate();this.updateNavigator()})}}}updateNavigator(){const color=this.configFromServer.client_config.moduleTypeColorLookup[this.items[this.currentItemsPosition].module_content_type];this.$$("#moduleName").title=this.items[this.currentItemsPosition].module_content_type;const navigatorDiv=this.$$("#navigator");while(navigatorDiv.firstChild){navigatorDiv.removeChild(navigatorDiv.firstChild)}let leftItems;if(0<this.itemsLeft.length){leftItems=this.visibleItems.concat(this.itemsLeft)}else{leftItems=this.visibleItems.slice(1,Math.abs(6-this.currentPosition))}const pixels=310/this.items.length;leftItems.forEach((item,index)=>{const div=document.createElement("span");div.style.backgroundColor=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];if(0===index){div.style.width=pixels+5+"px";div.style.height="8px";div.title=item.name}else{div.style.width=pixels+"px";div.style.height="8px";div.title=item.module_content_type}div.onclick=event=>{//this.goTo(item.id);
 };navigatorDiv.appendChild(div)})}reset(){this.stackedOptions="Top";this.rotate=!0;this.elementsMargin=7;this.currentPosition=0;this.currentItemsPosition=0;this.currentItem=null;this.useOverlays=!1;this.velocity=.3;this.isFirstTime=!0;this.touchingElement=!1;this.visibleItems=[];this.disableUpSwipe=!0;this.hiddenImageIds={};this.rendering=!0;this.automaticSelectionActive=!1}activate(){this.obj=this.$$("#stacked-cards-block");this.refresh();if(this.useOverlays){this.leftObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.leftObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)"}else if(this.leftObj){this.leftObj.className="";this.rightObj.className="";this.topObj.className="";this.leftObj.classList.add("stackedcards-overlay-hidden");this.rightObj.classList.add("stackedcards-overlay-hidden");this.topObj.classList.add("stackedcards-overlay-hidden")}//Remove class init
 setTimeout(function(){this.obj.classList.remove("init")}.bind(this),250);//this.addEventListeners();
@@ -20211,7 +20210,6 @@ this.cleanUp();this.texture=new Texture(this.canvas.canvas);this.texture.needsUp
     filter: drop-shadow( 1px 1px 10px #5f5f5f );
   }
 
-
   @media (max-width: 640px) {
     #favoriteIcon {
       width: 40px;
@@ -20438,9 +20436,8 @@ this.cleanUp();this.texture=new Texture(this.canvas.canvas);this.texture.needsUp
     margin-right: auto;
     background-color: var(--quiz-background-color, #1d5588);
     color: var(--quiz-color, #FFF);
-    padding-bottom: 16px;
-    margin-top: 32px;
     height: 100%;
+    padding-bottom: 42px;
   }
 
   .question {
@@ -20458,15 +20455,26 @@ this.cleanUp();this.texture=new Texture(this.canvas.canvas);this.texture.needsUp
   }
 
   .progress {
-    text-align: right;
+    font-size: 18px;
     color: #bbb;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 16px;
+  }
+
+  .middle {
+    width: 100%;
+  }
+
+  .textRight {
+    text-align: right;
+  }
+
+  .textLeft {
+    text-align: left;
   }
 
   #canvas3d {
     width: 600px;
-    height: 150px;
+    height: 175px;
   }
 
   .completedQuiz {
@@ -20493,6 +20501,10 @@ this.cleanUp();this.texture=new Texture(this.canvas.canvas);this.texture.needsUp
       margin-right: 0;
     }
 
+    :host {
+      height: 100%;
+    }
+
     .image {
       width: 100%;
     }
@@ -20503,7 +20515,7 @@ this.cleanUp();this.texture=new Texture(this.canvas.canvas);this.texture.needsUp
 
     #canvas3d {
       width: 100%;
-      height: 100px;
+      height: 175px;
     }
 
     .answerButton {
@@ -20515,19 +20527,17 @@ this.cleanUp();this.texture=new Texture(this.canvas.canvas);this.texture.needsUp
   [hidden] {
     display: none !important;
   }
-`;_exports.OapPolicyQuizStyles=OapPolicyQuizStyles;var oapPolicyQuizStyles={OapPolicyQuizStyles:OapPolicyQuizStyles};_exports.$oapPolicyQuizStyles=oapPolicyQuizStyles;class OapPolicyQuiz extends OapPageViewElement{static get properties(){return{questions:Array,currentQuestionIndex:Number,correctAnswers:Number,incorrectAnswers:Number,nickname:String,configFromServer:Object,savedBackgroundColor:String,shapes3d:Object,renderer:Object,scene:Object,camera:Object,dirLightOne:Object,dirLightTwo:Object,submitDisabled:Boolean}}static get styles(){return[OapPolicyQuizStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.currentIndex=null;this.shapes3d=[];this.submitDisabled=!1}start(){this.reset();setTimeout(()=>{this.scene=new Scene;this.camera=new PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,1e3);this.camera.position.set(6,-10,355);this.scene.add(this.camera);this.dirLightOne=new DirectionalLight(1922440,2);this.dirLightOne.position.x=-500;this.dirLightOne.position.y=500;this.camera.add(this.dirLightOne);this.dirLightTwo=new DirectionalLight(1922440,1);this.dirLightTwo.position.x=500;this.dirLightTwo.position.y=-500;this.dirLightTwo.position.z=-150;this.camera.add(this.dirLightTwo);this.scene.background=new Color("#1d5588");var loader=new FontLoader;loader.load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",function(font){this.savedBackgroundColor=this.$$("#button0").style.backgroundColor;var geometry=new TextGeometry("?",{font:font,size:180,height:20,curveSegments:32,bevelEnabled:!0,bevelThickness:9,bevelSize:5,bevelOffset:0,bevelSegments:18});geometry.computeBoundingBox();geometry.computeVertexNormals();geometry.center();geometry=new BufferGeometry().fromGeometry(geometry);var materials=[new MeshPhongMaterial({color:16777215,flatShading:!0}),// front
+`;_exports.OapPolicyQuizStyles=OapPolicyQuizStyles;var oapPolicyQuizStyles={OapPolicyQuizStyles:OapPolicyQuizStyles};_exports.$oapPolicyQuizStyles=oapPolicyQuizStyles;class OapPolicyQuiz extends OapPageViewElement{static get properties(){return{questions:Array,currentQuestionIndex:Number,correctAnswers:Number,incorrectAnswers:Number,nickname:String,configFromServer:Object,savedBackgroundColor:String,shapes3d:Object,renderer:Object,scene:Object,camera:Object,dirLightOne:Object,dirLightTwo:Object,submitDisabled:Boolean,choicePoints:Number}}static get styles(){return[OapPolicyQuizStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.currentIndex=null;this.shapes3d=[];this.submitDisabled=!1}start(){this.reset();setTimeout(()=>{this.scene=new Scene;this.camera=new PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,1e3);this.camera.position.set(6,-15,355);this.scene.add(this.camera);this.dirLightOne=new DirectionalLight(1922440,2);this.dirLightOne.position.x=-500;this.dirLightOne.position.y=500;this.camera.add(this.dirLightOne);this.dirLightTwo=new DirectionalLight(1922440,1);this.dirLightTwo.position.x=500;this.dirLightTwo.position.y=-500;this.dirLightTwo.position.z=-150;this.camera.add(this.dirLightTwo);this.scene.background=new Color("#1d5588");var loader=new FontLoader;loader.load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",function(font){this.savedBackgroundColor=this.$$("#button0").style.backgroundColor;var geometry=new TextGeometry("?",{font:font,size:180,height:20,curveSegments:32,bevelEnabled:!0,bevelThickness:9,bevelSize:5,bevelOffset:0,bevelSegments:18});geometry.computeBoundingBox();geometry.computeVertexNormals();geometry.center();geometry=new BufferGeometry().fromGeometry(geometry);var materials=[new MeshPhongMaterial({color:16777215,flatShading:!0}),// front
 new MeshPhongMaterial({color:16777215})// side
-],width=600,height=150;if(600>=window.innerWidth){width=window.innerWidth;height=100}for(var i=-width/2;i<width/2;i+=30+50*Math.random()){for(var j=0;j<height;j+=30+50*Math.random()){this.addShape(geometry,materials,"#aaaaaa",i,j,0,.8*Math.random(),.8*Math.random(),Math.PI,.1+.3*Math.random())}}this.renderer=new WebGLRenderer({antialias:!0});this.renderer.setPixelRatio(window.devicePixelRatio);this.renderer.setSize(width,height);var canvas=this.$$("#canvas3d");canvas.appendChild(this.renderer.domElement);this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.position).to({x:target.x,y:target.y,z:target.z},1e3*25).delay(0).easing(Easing.Quadratic.In).on("complete",()=>{target=new Vector3(6,-10,175);new Tween(this.camera.position).to({x:target.x,y:target.y,z:target.z},1e3*7).delay(0).easing(Easing.Elastic.Out).on("complete",()=>{}).start()}).start()}.bind(this))},100)}addShape(geometry,materials,color,x,y,z,rx,ry,rz,s){var mesh=new Mesh(geometry,materials);mesh.position.set(x+25,y-50,z);mesh.rotation.set(rx,ry,rz);mesh.scale.set(s,s,s);this.shapes3d.push({shape:mesh,x:Math.random(),y:Math.random(),z:Math.random()});this.scene.add(mesh)}stop(){debugger;while(0<this.scene.children.length){this.scene.remove(this.scene.children[0])}this.scene.remove()}animate(){var speed=.05;this.shapes3d.forEach(el=>{el.shape.rotation.x+=el.x*speed;el.shape.rotation.y+=el.y*speed;el.shape.rotation.z+=el.z*speed})}renderCanvas3d(){requestAnimationFrame(this.renderCanvas3d.bind(this));// This is Tween.update
+],width=600,height=175;if(600>=window.innerWidth){width=window.innerWidth}for(var i=-width/2;i<width/2;i+=30+50*Math.random()){for(var j=0;j<height;j+=30+50*Math.random()){this.addShape(geometry,materials,"#aaaaaa",i,j,0,.8*Math.random(),.8*Math.random(),Math.PI,.1+.3*Math.random())}}this.renderer=new WebGLRenderer({antialias:!0});this.renderer.setPixelRatio(window.devicePixelRatio);this.renderer.setSize(width,height);var canvas=this.$$("#canvas3d");canvas.appendChild(this.renderer.domElement);this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.position).to({x:target.x,y:target.y,z:target.z},1e3*25).delay(0).easing(Easing.Quadratic.In).on("complete",()=>{target=new Vector3(6,-10,175);new Tween(this.camera.position).to({x:target.x,y:target.y,z:target.z},1e3*7).delay(0).easing(Easing.Elastic.Out).on("complete",()=>{}).start()}).start()}.bind(this))},100)}addShape(geometry,materials,color,x,y,z,rx,ry,rz,s){var mesh=new Mesh(geometry,materials);mesh.position.set(x+25,y-50,z);mesh.rotation.set(rx,ry,rz);mesh.scale.set(s,s,s);this.shapes3d.push({shape:mesh,x:Math.random(),y:Math.random(),z:Math.random()});this.scene.add(mesh)}stop(){while(0<this.scene.children.length){this.scene.remove(this.scene.children[0])}this.scene.remove()}animate(){var speed=.05;this.shapes3d.forEach(el=>{el.shape.rotation.x+=el.x*speed;el.shape.rotation.y+=el.y*speed;el.shape.rotation.z+=el.z*speed})}renderCanvas3d(){requestAnimationFrame(this.renderCanvas3d.bind(this));// This is Tween.update
 update();this.animate();this.renderer.render(this.scene,this.camera)}reset(){this.completed=!1;this.correctAnswers=0;this.incorrectAnswers=0;this.currentIndex=0;this.submitDisabled=!1}render(){return html$1`
     <div class="layout vertical center-center" style="height: 100%;">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         ${null!==this.currentIndex?html$1`
           <div id="canvas3d"></div>
-          <div class="layout horizontal center-center infoBar">
-            <div class="layout horizontal center-center">
-              <div class="nickname">${this.nickname}</div>
-              <div class="progress">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
-            </div>
+          <div class="layout horizontal progress">
+            <div class="middle textLeft">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
+            <div class="middle textRight">${this.localize("youHave")} ${this.choicePoints}cp</div>
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
@@ -21538,6 +21548,9 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
           <div class="header"><div style="padding: 8px">${this.localize("reviewOfYourConstitution")}</div></div>
           <p>TO BE DONE</p>
 
+          <div class="header"><div style="padding: 8px">${this.localize("whatConstitutionIsTheMostSimilarToYours")}</div></div>
+          <p>TO BE DONE</p>
+
           <div class="header"><div style="padding: 8px">${this.localize("shareOnSocialMedia")}</div></div>
           <p>TO BE DONE</p>
 
@@ -21601,9 +21614,6 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
 
         <app-header fixed effects="waterfall" ?wide-and-ballot="${this.wideAndBallot}" ?hidden="${"areas-ballot"==this._page}">
           <app-toolbar class="toolbar-top">
-            <div id="choicePoints" class="choicePoints" ?hidden="${-1<["area-ballot","filter-articles"].indexOf(this._page)}">
-              ${this.localize("youHave")} ${this.choicePoints}${this.localize("cp")}
-            </div>
             <div ?hidden="${!this.showExit}" class="layout horizontal exitIconInBudget">
               <paper-icon-button class="closeButton" alt="${this.localize("close")}" icon="closeExit" @click="${this._exit}"></paper-icon-button>
             </div>
@@ -21639,6 +21649,7 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
             .configFromServer="${this.configFromServer}"
             .nickname="Robert Bjarnason"
             .language="${this.language}"
+            .choicePoints="${this.choicePoints}"
             class="page"
             ?active="${"quiz"===this._page}">
           </oap-policy-quiz>
@@ -21702,7 +21713,7 @@ if("area-ballot"==page&&this.$$("#budgetBallot")&&this.$$("#budgetBallot").refre
 if("area-ballot"==oldPage&&this.$$("#budgetBallot")&&"post"!=page){this.$$("#budgetBallot").selectedView=0}// Cancel login polling if needed
 if("area-ballot"==oldPage&&this.$$("#budgetBallot")){this._hideFavoriteItem()}setTimeout(()=>{if("area-ballot"==page&&this.currentBallot&&this.currentBallot.favoriteItem){this.$$("#favoriteIcon").hidden=!1;this.resetFavoriteIconPosition()}});// Do not allow access to voting-completed from a reload
 if("voting-completed"==page&&"area-ballot"!=oldPage){window.location="/"}// Refresh counts if coming from voting-completed
-if("voting-completed"==oldPage&&this.$$("#selectVotingArea")){this.$$("#selectVotingArea").refreshAreaCounters()}if("area-ballot"===page&&0===this.filteredItems.length){window.history.pushState({},null,"/quiz");this.fire("location-changed","/quiz")}// Send page info to Google Analytics
+if("voting-completed"==oldPage&&this.$$("#selectVotingArea")){this.$$("#selectVotingArea").refreshAreaCounters()}if("area-ballot"===page&&(0===this.filteredItems.length||null==this.country)){window.history.pushState({},null,"/quiz");this.fire("location-changed","/quiz")}if("filter-articles"===page&&null==this.country){window.history.pushState({},null,"/quiz");this.fire("location-changed","/quiz")}// Send page info to Google Analytics
 if(page&&"function"==typeof ga){ga("send","pageview",{page:location.pathname+location.search+location.hash})}this.wideAndBallot=this.wide&&"area-ballot"===page}}_layoutChanged(isWideLayout){}_offlineChanged(offline){const previousOffline=this._offline;this._offline=offline;// Don't show the snackbar on the first load of the page.
 if(previousOffline===void 0){return}}_openSnackBar(event){setTimeout(()=>{clearTimeout(this.__snackbarTimer);this._snackbarOpened=!0;this.snackBarContent=event.detail;this.__snackbarTimer=setTimeout(()=>{this._snackbarOpened=!1;this.snackBarContent=null},5e3)})}_closeSnackBar(event){clearTimeout(this.__snackbarTimer);this._snackbarOpened=!1}_locationChanged(location){if(location instanceof CustomEvent)location={pathname:location.detail};if("/"===location.pathname){const path="/quiz";window.history.pushState({},null,path);location={pathname:path};this.fire("location-changed",path)}const path=window.decodeURIComponent(location.pathname),page="/"===path?"/":path.slice(1).split("/")[0];this._loadPage(page);// Any other info you might want to extract from the path (like page type),
 // you can do here.
