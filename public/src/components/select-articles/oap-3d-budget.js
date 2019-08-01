@@ -734,7 +734,6 @@ class Oap3dBudget extends OapBaseElement {
       if (item.positionTween) {
         item.positionTween.stop();
         item.positionTween=null;
-        console.error("STOPPING: "+index);
       }
 
       item.positionTween = new Tween(item.object.position)
@@ -742,7 +741,6 @@ class Oap3dBudget extends OapBaseElement {
         .easing(Easing.Quadratic.InOut)
         .on('complete', ()=> {
           item.positionTween=null;
-          console.error("DONE POSITION: "+index);
         }).start();
 
       rightEdgeAndSpace=(setX+currentWidth/2);
@@ -934,15 +932,22 @@ class Oap3dBudget extends OapBaseElement {
       this.activity('remove', 'vote');
       this._removeItemFromArray(item);
       this._removeItemFromDiv(item);
+      this.selectedItems = this.selectedItems.sort((itemA, itemB)=> {
+        return itemA.module_type_index-itemB.module_type_index;
+      });
       this.selectedItems = [
         ...this.selectedItems
       ];
+
       this.selectedBudget = this.selectedBudget - item.price;
       this.currentBallot.fire('oav-item-de-selected-from-budget', { itemId: item.id });
     } else {
       if (this.selectedBudget+item.price<=this.totalBudget) {
         this.activity('add', 'vote');
         this.selectedItems.push(item);
+        this.selectedItems = this.selectedItems.sort((itemA, itemB)=> {
+          return itemA.module_type_index-itemB.module_type_index;
+        });
         this.selectedItems = [
           ...this.selectedItems
         ];
