@@ -158,13 +158,12 @@ export const OapCountryCreationStyles = css`
   @media (max-width: 450px) {
     .topContainer {
       max-width: 100%;
-      margin-top: 50px;
       margin-left: 0;
       margin-right: 0;
       width: 100%;
       height: 100%;
-      padding-bottom: 16px;
       margin-bottom: 32px;
+      padding-top: 32px;
     }
 
     paper-input {

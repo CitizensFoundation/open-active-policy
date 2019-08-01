@@ -44,12 +44,11 @@ export const OapReviewStyles = css`
   }
 
   .topContainer {
-    margin-top: 32px;
     max-width: 600px;
     width: 600px;
     background-color: var(--app-create-country-background-color, #1d5588);
     color: var(--app-create-country-color, #fff);
-    padding-top: 16px;
+    padding-top: 32px;
     padding-bottom: 24px;
     padding-left: 0;
     padding-right: 0;
@@ -163,7 +162,6 @@ export const OapReviewStyles = css`
   @media (max-width: 450px) {
     .topContainer {
       max-width: 100%;
-      margin-top: 50px;
       margin-left: 0;
       margin-right: 0;
       width: 100%;
