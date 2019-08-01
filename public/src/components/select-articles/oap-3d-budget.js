@@ -472,8 +472,9 @@ class Oap3dBudget extends OapBaseElement {
     }
 
     if (changedProps.has('totalBudget')) {
-      this.resetItemsWidth();
-      if (this.itemsInScene.length>0) {
+      if (this.itemsInScene.length>0 && this.totalBudget!=changedProps.get("totalBudget")) {
+        console.error(this.totalBudget+" "+ changedProps.get("totalBudget"));
+        this.resetItemsWidth();
         const oldTotalBudget = changedProps.get("totalBudget");
         if (oldTotalBudget<this.totalBudget) {
           //this.rotateTimeShift();
@@ -491,7 +492,6 @@ class Oap3dBudget extends OapBaseElement {
       } else {
         this.budgetLeft = 0;
       }
-      this.currentBallot.setStateOfRemainingItems();
     }
   }
 
@@ -607,6 +607,7 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   _selectedItemsChanged() {
+    this.currentBallot.setStateOfRemainingItems();
     if (this.selectedItems && this.selectedItems.length>0) {
       this.noSelectedItems = false;
       if (this.$$("#votingButton"))
@@ -714,6 +715,7 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   positionItems() {
+    console.error("POSITION ITEMS STARTED");
     let rightEdgeAndSpace=0.0;
     const sortedItems = this.itemsInScene.sort((item3dA, item3dB)=> {
       return item3dA.item.module_type_index-item3dB.item.module_type_index;
@@ -729,31 +731,21 @@ class Oap3dBudget extends OapBaseElement {
       const target = new Vector3(setX, 0.0, 0.0);
       let random = Math.floor(Math.random() * 100);
 
-      this.animateVector3(item.object.position, target, {
-        duration: 650,
-        easing : Easing.Quadratic.InOut,
-        update: function(d) {
-        },
-        callback : function(){
-        }
-      });
-      rightEdgeAndSpace=(setX+currentWidth/2);
-      //console.error(index+": after x="+rightEdgeAndSpace);
-      if (false) {
-        setTimeout(()=>{
-          const target = new Vector3(item.object.position.x, (index*0.4), item.object.position.z);
-          let random = Math.floor(Math.random() * 50);
-
-          this.animateVector3(item.object.position, target, {
-            duration: 300,
-            easing : Easing.Quadratic.InOut,
-            update: function(d) {
-            },
-            callback : function(){
-            }
-          });
-        },10000+(Math.floor(Math.random() * 100)));
+      if (item.positionTween) {
+        item.positionTween.stop();
+        item.positionTween=null;
+        console.error("STOPPING: "+index);
       }
+
+      item.positionTween = new Tween(item.object.position)
+        .to(target, 500)
+        .easing(Easing.Quadratic.InOut)
+        .on('complete', ()=> {
+          item.positionTween=null;
+          console.error("DONE POSITION: "+index);
+        }).start();
+
+      rightEdgeAndSpace=(setX+currentWidth/2);
     });
   }
 
