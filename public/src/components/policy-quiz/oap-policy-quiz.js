@@ -8,6 +8,7 @@ import { OapPolicyQuizStyles } from './oap-policy-quiz-styles';
 import { OapFlexLayout } from '../oap-flex-layout';
 import { OapShadowStyles } from '../oap-shadow-styles';
 import { Tween, Easing, update as UpdateTween } from 'es6-tween';
+//import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -66,7 +67,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
       this.scene.background = new Color( '#1d5588' );
       var loader = new FontLoader();
-      loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+      loader.load( '../helvetiker_regular.typeface.json', function ( font ) {
         this.savedBackgroundColor = this.$$("#button0").style.backgroundColor;
         var geometry = new TextGeometry( "?", {
           font: font,
@@ -111,6 +112,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         var canvas = this.$$("#canvas3d");
 
         canvas.appendChild( this.renderer.domElement );
+        //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
         this.renderCanvas3d();
 

@@ -77,7 +77,7 @@ class CanvasText {
 
     const x = this.textWidth * (0.5 - ctxOptions.align.x * 0.5);
     for (let i = 0; i < lines.length; i++) {
-      this.ctx.fillText(lines[i], x, lineHeight * ctxOptions.lineHeight * i);
+      this.ctx.fillText(lines[i], x, (lineHeight * ctxOptions.lineHeight * i)+28);
     }
     return this.canvas
   }
@@ -196,7 +196,8 @@ class SpriteText2D extends Text2D {
       this.add(this.sprite)
     }
 
-    this.sprite.scale.set(this.canvas.width, this.canvas.height, 1)
+    this.sprite.scale.set(this.canvas.width/12, this.canvas.height/12, 1);
+    this.sprite.updateMatrix();
 
     this.updateAlign();
   }
