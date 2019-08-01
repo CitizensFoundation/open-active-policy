@@ -188,7 +188,6 @@ class OapSwipableCards extends OapBaseElement {
       let random = Math.floor(Math.random() * 2);
       const bonusCount = GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition], this.country).bonusCount;
 
-      console.error("Bonuscount: "+bonusCount);
       if (currentModuleTypeCard) {
         this.onActionTop(true);
       } else if (bonusCount===0 && Math.random()<0.7) {

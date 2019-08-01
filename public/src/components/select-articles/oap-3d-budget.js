@@ -14,7 +14,7 @@ import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityHighPassShader';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls';
-import { Tween, Easing, update, removeAll } from 'es6-tween';
+import { Tween, Easing, update as UpdateTween, removeAll } from 'es6-tween';
 import { Get2DEmoji } from '../oap-2d-emojis';
 
 //import { MeshText2D, textAlign } from 'three-text2d';
@@ -199,23 +199,30 @@ class Oap3dBudget extends OapBaseElement {
       this.rotateAllItemsGroup();
 
       if (this.font3d) {
-        var geometry = new TextGeometry( value+'cp', {
-          font: this.font3d,
-          size: window.innerWidth>600 ? 4 : 3,
-          height: window.innerWidth>600 ? 1.5 : 1.2,
-          curveSegments: window.innerWidth>600 ? 10 : 8,
-          bevelEnabled: true,
-          bevelThickness: window.innerWidth>600 ? 0.5 : 0.4,
-          bevelSize:  window.innerWidth>600 ? 0.5 : 0.3,
-          bevelOffset: 0,
-          bevelSegments:  window.innerWidth>600 ? 7 :7
-        });
+        let geometry;
 
-        geometry.computeBoundingBox();
-        geometry.computeVertexNormals();
-        geometry.center();
+        if (this.fontGeometryCache[value]) {
+          geometry = this.fontGeometryCache[value];
+        } else {
+          geometry = new TextGeometry( value+'cp', {
+            font: this.font3d,
+            size: window.innerWidth>600 ? 4 : 3,
+            height: window.innerWidth>600 ? 1.5 : 1.2,
+            curveSegments: window.innerWidth>600 ? 10 : 8,
+            bevelEnabled: true,
+            bevelThickness: window.innerWidth>600 ? 0.5 : 0.4,
+            bevelSize:  window.innerWidth>600 ? 0.5 : 0.3,
+            bevelOffset: 0,
+            bevelSegments:  window.innerWidth>600 ? 7 :7
+          });
 
-        geometry = new BufferGeometry().fromGeometry( geometry );
+          geometry.computeBoundingBox();
+          geometry.computeVertexNormals();
+          geometry.center();
+          geometry = new BufferGeometry().fromGeometry( geometry );
+          this.fontGeometryCache[value] = geometry;
+        }
+
         const xText = this.votesWidth*0.070;
 
         let color;
@@ -234,8 +241,6 @@ class Oap3dBudget extends OapBaseElement {
 
         if (this.bonusPenaltyFontTween) {
           this.bonusPenaltyFontTween.stop();
-          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
-          this.bonusPenaltyFontMesh.position.z = 0;
         }
 
         if (this.bonusPenaltyFontMesh==null) {
@@ -257,12 +262,14 @@ class Oap3dBudget extends OapBaseElement {
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
           this.scene.add(this.bonusPenaltyFontMesh);
         } else {
+          this.bonusPenaltyFontMesh.position.x = xText-startFudge;
+          this.bonusPenaltyFontMesh.position.z = 0;
           this.bonusPenaltyFontMesh.material[0].color.set(color);
           this.bonusPenaltyFontMesh.material[1].color.set(color);
           this.bonusPenaltyFontMesh.geometry=geometry;
+          this.bonusPenaltyFontMesh.remove(this.bonusPenaltyEmoji2D);
           this.rebuild3dEmoji(emoji, xText, startFudge);
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
-          this.scene.add(this.bonusPenaltyFontMesh);
         }
 
         if (this.bonusPenaltyFontRotation) {
@@ -278,8 +285,6 @@ class Oap3dBudget extends OapBaseElement {
           .to({ x: xText-endFudge, y: this.bonusPenaltyFontMesh.position.y, z: this.bonusPenaltyFontMesh.position.z-7}, 1500) // relative animation
           .delay(0)
           .on('complete', () => {
-            this.scene.remove(this.bonusPenaltyFontMesh);
-            this.bonusPenaltyFontMesh.remove(this.bonusPenaltyEmoji2D);
             this.bonusPenaltyFontMesh.position.x = xText-startFudge;
             this.bonusPenaltyFontMesh.position.z = 0;
             this.bonusPenaltyFontTween=null;
@@ -378,8 +383,7 @@ class Oap3dBudget extends OapBaseElement {
   renderScene() {
     requestAnimationFrame(this.renderScene.bind(this));
 
-    // This is Tween.update
-    update();
+    UpdateTween();
 
     this.renderer.autoClear = false;
     this.renderer.clear();
@@ -580,6 +584,7 @@ class Oap3dBudget extends OapBaseElement {
   reset() {
     this._resetBudgetDiv();
     this.selectedItems = [];
+    this.fontGeometryCache = {};
     this.itemsInScene=[];
     this.selectedBudget = 0;
     this.budgetHeaderImage = this.configFromServer.client_config.ballotBudgetLogo;

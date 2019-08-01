@@ -226,4 +226,3 @@ export const Get2DEmoji = (emoji, font) => {
     return emojiSpriteCache[emoji];
   }
 }
-

@@ -223,17 +223,19 @@ class OapApp extends OapBaseElement {
             <div class="helpIconInBudget">
               <paper-icon-button icon="help-outline" alt="${this.localize('help')}" @click="${this._help}}"></paper-icon-button>
             </div>
-            <div class="budgetConstainer layout horizontal center-center" ?hidden="${this.hideBudget}">
-              <oap-3d-budget
-                id="budget"
-                .areaName="${this.areaName}"
-                .language="${this.language}"
-                .showExit="${this.showExit}"
-                .totalBudget="${this.choicePoints}"
-                .configFromServer="${this.configFromServer}"
-                .currentBallot="${this.currentBallot}">
-              </oap-3d-budget>
-            </div>
+            ${ !this.hideBudget ?  html`
+              <div class="budgetConstainer layout horizontal center-center">
+                <oap-3d-budget
+                  id="budget"
+                  .areaName="${this.areaName}"
+                  .language="${this.language}"
+                  .showExit="${this.showExit}"
+                  .totalBudget="${this.choicePoints}"
+                  .configFromServer="${this.configFromServer}"
+                  .currentBallot="${this.currentBallot}">
+                </oap-3d-budget>
+              </div>
+            ` : html`` }
           </app-toolbar>
           <iron-icon id="favoriteIcon" icon="${this.favoriteIcon}" hidden></iron-icon>
         </app-header>
@@ -246,16 +248,18 @@ class OapApp extends OapBaseElement {
             class="page"
             ?active="${this._page === 'create-country'}">
           </oap-country-creation>
-          <oap-policy-quiz
-            id="quiz"
-            .questions="${this.quizQuestions}"
-            .configFromServer="${this.configFromServer}"
-            .nickname="Robert Bjarnason"
-            .language="${this.language}"
-            .choicePoints="${this.choicePoints}"
-            class="page"
-            ?active="${this._page === 'quiz'}">
-          </oap-policy-quiz>
+            ${ this._page==="quiz" ?  html`
+              <oap-policy-quiz
+                id="quiz"
+                .questions="${this.quizQuestions}"
+                .configFromServer="${this.configFromServer}"
+                .nickname="Robert Bjarnason"
+                .language="${this.language}"
+                .choicePoints="${this.choicePoints}"
+                class="page"
+                ?active="${this._page === 'quiz'}">
+              </oap-policy-quiz>
+            ` : html``}
           ${ this._page==="filter-articles" ?  html`
             <oap-filter-articles id="filterArticles"
               .language="${this.language}"
@@ -317,6 +321,7 @@ class OapApp extends OapBaseElement {
       messages: {},
     }
     super();
+    this.hideBudget = true;
     setPassiveTouchGestures(true);
     this._boot();
     var name = "locale".replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -1655,7 +1660,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    if (false) {
+    if (true) {
       this.filteredItems = this.allItems;
       this.country = {
         name: "13 Colonies 1783 (US Constitutional Convention)",
@@ -1702,7 +1707,7 @@ class OapApp extends OapBaseElement {
           audio = new Audio(effect.url);
         }
         audio.volume = effect.volume;
-        audio.play();
+        //audio.play();
       });
     }
   }
@@ -1845,7 +1850,6 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oav-clear-area", this._clearArea);
     this.addEventListener("oav-set-favorite-item-in-budget", this._toggleFavoriteItem);
     this.addEventListener("oav-hide-favorite-item", this._hideFavoriteItem);
-    this.addEventListener("oav-reset-favorite-icon-position", this.resetFavoriteIconPosition);
     this.addEventListener("oav-exit", this._exit);
     this.addEventListener("oap-open-help", this._help);
 
@@ -1880,7 +1884,6 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("location-changed", this._locationChanged);
     this.removeEventListener("oav-set-favorite-item-in-budget", this._toggleFavoriteItem);
     this.removeEventListener("oav-hide-favorite-item", this._hideFavoriteItem);
-    this.removeEventListener("oav-reset-favorite-icon-position", this.resetFavoriteIconPosition);
     this.removeEventListener("oav-exit", this._exit);
     this.removeEventListener("oav-set-ballot-element", this._setBallotElement);
     this.removeEventListener("oav-set-budget-element", this._setBudgetElement);
@@ -1968,69 +1971,6 @@ class OapApp extends OapBaseElement {
     this.$$("#insecureEmailLogin").open(event.detail.areaId, event.detail.areaName, event.detail.onLoginFunction);
   }
 
-  _toggleFavoriteItem(event) {
-    const detail = event.detail;
-
-    if (detail.item) {
-      setTimeout(() => {
-        var transformLeft, transformTop;
-
-        if (this.$$("#favoriteIcon").hidden===true) {
-          this.$$("#favoriteIcon").style.position = "absolute";
-          this.$$("#favoriteIcon").style.left = detail.orgAnimPos.left+"px";
-          this.$$("#favoriteIcon").style.top = detail.orgAnimPos.top+"px";
-
-          transformLeft = detail.orgAnimPos.left-detail.budgetAnimPos.left;
-          transformTop = detail.orgAnimPos.top-detail.budgetAnimPos.top;
-        } else {
-          var oldBudgetAnimPos = this.currentBallot.oldFavoriteItem ? this.ballotElement.getItemLeftTop(this.currentBallot.oldFavoriteItem) : null;
-          if (oldBudgetAnimPos) {
-            transformLeft = oldBudgetAnimPos.left-detail.budgetAnimPos.left;
-            transformTop = oldBudgetAnimPos.top-detail.budgetAnimPos.top;
-          } else {
-            console.warn("Can't find old item");
-            transformLeft = detail.orgAnimPos.left-detail.budgetAnimPos.left;
-            transformTop = detail.orgAnimPos.top-detail.budgetAnimPos.top;
-          }
-        }
-
-        this.$$("#favoriteIcon").hidden = false;
-
-        this.$$("#favoriteIcon").style.position = "absolute";
-        this.$$("#favoriteIcon").style.left = detail.budgetAnimPos.left+"px";
-        this.$$("#favoriteIcon").style.top = detail.budgetAnimPos.top+"px";
-        var animation = this.$$("#favoriteIcon").animate([
-          {
-            transform: "translateY("+transformTop+"px) translateX("+transformLeft+"px)",
-            easing: 'ease-out'
-          },
-          { transform: "scale(3)",  easing: 'ease-in' },
-          { transform: "scale(1)", easing: 'ease-out' }
-        ], {
-          duration: 720,
-          iterations: 1
-        });
-
-        animation.onfinish = function () {
-          this.$$("#favoriteIcon").style.position = "absolute";
-          this.$$("#favoriteIcon").style.left = detail.budgetAnimPos.left+"px";
-          this.$$("#favoriteIcon").style.top = detail.budgetAnimPos.top+"px";
-        }.bind(this);
-      });
-    }
-  }
-
-  resetFavoriteIconPosition() {
-    if (this.$$("#budgetBallot").favoriteItem) {
-      const pos = this.$$("#budget").getItemLeftTop(this.$$("#budgetBallot").favoriteItem);
-      if (pos) {
-        this.$$("#favoriteIcon").style.left = pos.left+"px";
-        this.$$("#favoriteIcon").style.top = pos.top+"px";
-      } else {
-        console.error("Can't find position of favorite item");
-      }
-    }
-  }
 
   _help(event) {
     if (event.detail && event.detail!="1") {
@@ -2072,7 +2012,6 @@ class OapApp extends OapBaseElement {
   resetSizeWithDelay() {
     clearTimeout(this.resizeTimer);
     this.resizeTimer = setTimeout(() => {
-      this.resetFavoriteIconPosition();
     }, 250);
   }
 
@@ -2210,13 +2149,6 @@ class OapApp extends OapBaseElement {
       if (oldPage=='area-ballot' && this.$$("#budgetBallot")) {
         this._hideFavoriteItem();
       }
-
-      setTimeout(() => {
-        if (page=='area-ballot' && this.currentBallot && this.currentBallot.favoriteItem) {
-          this.$$("#favoriteIcon").hidden = false;
-          this.resetFavoriteIconPosition();
-        }
-      });
 
       // Do not allow access to voting-completed from a reload
       if (page=='voting-completed' && oldPage!='area-ballot') {

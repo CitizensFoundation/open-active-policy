@@ -254,7 +254,7 @@ class OapBallot extends OapPageViewElement {
         }
 
         if (this.wide) {
-          item.animate([
+          /*item.animate([
             { transform: "translateX(-3px)", easing: 'ease-in' },
             { transform: "translateX(3px)", easing: 'ease-out' },
             { transform: "translateX(-5px)", easing: 'ease-in' },
@@ -264,7 +264,7 @@ class OapBallot extends OapPageViewElement {
           ], {
             duration: 450,
             iterations: 1
-          });
+          });*/
         }
       }
     }.bind(this));
@@ -472,7 +472,7 @@ class OapBallot extends OapPageViewElement {
           }
         }
         }
-      } 
+      }
     } else {
       console.warn("Trying to setStateOfItems with no listItems");
     }

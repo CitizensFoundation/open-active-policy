@@ -7,7 +7,7 @@ import { OapPageViewElement } from '../oap-page-view-element';
 import { OapPolicyQuizStyles } from './oap-policy-quiz-styles';
 import { OapFlexLayout } from '../oap-flex-layout';
 import { OapShadowStyles } from '../oap-shadow-styles';
-import { Tween, Easing, update } from 'es6-tween';
+import { Tween, Easing, update as UpdateTween } from 'es6-tween';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -98,8 +98,8 @@ class OapPolicyQuiz extends OapPageViewElement {
           width=window.innerWidth;
         }
 
-        for (var i=-width/2; i<width/2; i+=30+Math.random()*50){
-          for (var j=0; j<height; j+=30+Math.random()*50){
+        for (var i=-width/2; i<width/2; i+=30+Math.random()*60){
+          for (var j=0; j<height; j+=30+Math.random()*60){
             this.addShape( geometry,  materials, '#aaaaaa',   i, j, 0,
                      Math.random()*0.8, Math.random()*0.8, Math.PI, 0.1+Math.random()*0.3 );
           }
@@ -163,11 +163,8 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   renderCanvas3d() {
     requestAnimationFrame(this.renderCanvas3d.bind(this));
-
-    // This is Tween.update
-    update();
-
     this.animate();
+    UpdateTween();
     this.renderer.render(this.scene, this.camera);
   }
 
@@ -289,7 +286,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       })
       this.wrongAnswerColorAnimation();
       this.incorrectAnswers+=1;
-      this.$$("#button"+answer).animate([
+      /*this.$$("#button"+answer).animate([
         { transform: "translateX(-3px)", easing: 'ease-in' },
         { transform: "translateX(3px)", easing: 'ease-out' },
         { transform: "translateX(-5px)", easing: 'ease-in' },
@@ -299,18 +296,18 @@ class OapPolicyQuiz extends OapPageViewElement {
       ], {
         duration: 500,
         iterations: 1
-      });
+      });*/
       this.activity('answerSubmitted', 'quiz');
     }
 
-    setTimeout(()=>{
+    window.requestAnimationFrame(()=>{
       this.$$("#button"+correctAnswer).style.backgroundColor="#39FF14";
       const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
       incorrectButtons.forEach( (buttonId) => {
         this.$$("#button"+buttonId).style.backgroundColor="#d6483d";
         this.$$("#button"+buttonId).classList.add("wrongAnswer");
       });
-    })
+    });
 
     setTimeout( ()=> {
       this.resetAllButtons();
