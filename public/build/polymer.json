@@ -17,7 +17,6 @@
   "extraDependencies": [
     "bower_components/webcomponentsjs/*.js",
     "manifest.json",
-    "helvetiker_regular.typeface.json",
     "node_modules/@webcomponents/webcomponentsjs/**",
     "node_modules/web-animations-js/*.js",
     "push-manifest.json"
