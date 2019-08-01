@@ -95,23 +95,26 @@ class OapArticleItem extends OapBaseElement {
 
   render() {
     return html`
-      <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp layout horizontal" ?small="${this.small}" ?tiny="${this.tiny}">
+      <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp layout horizontal" ?inbudget="${this.selected}">
         <div id="opacityLayer"></div>
-        <div id="leftColor" class="leftColor"></div>
-        <div>
-          <div class="layout horizontal" ?hidden="${this.descriptionTabSelected}">
-            <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
+        <div id="leftColor" class="leftColor" ?hidden="${this.selected}"></div>
+        <div class="layout-inline vertical">
+          <div class="layout horizontal">
+            <div class="image" ?hidden="${!this.selected}"><img class="cardImage" src="${this.item.image_url}"/></div>
           </div>
-          <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-            <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
-                      ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
-                      +${this.item.price}
-            </div>
-
-            <div raised elevation="5" class="addRemoveButton removeButton shadow-animation  shadow-elevation-4dp" ?hidden="${!this.selected}"
-                      title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
-                      -${this.item.price}
-            </div>
+          <div class="name" ?inbudget="${this.selected}">${this.item.name}</div>
+          <div class="layout-inline vertical" >
+            <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
+            <div class="buttons" ?hidden="${this.descriptionTabSelected}">
+              <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
+                        ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
+                        +${this.item.price}
+              </div>
+              <div raised elevation="5" class="addRemoveButton removeButton shadow-animation  shadow-elevation-4dp" ?hidden="${!this.selected}"
+                        title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
+                        -${this.item.price}
+              </div>
+          </div>
           </div>
         </div>
       </div>

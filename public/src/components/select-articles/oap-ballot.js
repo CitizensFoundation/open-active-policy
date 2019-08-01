@@ -106,17 +106,25 @@ class OapBallot extends OapPageViewElement {
           ${(this.budgetElement && this.budgetElement.selectedItems) ?
             html`
               <div id="itemContainerFinal" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${this.selectedView===0}">
-                ${repeat(this.budgetElement.selectedItems, (item) => item.id,  (item, index) =>
-                  html`
-                    <oap-article-item
-                      .name="${item.id}"
-                      class="ballotAreaItem"
-                      .configFromServer="${this.configFromServer}"
-                      .language="${this.language}"
-                      .budgetElement="${this.budgetElement}"
-                      .item="${item}">
-                    </oap-article-item>
-                  `
+                ${repeat(this.budgetElement.selectedItems, (item) => item.id,  (item, index) => {
+                   let headerTemplate = html``;
+                    if (index===0 || this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index) {
+                      headerTemplate = html`
+                        <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${item.module_content_type}</div>
+                      `;
+                    }
+                    return html`
+                      ${headerTemplate}
+                      <oap-article-item
+                        .name="${item.id}"
+                        class="ballotAreaItem"
+                        .configFromServer="${this.configFromServer}"
+                        .language="${this.language}"
+                        .budgetElement="${this.budgetElement}"
+                        .item="${item}">
+                      </oap-article-item>
+                    `
+                  }
                 )}
               </div>
               <div id="submitButtonContainer" class="layout horizontal center-center">
@@ -133,6 +141,10 @@ class OapBallot extends OapPageViewElement {
       ''
     }
     `
+  }
+
+  getModuleColorForItem(item) {
+    return this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
   }
 
   updated(changedProps) {
@@ -363,7 +375,7 @@ class OapBallot extends OapPageViewElement {
     let item;
     for (var i = 0; i < listItems.children.length; i++) {
       var listItem = listItems.children[i];
-      if (listItem.id != 'domRepeat' && listItem.item.id == event.detail.itemId) {
+      if (listItem.tagName != 'DIV' && listItem.item.id == event.detail.itemId) {
         if (listItem.item.exclusive_ids) {
           this._resetExclusive(listItem.item.exclusive_ids.split(","));
         }

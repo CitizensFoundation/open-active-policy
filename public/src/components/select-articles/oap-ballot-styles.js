@@ -101,6 +101,15 @@ export const OapBallotStyles = css`
     color: var(--app-ballot-color, #333);
   }
 
+  .finalHeader {
+    padding: 8px;
+    font-size: 24px;
+    margin: 8px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+  }
+
   paper-tabs {
     margin: 8px;
     margin-right: 16px;

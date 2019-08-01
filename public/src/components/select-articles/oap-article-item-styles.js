@@ -57,6 +57,8 @@ export const OapArticleItemStyles = css`
     height: 214px;
   }
 
+
+
   .buttons {
     z-index: 5;
   }
@@ -108,12 +110,6 @@ export const OapArticleItemStyles = css`
     font-size: 11px;
   }
 
-  .description {
-    padding: 8px;
-    font-size: 13px;
-    margin-top: 42px;
-  }
-
   .name {
     font-size: var(--app-item-name-font-size, 14px);
     padding: 8px;
@@ -160,6 +156,34 @@ export const OapArticleItemStyles = css`
     color: var(--app-accent-color);
   }
 
+
+  .description {
+    padding: 8px;
+    font-size: 13px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .cardImage {
+    width: 300px;
+    height: 201px;
+  }
+
+  .itemContent[inbudget] {
+    position: relative;
+    height: 100%;
+  }
+
+  .name[inbudget] {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    max-width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 16px;
+  }
+
   .addRemoveButton {
     position: absolute;
     bottom: 9px;
@@ -186,6 +210,11 @@ export const OapArticleItemStyles = css`
   .removeButton {
     background-color: #fff !important;
     color: var(--app-accent-color) !important;
+    position: static;
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+
   }
 
   .shareIcon {
@@ -311,6 +340,7 @@ export const OapArticleItemStyles = css`
   #opacityLayer.cover {
     opacity: 1;
   }
+
 
   [hidden] {
     display: none !important;
