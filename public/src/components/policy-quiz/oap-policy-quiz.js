@@ -67,7 +67,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
       this.scene.background = new Color( '#1d5588' );
       var loader = new FontLoader();
-      loader.load( '../helvetiker_regular.typeface.json', function ( font ) {
+      loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
         this.savedBackgroundColor = this.$$("#button0").style.backgroundColor;
         var geometry = new TextGeometry( "?", {
           font: font,

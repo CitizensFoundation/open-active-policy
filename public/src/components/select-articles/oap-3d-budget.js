@@ -128,10 +128,10 @@ class Oap3dBudget extends OapBaseElement {
 
    // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
-    this.directionalLight = new DirectionalLight(0xffffff, 0.75);
+    this.directionalLight = new DirectionalLight(0xffffff, 0.65);
     this.directionalLight.position.setScalar(100);
     this.scene.add(this.directionalLight);
-    this.ambientLight = new AmbientLight(0xffffff, 0.30);
+    this.ambientLight = new AmbientLight(0xffffff, 0.27);
     this.scene.add(this.ambientLight);
 
     const renderScene = new RenderPass( this.scene, this.camera );
@@ -140,8 +140,8 @@ class Oap3dBudget extends OapBaseElement {
 
     const bloomPass = new UnrealBloomPass( new Vector2( width, height ), 1.5, 0.4, 0.85 );
     bloomPass.threshold = 0.22;
-    bloomPass.strength = 1.2;
-    bloomPass.radius = 0.45;
+    bloomPass.strength = 1.3;
+    bloomPass.radius = 0.50;
     bloomPass.renderToScreen = true;
 
     this.composer = new EffectComposer( this.renderer );
@@ -163,7 +163,7 @@ class Oap3dBudget extends OapBaseElement {
 
     var loader = new FontLoader();
 
-    loader.load( '/helvetiker_regular.typeface.json', function ( font ) {
+    loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
       this.font3d = font;
       this.rebuildChoicePoints(true);
     }.bind(this));
@@ -289,11 +289,12 @@ class Oap3dBudget extends OapBaseElement {
           this.cameraSpotLight=null;
         }
 
-        this.cameraSpotLight = new SpotLight( 0xffffff );
+        this.cameraSpotLight = new SpotLight( 0xffffff, 0.2 );
         this.cameraSpotLight.position.copy(this.camera.position);
         this.cameraSpotLight.target=this.bonusPenaltyGroup;
         //this.cameraSpotLight.castShadow = true;
         this.cameraSpotLight.angle = 0.42;
+        this.cameraSpotLight.penumbra = 0.42;
         this.cameraSpotLight.distance = 260;
         this.scene.add(this.cameraSpotLight);
 
