@@ -20671,6 +20671,15 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
     color: var(--app-ballot-color, #333);
   }
 
+  .finalHeader {
+    padding: 8px;
+    font-size: 24px;
+    margin: 8px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+  }
+
   paper-tabs {
     margin: 8px;
     margin-right: 16px;
@@ -20757,6 +20766,8 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
     height: 214px;
   }
 
+
+
   .buttons {
     z-index: 5;
   }
@@ -20808,12 +20819,6 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
     font-size: 11px;
   }
 
-  .description {
-    padding: 8px;
-    font-size: 13px;
-    margin-top: 42px;
-  }
-
   .name {
     font-size: var(--app-item-name-font-size, 14px);
     padding: 8px;
@@ -20860,6 +20865,34 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
     color: var(--app-accent-color);
   }
 
+
+  .description {
+    padding: 8px;
+    font-size: 13px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .cardImage {
+    width: 300px;
+    height: 201px;
+  }
+
+  .itemContent[inbudget] {
+    position: relative;
+    height: 100%;
+  }
+
+  .name[inbudget] {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    max-width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 16px;
+  }
+
   .addRemoveButton {
     position: absolute;
     bottom: 9px;
@@ -20886,6 +20919,11 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
   .removeButton {
     background-color: #fff !important;
     color: var(--app-accent-color) !important;
+    position: static;
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+
   }
 
   .shareIcon {
@@ -21012,27 +21050,31 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
     opacity: 1;
   }
 
+
   [hidden] {
     display: none !important;
   }
 `;_exports.OapArticleItemStyles=OapArticleItemStyles;var oapArticleItemStyles={OapArticleItemStyles:OapArticleItemStyles};_exports.$oapArticleItemStyles=oapArticleItemStyles;class OapArticleItem extends OapBaseElement{static get properties(){return{item:{type:Object},elevation:Number,ballotElement:{type:Object},selectedInBudget:{type:Boolean},isBookmarked:{type:Boolean},toExpensive:{type:Boolean},isExcluded:{type:Boolean},isFavorite:{type:Boolean},browsingMode:{type:Boolean},imageTabSelected:{type:Boolean},descriptionTabSelected:{type:Boolean},descriptionPdfLink:{type:String},small:{type:Boolean},tiny:{type:Boolean},imageLoaded:{type:Boolean,value:!1},configFromServer:Object,listBoxSelection:Number}}static get styles(){return[OapArticleItemStyles,OapShadowStyles,OapFlexLayout]}render(){return html$1`
-      <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp layout horizontal" ?small="${this.small}" ?tiny="${this.tiny}">
+      <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp layout horizontal" ?inbudget="${this.selected}">
         <div id="opacityLayer"></div>
-        <div id="leftColor" class="leftColor"></div>
-        <div>
-          <div class="layout horizontal" ?hidden="${this.descriptionTabSelected}">
-            <div class="name" ?small="${this.small}" ?tiny="${this.tiny}">${this.item.name}</div>
+        <div id="leftColor" class="leftColor" ?hidden="${this.selected}"></div>
+        <div class="layout-inline vertical">
+          <div class="layout horizontal">
+            <div class="image" ?hidden="${!this.selected}"><img class="cardImage" src="${this.item.image_url}"/></div>
           </div>
-          <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-            <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
-                      ?disabled="${this.toExpensive||this.isExcluded}" title="${this.localize("add_to_budget")}" icon="add" @click="${this._toggleInBudget}">
-                      +${this.item.price}
-            </div>
-
-            <div raised elevation="5" class="addRemoveButton removeButton shadow-animation  shadow-elevation-4dp" ?hidden="${!this.selected}"
-                      title="${this.localize("remove_from_budget")}" icon="remove" @click="${this._toggleInBudget}">
-                      -${this.item.price}
-            </div>
+          <div class="name" ?inbudget="${this.selected}">${this.item.name}</div>
+          <div class="layout-inline vertical" >
+            <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
+            <div class="buttons" ?hidden="${this.descriptionTabSelected}">
+              <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
+                        ?disabled="${this.toExpensive||this.isExcluded}" title="${this.localize("add_to_budget")}" icon="add" @click="${this._toggleInBudget}">
+                        +${this.item.price}
+              </div>
+              <div raised elevation="5" class="addRemoveButton removeButton shadow-animation  shadow-elevation-4dp" ?hidden="${!this.selected}"
+                        title="${this.localize("remove_from_budget")}" icon="remove" @click="${this._toggleInBudget}">
+                        -${this.item.price}
+              </div>
+          </div>
           </div>
         </div>
       </div>
@@ -21075,16 +21117,19 @@ if(event.target&&!event.target.attributes.disabled){this.fire("oav-toggle-item-i
 
           ${this.budgetElement&&this.budgetElement.selectedItems?html$1`
               <div id="itemContainerFinal" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${0===this.selectedView}">
-                ${repeat(this.budgetElement.selectedItems,item=>item.id,(item,index)=>html$1`
-                    <oap-article-item
-                      .name="${item.id}"
-                      class="ballotAreaItem"
-                      .configFromServer="${this.configFromServer}"
-                      .language="${this.language}"
-                      .budgetElement="${this.budgetElement}"
-                      .item="${item}">
-                    </oap-article-item>
-                  `)}
+                ${repeat(this.budgetElement.selectedItems,item=>item.id,(item,index)=>{let headerTemplate=html$1``;if(0===index||this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index){headerTemplate=html$1`
+                        <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${item.module_content_type}</div>
+                      `}return html$1`
+                      ${headerTemplate}
+                      <oap-article-item
+                        .name="${item.id}"
+                        class="ballotAreaItem"
+                        .configFromServer="${this.configFromServer}"
+                        .language="${this.language}"
+                        .budgetElement="${this.budgetElement}"
+                        .item="${item}">
+                      </oap-article-item>
+                    `})}
               </div>
               <div id="submitButtonContainer" class="layout horizontal center-center">
                  <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-submit-ballot")}}">${this.localize("submitConstitution")}</paper-button>
@@ -21093,7 +21138,7 @@ if(event.target&&!event.target.attributes.disabled){this.fire("oav-toggle-item-i
 
         </div>
       `:""}
-    `}updated(changedProps){super.updated(changedProps);if(changedProps.has("areaIdRoutePath")){if(this.areaIdRoutePath){if("completePostingOfVoteAfterRedirect"===this.areaIdRoutePath){this.completeIfAuthenticatedVote()}else{this.areaId=this.areaIdRoutePath}}}if(changedProps.has("budgetElement")){//      this.loadArea();
+    `}getModuleColorForItem(item){return this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type]}updated(changedProps){super.updated(changedProps);if(changedProps.has("areaIdRoutePath")){if(this.areaIdRoutePath){if("completePostingOfVoteAfterRedirect"===this.areaIdRoutePath){this.completeIfAuthenticatedVote()}else{this.areaId=this.areaIdRoutePath}}}if(changedProps.has("budgetElement")){//      this.loadArea();
 }if(changedProps.has("favoriteItem")){this.oldFavoriteItem=changedProps.get("favoriteItem");if(!this.favoriteItem&&this.oldFavoriteItem){this.fire("oav-hide-favorite-item")}}}constructor(){super();this.showMap=!1;this.area={name:"Blah",id:1}}connectedCallback(){super.connectedCallback();this.reset();window.appBallot=this;this.fire("oav-set-ballot-element",this)}firstUpdated(){this._setupListeners();installMediaQueryWatcher$1(`(min-width: 1024px)`,matches=>{this.wide=matches})}disconnectedCallback(){this._removeListeners()}loadArea(){this.oldFavoriteItem=null;this.favoriteItem=null;if(this.areaId){this.reset();this.fire("ak-clear-area");fetch("/votes/get_ballot?area_id="+this.areaId+"&locale="+this.language,{credentials:"same-origin"}).then(res=>res.json()).then(response=>{this.area=response.area;this.budgetBallotItems=this._setupLocationsAndTranslation(response.budget_ballot_items);this.fire("oav-set-title",this.localize("ballot_area_name","area_name",this.area.name));this.fire("oav-set-area",{areaName:this.area.name,totalBudget:this.area.budget_amount});setTimeout(()=>{this.$$("#tabs").shadowRoot.getElementById("selectionBar").style.setProperty("border-bottom","3px solid var(--paper-tabs-selection-bar-color)")})}).catch(error=>{this.fire("ak-error",error);console.error("Error:",error)})}}_setupListeners(){this.addEventListener("oav-toggle-item-in-budget",this._toggleItemInBudget);this.addEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.addEventListener("oav-submit-vote",this._postVoteToServer);this.addEventListener("oav-item-selected-in-budget",this._itemSelectedInBudget);this.addEventListener("oav-item-de-selected-from-budget",this._itemDeSelectedFromBudget)}_removeListeners(){this.removeEventListener("oav-toggle-item-in-budget",this._toggleItemInBudget);this.removeEventListener("oav-set-favorite-item-in-budget",this._toggleFavoriteItem);this.removeEventListener("oav-submit-vote",this._postVoteToServer);this.removeEventListener("oav-item-selected-in-budget",this._itemSelectedInBudget);this.removeEventListener("oav-item-de-selected-from-budget",this._itemDeSelectedFromBudget)}reset(){if(this.budgetElement){this.budgetElement.reset()}this._resetBallotItems();this.area={id:1,name:"Hello"};this.favoriteItem=null;this.selectedView=0;this.fire("oav-set-area",{areaName:null,totalBudget:null});this.usedBonusesAndPenalties=[]}_selectedChanged(event){this.selectedView=parseInt(event.detail.value)}_scrollItemIntoView(itemId){var iOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream,isIE11=/Trident.*rv[ :]*11\./.test(navigator.userAgent),items=this.shadowRoot.querySelectorAll("oap-article-item");items.forEach(function(item){if(item.name==itemId){if(iOS||isIE11){item.scrollIntoView(!1)}else{item.scrollIntoView({behavior:"smooth",block:"end",inline:"nearest"})}if(this.wide){/*item.animate([
                           { transform: "translateX(-3px)", easing: 'ease-in' },
                           { transform: "translateX(3px)", easing: 'ease-out' },
@@ -21104,7 +21149,7 @@ if(event.target&&!event.target.attributes.disabled){this.fire("oav-toggle-item-i
                         ], {
                           duration: 450,
                           iterations: 1
-                        });*/}}}.bind(this))}_resetBallotItems(){var listItems=this.$$("#itemContainer");if(listItems){for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.setNotTooExpensive();listItem.removeFromBudget()}}}}_toggleFavoriteItem(event){var item=event.detail.item;if(item){this.activity("toggle","favorite")}else{this.activity("detoggle","favorite")}if(this.favoriteItem!=item){this.favoriteItem=item;for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.resetFromBudget()}}}else{console.warn("Trying to set item as favorite a second time")}}_toggleItemInBudget(event){this.budgetElement.toggleBudgetItem(event.detail.item);var found=this.budgetBallotItems.find(item=>{return item.id==event.detail.item.id});if(!found){this.budgetBallotItems.unshift(event.detail.item)}}_itemSelectedInBudget(event){var listItems=this.$$("#itemContainer");let item;for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&listItem.item.id==event.detail.itemId){listItem.setInBudget();const itemId=listItem.item.id;item=listItem.item;listItem.classList.add("sendToTop");setTimeout(()=>{this.removeFromAvailableItems(itemId);this.requestUpdate()},450);break}}setTimeout(()=>{this._checkBonusesAndPenalties(item,"select");console.error("CHECKING BONUSES")},600)}_resetExclusive(itemIds){setTimeout(()=>{for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&-1<itemIds.indexOf(listItem.item.id)){listItem.setNotExcluded()}}},50)}removeFromAvailableItems(itemId){for(var i=0;i<this.budgetBallotItems.length;i++){if(this.budgetBallotItems[i].id==itemId){this.budgetBallotItems.splice(i,1)}}}_itemDeSelectedFromBudget(event){var listItems=this.$$("#itemContainerFinal");let item;for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&listItem.item.id==event.detail.itemId){if(listItem.item.exclusive_ids){this._resetExclusive(listItem.item.exclusive_ids.split(","))}listItem.removeFromBudget();this.fire("oav-reset-favorite-icon-position");break}}this.requestUpdate()}_checkBonusesAndPenalties(item,action){const test="High Authority,High Tradition,High Collective,High Law/Order,Low Science";let bonusesAndPenalties=GetBonusesAndPenaltiesForItem(item,this.country).bonusesAndPenalties,totalValue=0,emojis=[];if(0<bonusesAndPenalties.length){let htmlString="";bonusesAndPenalties.forEach(item=>{const usedKey=item.id+item.type+item.value+item.attitute+item.level;if(!this.usedBonusesAndPenalties[usedKey]){this.usedBonusesAndPenalties[usedKey]=!0;if("bonus"===item.type){this.budgetElement.totalBudget+=item.value;let emoji=this._getEmojiFromAttitute(item.attitute);if(-1<!emojis.indexOf(emoji)){emojis.push(emoji)}totalValue+=item.value}else if("penalty"===item.type){this.budgetElement.totalBudget-=item.value;totalValue-=item.value;let emoji=this._getEmojiFromAttitute(item.attitute);if(-1<!emojis.indexOf(emoji)){emojis.push(emoji)}}htmlString+="<span style=\"width: 40px;height: 40px\">"+this._getEmojiFromAttitute(item.attitute);htmlString+="</span> <b>"+this.localize(item.type)+"</b>: "+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+"<br>"}else{console.warn("Trying to use bonus again: "+usedKey)}});if(0<htmlString.length){if(0!=totalValue){this.fire("oap-open-snackbar",htmlString);setTimeout(()=>{this.budgetElement.bonusPenalty3dText(totalValue,emojis[0])})}}}}_getEmojiFromAttitute(attitute){const emojis={authority:"\uD83C\uDFDB\uFE0F",liberty:"\uD83C\uDF05",science:"\uD83D\uDD2C",tradition:"\uD83C\uDFFA",collective:"\uD83D\uDC65",independence:"\uD83D\uDEE1\uFE0F",privacy:"\uD83D\uDD10",lawAndOrder:"\uD83D\uDC6E",socialProgress:"\u270A",naturalResourceWealth:"\uD83D\uDD0B",borderDensity:"\uD83D\uDEC2",hostilityNeighboringCountries:"\uD83C\uDF10",barrieresToCitizenship:"\uD83E\uDDF1"};return emojis[attitute]}setStateOfRemainingItems(startTimeout,inbetweenTimeout){var _this3=this;return babelHelpers.asyncToGenerator(function*(){console.error("setStateOfRemainingItems");yield new Promise(resolve=>setTimeout(resolve,startTimeout?startTimeout:125));var budgetLeft=_this3.budgetElement.totalBudget-_this3.budgetElement.selectedBudget;console.error("_setStateOfRemainingItems: "+budgetLeft);var listItems=_this3.$$("#itemContainer");if(listItems){const allSelectedIds=_this3.budgetElement.selectedItems.map(item=>{return item.id});for(var i=0;i<listItems.children.length;i++){yield new Promise(resolve=>setTimeout(resolve,inbetweenTimeout?inbetweenTimeout:5));var listItem=listItems.children[i];if(!listItem){console.error("NO LIST ITEM");_this3.setStateOfRemainingItems()}else{if("domRepeat"!=listItem.id&&!listItem.selected){if(listItem.item.exclusive_ids&&0<listItem.item.exclusive_ids.length){listItem.item.exclusive_ids.split(",").forEach(id=>{if(-1<allSelectedIds.indexOf(id)){listItem.setExcluded()}else{//listItem.setNotExcluded();
+                        });*/}}}.bind(this))}_resetBallotItems(){var listItems=this.$$("#itemContainer");if(listItems){for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.setNotTooExpensive();listItem.removeFromBudget()}}}}_toggleFavoriteItem(event){var item=event.detail.item;if(item){this.activity("toggle","favorite")}else{this.activity("detoggle","favorite")}if(this.favoriteItem!=item){this.favoriteItem=item;for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id){listItem.resetFromBudget()}}}else{console.warn("Trying to set item as favorite a second time")}}_toggleItemInBudget(event){this.budgetElement.toggleBudgetItem(event.detail.item);var found=this.budgetBallotItems.find(item=>{return item.id==event.detail.item.id});if(!found){this.budgetBallotItems.unshift(event.detail.item)}}_itemSelectedInBudget(event){var listItems=this.$$("#itemContainer");let item;for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&listItem.item.id==event.detail.itemId){listItem.setInBudget();const itemId=listItem.item.id;item=listItem.item;listItem.classList.add("sendToTop");setTimeout(()=>{this.removeFromAvailableItems(itemId);this.requestUpdate()},450);break}}setTimeout(()=>{this._checkBonusesAndPenalties(item,"select");console.error("CHECKING BONUSES")},600)}_resetExclusive(itemIds){setTimeout(()=>{for(var listItems=this.$$("#itemContainer"),i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("domRepeat"!=listItem.id&&-1<itemIds.indexOf(listItem.item.id)){listItem.setNotExcluded()}}},50)}removeFromAvailableItems(itemId){for(var i=0;i<this.budgetBallotItems.length;i++){if(this.budgetBallotItems[i].id==itemId){this.budgetBallotItems.splice(i,1)}}}_itemDeSelectedFromBudget(event){var listItems=this.$$("#itemContainerFinal");let item;for(var i=0,listItem;i<listItems.children.length;i++){listItem=listItems.children[i];if("DIV"!=listItem.tagName&&listItem.item.id==event.detail.itemId){if(listItem.item.exclusive_ids){this._resetExclusive(listItem.item.exclusive_ids.split(","))}listItem.removeFromBudget();this.fire("oav-reset-favorite-icon-position");break}}this.requestUpdate()}_checkBonusesAndPenalties(item,action){const test="High Authority,High Tradition,High Collective,High Law/Order,Low Science";let bonusesAndPenalties=GetBonusesAndPenaltiesForItem(item,this.country).bonusesAndPenalties,totalValue=0,emojis=[];if(0<bonusesAndPenalties.length){let htmlString="";bonusesAndPenalties.forEach(item=>{const usedKey=item.id+item.type+item.value+item.attitute+item.level;if(!this.usedBonusesAndPenalties[usedKey]){this.usedBonusesAndPenalties[usedKey]=!0;if("bonus"===item.type){this.budgetElement.totalBudget+=item.value;let emoji=this._getEmojiFromAttitute(item.attitute);if(-1<!emojis.indexOf(emoji)){emojis.push(emoji)}totalValue+=item.value}else if("penalty"===item.type){this.budgetElement.totalBudget-=item.value;totalValue-=item.value;let emoji=this._getEmojiFromAttitute(item.attitute);if(-1<!emojis.indexOf(emoji)){emojis.push(emoji)}}htmlString+="<span style=\"width: 40px;height: 40px\">"+this._getEmojiFromAttitute(item.attitute);htmlString+="</span> <b>"+this.localize(item.type)+"</b>: "+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+"<br>"}else{console.warn("Trying to use bonus again: "+usedKey)}});if(0<htmlString.length){if(0!=totalValue){this.fire("oap-open-snackbar",htmlString);setTimeout(()=>{this.budgetElement.bonusPenalty3dText(totalValue,emojis[0])})}}}}_getEmojiFromAttitute(attitute){const emojis={authority:"\uD83C\uDFDB\uFE0F",liberty:"\uD83C\uDF05",science:"\uD83D\uDD2C",tradition:"\uD83C\uDFFA",collective:"\uD83D\uDC65",independence:"\uD83D\uDEE1\uFE0F",privacy:"\uD83D\uDD10",lawAndOrder:"\uD83D\uDC6E",socialProgress:"\u270A",naturalResourceWealth:"\uD83D\uDD0B",borderDensity:"\uD83D\uDEC2",hostilityNeighboringCountries:"\uD83C\uDF10",barrieresToCitizenship:"\uD83E\uDDF1"};return emojis[attitute]}setStateOfRemainingItems(startTimeout,inbetweenTimeout){var _this3=this;return babelHelpers.asyncToGenerator(function*(){console.error("setStateOfRemainingItems");yield new Promise(resolve=>setTimeout(resolve,startTimeout?startTimeout:125));var budgetLeft=_this3.budgetElement.totalBudget-_this3.budgetElement.selectedBudget;console.error("_setStateOfRemainingItems: "+budgetLeft);var listItems=_this3.$$("#itemContainer");if(listItems){const allSelectedIds=_this3.budgetElement.selectedItems.map(item=>{return item.id});for(var i=0;i<listItems.children.length;i++){yield new Promise(resolve=>setTimeout(resolve,inbetweenTimeout?inbetweenTimeout:5));var listItem=listItems.children[i];if(!listItem){console.error("NO LIST ITEM");_this3.setStateOfRemainingItems()}else{if("domRepeat"!=listItem.id&&!listItem.selected){if(listItem.item.exclusive_ids&&0<listItem.item.exclusive_ids.length){listItem.item.exclusive_ids.split(",").forEach(id=>{if(-1<allSelectedIds.indexOf(id)){listItem.setExcluded()}else{//listItem.setNotExcluded();
 }})}if(listItem.item.price<=budgetLeft){listItem.setNotTooExpensive()}else{listItem.setTooExpensive()}}}}}else{console.warn("Trying to setStateOfItems with no listItems")}})()}_postVoteToServer(){if(this.budgetElement.selectedItems&&0<this.budgetElement.selectedItems.length){this.completePostingOfVote(this._createEncryptedVotes())}else{this.fire("oav-error",this.localize("error_no_items_selected"));console.error("error_no_items_selected")}}_createEncryptedVotes(){var selectedItemIds=this.budgetElement.selectedItems.map(item=>{return item.id});return encryptVote(this.votePublicKey,{selectedItemIds:selectedItemIds,favoriteItemId:this.favoriteItem?this.favoriteItem.id:null})}completePostingOfVote(encryptedVotes){if(this.area&&this.area.id){if(encryptedVotes){return fetch("/votes/post_vote",{method:"POST",cache:"no-cache",credentials:"same-origin",headers:{"Content-Type":"application/json"},body:JSON.stringify({encrypted_vote:encryptedVotes,area_id:this.area.id})}).then(response=>response.json()).then(response=>{if(response&&!0===response.vote_ok){if(!0===this.configFromServer.client_config.insecureEmailLoginEnabled){this.fire("oav-insecure-email-login",{areaId:this.area.id,areaName:this.area.name,onLoginFunction:this._setVotingCompleted.bind(this)})}else{window.location=this._getSamlUrlWithLanguage()}}else{this.fire("oav-error",this.localize("error_could_not_post_vote"))}})}else{this.fire("oav-error",this.localize("error_encryption"));console.error("No encrypted votes!")}}else{this.fire("oav-error",this.localize("error_could_not_post_vote"));console.warn("Not sending as no area id")}}_setVotingCompleted(){this.reset();this.areaId=null;const path="/voting-completed";window.history.pushState({},null,path);this.fire("location-changed",path);var dialog=document.querySelector("oap-app").getDialog("authDialog");if(dialog)dialog.close()}completeIfAuthenticatedVote(){fetch("/votes/is_vote_authenticated",{credentials:"same-origin"}).then(response=>response.json()).then(response=>{if(response&&!0===response.vote_ok){this._setVotingCompleted();this.activity("completed","voting")}else{this.fire("oav-error",this.localize("error_could_not_post_vote"))}})}_getSamlUrlWithLanguage(){var url=this.configFromServer.auth_url;if("en"==this.language){url+="&siteLanguage=en"}else if("pl"==this.language){url+="&siteLanguage=pl"}return url}shuffle(a){for(let i=a.length-1;0<i;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}_setupLocationsAndTranslation(budgetBallotItems){for(var arrayLength=budgetBallotItems.length,i=0;i<arrayLength;i++){if(budgetBallotItems[i].locations&&""!=budgetBallotItems[i].locations){var hashArray=[],locationsArray=budgetBallotItems[i].locations.replace(" ","").split(","),counter=0;while(counter<locationsArray.length){hashArray.push({latitude:locationsArray[counter],longitude:locationsArray[counter+1]});counter+=2}budgetBallotItems[i].locations=hashArray}else{budgetBallotItems[i].locations=[]}}return this.shuffle(budgetBallotItems)}}window.customElements.define("oap-ballot",OapBallot);const OapBudgetStyles=css`
   :host {
     width: 100%;
@@ -21353,7 +21398,7 @@ if(this.wide){return this.localize("million")}else{return this.localize("million
 object.layers.enable(1);object.position.x=50;object.position.z=-40;if(!0){setTimeout(()=>{this.budgetGroup3d.add(object);this.itemsInScene.push({id:item.id,object:object,width:itemWidth,item:item});this.positionItems()},30)}else{this.budgetGroup3d.add(object);this.itemsInScene.push({id:item.id,object:object,width:itemWidth,item:item});this.positionItems()}if(10<this.itemsInScene.length){setTimeout(()=>{//this.rotateAllItems();
 },300)}}resetItemsWidth(){this.itemsInScene.forEach(dItem=>{let itemWidth=parseInt(this.votesWidth*(dItem.item.price/this.totalBudget));var fudgetFactorPx=.033;itemWidth=itemWidth*fudgetFactorPx;if(dItem.width!=itemWidth){var box=new BoxGeometry(itemWidth,5,5);dItem.object.geometry.dispose();dItem.object.geometry=box}dItem.width=itemWidth});this.positionItems()}positionItems(){console.error("POSITION ITEMS STARTED");let rightEdgeAndSpace=0;const sortedItems=this.itemsInScene.sort((item3dA,item3dB)=>{return item3dA.item.module_type_index-item3dB.item.module_type_index});sortedItems.forEach((item,index)=>{let currentWidth;const currentSize=new Vector3;new Box3().setFromObject(item.object).getSize(currentSize);currentWidth=currentSize.x;//console.error(index+": bounding box x="+currentWidth);
 const setX=rightEdgeAndSpace+currentWidth/2,target=new Vector3(setX,0,0);//console.error(index+": set x="+setX);
-let random=Math.floor(100*Math.random());if(item.positionTween){item.positionTween.stop();item.positionTween=null;console.error("STOPPING: "+index)}item.positionTween=new Tween(item.object.position).to(target,500).easing(Easing.Quadratic.InOut).on("complete",()=>{item.positionTween=null;console.error("DONE POSITION: "+index)}).start();rightEdgeAndSpace=setX+currentWidth/2})}rotateAllItems(){this.moveBudgetGroupBack();this.itemsInScene.forEach((item,index)=>{//console.log("Rotate:"+item.id);
+let random=Math.floor(100*Math.random());if(item.positionTween){item.positionTween.stop();item.positionTween=null}item.positionTween=new Tween(item.object.position).to(target,500).easing(Easing.Quadratic.InOut).on("complete",()=>{item.positionTween=null}).start();rightEdgeAndSpace=setX+currentWidth/2})}rotateAllItems(){this.moveBudgetGroupBack();this.itemsInScene.forEach((item,index)=>{//console.log("Rotate:"+item.id);
 const oldX=item.object.rotation.x,newX=oldX+Math.PI;item.tween=new Tween(item.object.rotation).to({x:"-"+newX},650)// relative animation
 .delay(0).on("complete",()=>{// Check that the full 360 degrees of rotation,
 // and calculate the remainder of the division to avoid overflow.
@@ -21370,7 +21415,7 @@ let random;if(30<this.itemsInScene.length){random=Math.floor(5*Math.random())}el
 //console.log("Rotate reset");
 item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.object.rotation.y=item.object.rotation.y%(2*Math.PI)}item.tween.stop();item.tween=null}).start()}})}moveBudgetGroupBack(){const newX=10<this.itemsInScene.length?this.defaultGroupPos.x-.1*this.defaultGroupPos.x:this.defaultGroupPos.x-.2*this.defaultGroupPos.x,newZ=-15;if(this.budgetGroup3d.runningMoveX){this.budgetGroup3d.runningMoveX.stop();this.budgetGroup3d.runningMoveX=null}if(this.budgetGroup3d.runningMoveXTwo){this.budgetGroup3d.runningMoveXTwo.stop();this.budgetGroup3d.runningMoveXTwo=null}this.budgetGroup3d.runningMoveX=new Tween(this.budgetGroup3d.position).to({x:this.budgetGroup3d.position.x,y:this.budgetGroup3d.position.y,z:newZ},350).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{this.budgetGroup3d.runningMoveX=null;this.budgetGroup3d.runningMoveXTwo=new Tween(this.budgetGroup3d.position).to({x:this.defaultGroupPos.x,y:this.defaultGroupPos.y,z:this.defaultGroupPos.z},650)// relative animation
 .delay(700).easing(Easing.Quadratic.InOut).on("complete",()=>{this.budgetGroup3d.runningMoveX=null;this.budgetGroup3d.runningMoveXTwo=null}).start()}).start()}rotateBudgetGroupBack(){const oldZ=this.budgetGroup3d.rotation.z,newZ=oldZ+Math.PI;if(!this.budgetGroup3d.runningRotY){this.budgetGroup3d.runningRotY=new Tween(this.budgetGroup3d.rotation).to({y:"-"+newZ},420).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{this.budgetGroup3d.rotation.y=0;this.budgetGroup3d.runningRotY=null}).start()}}moveCameraCloseAndBack(){const newX=10<this.itemsInScene.length?this.defaultCameraPos.x-.1*this.defaultCameraPos.x:this.defaultCameraPos.x-.2*this.defaultCameraPos.x,newZ=18;new Tween(this.camera.position).to({x:newX,y:this.camera.position.y,z:newZ},350).delay(0).easing(Easing.Quadratic.InOut).on("complete",()=>{new Tween(this.camera.position).to({x:this.defaultCameraPos.x,y:this.defaultCameraPos.y,z:this.defaultCameraPos.z},650)// relative animation
-.delay(1100).easing(Easing.Quadratic.InOut).on("complete",()=>{}).start()}).start()}_removeItemFromDiv(item){this.itemsInScene.forEach((sceneItem,index)=>{if(sceneItem.id==item.id){this.itemsInScene.splice(index,1);this.budgetGroup3d.remove(sceneItem.object);this.positionItems()}})}getItemLeftTop(item){var selectedItemDiv=this.$$("#item_id_"+item.id);if(selectedItemDiv){var buttonRect=selectedItemDiv.getBoundingClientRect(),left=(buttonRect.right-buttonRect.left)/2+buttonRect.left,top=(buttonRect.bottom-buttonRect.top)/2+buttonRect.top;if(this.wide){left=left-24;top=top-24}else{left=left-18;top=top-18}return{left:left,top:top}}else{console.error("Trying to get item that is not in the budget")}}toggleBudgetItem(item){this.activity("toggle","vote");if(-1<this.selectedItems.indexOf(item)){this.activity("remove","vote");this._removeItemFromArray(item);this._removeItemFromDiv(item);this.selectedItems=[...this.selectedItems];this.selectedBudget=this.selectedBudget-item.price;this.currentBallot.fire("oav-item-de-selected-from-budget",{itemId:item.id})}else{if(this.selectedBudget+item.price<=this.totalBudget){this.activity("add","vote");this.selectedItems.push(item);this.selectedItems=[...this.selectedItems];this._addItemToDiv(item);this.selectedBudget=this.selectedBudget+item.price;this.currentBallot.fire("oav-item-selected-in-budget",{itemId:item.id})}else{this.currentBallot.fire("oav-error",this.localize("error_does_not_fit_in_budget"))}}}toggleFavoriteItem(item){this.activity("toggle","favorite");if(this.favoriteItem!=item){if(item){this.activity("add","favorite")}else{this.activity("remove","favorite")}this.favoriteItem=item}}_removeItem(itemId){this.selectedItems.forEach(function(item){if(item.id==itemId){this.toggleBudgetItem(item)}}.bind(this))}convertDots(num){return num.replace(".",",")}}window.customElements.define("oap-3d-budget",Oap3dBudget);const OapReviewStyles=css`
+.delay(1100).easing(Easing.Quadratic.InOut).on("complete",()=>{}).start()}).start()}_removeItemFromDiv(item){this.itemsInScene.forEach((sceneItem,index)=>{if(sceneItem.id==item.id){this.itemsInScene.splice(index,1);this.budgetGroup3d.remove(sceneItem.object);this.positionItems()}})}getItemLeftTop(item){var selectedItemDiv=this.$$("#item_id_"+item.id);if(selectedItemDiv){var buttonRect=selectedItemDiv.getBoundingClientRect(),left=(buttonRect.right-buttonRect.left)/2+buttonRect.left,top=(buttonRect.bottom-buttonRect.top)/2+buttonRect.top;if(this.wide){left=left-24;top=top-24}else{left=left-18;top=top-18}return{left:left,top:top}}else{console.error("Trying to get item that is not in the budget")}}toggleBudgetItem(item){this.activity("toggle","vote");if(-1<this.selectedItems.indexOf(item)){this.activity("remove","vote");this._removeItemFromArray(item);this._removeItemFromDiv(item);this.selectedItems=this.selectedItems.sort((itemA,itemB)=>{return itemA.module_type_index-itemB.module_type_index});this.selectedItems=[...this.selectedItems];this.selectedBudget=this.selectedBudget-item.price;this.currentBallot.fire("oav-item-de-selected-from-budget",{itemId:item.id})}else{if(this.selectedBudget+item.price<=this.totalBudget){this.activity("add","vote");this.selectedItems.push(item);this.selectedItems=this.selectedItems.sort((itemA,itemB)=>{return itemA.module_type_index-itemB.module_type_index});this.selectedItems=[...this.selectedItems];this._addItemToDiv(item);this.selectedBudget=this.selectedBudget+item.price;this.currentBallot.fire("oav-item-selected-in-budget",{itemId:item.id})}else{this.currentBallot.fire("oav-error",this.localize("error_does_not_fit_in_budget"))}}}toggleFavoriteItem(item){this.activity("toggle","favorite");if(this.favoriteItem!=item){if(item){this.activity("add","favorite")}else{this.activity("remove","favorite")}this.favoriteItem=item}}_removeItem(itemId){this.selectedItems.forEach(function(item){if(item.id==itemId){this.toggleBudgetItem(item)}}.bind(this))}convertDots(num){return num.replace(".",",")}}window.customElements.define("oap-3d-budget",Oap3dBudget);const OapReviewStyles=css`
 
   :host {
     width: 100%;
