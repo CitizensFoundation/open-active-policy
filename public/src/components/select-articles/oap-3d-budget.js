@@ -163,10 +163,14 @@ class Oap3dBudget extends OapBaseElement {
 
     var loader = new FontLoader();
 
-    loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
-      this.font3d = font;
+    if (this.font3d) {
       this.rebuildChoicePoints(true);
-    }.bind(this));
+    } else {
+      loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
+        this.font3d = font;
+        this.rebuildChoicePoints(true);
+      }.bind(this));
+    }
 
 //    scene.add( new AxesHelper( 1 ) );
     this.renderScene();

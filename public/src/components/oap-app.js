@@ -11,6 +11,8 @@ import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
+import { CacheEmojisInBackground } from './oap-2d-emojis';
+
 import 'whatwg-fetch';
 
 // These are the elements needed by this element.
@@ -230,6 +232,7 @@ class OapApp extends OapBaseElement {
                   .areaName="${this.areaName}"
                   .language="${this.language}"
                   .showExit="${this.showExit}"
+                  .font3d="${this.font3d}"
                   .totalBudget="${this.choicePoints}"
                   .configFromServer="${this.configFromServer}"
                   .currentBallot="${this.currentBallot}">
@@ -1873,6 +1876,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-set-total-budget", this.setTotalBudget);
     this.addEventListener("oap-submit-ballot", this.submitBallot);
     this.addEventListener("oap-bonus-points", this.processBonusPoints);
+    this.addEventListener("oap-set-3d-font", this.set3dFont);
   }
 
   _removeListeners() {
@@ -1903,6 +1907,11 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-close-snackbar", this._closeSnackBar);
     this.removeEventListener("oap-submit-ballot", this.submitBallot);
     this.removeEventListener("oap-bonus-points", this.processBonusPoints);
+    this.removeEventListener("oap-set-3d-font", this.set3dFont);
+  }
+
+  set3dFont(event) {
+    this.font3d = event.detail;
   }
 
   submitBallot() {
@@ -1945,6 +1954,10 @@ class OapApp extends OapBaseElement {
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
     this.activity('finished', 'quiz');
+    setTimeout(()=>{
+      const emojis = ["🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];
+      CacheEmojisInBackground(emojis, "120px Arial");
+    }, 1000);
   }
 
   createCountryFinished(event) {

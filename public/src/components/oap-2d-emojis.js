@@ -219,6 +219,17 @@ class SpriteText2D extends Text2D {
   }
 }
 
+async function PerformDelayedCaching(emojis, font) {
+  for (var i = 0; i < emojis.length; i++) {
+    await new Promise(resolve => setTimeout(resolve, 1200 ));
+    Get2DEmoji(emojis[i], font);
+  }
+}
+
+export const CacheEmojisInBackground = (emojis, font) => {
+  PerformDelayedCaching(emojis, font);
+}
+
 export const Get2DEmoji = (emoji, font) => {
   if (emojiSpriteCache[emoji]) {
     return emojiSpriteCache[emoji];
