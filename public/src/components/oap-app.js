@@ -247,7 +247,7 @@ class OapApp extends OapBaseElement {
             <div class="helpIconInBudget">
               <paper-icon-button icon="help-outline" alt="${this.localize('help')}" @click="${this._help}}"></paper-icon-button>
             </div>
-            ${ this._page==="area-ballot"  ?  html`
+            ${ this._page==="area-ballot" ? html`
               <div class="budgetConstainer layout horizontal center-center">
                 <oap-3d-budget
                   id="budget"
@@ -465,7 +465,7 @@ class OapApp extends OapBaseElement {
       }
     ],
 
-    this.originalItems = [
+    this.allItems = [
       { id: '-1000000',
       branch: 'Executive',
       name: 'Executive Branch',
@@ -1998,8 +1998,6 @@ class OapApp extends OapBaseElement {
     console.error("resetAllItems");
     this.filteredItems = [];
     this.selectedItems = [];
-    var a= this.allItems;
-    debugger;
   }
 
   _setBallotElement(event) {

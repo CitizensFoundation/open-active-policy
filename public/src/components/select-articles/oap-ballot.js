@@ -231,6 +231,7 @@ class OapBallot extends OapPageViewElement {
   }
 
   reset() {
+    console.error("BALLOT reset");
     if (this.budgetElement) {
       this.budgetElement.reset();
     }
@@ -464,7 +465,7 @@ class OapBallot extends OapPageViewElement {
           console.error("NO LIST ITEM");
           this.setStateOfRemainingItems();
         } else {
-        if (listItem.id != 'domRepeat' && !listItem.selected) {
+        if (!listItem.selected) {
 
           if (listItem.item.exclusive_ids && listItem.item.exclusive_ids.length>0) {
             listItem.item.exclusive_ids.split(",").forEach((id) => {

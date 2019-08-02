@@ -611,7 +611,7 @@ class OapSwipableCards extends OapBaseElement {
 
   firstUpdated() {
     super.firstUpdated();
-    this.fire('oap-clear-filtered-items');
+    this.fire('oap-reset-all-items');
   }
 
   //Swipe active card to right.

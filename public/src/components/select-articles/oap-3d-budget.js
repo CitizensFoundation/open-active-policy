@@ -24,10 +24,6 @@ class Oap3dBudget extends OapBaseElement {
         type: Array
       },
 
-      toastCounter: {
-        type: Number
-      },
-
       noSelectedItems: {
         type: Boolean
       },
@@ -47,8 +43,6 @@ class Oap3dBudget extends OapBaseElement {
       choicePointsLeft: {
         type: Number
       },
-
-      initialBudget: Number,
 
       usedChoicePointsIsOne: {
         type: Boolean
@@ -87,23 +81,6 @@ class Oap3dBudget extends OapBaseElement {
       showExit: Boolean,
 
       configFromServer: Object,
-
-      scene: Object,
-      camera: Object,
-      defaultCameraPos: Object,
-      defaultCameraRot: Object,
-      defaultGroupPos: Object,
-      defaultGroupRot: Object,
-      composer: Object,
-      controls: Object,
-      renderer: Object,
-      directionalLight: Object,
-      ambientLight: Object,
-      itemsInScene: Object,
-      tween: Object,
-      font3d: Object,
-      budgetGroup3d: Object,
-      fontMesh: Object
     };
   }
 
