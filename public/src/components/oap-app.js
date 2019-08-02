@@ -149,7 +149,9 @@ class OapApp extends OapBaseElement {
 
       debouncedSave: Object,
 
-      usedBonusesAndPenalties: Object
+      usedBonusesAndPenalties: Object,
+
+      savedGameDate: String
     };
   }
 
@@ -2001,7 +2003,7 @@ class OapApp extends OapBaseElement {
   _setBudgetElement(event) {
     setTimeout(()=>{
       this.currentBudget = event.detail;
-    }, 100)
+    }, 5)
   }
 
   filteringFinished () {
@@ -2184,7 +2186,7 @@ class OapApp extends OapBaseElement {
     if (!this.debouncedSave && !this.disableAutoSave) {
       this.debouncedSave = setTimeout(()=>{
         localStorage.setItem(this.GAME_STATE_VERSION, JSON.stringify({
-          page: this._page,
+          path: window.decodeURIComponent(location.pathname),
           totalChoicePoints: this.totalChoicePoints,
           usedChoicePoints: this.usedChoicePoints,
           selectedItems: this.selectedItems,
@@ -2240,14 +2242,14 @@ class OapApp extends OapBaseElement {
       this.filteredItems = gameState.filteredItems;
       this.usedBonusesAndPenalties = gameState.usedBonusesAndPenalties;
       setTimeout(()=>{
-        this._gotoLocation("/"+gameState.page);
+        this._gotoLocation(gameState.path);
         this.disableAutoSave=false;
         if (this._page=="area-ballot") {
           if (this.currentBudget) {
-            this.currentBudget.resetWidthAnd3DItems();
+//            this.currentBudget.resetWidthAnd3DItems();
           } else {
             setTimeout(()=>{
-              this.currentBudget.resetWidthAnd3DItems();
+  //            this.currentBudget.resetWidthAnd3DItems();
             }, 50);
           }
         }

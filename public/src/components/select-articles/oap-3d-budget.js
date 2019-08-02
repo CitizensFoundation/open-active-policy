@@ -471,19 +471,6 @@ class Oap3dBudget extends OapBaseElement {
 
     if (changedProps.has('choicePointsLeft')) {
       this.rebuildChoicePoints();
-      if (this.currentBallot && this.currentBallot.currentBudget) {
-        this.currentBallot.setStateOfRemainingItems();
-      } else {
-        setTimeout(()=> {
-          if (this.currentBallot) {
-            this.currentBallot.setStateOfRemainingItems();
-          } else {
-            setTimeout(()=> {
-              this.currentBallot.setStateOfRemainingItems();
-            }, 100);
-          }
-        }, 10);
-      }
     }
 
     if (changedProps.has('totalChoicePoints')) {
@@ -511,6 +498,19 @@ class Oap3dBudget extends OapBaseElement {
         this.choicePointsLeft = choicePointsLeft;
       } else {
         this.choicePointsLeft = 0;
+      }
+      if (this.currentBallot && this.currentBallot.currentBudget) {
+        this.currentBallot.setStateOfRemainingItems();
+      } else {
+        setTimeout(()=> {
+          if (this.currentBallot) {
+            this.currentBallot.setStateOfRemainingItems();
+          } else {
+            setTimeout(()=> {
+              this.currentBallot.setStateOfRemainingItems();
+            }, 100);
+          }
+        }, 10);
       }
     }
     super.updated(changedProps);
@@ -671,6 +671,7 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   _addItemToDiv(item) {
+    console.error("Add item to div");
     var itemWidth = parseInt(this.votesWidth * (item.price / this.totalChoicePoints));
 
     if (!this.wide) {

@@ -190,6 +190,9 @@ class OapBallot extends OapPageViewElement {
       (matches) => {
         this.wide = matches;
       });
+    setTimeout(()=>{
+      this.setStateOfRemainingItems();
+    }, 75);
   }
 
   disconnectedCallback() {
