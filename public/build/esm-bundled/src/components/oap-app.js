@@ -3218,13 +3218,21 @@
   }
 
   .sliderHeader {
-    margin-top: 8px;
+    margin-top: 12px;
+    font-size: 18px;
   }
 
   .emoji {
+    margin-right: 12px;
+    margin-left: 16px;
+    font-size: 24px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .emojiResources {
+    margin-left: 8px;
     margin-right: 8px;
-    width: 45px;
-    height: 45px;
   }
 
   paper-input {
@@ -3769,7 +3777,7 @@
 
             <div class="flexRow">
               <div class="column">
-                <div class="sliderHeader"><span class="emoji">🔋</span>${this.localize("naturalResourceWealth")}</div>
+                <div class="sliderHeader"><span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}</div>
                   <paper-slider
                     @value-changed="${e=>{this.changeStats("naturalResourceWealth",e)}}"
                     .value="${this.country.naturalResourceWealth}"
@@ -5130,6 +5138,8 @@
     text-align: center;
     color: #FFF;
     font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 12px;
   }
 
   paper-tabs {
@@ -5161,6 +5171,21 @@
       margin-left: 16px;
       margin-right: 16px;
     }
+  }
+
+  .headerContainer {
+    color: #aaa;
+    font-size: 24px;
+    padding: 8px;
+    margin: 8px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .countryHeader {
+    color: #FFF;
+    font-size: 26px;
+    font-weight: bold;
   }
 
   [hidden] {
@@ -5560,6 +5585,10 @@
 
           ${this.budgetElement&&this.budgetElement.selectedItems?html$1`
               <div id="itemContainerFinal" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${0===this.selectedView}">
+                <div class="headerContainer">
+                  <div class="constitutionFor">${this.localize("constitutionFor")}</div>
+                  <div class="countryHeader">${this.country.name}</div>
+                </div>
                 ${repeat(this.budgetElement.selectedItems,e=>e.id,(e,t)=>{let i=html$1``;return 0!==t&&this.budgetElement.selectedItems[t-1].module_type_index==e.module_type_index||(i=html$1`
                         <div style="width: 100%;background-color:${this.getModuleColorForItem(e)}" class="flex finalHeader">${e.module_content_type}</div>
                       `),html$1`

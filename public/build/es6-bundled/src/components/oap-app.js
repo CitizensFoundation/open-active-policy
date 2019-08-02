@@ -18695,13 +18695,21 @@ rsa.setPublicKeyFromASN(tree);var crypted=rsa.encrypt(JSON.stringify(selectedIte
   }
 
   .sliderHeader {
-    margin-top: 8px;
+    margin-top: 12px;
+    font-size: 18px;
   }
 
   .emoji {
+    margin-right: 12px;
+    margin-left: 16px;
+    font-size: 24px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .emojiResources {
+    margin-left: 8px;
     margin-right: 8px;
-    width: 45px;
-    height: 45px;
   }
 
   paper-input {
@@ -19249,7 +19257,7 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
 
             <div class="flexRow">
               <div class="column">
-                <div class="sliderHeader"><span class="emoji">🔋</span>${this.localize("naturalResourceWealth")}</div>
+                <div class="sliderHeader"><span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}</div>
                   <paper-slider
                     @value-changed="${event=>{this.changeStats("naturalResourceWealth",event)}}"
                     .value="${this.country.naturalResourceWealth}"
@@ -20678,6 +20686,8 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
     text-align: center;
     color: #FFF;
     font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 12px;
   }
 
   paper-tabs {
@@ -20709,6 +20719,21 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
       margin-left: 16px;
       margin-right: 16px;
     }
+  }
+
+  .headerContainer {
+    color: #aaa;
+    font-size: 24px;
+    padding: 8px;
+    margin: 8px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .countryHeader {
+    color: #FFF;
+    font-size: 26px;
+    font-weight: bold;
   }
 
   [hidden] {
@@ -21117,6 +21142,10 @@ if(event.target&&!event.target.attributes.disabled){this.fire("oav-toggle-item-i
 
           ${this.budgetElement&&this.budgetElement.selectedItems?html$1`
               <div id="itemContainerFinal" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${0===this.selectedView}">
+                <div class="headerContainer">
+                  <div class="constitutionFor">${this.localize("constitutionFor")}</div>
+                  <div class="countryHeader">${this.country.name}</div>
+                </div>
                 ${repeat(this.budgetElement.selectedItems,item=>item.id,(item,index)=>{let headerTemplate=html$1``;if(0===index||this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index){headerTemplate=html$1`
                         <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${item.module_content_type}</div>
                       `}return html$1`
