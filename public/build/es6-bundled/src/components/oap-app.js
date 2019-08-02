@@ -20651,12 +20651,14 @@ this.renderCanvas3d();let target=new Vector3(6,-10,35);new Tween(this.camera.pos
   #submitButtonContainer {
     width: 100%;
     text-align: center;
-    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-top: 12px;
   }
 
   #submitButton {
     color: #FFF;
-    background-color: var(--app-accent-color, #000);
+    background-color: #000;
+    border: 1px solid #FFF;
     margin-left: auto;
     margin-right: auto;
     width: 200px;
@@ -21146,6 +21148,9 @@ if(event.target&&!event.target.attributes.disabled){this.fire("oav-toggle-item-i
                   <div class="constitutionFor">${this.localize("constitutionFor")}</div>
                   <div class="countryHeader">${this.country.name}</div>
                 </div>
+                <div id="submitButtonContainer" class="layout horizontal center-center">
+                   <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-submit-ballot")}}">${this.localize("submitConstitution")}</paper-button>
+                </div>
                 ${repeat(this.budgetElement.selectedItems,item=>item.id,(item,index)=>{let headerTemplate=html$1``;if(0===index||this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index){headerTemplate=html$1`
                         <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${item.module_content_type}</div>
                       `}return html$1`
@@ -21159,9 +21164,6 @@ if(event.target&&!event.target.attributes.disabled){this.fire("oav-toggle-item-i
                         .item="${item}">
                       </oap-article-item>
                     `})}
-              </div>
-              <div id="submitButtonContainer" class="layout horizontal center-center">
-                 <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-submit-ballot")}}">${this.localize("submitConstitution")}</paper-button>
               </div>
             `:""}
 

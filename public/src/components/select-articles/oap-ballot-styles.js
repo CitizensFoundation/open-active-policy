@@ -79,7 +79,8 @@ export const OapBallotStyles = css`
 
   #submitButton {
     color: #FFF;
-    background-color: var(--app-accent-color, #000);
+    background-color: #000;
+    border: 1px solid #FFF;
     margin-left: auto;
     margin-right: auto;
     width: 200px;

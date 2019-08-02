@@ -5103,12 +5103,14 @@
   #submitButtonContainer {
     width: 100%;
     text-align: center;
-    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-top: 12px;
   }
 
   #submitButton {
     color: #FFF;
-    background-color: var(--app-accent-color, #000);
+    background-color: #000;
+    border: 1px solid #FFF;
     margin-left: auto;
     margin-right: auto;
     width: 200px;
@@ -5589,6 +5591,9 @@
                   <div class="constitutionFor">${this.localize("constitutionFor")}</div>
                   <div class="countryHeader">${this.country.name}</div>
                 </div>
+                <div id="submitButtonContainer" class="layout horizontal center-center">
+                   <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-submit-ballot")}}">${this.localize("submitConstitution")}</paper-button>
+                </div>
                 ${repeat(this.budgetElement.selectedItems,e=>e.id,(e,t)=>{let i=html$1``;return 0!==t&&this.budgetElement.selectedItems[t-1].module_type_index==e.module_type_index||(i=html$1`
                         <div style="width: 100%;background-color:${this.getModuleColorForItem(e)}" class="flex finalHeader">${e.module_content_type}</div>
                       `),html$1`
@@ -5602,9 +5607,6 @@
                         .item="${e}">
                       </oap-article-item>
                     `})}
-              </div>
-              <div id="submitButtonContainer" class="layout horizontal center-center">
-                 <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-submit-ballot")}}">${this.localize("submitConstitution")}</paper-button>
               </div>
             `:""}
 
