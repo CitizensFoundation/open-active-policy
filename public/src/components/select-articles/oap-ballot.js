@@ -106,6 +106,10 @@ class OapBallot extends OapPageViewElement {
           ${(this.budgetElement && this.budgetElement.selectedItems) ?
             html`
               <div id="itemContainerFinal" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${this.selectedView===0}">
+                <div class="headerContainer">
+                  <div class="constitutionFor">${this.localize("constitutionFor")}</div>
+                  <div class="countryHeader">${this.country.name}</div>
+                </div>
                 ${repeat(this.budgetElement.selectedItems, (item) => item.id,  (item, index) => {
                    let headerTemplate = html``;
                     if (index===0 || this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index) {

@@ -428,7 +428,7 @@ class OapCountryCreation extends OapPageViewElement {
 
             <div class="flexRow">
               <div class="column">
-                <div class="sliderHeader"><span class="emoji">🔋</span>${this.localize("naturalResourceWealth")}</div>
+                <div class="sliderHeader"><span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}</div>
                   <paper-slider
                     @value-changed="${(event) => { this.changeStats('naturalResourceWealth', event)}}"
                     .value="${this.country.naturalResourceWealth}"

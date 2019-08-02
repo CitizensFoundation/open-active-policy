@@ -108,6 +108,8 @@ export const OapBallotStyles = css`
     text-align: center;
     color: #FFF;
     font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 12px;
   }
 
   paper-tabs {
@@ -139,6 +141,21 @@ export const OapBallotStyles = css`
       margin-left: 16px;
       margin-right: 16px;
     }
+  }
+
+  .headerContainer {
+    color: #aaa;
+    font-size: 24px;
+    padding: 8px;
+    margin: 8px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .countryHeader {
+    color: #FFF;
+    font-size: 26px;
+    font-weight: bold;
   }
 
   [hidden] {

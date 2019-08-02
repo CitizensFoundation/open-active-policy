@@ -90,13 +90,21 @@ export const OapCountryCreationStyles = css`
   }
 
   .sliderHeader {
-    margin-top: 8px;
+    margin-top: 12px;
+    font-size: 18px;
   }
 
   .emoji {
+    margin-right: 12px;
+    margin-left: 16px;
+    font-size: 24px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .emojiResources {
+    margin-left: 8px;
     margin-right: 8px;
-    width: 45px;
-    height: 45px;
   }
 
   paper-input {
