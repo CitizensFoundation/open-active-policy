@@ -463,7 +463,7 @@ class OapApp extends OapBaseElement {
       }
     ],
 
-    this.allItems = [
+    this.originalItems = [
       { id: '-1000000',
       branch: 'Executive',
       name: 'Executive Branch',
@@ -1910,7 +1910,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-used-choice-points-changed", this.usedChoicePointsChanged);
     this.addEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
     this.addEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
-    this.addEventListener("oap-clear-filtered-items", this.clearfilteredItems);
+    this.addEventListener("oap-reset-all-items", this.resetAllItems);
   }
 
   _removeListeners() {
@@ -1947,7 +1947,7 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-used-choice-points-changed", this.usedChoicePointsChanged);
     this.removeEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
     this.removeEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
-    this.removeEventListener("oap-clear-filtered-items", this.clearfilteredItems);
+    this.addEventListener("oap-reset-all-items", this.resetAllItems);
   }
 
   usedBonusesAndPenaltiesChanged(event) {
@@ -1992,8 +1992,12 @@ class OapApp extends OapBaseElement {
     }
   }
 
-  clearfilteredItems() {
+  resetAllItems() {
+    console.error("resetAllItems");
     this.filteredItems = [];
+    this.selectedItems = [];
+    var a= this.allItems;
+    debugger;
   }
 
   _setBallotElement(event) {

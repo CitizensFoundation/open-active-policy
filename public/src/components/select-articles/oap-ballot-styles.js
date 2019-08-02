@@ -123,7 +123,7 @@ export const OapBallotStyles = css`
   }
 
   .favOpacityDown {
-    transition: opacity 50ms ease-in-out;
+    transition: opacity 250ms ease-in-out;
     opacity: 0.5;
   }
 
