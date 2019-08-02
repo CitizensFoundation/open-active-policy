@@ -163,10 +163,6 @@ class OapBallot extends OapPageViewElement {
       }
     }
 
-    if (changedProps.has('budgetElement')) {
-//      this.loadArea();
-    }
-
     if (changedProps.has('favoriteItem')) {
       this.oldFavoriteItem = changedProps.get('favoriteItem');
       if (!this.favoriteItem && this.oldFavoriteItem) {
@@ -212,7 +208,7 @@ class OapBallot extends OapPageViewElement {
         this.area = response.area;
         this.budgetBallotItems = this._setupLocationsAndTranslation(response.budget_ballot_items);
         this.fire('oav-set-title', this.localize('ballot_area_name', 'area_name', this.area.name));
-        this.fire('oav-set-area', { areaName: this.area.name, totalBudget: this.area.budget_amount });
+        this.fire('oav-set-area', { areaName: this.area.name, totalChoicePoints: this.area.budget_amount });
         setTimeout( () => {
           this.$$("#tabs").shadowRoot.getElementById("selectionBar").style.setProperty("border-bottom", "3px solid var(--paper-tabs-selection-bar-color)");
         });
@@ -248,8 +244,9 @@ class OapBallot extends OapPageViewElement {
     this.area = {id: 1, name: "Hello"};
     this.favoriteItem = null;
     this.selectedView = 0;
-    this.fire('oav-set-area', { areaName: null, totalBudget: null });
-    this.usedBonusesAndPenalties = [];
+    this.fire('oav-set-area', { areaName: null, totalChoicePoints: null });
+    if (!this.usedBonusesAndPenalties)
+     this.usedBonusesAndPenalties = {};
   }
 
   _selectedChanged(event) {
@@ -370,6 +367,7 @@ class OapBallot extends OapPageViewElement {
     for( var i = 0; i < this.budgetBallotItems.length; i++){
       if (this.budgetBallotItems[i].id==itemId) {
         this.budgetBallotItems.splice(i,1);
+        this.fire('oap-filtered-items-changed', this.budgetBallotItems);
       }
     }
   }
@@ -402,15 +400,16 @@ class OapBallot extends OapPageViewElement {
         const usedKey = item.id+item.type+item.value+item.attitute+item.level;
         if (!this.usedBonusesAndPenalties[usedKey]) {
           this.usedBonusesAndPenalties[usedKey] = true;
+          this.fire('oap-usedBonusesAndPenalties-changed', this.usedBonusesAndPenalties);
           if (item.type==="bonus") {
-            this.budgetElement.totalBudget+=item.value;
+            this.budgetElement.totalChoicePoints+=item.value;
             let emoji = this._getEmojiFromAttitute(item.attitute);
             if (!emojis.indexOf(emoji)>-1) {
               emojis.push(emoji);
             }
             totalValue+=item.value;
           } else if (item.type==="penalty") {
-            this.budgetElement.totalBudget-=item.value;
+            this.budgetElement.totalChoicePoints-=item.value;
             totalValue-=item.value;
             let emoji = this._getEmojiFromAttitute(item.attitute);
             if (!emojis.indexOf(emoji)>-1) {
@@ -457,8 +456,8 @@ class OapBallot extends OapPageViewElement {
   async setStateOfRemainingItems(startTimeout, inbetweenTimeout) {
     console.error("setStateOfRemainingItems");
     await new Promise(resolve => setTimeout(resolve, startTimeout ? startTimeout: 125 ));
-    var budgetLeft = this.budgetElement.totalBudget-this.budgetElement.selectedBudget;
-    console.error("_setStateOfRemainingItems: "+budgetLeft);
+    var choicePointsLeft = this.budgetElement.totalChoicePoints-this.budgetElement.usedChoicePoints;
+    console.error("_setStateOfRemainingItems: "+choicePointsLeft);
     var listItems = this.$$("#itemContainer");
     if (listItems) {
       const allSelectedIds = this.budgetElement.selectedItems.map((item) => {
@@ -483,7 +482,7 @@ class OapBallot extends OapPageViewElement {
             });
           }
 
-          if (listItem.item.price<=budgetLeft) {
+          if (listItem.item.price<=choicePointsLeft) {
             listItem.setNotTooExpensive();
           } else {
             listItem.setTooExpensive();

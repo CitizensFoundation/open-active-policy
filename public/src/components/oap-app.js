@@ -135,13 +135,21 @@ class OapApp extends OapBaseElement {
 
       filteredItems: Array,
 
+      selectedItems: Array,
+
       quizQuestions: Array,
 
-      choicePoints: Number,
+      totalChoicePoints: Number,
+
+      usedChoicePoints: Number,
 
       snackBarContent: String,
 
-      country: Object
+      country: Object,
+
+      debouncedSave: Object,
+
+      usedBonusesAndPenalties: Object
     };
   }
 
@@ -225,15 +233,17 @@ class OapApp extends OapBaseElement {
             <div class="helpIconInBudget">
               <paper-icon-button icon="help-outline" alt="${this.localize('help')}" @click="${this._help}}"></paper-icon-button>
             </div>
-            ${ !this.hideBudget ?  html`
+            ${ this._page==="area-ballot"  ?  html`
               <div class="budgetConstainer layout horizontal center-center">
                 <oap-3d-budget
                   id="budget"
                   .areaName="${this.areaName}"
                   .language="${this.language}"
+                  .selectedItems="${this.selectedItems}"
                   .showExit="${this.showExit}"
                   .font3d="${this.font3d}"
-                  .totalBudget="${this.choicePoints}"
+                  .usedChoicePoints="${this.usedChoicePoints}"
+                  .totalChoicePoints="${this.totalChoicePoints}"
                   .configFromServer="${this.configFromServer}"
                   .currentBallot="${this.currentBallot}">
                 </oap-3d-budget>
@@ -242,27 +252,30 @@ class OapApp extends OapBaseElement {
           </app-toolbar>
           <iron-icon id="favoriteIcon" icon="${this.favoriteIcon}" hidden></iron-icon>
         </app-header>
+
         <main role="main" class="main-content" ?has-ballot="${this._page == 'area-ballot'}">
-          <oap-country-creation
-            id="createCountry"
-            .configFromServer="${this.configFromServer}"
-            .nickname="Robert Bjarnason"
-            .language="${this.language}"
-            class="page"
-            ?active="${this._page === 'create-country'}">
-          </oap-country-creation>
-            ${ this._page==="quiz" ?  html`
-              <oap-policy-quiz
-                id="quiz"
-                .questions="${this.quizQuestions}"
-                .configFromServer="${this.configFromServer}"
-                .nickname="Robert Bjarnason"
-                .language="${this.language}"
-                .choicePoints="${this.choicePoints}"
-                class="page"
-                ?active="${this._page === 'quiz'}">
-              </oap-policy-quiz>
+          ${ this._page==="create-country" ?  html`
+            <oap-country-creation
+              id="createCountry"
+              .configFromServer="${this.configFromServer}"
+              .nickname="Robert Bjarnason"
+              .language="${this.language}"
+              class="page"
+              ?active="${this._page === 'create-country'}">
+            </oap-country-creation>
             ` : html``}
+          ${ this._page==="quiz" ?  html`
+            <oap-policy-quiz
+              id="quiz"
+              .questions="${this.quizQuestions}"
+              .configFromServer="${this.configFromServer}"
+              .nickname="Robert Bjarnason"
+              .language="${this.language}"
+              .totalChoicePoints="${this.totalChoicePoints}"
+              class="page"
+              ?active="${this._page === 'quiz'}">
+            </oap-policy-quiz>
+          ` : html``}
           ${ this._page==="filter-articles" ?  html`
             <oap-filter-articles id="filterArticles"
               .language="${this.language}"
@@ -273,30 +286,37 @@ class OapApp extends OapBaseElement {
               ?active="${this._page === 'filter-articles'}">
             </oap-filter-articles>
           ` : html`` }
-          <oap-article-selection
-            .configFromServer="${this.configFromServer}"
-            class="page"
-            .language="${this.language}"
-            ?active="${this._page === 'article-selection'}">
-          </oap-article-selection>
-          <oap-ballot id="budgetBallot"
-            .budgetBallotItems="${this.filteredItems}"
-            .configFromServer="${this.configFromServer}"
-            .budgetElement="${this.currentBudget}"
-            .language="${this.language}"
-            .country="${this.country}"
-            class="page"
-            ?active="${this._page === 'area-ballot'}">
-          </oap-ballot>
-          <oap-review id="review"
-            .budgetBallotItems="${this.filteredItems}"
-            .configFromServer="${this.configFromServer}"
-            .budgetElement="${this.currentBudget}"
-            .language="${this.language}"
-            .country="${this.country}"
-            class="page"
-            ?active="${this._page === 'review'}">
-          </oap-review>
+          ${ this._page==="area-ballot" ?  html`
+            <oap-ballot id="budgetBallot"
+              .budgetBallotItems="${this.filteredItems}"
+              .configFromServer="${this.configFromServer}"
+              .budgetElement="${this.currentBudget}"
+              .language="${this.language}"
+              .country="${this.country}"
+              .usedBonusesAndPenalties="${this.usedBonusesAndPenalties}"
+              class="page"
+              ?active="${this._page === 'area-ballot'}">
+            </oap-ballot>
+          ` : html`` }
+          ${ this._page==="article-selection" ?  html`
+            <oap-article-selection
+              .configFromServer="${this.configFromServer}"
+              class="page"
+              .language="${this.language}"
+              ?active="${this._page === 'article-selection'}">
+            </oap-article-selection>
+          ` : html`` }
+          ${ this._page==="review" ?  html`
+            <oap-review id="review"
+              .budgetBallotItems="${this.filteredItems}"
+              .configFromServer="${this.configFromServer}"
+              .budgetElement="${this.currentBudget}"
+              .language="${this.language}"
+              .country="${this.country}"
+              class="page"
+              ?active="${this._page === 'review'}">
+            </oap-review>
+          ` : html`` }
           ${ this._page === 'post' ? html`
             <yp-post
               .id="post"
@@ -320,10 +340,10 @@ class OapApp extends OapBaseElement {
   }
 
   constructor() {
+    super();
     window.__localizationCache = {
       messages: {},
     }
-    super();
     this.hideBudget = true;
     setPassiveTouchGestures(true);
     this._boot();
@@ -344,7 +364,8 @@ class OapApp extends OapBaseElement {
   }
 
   setDummyData() {
-    this.choicePoints = 100;
+    this.totalChoicePoints = 100;
+    this.usedChoicePoints = 0;
     this.quizQuestions = [
       {
         question: "What is the shortest Constitution in the world?",
@@ -1663,7 +1684,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    if (false) {
+    if (true) {
       this.filteredItems = this.allItems;
       this.country = {
         name: "13 Colonies 1783 (US Constitutional Convention)",
@@ -1735,13 +1756,13 @@ class OapApp extends OapBaseElement {
       duration: 300,
     });
 
-    this.choicePoints+=5;
+    this.totalChoicePoints+=5;
     this.activity('correct', 'quizAnswer');
   }
 
   processBonusPoints(event) {
     this.fire('oap-play-sound-effect', 'oap_short_win_1');
-    this.choicePoints+= event.detail ? event.detail : 5;
+    this.totalChoicePoints+= event.detail ? event.detail : 5;
     this.activity('bonus', 'forManualSwiping');
   }
 
@@ -1877,6 +1898,11 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-submit-ballot", this.submitBallot);
     this.addEventListener("oap-bonus-points", this.processBonusPoints);
     this.addEventListener("oap-set-3d-font", this.set3dFont);
+    this.addEventListener("oap-filtered-items-changed", this.filteredItemsChanged);
+    this.addEventListener("oap-selected-items-changed", this.selectedItemsChanged);
+    this.addEventListener("oap-used-choice-points-changed", this.usedChoicePointsChanged);
+    this.addEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
+    this.addEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
   }
 
   _removeListeners() {
@@ -1908,6 +1934,33 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-submit-ballot", this.submitBallot);
     this.removeEventListener("oap-bonus-points", this.processBonusPoints);
     this.removeEventListener("oap-set-3d-font", this.set3dFont);
+    this.removeEventListener("oap-filtered-items-changed", this.filteredItemsChanged);
+    this.removeEventListener("oap-selected-items-changed", this.selectedItemsChanged);
+    this.removeEventListener("oap-used-choice-points-changed", this.usedChoicePointsChanged);
+    this.removeEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
+    this.removeEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
+  }
+
+  usedBonusesAndPenaltiesChanged(event) {
+    this.usedBonusesAndPenalties = event.detail;
+  }
+
+  totalChoicePointsChanged(event) {
+    this.totalChoicePoints = event.detail;
+    console.error("Total choice points:", this.totalChoicePoints);
+  }
+
+  usedChoicePointsChanged(event) {
+    this.usedChoicePoints = event.detail;
+    console.error("Used choice points:", this.usedChoicePoints);
+  }
+
+  filteredItemsChanged(event) {
+    this.filteredItems = event.detail;
+  }
+
+  selectedItemsChanged(event) {
+    this.selectedItems = event.detail;
   }
 
   set3dFont(event) {
@@ -2050,6 +2103,8 @@ class OapApp extends OapBaseElement {
   }
 
   firstUpdated() {
+    super.firstUpdated();
+    this.restoreGameFromSave();
     this._setupListeners();
     installRouter((location) => this._locationChanged(location));
     installOfflineWatcher((offline) => this._offlineChanged(offline));
@@ -2115,7 +2170,38 @@ class OapApp extends OapBaseElement {
     document.getElementsByTagName('head')[0].appendChild(link);
   }
 
+  saveDebounced() {
+    if (!this.debouncedSave) {
+      this.debouncedSave = setTimeout(()=>{
+        localStorage.setItem('oapGameState', JSON.stringify({
+          page: this._page,
+          totalChoicePoints: this.totalChoicePoints,
+          usedChoicePoints: this.usedChoicePoints,
+          selectedItems: this.selectedItems,
+          filteredItems: this.filteredItems,
+          usedBonusesAndPenalties: this.usedBonusesAndPenalties
+        }));
+        this.debouncedSave=null;
+      },5*1000);
+    }
+  }
+
+  restoreGameFromSave() {
+    let gameState = localStorage.getItem('oapGameState');
+    if (gameState) {
+      gameState = JSON.parse(gameState);
+      this._page = gameState.page;
+      this.totalChoicePoints = gameState.totalChoicePoints;
+      this.usedChoicePoints = gameState.usedChoicePoints;
+      this.selectedItems = gameState.selectedItems;
+      this.filteredItems = gameState.filteredItems;
+      this.usedBonusesAndPenalties = gameState.usedBonusesAndPenalties;
+    }
+  }
+
   updated(changedProps) {
+    super.updated(changedProps);
+    this.saveDebounced();
     if (changedProps.has('language')) {
       this.setupLocaleTexts();
     }

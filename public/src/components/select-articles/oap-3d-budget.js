@@ -41,20 +41,22 @@ class Oap3dBudget extends OapBaseElement {
         value: null
       },
 
-      selectedBudget: {
+      usedChoicePoints: {
         type: Number,
         value: 0
       },
 
-      totalBudget: {
+      totalChoicePoints: {
         type: Number
       },
 
-      budgetLeft: {
+      choicePointsLeft: {
         type: Number
       },
 
-      selectedBudgetIsOne: {
+      initialBudget: Number,
+
+      usedChoicePointsIsOne: {
         type: Boolean
       },
 
@@ -343,8 +345,8 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   rebuildChoicePoints(firstTime) {
-    if (this.budgetLeft!=null && this.font3d) {
-      var geometry = new TextGeometry( this.budgetLeft+'cp', {
+    if (this.choicePointsLeft!=null && this.font3d) {
+      var geometry = new TextGeometry( this.choicePointsLeft+'cp', {
         font: this.font3d,
         size: window.innerWidth>600 ? 10 : 5,
         height: window.innerWidth>600 ? 2 : 1.2,
@@ -383,14 +385,14 @@ class Oap3dBudget extends OapBaseElement {
         this.fontMesh.geometry=geometry;
       }
 
-      if (this.budgetLeft<75 || firstTime) {
+      if (this.choicePointsLeft<75 || firstTime) {
 
         let duration=750;
-        if (this.budgetLeft<40) {
+        if (this.choicePointsLeft<40) {
           duration=600;
         }
 
-        if (this.budgetLeft<20) {
+        if (this.choicePointsLeft<20) {
           duration=300;
         }
 
@@ -457,26 +459,34 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   updated(changedProps) {
-    super.updated(changedProps);
-    if (changedProps.has('selectedBudget')) {
-      this.selectedBudgetIsOne = (this.selectedBudget && this.selectedBudget===1.0);
+    if (changedProps.has('usedChoicePoints')) {
+      this.usedChoicePointsIsOne = (this.usedChoicePoints && this.usedChoicePoints===1.0);
+      this.fire('oap-selected-budget-updated', this.usedChoicePoints);
     }
 
     if (changedProps.has('selectedItems')) {
       this._selectedItemsChanged();
+      this.fire('oap-selected-items-changed', this.selectedItems);
     }
 
-
-    if (changedProps.has('budgetLeft')) {
+    if (changedProps.has('choicePointsLeft')) {
       this.rebuildChoicePoints();
+      if (this.currentBallot) {
+        this.currentBallot.setStateOfRemainingItems();
+      } else {
+        setTimeout(()=> {
+          this.currentBallot.setStateOfRemainingItems();
+        }, 10);
+      }
     }
 
-    if (changedProps.has('totalBudget')) {
-      if (this.itemsInScene.length>0 && this.totalBudget!=changedProps.get("totalBudget")) {
-        console.error(this.totalBudget+" "+ changedProps.get("totalBudget"));
+    if (changedProps.has('totalChoicePoints')) {
+      this.fire('oap-total-choice-points-changed', this.totalChoicePoints);
+      if (this.itemsInScene.length>0 && this.totalChoicePoints!=changedProps.get("totalChoicePoints")) {
+        console.error(this.totalChoicePoints+" "+ changedProps.get("totalChoicePoints"));
         this.resetItemsWidth();
-        const oldTotalBudget = changedProps.get("totalBudget");
-        if (oldTotalBudget<this.totalBudget) {
+        const oldtotalChoicePoints = changedProps.get("totalChoicePoints");
+        if (oldtotalChoicePoints<this.totalChoicePoints) {
           //this.rotateTimeShift();
 //          this.rotateAllItems();
           this.fire('oap-play-sound-effect', 'oap_short_win_1');
@@ -484,15 +494,20 @@ class Oap3dBudget extends OapBaseElement {
       }
     }
 
-    if (changedProps.has('selectedBudget') || changedProps.has('totalBudget')) {
-      console.error(this.selectedBudget+" : "+this.totalBudget);
-      var budgetLeft = this.totalBudget-this.selectedBudget;
-      if (budgetLeft>0) {
-        this.budgetLeft = budgetLeft;
+    if (changedProps.has('usedChoicePoints')) {
+      this.fire('oap-used-choice-points-changed', this.usedChoicePoints);
+    }
+
+    if (changedProps.has('usedChoicePoints') || changedProps.has('totalChoicePoints')) {
+      console.error("Used "+this.usedChoicePoints+" of "+this.totalChoicePoints);
+      var choicePointsLeft = this.totalChoicePoints-this.usedChoicePoints;
+      if (choicePointsLeft>0) {
+        this.choicePointsLeft = choicePointsLeft;
       } else {
-        this.budgetLeft = 0;
+        this.choicePointsLeft = 0;
       }
     }
+    super.updated(changedProps);
   }
 
   static get styles() {
@@ -515,7 +530,7 @@ class Oap3dBudget extends OapBaseElement {
   firstUpdated() {
     this.reset();
     this._resetWidth();
-    this.setupScene();
+    this.rebuildChoicePoints();
     installMediaQueryWatcher(`(min-width: 1024px)`,
       (matches) => {
         if (matches)
@@ -567,7 +582,6 @@ class Oap3dBudget extends OapBaseElement {
     super();
   }
 
-
   _exit () {
     this.fire("oav-exit");
   }
@@ -581,11 +595,14 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   _resetWidth() {
+    console.error("_resetWidth");
     if (this.wide) {
       this.votesWidth = 940;
     } else {
       this.votesWidth = window.innerWidth;
     }
+    this.setupScene();
+
     this._resetBudgetDiv();
     this.selectedItems.forEach(function (item) {
       this._addItemToDiv(item);
@@ -607,7 +624,6 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   _selectedItemsChanged() {
-    this.currentBallot.setStateOfRemainingItems();
     if (this.selectedItems && this.selectedItems.length>0) {
       this.noSelectedItems = false;
       if (this.$$("#votingButton"))
@@ -621,19 +637,20 @@ class Oap3dBudget extends OapBaseElement {
 
   reset() {
     this._resetBudgetDiv();
-    this.selectedItems = [];
+    if (!this.selectedItems)
+      this.selectedItems = [];
     this.fontGeometryCache = {};
     this.itemsInScene=[];
     this.cameraSpotLight = null;
     this.budgetGroup3d = null;
-    this.selectedBudget = 0;
+    this.choicePointsLeft = this.totalChoicePoints-this.usedChoicePoints;
     this.budgetHeaderImage = this.configFromServer.client_config.ballotBudgetLogo;
   }
 
   _resetBudgetDiv() {
     let votes = this.$$("#votes");
     if (votes) {
-      while (votes.lastChild && votes.lastChild.id!='noItems' && votes.lastChild.id!='budgetLeftInfo') {
+      while (votes.lastChild && votes.lastChild.id!='noItems' && votes.lastChild.id!='choicePointsLeftInfo') {
         votes.removeChild(votes.lastChild);
       }
     }
@@ -650,7 +667,7 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   _addItemToDiv(item) {
-    var itemWidth = parseInt(this.votesWidth * (item.price / this.totalBudget));
+    var itemWidth = parseInt(this.votesWidth * (item.price / this.totalChoicePoints));
 
     if (!this.wide) {
       itemWidth -= 1;
@@ -701,7 +718,7 @@ class Oap3dBudget extends OapBaseElement {
 
   resetItemsWidth() {
     this.itemsInScene.forEach((dItem)=> {
-      let itemWidth = parseInt(this.votesWidth * (dItem.item.price / this.totalBudget));
+      let itemWidth = parseInt(this.votesWidth * (dItem.item.price / this.totalChoicePoints));
       var fudgetFactorPx = 0.033;
       itemWidth = itemWidth*fudgetFactorPx;
       if (dItem.width!=itemWidth) {
@@ -939,10 +956,10 @@ class Oap3dBudget extends OapBaseElement {
         ...this.selectedItems
       ];
 
-      this.selectedBudget = this.selectedBudget - item.price;
+      this.usedChoicePoints = this.usedChoicePoints - item.price;
       this.currentBallot.fire('oav-item-de-selected-from-budget', { itemId: item.id });
     } else {
-      if (this.selectedBudget+item.price<=this.totalBudget) {
+      if (this.usedChoicePoints+item.price<=this.totalChoicePoints) {
         this.activity('add', 'vote');
         this.selectedItems.push(item);
         this.selectedItems = this.selectedItems.sort((itemA, itemB)=> {
@@ -952,7 +969,7 @@ class Oap3dBudget extends OapBaseElement {
           ...this.selectedItems
         ];
         this._addItemToDiv(item);
-        this.selectedBudget = this.selectedBudget + item.price;
+        this.usedChoicePoints = this.usedChoicePoints + item.price;
         this.currentBallot.fire('oav-item-selected-in-budget', { itemId: item.id });
       } else {
         this.currentBallot.fire('oav-error', this.localize('error_does_not_fit_in_budget'));

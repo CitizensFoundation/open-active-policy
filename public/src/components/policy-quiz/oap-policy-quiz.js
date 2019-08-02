@@ -27,7 +27,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       dirLightOne: Object,
       dirLightTwo: Object,
       submitDisabled: Boolean,
-      choicePoints: Number
+      totalChoicePoints: Number
     };
   }
 
@@ -187,7 +187,7 @@ class OapPolicyQuiz extends OapPageViewElement {
           <div id="canvas3d"></div>
           <div class="layout horizontal progress">
             <div class="middle textLeft">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
-            <div class="middle textRight">${this.localize("youHave")} ${this.choicePoints}cp</div>
+            <div class="middle textRight">${this.localize("youHave")} ${this.totalChoicePoints}cp</div>
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
           <div class="vertical center">
