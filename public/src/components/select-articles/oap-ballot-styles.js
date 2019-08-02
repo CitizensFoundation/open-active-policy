@@ -102,24 +102,24 @@ export const OapBallotStyles = css`
   }
 
   .tab[selected] {
-    color: #ddd;
+    color: #d0d0d0;
     padding-bottom: 1px;
     padding-left: 12px;
     padding-right: 12px;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #ddd;
   }
 
   .favTab {
     z-index: 9001;
     position: fixed;
-    top: 171px;
+    top: 166px;
     left: 32px;
   }
 
   .selectedTab {
     z-index: 9001;
     position: fixed;
-    top: 171px;
+    top: 166px;
     left: 175px;
   }
 
@@ -142,12 +142,9 @@ export const OapBallotStyles = css`
   }
 
 
-  @media (max-width: 600px) {
+  @media (max-width: 1000px) {
     .topContainer {
       margin-top: 52px;
-    }
-    .selectedTab {
-      left: 175px;
     }
   }
 
