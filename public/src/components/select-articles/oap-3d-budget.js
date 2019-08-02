@@ -21,29 +21,23 @@ class Oap3dBudget extends OapBaseElement {
   static get properties() {
     return {
       selectedItems: {
-        type: Array,
-        value: [],
-        notify: true
+        type: Array
       },
 
       toastCounter: {
-        type: Number,
-        value: 0
+        type: Number
       },
 
       noSelectedItems: {
-        type: Boolean,
-        value: true
+        type: Boolean
       },
 
       areaName: {
-        type: String,
-        value: null
+        type: String
       },
 
       usedChoicePoints: {
-        type: Number,
-        value: 0
+        type: Number
       },
 
       totalChoicePoints: {

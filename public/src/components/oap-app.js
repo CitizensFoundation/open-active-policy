@@ -151,7 +151,9 @@ class OapApp extends OapBaseElement {
 
       usedBonusesAndPenalties: Object,
 
-      savedGameDate: String
+      savedGameDate: String,
+
+      disableAutoSave: Boolean
     };
   }
 
@@ -2202,8 +2204,8 @@ class OapApp extends OapBaseElement {
         this.debouncedSave=null;
         console.info("Have autosaved game");
       }, 5*1000);
-    } else {
-      //console.error("Either in debounce or autosavedisabled: "+this.disableAutoSave);
+    } else if (!this.disableAutoSave) {
+      console.warn("Autosaved is disabled: ");
     }
   }
 
@@ -2249,17 +2251,8 @@ class OapApp extends OapBaseElement {
       this.filteredItems = gameState.filteredItems;
       this.usedBonusesAndPenalties = gameState.usedBonusesAndPenalties;
       setTimeout(()=>{
-        this._gotoLocation(gameState.path);
         this.disableAutoSave=false;
-        if (this._page=="area-ballot") {
-          if (this.currentBudget) {
-//            this.currentBudget.resetWidthAnd3DItems();
-          } else {
-            setTimeout(()=>{
-  //            this.currentBudget.resetWidthAnd3DItems();
-            }, 50);
-          }
-        }
+        this._gotoLocation(gameState.path);
       });
     } else {
       console.error("Trying to restore game state, not valid state");
