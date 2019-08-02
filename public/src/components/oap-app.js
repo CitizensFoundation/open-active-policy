@@ -194,6 +194,16 @@ class OapApp extends OapBaseElement {
           </div>
         </paper-dialog>
 
+        <paper-dialog id="savedGameDialog" modal>
+          <div class="savedGameContent">
+            ${this.localize("youHaveAnAutoSavedGameFrom")} ${this.savedGameDate}
+          </div>
+          <div class="saveButtons">
+            <paper-button class="savedGameButton"" @click="${this.restoreGameFromSave}" dialog-dismiss>${this.localize('reloadSavedGame')}</paper-button>
+            <paper-button class="savedGameButton"  @click="${this.openWelcomeAfterSave}" dialog-dismiss>${this.localize('newGame')}</paper-button>
+          </div>
+        </paper-dialog>
+
         <paper-dialog id="welcomeDialog" with-backdrop>
           <paper-dialog-scrollable>
             <div class="vertical center-center">
@@ -341,11 +351,12 @@ class OapApp extends OapBaseElement {
 
   constructor() {
     super();
+    setPassiveTouchGestures(true);
     window.__localizationCache = {
       messages: {},
     }
     this.hideBudget = true;
-    setPassiveTouchGestures(true);
+    this.disableAutoSave = true;
     this._boot();
     var name = "locale".replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -357,6 +368,7 @@ class OapApp extends OapBaseElement {
     }
     this.filteredItems = [];
     this.setDummyData();
+    this.GAME_STATE_VERSION="OapGameStateV1";
   }
 
   helpClosed() {
@@ -1684,7 +1696,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    if (true) {
+    if (false) {
       this.filteredItems = this.allItems;
       this.country = {
         name: "13 Colonies 1783 (US Constitutional Convention)",
@@ -1834,14 +1846,7 @@ class OapApp extends OapBaseElement {
           this.fire('location-changed', path);
         }
 
-        if (this.configFromServer.client_config.welcomeLocales) {
-          setTimeout( () => {
-            if (!localStorage.getItem("haveClsosedWelcome")) {
-              this.$$("#welcomeDialog").open();
-            }
-          });
-        }
-
+        this.checkForRestoredGameOrWelcome();
 
         window.language = this.language;
         window.localize = this.localize;
@@ -1903,6 +1908,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-used-choice-points-changed", this.usedChoicePointsChanged);
     this.addEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
     this.addEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
+    this.addEventListener("oap-clear-filtered-items", this.clearfilteredItems);
   }
 
   _removeListeners() {
@@ -1939,6 +1945,7 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-used-choice-points-changed", this.usedChoicePointsChanged);
     this.removeEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
     this.removeEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
+    this.removeEventListener("oap-clear-filtered-items", this.clearfilteredItems);
   }
 
   usedBonusesAndPenaltiesChanged(event) {
@@ -1983,14 +1990,18 @@ class OapApp extends OapBaseElement {
     }
   }
 
+  clearfilteredItems() {
+    this.filteredItems = [];
+  }
+
   _setBallotElement(event) {
     this.currentBallot = event.detail;
   }
 
   _setBudgetElement(event) {
-    setTimeout(()=> {
+    setTimeout(()=>{
       this.currentBudget = event.detail;
-    }, 100);
+    }, 100)
   }
 
   filteringFinished () {
@@ -2104,7 +2115,6 @@ class OapApp extends OapBaseElement {
 
   firstUpdated() {
     super.firstUpdated();
-    this.restoreGameFromSave();
     this._setupListeners();
     installRouter((location) => this._locationChanged(location));
     installOfflineWatcher((offline) => this._offlineChanged(offline));
@@ -2171,31 +2181,79 @@ class OapApp extends OapBaseElement {
   }
 
   saveDebounced() {
-    if (!this.debouncedSave) {
+    if (!this.debouncedSave && !this.disableAutoSave) {
       this.debouncedSave = setTimeout(()=>{
-        localStorage.setItem('oapGameState', JSON.stringify({
+        localStorage.setItem(this.GAME_STATE_VERSION, JSON.stringify({
           page: this._page,
           totalChoicePoints: this.totalChoicePoints,
           usedChoicePoints: this.usedChoicePoints,
           selectedItems: this.selectedItems,
           filteredItems: this.filteredItems,
+          dateSaved: new Date(),
+          country: this.country,
           usedBonusesAndPenalties: this.usedBonusesAndPenalties
         }));
         this.debouncedSave=null;
-      },5*1000);
+        console.info("Have autosaved game");
+      }, 3*1000);
+    } else {
+      console.error("Either in debounce or autosavedisabled: "+this.disableAutoSave);
+    }
+  }
+
+  checkForRestoredGameOrWelcome() {
+    setTimeout(()=>{
+      let gameState = localStorage.getItem(this.GAME_STATE_VERSION);
+      if (gameState!=null) {
+        gameState = JSON.parse(gameState);
+        this.savedGameDate = gameState.dateSaved;
+        this.$$("#savedGameDialog").open();
+      } else {
+        this.disableAutoSave=false;
+        this.$$("#welcomeDialog").open();
+      }
+    });
+  }
+
+  openWelcomeAfterSave() {
+    this.disableAutoSave=false;
+    localStorage.removeItem(this.GAME_STATE_VERSION);
+    this.totalChoicePoints = 100;
+    this.usedChoicePoints = 0;
+    this.selectedItems = [];
+    this.country = null;
+    this.filteredItems = [];
+    this.usedBonusesAndPenalties = [];
+    if (!localStorage.getItem("haveClsosedWelcome")) {
+      this.$$("#welcomeDialog").open();
     }
   }
 
   restoreGameFromSave() {
-    let gameState = localStorage.getItem('oapGameState');
-    if (gameState) {
+    let gameState = localStorage.getItem(this.GAME_STATE_VERSION);
+    if (gameState!=null) {
       gameState = JSON.parse(gameState);
-      this._page = gameState.page;
       this.totalChoicePoints = gameState.totalChoicePoints;
       this.usedChoicePoints = gameState.usedChoicePoints;
       this.selectedItems = gameState.selectedItems;
+      this.country = gameState.country;
       this.filteredItems = gameState.filteredItems;
       this.usedBonusesAndPenalties = gameState.usedBonusesAndPenalties;
+      setTimeout(()=>{
+        this._gotoLocation("/"+gameState.page);
+        this.disableAutoSave=false;
+        if (this._page=="area-ballot") {
+          if (this.currentBudget) {
+            this.currentBudget.resetWidthAnd3DItems();
+          } else {
+            setTimeout(()=>{
+              this.currentBudget.resetWidthAnd3DItems();
+            }, 50);
+          }
+        }
+      });
+    } else {
+      console.error("Trying to restore game state, not valid state");
     }
   }
 
@@ -2261,11 +2319,13 @@ class OapApp extends OapBaseElement {
       }
 
       if (page==='area-ballot' && (this.filteredItems.length===0 || this.country==null)) {
+        debugger;
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
       }
 
       if (page==='filter-articles' && this.country==null) {
+        debugger;
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
       }
@@ -2308,15 +2368,18 @@ class OapApp extends OapBaseElement {
     this._snackbarOpened = false;
   }
 
+  _gotoLocation(path) {
+    debugger;
+    window.history.pushState({}, null,path);
+    this.fire('location-changed', path);
+  }
+
   _locationChanged(location) {
     if (location instanceof CustomEvent)
       location = { pathname: location.detail };
 
     if (location.pathname==="/") {
-      const path = '/quiz';
-      window.history.pushState({}, null, path);
-      location = { pathname: path };
-      this.fire('location-changed', path);
+      this._gotoLocation("/quiz");
     }
 
     const path = window.decodeURIComponent(location.pathname);

@@ -201,6 +201,25 @@ export const OapAppStyles = css`
     margin-top: 24px;
   }
 
+  #savedGameDialog {
+    background-color: #000;
+    color: #FFF;
+  }
+
+  .savedGameContent {
+    font-size: 20px;
+    padding: 16px;
+  }
+
+  .savedGameButton {
+    background-color: #000;
+    color: #FFF;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #FFF;
+    margin-bottom: 16px;
+  }
+
   #favoriteIcon {
     color: var(--app-facvorite-icon-color, rgb(255,215,0));
     background-color: transparent;

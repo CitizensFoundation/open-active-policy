@@ -471,11 +471,17 @@ class Oap3dBudget extends OapBaseElement {
 
     if (changedProps.has('choicePointsLeft')) {
       this.rebuildChoicePoints();
-      if (this.currentBallot) {
+      if (this.currentBallot && this.currentBallot.currentBudget) {
         this.currentBallot.setStateOfRemainingItems();
       } else {
         setTimeout(()=> {
-          this.currentBallot.setStateOfRemainingItems();
+          if (this.currentBallot) {
+            this.currentBallot.setStateOfRemainingItems();
+          } else {
+            setTimeout(()=> {
+              this.currentBallot.setStateOfRemainingItems();
+            }, 100);
+          }
         }, 10);
       }
     }
@@ -529,15 +535,17 @@ class Oap3dBudget extends OapBaseElement {
 
   firstUpdated() {
     this.reset();
-    this._resetWidth();
+    this.resetWidth();
+    this.setupScene();
+    this.resetWidthAnd3DItems();
     this.rebuildChoicePoints();
-    installMediaQueryWatcher(`(min-width: 1024px)`,
+  installMediaQueryWatcher(`(min-width: 1024px)`,
       (matches) => {
         if (matches)
           this.wide = true;
         else
           this.wide = false;
-        this._resetWidth();
+        this.resetWidthAnd3DItems();
       });
 
     installMediaQueryWatcher(`(orientation: portrait)`,
@@ -546,7 +554,7 @@ class Oap3dBudget extends OapBaseElement {
           this.orientationPortrait = true;
         else
           this.orientationPortrait = false;
-        this._resetWidth();
+        this.resetWidthAnd3DItems();
       });
 
     installMediaQueryWatcher(`(orientation: landscape)`,
@@ -555,7 +563,7 @@ class Oap3dBudget extends OapBaseElement {
           this.orientationLandscape = true;
         else
           this.orientationLandscape = false;
-        this._resetWidth();
+        this.resetWidthAnd3DItems();
       });
 
     installMediaQueryWatcher(`(min-width: 640px)`,
@@ -564,7 +572,7 @@ class Oap3dBudget extends OapBaseElement {
           this.mediumWide = true;
         else
           this.mediumWide = false;
-        this._resetWidth();
+        this.resetWidthAnd3DItems();
       });
 
     installMediaQueryWatcher(`(max-width: 340px)`,
@@ -573,7 +581,7 @@ class Oap3dBudget extends OapBaseElement {
           this.mini = true;
         else
           this.mini = false;
-        this._resetWidth();
+        this.resetWidthAnd3DItems();
       });
 
   }
@@ -594,16 +602,22 @@ class Oap3dBudget extends OapBaseElement {
     this.$$("#toast").active= false;
   }
 
-  _resetWidth() {
-    console.error("_resetWidth");
+  resetWidth() {
     if (this.wide) {
       this.votesWidth = 940;
     } else {
       this.votesWidth = window.innerWidth;
     }
-    this.setupScene();
+  }
 
-    this._resetBudgetDiv();
+  resetWidthAnd3DItems() {
+    console.error("resetWidthAnd3DItems");
+    this.resetWidth();
+    if (this.itemsInScene && this.itemsInScene.length>0) {
+      this.itemsInScene.forEach((item)=>{
+        this.scene.remove(item.object);
+      });
+    }
     this.selectedItems.forEach(function (item) {
       this._addItemToDiv(item);
     }.bind(this));
@@ -636,7 +650,6 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   reset() {
-    this._resetBudgetDiv();
     if (!this.selectedItems)
       this.selectedItems = [];
     this.fontGeometryCache = {};
@@ -645,15 +658,6 @@ class Oap3dBudget extends OapBaseElement {
     this.budgetGroup3d = null;
     this.choicePointsLeft = this.totalChoicePoints-this.usedChoicePoints;
     this.budgetHeaderImage = this.configFromServer.client_config.ballotBudgetLogo;
-  }
-
-  _resetBudgetDiv() {
-    let votes = this.$$("#votes");
-    if (votes) {
-      while (votes.lastChild && votes.lastChild.id!='noItems' && votes.lastChild.id!='choicePointsLeftInfo') {
-        votes.removeChild(votes.lastChild);
-      }
-    }
   }
 
   _removeItemFromArray(item) {

@@ -609,6 +609,11 @@ class OapSwipableCards extends OapBaseElement {
     }, 300);
   }
 
+  firstUpdated() {
+    super.firstUpdated();
+    this.fire('oap-clear-filtered-items');
+  }
+
   //Swipe active card to right.
   onSwipeRight() {
     this.removeNoTransition();
