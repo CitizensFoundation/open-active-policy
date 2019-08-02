@@ -132,7 +132,6 @@ class OapBallot extends OapPageViewElement {
             :
             ''
           }
-
         </div>
       `
       :
@@ -219,7 +218,6 @@ class OapBallot extends OapPageViewElement {
 
   _setupListeners() {
     this.addEventListener("oav-toggle-item-in-budget", this._toggleItemInBudget);
-    this.addEventListener("oav-set-favorite-item-in-budget", this._toggleFavoriteItem);
     this.addEventListener("oav-submit-vote", this._postVoteToServer);
     this.addEventListener("oav-item-selected-in-budget", this._itemSelectedInBudget);
     this.addEventListener("oav-item-de-selected-from-budget", this._itemDeSelectedFromBudget);
@@ -227,7 +225,6 @@ class OapBallot extends OapPageViewElement {
 
   _removeListeners() {
     this.removeEventListener("oav-toggle-item-in-budget", this._toggleItemInBudget);
-    this.removeEventListener("oav-set-favorite-item-in-budget", this._toggleFavoriteItem);
     this.removeEventListener("oav-submit-vote", this._postVoteToServer);
     this.removeEventListener("oav-item-selected-in-budget", this._itemSelectedInBudget);
     this.removeEventListener("oav-item-de-selected-from-budget", this._itemDeSelectedFromBudget);
@@ -293,30 +290,25 @@ class OapBallot extends OapPageViewElement {
     }
   }
 
-  _toggleFavoriteItem(event) {
-    var item = event.detail.item;
-    if (item) {
-      this.activity('toggle', 'favorite');
-    } else {
-      this.activity('detoggle', 'favorite');
-    }
-    if (this.favoriteItem != item) {
-      this.favoriteItem = item;
-      var listItems = this.$$("#itemContainer");
-      for (var i = 0; i < listItems.children.length; i++) {
-        var listItem = listItems.children[i];
-        if (listItem.id != 'domRepeat') {
-          listItem.resetFromBudget();
-        }
-      }
-    } else {
-      console.warn("Trying to set item as favorite a second time");
-    }
-  }
-
   _toggleItemInBudget(event) {
     this.budgetElement.toggleBudgetItem(event.detail.item);
-    var found =  this.budgetBallotItems.find((item)=> {
+    const selectedTab = this.$$("#selectedTab");
+    const favTab = this.$$("#favTab");
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[event.detail.item.module_content_type];
+    const originalColor = window.getComputedStyle? window.getComputedStyle(selectedTab, null).getPropertyValue("color") : selectedTab.style.color;
+    this.style.setProperty('--oap-active-selection-color', color);
+    this.style.setProperty('--oap-active-selection-original-color', originalColor);
+    selectedTab.classList.add("selectedTabAnimation");
+    setTimeout(()=>{
+      selectedTab.classList.remove("selectedTabAnimation");
+    }, 1200);
+
+    favTab.classList.add("favOpacityDown");
+    setTimeout(()=>{
+      favTab.classList.remove("favOpacityDown");
+    }, 770);
+
+    var found = this.budgetBallotItems.find((item)=> {
       return item.id==event.detail.item.id;
     });
     if (!found) {
@@ -353,7 +345,7 @@ class OapBallot extends OapPageViewElement {
       var listItems = this.$$("#itemContainer");
       for (var i = 0; i < listItems.children.length; i++) {
         var listItem = listItems.children[i];
-        if (listItem.id != 'domRepeat' && itemIds.indexOf(listItem.item.id) > -1) {
+        if (itemIds.indexOf(listItem.item.id) > -1) {
           listItem.setNotExcluded();
        }
       }

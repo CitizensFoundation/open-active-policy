@@ -2324,13 +2324,11 @@ class OapApp extends OapBaseElement {
       }
 
       if (page==='area-ballot' && (this.filteredItems.length===0 || this.country==null)) {
-        debugger;
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
       }
 
       if (page==='filter-articles' && this.country==null) {
-        debugger;
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
       }

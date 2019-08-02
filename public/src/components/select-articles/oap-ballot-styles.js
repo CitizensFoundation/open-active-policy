@@ -98,14 +98,19 @@ export const OapBallotStyles = css`
   .tab {
     background: transparent;
     font-size: 17px;
+    padding-left: 12px;
+    padding-right: 12px;
     color: #999;
-  }
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+     user-select: none;
+   }
 
   .tab[selected] {
     color: #d0d0d0;
     padding-bottom: 1px;
-    padding-left: 12px;
-    padding-right: 12px;
     border-bottom: 2px solid #ddd;
   }
 
@@ -114,13 +119,33 @@ export const OapBallotStyles = css`
     position: fixed;
     top: 166px;
     left: 32px;
+    transition: opacity 250ms ease-in-out;
+  }
+
+  .favOpacityDown {
+    transition: opacity 50ms ease-in-out;
+    opacity: 0.5;
+  }
+
+  @keyframes colorani {
+    0%   {color: var(--oap-active-selection-original-color);
+          border-color: var(--oap-active-selection-original-color);}
+    50%  {color: var(--oap-active-selection-color);
+          border-color: var(--oap-active-selection-color);}
+    100% {color: var(--oap-active-selection-original-color);
+      border-color: var(--oap-active-selection-original-color);}
   }
 
   .selectedTab {
     z-index: 9001;
     position: fixed;
     top: 166px;
-    left: 175px;
+    left: 155px;
+  }
+
+  .selectedTabAnimation {
+    animation-name: colorani;
+    animation-duration: 1s;
   }
 
   paper-button[disabled] {
@@ -132,7 +157,7 @@ export const OapBallotStyles = css`
 
   .votingButtonContainer {
     position: absolute;
-    bottom: 16px;
+    bottom: 24px;
   }
 
   .topContainer {
@@ -141,10 +166,16 @@ export const OapBallotStyles = css`
     margin-top: 24px;
   }
 
-
   @media (max-width: 1000px) {
     .topContainer {
-      margin-top: 52px;
+      margin-top: 30px;
+    }
+  }
+
+
+  @media (max-width: 600px) {
+    .topContainer {
+      margin-top: 32px;
     }
   }
 
