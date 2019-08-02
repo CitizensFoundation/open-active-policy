@@ -110,6 +110,9 @@ class OapBallot extends OapPageViewElement {
                   <div class="constitutionFor">${this.localize("constitutionFor")}</div>
                   <div class="countryHeader">${this.country.name}</div>
                 </div>
+                <div id="submitButtonContainer" class="layout horizontal center-center">
+                   <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-submit-ballot') }}">${this.localize("submitConstitution")}</paper-button>
+                </div>
                 ${repeat(this.budgetElement.selectedItems, (item) => item.id,  (item, index) => {
                    let headerTemplate = html``;
                     if (index===0 || this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index) {
@@ -130,9 +133,6 @@ class OapBallot extends OapPageViewElement {
                     `
                   }
                 )}
-              </div>
-              <div id="submitButtonContainer" class="layout horizontal center-center">
-                 <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-submit-ballot') }}">${this.localize("submitConstitution")}</paper-button>
               </div>
             `
             :
