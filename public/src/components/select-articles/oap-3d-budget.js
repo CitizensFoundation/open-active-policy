@@ -1,6 +1,6 @@
 import { html } from 'lit-element';
 
-import { OapBudgetStyles } from './oap-budget-styles';
+import { Oap3DBudgetStyles } from './oap-3d-budget-styles';
 import { OapShadowStyles } from '../oap-shadow-styles';
 import { OapFlexLayout } from '../oap-flex-layout.js';
 
@@ -115,11 +115,11 @@ class Oap3dBudget extends OapBaseElement {
 
   setupScene () {
     const width=this.votesWidth;
-    const height=184;
+    const height=200;
     const xCamera = width*0.0230;
     this.scene = new Scene();
     this.camera = new PerspectiveCamera(30, width/height, 1, 10000);
-    this.camera.position.set(xCamera, 0.1, 21);
+    this.camera.position.set(xCamera, -0.7, 22);
     this.defaultCameraPos = JSON.parse(JSON.stringify(this.camera.position));
     this.defaultCameraRot = JSON.parse(JSON.stringify(this.camera.rotation));
     this.camera.layers.enable(1);
@@ -518,7 +518,7 @@ class Oap3dBudget extends OapBaseElement {
 
   static get styles() {
     return [
-      OapBudgetStyles,
+      Oap3DBudgetStyles,
       OapShadowStyles,
       OapFlexLayout
     ];

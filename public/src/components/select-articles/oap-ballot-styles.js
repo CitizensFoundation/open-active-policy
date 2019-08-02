@@ -7,7 +7,9 @@ import { css } from 'lit-element';
 
 export const OapBallotStyles = css`
 
-  :host {}
+  :host {
+    position: relative;
+  }
 
   iron-list {
     margin-top: 24px;
@@ -86,6 +88,41 @@ export const OapBallotStyles = css`
     width: 200px;
   }
 
+  .tabsContainer {
+    z-index: 9000;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .tab {
+    background: transparent;
+    font-size: 17px;
+    color: #999;
+  }
+
+  .tab[selected] {
+    color: #ddd;
+    padding-bottom: 1px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 2px solid #eee;
+  }
+
+  .favTab {
+    z-index: 9001;
+    position: fixed;
+    top: 171px;
+    left: 32px;
+  }
+
+  .selectedTab {
+    z-index: 9001;
+    position: fixed;
+    top: 171px;
+    left: 175px;
+  }
+
   paper-button[disabled] {
     background-color: #555;
   }
@@ -101,6 +138,17 @@ export const OapBallotStyles = css`
   .topContainer {
     background-color: var(--app-main-background-color);
     color: var(--app-ballot-color, #333);
+    margin-top: 24px;
+  }
+
+
+  @media (max-width: 600px) {
+    .topContainer {
+      margin-top: 52px;
+    }
+    .selectedTab {
+      left: 175px;
+    }
   }
 
   .finalHeader {

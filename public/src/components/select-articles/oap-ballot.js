@@ -70,18 +70,12 @@ class OapBallot extends OapPageViewElement {
   render() {
     return html`${this.area ?
       html`
-        <div class="topContainer">
-          <div class="tabsContainer">
-            <paper-tabs id="tabs" selected="${this.selectedView}" @selected-changed="${this._selectedChanged}">
-              <paper-tab>
-                <div>${this.localize('favorite')} ${this.budgetBallotItems ? html` (${this.budgetBallotItems.length})` : html``}</div>
-              </paper-tab>
-              <paper-tab>
-                <div>${this.localize('finalSelection')} ${(this.budgetElement && this.budgetElement.selectedItems) ? html` (${this.budgetElement.selectedItems.length})` : html``}</div>
-              </paper-tab>
-            </paper-tabs>
-          </div>
+        <div class="tabsContainer">
+          <div id="selectedTab" ?selected="${this.selectedView===1}" @click="${()=>{ this.selectedView=1}}" class="tab selectedTab">${this.localize('finalSelection')} ${(this.budgetElement && this.budgetElement.selectedItems) ? html` (${this.budgetElement.selectedItems.length})` : html``}</div>
+          <div id="favTab" ?selected="${this.selectedView===0}" @click="${()=>{ this.selectedView=0}}" class="tab favTab">${this.localize('favorite')} ${this.budgetBallotItems ? html` (${this.budgetBallotItems.length})` : html``}</div>
+        </div>
 
+        <div class="topContainer">
           ${(this.budgetBallotItems && this.budgetElement) ?
             html`
               <div id="itemContainer" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${this.selectedView===1}">

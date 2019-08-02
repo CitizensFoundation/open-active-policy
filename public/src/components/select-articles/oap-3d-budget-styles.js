@@ -5,7 +5,7 @@ Copyright (c) 2010-2019 Citizens Foundation
 
 import { css } from 'lit-element';
 
-export const OapBudgetStyles = css`
+export const Oap3DBudgetStyles = css`
   :host {
     width: 100%;
     display: block;
@@ -31,7 +31,7 @@ export const OapBudgetStyles = css`
 
   .budgetMaterial {
     background-color: var(--app-budget-material-background-color, rgba(249,249,249,1.0));
-    height: 139px;
+    height: 200px;
     margin: 0px 0px 0px 0px;
     margin-right: auto;
     margin-left: auto;
@@ -39,7 +39,7 @@ export const OapBudgetStyles = css`
 
   .budgetMaterial[wide] {
     width: 940px;
-    height: 184px;
+    height: 200px;
     margin-top: 24px;
   }
 

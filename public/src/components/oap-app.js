@@ -202,7 +202,7 @@ class OapApp extends OapBaseElement {
           </div>
           <div class="saveButtons">
             <paper-button class="savedGameButton"" @click="${this.restoreGameFromSave}" dialog-dismiss>${this.localize('reloadSavedGame')}</paper-button>
-            <paper-button class="savedGameButton"  @click="${this.openWelcomeAfterSave}" dialog-dismiss>${this.localize('newGame')}</paper-button>
+            <paper-button class="savedGameButton"  @click="${this.openNewGame}" dialog-dismiss>${this.localize('newGame')}</paper-button>
           </div>
         </paper-dialog>
 
@@ -2208,8 +2208,9 @@ class OapApp extends OapBaseElement {
       let gameState = localStorage.getItem(this.GAME_STATE_VERSION);
       if (gameState!=null) {
         gameState = JSON.parse(gameState);
-        this.savedGameDate = gameState.dateSaved;
         this.$$("#savedGameDialog").open();
+        const parsedDate = new Date(gameState.dateSaved);
+        this.savedGameDate = parsedDate.toISOString().slice(0, 10);
       } else {
         this.disableAutoSave=false;
         this.$$("#welcomeDialog").open();
@@ -2217,15 +2218,17 @@ class OapApp extends OapBaseElement {
     });
   }
 
-  openWelcomeAfterSave() {
+  openNewGame() {
     this.disableAutoSave=false;
     localStorage.removeItem(this.GAME_STATE_VERSION);
-    this.totalChoicePoints = 100;
-    this.usedChoicePoints = 0;
-    this.selectedItems = [];
-    this.country = null;
-    this.filteredItems = [];
-    this.usedBonusesAndPenalties = [];
+    if (!window.debugOn==true) {
+      this.totalChoicePoints = 100;
+      this.usedChoicePoints = 0;
+      this.selectedItems = [];
+      this.country = null;
+      this.filteredItems = [];
+      this.usedBonusesAndPenalties = [];
+    }
     if (!localStorage.getItem("haveClsosedWelcome")) {
       this.$$("#welcomeDialog").open();
     }
