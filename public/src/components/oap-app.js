@@ -2195,9 +2195,9 @@ class OapApp extends OapBaseElement {
         }));
         this.debouncedSave=null;
         console.info("Have autosaved game");
-      }, 3*1000);
+      }, 5*1000);
     } else {
-      console.error("Either in debounce or autosavedisabled: "+this.disableAutoSave);
+      //console.error("Either in debounce or autosavedisabled: "+this.disableAutoSave);
     }
   }
 

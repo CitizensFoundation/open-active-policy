@@ -409,7 +409,12 @@ class OapBallot extends OapPageViewElement {
             }
             totalValue+=item.value;
           } else if (item.type==="penalty") {
-            this.budgetElement.totalChoicePoints-=item.value;
+            const pointsWillBeLeft = (this.budgetElement.totalChoicePoints-item.value)-this.budgetElement.usedChoicePoints;
+            if (pointsWillBeLeft>=0) {
+              this.budgetElement.totalChoicePoints-=item.value;
+            } else {
+              this.budgetElement.totalChoicePoints-=(item.value+pointsWillBeLeft);
+            }
             totalValue-=item.value;
             let emoji = this._getEmojiFromAttitute(item.attitute);
             if (!emojis.indexOf(emoji)>-1) {
