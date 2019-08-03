@@ -2240,9 +2240,9 @@ class OapApp extends OapBaseElement {
 
   _startDelayedCaching(options) {
     setTimeout(()=>{
-      const emojis = ["🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];
+      const emojis = ["⏲️","🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];
       CacheEmojisInBackground(emojis, "120px Arial", options);
-    }, 1000);
+    }, 500);
     setTimeout(()=>{
       StartDelayedFontCaching(this.font3d, options);
     }, 1100);
