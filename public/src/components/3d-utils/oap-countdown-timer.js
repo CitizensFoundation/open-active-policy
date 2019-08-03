@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 
-import { LightningStorm } from 'three/examples/jsm/objects/LightningStorm.js';
-import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 import { GetTextGeometry, GetTextMesh } from  '../3d-utils/oap-cached-text-geometry';
+import { Tween, Easing, update as UpdateTween } from 'es6-tween';
 
 class CountDownTimer {
 
@@ -67,9 +66,6 @@ class CountDownTimer {
       roughness: settings.roughness,
       metalness: settings.metalness,
 
-      normalMap: normalMap,
-      normalScale: new THREE.Vector2( 1, - 1 ), // why does the normal map require negation in this case?
-
       aoMap: aoMap,
       aoMapIntensity: 1,
 
@@ -94,7 +90,7 @@ class CountDownTimer {
 
     this.countdownDigitGroup = new THREE.Group();
     this.countdownDigitGroup.add(this.countDownMesh);
-    this.countdownDigitGroup.position.z = -20;
+    this.countdownDigitGroup.position.z = -22;
     this.countdownDigitGroup.position.y = -2;
     this.countdownDigitGroup.position.x = 0;
     this.countdownDigitGroup.scale.x = 1;
@@ -115,9 +111,26 @@ class CountDownTimer {
       if (this.secondsLeft>0) {
         this.secondsLeft-=1;
         this.countDownMesh.geometry = this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
+        if (this.secondsLeft<8) {
+          if (this.countDownMeshRotation) {
+            this.countDownMeshRotation.stop();
+            this.countDownMeshRotation = null;
+            this.countDownMesh.rotation.y=0;
+          }
+          //this.fontMesh.receiveShadow = true;
+
+          this.countDownMeshRotation = new Tween(this.countDownMesh.rotation)
+          .to({ y: "-" + this.countDownMesh.rotation.y+(Math.PI*2)}, 1000)
+          .delay(0)
+          .on('complete', () => {
+            this.countDownMeshRotation = null;
+            this.countDownMesh.rotation.y=0;
+          })
+          .start();
+        }
         this.doCountDown();
       } else {
-        this.secondsLeft=15;
+        this.secondsLeft=16;
         this.doCountDown();
       }
     }, 1000);
