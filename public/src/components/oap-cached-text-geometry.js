@@ -69,29 +69,31 @@ const getDelay = (delay) => {
 }
 
 async function PerformDelayedFontCaching(font3d, options) {
+  GetTextGeometry("cp", font3d, { large: true, isCaching: true });
+  await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1200) : getDelay(300)));
+
+  GetTextGeometry("cp", font3d, { large: false, isCaching: true });
+  GetTextGeometry("+", font3d, { large: false, isCaching: true });
+  GetTextGeometry("-", font3d, { large: false, isCaching: true });
+
   for (var i = 125; i >= 75; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1200) : getDelay(300)));
-    GetTextGeometry(i+"cp", font3d, { large: true, isCaching: true });
+    GetTextGeometry(i, font3d, { large: true, isCaching: true });
   }
 
-  for (var i = 15; i > -15; i--) {
+  for (var i = 30; i >=0; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1200) : getDelay(300) ));
-    GetTextGeometry(i+"cp", font3d, { large: false, isCaching: true });
+    GetTextGeometry(i, font3d, { large: false, isCaching: true });
   }
 
   for (var i = 162; i >= 124; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1500) : getDelay(500) ));
-    GetTextGeometry(i+"cp", font3d, { large: true, isCaching: true });
-  }
-
-  for (var i = 30; i > -30; i--) {
-    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1500) : getDelay(500) ));
-    GetTextGeometry(i+"cp", font3d, { large: false, isCaching: true });
+    GetTextGeometry(i, font3d, { large: true, isCaching: true });
   }
 
   for (var i = 74; i >= 0; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1500) : getDelay(500) ));
-    GetTextGeometry(i+"cp", font3d, { large: true, isCaching: true });
+    GetTextGeometry(i, font3d, { large: true, isCaching: true });
   }
 
 }
@@ -101,7 +103,7 @@ export const SetForceSlowOnFontCaching = () => {
 }
 
 export const StartDelayedFontCaching = (font3d, options) => {
-  PerformDelayedFontCaching(font3d, options);
+//  PerformDelayedFontCaching(font3d, options);
 }
 
 export const GetTextMesh = (value, font, options) => {

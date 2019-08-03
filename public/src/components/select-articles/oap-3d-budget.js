@@ -183,9 +183,18 @@ class Oap3dBudget extends OapBaseElement {
   bonusPenalty3dText(value, emoji) {
     if (value!=0) {
       this.rotateAllItemsGroup();
-
       if (this.font3d) {
-        let geometry = GetTextGeometry(value+"cp", this.font3d, { large: false });
+        let textValue;
+        let isMinus = false;
+        let isPlus = false;
+        if (value>0) {
+          isPlus = true;
+        } else if (value<0) {
+          isMinus = true;
+        }
+        textValue = Math.abs(value).toString();
+
+        let geometry = GetTextGeometry(textValue, this.font3d, { large: false });
 
         const xText = this.votesWidth*0.070;
 
@@ -203,17 +212,18 @@ class Oap3dBudget extends OapBaseElement {
           endFudge = 20;
         }
 
+        const materials = [
+          new MeshPhongMaterial( { color: color, flatShading: true } ), // front
+          new MeshPhongMaterial( { color: color} ) // side
+        ];
+
+
         if (this.bonusPenaltyFontTween) {
           this.bonusPenaltyFontTween.stop();
           this.bonusPenaltyGroup.position.x=this.getLeftOfCamera();
         }
 
         if (this.bonusPenaltyGroup==null) {
-          var materials = [
-            new MeshPhongMaterial( { color: color, flatShading: true } ), // front
-            new MeshPhongMaterial( { color: color} ) // side
-          ];
-
           this.bonusPenaltyFontMesh = new Mesh( geometry, materials );
           this.bonusPenaltyFontMesh.position.x = 0;
           this.bonusPenaltyFontMesh.position.y = -1.5;
@@ -237,6 +247,46 @@ class Oap3dBudget extends OapBaseElement {
           this.bonusPenaltyFontMesh.remove(this.bonusPenaltyEmoji2D);
           this.rebuild3dEmoji(emoji, xText, startFudge);
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
+        }
+
+        let smallScreenMultiplier = window.innerWidth>600 ? 1.0 : 0.63;
+        if (isMinus) {
+          if (!this.minusMesh) {
+            this.minusMesh = new Mesh( GetTextGeometry("-", this.font3d, { large: false }), materials );
+            this.minusMesh.position.x = 0;
+            this.minusMesh.position.y = -1.5;
+            this.minusMesh.position.z = 0;
+            this.bonusPenaltyGroup.add(this.minusMesh);
+          }
+          if (value>9) {
+            this.minusMesh.position.x = -9.5*smallScreenMultiplier;
+          } else {
+            this.minusMesh.position.x = -5.5*smallScreenMultiplier;
+          }
+          this.minusMesh.visible = true;
+        } else {
+          if (this.minusMesh) {
+            this.minusMesh.visible = false;
+          }
+        }
+
+        if (isPlus) {
+          if (!this.plusMesh) {
+            this.plusMesh = new Mesh( GetTextGeometry("+", this.font3d, { large: false }), materials );
+            this.plusMesh.position.y = -1.5;
+            this.plusMesh.position.z = 0;
+            this.bonusPenaltyGroup.add(this.plusMesh);
+          }
+          if (value>9) {
+            this.plusMesh.position.x = -9.5*smallScreenMultiplier;
+          } else {
+            this.plusMesh.position.x = -6.5*smallScreenMultiplier;
+          }
+          this.plusMesh.visible = true;
+        } else {
+          if (this.plusMesh) {
+            this.plusMesh.visible = false;
+          }
         }
 
         this.bonusPenaltyGroup.visible=true;
@@ -275,6 +325,10 @@ class Oap3dBudget extends OapBaseElement {
             this.scene.remove(this.cameraSpotLight);
             this.cameraSpotLight.visible=false;
             this.bonusPenaltyGroup.visible=false;
+            if (this.plusMesh)
+              this.plusMesh.visible=false;
+            if (this.minusMesh)
+              this.minusMesh.visible=false;
           })
           .start();
         });
@@ -303,7 +357,7 @@ class Oap3dBudget extends OapBaseElement {
           new MeshPhongMaterial( { color: 0xFF5722 } ) // side
         ];
 
-        this.fontMesh = new Mesh(GetTextGeometry(this.choicePointsLeft+'cp', this.font3d, { large: true }), materials );
+        this.fontMesh = new Mesh(GetTextGeometry(this.choicePointsLeft.toString(), this.font3d, { large: true }), materials );
 
         const xText = this.votesWidth*0.070;
 
@@ -315,7 +369,7 @@ class Oap3dBudget extends OapBaseElement {
         this.fontMesh.rotation.y = Math.PI * 2;
         this.scene.add(this.fontMesh);
       } else {
-        this.fontMesh.geometry=GetTextGeometry(this.choicePointsLeft+'cp', this.font3d, { large: true });
+        this.fontMesh.geometry=GetTextGeometry(this.choicePointsLeft.toString(), this.font3d, { large: true });
       }
 
       if (this.choicePointsLeft<75 || firstTime) {

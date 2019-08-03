@@ -24,6 +24,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       renderer: Object,
       scene: Object,
       camera: Object,
+      font3d: Object,
       dirLightOne: Object,
       dirLightTwo: Object,
       submitDisabled: Boolean,
@@ -67,74 +68,71 @@ class OapPolicyQuiz extends OapPageViewElement {
 
       this.scene.background = new Color( '#1d5588' );
       var loader = new FontLoader();
-      loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
-        this.fire('oap-set-3d-font', font);
-        this.savedBackgroundColor = this.$$("#button0").style.backgroundColor;
-        var geometry = new TextGeometry( "?", {
-          font: font,
-          size: 180,
-          height: 20,
-          curveSegments: 32,
-          bevelEnabled: true,
-          bevelThickness: 9,
-          bevelSize: 5,
-          bevelOffset: 0,
-          bevelSegments: 18
-        });
+      this.savedBackgroundColor = this.$$("#button0").style.backgroundColor;
+      var geometry = new TextGeometry( "?", {
+        font: this.font3d,
+        size: 180,
+        height: 20,
+        curveSegments: 32,
+        bevelEnabled: true,
+        bevelThickness: 9,
+        bevelSize: 5,
+        bevelOffset: 0,
+        bevelSegments: 18
+      });
 
-        geometry.computeBoundingBox();
-        geometry.computeVertexNormals();
-        geometry.center();
+      geometry.computeBoundingBox();
+      geometry.computeVertexNormals();
+      geometry.center();
 
-        geometry = new BufferGeometry().fromGeometry( geometry );
+      geometry = new BufferGeometry().fromGeometry( geometry );
 
-        var materials = [
-          new MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
-          new MeshPhongMaterial( { color: 0xffffff } ) // side
-        ];
+      var materials = [
+        new MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
+        new MeshPhongMaterial( { color: 0xffffff } ) // side
+      ];
 
-        var width=600;
-        var height=175;
+      var width=600;
+      var height=175;
 
-        if (window.innerWidth<=600) {
-          width=window.innerWidth;
+      if (window.innerWidth<=600) {
+        width=window.innerWidth;
+      }
+
+      for (var i=-width/2; i<width/2; i+=30+Math.random()*60){
+        for (var j=0; j<height; j+=30+Math.random()*60){
+          this.addShape( geometry,  materials, '#aaaaaa',   i, j, 0,
+                   Math.random()*0.8, Math.random()*0.8, Math.PI, 0.1+Math.random()*0.3 );
         }
+      }
 
-        for (var i=-width/2; i<width/2; i+=30+Math.random()*60){
-          for (var j=0; j<height; j+=30+Math.random()*60){
-            this.addShape( geometry,  materials, '#aaaaaa',   i, j, 0,
-                     Math.random()*0.8, Math.random()*0.8, Math.PI, 0.1+Math.random()*0.3 );
-          }
-        }
+      this.renderer = new WebGLRenderer( { antialias: true } );
+      this.renderer.setPixelRatio( window.devicePixelRatio );
+      this.renderer.setSize( width, height );
+      var canvas = this.$$("#canvas3d");
 
-        this.renderer = new WebGLRenderer( { antialias: true } );
-        this.renderer.setPixelRatio( window.devicePixelRatio );
-        this.renderer.setSize( width, height );
-        var canvas = this.$$("#canvas3d");
+      canvas.appendChild( this.renderer.domElement );
+      //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
-        canvas.appendChild( this.renderer.domElement );
-        //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+      this.renderCanvas3d();
 
-        this.renderCanvas3d();
+      let target = new Vector3(6, -10, 35);
 
-        let target = new Vector3(6, -10, 35);
-
+      new Tween(this.camera.position)
+      .to({ x: target.x, y: target.y, z: target.z, }, 25*1000)
+      .delay(0)
+      .easing(Easing.Quadratic.In)
+      .on('complete', () => {
+        target = new Vector3(6, -10, 175);
         new Tween(this.camera.position)
-        .to({ x: target.x, y: target.y, z: target.z, }, 25*1000)
+        .to({ x: target.x, y: target.y, z: target.z, }, 7*1000)
         .delay(0)
-        .easing(Easing.Quadratic.In)
+        .easing(Easing.Elastic.Out)
         .on('complete', () => {
-          target = new Vector3(6, -10, 175);
-          new Tween(this.camera.position)
-          .to({ x: target.x, y: target.y, z: target.z, }, 7*1000)
-          .delay(0)
-          .easing(Easing.Elastic.Out)
-          .on('complete', () => {
-          })
-          .start();
         })
         .start();
-      }.bind(this));
+      })
+      .start();
 
     }, 100);
   }
@@ -344,10 +342,8 @@ class OapPolicyQuiz extends OapPageViewElement {
       }
     }
 
-    if (changedProps.has('active')) {
-      if (this.active===true) {
-        this.start();
-      }
+    if (changedProps.has('font3d') && this.font3d) {
+      this.start();
     }
   }
 }

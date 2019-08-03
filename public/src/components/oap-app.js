@@ -13,6 +13,7 @@ import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
 import { CacheEmojisInBackground } from './oap-2d-emojis';
 import { StartDelayedFontCaching, SetForceSlowOnFontCaching } from './oap-cached-text-geometry';
+import { FontLoader } from 'three';
 
 import 'whatwg-fetch';
 
@@ -154,7 +155,9 @@ class OapApp extends OapBaseElement {
 
       savedGameDate: String,
 
-      disableAutoSave: Boolean
+      disableAutoSave: Boolean,
+
+      font3d: Object,
     };
   }
 
@@ -286,6 +289,7 @@ class OapApp extends OapBaseElement {
               .configFromServer="${this.configFromServer}"
               .nickname="Robert Bjarnason"
               .language="${this.language}"
+              .font3d="${this.font3d}"
               .totalChoicePoints="${this.totalChoicePoints}"
               class="page"
               ?active="${this._page === 'quiz'}">
@@ -2133,6 +2137,10 @@ class OapApp extends OapBaseElement {
           this.wideAndBallot = this.wide && this._page==='area-ballot';
         });
 
+    var loader = new FontLoader();
+    loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
+      this.font3d=font;
+    }.bind(this));
   }
 
   getHelpContent() {
