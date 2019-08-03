@@ -54,7 +54,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   start() {
     this.reset();
     var width=600;
-    var height=175;
+    var height=250;
 
     setTimeout(()=>{
       this.scene = new Scene();
@@ -122,7 +122,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       let target = new Vector3(6, 140, 220);
 
       new Tween(this.camera.position)
-      .to({ x: target.x, y: target.y, z: target.z, }, 2*1000)
+      .to({ x: target.x, y: target.y, z: target.z, }, 1*500)
       .delay(0)
       .easing(Easing.Quadratic.In)
       .on('complete', () => {
@@ -147,7 +147,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   }
 
   addShape( geometry, materials, color, x, y, z, rx, ry, rz, s ) {
-    var mesh = new Mesh( geometry, materials );
+    return;
     mesh.position.set( x+25, y-50, z );
     mesh.rotation.set( rx, ry, rz );
     mesh.scale.set( s, s, s );
@@ -192,22 +192,19 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   render() {
     return html`
-    <div class="layout vertical center-center" style="height: 100%;">
-      <div class="topContainer shadow-animation shadow-elevation-3dp">
+      <div class="topContainer" style="max-width: 600px;">
         ${this.currentIndex!==null ?  html`
-          <div id="canvas3d"></div>
           <div class="layout horizontal progress">
             <div class="middle textLeft">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
             <div class="middle textRight">${this.localize("youHave")} ${this.totalChoicePoints}cp</div>
           </div>
           <div class="question">${this.questions[this.currentIndex].question}</div>
-          <div class="vertical center">
-            <div class="buttonContainer">
-              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button0" class="answerButton" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
-              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button1" class="answerButton" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
-              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button2" class="answerButton" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
-              <paper-button raised noink ?disabled="${this.submitDisabled}" id="button3" class="answerButton" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
-            </div>
+          <div id="canvas3d"></div>
+          <div class="buttonContainer">
+            <paper-button raised ?disabled="${this.submitDisabled}" id="button0" class="answerButton flex" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
+            <paper-button raised ?disabled="${this.submitDisabled}" id="button1" class="answerButton flex" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
+            <paper-button raised ?disabled="${this.submitDisabled}" id="button2" class="answerButton flex" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
+            <paper-button raised ?disabled="${this.submitDisabled}" id="button3" class="answerButton flex" @click="${()=> { this.submitAnswer(3) }}">${this.questions[this.currentIndex].answers[3]}</paper-button>
           </div>
         ` : html``}
         ${this.completed ? html`
@@ -227,7 +224,6 @@ class OapPolicyQuiz extends OapPageViewElement {
           </div>
           ` : html``}
       </div>
-    </div>
     `
   }
 

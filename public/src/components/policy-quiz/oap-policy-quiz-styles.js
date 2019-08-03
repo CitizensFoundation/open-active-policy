@@ -13,13 +13,13 @@ export const OapPolicyQuizStyles = css`
   }
 
   .answerButton {
-    width: 320px;
-    margin: 8px;
-    margin-left: 32px;
-    margin-right: 32px;
-    text-align: center;
-    background-color: var(--app-quiz-answer-button-background-color, #e9bf29);
-    color: #000;
+    background-color: var(--app-quiz-answer-button-background-color, #000);
+    color: #FFF;
+    border: 1px solid #eee;
+    padding: 12px;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 16px;
   }
 
   .wrongAnswer {
@@ -31,16 +31,14 @@ export const OapPolicyQuizStyles = css`
   }
 
   .buttonContainer {
-    width: 384px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
   }
 
   .topContainer {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    background-color: var(--quiz-background-color, #1d5588);
+    background-color: var(--quiz-background-color, #000);
     color: var(--quiz-color, #FFF);
     height: 100%;
     padding-bottom: 42px;
@@ -48,8 +46,13 @@ export const OapPolicyQuizStyles = css`
 
   .question {
     padding: 16px;
-    font-size: 20px;
-    padding-top: 0;
+    font-size: 22px;
+    background-color: #000;
+    color: #FFF;
+    border-radius: 4px;
+    margin-bottom: 0;
+    text-align: center;
+    padding-bottom: 0;
   }
 
   .infoBar {
@@ -80,7 +83,7 @@ export const OapPolicyQuizStyles = css`
 
   #canvas3d {
     width: 600px;
-    height: 175px;
+    height: 250px;
   }
 
   .completedQuiz {
@@ -103,8 +106,7 @@ export const OapPolicyQuizStyles = css`
       max-width: 100%;
       width: 100%;
       height: 100%;
-      margin-left: 0;
-      margin-right: 0;
+      text-align: center;
     }
 
     :host {
@@ -116,17 +118,21 @@ export const OapPolicyQuizStyles = css`
     }
 
     .buttonContainer {
-      width: 90%;
-    }
-
-    #canvas3d {
       width: 100%;
-      height: 175px;
     }
 
     .answerButton {
-      width: 300px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
     }
+
+
+    #canvas3d {
+      width: 100%;
+      height: 250px;
+    }
+
   }
 
 
