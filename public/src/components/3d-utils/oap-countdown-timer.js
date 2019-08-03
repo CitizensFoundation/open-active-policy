@@ -110,10 +110,15 @@ class CountDownTimer {
       this.startEmoji2DTween = null;
     }
 
+    const roughness = Math.random();
+    const metalness = Math.random();
+    console.error("Metalness: "+metalness);
+    console.error("Roughnes: "+roughness);
+
     this.material = new THREE.MeshStandardMaterial( {
       color: 0x888888,
-      roughness: Math.random(),
-      metalness: Math.random(),
+      roughness: roughness,
+      metalness:metalness,
 
       side: THREE.DoubleSide
     } );

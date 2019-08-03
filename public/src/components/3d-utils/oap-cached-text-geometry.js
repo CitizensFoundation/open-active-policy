@@ -10,20 +10,20 @@ function  _getTextGeometryCore(value, font, options) {
   if (options.large) {
     geoOptions = {
       font: font,
-      size: window.innerWidth>600 ? 10 : 5,
-      height: window.innerWidth>600 ? 1.5 : 1.0,
+      size: window.innerWidth>600 ? 10 : 8,
+      height: window.innerWidth>600 ? 1.5 : 0.6,
       curveSegments: window.innerWidth>600 ? 12 : 10,
       bevelEnabled: true,
-      bevelThickness: window.innerWidth>600 ? 0.7 : 0.5,
-      bevelSize:  window.innerWidth>600 ? 0.8 : 0.5,
-      bevelOffset: 0,
-      bevelSegments:  window.innerWidth>600 ? 7 : 7
+      bevelThickness: window.innerWidth>600 ? 0.3 : 0.2,
+      bevelSize:  window.innerWidth>600 ? 0.3 : 0.1,
+      bevelOffset:  window.innerWidth>600 ? 0.2 : 0.2,
+      bevelSegments:  window.innerWidth>600 ? 7 : 5
     }
   } else {
     geoOptions = {
       font: font,
       size: window.innerWidth>600 ? 5.5 : 4.5,
-      height: window.innerWidth>600 ? 1.5 : 1.2,
+      height: window.innerWidth>600 ? 1.5 : 0.5,
       curveSegments: window.innerWidth>600 ? 8 : 6,
       bevelEnabled: true,
       bevelThickness: window.innerWidth>600 ? 0.2 : 0.1,

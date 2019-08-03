@@ -211,7 +211,7 @@ class OapApp extends OapBaseElement {
           </div>
           <div class="saveButtons">
             <paper-button class="savedGameButton"" @click="${this.restoreGameFromSave}" dialog-dismiss>${this.localize('reloadSavedGame')}</paper-button>
-            <paper-button class="savedGameButton"  @click="${this.openNewGame}" dialog-dismiss>${this.localize('newGame')}</paper-button>
+            <paper-button class="savedGameButton"  @click="${this.openNewGame}">${this.localize('newGame')}</paper-button>
           </div>
         </paper-dialog>
 
@@ -2155,9 +2155,11 @@ class OapApp extends OapBaseElement {
   }
 
   afterWelcomeClose() {
-    if (this._page==="quiz" && this.$$("#quiz")) {
-      this.$$("#quiz").startCountDown();
-    }
+    setTimeout(()=>{
+      if (this._page==="quiz" && this.$$("#quiz")) {
+        this.$$("#quiz").startCountDown();
+      }
+    });
   }
 
   getHelpContent() {
@@ -2260,6 +2262,7 @@ class OapApp extends OapBaseElement {
   }
 
   openNewGame() {
+    this.$$("#savedGameDialog").close();
     this.disableAutoSave=false;
     localStorage.removeItem(this.GAME_STATE_VERSION);
     if (!window.debugOn==true) {
@@ -2270,6 +2273,7 @@ class OapApp extends OapBaseElement {
       this.filteredItems = [];
       this.usedBonusesAndPenalties = [];
     }
+    debugger;
     this.afterWelcomeClose();
   }
 
