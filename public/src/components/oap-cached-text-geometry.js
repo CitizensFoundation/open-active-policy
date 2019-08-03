@@ -4,7 +4,7 @@ const fontMeshCache = {};
 const fontGeometryCache = {};
 let forceSlow = false;
 
-const _getTextGeometry = (value, font, options) => {
+async function  _getTextGeometry(value, font, options) {
   let geoOptions;
   if (options.large) {
     geoOptions = {
@@ -37,6 +37,11 @@ const _getTextGeometry = (value, font, options) => {
   geometry.computeBoundingBox();
   geometry.computeVertexNormals();
   geometry.center();
+
+  if (options && options.isCaching) {
+    await new Promise(resolve => setTimeout(resolve, forceSlow ? 100 : 25));
+  }
+
   geometry = new BufferGeometry().fromGeometry( geometry );
   return geometry;
 }
@@ -48,27 +53,27 @@ const isSlow = (options) => {
 async function PerformDelayedFontCaching(font3d, options) {
   for (var i = 130; i >= 75; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1200 : 300));
-    GetTextGeometry(i+"cp", font3d, { large: true });
+    GetTextGeometry(i+"cp", font3d, { large: true, isCaching: true });
   }
 
   for (var i = 12; i > -15; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1200 : 300 ));
-    GetTextGeometry(i+"cp", font3d, { large: false });
+    GetTextGeometry(i+"cp", font3d, { large: false, isCaching: true });
   }
 
   for (var i = 162; i >= 129; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1500 : 500 ));
-    GetTextGeometry(i+"cp", font3d, { large: true });
+    GetTextGeometry(i+"cp", font3d, { large: true, isCaching: true });
   }
 
   for (var i = 30; i > -30; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1600 : 600));
-    GetTextGeometry(i+"cp", font3d, { large: false });
+    GetTextGeometry(i+"cp", font3d, { large: false, isCaching: true });
   }
 
   for (var i = 74; i >= 0; i--) {
     await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1600 : 600 ));
-    GetTextGeometry(i+"cp", font3d, { large: true });
+    GetTextGeometry(i+"cp", font3d, { large: true, isCaching: true });
   }
 
 }

@@ -376,7 +376,7 @@ class OapApp extends OapBaseElement {
     this.filteredItems = [];
     this.selectedItems = [];
     this.setDummyData();
-    this.GAME_STATE_VERSION="OapGameStateV1";
+    this.GAME_STATE_VERSION="OapGameStateV2";
   }
 
   helpClosed() {
@@ -2205,8 +2205,8 @@ class OapApp extends OapBaseElement {
         this.debouncedSave=null;
         console.info("Have autosaved game");
       }, 5*1000);
-    } else if (!this.disableAutoSave) {
-      console.warn("Autosaved is disabled: ");
+    } else if (this.disableAutoSave) {
+      console.warn("Autosaved is disabled");
     }
   }
 
