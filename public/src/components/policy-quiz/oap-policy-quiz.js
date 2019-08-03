@@ -1,14 +1,17 @@
 import { html, supportsAdoptingStyleSheets } from 'lit-element';
 import '@polymer/paper-button/paper-button';
 
-import { Scene, DirectionalLight, PerspectiveCamera, Vector3, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
+import { Scene, DirectionalLight, Clock, PerspectiveCamera, Vector3, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 
 import { OapPageViewElement } from '../oap-page-view-element';
 import { OapPolicyQuizStyles } from './oap-policy-quiz-styles';
 import { OapFlexLayout } from '../oap-flex-layout';
 import { OapShadowStyles } from '../oap-shadow-styles';
 import { Tween, Easing, update as UpdateTween } from 'es6-tween';
-//import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { CreateLightning3D } from '../3d-utils/oap-lightning-3d';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -49,6 +52,9 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   start() {
     this.reset();
+    var width=600;
+    var height=175;
+
     setTimeout(()=>{
       this.scene = new Scene();
       this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
@@ -66,8 +72,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.dirLightTwo.position.z = -150;
       this.camera.add( this.dirLightTwo );
 
-      this.scene.background = new Color( '#1d5588' );
-      var loader = new FontLoader();
+      this.scene.background = new Color( '#000' );
       this.savedBackgroundColor = this.$$("#button0").style.backgroundColor;
       var geometry = new TextGeometry( "?", {
         font: this.font3d,
@@ -92,9 +97,6 @@ class OapPolicyQuiz extends OapPageViewElement {
         new MeshPhongMaterial( { color: 0xffffff } ) // side
       ];
 
-      var width=600;
-      var height=175;
-
       if (window.innerWidth<=600) {
         width=window.innerWidth;
       }
@@ -112,20 +114,20 @@ class OapPolicyQuiz extends OapPageViewElement {
       var canvas = this.$$("#canvas3d");
 
       canvas.appendChild( this.renderer.domElement );
-      //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+     // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
-      this.renderCanvas3d();
+      this.composer = new EffectComposer( this.renderer );
 
-      let target = new Vector3(6, -10, 35);
+      let target = new Vector3(6, 140, 220);
 
       new Tween(this.camera.position)
-      .to({ x: target.x, y: target.y, z: target.z, }, 25*1000)
+      .to({ x: target.x, y: target.y, z: target.z, }, 5*1000)
       .delay(0)
       .easing(Easing.Quadratic.In)
       .on('complete', () => {
-        target = new Vector3(6, -10, 175);
+        target = new Vector3(6, 140, 220);
         new Tween(this.camera.position)
-        .to({ x: target.x, y: target.y, z: target.z, }, 7*1000)
+        .to({ x: target.x, y: target.y, z: target.z, }, 72*1000)
         .delay(0)
         .easing(Easing.Elastic.Out)
         .on('complete', () => {
@@ -133,7 +135,13 @@ class OapPolicyQuiz extends OapPageViewElement {
         .start();
       })
       .start();
-
+      this.clock = new Clock();
+      this.composer.setSize( width, height);
+      this.composer.passes = [];
+      this.renderPass = new RenderPass( this.scene, this.camera );
+      this.composer.addPass(this.renderPass);
+      this.lightning3d = CreateLightning3D(this.scene, this.camera, this.renderer, this.composer, this.clock, width, height);
+      this.renderCanvas3d();
     }, 100);
   }
 
@@ -164,9 +172,13 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   renderCanvas3d() {
     requestAnimationFrame(this.renderCanvas3d.bind(this));
-    this.animate();
+    //this.animate();
     UpdateTween();
-    this.renderer.render(this.scene, this.camera);
+    if (this.lightning3d) {
+      this.lightning3d.update();
+    }
+    this.composer.render(this.clock.getDelta());
+    //this.renderer.render(this.scene, this.camera);
   }
 
   reset() {
@@ -263,6 +275,15 @@ class OapPolicyQuiz extends OapPageViewElement {
       })
       .start();
     });
+    this.lightning3d.visible = true;
+    setTimeout(()=>{
+      new Tween(this.lightning3d)
+      .to({ opacity: 0.0 }, 500)
+      .on('complete', () => {
+        this.lightning3d.visible = false;
+      })
+      .start();
+    }, 10000);
   }
 
   submitAnswer (answer) {

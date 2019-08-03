@@ -11,8 +11,8 @@ import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
-import { CacheEmojisInBackground } from './oap-2d-emojis';
-import { StartDelayedFontCaching, SetForceSlowOnFontCaching } from './oap-cached-text-geometry';
+import { CacheEmojisInBackground } from './3d-utils/oap-2d-emojis';
+import { StartDelayedFontCaching, SetForceSlowOnFontCaching } from './3d-utils/oap-cached-text-geometry';
 import { FontLoader } from 'three';
 
 import 'whatwg-fetch';

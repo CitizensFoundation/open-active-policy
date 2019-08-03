@@ -13,8 +13,8 @@ import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 //import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Tween, Easing, update as UpdateTween, removeAll } from 'es6-tween';
-import { Get2DEmoji } from '../oap-2d-emojis';
-import { GetTextGeometry, GetTextMesh } from '../oap-cached-text-geometry';
+import { Get2DEmoji } from '../3d-utils/oap-2d-emojis';
+import { GetTextGeometry, GetTextMesh } from  '../3d-utils/oap-cached-text-geometry';
 
 import { OapBaseElement } from '../oap-base-element.js';
 
