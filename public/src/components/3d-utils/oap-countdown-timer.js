@@ -2,10 +2,11 @@ import * as THREE from 'three';
 
 import { GetTextGeometry, GetTextMesh } from  '../3d-utils/oap-cached-text-geometry';
 import { Tween, Easing, update as UpdateTween } from 'es6-tween';
+import { Get2DEmoji } from '../3d-utils/oap-2d-emojis';
 
 class CountDownTimer {
 
-  constructor (scene, camera, renderer, composer, clock, font3d, width, height) {
+  constructor (scene, camera, renderer, composer, clock, font3d, quizComponent, width, height) {
     this.scene = scene;
     this.camera = camera;
     this.renderer = renderer;
@@ -14,6 +15,8 @@ class CountDownTimer {
     this.height = height;
     this.font3d = font3d;
     this.r = 0.0;
+    this.inCountDown = false;
+    this.quizComponent = quizComponent;
 
     this.secondsLeft=15;
     this.clock = clock;
@@ -33,7 +36,7 @@ class CountDownTimer {
     };
     this.renderer.gammaInput = true;
     this.renderer.gammaOutput = true;
-    this.pointLight1 = new THREE.PointLight( 0xff0000, 0.5 );
+    this.pointLight1 = new THREE.PointLight( 0xff00000, 0.5 );
 		this.pointLight1.position.z = 2500;
 		this.scene.add(this.pointLight1 );
 
@@ -61,7 +64,6 @@ class CountDownTimer {
     const displacementMap = textureLoader.load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/SwedishCastla/displacement.jpg" );
 
     this.material = new THREE.MeshStandardMaterial( {
-
       color: 0x888888,
       roughness: settings.roughness,
       metalness: settings.metalness,
@@ -80,64 +82,142 @@ class CountDownTimer {
     } );
 
     const materials = [
-      new THREE.MeshPhongMaterial( { color: "#FF000", flatShading: true } ), // front
-      new THREE.MeshPhongMaterial( { color: "#FF000"} ) // side
+      new THREE.MeshPhongMaterial( { color: "#FF0000", flatShading: true } ), // front
+      new THREE.MeshPhongMaterial( { color: "#FF0000"} ) // side
     ];
 
     this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
 
     this.countDownMesh = new THREE.Mesh(this.countDownDigitGeometry, this.material);
+    this.countDownMesh.visible = false;
 
     this.countdownDigitGroup = new THREE.Group();
     this.countdownDigitGroup.add(this.countDownMesh);
     this.countdownDigitGroup.position.z = -22;
     this.countdownDigitGroup.position.y = -2;
     this.countdownDigitGroup.position.x = 0;
-    this.countdownDigitGroup.scale.x = 1;
-    this.countdownDigitGroup.scale.y = 1;
-    this.countdownDigitGroup.scale.z = 1;
     this.scene.add( this.countdownDigitGroup );
-    setTimeout(()=>{
-      this.startCountDown();
-    }, 2000);
   }
 
   startCountDown() {
-    this.doCountDown();
+    let emojiStartZ = -120;
+    let emojiEndZ = 40;
+    let digitsStartZ = -120;
+    let digitsEndZ = 3;
+    this.secondsLeft = 15;
+
+    if (!this.startEmojiSprite) {
+      this.startEmojiSprite = Get2DEmoji("⏲️", '120px Arial');
+      this.startEmojiSprite.position.y = 2.9;
+      this.countdownDigitGroup.add(this.startEmojiSprite);
+    }
+
+    if (this.startEmoji2DTween) {
+      this.startEmoji2DTween.stop();
+      this.startEmoji2DTween = null;
+    }
+
+    this.startEmojiSprite.position.z=emojiStartZ;
+    this.startEmojiSprite.visible=true;
+    this.countDownMesh.position.z=digitsStartZ;
+    this.countDownMesh.position.y=1.4;
+    this.countDownMesh.visible=false;
+    this.countdownDigitGroup.visible=true;
+
+    this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
+    .to({ z: emojiEndZ }, 1600)
+    .delay(0)
+    .on('complete', () => {
+      this.startEmoji2DTween = null;
+      this.startEmojiSprite.position.z=emojiStartZ;
+      this.startEmojiSprite.visible=false;
+      this.countDownMesh.visible=true;
+
+      this.countdownTween3 = new Tween(this.countDownMesh.position)
+      .to({ z: digitsEndZ }, 1400)
+      .easing(Easing.Cubic.Out)
+      .delay(0)
+      .on('complete', () => {
+        this.countdownTween3 = null;
+        this.inCountDown = true;
+        this.doCountDown();
+      })
+      .start();
+    })
+    .start();
+
+  }
+
+  stopCountDownWin() {
+    this.stopCountDown();
+    this.countdownTween3 = new Tween(this.countDownMesh.position)
+    .to({ y: 70 }, 1200)
+    .easing(Easing.Elastic.Out)
+    .delay(0)
+    .on('complete', () => {
+      this.countdownTween3 = null;
+      this.resetAfterStop();
+    })
+    .start();
+  }
+
+  stopCountDownFail() {
+    this.stopCountDown();
+    this.countdownTween3 = new Tween(this.countDownMesh.position)
+    .to({ y: 70 }, 1200)
+    .easing(Easing.Bounce.InOut)
+    .delay(0)
+    .on('complete', () => {
+      this.countdownTween3 = null;
+      this.resetAfterStop();
+    })
+    .start();
+  }
+
+  stopCountDown() {
+    this.inCountDown = false;
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
+
+  resetAfterStop() {
+    this.secondsLeft = 15;
+    this.countDownMesh.geometry = this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
   }
 
   doCountDown() {
-    setTimeout(()=>{
-      if (this.secondsLeft>0) {
-        this.secondsLeft-=1;
-        this.countDownMesh.geometry = this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
-        if (this.secondsLeft<8) {
-          if (this.countDownMeshRotation) {
-            this.countDownMeshRotation.stop();
-            this.countDownMeshRotation = null;
-            this.countDownMesh.rotation.y=0;
+    this.timeout = setTimeout(()=>{
+      this.timeout=null;
+      if (this.inCountDown) {
+        if (this.secondsLeft>0) {
+          this.secondsLeft-=1;
+          this.countDownMesh.geometry = this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
+          if (this.secondsLeft<8) {
+            if (this.countDownMeshRotation) {
+              this.countDownMeshRotation.stop();
+              this.countDownMeshRotation = null;
+              this.countDownMesh.rotation.y=0;
+            }
+            this.countDownMeshRotation = new Tween(this.countDownMesh.rotation)
+            .to({ y: "-" + this.countDownMesh.rotation.y+(Math.PI*2)}, 1000-(500-this.secondsLeft*200))
+            .delay(0)
+            .on('complete', () => {
+              this.countDownMeshRotation = null;
+              this.countDownMesh.rotation.y=0;
+            })
+            .start();
           }
-          //this.fontMesh.receiveShadow = true;
-
-          this.countDownMeshRotation = new Tween(this.countDownMesh.rotation)
-          .to({ y: "-" + this.countDownMesh.rotation.y+(Math.PI*2)}, 1000)
-          .delay(0)
-          .on('complete', () => {
-            this.countDownMeshRotation = null;
-            this.countDownMesh.rotation.y=0;
-          })
-          .start();
+          this.doCountDown();
+        } else {
+          this.stopCountDownFail();
+          this.quizComponent.ranOutOfTime();
         }
-        this.doCountDown();
-      } else {
-        this.secondsLeft=16;
-        this.doCountDown();
       }
     }, 1000);
   }
 
   set visible(value) {
-    debugger;
     if (value===true) {
       this.pointLight1.visible = true;
       this.pointLight2.visible = true;
@@ -157,9 +237,6 @@ class CountDownTimer {
     return this.countdownDigitGroup.visible;
   }
 
-  set opacity(value) {
-    this.scene.userData.lightningMaterial.opacity = value;
-  }
 
   getMaterial() {
     return this.material;
@@ -173,6 +250,6 @@ class CountDownTimer {
   }
 }
 
-export const CreateCountDownTimer = (scene, camera, renderer, composer, clock, width, height) => {
-  return new CountDownTimer(scene, camera, renderer, composer, clock, width, height);
+export const CreateCountDownTimer = (scene, camera, renderer, composer, clock, font, quizComponent, width, height) => {
+  return new CountDownTimer(scene, camera, renderer, composer, clock, font, quizComponent, width, height);
 }

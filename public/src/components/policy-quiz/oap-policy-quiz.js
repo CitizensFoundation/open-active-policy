@@ -14,6 +14,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { CreateGPUFireworks3D } from '../3d-utils/oap-fireworks-3d';
 import { CreateCountDownTimer } from '../3d-utils/oap-countdown-timer';
+import { StartEarlyDelayedFontCaching } from '../3d-utils/oap-cached-text-geometry';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -120,7 +121,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       canvas.appendChild( this.renderer.domElement );
 
       this.composer = new EffectComposer( this.renderer );
-      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+      //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
       if (false) {
         let target = new Vector3(6, 140, 220);
@@ -149,7 +150,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.renderCanvas3d();
 
       setTimeout(()=> {
-        this.countdownTimer3d = CreateCountDownTimer(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, width, height);
+        this.countdownTimer3d = CreateCountDownTimer(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
         this.updateCountDownTimer = true;
       })
 
@@ -206,10 +207,9 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.countdownTimer3d.update()
     }
 
-    this.controls.update();
+    //this.controls.update();
 
     this.composer.render(this.clock.getDelta());
-    //this.renderer.render(this.scene, this.camera);
   }
 
   reset() {
@@ -342,7 +342,11 @@ class OapPolicyQuiz extends OapPageViewElement {
       .on('complete', () => {
       })
       .start();
-    }, 1420);
+    }, 2000);
+  }
+
+  ranOutOfTime() {
+    this.submitAnswer("blah");
   }
 
   submitAnswer (answer) {
@@ -351,6 +355,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     if (answer==correctAnswer) {
       this.correctAnswerColorAnimation();
       this.correctAnswers+=1;
+      this.countdownTimer3d.stopCountDownWin();
       /*this.$$("#button"+answer).animate([
         { transform: "scale(1.3)", easing: 'ease-in' },
         { transform: "scale(1.0)", easing: 'ease-out' }
@@ -365,6 +370,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         soundEffect: "",
         duration: 300,
       })
+      this.countdownTimer3d.stopCountDownFail();
       this.wrongAnswerColorAnimation();
       this.incorrectAnswers+=1;
       /*this.$$("#button"+answer).animate([
@@ -395,6 +401,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.resetAllButtons();
       if (this.currentIndex<this.questions.length-1) {
         this.currentIndex+=1;
+        this.countdownTimer3d.startCountDown();
         this.requestUpdate();
       } else {
         this.currentIndex=null;
@@ -403,7 +410,15 @@ class OapPolicyQuiz extends OapPageViewElement {
         this.fire("oap-sound-effect","quizCompleted");
       }
       this.submitDisabled=false;
-    }, window.debugOn===true ? 100 : 1700);
+    }, window.debugOn===true ? 100 : 2700);
+  }
+
+  startCountDown() {
+    if (this.countdownTimer3d) {
+      this.countdownTimer3d.startCountDown();
+    } else {
+      config.error("No countdownTimer3d");
+    }
   }
 
   resetAllButtons() {
@@ -425,6 +440,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
     if (changedProps.has('font3d') && this.font3d) {
       this.start();
+      StartEarlyDelayedFontCaching(this.font3d);
     }
   }
 }

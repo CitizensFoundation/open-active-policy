@@ -212,7 +212,7 @@ class OapApp extends OapBaseElement {
           </div>
         </paper-dialog>
 
-        <paper-dialog id="welcomeDialog" with-backdrop>
+        <paper-dialog id="welcomeDialog" with-backdrop @close="${this.afterWelcomeClose}">
           <paper-dialog-scrollable>
             <div class="vertical center-center">
               <div class="welcomeLogoContainer center-center">
@@ -2124,6 +2124,7 @@ class OapApp extends OapBaseElement {
 
   closeWelcome() {
     localStorage.setItem("haveClosedWelcome", true);
+    this.afterWelcomeClose();
   }
 
   getDialog(name) {
@@ -2147,6 +2148,12 @@ class OapApp extends OapBaseElement {
     loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
       this.font3d=font;
     }.bind(this));
+  }
+
+  afterWelcomeClose() {
+    if (this._page==="quiz" && this.$$("#quiz")) {
+      this.$$("#quiz").startCountDown();
+    }
   }
 
   getHelpContent() {
