@@ -491,8 +491,8 @@ class Firework {
     this.startTime = -1;
     this.lifespan = 2;
     this.color = 0x444444;
-    this.particleRate = 50;
-    this.smokeRate = 5000;
+    this.particleRate = 10;
+    this.smokeRate = 1000;
     this.position = new THREE.Vector3();
     this.velocity = new THREE.Vector3();
     this.gravity = new THREE.Vector3( 0, -50, 0 );
@@ -594,6 +594,13 @@ class Firework {
 class GPUFireworks3D {
 
   constructor (scene, camera, renderer, composer, clock, width, height) {
+    if (window.innerWidth<600) {
+      this.MAX_PARTICLES = 2000;
+      this.MAX_FIREWORKS = 2;
+    } else {
+      this.MAX_PARTICLES = 250000;
+      this.MAX_FIREWORKS = 7;
+    }
     this.scene = scene;
     this.camera = camera;
     this.renderer = renderer;
@@ -606,18 +613,14 @@ class GPUFireworks3D {
     this.sourcePos = new THREE.Vector3();
 	  this.fireworks = [];
     this.init();
-    this.MAX_FIREWORKS = 1;
     this.particleSystem = new GPUParticleSystem( {
 			maxParticles:this.MAX_PARTICLES ? this.MAX_PARTICLES : 250000,
 			containerCount: this.PARTICLE_CONTAINERS ? this.PARTICLE_CONTAINERS : 1
     } );
     this.particleSystem.position.x = 0;
-    this.particleSystem.position.y = 0;
-    this.particleSystem.position.z = 0;
-    this.particleSystem.scale.x = 1;
-    this.particleSystem.scale.y = 1;
-    this.particleSystem.scale.z = 1;
-    this.particleSystem.visible = true;
+    this.particleSystem.position.y = -5;
+    this.particleSystem.position.z = -35;
+    this.particleSystem.visible = false;
     this.scene.add(this.particleSystem);
   }
 
@@ -640,7 +643,7 @@ class GPUFireworks3D {
   }
 
   get material() {
-    return this.particleSystem.material;
+    return this.particleSystem.getMaterial();
   }
 
   setupScene() {

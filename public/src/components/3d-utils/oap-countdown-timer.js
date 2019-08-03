@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { LightningStorm } from 'three/examples/jsm/objects/LightningStorm.js';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 
-class Lightning3D {
+class CountDownTimer {
 
   constructor (scene, camera, renderer, composer, clock, width, height) {
     this.scene = scene;
@@ -14,14 +14,11 @@ class Lightning3D {
     this.height = height;
 
     this.clock = clock;
-    this.raycaster = new THREE.Raycaster();
     this.currentTime = 0;
     this.init();
   }
 
   init() {
-    this.renderer.gammaInput = true;
-    this.renderer.gammaOutput = true;
     this.setupScene();
   }
 

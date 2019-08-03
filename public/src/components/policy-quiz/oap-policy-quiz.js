@@ -61,7 +61,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     setTimeout(()=>{
       this.scene = new Scene();
       this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-      this.camera.position.set( 6, -15, 355 );
+      this.camera.position.set( 0, 0, 0 );
       this.scene.add( this.camera );
 
       this.dirLightOne = new DirectionalLight(0x1d5588, 2.0);
@@ -121,23 +121,25 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.composer = new EffectComposer( this.renderer );
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
-      let target = new Vector3(6, 140, 220);
+      if (false) {
+        let target = new Vector3(6, 140, 220);
 
-      new Tween(this.camera.position)
-      .to({ x: target.x, y: target.y, z: target.z, }, 1*500)
-      .delay(0)
-      .easing(Easing.Quadratic.In)
-      .on('complete', () => {
-        target = new Vector3(6, 140, 220);
         new Tween(this.camera.position)
-        .to({ x: target.x, y: target.y, z: target.z, }, 72*1000)
+        .to({ x: target.x, y: target.y, z: target.z, }, 1*500)
         .delay(0)
-        .easing(Easing.Elastic.Out)
+        .easing(Easing.Quadratic.In)
         .on('complete', () => {
+          target = new Vector3(6, 140, 220);
+          new Tween(this.camera.position)
+          .to({ x: target.x, y: target.y, z: target.z, }, 72*1000)
+          .delay(0)
+          .easing(Easing.Elastic.Out)
+          .on('complete', () => {
+          })
+          .start();
         })
         .start();
-      })
-      .start();
+      }
       this.clock = new Clock();
       this.composer.setSize( width, height);
       this.composer.passes = [];
@@ -267,6 +269,22 @@ class OapPolicyQuiz extends OapPageViewElement {
       })
       .start();
     });
+
+    this.fireworks3d.visible = true;
+    this.fireworks3d.material.opacity = 1.0;
+    this.updateFireworks3d = true;
+
+    setTimeout(()=>{
+      this.fireworks3d.material.transparent = true;
+      new Tween(this.fireworks3d.material)
+      .to({ opacity: 0.0 }, 700)
+      .on('complete', () => {
+        this.fireworks3d.visible = false;
+        this.updateFireworks3d = false;
+      })
+      .start();
+    }, 1000);
+
   }
 
   wrongAnswerColorAnimation() {
@@ -298,7 +316,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     setTimeout(()=>{
       this.lightning3d.material.transparent = true;
       new Tween(this.lightning3d.material)
-      .to({ opacity: 0.0 }, 1200)
+      .to({ opacity: 0.0 }, 400)
       .on('complete', () => {
         this.lightning3d.material.transparent = false;
         this.lightning3d.visible = false;
@@ -307,11 +325,11 @@ class OapPolicyQuiz extends OapPageViewElement {
       .start();
 
       new Tween(this.lightning3d.outlinePass)
-      .to({ edgeGlow: 0.0, edgeStrength: 0.0, edgeThickness: 0.0 }, 1200)
+      .to({ edgeGlow: 0.0, edgeStrength: 0.0, edgeThickness: 0.0 }, 400)
       .on('complete', () => {
       })
       .start();
-    }, 750);
+    }, 1420);
   }
 
   submitAnswer (answer) {
@@ -372,7 +390,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         this.fire("oap-sound-effect","quizCompleted");
       }
       this.submitDisabled=false;
-    }, window.debugOn===true ? 100 : 1500);
+    }, window.debugOn===true ? 100 : 1700);
   }
 
   resetAllButtons() {
