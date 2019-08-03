@@ -26,7 +26,7 @@ class Lightning3D {
   }
 
   set visible(value) {
-    if (value) {
+    if (value===true) {
       this.addRenderPass()
     } else {
       this.removeRenderPass();
@@ -34,10 +34,25 @@ class Lightning3D {
     this.storm.visible=value;
   }
 
+  get visible() {
+    return this.storm.visible;
+  }
+
   set opacity(value) {
     this.scene.userData.lightningMaterial.opacity = value;
   }
 
+  get material() {
+    return this.scene.userData.lightningMaterial;
+  }
+
+  getEdgeGlow() {
+    return this.edgeGlow;
+  }
+
+  getOutLinePass() {
+    return this.outlinePass;
+  }
   removeStorm() {
     this.scene.remove( this.storm );
   }
@@ -118,19 +133,17 @@ class Lightning3D {
     this.scene.userData.timeRate = 1;
     this.scene.add( this.storm );
     this.createRenderPasses();
+    this.composer.addPass( this.outlinePass );
+    this.outlinePass.enabled = false;
     this.storm.visible = false;
   }
 
   addRenderPass() {
-    this.composer.addPass( this.outlinePass );
+    this.outlinePass.enabled = true;
   }
 
   removeRenderPass() {
-    if (this.composer && this.outlinePass) {
-      this.composer.removePass( this.outlinePass );
-    } else {
-      console.error("Missing composer or outlinePass");
-    }
+    this.outlinePass.enabled = false;
   }
 
   createRenderPasses() {

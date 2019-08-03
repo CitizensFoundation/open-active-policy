@@ -275,15 +275,25 @@ class OapPolicyQuiz extends OapPageViewElement {
       })
       .start();
     });
+
     this.lightning3d.visible = true;
+
     setTimeout(()=>{
-      new Tween(this.lightning3d)
-      .to({ opacity: 0.0 }, 500)
+      this.lightning3d.material.transparent = true;
+      new Tween(this.lightning3d.material)
+      .to({ opacity: 0.0 }, 1200)
       .on('complete', () => {
+        this.lightning3d.material.transparent = false;
         this.lightning3d.visible = false;
       })
       .start();
-    }, 10000);
+
+      new Tween(this.lightning3d.outlinePass)
+      .to({ edgeGlow: 0.0 }, 1200)
+      .on('complete', () => {
+      })
+      .start();
+    }, 750);
   }
 
   submitAnswer (answer) {
