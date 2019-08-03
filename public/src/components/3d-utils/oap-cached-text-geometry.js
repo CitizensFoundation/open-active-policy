@@ -120,7 +120,6 @@ export const StartDelayedFontCaching = (font3d, options) => {
 
 export const GetTextMesh = (value, font, options) => {
   if (fontMeshCache[value+options.large]) {
-    console.error("Got mesh from cache"+value);
     return fontMeshCache[value+options.large];
   } else {
     let geometry;
@@ -141,7 +140,6 @@ export const GetTextMesh = (value, font, options) => {
 
 export const GetTextGeometry = (value, font, options) => {
   if (fontGeometryCache[value+options.large]) {
-    console.error("Got geometry from cache"+value);
     return fontGeometryCache[value+options.large];
   } else {
     let geometry;

@@ -203,6 +203,9 @@ class OapApp extends OapBaseElement {
         </paper-dialog>
 
         <paper-dialog id="savedGameDialog" modal>
+          <div class="welcomeLogoContainer center-center">
+             <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
+          </div>
           <div class="savedGameContent">
             ${this.localize("youHaveAnAutoSavedGameFrom")} ${this.savedGameDate}
           </div>
