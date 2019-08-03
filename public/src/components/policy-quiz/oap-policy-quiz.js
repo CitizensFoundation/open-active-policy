@@ -12,6 +12,7 @@ import { Tween, Easing, update as UpdateTween } from 'es6-tween';
 import { CreateLightning3D } from '../3d-utils/oap-lightning-3d';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { CreateGPUFireworks3D } from '../3d-utils/oap-fireworks-3d';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -49,6 +50,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.shapes3d = [];
     this.submitDisabled = false;
     this.updateLighting3d = false;
+    this.updateFireworks3d = false;
   }
 
   start() {
@@ -115,9 +117,9 @@ class OapPolicyQuiz extends OapPageViewElement {
       var canvas = this.$$("#canvas3d");
 
       canvas.appendChild( this.renderer.domElement );
-     // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
       this.composer = new EffectComposer( this.renderer );
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
       let target = new Vector3(6, 140, 220);
 
@@ -141,9 +143,17 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.composer.passes = [];
       this.renderPass = new RenderPass( this.scene, this.camera );
       this.composer.addPass(this.renderPass);
-      this.lightning3d = CreateLightning3D(this.scene, this.camera, this.renderer, this.composer, this.clock, width, height);
       this.renderCanvas3d();
-    }, 100);
+      setTimeout(()=>{
+        this.lightning3d = CreateLightning3D(this.scene, this.camera, this.renderer, this.composer, this.clock, width, height);
+      }, 500);
+
+      setTimeout(()=>{
+        this.fireworks3d = CreateGPUFireworks3D(this.scene, this.camera, this.renderer, this.composer, this.clock, width, height);
+        this.updateFireworks3d = true;
+      }, 700);
+
+    }, 1);
   }
 
   addShape( geometry, materials, color, x, y, z, rx, ry, rz, s ) {
@@ -178,6 +188,11 @@ class OapPolicyQuiz extends OapPageViewElement {
     if (this.lightning3d && this.updateLighting3d) {
       this.lightning3d.update();
     }
+
+    if (this.fireworks3d && this.updateFireworks3d) {
+      this.fireworks3d.update()
+    }
+
     this.composer.render(this.clock.getDelta());
     //this.renderer.render(this.scene, this.camera);
   }
@@ -337,6 +352,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
     window.requestAnimationFrame(()=>{
       this.$$("#button"+correctAnswer).style.backgroundColor="#39FF14";
+      this.$$("#button"+correctAnswer).classList.add("rightAnswer");
       const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
       incorrectButtons.forEach( (buttonId) => {
         this.$$("#button"+buttonId).style.backgroundColor="#d6483d";
@@ -364,7 +380,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;
       this.$$("#button"+buttonId).selected=false;
       this.$$("#button"+buttonId).focused=false;
-      this.$$("#button"+buttonId).classList.remove("wrongAnswer");
+      this.$$("#button"+buttonId).classList.remove("wrongAnswer","rightAnswer");
     });
   }
 

@@ -7,8 +7,10 @@
     "src/components/oap-view404.js"
   ],
   "sources": [
-    "images/**/*"
-  ],
+    "images/**/*",
+    "src/components/3d-utils/particle2.png",
+    "src/components/3d-utils/perlin-512.png"
+ ],
   "extraDependencies": [
     "manifest.json",
     "node_modules/@webcomponents/webcomponentsjs/**",

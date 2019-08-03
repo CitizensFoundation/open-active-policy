@@ -28,6 +28,11 @@ export const OapPolicyQuizStyles = css`
     -ms-transition: opacity 0.7s ease-in-out;
     -o-transition: opacity 0.7s ease-in-out;
      opacity: 0.0;
+     border: 0;
+  }
+
+  .rightAnswer {
+    border: 0;
   }
 
   .buttonContainer {
@@ -50,9 +55,10 @@ export const OapPolicyQuizStyles = css`
     background-color: #000;
     color: #FFF;
     border-radius: 4px;
-    margin-bottom: 0;
+    margin-top: 0;
     text-align: center;
     padding-bottom: 0;
+    padding-top: 6px;
   }
 
   .infoBar {
