@@ -184,7 +184,10 @@ class OapBallot extends OapPageViewElement {
         this.wide = matches;
       });
     setTimeout(()=>{
-      this.setStateOfRemainingItems();
+      this._resetSelected();
+      setTimeout(()=>{
+        this.setStateOfRemainingItems();
+      }, 25);
     }, 75);
   }
 
@@ -339,6 +342,13 @@ class OapBallot extends OapPageViewElement {
       this._checkBonusesAndPenalties(item, "select");
       console.error("CHECKING BONUSES");
     }, 600)
+  }
+
+  _resetSelected() {
+    var listItems = this.$$("#itemContainer");
+    for (var i = 0; i < listItems.children.length; i++) {
+      listItems.children[i].selected = null;
+    }
   }
 
   _resetExclusive(itemIds) {
