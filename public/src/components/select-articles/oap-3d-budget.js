@@ -4,7 +4,7 @@ import { Oap3DBudgetStyles } from './oap-3d-budget-styles';
 import { OapShadowStyles } from '../oap-shadow-styles';
 import { OapFlexLayout } from '../oap-flex-layout.js';
 
-import { Scene,PerspectiveCamera,Group,Object3D,SpotLight, BufferGeometry,MeshPhongMaterial,WebGLRenderer,TextGeometry,Box3,FontLoader,DirectionalLight,AmbientLight,Vector2,Vector3,BoxGeometry,Mesh,MeshBasicMaterial} from 'three';
+import { Scene,PerspectiveCamera,Group,DoubleSide,Object3D,SpotLight,MeshStandardMaterial, BufferGeometry,MeshPhongMaterial,WebGLRenderer,TextGeometry,Box3,FontLoader,DirectionalLight,AmbientLight,Vector2,Vector3,BoxGeometry,Mesh,MeshBasicMaterial} from 'three';
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
@@ -212,11 +212,18 @@ class Oap3dBudget extends OapBaseElement {
           endFudge = 20;
         }
 
-        const materials = [
-          new MeshPhongMaterial( { color: color, flatShading: true } ), // front
-          new MeshPhongMaterial( { color: color} ) // side
-        ];
+        const roughness = Math.random();
+        const metalness = Math.random();
+        console.error("Budget +/- Metalness: "+metalness);
+        console.error("Budget +/- Roughnes: "+roughness);
 
+        this.bonusMaterial = new MeshStandardMaterial( {
+          color: color,
+          roughness: roughness,
+          metalness:metalness,
+
+          side: DoubleSide
+        } );
 
         if (this.bonusPenaltyFontTween) {
           this.bonusPenaltyFontTween.stop();
@@ -224,7 +231,7 @@ class Oap3dBudget extends OapBaseElement {
         }
 
         if (this.bonusPenaltyGroup==null) {
-          this.bonusPenaltyFontMesh = new Mesh( geometry, materials );
+          this.bonusPenaltyFontMesh = new Mesh( geometry, this.bonusMaterial );
           this.bonusPenaltyFontMesh.position.x = 0;
           this.bonusPenaltyFontMesh.position.y = -1.5;
           this.bonusPenaltyFontMesh.position.z = 0;
@@ -241,18 +248,18 @@ class Oap3dBudget extends OapBaseElement {
           this.bonusPenaltyGroup.position.z=-10;
           this.scene.add(this.bonusPenaltyGroup);
         } else {
-          this.bonusPenaltyFontMesh.material[0].color.set(color);
-          this.bonusPenaltyFontMesh.material[1].color.set(color);
+          this.bonusPenaltyFontMesh.material.color.set(color);
           this.bonusPenaltyFontMesh.geometry=geometry;
           this.bonusPenaltyFontMesh.remove(this.bonusPenaltyEmoji2D);
           this.rebuild3dEmoji(emoji, xText, startFudge);
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
+          this.bonusPenaltyFontMesh.material = this.bonusMaterial;
         }
 
         let smallScreenMultiplier = window.innerWidth>600 ? 1.0 : 0.63;
         if (isMinus) {
           if (!this.minusMesh) {
-            this.minusMesh = new Mesh( GetTextGeometry("-", this.font3d, { large: false }), materials );
+            this.minusMesh = new Mesh( GetTextGeometry("-", this.font3d, { large: false }), this.bonusMaterial );
             this.minusMesh.position.x = 0;
             this.minusMesh.position.y = -1.5;
             this.minusMesh.position.z = 0;
@@ -264,15 +271,17 @@ class Oap3dBudget extends OapBaseElement {
             this.minusMesh.position.x = -5.5*smallScreenMultiplier;
           }
           this.minusMesh.visible = true;
+          this.minusMesh.material.color.set(0xFF0000);
         } else {
           if (this.minusMesh) {
             this.minusMesh.visible = false;
+            this.minusMesh.material.color.set(0xFF0000);
           }
         }
 
         if (isPlus) {
           if (!this.plusMesh) {
-            this.plusMesh = new Mesh( GetTextGeometry("+", this.font3d, { large: false }), materials );
+            this.plusMesh = new Mesh( GetTextGeometry("+", this.font3d, { large: false }), this.bonusMaterial );
             this.plusMesh.position.y = -1.5;
             this.plusMesh.position.z = 0;
             this.bonusPenaltyGroup.add(this.plusMesh);
@@ -283,21 +292,23 @@ class Oap3dBudget extends OapBaseElement {
             this.plusMesh.position.x = -6.5*smallScreenMultiplier;
           }
           this.plusMesh.visible = true;
+          this.plusMesh.material.color.set(0x00FF00);
         } else {
           if (this.plusMesh) {
             this.plusMesh.visible = false;
+            this.plusMesh.material.color.set(0x00FF00);
           }
         }
 
         this.bonusPenaltyGroup.visible=true;
 
         if (!this.cameraSpotLight) {
-          this.cameraSpotLight = new SpotLight( 0xffffff, 0.2 );
+          this.cameraSpotLight = new SpotLight( 0xffffff, 0.5 );
           this.cameraSpotLight.position.copy(this.camera.position);
           this.cameraSpotLight.target=this.bonusPenaltyGroup;
           //this.cameraSpotLight.castShadow = true;
-          this.cameraSpotLight.angle = 0.42;
-          this.cameraSpotLight.penumbra = 0.42;
+          this.cameraSpotLight.angle = 0.55;
+          this.cameraSpotLight.penumbra = 0.52;
           this.cameraSpotLight.distance = 260;
           this.scene.add(this.cameraSpotLight);
         } else {
@@ -309,8 +320,7 @@ class Oap3dBudget extends OapBaseElement {
           this.bonusPenaltyFontMesh.rotation.y = 0;
         }
 
-        this.fontMesh.material[0].color.set(color);
-        this.fontMesh.material[1].color.set(color);
+        this.fontMesh.material.color.set(color);
 
         setTimeout(()=>{
           this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyGroup.position)
@@ -320,8 +330,7 @@ class Oap3dBudget extends OapBaseElement {
             this.bonusPenaltyGroup.position.x=this.getLeftOfCamera();
             this.bonusPenaltyGroup.position.z=-10;
             this.bonusPenaltyFontTween=null;
-            this.fontMesh.material[0].color.set(0xFF5722);
-            this.fontMesh.material[1].color.set(0xFF5722);
+            this.fontMesh.material.color.set(this.defaultChoicePointsColor);
             this.scene.remove(this.cameraSpotLight);
             this.cameraSpotLight.visible=false;
             this.bonusPenaltyGroup.visible=false;
@@ -351,13 +360,26 @@ class Oap3dBudget extends OapBaseElement {
 
   rebuildChoicePoints(firstTime) {
     if (this.choicePointsLeft!=null && this.font3d) {
-      if (this.fontMesh==null) {
-        var materials = [
-          new MeshPhongMaterial( { color: 0xFF5722, flatShading: true } ), // front
-          new MeshPhongMaterial( { color: 0xFF5722 } ) // side
-        ];
+      let roughness = Math.random();
+      let metalness = Math.random();
+      if (roughness>0.8 && metalness>0.8) {
+        roughness = Math.random();
+        metalness = Math.random();
+      }
+      console.error("Budget CP Metalness: "+metalness);
+      console.error("Budget CP Roughnes: "+roughness);
 
-        this.fontMesh = new Mesh(GetTextGeometry(this.choicePointsLeft.toString(), this.font3d, { large: true }), materials );
+      this.choicePointsMaterial = new MeshStandardMaterial( {
+        color: this.defaultChoicePointsColor,
+        roughness: roughness,
+        metalness:metalness,
+
+        side: DoubleSide
+      } );
+
+      if (this.fontMesh==null) {
+
+        this.fontMesh = new Mesh(GetTextGeometry(this.choicePointsLeft.toString(), this.font3d, { large: true }),  this.choicePointsMaterial );
 
         const xText = this.votesWidth*0.070;
 
@@ -371,10 +393,12 @@ class Oap3dBudget extends OapBaseElement {
 
         this.fontMesh.rotation.x = 0;
         this.fontMesh.rotation.y = Math.PI * 2;
-        this.cpMesh = new Mesh(GetTextGeometry("cp", this.font3d, { large: true }), materials );
+        this.cpMesh = new Mesh(GetTextGeometry("cp", this.font3d, { large: true }),  this.choicePointsMaterial );
         this.fontMesh.add(this.cpMesh);
         this.scene.add(this.fontMesh);
       } else {
+        this.fontMesh.material = this.choicePointsMaterial;
+        this.cpMesh.material = this.choicePointsMaterial;
         this.fontMesh.geometry=GetTextGeometry(this.choicePointsLeft.toString(), this.font3d, { large: true });
       }
 
@@ -592,6 +616,7 @@ class Oap3dBudget extends OapBaseElement {
 
   constructor() {
     super();
+    this.defaultChoicePointsColor = 0xeaeaea;
   }
 
   _exit () {
