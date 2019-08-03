@@ -931,7 +931,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Ancient',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w9.png',
     price: 20,
     bonus: 'High Authority,High Tradition,High Law/Order',
     penalty: 'High Social Progress,High Science' },
@@ -945,7 +945,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/d1.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w8.png',
     price: 10,
     bonus: 'Medium Social Progress,Medium Liberty,High Independence',
     penalty: 'High Authority\n' },
@@ -959,7 +959,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Futurist',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w7.png',
     price: 20,
     bonus: 'High Authority,High Social Progress,High Science',
     penalty: 'High Tradition' },
@@ -973,7 +973,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/d2.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w6.png',
     price: 5,
     bonus: 'High Social Progress,Low Authority',
     penalty: 'High Law/Order' },
@@ -987,7 +987,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/d3.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w5.png',
     price: 5,
     bonus: 'High Tradition,High Collective',
     penalty: 'High Law/Order' },
@@ -1001,7 +1001,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Futurist',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w4.png',
     price: 10,
     bonus: 'High Collective,High Social Progress',
     penalty: 'High Tradition\n' },
@@ -1015,7 +1015,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/a7.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w3.png',
     price: 5,
     bonus: 'High Collective.High Independence',
     penalty: 'High Authority' },
@@ -1043,7 +1043,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/aaaa.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w2.png',
     price: 5,
     bonus: 'Low Authority,High Collective',
     penalty: 'High Tradition' },
@@ -1057,7 +1057,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w17.png',
     price: 5,
     bonus: 'High Collective,High Social Progress',
     penalty: 'High Authority,High Tradition' },
@@ -1071,7 +1071,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w16.png',
     price: 5,
     bonus: 'High Law/Order,High Collective,High Social Progress',
     penalty: 'High Authority\n' },
@@ -1099,7 +1099,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b3.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w15.png',
     price: 10,
     bonus: 'High Liberty,High Collective',
     penalty: 'High Authority,High Tradition,High Independence' },
@@ -1127,7 +1127,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Legislative/Parliamentary', module_type_index: 1,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b5.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w14.png',
     price: 10,
     bonus: 'High Social Progress,High Collective',
     penalty: 'High Authority,High Law/Order' },
@@ -1166,7 +1166,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Judicial', module_type_index: 2,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w13.png',
     price: 20,
     bonus: 'High Tradition,High Law/Order,High Collective',
     penalty: 'Low Independence\n' },
@@ -1180,7 +1180,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Ancient',
     module_content_type: 'Judicial', module_type_index: 2,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w12.png',
     price: 20,
     bonus: 'High Authority,Medium Law/IOrder',
     penalty: 'High Collective' },
@@ -1208,7 +1208,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Judicial', module_type_index: 2,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w10.png',
     price: 20,
     bonus: 'High Liberty,High Social Progress',
     penalty: 'High Tradition' },
@@ -1264,7 +1264,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Judicial', module_type_index: 2,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/w1.png',
     price: 10,
     bonus: 'Medium Law & Order,Medium Privacy,Medium Liberty',
     penalty: '' },
@@ -1278,7 +1278,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Ancient',
     module_content_type: 'Judicial', module_type_index: 2,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/r1.png',
     price: 5,
     bonus: 'High Law & Order,High Tradition,Medium Liberty',
     penalty: 'High Collective' },
@@ -1334,7 +1334,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Ancient',
     module_content_type: 'Judicial', module_type_index: 2,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x10.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q7.png',
     price: 20,
     bonus: 'High Tradition,High Collective',
     penalty: 'High Science,High Liberty,High Independence' },
@@ -1348,7 +1348,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Judicial', module_type_index: 2,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group1.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q8.png',
     price: 10,
     bonus: 'High Law & Order,High Collective',
     penalty: 'High Liberty' },
@@ -1373,7 +1373,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/xo.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q6.png',
     price: 10,
     bonus: 'High Social Progress,High Liberty,High Collective',
     penalty: 'High Tradition,High Collective' },
@@ -1387,7 +1387,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Ancient',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x17.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q20.png',
     price: 20,
     bonus: 'High Tradition,High Collective',
     penalty: 'High Social Progress,High Liberty,Low Law & Order' },
@@ -1401,7 +1401,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Ancient',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x9.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q22.png',
     price: 20,
     bonus: 'High Tradition,Low Science',
     penalty: 'High Science,High Liberty' },
@@ -1415,7 +1415,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Ancient',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q19.png',
     price: 10,
     bonus: 'High Tradition,High Liberty',
     penalty: 'High Border Density,High Neighbor Hostility' },
@@ -1429,7 +1429,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q18.png',
     price: 20,
     bonus: 'High Law & Order,High Tradition,High Border Density',
     penalty: 'High Science,High Social Progress' },
@@ -1443,7 +1443,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Futurist',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group4.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q15.png',
     price: 20,
     bonus:
      'High Science,High Border Density,Bonus for Population < 10M',
@@ -1458,7 +1458,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q11.png',
     price: 10,
     bonus:
      'High Science,Medium Border Density,Medium Law & Order,Medium Social Progress',
@@ -1474,7 +1474,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x5.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/q1.png',
     price: 20,
     bonus:
      'High Authority,High Law & Order,Medium Science,High Independence',
@@ -1490,7 +1490,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/aaaa.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/gg3.png',
     price: 10,
     bonus:
      'Medium Authority,Medium Law/Order,High Science,Medium Independence,Bonus for Size > 1M sq Km',
@@ -1506,7 +1506,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Futurist',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x11.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/g6.png',
     price: 20,
     bonus:
      'Low Authority,Low Collective,Low Independence,High Liberty,Bonus for Size > 1M sq Km',
@@ -1521,7 +1521,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b6.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/g4.png',
     price: 5,
     bonus: 'High Privacy,High Liberty,High Social Progress',
     penalty: 'High Authority,High Law & Order' },
@@ -1535,7 +1535,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x7+copy.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/g1.png',
     price: 5,
     bonus: 'High Collective,High Social Progress,High Liberty',
     penalty: 'Low Law/Order\n' },
@@ -1549,7 +1549,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/b3.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f7.png',
     price: 5,
     bonus: 'High Law/Order,High Collective,High Independence',
     penalty: 'High Tradition' },
@@ -1563,7 +1563,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar12.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f6.png',
     price: 10,
     bonus: 'High Tradition,Medium Law/Order,Low Social Progress',
     penalty: 'High Authority,High Collective' },
@@ -1577,7 +1577,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/x3.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f5.png',
     price: 10,
     bonus: 'High Privacy,High Liberty,High Social Progress',
     penalty: 'High Authority,High Independence' },
@@ -1591,7 +1591,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar7.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f4.png',
     price: 10,
     bonus: 'High Collective,High Law/Order,High Social Progress',
     penalty: 'Medium Tradition' },
@@ -1606,7 +1606,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Futurist',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar16.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f3.png',
     price: 20,
     bonus: 'High Collective,High Social Progress',
     penalty: 'High Science,High Privacy' },
@@ -1620,7 +1620,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar8.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f2.png',
     price: 5,
     bonus: 'High Liberty,High Tradition,High Law/Order',
     penalty: 'Low Law/Order\n' },
@@ -1635,7 +1635,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f10.png',
     price: 5,
     bonus: 'High Liberty,High Tradition,High Law/Order',
     penalty: 'High Authority' },
@@ -1649,7 +1649,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Futurist',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch1/Group+6+(1).png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/f1.png',
     price: 20,
     bonus: 'High Social Progress,High Liberty',
     penalty: 'High Privacy' },
@@ -1663,7 +1663,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Modern/Contemporary',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/rmar13.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/e3.png',
     price: 5,
     bonus:
      'High Collective,High Social Progress,High Science,High Privacy',
@@ -1678,7 +1678,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Early Modern',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch2/a.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/e2.png',
     price: 10,
     bonus:
      'High Social Progress,High Liberty,Bonus for Population > 2M',
@@ -1694,7 +1694,7 @@ class OapApp extends OapBaseElement {
     time_period: 'Futurist',
     module_content_type: 'Civil', module_type_index: 3,
     image_url:
-     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/Group+10.png',
+     'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/modules/batch3/e1.png',
     price: 20,
     bonus:
      'High Natural Resource Wealth,High Social Progress,High Collective',

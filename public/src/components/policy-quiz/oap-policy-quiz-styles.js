@@ -27,7 +27,7 @@ export const OapPolicyQuizStyles = css`
     -moz-transition: opacity 0.7s ease-in-out;
     -ms-transition: opacity 0.7s ease-in-out;
     -o-transition: opacity 0.7s ease-in-out;
-     opacity: 0.0;
+     opacity: 0.2;
      border: 0;
   }
 

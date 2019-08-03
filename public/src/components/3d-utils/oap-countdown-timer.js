@@ -187,6 +187,9 @@ class CountDownTimer {
   }
 
   doCountDown() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
     this.timeout = setTimeout(()=>{
       this.timeout=null;
       if (this.inCountDown) {
