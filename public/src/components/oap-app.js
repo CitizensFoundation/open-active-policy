@@ -2322,6 +2322,9 @@ class OapApp extends OapBaseElement {
     }
 
     if (changedProps.has('_page')) {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+
       console.error("this._page: "+this._page);
       const pageTitle = this.appTitle + ' - ' + this._page;
 

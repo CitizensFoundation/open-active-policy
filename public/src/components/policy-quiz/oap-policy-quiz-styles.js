@@ -14,7 +14,7 @@ export const OapPolicyQuizStyles = css`
 
   .answerButton {
     background-color: var(--app-quiz-answer-button-background-color, #000);
-    color: #FFF;
+    color: #eee;
     border: 1px solid #eee;
     padding: 12px;
     width: 100%;
@@ -23,17 +23,23 @@ export const OapPolicyQuizStyles = css`
   }
 
   .wrongAnswer {
-    -webkit-transition: opacity 0.8s ease-in-out;
-    -moz-transition: opacity 0.8s ease-in-out;
-    -ms-transition: opacity 0.8s ease-in-out;
-    -o-transition: opacity 0.8s ease-in-out;
-     opacity: 0.3;
-     border-color: transparent;
+    -webkit-transition: opacity, color, border 0.7s ease-in-out;
+    -moz-transition: opacity, color, border 0.7s ease-in-out;
+    -ms-transition: opacity, color, border 0.7s ease-in-out;
+    -o-transition: opacity, color, border 0.7s ease-in-out;
+    opacity: 0.5;
+    color: #770000;
+    border: 1px solid #770000;
   }
 
   .rightAnswer {
-    border-color: transparent;
     font-weight: bold;
+    color: #fff;
+    border: 1px solid #00ff00;
+    -webkit-transition: color 0.7s ease-in-out;
+    -moz-transition: color 0.7s ease-in-out;
+    -ms-transition: color 0.7s ease-in-out;
+    -o-transition: color 0.7s ease-in-out;
   }
 
   .buttonContainer {
@@ -52,7 +58,7 @@ export const OapPolicyQuizStyles = css`
 
   .question {
     padding: 16px;
-    font-size: 22px;
+    font-size: 23px;
     background-color: #000;
     color: #FFF;
     border-radius: 4px;
@@ -104,8 +110,6 @@ export const OapPolicyQuizStyles = css`
 
   .continueButton {
     margin-top: 24px;
-    background-color: var(--app-accent-color);
-    color: #FFF;
   }
 
   @media (max-width: 600px) {

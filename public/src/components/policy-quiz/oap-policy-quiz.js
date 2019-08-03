@@ -390,11 +390,9 @@ class OapPolicyQuiz extends OapPageViewElement {
     }
 
     window.requestAnimationFrame(()=>{
-      this.$$("#button"+correctAnswer).style.backgroundColor="#39FF14";
       this.$$("#button"+correctAnswer).classList.add("rightAnswer");
       const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
       incorrectButtons.forEach( (buttonId) => {
-        this.$$("#button"+buttonId).style.backgroundColor="#d6483d";
         this.$$("#button"+buttonId).classList.add("wrongAnswer");
       });
     });

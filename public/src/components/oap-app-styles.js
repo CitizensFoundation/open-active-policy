@@ -209,6 +209,9 @@ export const OapAppStyles = css`
   .savedGameContent {
     font-size: 20px;
     padding: 16px;
+    margin-right: 16px;
+    margin-left: 16px;
+    padding-bottom: 0;
   }
 
   .savedGameButton {
