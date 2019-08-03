@@ -2270,9 +2270,7 @@ class OapApp extends OapBaseElement {
       this.filteredItems = [];
       this.usedBonusesAndPenalties = [];
     }
-    if (!localStorage.getItem("haveClsosedWelcome")) {
-      this.$$("#welcomeDialog").open();
-    }
+    this.afterWelcomeClose();
   }
 
   restoreGameFromSave() {

@@ -25,9 +25,10 @@ class CountDownTimer {
   }
 
   init() {
+    this.roughness = 0.3;
     const settings = {
-      metalness: 1.0,
-      roughness: 0.4,
+      metalness: 0.1,
+      roughness: 0.1,
       ambientIntensity: 0.2,
       aoMapIntensity: 1.0,
       envMapIntensity: 1.0,
@@ -65,18 +66,8 @@ class CountDownTimer {
 
     this.material = new THREE.MeshStandardMaterial( {
       color: 0x888888,
-      roughness: settings.roughness,
+      roughness: this.roughness ,
       metalness: settings.metalness,
-
-      aoMap: aoMap,
-      aoMapIntensity: 1,
-
-      displacementMap: displacementMap,
-      displacementScale: settings.displacementScale,
-      displacementBias: - 0.428408, // from original model
-
-      envMap: reflectionCube,
-      envMapIntensity: settings.envMapIntensity,
 
       side: THREE.DoubleSide
     } );
@@ -119,6 +110,16 @@ class CountDownTimer {
       this.startEmoji2DTween = null;
     }
 
+    this.material = new THREE.MeshStandardMaterial( {
+      color: 0x888888,
+      roughness: Math.random(),
+      metalness: Math.random(),
+
+      side: THREE.DoubleSide
+    } );
+
+    this.countDownMesh.material = this.material;
+
     this.startEmojiSprite.position.z=emojiStartZ;
     this.startEmojiSprite.visible=true;
     this.countDownMesh.position.z=digitsHoldZ;
@@ -149,6 +150,15 @@ class CountDownTimer {
     .delay(0)
     .on('complete', () => {
       this.countdownTween3 = null;
+    })
+    .start();
+
+    this.countdownTween4 = new Tween(this)
+    .to({ roughness: 0.5 }, 3100)
+    .easing(Easing.Cubic.Out)
+    .delay(0)
+    .on('complete', () => {
+      this.countdownTween4 = null;
     })
     .start();
   }
@@ -188,6 +198,7 @@ class CountDownTimer {
 
   resetAfterStop() {
     this.secondsLeft = 15;
+    this.roughness = 0.1;
     this.countDownMesh.geometry = this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
   }
 
