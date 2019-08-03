@@ -295,6 +295,8 @@ class OapApp extends OapBaseElement {
               .language="${this.language}"
               .configFromServer="${this.configFromServer}"
               class="page"
+              .selectedItems="${this.selectedItems}"
+              .filteredItems="${this.filteredItems}"
               .country="${this.country}"
               .allItems="${this.allItems}"
               ?active="${this._page === 'filter-articles'}">
@@ -371,6 +373,7 @@ class OapApp extends OapBaseElement {
       localStorage.setItem("languageOverride", language);
     }
     this.filteredItems = [];
+    this.selectedItems = [];
     this.setDummyData();
     this.GAME_STATE_VERSION="OapGameStateV1";
   }
@@ -1700,7 +1703,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    if (window.debugOn) {
+    if (window.debugOn && false) {
       this.filteredItems = this.allItems;
       this.country = {
         name: "13 Colonies 1783 (US Constitutional Convention)",

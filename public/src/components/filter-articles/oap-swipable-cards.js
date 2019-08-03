@@ -22,6 +22,8 @@ class OapSwipableCards extends OapBaseElement {
       stackedOptions: String,
       rotate: Boolean,
       items: Array,
+      selectedItems: Array,
+      filteredItems: Array,
       itemsLeft: Array,
       visibleItems: Array,
       elementsMargin: Number,
@@ -213,9 +215,26 @@ class OapSwipableCards extends OapBaseElement {
 
     if (changedProps.has('items')) {
       if (this.items && this.items.length>0) {
-        if (this.currentItemsPosition===0)
+        if (this.currentItemsPosition===0) {
           this.currentItem = this.items[0];
+        }
+
         this.itemsLeft = [...this.items];
+
+        debugger;
+        if ((this.selectedItems && this.selectedItems.length>0) || (this.filteredItems && this.filteredItems.length>0)) {
+          this.itemsLeft = this.itemsLeft.filter((item) => {
+            let useItem=true;
+            if (this.selectedItems && this.selectedItems.indexOf(item) > -1) {
+              useItem=false;
+            }
+            if (this.filteredItems && this.filteredItems.indexOf(item) > -1) {
+              useItem=false;
+            }
+            return useItem;
+          })
+        }
+
         this.visibleItems=this.itemsLeft.slice(0, 5);
         this.itemsLeft.shift();
         this.itemsLeft.shift();
@@ -410,7 +429,6 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   addEventListeners() {
-    console.error("Add event listeners");
      // JavaScript Document
     this.gestureStartHandler = this.gestureStart.bind(this);
     this.gestureMoveHandler = this.gestureMove.bind(this);
@@ -433,7 +451,6 @@ class OapSwipableCards extends OapBaseElement {
 
   removeEventListeners() {
     // JavaScript Document
-    console.error("Remove eventlisteners");
     if (this.gestureStartHandler) {
       this.$$("#stacked-cards-block").removeEventListener('touchstart', this.gestureStartHandler, {passive: true});
       this.$$("#stacked-cards-block").removeEventListener('touchmove', this.gestureMoveHandler, {passive: true});
@@ -611,7 +628,6 @@ class OapSwipableCards extends OapBaseElement {
 
   firstUpdated() {
     super.firstUpdated();
-    this.fire('oap-reset-all-items');
   }
 
   //Swipe active card to right.

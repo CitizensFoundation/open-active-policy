@@ -12,7 +12,9 @@ class OapFilterArticles extends OapPageViewElement {
       allItems: Array,
       completed: Boolean,
       configFromServer: Object,
-      country: Object
+      country: Object,
+      selectedItems: Array,
+      filteredItems: Array
     };
   }
 
@@ -35,7 +37,16 @@ class OapFilterArticles extends OapPageViewElement {
           </div>
         </div>
     ` : html`
-        <oap-swipable-cards .country="${this.country}" .configFromServer="${this.configFromServer}" .language="${this.language}" @completed="${this.setCompleted}" .disableUpSwipe="true" .items="${this.allItems}"></oap-swipable-cards>
+        <oap-swipable-cards
+          .country="${this.country}"
+          .selectedItems="${this.selectedItems}"
+          .filteredItems="${this.filteredItems}"
+          .configFromServer="${this.configFromServer}"
+          .language="${this.language}"
+          @completed="${this.setCompleted}"
+          .disableUpSwipe="true"
+          .items="${this.allItems}">
+        </oap-swipable-cards>
       `}
 
     `
