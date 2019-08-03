@@ -380,7 +380,7 @@ class OapApp extends OapBaseElement {
     this.filteredItems = [];
     this.selectedItems = [];
     this.setDummyData();
-    this.GAME_STATE_VERSION="OapGameStateV2";
+    this.GAME_STATE_VERSION="OapGameStateV3";
   }
 
   helpClosed() {
@@ -1962,23 +1962,28 @@ class OapApp extends OapBaseElement {
 
   usedBonusesAndPenaltiesChanged(event) {
     this.usedBonusesAndPenalties = event.detail;
+    this.saveDebounced();
   }
 
   totalChoicePointsChanged(event) {
     this.totalChoicePoints = event.detail;
+    this.saveDebounced();
   }
 
   usedChoicePointsChanged(event) {
     this.usedChoicePoints = event.detail;
     console.error("Used choice points:", this.usedChoicePoints);
+    this.saveDebounced();
   }
 
   filteredItemsChanged(event) {
     this.filteredItems = event.detail;
+    this.saveDebounced();
   }
 
   selectedItemsChanged(event) {
     this.selectedItems = event.detail;
+    this.saveDebounced();
   }
 
   set3dFont(event) {
@@ -2042,6 +2047,7 @@ class OapApp extends OapBaseElement {
     this.fire('location-changed', path);
     this.activity('finished', 'createCountry');
     this.country = event.detail;
+    this.saveDebounced();
   }
 
   _scrollItemIntoView(event) {
@@ -2286,9 +2292,17 @@ class OapApp extends OapBaseElement {
 
   updated(changedProps) {
     super.updated(changedProps);
-    this.saveDebounced();
     if (changedProps.has('language')) {
       this.setupLocaleTexts();
+    }
+
+    if (changedProps.has('totalChoicePoints') ||
+        changedProps.has('usedChoicePoints') ||
+        changedProps.has('selectedItems') ||
+        changedProps.has('country') ||
+        changedProps.has('usedBonusesAndPenalties') ||
+        changedProps.has('_page')) {
+          this.saveDebounced();
     }
 
     if (changedProps.has('budgetElement')) {

@@ -740,7 +740,7 @@ class OapSwipableCards extends OapBaseElement {
       if(this.useOverlays){
         setTimeout(function(){
 
-          if(this.stackedOptions === "Top"){+2
+          if(this.stackedOptions === "Top"){
 
             this.elTrans = this.elementsMargin * (this.visibleItems.length - 1);
 
@@ -906,9 +906,11 @@ class OapSwipableCards extends OapBaseElement {
       for(i = this.currentPosition; i < (this.currentPosition + this.visibleItems.length); i++){
         if(this.listElNodesObj[i]){
           if(this.stackedOptions === "Top"){
-
-            this.listElNodesObj[i].classList.add('stackedcards-top', 'stackedcards--animatable', 'stackedcards-origin-top');
-
+            if (i>3) {
+              this.listElNodesObj[i].classList.add('stackedcards-top', 'no-transition', 'stackedcards-origin-top');
+            } else {
+              this.listElNodesObj[i].classList.add('stackedcards-top', 'stackedcards--animatable', 'stackedcards-origin-top');
+            }
             if(this.useOverlays){
               this.leftObj.classList.add('stackedcards-origin-top');
               this.rightObj.classList.add('stackedcards-origin-top');
