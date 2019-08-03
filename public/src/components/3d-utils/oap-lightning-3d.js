@@ -77,7 +77,7 @@ class Lightning3D {
       minRadius: 0.3,
       maxIterations: 7,
 
-      timeScale: 0.15,
+      timeScale: 0.5,
       propagationTimeFactor: 0.2,
       vanishingTimeFactor: 0.9,
       subrayPeriod: 4,
@@ -115,10 +115,10 @@ class Lightning3D {
     this.storm = new LightningStorm( {
 
       size: GROUND_SIZE,
-      minHeight: 90,
-      maxHeight: 200,
-      maxSlope: 0.6,
-      maxLightnings: 16,
+      minHeight: 100,
+      maxHeight: 300,
+      maxSlope: 0.7,
+      maxLightnings: 20,
 
       lightningParameters: this.scene.userData.rayParams,
 

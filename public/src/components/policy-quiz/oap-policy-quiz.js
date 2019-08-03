@@ -48,6 +48,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.currentIndex = null;
     this.shapes3d = [];
     this.submitDisabled = false;
+    this.updateLighting3d = false;
   }
 
   start() {
@@ -121,7 +122,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       let target = new Vector3(6, 140, 220);
 
       new Tween(this.camera.position)
-      .to({ x: target.x, y: target.y, z: target.z, }, 5*1000)
+      .to({ x: target.x, y: target.y, z: target.z, }, 2*1000)
       .delay(0)
       .easing(Easing.Quadratic.In)
       .on('complete', () => {
@@ -174,7 +175,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     requestAnimationFrame(this.renderCanvas3d.bind(this));
     //this.animate();
     UpdateTween();
-    if (this.lightning3d) {
+    if (this.lightning3d && this.updateLighting3d) {
       this.lightning3d.update();
     }
     this.composer.render(this.clock.getDelta());
@@ -277,6 +278,11 @@ class OapPolicyQuiz extends OapPageViewElement {
     });
 
     this.lightning3d.visible = true;
+    this.lightning3d.outlinePass.edgeGlow = 0.7;
+    this.lightning3d.outlinePass.edgeStrength = 2.5;
+    this.lightning3d.outlinePass.edgeThickness = 2.8;
+    this.lightning3d.material.opacity = 1.0;
+    this.updateLighting3d = true;
 
     setTimeout(()=>{
       this.lightning3d.material.transparent = true;
@@ -285,11 +291,12 @@ class OapPolicyQuiz extends OapPageViewElement {
       .on('complete', () => {
         this.lightning3d.material.transparent = false;
         this.lightning3d.visible = false;
+        this.updateLighting3d = false;
       })
       .start();
 
       new Tween(this.lightning3d.outlinePass)
-      .to({ edgeGlow: 0.0 }, 1200)
+      .to({ edgeGlow: 0.0, edgeStrength: 0.0, edgeThickness: 0.0 }, 1200)
       .on('complete', () => {
       })
       .start();
