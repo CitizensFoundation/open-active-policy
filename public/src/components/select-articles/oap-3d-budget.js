@@ -265,7 +265,6 @@ class Oap3dBudget extends OapBaseElement {
         this.fontMesh.material[1].color.set(color);
 
         setTimeout(()=>{
-          debugger;
           this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyGroup.position)
           .to({ x: xText+endFudge, y: this.bonusPenaltyGroup.position.y, z: this.bonusPenaltyGroup.position.z}, 1500) // relative animation
           .delay(0)

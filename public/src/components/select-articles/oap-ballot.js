@@ -71,8 +71,8 @@ class OapBallot extends OapPageViewElement {
     return html`${this.area ?
       html`
         <div class="tabsContainer">
-          <div id="selectedTab" ?selected="${this.selectedView===1}" @click="${()=>{ this.selectedView=1}}" class="tab selectedTab">${this.localize('finalSelection')} ${(this.budgetElement && this.budgetElement.selectedItems) ? html` (${this.budgetElement.selectedItems.length})` : html``}</div>
-          <div id="favTab" ?selected="${this.selectedView===0}" @click="${()=>{ this.selectedView=0}}" class="tab favTab">${this.localize('favorite')} ${this.budgetBallotItems ? html` (${this.budgetBallotItems.length})` : html``}</div>
+          <div id="selectedTab" ?selected="${this.selectedView===1}" @click="${()=>{ this.selectTabAndScroll(1)}}" class="tab selectedTab">${this.localize('finalSelection')} ${(this.budgetElement && this.budgetElement.selectedItems) ? html` (${this.budgetElement.selectedItems.length})` : html``}</div>
+          <div id="favTab" ?selected="${this.selectedView===0}" @click="${()=>{ this.selectTabAndScroll(0)}}" class="tab favTab">${this.localize('favorite')} ${this.budgetBallotItems ? html` (${this.budgetBallotItems.length})` : html``}</div>
         </div>
 
         <div class="topContainer">
@@ -138,6 +138,12 @@ class OapBallot extends OapPageViewElement {
       ''
     }
     `
+  }
+
+  selectTabAndScroll(view) {
+    this.selectedView = view;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   getModuleColorForItem(item) {

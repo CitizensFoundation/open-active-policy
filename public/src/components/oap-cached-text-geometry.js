@@ -2,6 +2,7 @@ import { TextGeometry, BufferGeometry, Mesh, MeshPhongMaterial} from 'three';
 
 const fontMeshCache = {};
 const fontGeometryCache = {};
+let forceSlow = false;
 
 const _getTextGeometry = (value, font, options) => {
   let geoOptions;
@@ -40,36 +41,44 @@ const _getTextGeometry = (value, font, options) => {
   return geometry;
 }
 
-async function PerformDelayedFontCaching(font3d) {
+const isSlow = (options) => {
+  return forceSlow || (options && options.slow);
+}
+
+async function PerformDelayedFontCaching(font3d, options) {
   for (var i = 130; i >= 75; i--) {
-    await new Promise(resolve => setTimeout(resolve, 300 ));
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1200 : 300));
     GetTextGeometry(i+"cp", font3d, { large: true });
   }
 
   for (var i = 12; i > -15; i--) {
-    await new Promise(resolve => setTimeout(resolve, 300 ));
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1200 : 300 ));
     GetTextGeometry(i+"cp", font3d, { large: false });
   }
 
   for (var i = 162; i >= 129; i--) {
-    await new Promise(resolve => setTimeout(resolve, 500 ));
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1500 : 500 ));
     GetTextGeometry(i+"cp", font3d, { large: true });
   }
 
   for (var i = 30; i > -30; i--) {
-    await new Promise(resolve => setTimeout(resolve, 600 ));
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1600 : 600));
     GetTextGeometry(i+"cp", font3d, { large: false });
   }
 
   for (var i = 74; i >= 0; i--) {
-    await new Promise(resolve => setTimeout(resolve, 600 ));
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? 1600 : 600 ));
     GetTextGeometry(i+"cp", font3d, { large: true });
   }
 
 }
 
-export const StartDelayedFontCaching = (font3d) => {
-  PerformDelayedFontCaching(font3d);
+export const SetForceSlowOnFontCaching = () => {
+  forceSlow = true;
+}
+
+export const StartDelayedFontCaching = (font3d, options) => {
+  PerformDelayedFontCaching(font3d, options);
 }
 
 export const GetTextMesh = (value, font, options) => {

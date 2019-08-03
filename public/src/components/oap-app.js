@@ -12,7 +12,7 @@ import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
 import { CacheEmojisInBackground } from './oap-2d-emojis';
-import { StartDelayedFontCaching } from './oap-cached-text-geometry';
+import { StartDelayedFontCaching, SetForceSlowOnFontCaching } from './oap-cached-text-geometry';
 
 import 'whatwg-fetch';
 
@@ -2016,6 +2016,7 @@ class OapApp extends OapBaseElement {
 
   filteringFinished () {
     this.fire('oap-play-sound-effect', 'oap_new_level_1');
+    SetForceSlowOnFontCaching();
     const path = '/area-ballot/1';
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
@@ -2028,13 +2029,7 @@ class OapApp extends OapBaseElement {
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
     this.activity('finished', 'quiz');
-    setTimeout(()=>{
-      const emojis = ["🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];
-      CacheEmojisInBackground(emojis, "120px Arial");
-    }, 1000);
-    setTimeout(()=>{
-      StartDelayedFontCaching(this.font3d);
-    }, 1100);
+    this._startDelayedCaching();
   }
 
   createCountryFinished(event) {
@@ -2198,6 +2193,7 @@ class OapApp extends OapBaseElement {
       this.debouncedSave = setTimeout(()=>{
         localStorage.setItem(this.GAME_STATE_VERSION, JSON.stringify({
           path: window.decodeURIComponent(location.pathname),
+          page: this._page,
           totalChoicePoints: this.totalChoicePoints,
           usedChoicePoints: this.usedChoicePoints,
           selectedItems: this.selectedItems,
@@ -2227,6 +2223,16 @@ class OapApp extends OapBaseElement {
         this.$$("#welcomeDialog").open();
       }
     });
+  }
+
+  _startDelayedCaching(options) {
+    setTimeout(()=>{
+      const emojis = ["🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];
+      CacheEmojisInBackground(emojis, "120px Arial", options);
+    }, 1000);
+    setTimeout(()=>{
+      StartDelayedFontCaching(this.font3d, options);
+    }, 1100);
   }
 
   openNewGame() {
@@ -2259,6 +2265,13 @@ class OapApp extends OapBaseElement {
         this.disableAutoSave=false;
         this._gotoLocation(gameState.path);
       });
+      if (gameState.page!='quiz') {
+        if (gameState.page=='area-ballot') {
+          this._startDelayedCaching({slow: true});
+        } else {
+          this._startDelayedCaching();
+        }
+      }
     } else {
       console.error("Trying to restore game state, not valid state");
     }
