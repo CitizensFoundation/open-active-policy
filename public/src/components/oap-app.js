@@ -12,6 +12,7 @@ import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
 import { CacheEmojisInBackground } from './oap-2d-emojis';
+import { StartDelayedFontCaching } from './oap-cached-text-geometry';
 
 import 'whatwg-fetch';
 
@@ -2031,6 +2032,9 @@ class OapApp extends OapBaseElement {
       const emojis = ["🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];
       CacheEmojisInBackground(emojis, "120px Arial");
     }, 1000);
+    setTimeout(()=>{
+      StartDelayedFontCaching(this.font3d);
+    }, 1100);
   }
 
   createCountryFinished(event) {

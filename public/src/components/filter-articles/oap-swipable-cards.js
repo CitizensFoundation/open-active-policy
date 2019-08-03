@@ -221,7 +221,6 @@ class OapSwipableCards extends OapBaseElement {
 
         this.itemsLeft = [...this.items];
 
-        debugger;
         if ((this.selectedItems && this.selectedItems.length>0) || (this.filteredItems && this.filteredItems.length>0)) {
           this.itemsLeft = this.itemsLeft.filter((item) => {
             let useItem=true;

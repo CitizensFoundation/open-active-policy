@@ -14,6 +14,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 //import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Tween, Easing, update as UpdateTween, removeAll } from 'es6-tween';
 import { Get2DEmoji } from '../oap-2d-emojis';
+import { GetTextGeometry, GetTextMesh } from '../oap-cached-text-geometry';
 
 import { OapBaseElement } from '../oap-base-element.js';
 
@@ -185,29 +186,7 @@ class Oap3dBudget extends OapBaseElement {
       this.rotateAllItemsGroup();
 
       if (this.font3d) {
-        let geometry;
-
-        if (this.fontGeometryCache[value]) {
-          geometry = this.fontGeometryCache[value];
-        } else {
-          geometry = new TextGeometry( value+'cp', {
-            font: this.font3d,
-            size: window.innerWidth>600 ? 5.5 : 4.5,
-            height: window.innerWidth>600 ? 1.5 : 1.2,
-            curveSegments: window.innerWidth>600 ? 10 : 8,
-            bevelEnabled: true,
-            bevelThickness: window.innerWidth>600 ? 0.3 : 0.2,
-            bevelSize:  window.innerWidth>600 ? 0.5 : 0.3,
-            bevelOffset: 0,
-            bevelSegments:  window.innerWidth>600 ? 7 :7
-          });
-
-          geometry.computeBoundingBox();
-          geometry.computeVertexNormals();
-          geometry.center();
-          geometry = new BufferGeometry().fromGeometry( geometry );
-          this.fontGeometryCache[value] = geometry;
-        }
+        let geometry = GetTextGeometry(value+"cp", this.font3d, { large: false });
 
         const xText = this.votesWidth*0.070;
 
@@ -221,7 +200,7 @@ class Oap3dBudget extends OapBaseElement {
         let startFudge = 100;
         let endFudge = 0;
         if (window.innerWidth<600) {
-          startFudge = 35;
+          startFudge = 36;
           endFudge = -10;
         }
 
@@ -317,31 +296,13 @@ class Oap3dBudget extends OapBaseElement {
 
   rebuildChoicePoints(firstTime) {
     if (this.choicePointsLeft!=null && this.font3d) {
-      var geometry = new TextGeometry( this.choicePointsLeft+'cp', {
-        font: this.font3d,
-        size: window.innerWidth>600 ? 10 : 5,
-        height: window.innerWidth>600 ? 2 : 1.2,
-        curveSegments: window.innerWidth>600 ? 15 : 12,
-        bevelEnabled: true,
-        bevelThickness: window.innerWidth>600 ? 1 : 0.7,
-        bevelSize:  window.innerWidth>600 ? 0.9 : 0.5,
-        bevelOffset: 0,
-        bevelSegments:  window.innerWidth>600 ? 7 :7
-      });
-
-      geometry.computeBoundingBox();
-      geometry.computeVertexNormals();
-      geometry.center();
-
-      geometry = new BufferGeometry().fromGeometry( geometry );
-
       if (this.fontMesh==null) {
         var materials = [
           new MeshPhongMaterial( { color: 0xFF5722, flatShading: true } ), // front
           new MeshPhongMaterial( { color: 0xFF5722 } ) // side
         ];
 
-        this.fontMesh = new Mesh( geometry, materials );
+        this.fontMesh = new Mesh(GetTextGeometry(this.choicePointsLeft+'cp', this.font3d, { large: true }), materials );
 
         const xText = this.votesWidth*0.070;
 
@@ -353,7 +314,7 @@ class Oap3dBudget extends OapBaseElement {
         this.fontMesh.rotation.y = Math.PI * 2;
         this.scene.add(this.fontMesh);
       } else {
-        this.fontMesh.geometry=geometry;
+        this.fontMesh.geometry=GetTextGeometry(this.choicePointsLeft+'cp', this.font3d, { large: true });
       }
 
       if (this.choicePointsLeft<75 || firstTime) {
