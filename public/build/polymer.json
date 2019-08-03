@@ -8,6 +8,8 @@
   ],
   "sources": [
     "images/**/*",
+    "src/components/3d-utils/particle2.png",
+    "src/components/3d-utils/perlin-512.png",
     "index.html",
     "src/components/oap-app.js",
     "src/components/yp-post/yp-post.js",
