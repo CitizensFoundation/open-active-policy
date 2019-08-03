@@ -347,6 +347,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   ranOutOfTime() {
     this.submitAnswer("blah");
+    console.log("Rand out of time");
   }
 
   submitAnswer (answer) {

@@ -381,15 +381,18 @@ class Oap3dBudget extends OapBaseElement {
 
         this.fontMesh = new Mesh(GetTextGeometry(this.choicePointsLeft.toString(), this.font3d, { large: true }),  this.choicePointsMaterial );
 
-        const xText = this.votesWidth*0.070;
+        const xText = this.votesWidth*0.067;
 
+        this.fontMesh.position.y = -1;
+        this.fontMesh.position.z = -33;
         if (window.innerWidth<600) {
-          this.fontMesh.position.x = xText-5.4;
+          this.fontMesh.position.x = xText-2.0;
+          this.fontMesh.position.z = -50;
+        } else  if (window.innerWidth<1000) {
+          this.fontMesh.position.x = xText-4.8;
         } else {
           this.fontMesh.position.x = xText;
         }
-        this.fontMesh.position.y = -1;
-        this.fontMesh.position.z = -33;
 
         this.fontMesh.rotation.x = 0;
         this.fontMesh.rotation.y = Math.PI * 2;
@@ -402,7 +405,7 @@ class Oap3dBudget extends OapBaseElement {
         this.fontMesh.geometry=GetTextGeometry(this.choicePointsLeft.toString(), this.font3d, { large: true });
       }
 
-      let smallScreenMultiplier = window.innerWidth>600 ? 1.0 : 0.53;
+      let smallScreenMultiplier = window.innerWidth>600 ? 1.0 : this.choicePointsLeft<100 ? 0.75 : 0.8;
 
       if (this.choicePointsLeft>99) {
         this.cpMesh.position.x = 19.5*smallScreenMultiplier;

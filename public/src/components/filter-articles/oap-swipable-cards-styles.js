@@ -97,8 +97,8 @@ export const OapSwipableCardsStyles = css`
       font-weight: 700;
       font-size: 18px;
       margin-bottom: 12px;
-      margin-top: 16px;
-      color: #eee !important;
+      margin-top: 24px;
+      color: #fff !important;
   }
 
   .card-content {
@@ -355,6 +355,16 @@ export const OapSwipableCardsStyles = css`
       display: block;
   }
 
+  .welcomeLogo {
+    max-width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 12px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+
   .description {
     font-size: 14px;
     color: #000;
@@ -363,6 +373,11 @@ export const OapSwipableCardsStyles = css`
     height 100%;
     overflow: hidden;
     margin-bottom: 32px;
+  }
+
+  .moduleName {
+    margin-bottom: 4px;
+    margin-top: 2px;
   }
 
   .description[module-type] {

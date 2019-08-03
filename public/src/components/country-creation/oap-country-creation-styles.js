@@ -200,6 +200,13 @@ export const OapCountryCreationStyles = css`
     margin-top: 0;
   }
 
+  .welcomeLogo {
+    max-width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
   @media (max-width: 600px) {
     .topContainer {
       max-width: 100%;
@@ -220,15 +227,19 @@ export const OapCountryCreationStyles = css`
     }
 
     .attituteSlider {
-      width: 310px;
+      width: 100%;
     }
 
     paper-slider {
-      width: 310px;
+      width: 100%;
     }
 
     .cultural {
       margin-top: 32px;
+    }
+
+    .header {
+      font-size: 20px;
     }
   }
 

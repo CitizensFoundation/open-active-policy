@@ -278,6 +278,10 @@ class OapCountryCreation extends OapPageViewElement {
     return html`
     <div class="layout vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
+        <div class="welcomeLogoContainer layout center-center">
+          <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
+        </div>
+
         <div class="layout-inline vertical" style="width: 100%;">
           <div class="header"><div style="padding: 8px">${this.localize("createYourCountry")}</div></div>
 

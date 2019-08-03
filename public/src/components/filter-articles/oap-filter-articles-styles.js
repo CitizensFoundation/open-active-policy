@@ -17,19 +17,20 @@ export const OapFilterArticlesStyles = css`
 
   .continueButton {
     margin-top: 24px;
-    background-color: var(--app-accent-color);
+    background-color: #000;
+    border: 1px solid #FFF;
     color: #FFF;
-    min-width: 350px;
-    max-width: 350px;
-    margin: 8px;
+    width: 100%;
+    margin-left: 32px;
+    margin-right: 32px;
   }
 
   .topContainer {
-    max-width: 432px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    background-color: var(--quiz-background-color, #FFF);
-    color: var(--quiz-color, #111);
+    background-color: var(--quiz-background-color, #000);
+    color: var(--quiz-color, #FFF);
     padding-bottom: 16px;
     margin-top: 32px;
   }
