@@ -62,7 +62,7 @@ const getDelay = (delay) => {
   }
 
   if (isAndroid) {
-    return delay*2;
+    return delay*1.2;
   } else {
     return delay;
   }
@@ -70,29 +70,31 @@ const getDelay = (delay) => {
 
 async function PerformDelayedFontCaching(font3d, options) {
   GetTextGeometry("cp", font3d, { large: true, isCaching: true });
-  await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1200) : getDelay(300)));
-
-  GetTextGeometry("cp", font3d, { large: false, isCaching: true });
+  await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(300)));
+  //GetTextGeometry("cp", font3d, { large: false, isCaching: true });
+  //await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(300)));
   GetTextGeometry("+", font3d, { large: false, isCaching: true });
+  await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(300)));
   GetTextGeometry("-", font3d, { large: false, isCaching: true });
+  await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(300)));
 
-  for (var i = 125; i >= 75; i--) {
-    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1200) : getDelay(300)));
+  for (var i = 130; i >= 75; i--) {
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(300)));
     GetTextGeometry(i, font3d, { large: true, isCaching: true });
   }
 
-  for (var i = 30; i >=0; i--) {
-    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1200) : getDelay(300) ));
+  for (var i = 32; i >=0; i--) {
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(300) ));
     GetTextGeometry(i, font3d, { large: false, isCaching: true });
   }
 
-  for (var i = 162; i >= 124; i--) {
-    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1500) : getDelay(500) ));
+  for (var i = 165; i >= 124; i--) {
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(500) ));
     GetTextGeometry(i, font3d, { large: true, isCaching: true });
   }
 
   for (var i = 74; i >= 0; i--) {
-    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(1500) : getDelay(500) ));
+    await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(500) ));
     GetTextGeometry(i, font3d, { large: true, isCaching: true });
   }
 
@@ -103,7 +105,7 @@ export const SetForceSlowOnFontCaching = () => {
 }
 
 export const StartDelayedFontCaching = (font3d, options) => {
-//  PerformDelayedFontCaching(font3d, options);
+  PerformDelayedFontCaching(font3d, options);
 }
 
 export const GetTextMesh = (value, font, options) => {
