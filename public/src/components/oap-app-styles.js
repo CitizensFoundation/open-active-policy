@@ -267,7 +267,7 @@ export const OapAppStyles = css`
     text-align: center;
     width: 100%;
     margin: 0 !important;
-      padding: 0 !important;
+    padding: 0 !important;
   }
 
   .welcomeText {
@@ -275,6 +275,7 @@ export const OapAppStyles = css`
     max-width: 420px;
     font-size: 16px;
     margin-top: 8px;
+    color: #FFF;
   }
 
   .welcomeLogo {
@@ -292,9 +293,15 @@ export const OapAppStyles = css`
     text-align: center;
   }
 
+  #welcomeDialog {
+    background-color: #000;
+    color: #FFF;
+  }
+
   paper-button.continueButton {
-    background-color: var(--app-accent-color);
+    background-color: #000;
     color: #fff;
+    border: 1px solid #eaeaea;
     margin: 8px;
     margin-bottom: 8px;
     font-size: 18px;
@@ -309,7 +316,7 @@ export const OapAppStyles = css`
   .heading {
       font-size: 28px;
       font-weight: bold;
-      color: #000;
+      color: #fff;
     }
 
   @media (max-width: 600px) {

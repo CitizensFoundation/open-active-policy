@@ -619,7 +619,7 @@ class GPUFireworks3D {
     } );
     this.particleSystem.position.x = 0;
     this.particleSystem.position.y = -5;
-    this.particleSystem.position.z = -35;
+    this.particleSystem.position.z = -10;
     this.particleSystem.visible = false;
     this.scene.add(this.particleSystem);
   }

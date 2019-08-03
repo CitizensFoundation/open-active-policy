@@ -23,16 +23,17 @@ export const OapPolicyQuizStyles = css`
   }
 
   .wrongAnswer {
-    -webkit-transition: opacity 0.7s ease-in-out;
-    -moz-transition: opacity 0.7s ease-in-out;
-    -ms-transition: opacity 0.7s ease-in-out;
-    -o-transition: opacity 0.7s ease-in-out;
-     opacity: 0.2;
-     border: 0;
+    -webkit-transition: opacity 0.8s ease-in-out;
+    -moz-transition: opacity 0.8s ease-in-out;
+    -ms-transition: opacity 0.8s ease-in-out;
+    -o-transition: opacity 0.8s ease-in-out;
+     opacity: 0.3;
+     border-color: transparent;
   }
 
   .rightAnswer {
-    border: 0;
+    border-color: transparent;
+    font-weight: bold;
   }
 
   .buttonContainer {

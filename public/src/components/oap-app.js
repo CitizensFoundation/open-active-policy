@@ -2148,6 +2148,7 @@ class OapApp extends OapBaseElement {
     loader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json', function ( font ) {
       this.font3d=font;
     }.bind(this));
+    this.shadowRoot.setAttribute('--iron-overlay-backdrop-opacity', 1.0);
   }
 
   afterWelcomeClose() {

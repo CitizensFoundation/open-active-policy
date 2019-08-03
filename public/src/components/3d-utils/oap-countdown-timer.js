@@ -100,9 +100,11 @@ class CountDownTimer {
   }
 
   startCountDown() {
+    this.stopCountDown();
     let emojiStartZ = -120;
     let emojiEndZ = 40;
-    let digitsStartZ = -120;
+    let digitsStartZ = -190;
+    let digitsHoldZ = -2090;
     let digitsEndZ = 3;
     this.secondsLeft = 15;
 
@@ -119,33 +121,36 @@ class CountDownTimer {
 
     this.startEmojiSprite.position.z=emojiStartZ;
     this.startEmojiSprite.visible=true;
-    this.countDownMesh.position.z=digitsStartZ;
+    this.countDownMesh.position.z=digitsHoldZ;
     this.countDownMesh.position.y=1.4;
-    this.countDownMesh.visible=false;
     this.countdownDigitGroup.visible=true;
+    this.countDownMesh.visible=true;
+    const startDateMs = Date.now();
 
     this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
-    .to({ z: emojiEndZ }, 1600)
+    .to({ z: emojiEndZ }, 2500)
     .delay(0)
+    .on('update', (val, deg) => {
+      if (!this.inCountDown && (startDateMs+1400)< Date.now()) {
+        this.inCountDown = true;
+        this.doCountDown();
+      }
+    })
     .on('complete', () => {
       this.startEmoji2DTween = null;
       this.startEmojiSprite.position.z=emojiStartZ;
       this.startEmojiSprite.visible=false;
-      this.countDownMesh.visible=true;
-
-      this.countdownTween3 = new Tween(this.countDownMesh.position)
-      .to({ z: digitsEndZ }, 1400)
-      .easing(Easing.Cubic.Out)
-      .delay(0)
-      .on('complete', () => {
-        this.countdownTween3 = null;
-        this.inCountDown = true;
-        this.doCountDown();
-      })
-      .start();
     })
     .start();
 
+    this.countdownTween3 = new Tween(this.countDownMesh.position)
+    .to({ z: digitsEndZ }, 3100)
+    .easing(Easing.Cubic.Out)
+    .delay(0)
+    .on('complete', () => {
+      this.countdownTween3 = null;
+    })
+    .start();
   }
 
   stopCountDownWin() {
@@ -200,7 +205,6 @@ class CountDownTimer {
             if (this.countDownMeshRotation) {
               this.countDownMeshRotation.stop();
               this.countDownMeshRotation = null;
-              this.countDownMesh.rotation.y=0;
             }
             this.countDownMeshRotation = new Tween(this.countDownMesh.rotation)
             .to({ y: "-" + this.countDownMesh.rotation.y+(Math.PI*2)}, 1000-(500-this.secondsLeft*200))

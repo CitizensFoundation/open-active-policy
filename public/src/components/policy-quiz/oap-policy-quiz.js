@@ -290,13 +290,13 @@ class OapPolicyQuiz extends OapPageViewElement {
     setTimeout(()=>{
       this.fireworks3d.material.transparent = true;
       new Tween(this.fireworks3d.material)
-      .to({ opacity: 0.0 }, 700)
+      .to({ opacity: 0.0 }, 1000)
       .on('complete', () => {
         this.fireworks3d.visible = false;
         this.updateFireworks3d = false;
       })
       .start();
-    }, 1000);
+    }, 2200);
 
   }
 
@@ -329,7 +329,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     setTimeout(()=>{
       this.lightning3d.material.transparent = true;
       new Tween(this.lightning3d.material)
-      .to({ opacity: 0.0 }, 400)
+      .to({ opacity: 0.0 }, 600)
       .on('complete', () => {
         this.lightning3d.material.transparent = false;
         this.lightning3d.visible = false;
@@ -338,7 +338,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       .start();
 
       new Tween(this.lightning3d.outlinePass)
-      .to({ edgeGlow: 0.0, edgeStrength: 0.0, edgeThickness: 0.0 }, 400)
+      .to({ edgeGlow: 0.0, edgeStrength: 0.0, edgeThickness: 0.0 }, 600)
       .on('complete', () => {
       })
       .start();
@@ -351,8 +351,10 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   submitAnswer (answer) {
     this.submitDisabled = true;
+    let wasIsCorrect = false;
     const correctAnswer = this.questions[this.currentIndex].correctAnswer;
     if (answer==correctAnswer) {
+      wasIsCorrect = true;
       this.correctAnswerColorAnimation();
       this.correctAnswers+=1;
       this.countdownTimer3d.stopCountDownWin();
@@ -410,7 +412,7 @@ class OapPolicyQuiz extends OapPageViewElement {
         this.fire("oap-sound-effect","quizCompleted");
       }
       this.submitDisabled=false;
-    }, window.debugOn===true ? 100 : 2700);
+    }, window.debugOn===true ? 100 : (wasIsCorrect ? 3300 : 2700));
   }
 
   startCountDown() {

@@ -135,7 +135,6 @@ export const GetTextMesh = (value, font, options) => {
     ];
 
     fontMeshCache[value+options.large] = new Mesh( geometry, materials );
-    console.error("Have saved mesh "+value);
     return fontMeshCache[value+options.large];
   }
 }
@@ -153,7 +152,6 @@ export const GetTextGeometry = (value, font, options) => {
     }
 
     fontGeometryCache[value+options.large] = geometry;
-    console.error("Have saved geometry "+value);
     return fontGeometryCache[value+options.large];
   }
 }
