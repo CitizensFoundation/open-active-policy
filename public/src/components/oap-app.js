@@ -1704,7 +1704,7 @@ class OapApp extends OapBaseElement {
 
     this.cacheDataImages();
     this.cacheSoundEffects();
-    if (window.debugOn && false) {
+    if (window.debugOn) {
       this.filteredItems = this.allItems;
       this.country = {
         name: "13 Colonies 1783 (US Constitutional Convention)",

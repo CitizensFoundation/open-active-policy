@@ -42,22 +42,17 @@ const _getTextGeometry = (value, font, options) => {
 
 async function PerformDelayedFontCaching(font3d) {
   for (var i = 130; i >= 75; i--) {
-    await new Promise(resolve => setTimeout(resolve, 350 ));
+    await new Promise(resolve => setTimeout(resolve, 300 ));
     GetTextGeometry(i+"cp", font3d, { large: true });
   }
 
-  for (var i = 15; i > -15; i--) {
-    await new Promise(resolve => setTimeout(resolve, 350 ));
+  for (var i = 12; i > -15; i--) {
+    await new Promise(resolve => setTimeout(resolve, 300 ));
     GetTextGeometry(i+"cp", font3d, { large: false });
   }
 
-  for (var i = 162; i >= 130; i--) {
+  for (var i = 162; i >= 129; i--) {
     await new Promise(resolve => setTimeout(resolve, 500 ));
-    GetTextGeometry(i+"cp", font3d, { large: true });
-  }
-
-  for (var i = 74; i >= 0; i--) {
-    await new Promise(resolve => setTimeout(resolve, 600 ));
     GetTextGeometry(i+"cp", font3d, { large: true });
   }
 
@@ -65,6 +60,12 @@ async function PerformDelayedFontCaching(font3d) {
     await new Promise(resolve => setTimeout(resolve, 600 ));
     GetTextGeometry(i+"cp", font3d, { large: false });
   }
+
+  for (var i = 74; i >= 0; i--) {
+    await new Promise(resolve => setTimeout(resolve, 600 ));
+    GetTextGeometry(i+"cp", font3d, { large: true });
+  }
+
 }
 
 export const StartDelayedFontCaching = (font3d) => {

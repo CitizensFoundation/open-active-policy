@@ -198,10 +198,10 @@ class Oap3dBudget extends OapBaseElement {
         }
 
         let startFudge = 100;
-        let endFudge = 0;
+        let endFudge = 10;
         if (window.innerWidth<600) {
           startFudge = 36;
-          endFudge = -10;
+          endFudge = 20;
         }
 
         if (this.bonusPenaltyFontTween) {
@@ -240,6 +240,8 @@ class Oap3dBudget extends OapBaseElement {
           this.bonusPenaltyFontMesh.add(this.bonusPenaltyEmoji2D);
         }
 
+        this.bonusPenaltyGroup.visible=true;
+
         if (this.cameraSpotLight) {
           this.scene.remove(this.cameraSpotLight);
           this.cameraSpotLight=null;
@@ -263,8 +265,9 @@ class Oap3dBudget extends OapBaseElement {
         this.fontMesh.material[1].color.set(color);
 
         setTimeout(()=>{
+          debugger;
           this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyGroup.position)
-          .to({ x: xText-endFudge, y: this.bonusPenaltyGroup.position.y, z: this.bonusPenaltyGroup.position.z}, 1500) // relative animation
+          .to({ x: xText+endFudge, y: this.bonusPenaltyGroup.position.y, z: this.bonusPenaltyGroup.position.z}, 1500) // relative animation
           .delay(0)
           .on('complete', () => {
             this.bonusPenaltyGroup.position.x=this.getLeftOfCamera();
@@ -274,6 +277,7 @@ class Oap3dBudget extends OapBaseElement {
             this.fontMesh.material[1].color.set(0xFF5722);
             this.scene.remove(this.cameraSpotLight);
             this.cameraSpotLight=null;
+            this.bonusPenaltyGroup.visible=false;
           })
           .start();
         });
