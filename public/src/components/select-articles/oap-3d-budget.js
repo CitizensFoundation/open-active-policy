@@ -181,7 +181,6 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   bonusPenalty3dText(value, emoji) {
-    console.error("bonusPenalty3dText: "+value);
     if (value!=0) {
       this.rotateAllItemsGroup();
 
@@ -606,7 +605,6 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   _addItemToDiv(item) {
-    console.error("Add item to div");
     var itemWidth = parseInt(this.votesWidth * (item.price / this.totalChoicePoints));
 
     if (!this.wide) {
@@ -672,7 +670,6 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   positionItems() {
-    console.error("POSITION ITEMS STARTED");
     let rightEdgeAndSpace=0.0;
     const sortedItems = this.itemsInScene.sort((item3dA, item3dB)=> {
       return item3dA.item.module_type_index-item3dB.item.module_type_index;

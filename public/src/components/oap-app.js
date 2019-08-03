@@ -1962,7 +1962,6 @@ class OapApp extends OapBaseElement {
 
   totalChoicePointsChanged(event) {
     this.totalChoicePoints = event.detail;
-    console.error("Total choice points:", this.totalChoicePoints);
   }
 
   usedChoicePointsChanged(event) {
@@ -2285,7 +2284,6 @@ class OapApp extends OapBaseElement {
     }
 
     if (changedProps.has('budgetElement')) {
-      debugger;
     }
 
     if (changedProps.has('_page')) {
@@ -2387,7 +2385,6 @@ class OapApp extends OapBaseElement {
   }
 
   _gotoLocation(path) {
-    debugger;
     window.history.pushState({}, null,path);
     this.fire('location-changed', path);
   }

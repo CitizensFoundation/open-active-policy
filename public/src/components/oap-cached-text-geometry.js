@@ -41,11 +41,9 @@ function  _getTextGeometryCore(value, font, options) {
 }
 
 async function  _getTextGeometry(value, font, options) {
-  if (options && options.isCaching) {
-    await new Promise(resolve => setTimeout(resolve, forceSlow ? 100 : 25));
-  }
-
-  return BufferGeometry().fromGeometry( _getTextGeometryCore(value, font, options) );
+  let geometry = _getTextGeometryCore(value, font, options);
+  geometry = BufferGeometry().fromGeometry(geometry);
+  return geometry;
 }
 
 function  _getTextGeometrySync(value, font, options) {
@@ -99,7 +97,7 @@ export const GetTextMesh = (value, font, options) => {
   } else {
     let geometry;
     if (options && options.isCaching) {
-      geometry = _getTextGeometry(value, font, options);
+      geometry = _getTextGeometrySync(value, font, options);
     } else {
       geometry = _getTextGeometrySync(value, font, options);
     }
@@ -121,7 +119,7 @@ export const GetTextGeometry = (value, font, options) => {
   } else {
     let geometry;
     if (options && options.isCaching) {
-      geometry = _getTextGeometry(value, font, options);
+      geometry = _getTextGeometrySync(value, font, options);
     } else {
       geometry = _getTextGeometrySync(value, font, options);
     }

@@ -346,7 +346,6 @@ class OapBallot extends OapPageViewElement {
 
     setTimeout(()=>{
       this._checkBonusesAndPenalties(item, "select");
-      console.error("CHECKING BONUSES");
     }, 600)
   }
 
@@ -465,10 +464,8 @@ class OapBallot extends OapPageViewElement {
   }
 
   async setStateOfRemainingItems(startTimeout, inbetweenTimeout) {
-    console.error("setStateOfRemainingItems");
     await new Promise(resolve => setTimeout(resolve, startTimeout ? startTimeout: 125 ));
     var choicePointsLeft = this.budgetElement.totalChoicePoints-this.budgetElement.usedChoicePoints;
-    console.error("_setStateOfRemainingItems: "+choicePointsLeft);
     var listItems = this.$$("#itemContainer");
     if (listItems) {
       const allSelectedIds = this.budgetElement.selectedItems.map((item) => {
