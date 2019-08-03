@@ -4,7 +4,7 @@ const fontMeshCache = {};
 const fontGeometryCache = {};
 let forceSlow = false;
 
-async function  _getTextGeometry(value, font, options) {
+function  _getTextGeometryCore(value, font, options) {
   let geoOptions;
   if (options.large) {
     geoOptions = {
@@ -37,13 +37,19 @@ async function  _getTextGeometry(value, font, options) {
   geometry.computeBoundingBox();
   geometry.computeVertexNormals();
   geometry.center();
+  return geometry;
+}
 
+async function  _getTextGeometry(value, font, options) {
   if (options && options.isCaching) {
     await new Promise(resolve => setTimeout(resolve, forceSlow ? 100 : 25));
   }
 
-  geometry = new BufferGeometry().fromGeometry( geometry );
-  return geometry;
+  return BufferGeometry().fromGeometry( _getTextGeometryCore(value, font, options) );
+}
+
+function  _getTextGeometrySync(value, font, options) {
+  return new BufferGeometry().fromGeometry( _getTextGeometryCore(value, font, options) );
 }
 
 const isSlow = (options) => {
@@ -91,7 +97,12 @@ export const GetTextMesh = (value, font, options) => {
     console.error("Got mesh from cache"+value);
     return fontMeshCache[value+options.large];
   } else {
-    const geometry = _getTextGeometry(value, font, options);
+    let geometry;
+    if (options && options.isCaching) {
+      geometry = _getTextGeometry(value, font, options);
+    } else {
+      geometry = _getTextGeometrySync(value, font, options);
+    }
     var materials = [
       new MeshPhongMaterial( { color: 0xFF5722, flatShading: true } ), // front
       new MeshPhongMaterial( { color: 0xFF5722 } ) // side
@@ -108,7 +119,14 @@ export const GetTextGeometry = (value, font, options) => {
     console.error("Got geometry from cache"+value);
     return fontGeometryCache[value+options.large];
   } else {
-    fontGeometryCache[value+options.large] = _getTextGeometry(value, font, options);
+    let geometry;
+    if (options && options.isCaching) {
+      geometry = _getTextGeometry(value, font, options);
+    } else {
+      geometry = _getTextGeometrySync(value, font, options);
+    }
+
+    fontGeometryCache[value+options.large] = geometry;
     console.error("Have saved geometry "+value);
     return fontGeometryCache[value+options.large];
   }
