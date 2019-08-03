@@ -4,7 +4,7 @@ import { GetTextGeometry, GetTextMesh } from  '../3d-utils/oap-cached-text-geome
 import { Tween, Easing, update as UpdateTween } from 'es6-tween';
 import { Get2DEmoji } from '../3d-utils/oap-2d-emojis';
 
-class CountDownTimer {
+class CountDownTimer3D {
 
   constructor (scene, camera, renderer, composer, clock, font3d, quizComponent, width, height) {
     this.scene = scene;
@@ -273,6 +273,6 @@ class CountDownTimer {
   }
 }
 
-export const CreateCountDownTimer = (scene, camera, renderer, composer, clock, font, quizComponent, width, height) => {
-  return new CountDownTimer(scene, camera, renderer, composer, clock, font, quizComponent, width, height);
+export const CreateCountDownTimer3D = (scene, camera, renderer, composer, clock, font, quizComponent, width, height) => {
+  return new CountDownTimer3D(scene, camera, renderer, composer, clock, font, quizComponent, width, height);
 }

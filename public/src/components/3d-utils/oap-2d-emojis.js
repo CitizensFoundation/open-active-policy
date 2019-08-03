@@ -60,7 +60,6 @@ class CanvasText {
     // 2 = prevent canvas being 0 size when using empty / null text
     this.canvas.width = Math.max(2, ThreeMath.ceilPowerOfTwo(this.textWidth));
     this.canvas.height = Math.max(2, ThreeMath.ceilPowerOfTwo(this.textHeight));
-
     this.ctx.font = ctxOptions.font
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -231,10 +230,13 @@ export const CacheEmojisInBackground = (emojis, font, options) => {
 }
 
 export const Get2DEmoji = (emoji, font) => {
-  if (emojiSpriteCache[emoji]) {
-    return emojiSpriteCache[emoji];
+  let key = emoji;
+  if (font)
+    key=emoji+font;
+  if (emojiSpriteCache[key]) {
+    return emojiSpriteCache[key];
   } else {
-    emojiSpriteCache[emoji] = new SpriteText2D(emoji, { align: textAlign.center, font: font ? font : '64px Arial', fillStyle: '#000000'});
-    return emojiSpriteCache[emoji];
+    emojiSpriteCache[key] = new SpriteText2D(emoji, { align: textAlign.center, font: font ? font : '64px Arial', fillStyle: '#000000'});
+    return emojiSpriteCache[key];
   }
 }

@@ -70,7 +70,6 @@ const certParser = function (cert) {
 }
 
 const fire = function(eventName, data) {
-  debugger
   const event = new CustomEvent(eventName, { detail: data });
   document.dispatchEvent(event);
 }

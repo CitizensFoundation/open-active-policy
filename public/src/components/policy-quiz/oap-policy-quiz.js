@@ -13,7 +13,7 @@ import { CreateLightning3D } from '../3d-utils/oap-lightning-3d';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { CreateGPUFireworks3D } from '../3d-utils/oap-fireworks-3d';
-import { CreateCountDownTimer } from '../3d-utils/oap-countdown-timer';
+import { CreateCountDownTimer3D } from '../3d-utils/oap-countdown-timer-3d';
 import { StartEarlyDelayedFontCaching } from '../3d-utils/oap-cached-text-geometry';
 
 class OapPolicyQuiz extends OapPageViewElement {
@@ -62,8 +62,8 @@ class OapPolicyQuiz extends OapPageViewElement {
 
     setTimeout(()=>{
       this.scene = new Scene();
-      this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-      this.camera.position.set( 0, 0, 0 );
+      this.camera = new PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 1000 );
+      this.camera.position.set( 0, 0, 45 );
       this.scene.add( this.camera );
 
       this.dirLightOne = new DirectionalLight(0x1d5588, 2.0);
@@ -150,7 +150,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.renderCanvas3d();
 
       setTimeout(()=> {
-        this.countdownTimer3d = CreateCountDownTimer(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
+        this.countdownTimer3d = CreateCountDownTimer3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
         this.updateCountDownTimer = true;
       })
 

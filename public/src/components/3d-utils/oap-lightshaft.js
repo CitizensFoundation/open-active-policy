@@ -1,0 +1,149 @@
+import * as THREE from 'three';
+
+import { GetTextGeometry, GetTextMesh } from  './oap-cached-text-geometry';
+import { Tween, Easing, update as UpdateTween } from 'es6-tween';
+import { Get2DEmoji } from './oap-2d-emojis';
+
+const vertexShader = ()=> {
+  return `
+  	#include <common>
+
+		uniform float speed;
+		uniform float time;
+		uniform float timeOffset;
+		varying vec2 vUv;
+		varying float vAlpha;
+
+		void main() {
+
+			vec3 pos = position;
+
+			float l = ( time * speed * 0.01 ) + timeOffset;
+			float f = fract( l ); // linear time factor [0,1)
+			float a = f * f; // quadratic time factor [0,1)
+
+			// slightly animate the vertices of light shaft if necessary
+
+			// pos.x += cos( l * 20.0 ) * sin( l * 10.0 );
+
+			vAlpha = saturate( 0.7 + min( 1.0, a * 10.0 ) * ( sin( a * 40.0 ) * 0.25 ) );
+
+		  vUv = uv;
+
+			gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1.0 );
+		}
+  `.toString();
+}
+
+const fragmentShader = ()=> {
+  return `
+    uniform float attenuation;
+    uniform vec3 color;
+    uniform sampler2D colorTexture;
+
+    varying vec2 vUv;
+    varying float vAlpha;
+
+    void main() {
+      vec4 textureColor = texture2D( colorTexture, vUv );
+      gl_FragColor = vec4( textureColor.rgb * color.rgb, textureColor.a * vAlpha );
+      gl_FragColor.a *= pow( gl_FragCoord.z, attenuation );
+    }
+  `.toString();
+}
+
+class LightShaft3D {
+
+  constructor (scene, camera, renderer, composer, clock, font3d, component, width, height) {
+    this.scene = scene;
+    this.camera = camera;
+    this.renderer = renderer;
+    this.composer = composer;
+    this.width = width;
+    this.height = height;
+    this.font3d = font3d;
+    this.component = component;
+
+    this.clock = clock;
+    this.currentTime = 0;
+    this.init();
+  }
+
+  init() {
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load( 'https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/lightShaft.png' );
+
+    this.uniforms = {
+      // controls how fast the ray attenuates when the camera comes closer
+      attenuation: {
+        value: 10
+      },
+      // controls the speed of the animation
+      speed: {
+        value: 2
+      },
+      // the color of the ray
+      color: {
+        value: new THREE.Color( 0xdadc9f )
+      },
+      // the visual representation of the ray highly depends on the used texture
+      colorTexture: {
+        value: texture
+      },
+      // global time value for animation
+      time: {
+        value: 0
+      },
+      // individual time offset so rays are animated differently if necessary
+      timeOffset: {
+        value: 0
+      }
+    };
+
+    this.lightShaftMaterial = new THREE.ShaderMaterial( {
+      uniforms: this.uniforms,
+      vertexShader: vertexShader(),
+      fragmentShader: fragmentShader(),
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      transparent: true,
+      side: THREE.DoubleSide
+    } );
+
+    var lightShaftGeometry = new THREE.PlaneBufferGeometry( 0.5, 5 );
+
+    for ( var i = 0; i < 5; i ++ ) {
+      this.lightShaft = new THREE.Mesh( lightShaftGeometry, this.lightShaftMaterial );
+      this.lightShaft.position.x = - 1 + 1.5 * Math.sign( ( i % 2 ) );
+      this.lightShaft.position.y = 2;
+      this.lightShaft.position.z = - 1.5 + ( i * 0.5 );
+      this.lightShaft.rotation.y = Math.PI * 0.2;
+      this.lightShaft.rotation.z = Math.PI * - ( 0.15 + 0.1 * Math.random() );
+      this.scene.add( this.lightShaft );
+    }
+  }
+
+  set visible(value) {
+    if (this.lightShaft) {
+      this.lightShaft.visible=value;
+    }
+  }
+
+  get visible() {
+    return this.lightShaft.visible;
+  }
+
+
+  getMaterial() {
+    return this.lightShaftMaterial;
+  }
+
+  update () {
+    const delta = clock.getDelta();
+    this.uniforms.time.value += delta;
+  }
+}
+
+export const CreateLightShaft3D = (scene, camera, renderer, composer, clock, font, component, width, height) => {
+  return new LightShaft3D(scene, camera, renderer, composer, clock, font, component, width, height);
+}

@@ -131,8 +131,8 @@ class Lightning3D {
     });
 
     this.scene.userData.timeRate = 1;
-    this.storm.position.z = -50;
-    this.storm.position.y = -50;
+    this.storm.position.z = -170;
+    this.storm.position.y =  -30;
     this.storm.position.x = 0;
 
     this.scene.add( this.storm );
