@@ -293,8 +293,8 @@ class OapCountryCreation extends OapPageViewElement {
             </paper-dropdown-menu>
           </div>
 
-          <div class="hiddenDiv" ?hidden="${this.customCountry===null}">
-            <div class="subHeader noBottom">${this.localize("basicInformation")}</div>
+          <div class="hiddenDiv nextToTop" ?hidden="${this.customCountry===null}">
+            <div class="subHeader noBottom basicInfo">${this.localize("basicInformation")}</div>
 
             <paper-input id="name"
                         name="name"
@@ -325,10 +325,10 @@ class OapCountryCreation extends OapPageViewElement {
               <paper-icon-button icon="help-outline" @click="${this.culturalHelp}"></paper-icon-button>
             </div>
 
-            <div id="culturalAttitudes" class="flexRow">
+            <div id="culturalAttitudes" class="flexRow cultRow">
               <div class="column">
                 <div class="sliderHeader"><span class="emoji">🏛️</span>${this.localize("authority")}</div>
-                <paper-slider
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('authority', event)}}"
                   .value="${this.country.culturalAttitutes.authority}"
                   max="9" ?disabled="${!this.customCountry}"
@@ -336,7 +336,7 @@ class OapCountryCreation extends OapPageViewElement {
               </paper-slider>
 
               <div class="sliderHeader"><span class="emoji">🔬</span>${this.localize("science")}</div>
-                <paper-slider
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('science', event)}}"
                   .value="${this.country.culturalAttitutes.science}"
                   max="9" ?disabled="${!this.customCountry}"
@@ -344,15 +344,15 @@ class OapCountryCreation extends OapPageViewElement {
               </paper-slider>
 
               <div class="sliderHeader"><span class="emoji">👥</span>${this.localize("collective")}</div>
-                <paper-slider
-                  @value-changed="${(event) => { this.changeAttitute('collective', event)}}"
+              <paper-slider class="attituteSlider"
+                @value-changed="${(event) => { this.changeAttitute('collective', event)}}"
                 .value="${this.country.culturalAttitutes.collective}"
                   max="9" ?disabled="${!this.customCountry}"
                   >
               </paper-slider>
 
               <div class="sliderHeader"><span class="emoji">🔐</span>${this.localize("privacy")}</div>
-              <paper-slider
+                <paper-slider class="attituteSlider"
                 @value-changed="${(event) => { this.changeAttitute('privacy', event)}}"
               .value="${this.country.culturalAttitutes.privacy}"
                 max="9" ?disabled="${!this.customCountry}"
@@ -360,7 +360,7 @@ class OapCountryCreation extends OapPageViewElement {
               </paper-slider>
 
               <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("socialProgressEgalitarianism")}</div>
-                <paper-slider
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('socialProgress', event)}}"
                   .value="${this.country.culturalAttitutes.socialProgress}"
                   max="9" ?disabled="${!this.customCountry}"
@@ -370,7 +370,7 @@ class OapCountryCreation extends OapPageViewElement {
 
             <div class="column">
                 <div class="sliderHeader"><span class="emoji">🌅</span>${this.localize("liberty")}</div>
-                <paper-slider
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('liberty', event)}}"
                   .value="${this.country.culturalAttitutes.liberty}"
                   max="9" ?disabled="${!this.customCountry}"
@@ -378,7 +378,7 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
 
                 <div class="sliderHeader"><span class="emoji">🏺</span>${this.localize("tradition")}</div>
-                <paper-slider
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('tradition', event)}}"
                   .value="${this.country.culturalAttitutes.tradition}"
                   max="9" ?disabled="${!this.customCountry}"
@@ -386,7 +386,7 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
 
                 <div class="sliderHeader"><span class="emoji">🛡️</span>${this.localize("independence")}</div>
-                <paper-slider
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('independence', event)}}"
                   .value="${this.country.culturalAttitutes.independence}"
                   max="9" ?disabled="${!this.customCountry}"
@@ -394,7 +394,7 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
 
                 <div class="sliderHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
-                <paper-slider
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('lawAndOrder', event)}}"
                   .value="${this.country.culturalAttitutes.lawAndOrder}"
                   max="9" ?disabled="${!this.customCountry}"
@@ -404,7 +404,7 @@ class OapCountryCreation extends OapPageViewElement {
               </div>
             </div>
 
-            <div class="subHeader noBottom">${this.localize("countryRawStats")}</div>
+            <div class="subHeader noBottom rawStats">${this.localize("countryRawStats")}</div>
 
             <paper-input id="population"
                         name="population"
@@ -463,11 +463,10 @@ class OapCountryCreation extends OapPageViewElement {
               </div>
             </div>
 
-            <div class="layout horizontal center-center">
-              <paper-button raised id="submitButton" ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-country-created', this.country) }}">${this.localize("buildConstitutionForCountry")}</paper-button>
-            </div>
           </div>
-
+          <div class="layout horizontal center-center">
+            <paper-button raised id="submitButton" ?hidden="${this.customCountry===null}" ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-country-created', this.country) }}">${this.localize("buildConstitutionForCountry")}</paper-button>
+          </div>
 
         </div>
       </div>

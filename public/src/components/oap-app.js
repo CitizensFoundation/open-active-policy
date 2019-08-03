@@ -2274,7 +2274,6 @@ class OapApp extends OapBaseElement {
       this.filteredItems = [];
       this.usedBonusesAndPenalties = [];
     }
-    debugger;
     this.afterWelcomeClose();
   }
 
