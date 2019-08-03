@@ -241,19 +241,18 @@ class Oap3dBudget extends OapBaseElement {
 
         this.bonusPenaltyGroup.visible=true;
 
-        if (this.cameraSpotLight) {
-          this.scene.remove(this.cameraSpotLight);
-          this.cameraSpotLight=null;
+        if (!this.cameraSpotLight) {
+          this.cameraSpotLight = new SpotLight( 0xffffff, 0.2 );
+          this.cameraSpotLight.position.copy(this.camera.position);
+          this.cameraSpotLight.target=this.bonusPenaltyGroup;
+          //this.cameraSpotLight.castShadow = true;
+          this.cameraSpotLight.angle = 0.42;
+          this.cameraSpotLight.penumbra = 0.42;
+          this.cameraSpotLight.distance = 260;
+          this.scene.add(this.cameraSpotLight);
+        } else {
+          this.cameraSpotLight.visible=true;
         }
-
-        this.cameraSpotLight = new SpotLight( 0xffffff, 0.2 );
-        this.cameraSpotLight.position.copy(this.camera.position);
-        this.cameraSpotLight.target=this.bonusPenaltyGroup;
-        //this.cameraSpotLight.castShadow = true;
-        this.cameraSpotLight.angle = 0.42;
-        this.cameraSpotLight.penumbra = 0.42;
-        this.cameraSpotLight.distance = 260;
-        this.scene.add(this.cameraSpotLight);
 
         if (this.bonusPenaltyFontRotation) {
           this.bonusPenaltyFontRotation.stop();
@@ -274,7 +273,7 @@ class Oap3dBudget extends OapBaseElement {
             this.fontMesh.material[0].color.set(0xFF5722);
             this.fontMesh.material[1].color.set(0xFF5722);
             this.scene.remove(this.cameraSpotLight);
-            this.cameraSpotLight=null;
+            this.cameraSpotLight.visible=false;
             this.bonusPenaltyGroup.visible=false;
           })
           .start();

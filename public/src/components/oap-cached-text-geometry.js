@@ -11,25 +11,25 @@ function  _getTextGeometryCore(value, font, options) {
     geoOptions = {
       font: font,
       size: window.innerWidth>600 ? 10 : 5,
-      height: window.innerWidth>600 ? 2 : 1.2,
-      curveSegments: window.innerWidth>600 ? 15 : 12,
+      height: window.innerWidth>600 ? 1.5 : 1.0,
+      curveSegments: window.innerWidth>600 ? 12 : 10,
       bevelEnabled: true,
-      bevelThickness: window.innerWidth>600 ? 1 : 0.7,
-      bevelSize:  window.innerWidth>600 ? 0.9 : 0.5,
+      bevelThickness: window.innerWidth>600 ? 0.7 : 0.5,
+      bevelSize:  window.innerWidth>600 ? 0.8 : 0.5,
       bevelOffset: 0,
-      bevelSegments:  window.innerWidth>600 ? 7 :7
+      bevelSegments:  window.innerWidth>600 ? 7 : 7
     }
   } else {
     geoOptions = {
       font: font,
       size: window.innerWidth>600 ? 5.5 : 4.5,
       height: window.innerWidth>600 ? 1.5 : 1.2,
-      curveSegments: window.innerWidth>600 ? 10 : 8,
+      curveSegments: window.innerWidth>600 ? 8 : 6,
       bevelEnabled: true,
-      bevelThickness: window.innerWidth>600 ? 0.3 : 0.2,
-      bevelSize:  window.innerWidth>600 ? 0.5 : 0.3,
+      bevelThickness: window.innerWidth>600 ? 0.2 : 0.1,
+      bevelSize:  window.innerWidth>600 ? 0.4 : 0.3,
       bevelOffset: 0,
-      bevelSegments:  window.innerWidth>600 ? 7 :7
+      bevelSegments:  window.innerWidth>600 ? 6 : 6
     }
   }
 
