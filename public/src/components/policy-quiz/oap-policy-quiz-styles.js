@@ -36,10 +36,10 @@ export const OapPolicyQuizStyles = css`
     font-weight: bold;
     color: #fff;
     border: 1px solid #00ff00;
-    -webkit-transition: color 0.7s ease-in-out;
-    -moz-transition: color 0.7s ease-in-out;
-    -ms-transition: color 0.7s ease-in-out;
-    -o-transition: color 0.7s ease-in-out;
+    -webkit-transition: color, border 0.7s ease-in-out;
+    -moz-transition: color, border 0.7s ease-in-out;
+    -ms-transition: color, border 0.7s ease-in-out;
+    -o-transition: color, border 0.7s ease-in-out;
   }
 
   .buttonContainer {
