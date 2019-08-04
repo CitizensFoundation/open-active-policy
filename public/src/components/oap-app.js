@@ -41,6 +41,28 @@ import { OapAppStyles } from './oap-app-styles';
 import { OapBaseElement } from './oap-base-element.js';
 import { OapFlexLayout } from './oap-flex-layout.js';
 
+async function cacheDataImages(items) {
+  if (items) {
+    await new Promise(resolve => setTimeout(resolve, 100));
+    for (let i=0; i<items.length; i++) {
+      const img = new Image();
+      img.src=items[i].image_url;
+      await new Promise(resolve => setTimeout(resolve, 750));
+    }
+  }
+}
+
+async function cacheSoundEffects(soundEffects) {
+  if (soundEffects) {
+    const effects = Object.values(soundEffects);
+    for (let i=0; i<effects.length; i++) {
+      effects[i].audio = new Audio(effects[i].url);
+      effects[i].audio.volume = effects[i].volume;
+      await new Promise(resolve => setTimeout(resolve, 750));
+    }
+  }
+}
+
 class OapApp extends OapBaseElement {
   static get properties() {
     return {
@@ -1709,8 +1731,8 @@ class OapApp extends OapBaseElement {
       oap_new_level_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_new_level_1.mp3", volume: 0.1}
     }
 
-    this.cacheDataImages();
-    this.cacheSoundEffects();
+    cacheDataImages(this.allItems);
+    cacheSoundEffects(this.soundEffects);
     if (window.debugOn) {
       this.filteredItems = this.allItems;
       this.country = {
@@ -1742,17 +1764,6 @@ class OapApp extends OapBaseElement {
     }
   }
 
-  cacheSoundEffects() {
-    if (this.soundEffects) {
-      Object.values(this.soundEffects).forEach((effect) => {
-        setTimeout( () => {
-          effect.audio = new Audio(effect.url);
-          effect.audio.volume = effect.volume;
-        }, 500+Math.floor(Math.random() * 2500));
-      });
-    }
-  }
-
   playSoundEffect (event) {
     const effect = this.soundEffects[event.detail];
     if (effect) {
@@ -1765,17 +1776,6 @@ class OapApp extends OapBaseElement {
           audio.volume = effect.volume;
         }
         audio.play();
-      });
-    }
-  }
-
-  cacheDataImages() {
-    if (this.allItems) {
-      this.allItems.forEach((module) => {
-        setTimeout( () => {
-          const img = new Image();
-          img.src=module.image_url;
-        }, 2500+Math.floor(Math.random() * 22500));
       });
     }
   }
