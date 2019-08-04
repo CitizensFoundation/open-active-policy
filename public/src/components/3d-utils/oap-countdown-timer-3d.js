@@ -18,11 +18,11 @@ class CountDownTimer3D {
     this.inCountDown = false;
     this.quizComponent = quizComponent;
     this.introTexts = [
-      {title: "Welcome", animationLength: 1000},
-      {title: "To", animationLength: 550},
-      {title: "Make", animationLength: 550},
-      {title: "Your", animationLength: 550},
-      {title: "Constitution", animationLength: 1200}];
+      {title: "Welcome", animationLength: 1100},
+      {title: "To", animationLength: 650},
+      {title: "Make", animationLength: 650},
+      {title: "Your", animationLength: 650},
+      {title: "Constitution", animationLength: 1300}];
 
     this.completedTextTweens = 0;
 
@@ -31,6 +31,11 @@ class CountDownTimer3D {
     this.currentTime = 0;
     this.createTextGeometries();
     this.init();
+
+    this.winPoints = 5;
+    setTimeout(()=>{
+      this.cacheWinPoints()
+    }, 100)
   }
 
   async createTextGeometries() {
@@ -38,7 +43,7 @@ class CountDownTimer3D {
 
     for (var i=0;i<this.introTexts.length;i++) {
       const textMaterial = new THREE.MeshStandardMaterial( {
-        color: "0xeaeaea",
+        color: "#fafafa",
         roughness: 0.3,
         metalness: 0.8,
         side: THREE.DoubleSide
@@ -56,7 +61,7 @@ class CountDownTimer3D {
       this.scene.add(fontMesh);
       const animationLength = this.introTexts[i].animationLength;
       new Tween(fontMesh.position)
-      .to({ z: 10 }, animationLength)
+      .to({ z: 15 }, animationLength)
       .delay(0)
       .on('complete', (event, blah) => {
         fontMesh.visible = false;
@@ -71,8 +76,8 @@ class CountDownTimer3D {
 
       fontMesh.material.transparent=true;
       new Tween(fontMesh.material)
-      .to({ opacity: 0.0 },300)
-      .delay(animationLength-400)
+      .to({ opacity: 0.0 },350)
+      .delay(animationLength-300)
       .easing(Easing.Quadratic.InOut)
       .start();
 
@@ -81,8 +86,8 @@ class CountDownTimer3D {
   }
 
   startIntro() {
-    const logoStartZ=-25;
-    const logoEndZ= 42;
+    const logoStartZ=-5;
+    const logoEndZ= 48;
 
     setTimeout(()=>{
       if (this.welcomeFontMeshes.length==this.introTexts.length) {
@@ -92,7 +97,7 @@ class CountDownTimer3D {
           this.addTextGeometriesAndRun();
         }, 1000);
       }
-    }, 3000);
+    }, 2600);
 
     var spriteMap = new THREE.TextureLoader().load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/makeyourlogo2.png" );
     var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
@@ -100,12 +105,13 @@ class CountDownTimer3D {
     this.scene.add( this.logoSprite );
     this.logoSprite.position.z = logoStartZ;
     this.logoSprite.scale.y=1.5;
-    this.logoSprite.position.y=-0.2;
+    this.logoSprite.position.y=0.1;
+    this.logoSprite.position.x=4.7;
 
     this.logoTween = new Tween(this.logoSprite.position)
-    .to({ z: logoEndZ, x: -0.5}, 3300)
+    .to({ z: logoEndZ, x: -1.5, y: this.logoSprite.position.y }, 3100)
     .delay(0)
-    .easing(Easing.Quadratic.Out)
+    .easing(Easing.Quadratic.In)
     .on('complete', () => {
       this.logoTween = null;
       /*this.logoSprite.position.z=logoStartZ;
@@ -115,8 +121,8 @@ class CountDownTimer3D {
 
     this.logoSprite.material.transparent=true;
     new Tween(this.logoSprite.material)
-    .to({ opacity: 0.0 }, 1200)
-    .delay(2000)
+    .to({ opacity: 0.0 }, 500)
+    .delay(2800)
     .on('complete', () => {
       this.scene.remove(this.logoSprite);
     })
@@ -193,12 +199,66 @@ class CountDownTimer3D {
     this.welcomeFontMeshes = [];
     this.scene.remove(this.logoSprite);
     setTimeout(()=>{
-      this.quizComponent.disableLightShaft();
-    }, 500);
+      this.quizComponent.disableLightShaftAfterNextAnswer();
+    }, 20000);
   }
 
   cacheWinPoints() {
-    this.cacheWinPointsGeometry =""
+    this.cacheWinPointsGeometry = GetTextGeometry("+"+ this.winPoints+"cp", this.font3d, { large: true });
+  }
+
+  getLeftOfCamera() {
+    let fudgetFactor;
+    if (window.innerWidth<450) {
+      fudgetFactor = 8;
+    } else if (window.innerWidth<950) {
+      fudgetFactor = -8;
+    } else {
+      fudgetFactor = -16;
+    }
+    var fov = this.camera.fov / 180 * Math.PI / 2;
+    var adjacent = this.camera.position.distanceTo( this.scene.position );
+    return -((Math.tan( fov ) * adjacent  * this.camera.aspect)+fudgetFactor);
+  }
+
+  showWinPoints() {
+    if (!this.winPointsMesh) {
+      this.winPointsMaterial = new THREE.MeshStandardMaterial( {
+        color: 0x00FF00,
+        roughness: 0.4,
+        metalness: 0.92,
+
+        side: THREE.DoubleSide
+      } );
+      this.winPointsMesh = new THREE.Mesh(this.cacheWinPointsGeometry ? this.cacheWinPointsGeometry : GetTextGeometry("+"+ this.winPoints+"cp", this.font3d, { large: true }),this.winPointsMaterial );
+      this.winPointsMesh.position.x=-50;
+      this.winPointsMesh.position.z=-60;
+      this.scene.add(this.winPointsMesh);
+    }
+
+    let startFudge = 100;
+    let endFudge = 10;
+    if (window.innerWidth<600) {
+      startFudge = 36;
+      endFudge = 20;
+    }
+
+    let votesWidth = window.innerWidth<600 ? window.innerWidth : 600;
+    const xText = votesWidth*0.069;
+
+    this.winPointsMesh.visible = true;
+    this.pointLight2.intensity = 0.3;
+    this.winPointsTween = new Tween(this.winPointsMesh.position)
+    .to({ x: xText+endFudge, y: this.winPointsMesh.position.y, z: -40}, 2100) // relative animation
+    .delay(0)
+    .on('complete', () => {
+      this.winPointsMesh.position.x=-50;
+      this.winPointsMesh.position.z=-50;
+      this.pointLight2.intensity = 0.1;
+      this.winPointsMesh.visible=false;
+      this.winPointsTween=null;
+    })
+    .start();
   }
 
   startCountDown() {

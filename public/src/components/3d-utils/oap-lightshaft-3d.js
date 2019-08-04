@@ -85,7 +85,7 @@ class LightShaft3D {
       },
       // controls the speed of the animation
       speed: {
-        value: 25
+        value: 15
       },
       // the color of the ray
       color: {
@@ -133,7 +133,7 @@ class LightShaft3D {
       lightShaft.position.x = 0.0;
 
       this.lightShaftTwean = new Tween(lightShaft.position)
-      .to({ z: 35, x: -0.8}, 750)
+      .to({ z: 35, x: -0.9}, 100)
       .delay(0)
       .on('complete', () => {
         this.lightShaftTwean = null;

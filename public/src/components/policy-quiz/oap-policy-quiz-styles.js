@@ -40,6 +40,10 @@ export const OapPolicyQuizStyles = css`
 
   .buttonContainer {
     width: 100%;
+    -webkit-transition: opacity 2.0s ease-in-out;
+    -moz-transition: opacity 2.0s ease-in-out;
+    -ms-transition: opacity 2.0s ease-in-out;
+    -o-transition: opacity 2.0s ease-in-out;
   }
 
   .topContainer {
@@ -62,6 +66,10 @@ export const OapPolicyQuizStyles = css`
     text-align: center;
     padding-bottom: 0;
     padding-top: 6px;
+    -webkit-transition: opacity 2.0s ease-in-out;
+    -moz-transition: opacity 2.0s ease-in-out;
+    -ms-transition: opacity 2.0s ease-in-out;
+    -o-transition: opacity 2.0s ease-in-out;
   }
 
   .infoBar {
@@ -76,6 +84,10 @@ export const OapPolicyQuizStyles = css`
     font-size: 18px;
     color: #bbb;
     padding: 16px;
+    -webkit-transition: opacity 2.0s ease-in-out;
+    -moz-transition: opacity 2.0s ease-in-out;
+    -ms-transition: opacity 2.0s ease-in-out;
+    -o-transition: opacity 2.0s ease-in-out;
   }
 
   .middle {
