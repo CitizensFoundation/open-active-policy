@@ -19911,16 +19911,15 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
   :host {
     width: 100%;
     height: 100%;
-    overflow: hidden;
   }
 
   .toppestContainer {
     width: 100%;
     height: 100%;
-    overflow: hidden !important;
   }
   /* class created only for a better preview*/
   .stage {
+      padding-top: 24px;
       position: absolute;
       opacity: 1;
       max-width: 335px;
@@ -19973,6 +19972,29 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
       margin-bottom: 12px;
       margin-top: 24px;
       color: #fff !important;
+  }
+
+  .speedSlider {
+    opacity: 0.0;
+    margin-top: 4px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    --paper-slider-active-color: var(--app-create-country-slider-active-color, #aaa);
+    --paper-slider-knob-color: var(--app-create-country-slider-active-color, #aaa);
+    --paper-slider-container-color: #333;
+    transition: opacity 0.7s;
+    -moz-transition: opacity 0.7s;
+    -webkit-transition: opacity 0.7s;
+    -o-transition: opacity 0.7s;
+  }
+
+  .speedSlider[auto] {
+    opacity: 1.0;
+    transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
   }
 
   .card-content {
@@ -20057,6 +20079,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
               justify-content: center;
       padding-top: 12px;
       min-width: 200px;
+      margin-top: -32px;
   }
 
   .top-action,
@@ -20443,63 +20466,65 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
       </defs></svg>
 </iron-iconset-svg>`;document.head.appendChild(template$e.content);"use strict";const runningBonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0},saveItemForReview=(item,bonusesAndPenalties,bonuses,penalties)=>{bonusesAndPenalties.push(item);if("bonus"==item.type){bonuses.push(item)}else{penalties.push(item)}},saveItemToObject=(targetObject,item)=>{if("bonus"==item.type){targetObject.totalBonusesCount+=1;targetObject.totalBonuses+=item.value;targetObject.allBonuses.push(item);if(!targetObject.allBonusesByCulturalAttitute[item.attitute]){targetObject.allBonusesByCulturalAttitute[item.attitute]=[]}if(!targetObject.sumBonusesByCulturalAttitute[item.attitute]){targetObject.sumBonusesByCulturalAttitute[item.attitute]=0}targetObject.allBonusesByCulturalAttitute[item.attitute].push(item);targetObject.sumBonusesByCulturalAttitute[item.attitute]+=item.value;if(!targetObject.allBonusesByLevel[item.level]){targetObject.allBonusesByLevel[item.level]=[]}targetObject.allBonusesByLevel[item.level].push(item)}else{targetObject.totalPenaltiesCount+=1;targetObject.totalPenalties+=item.value;targetObject.allPenalties.push(item);if(!targetObject.allPenaltiesByCulturalAttitute[item.attitute]){targetObject.allPenaltiesByCulturalAttitute[item.attitute]=[]}if(!targetObject.sumPenaltiesByCulturalAttitute[item.attitute]){targetObject.sumPenaltiesByCulturalAttitute[item.attitute]=[]}targetObject.allPenaltiesByCulturalAttitute[item.attitute].push(item);targetObject.sumPenaltiesByCulturalAttitute[item.attitute]+=item.value;if(!targetObject.allPenaltiesByLevel[item.level]){targetObject.allPenaltiesByLevel[item.level]=[]}targetObject.allPenaltiesByLevel[item.level].push(item)}},attitutes=["lawAndOrder","progressivism","authority","science","collective","privacy","liberty","tradition","independence"],analyseBonusPenaltiesForAttitutes=objectToAnalyse=>{const attitutesWinnersAndLosers={};attitutes.forEach(attitute=>{let verdict;if(objectToAnalyse.sumBonusesByCulturalAttitute[attitute]&&objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute]){const profitLoss=objectToAnalyse.sumBonusesByCulturalAttitute[attitute]-objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute];if(0>profitLoss){verdict="highPenalty"}else{verdict="highBonus"}if(5>=Math.abs(profitLoss)){verdict="breakEven"}}else{verdict="breakEven"}attitutesWinnersAndLosers[attitute]=verdict});return attitutesWinnersAndLosers},GetResultsForReview=(selectedItems,country,attituteReviews,countryReviews)=>{const attituteReviewParagraphs={};let countryReviewParagraph;const bonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0};selectedItems.forEach(item=>{const bonusesAndPenalties=GetBonusesAndPenaltiesForItem(item,country).bonusesAndPenalties;bonusesAndPenalties.forEach(innerItem=>{saveItemToObject(bonusPenaltyInfo,innerItem)})});console.log("bonusPenaltyInfo");console.log(bonusPenaltyInfo);console.log("runningBonusPenaltyInfo");console.log(runningBonusPenaltyInfo);const attitutesWinnersAndLosers=analyseBonusPenaltiesForAttitutes(bonusPenaltyInfo);attitutes.forEach(attitute=>{let countryLevel;if(6<country.culturalAttitutes[attitute]){countryLevel="high"}else if(2<country.culturalAttitutes[attitute]){countryLevel="medium"}else{countryLevel="low"}attituteReviewParagraphs[attitute]=attituteReviews[attitute][attitutesWinnersAndLosers[attitute]][countryLevel]});const totalProfitLoss=bonusPenaltyInfo.totalBonuses-bonusPenaltyInfo.totalPenalties;let verdict;if(0>totalProfitLoss){verdict="highNetPenalties"}else{verdict="highNetBonuses"}if(5>=Math.abs(totalProfitLoss)){verdict="breakEven"}if(country.reviews){countryReviewParagraph=country.reviews[verdict]}return{attituteReviewParagraphs,countryReviewParagraph}};_exports.GetResultsForReview=GetResultsForReview;const GetBonusesAndPenaltiesForItem=(item,country)=>{let bonusesAndPenalties=[],bonuses=[],penalties=[],bonusCount=0,penaltyCount=0,bonusesRules=item.bonus?item.bonus.split(","):[];bonusesRules=bonusesRules.map(rule=>{return rule=rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism")});let penaltyRules=item.penalty?item.penalty.split(","):[];penaltyRules=penaltyRules.map(rule=>{return rule=rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism")});bonusesRules.forEach(bonus=>{const splitBonus=bonus.split(" "),level=splitBonus[0],attitute=splitBonus[1];if("bonus"===level){}else if("high"===level){if(7<=country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:7,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}else if("medium"===level){if(3<=country.culturalAttitutes[attitute]&&7>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:5,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}else if("low"===level){if(0<=country.culturalAttitutes[attitute]&&3>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:2,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}});penaltyRules.forEach(bonus=>{const splitBonus=bonus.split(" "),level=splitBonus[0],attitute=splitBonus[1];if("bonus"===level){console.error("Wrong level")}else if("high"===level){if(7<=country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:7,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}else if("medium"===level){if(3<=country.culturalAttitutes[attitute]&&7>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:5,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}else if("low"===level){if(0<=country.culturalAttitutes[attitute]&&3>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:2,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}});return{bonusesAndPenalties,bonusCount,penaltyCount,bonuses,penalties}};_exports.GetBonusesAndPenaltiesForItem=GetBonusesAndPenaltiesForItem;var oapBonusesAndPenalties={GetResultsForReview:GetResultsForReview,GetBonusesAndPenaltiesForItem:GetBonusesAndPenaltiesForItem};// Code originally from https://www.outsystems.com/blog/posts/gestures_glamour_swipeable_stacked_cards/
 _exports.$oapBonusesAndPenalties=oapBonusesAndPenalties;class OapSwipableCards extends OapBaseElement{static get properties(){return{stackedOptions:String,rotate:Boolean,items:Array,selectedItems:Array,filteredItems:Array,itemsLeft:Array,visibleItems:Array,elementsMargin:Number,useOverlays:Boolean,maxElements:Number,currentPosition:Number,currentItemsPosition:Number,currentItem:Object,isFirstTime:Boolean,elementHeight:Number,velocity:Number,topObj:Object,rightObj:Object,leftObj:Object,listElNodesObj:Object,listElNodesWidth:Object,currentElementObj:Object,stackedCardsObj:Object,obj:Object,elTrans:Object,startTime:Number,startX:Number,startY:Number,translateX:Number,translateY:Number,currentX:Number,currentY:Number,timeTaken:Number,rightOpacity:Number,leftOpacity:Number,touchingElement:Boolean,disableUpSwipe:Boolean,hiddenImageIds:Object,rendering:Boolean,configFromServer:Object,automaticSelectionActive:Boolean,country:Object}}static get styles(){return[OapSwipableCardsStyles,OapFlexLayout]}render(){return html$1`
-    <div class="toppestContainer">
-      <div class="stage">
-          <div class="title">${this.localize("filterArticles")}</div>
-            <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
-              <div class="stackedcards-container">
-                ${repeat(this.visibleItems,item=>item.id,(item,index)=>html$1`
-                    <div class="card" id="card${item.id}" style="${this.getCardStyle(item)}">
-                      <div class="card-content">
-                        <div id="imageContainer${item.id}" ?hidden="${"ModuleTypeCard"==item.module_type}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
-                        <div class="cardTitles" ?module-type="${"ModuleTypeCard"==item.module_type}">
-                          <div id="moduleName" class="name" ?module-type="${"ModuleTypeCard"==item.module_type}">${item.name}</div>
-                          <div id="description${item.id}" class="description" ?module-type="${"ModuleTypeCard"==item.module_type}">${unsafeHTML(item.description)}</div>
-                        </div>
-                      ${"ModuleTypeCard"===item.module_type?html$1`
-                        <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
-                          <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
-                          <div class="layout  horizontal actionButtonInnerContainer">
-                            <div class="left-actionx vertical">
-                              <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
-                              <div class="winInfo">${this.localize("automaticInfo")}</div>
-                            </div>
-                            <div class="right-actionx vertical">
-                              <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
-                              <div class="winInfo">${this.localize("win")} 3cp</div>
-                            </div>
+      <div class="toppestContainer">
+        <div class="stage">
+          <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
+            <div class="stackedcards-container">
+              ${repeat(this.visibleItems,item=>item.id,(item,index)=>html$1`
+                  <div class="card" id="card${item.id}" style="${this.getCardStyle(item)}">
+                    <div class="card-content">
+                      <div id="imageContainer${item.id}" ?hidden="${"ModuleTypeCard"==item.module_type}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
+                      <div class="cardTitles" ?module-type="${"ModuleTypeCard"==item.module_type}">
+                        <div id="moduleName" class="name" ?module-type="${"ModuleTypeCard"==item.module_type}">${item.name}</div>
+                        <div id="description${item.id}" class="description" ?module-type="${"ModuleTypeCard"==item.module_type}">${unsafeHTML(item.description)}</div>
+                      </div>
+                    ${"ModuleTypeCard"===item.module_type?html$1`
+                      <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
+                        <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
+                        <div class="layout  horizontal actionButtonInnerContainer">
+                          <div class="left-actionx vertical">
+                            <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                            <div class="winInfo">${this.localize("automaticInfo")}</div>
+                          </div>
+                          <div class="right-actionx vertical">
+                            <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                            <div class="winInfo">${this.localize("win")} 3cp</div>
                           </div>
                         </div>
-                        `:html$1``}
                       </div>
+                      `:html$1``}
                     </div>
-                  `)}
-              </div>
-              <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
-              <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
-              <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+                  </div>
+                `)}
             </div>
-            <div id="navigator" class="mainNavigator layout horizontal"></div>
-            <div class="global-actions" ?hidden="${!0===this.automaticSelectionActive||this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type}">
-              <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
-              </div>
-              <div hidden>
-                <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/>
-                </div>
-              </div>
-              <div style="width: 100px;">
-               </div>
-              <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
+            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+          </div>
+          <div id="navigator" class="mainNavigator layout horizontal"></div>
+          <paper-slider
+              class="speedSlider" ?auto="${this.automaticSelectionActive}" @value-changed="${event=>{this.changeSpeed(event)}}"
+              .value="${this.speedSettings}"
+              max="10">
+          </paper-slider>
+          <div class="global-actions" ?hidden="${!0===this.automaticSelectionActive||this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type}">
+            <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
+            </div>
+            <div hidden>
+              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/>
               </div>
             </div>
+            <div style="width: 100px;">
+              </div>
+            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
+            </div>
+          </div>
         </div>
-
-      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
-    </div>
-
-    `}constructor(){super();this.reset()}disconnectedCallback(){this.removeEventListeners();super.disconnectedCallback()}getCardStyle(item){if("ModuleTypeCard"===item.module_type){const color=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];return"color: #FFF;font-size: 20px;background-color:"+color}else{return""}}startAutomaticSelection(){this.automaticallySelectNext();this.removeEventListeners()}startManualSelection(){this.$$("#manualSelectionButton").disabled=!0;this.fire("oap-bonus-points",3);this.onActionTop(!0);this.addEventListeners();setTimeout(()=>{if(this.$$("#manualSelectionButton"))this.$$("#manualSelectionButton").disabled=!1},750)}startAutoSelection(){this.$$("#autoSelectionButton").disabled=!0;setTimeout(()=>{if(this.$$("#autoSelectionButton"))this.$$("#autoSelectionButton").disabled=!1},750);this.automaticallySelectNext()}automaticallySelectNext(){let futureModuleType,currentModuleTypeCard;if(this.currentItemsPosition<this.items.length-1){futureModuleType=this.items[this.currentItemsPosition].module_type;currentModuleTypeCard="ModuleTypeCard"===this.items[this.currentItemsPosition].module_type}if(currentModuleTypeCard&&!this.automaticSelectionActive||this.items[this.currentItemsPosition]&&"ModuleTypeCard"!==futureModuleType){this.automaticSelectionActive=!0;let random=Math.floor(2*Math.random());const bonusCount=GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition],this.country).bonusCount;if(currentModuleTypeCard){this.onActionTop(!0)}else if(0===bonusCount&&.7>Math.random()){this.onActionLeft()}else{this.onActionRight()}setTimeout(()=>{this.automaticallySelectNext()},!0===window.debugOn?300:400)}else{this.automaticSelectionActive=!1}}updated(changedProps){super.updated(changedProps);if(changedProps.has("currentItem")){if(this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type){this.removeEventListeners()}}if(changedProps.has("items")){if(this.items&&0<this.items.length){if(0===this.currentItemsPosition){this.currentItem=this.items[0]}this.itemsLeft=[...this.items];if(this.selectedItems&&0<this.selectedItems.length||this.filteredItems&&0<this.filteredItems.length){this.itemsLeft=this.itemsLeft.filter(item=>{let useItem=!0;if(this.selectedItems&&-1<this.selectedItems.indexOf(item)){useItem=!1}if(this.filteredItems&&-1<this.filteredItems.indexOf(item)){useItem=!1}return useItem})}this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
+        <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
+      </div>
+    `}constructor(){super();this.reset()}changeSpeed(event){let speed;if(null!==event.detail.value){this.automaticFlipSpeed=this.speedLookup[event.detail.value];console.log("Set flip speed: "+this.automaticFlipSpeed)}}disconnectedCallback(){this.removeEventListeners();super.disconnectedCallback()}getCardStyle(item){if("ModuleTypeCard"===item.module_type){const color=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];return"color: #FFF;font-size: 20px;background-color:"+color}else{return""}}startAutomaticSelection(){this.automaticallySelectNext();this.removeEventListeners()}startManualSelection(){this.$$("#manualSelectionButton").disabled=!0;this.fire("oap-bonus-points",3);this.onActionTop(!0);this.addEventListeners();setTimeout(()=>{if(this.$$("#manualSelectionButton"))this.$$("#manualSelectionButton").disabled=!1},750)}startAutoSelection(){this.$$("#autoSelectionButton").disabled=!0;setTimeout(()=>{if(this.$$("#autoSelectionButton"))this.$$("#autoSelectionButton").disabled=!1},750);this.automaticallySelectNext()}automaticallySelectNext(){let futureModuleType,currentModuleTypeCard;if(this.currentItemsPosition<this.items.length-1){futureModuleType=this.items[this.currentItemsPosition].module_type;currentModuleTypeCard="ModuleTypeCard"===this.items[this.currentItemsPosition].module_type}if(currentModuleTypeCard&&!this.automaticSelectionActive||this.items[this.currentItemsPosition]&&"ModuleTypeCard"!==futureModuleType){this.automaticSelectionActive=!0;let random=Math.floor(2*Math.random());const bonusCount=GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition],this.country).bonusCount;if(currentModuleTypeCard){this.onActionTop(!0)}else if(0===bonusCount&&.7>Math.random()){this.onActionLeft()}else{this.onActionRight()}setTimeout(()=>{this.automaticallySelectNext()},this.automaticFlipSpeed)}else{this.automaticSelectionActive=!1}}updated(changedProps){super.updated(changedProps);if(changedProps.has("currentItem")){if(this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type){this.removeEventListeners()}}if(changedProps.has("items")){if(this.items&&0<this.items.length){if(0===this.currentItemsPosition){this.currentItem=this.items[0]}this.itemsLeft=[...this.items];if(this.selectedItems&&0<this.selectedItems.length||this.filteredItems&&0<this.filteredItems.length){this.itemsLeft=this.itemsLeft.filter(item=>{let useItem=!0;if(this.selectedItems&&-1<this.selectedItems.indexOf(item)){useItem=!1}if(this.filteredItems&&-1<this.filteredItems.indexOf(item)){useItem=!1}return useItem})}this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
 this.requestUpdate();this.updateComplete.then(()=>{this.activate();this.updateNavigator()})}}}updateNavigator(){const color=this.configFromServer.client_config.moduleTypeColorLookup[this.items[this.currentItemsPosition].module_content_type];if(this.$$("#moduleName")){this.$$("#moduleName").title=this.items[this.currentItemsPosition].module_content_type;const navigatorDiv=this.$$("#navigator");while(navigatorDiv.firstChild){navigatorDiv.removeChild(navigatorDiv.firstChild)}let leftItems;if(0<this.itemsLeft.length){leftItems=this.visibleItems.concat(this.itemsLeft)}else{leftItems=this.visibleItems.slice(1,Math.abs(6-this.currentPosition))}const pixels=310/this.items.length;leftItems.forEach((item,index)=>{const div=document.createElement("span");div.style.backgroundColor=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];if(0===index){div.style.width=pixels+5+"px";div.style.height="8px";div.title=item.name}else{div.style.width=pixels+"px";div.style.height="8px";div.title=item.module_content_type}div.onclick=event=>{//this.goTo(item.id);
-};navigatorDiv.appendChild(div)})}else{console.error("No module name in updateNavigator")}}reset(){this.stackedOptions="Top";this.rotate=!0;this.elementsMargin=7;this.currentPosition=0;this.currentItemsPosition=0;this.currentItem=null;this.useOverlays=!1;this.velocity=.3;this.isFirstTime=!0;this.touchingElement=!1;this.visibleItems=[];this.disableUpSwipe=!0;this.hiddenImageIds={};this.rendering=!0;this.automaticSelectionActive=!1}activate(){this.obj=this.$$("#stacked-cards-block");this.refresh();if(this.useOverlays){this.leftObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.leftObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)"}else if(this.leftObj){this.leftObj.className="";this.rightObj.className="";this.topObj.className="";this.leftObj.classList.add("stackedcards-overlay-hidden");this.rightObj.classList.add("stackedcards-overlay-hidden");this.topObj.classList.add("stackedcards-overlay-hidden")}//Remove class init
+};navigatorDiv.appendChild(div)})}else{console.error("No module name in updateNavigator")}}reset(){this.stackedOptions="Top";this.rotate=!0;this.elementsMargin=7;this.currentPosition=0;this.currentItemsPosition=0;this.currentItem=null;this.useOverlays=!1;this.velocity=.3;this.isFirstTime=!0;this.touchingElement=!1;this.visibleItems=[];this.disableUpSwipe=!0;this.hiddenImageIds={};this.rendering=!0;this.automaticSelectionActive=!1;this.speedLookup={0:5e3,1:4500,2:3500,3:3e3,4:2500,5:2e3,6:1500,7:1200,8:900,9:500,10:310};this.automaticFlipSpeed=900;this.speedSettings=8}activate(){this.obj=this.$$("#stacked-cards-block");this.refresh();if(this.useOverlays){this.leftObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.leftObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)"}else if(this.leftObj){this.leftObj.className="";this.rightObj.className="";this.topObj.className="";this.leftObj.classList.add("stackedcards-overlay-hidden");this.rightObj.classList.add("stackedcards-overlay-hidden");this.topObj.classList.add("stackedcards-overlay-hidden")}//Remove class init
 setTimeout(function(){this.obj.classList.remove("init")}.bind(this),250);//this.addEventListeners();
 }isImageHidden(imageId){return null!=this.hiddenImageIds[imageId]}hideImage(imageId){const item=this.$$("#image"+imageId);if(item){item.classList.add("imageCollapsed");this.hiddenImageIds[imageId]=!0;const description=this.$$("#description"+imageId);description.classList.add("fullsizeDescription");this.requestUpdate()}}unhideImage(imageId){const item=this.$$("#image"+imageId);if(item){item.classList.remove("imageCollapsed");this.hiddenImageIds[imageId]=null;const description=this.$$("#description"+imageId);description.classList.remove("fullsizeDescription");this.requestUpdate()}}refresh(){this.stackedCardsObj=this.obj.querySelector(".stackedcards-container");this.listElNodesObj=this.stackedCardsObj.children;this.topObj=this.obj.querySelector(".stackedcards-overlay.top");this.rightObj=this.obj.querySelector(".stackedcards-overlay.right");this.leftObj=this.obj.querySelector(".stackedcards-overlay.left");this.countElements();this.setCurrentElement();this.changeBackground();this.listElNodesWidth=this.stackedCardsObj.offsetWidth;this.currentElementObj=this.listElNodesObj[0];this.updateUi();//Prepare elements on DOM
 var addMargin=this.elementsMargin*(this.visibleItems.length-1)+"px",i;if("Top"===this.stackedOptions){for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].classList.add("stackedcards-top","stackedcards--animatable","stackedcards-origin-top")}this.elTrans=this.elementsMargin*(this.visibleItems.length-1);this.stackedCardsObj.style.marginBottom=addMargin}else if("Bottom"===this.stackedOptions){for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].classList.add("stackedcards-bottom","stackedcards--animatable","stackedcards-origin-bottom")}this.elTrans=0;this.stackedCardsObj.style.marginBottom=addMargin}else if("None"===this.stackedOptions){for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].classList.add("stackedcards-none","stackedcards--animatable")}this.elTrans=0}for(i=this.visibleItems.length;i<this.maxElements;i++){this.listElNodesObj[i].style.zIndex=0;this.listElNodesObj[i].style.opacity=0;this.listElNodesObj[i].style.webkitTransform="scale("+(1-.04*this.visibleItems.length)+") translateX(0) translateY("+this.elTrans+"px) translateZ(0)";this.listElNodesObj[i].style.transform="scale("+(1-.04*this.visibleItems.length)+") translateX(0) translateY("+this.elTrans+"px) translateZ(0)"}if(this.listElNodesObj[this.currentPosition]){this.listElNodesObj[this.currentPosition].classList.add("stackedcards-active")}setTimeout(function(){this.obj.classList.remove("init")}.bind(this),250)}addEventListeners(){// JavaScript Document
