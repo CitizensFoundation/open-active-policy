@@ -454,7 +454,7 @@ class OapBallot extends OapPageViewElement {
           independence: "🛡️",
           privacy: "🔐",
           lawAndOrder: "👮",
-          socialProgress: "✊",
+          progressivism: "✊",
           naturalResourceWealth: "🔋",
           borderDensity: "🛂",
           hostilityNeighboringCountries: "🌐",

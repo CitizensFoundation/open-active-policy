@@ -214,8 +214,6 @@ class Oap3dBudget extends OapBaseElement {
 
         const roughness = Math.random();
         const metalness = Math.random();
-        console.error("Budget +/- Metalness: "+metalness);
-        console.error("Budget +/- Roughnes: "+roughness);
 
         this.bonusMaterial = new MeshStandardMaterial( {
           color: color,
@@ -366,8 +364,6 @@ class Oap3dBudget extends OapBaseElement {
         roughness = Math.random();
         metalness = Math.random();
       }
-      console.error("Budget CP Metalness: "+metalness);
-      console.error("Budget CP Roughnes: "+roughness);
 
       this.choicePointsMaterial = new MeshStandardMaterial( {
         color: this.defaultChoicePointsColor,

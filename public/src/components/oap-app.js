@@ -157,7 +157,7 @@ class OapApp extends OapBaseElement {
 
       disableAutoSave: Boolean,
 
-      font3d: Object,
+      font3d: Object
     };
   }
 
@@ -334,6 +334,7 @@ class OapApp extends OapBaseElement {
             <oap-review id="review"
               .budgetBallotItems="${this.filteredItems}"
               .configFromServer="${this.configFromServer}"
+              .selectedItems="${this.selectedItems}"
               .budgetElement="${this.currentBudget}"
               .language="${this.language}"
               .country="${this.country}"
@@ -383,7 +384,7 @@ class OapApp extends OapBaseElement {
     this.filteredItems = [];
     this.selectedItems = [];
     this.setDummyData();
-    this.GAME_STATE_VERSION="OapGameStateV3";
+    this.GAME_STATE_VERSION="OapGameStateV5";
   }
 
   helpClosed() {
@@ -1731,8 +1732,13 @@ class OapApp extends OapBaseElement {
           independence: 5,
           privacy: 8,
           lawAndOrder: 5,
-          socialProgress:2
-        }
+          progressivism:2
+        },
+        reviews: {
+          highNetBonuses: "We asked you to understand the needs of punk rock activists, and it turns out you know all about hard core. Fewer rules, more rights -- it’s hard for The Man to keep you down if his hands are tied behind his back. The anarcho-syndicalists are happy with you and have invited you to join them in the mosh pit!",
+          breakEven: "Well, true activist types are used to receiving compromise and half-measures in response to their demands, and that’s what you have given them once again. You have made many concessions in the direction of personal liberty and human rights, while still leaving the State with too much centralized power for the tastes of these hard core citizens. The shards of this Splinter State remain unsatisfied.",
+          highNetPenalties: "The document you created for this brave Splinter State of anarcho-syndicalists would immediately be spray painted, stomped on, and burned in effigy along with a straw dummy of you. Your traditional legal authority and State Power is seen as classic sell-out of everything your citizens stand for. These imaginary radical activists plan to have sit-in protests in your dreams, in a campaign they call Occupy Your Conscience."
+       }
       }
     }
   }

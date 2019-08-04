@@ -12,17 +12,13 @@ export const OapReviewStyles = css`
     height: 100%;
   }
 
-  p {
-    margin: 16px;
-  }
-
   .header {
     font-size: 24px;
-    margin-top: 0;
+    margin-top: 16px;
     margin-bottom: 16px;
     font-weight: bold;
-    background-color: var(--app-country-header-background-color, #e9bf29);
-    color: var(--app-country-header-color, #1d5588);
+    background-color: var(--app-country-header-background-color, #000);
+    color: var(--app-country-header-color, #FFF);
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
@@ -32,11 +28,17 @@ export const OapReviewStyles = css`
 
   .subHeader {
     font-size: 20px;
-    margin-top: 24px;
-    margin-bottom: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    margin-top: 16px;
+    margin-bottom: 4px;
     font-weight: bold;
+  }
+
+  .countryHeader {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+    margin-top: 8px;
   }
 
   .subHeader.noBottom {
@@ -46,12 +48,10 @@ export const OapReviewStyles = css`
   .topContainer {
     max-width: 600px;
     width: 600px;
-    background-color: var(--app-create-country-background-color, #1d5588);
-    color: var(--app-create-country-color, #fff);
-    padding-top: 32px;
-    padding-bottom: 24px;
-    padding-left: 0;
-    padding-right: 0;
+    background-color: #000;
+    color: #FFF;
+    padding: 16px;
+    padding-bottom: 42px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -69,9 +69,13 @@ export const OapReviewStyles = css`
     -webkit-flex-direction: row;
     flex-direction: row;
 
-    justify-content: center;
     width: 100%;
     margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  .basicInfo {
+    padding-top: 24px;
   }
 
   .column {
@@ -82,8 +86,9 @@ export const OapReviewStyles = css`
   }
 
   paper-button {
-    background-color: var(--app-accent-color);
+    background-color: #000;
     color: #FFF;
+    border: 1px solid #FFF;
     margin-left: auto;
     margin-right: auto;
     margin-top: 24px;
@@ -94,46 +99,72 @@ export const OapReviewStyles = css`
   }
 
   .sliderHeader {
-    margin-top: 8px;
+    margin-top: 12px;
+    font-size: 18px;
+  }
+
+  .sliderHeader {
+    font-size: 18px;
+  }
+
+  .rawStats {
+    margin-top: 24px;
   }
 
   .emoji {
     margin-right: 8px;
-    width: 45px;
-    height: 45px;
+    margin-left: 0;
+    font-size: 42px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .attituteHeader {
+    font-size: 20px;
+  }
+
+  .attituteReview {
+    margin-bottom: 24px;
+    margin-top: 4px;
+  }
+
+  .emojiResources {
+    margin-left: 8px;
+    margin-right: 8px;
   }
 
   paper-input {
     padding-left: 16px;
     padding-right: 16px;
-    color: #FFF;
-    --paper-input-container-color: #FFF;
-    --paper-input-container-focus-color: #FFF;
-    --paper-input-container-input-color: #FFF;
+    color: #000;
+    --paper-input-container-color: #000;
+    --paper-input-container-focus-color: #000;
+    --paper-input-container-input-color: #000;
   }
 
   paper-textarea {
     padding-left: 16px;
     padding-right: 16px;
-    --paper-input-container-color: #FFF;
-    --paper-input-container-focus-color: #FFF;
-    --paper-input-container-input-color: #FFF;
-    color: #FFF;
+    --paper-input-container-color: #000;
+    --paper-input-container-focus-color: #000;
+    --paper-input-container-input-color: #000;
+    color: #000;
   }
 
   paper-slider {
-    --paper-slider-container-color: #FFF;
-    --paper-slider-active-color: var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-slider-knob-color: var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-slider-font-color: var(--app-create-country-slider-active-color, #e9bf29);
-    color: #FFF;
-    --paper-input-container-color:  var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-slider-disabled-knob-color: var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-slider-secondary-color: : var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-slider-container-color: #333;
+    --paper-slider-active-color: var(--app-create-country-slider-active-color, #333);
+    --paper-slider-knob-color: var(--app-create-country-slider-active-color, #333);
+    --paper-slider-font-color: var(--app-create-country-slider-active-color, #333);
+    color: #333;
+    --paper-input-container-color:  var(--app-create-country-slider-active-color, #333);
+    --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #333);
+    --paper-input-container-input-color: var(--app-create-country-slider-active-color, #333);
+    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #333);
+    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #333);
+    --paper-slider-disabled-knob-color: var(--app-create-country-slider-active-color, #333);
+    --paper-slider-secondary-color: : var(--app-create-country-slider-active-color, #333);
+    --paper-slider-height: 2px;
   }
 
   .dropDownContainer {
@@ -142,11 +173,11 @@ export const OapReviewStyles = css`
   }
 
   paper-dropdown-menu {
-    --paper-input-container-color:  var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-input-container-input-color: var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #e9bf29);
-    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #e9bf29);
+    --paper-input-container-color:  var(--app-create-country-slider-active-color, #fff);
+    --paper-input-container-focus-color: var(--app-create-country-slider-active-color, #fff);
+    --paper-input-container-input-color: var(--app-create-country-slider-active-color, #fff);
+    --paper-slider-disabled-active-color:  var(--app-create-country-slider-active-color, #fff);
+    --paper-input-disabled-color:  var(--app-create-country-slider-active-color, #fff);
     --paper-input-container-input: {
       font-size: 30px;
     };
@@ -159,13 +190,46 @@ export const OapReviewStyles = css`
     width: 100%;
   }
 
-  @media (max-width: 450px) {
+  .nextToTop {
+    background-color: #fff;
+    color: #000;
+    padding: 16px;
+    padding-bottom: 24px;
+    border-radius: 8px;
+  }
+
+  .attituteSlider {
+    width: 240px;
+  }
+
+  .cultural {
+    margin-top: 24px;
+    margin-bottom: 8px !important;
+  }
+
+  .cultRow {
+    margin-top: 0;
+  }
+
+  .welcomeLogo {
+    max-width: 120px;
+    max-height: 120px;
+    width: 120px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
     .topContainer {
       max-width: 100%;
-      margin-left: 0;
-      margin-right: 0;
+      margin-left: 8px;
+      margin-right: 8px;
       width: 100%;
       height: 100%;
+      margin-bottom: 32px;
+      padding-top: 32px;
     }
 
     paper-input {
@@ -176,12 +240,20 @@ export const OapReviewStyles = css`
       max-width: 300px;
     }
 
+    .attituteSlider {
+      width: 100%;
+    }
+
     paper-slider {
-      width: 320px;
+      width: 100%;
     }
 
     .cultural {
       margin-top: 32px;
+    }
+
+    .header {
+      font-size: 20px;
     }
   }
 

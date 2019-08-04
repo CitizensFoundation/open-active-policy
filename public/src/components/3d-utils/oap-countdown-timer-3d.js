@@ -284,8 +284,6 @@ class CountDownTimer3D {
 
     const roughness = Math.random();
     const metalness = Math.random();
-    console.error("Metalness: "+metalness);
-    console.error("Roughnes: "+roughness);
 
     this.material = new THREE.MeshStandardMaterial( {
       color: 0x888888,
