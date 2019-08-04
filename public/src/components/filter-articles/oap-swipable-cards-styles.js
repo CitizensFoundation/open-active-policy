@@ -37,16 +37,15 @@ export const OapSwipableCardsStyles = css`
   :host {
     width: 100%;
     height: 100%;
-    overflow: hidden;
   }
 
   .toppestContainer {
     width: 100%;
     height: 100%;
-    overflow: hidden !important;
   }
   /* class created only for a better preview*/
   .stage {
+      padding-top: 24px;
       position: absolute;
       opacity: 1;
       max-width: 335px;
@@ -99,6 +98,29 @@ export const OapSwipableCardsStyles = css`
       margin-bottom: 12px;
       margin-top: 24px;
       color: #fff !important;
+  }
+
+  .speedSlider {
+    opacity: 0.0;
+    margin-top: 4px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    --paper-slider-active-color: var(--app-create-country-slider-active-color, #aaa);
+    --paper-slider-knob-color: var(--app-create-country-slider-active-color, #aaa);
+    --paper-slider-container-color: #333;
+    transition: opacity 0.7s;
+    -moz-transition: opacity 0.7s;
+    -webkit-transition: opacity 0.7s;
+    -o-transition: opacity 0.7s;
+  }
+
+  .speedSlider[auto] {
+    opacity: 1.0;
+    transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
   }
 
   .card-content {
@@ -183,6 +205,7 @@ export const OapSwipableCardsStyles = css`
               justify-content: center;
       padding-top: 12px;
       min-width: 200px;
+      margin-top: -32px;
   }
 
   .top-action,

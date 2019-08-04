@@ -8,7 +8,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { OapBaseElement } from '../oap-base-element';
 import { OapSwipableCardsStyles } from './oap-swipable-cards-styles';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-
+import '@polymer/paper-slider/paper-slider';
 import '@polymer/paper-icon-button';
 
 import '../oap-icons';
@@ -73,68 +73,78 @@ class OapSwipableCards extends OapBaseElement {
 
   render() {
     return html`
-    <div class="toppestContainer">
-      <div class="stage">
-          <div class="title">${this.localize("filterArticles")}</div>
-            <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
-              <div class="stackedcards-container">
-                ${repeat(this.visibleItems, (item) => item.id, (item, index) =>
-                  html`
-                    <div class="card" id="card${item.id}" style="${this.getCardStyle(item)}">
-                      <div class="card-content">
-                        <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
-                        <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
-                          <div id="moduleName" class="name" ?module-type="${item.module_type=="ModuleTypeCard"}">${item.name}</div>
-                          <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
-                        </div>
-                      ${(item.module_type==="ModuleTypeCard") ? html`
-                        <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
-                          <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
-                          <div class="layout  horizontal actionButtonInnerContainer">
-                            <div class="left-actionx vertical">
-                              <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
-                              <div class="winInfo">${this.localize("automaticInfo")}</div>
-                            </div>
-                            <div class="right-actionx vertical">
-                              <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
-                              <div class="winInfo">${this.localize("win")} 3cp</div>
-                            </div>
+      <div class="toppestContainer">
+        <div class="stage">
+          <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
+            <div class="stackedcards-container">
+              ${repeat(this.visibleItems, (item) => item.id, (item, index) =>
+                html`
+                  <div class="card" id="card${item.id}" style="${this.getCardStyle(item)}">
+                    <div class="card-content">
+                      <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
+                      <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
+                        <div id="moduleName" class="name" ?module-type="${item.module_type=="ModuleTypeCard"}">${item.name}</div>
+                        <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
+                      </div>
+                    ${(item.module_type==="ModuleTypeCard") ? html`
+                      <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
+                        <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
+                        <div class="layout  horizontal actionButtonInnerContainer">
+                          <div class="left-actionx vertical">
+                            <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
+                            <div class="winInfo">${this.localize("automaticInfo")}</div>
+                          </div>
+                          <div class="right-actionx vertical">
+                            <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
+                            <div class="winInfo">${this.localize("win")} 3cp</div>
                           </div>
                         </div>
-                        ` : html`` }
                       </div>
+                      ` : html`` }
                     </div>
-                  `
-                )}
-              </div>
-              <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
-              <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
-              <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+                  </div>
+                `
+              )}
             </div>
-            <div id="navigator" class="mainNavigator layout horizontal"></div>
-            <div class="global-actions" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
-              <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
-              </div>
-              <div hidden>
-                <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/>
-                </div>
-              </div>
-              <div style="width: 100px;">
-               </div>
-              <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
+            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+          </div>
+          <div id="navigator" class="mainNavigator layout horizontal"></div>
+          <paper-slider
+              class="speedSlider" ?auto="${this.automaticSelectionActive}" @value-changed="${(event) => { this.changeSpeed(event)}}"
+              .value="${this.speedSettings}"
+              max="10">
+          </paper-slider>
+          <div class="global-actions" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
+            <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
+            </div>
+            <div hidden>
+              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/>
               </div>
             </div>
+            <div style="width: 100px;">
+              </div>
+            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
+            </div>
+          </div>
         </div>
-
-      <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
-    </div>
-
+        <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
+      </div>
     `;
   }
 
   constructor() {
     super();
     this.reset();
+  }
+
+  changeSpeed(event) {
+    let speed;
+    if (event.detail.value!==null) {
+      this.automaticFlipSpeed=this.speedLookup[event.detail.value];
+      console.log("Set flip speed: "+this.automaticFlipSpeed);
+    }
   }
 
   disconnectedCallback() {
@@ -199,7 +209,7 @@ class OapSwipableCards extends OapBaseElement {
       }
       setTimeout(()=>{
           this.automaticallySelectNext();
-      }, window.debugOn===true ? 300 : 400);
+      }, this.automaticFlipSpeed);
     } else {
       this.automaticSelectionActive = false;
     }
@@ -303,6 +313,21 @@ class OapSwipableCards extends OapBaseElement {
     this.hiddenImageIds = {};
     this.rendering = true;
     this.automaticSelectionActive = false;
+    this.speedLookup = {
+      0: 5000,
+      1: 4500,
+      2: 3500,
+      3: 3000,
+      4: 2500,
+      5: 2000,
+      6: 1500,
+      7: 1200,
+      8: 900,
+      9: 500,
+      10: 310
+    }
+    this.automaticFlipSpeed=900;
+    this.speedSettings=8;
   }
 
   activate() {
