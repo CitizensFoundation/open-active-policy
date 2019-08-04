@@ -124,9 +124,6 @@ class OapSwipableCards extends OapBaseElement {
               <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
               </div>
             </div>
-            <div class="welcomeLogoContainer layout center-center">
-             <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
-            </div>
         </div>
 
       <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>

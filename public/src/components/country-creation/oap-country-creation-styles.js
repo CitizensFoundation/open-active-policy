@@ -202,6 +202,9 @@ export const OapCountryCreationStyles = css`
 
   .welcomeLogo {
     max-width: 120px;
+    max-height: 120px;
+    width: 120px;
+    height: 120px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;

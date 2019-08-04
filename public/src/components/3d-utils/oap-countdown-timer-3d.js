@@ -17,7 +17,13 @@ class CountDownTimer3D {
     this.r = 0.0;
     this.inCountDown = false;
     this.quizComponent = quizComponent;
-    this.introTexts = ["Welcome","To","Make","Your", "Constitution"];
+    this.introTexts = [
+      {title: "Welcome", animationLength: 1000},
+      {title: "To", animationLength: 550},
+      {title: "Make", animationLength: 550},
+      {title: "Your", animationLength: 550},
+      {title: "Constitution", animationLength: 1200}];
+
     this.completedTextTweens = 0;
 
     this.secondsLeft=15;
@@ -37,7 +43,7 @@ class CountDownTimer3D {
         metalness: 0.8,
         side: THREE.DoubleSide
       });
-      const textMesh = new THREE.Mesh(GetTextGeometry(this.introTexts[i], this.font3d, { large: true }), textMaterial );
+      const textMesh = new THREE.Mesh(GetTextGeometry(this.introTexts[i].title, this.font3d, { large: true }), textMaterial );
       this.welcomeFontMeshes.push(textMesh);
       textMesh.position.z = -500
       await new Promise(resolve => setTimeout(resolve, 400));
@@ -48,7 +54,7 @@ class CountDownTimer3D {
     for (var i=0;i<this.welcomeFontMeshes.length;i++) {
       const fontMesh = this.welcomeFontMeshes[i];
       this.scene.add(fontMesh);
-      const animationLength = 400*(this.introTexts[i].length);
+      const animationLength = this.introTexts[i].animationLength;
       new Tween(fontMesh.position)
       .to({ z: 10 }, animationLength)
       .delay(0)
@@ -65,7 +71,7 @@ class CountDownTimer3D {
 
       fontMesh.material.transparent=true;
       new Tween(fontMesh.material)
-      .to({ opacity: 0.0 }, 600)
+      .to({ opacity: 0.0 },300)
       .delay(animationLength-400)
       .easing(Easing.Quadratic.InOut)
       .start();
@@ -76,7 +82,7 @@ class CountDownTimer3D {
 
   startIntro() {
     const logoStartZ=-25;
-    const logoEndZ= 60;
+    const logoEndZ= 42;
 
     setTimeout(()=>{
       if (this.welcomeFontMeshes.length==this.introTexts.length) {
@@ -86,18 +92,18 @@ class CountDownTimer3D {
           this.addTextGeometriesAndRun();
         }, 1000);
       }
-    }, 1400);
+    }, 3000);
 
     var spriteMap = new THREE.TextureLoader().load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/makeyourlogo2.png" );
     var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
     this.logoSprite = new THREE.Sprite( spriteMaterial );
     this.scene.add( this.logoSprite );
     this.logoSprite.position.z = logoStartZ;
-    this.logoSprite.scale.y=2.0;
-    this.logoSprite.position.y=0.4;
+    this.logoSprite.scale.y=1.5;
+    this.logoSprite.position.y=-0.2;
 
     this.logoTween = new Tween(this.logoSprite.position)
-    .to({ z: logoEndZ, x: -0.5}, 2500)
+    .to({ z: logoEndZ, x: -0.5}, 3300)
     .delay(0)
     .easing(Easing.Quadratic.Out)
     .on('complete', () => {
@@ -109,8 +115,8 @@ class CountDownTimer3D {
 
     this.logoSprite.material.transparent=true;
     new Tween(this.logoSprite.material)
-    .to({ opacity: 0.0 }, 700)
-    .delay(1500)
+    .to({ opacity: 0.0 }, 1200)
+    .delay(2000)
     .on('complete', () => {
       this.scene.remove(this.logoSprite);
     })
@@ -191,6 +197,10 @@ class CountDownTimer3D {
     }, 500);
   }
 
+  cacheWinPoints() {
+    this.cacheWinPointsGeometry =""
+  }
+
   startCountDown() {
     let emojiStartZ = -120;
     let emojiEndZ = 40;
@@ -200,7 +210,7 @@ class CountDownTimer3D {
     this.secondsLeft = 15;
 
     if (!this.startEmojiSprite) {
-      this.startEmojiSprite = Get2DEmoji("⏲️", '120px Arial');
+      this.startEmojiSprite = Get2DEmoji("⏳", '120px Arial');
       this.startEmojiSprite.position.y = 2.9;
       this.countdownDigitGroup.add(this.startEmojiSprite);
     }
@@ -235,7 +245,7 @@ class CountDownTimer3D {
     const startDateMs = Date.now();
 
     this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
-    .to({ z: emojiEndZ }, 2500)
+    .to({ z: emojiEndZ }, 2400)
     .delay(0)
     .on('update', (val, deg) => {
       if (!this.inCountDown && (startDateMs+1400)< Date.now()) {
@@ -251,15 +261,15 @@ class CountDownTimer3D {
     .start();
 
     this.opacityEmoji2DTween = new Tween(this.startEmojiSprite.material)
-    .to({ opacity: 0.0 }, 500)
-    .delay(2000)
+    .to({ opacity: 0.0 }, 600)
+    .delay(1800)
     .on('complete', () => {
       this.opacityEmoji2DTween = null;
     })
     .start();
 
     this.countdownTween3 = new Tween(this.countDownMesh.position)
-    .to({ z: digitsEndZ }, 3100)
+    .to({ z: digitsEndZ }, 3400)
     .easing(Easing.Cubic.Out)
     .delay(0)
     .on('complete', () => {
@@ -268,7 +278,7 @@ class CountDownTimer3D {
     .start();
 
     this.countdownTween4 = new Tween(this)
-    .to({ roughness: 0.5 }, 3100)
+    .to({ roughness: 0.5 }, 3400)
     .easing(Easing.Cubic.Out)
     .delay(0)
     .on('complete', () => {
