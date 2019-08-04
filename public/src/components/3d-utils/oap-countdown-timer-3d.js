@@ -17,11 +17,104 @@ class CountDownTimer3D {
     this.r = 0.0;
     this.inCountDown = false;
     this.quizComponent = quizComponent;
+    this.introTexts = ["Welcome","To","Make","Your", "Constitution"];
+    this.completedTextTweens = 0;
 
     this.secondsLeft=15;
     this.clock = clock;
     this.currentTime = 0;
+    this.createTextGeometries();
     this.init();
+  }
+
+  async createTextGeometries() {
+    this.welcomeFontMeshes = [];
+
+    for (var i=0;i<this.introTexts.length;i++) {
+      const textMaterial = new THREE.MeshStandardMaterial( {
+        color: "0xeaeaea",
+        roughness: 0.3,
+        metalness: 0.8,
+        side: THREE.DoubleSide
+      });
+      const textMesh = new THREE.Mesh(GetTextGeometry(this.introTexts[i], this.font3d, { large: true }), textMaterial );
+      this.welcomeFontMeshes.push(textMesh);
+      textMesh.position.z = -500
+      await new Promise(resolve => setTimeout(resolve, 400));
+    }
+  }
+
+  async addTextGeometriesAndRun() {
+    for (var i=0;i<this.welcomeFontMeshes.length;i++) {
+      const fontMesh = this.welcomeFontMeshes[i];
+      this.scene.add(fontMesh);
+      const animationLength = 400*(this.introTexts[i].length);
+      new Tween(fontMesh.position)
+      .to({ z: 10 }, animationLength)
+      .delay(0)
+      .on('complete', (event, blah) => {
+        fontMesh.visible = false;
+        this.scene.remove(fontMesh);
+        this.completedTextTweens+=1;
+        if (this.completedTextTweens==this.welcomeFontMeshes.length) {
+          this.quizComponent.introFinished();
+          this.cleanupIntro();
+        }
+      })
+      .start();
+
+      fontMesh.material.transparent=true;
+      new Tween(fontMesh.material)
+      .to({ opacity: 0.0 }, 600)
+      .delay(animationLength-400)
+      .easing(Easing.Quadratic.InOut)
+      .start();
+
+      await new Promise(resolve => setTimeout(resolve, animationLength));
+    }
+  }
+
+  startIntro() {
+    const logoStartZ=-25;
+    const logoEndZ= 60;
+
+    setTimeout(()=>{
+      if (this.welcomeFontMeshes.length==this.introTexts.length) {
+        this.addTextGeometriesAndRun();
+      } else {
+        setTimeout(()=>{
+          this.addTextGeometriesAndRun();
+        }, 1000);
+      }
+    }, 1400);
+
+    var spriteMap = new THREE.TextureLoader().load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/makeyourlogo2.png" );
+    var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+    this.logoSprite = new THREE.Sprite( spriteMaterial );
+    this.scene.add( this.logoSprite );
+    this.logoSprite.position.z = logoStartZ;
+    this.logoSprite.scale.y=2.0;
+    this.logoSprite.position.y=0.4;
+
+    this.logoTween = new Tween(this.logoSprite.position)
+    .to({ z: logoEndZ, x: -0.5}, 2500)
+    .delay(0)
+    .easing(Easing.Quadratic.Out)
+    .on('complete', () => {
+      this.logoTween = null;
+      /*this.logoSprite.position.z=logoStartZ;
+      this.logoSprite.visible=false;*/
+    })
+    .start();
+
+    this.logoSprite.material.transparent=true;
+    new Tween(this.logoSprite.material)
+    .to({ opacity: 0.0 }, 700)
+    .delay(1500)
+    .on('complete', () => {
+      this.scene.remove(this.logoSprite);
+    })
+    .start();
   }
 
   init() {
@@ -39,15 +132,15 @@ class CountDownTimer3D {
     this.renderer.gammaOutput = true;
     this.pointLight1 = new THREE.PointLight( 0xff00000, 0.5 );
 		this.pointLight1.position.z = 2500;
-		//this.scene.add(this.pointLight1 );
+		this.scene.add(this.pointLight1 );
 
-		this.pointLight2 = new THREE.PointLight( 0xff6666, 1 );
-    //this.camera.add( 	this.pointLight2  );
+		this.pointLight2 = new THREE.PointLight( 0xff6666, 0.10 );
+     this.camera.add( 	this.pointLight2  );
 
-    this.pointLight3 = new THREE.PointLight( 0x0000ff, 1.5 );
+    this.pointLight3 = new THREE.PointLight( 0x0000ff, 0.5 );
     this.pointLight3.position.x = - 1000;
     this.pointLight3.position.z = 1000;
-    //this.scene.add( this.pointLight3 );
+    this.scene.add( this.pointLight3 );
 
     const path = "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/SwedishCastla/";
     const format = '.jpg';
@@ -90,8 +183,15 @@ class CountDownTimer3D {
     this.scene.add( this.countdownDigitGroup );
   }
 
+  cleanupIntro() {
+    this.welcomeFontMeshes = [];
+    this.scene.remove(this.logoSprite);
+    setTimeout(()=>{
+      this.quizComponent.disableLightShaft();
+    }, 500);
+  }
+
   startCountDown() {
-    this.stopCountDown();
     let emojiStartZ = -120;
     let emojiEndZ = 40;
     let digitsStartZ = -190;
@@ -127,6 +227,7 @@ class CountDownTimer3D {
 
     this.startEmojiSprite.position.z=emojiStartZ;
     this.startEmojiSprite.visible=true;
+    this.startEmojiSprite.material.opacity = 1.0;
     this.countDownMesh.position.z=digitsHoldZ;
     this.countDownMesh.position.y=1.4;
     this.countdownDigitGroup.visible=true;
@@ -146,6 +247,14 @@ class CountDownTimer3D {
       this.startEmoji2DTween = null;
       this.startEmojiSprite.position.z=emojiStartZ;
       this.startEmojiSprite.visible=false;
+    })
+    .start();
+
+    this.opacityEmoji2DTween = new Tween(this.startEmojiSprite.material)
+    .to({ opacity: 0.0 }, 500)
+    .delay(2000)
+    .on('complete', () => {
+      this.opacityEmoji2DTween = null;
     })
     .start();
 
@@ -199,6 +308,29 @@ class CountDownTimer3D {
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
+
+    if (this.countDownMeshRotation) {
+      this.countDownMeshRotation.stop();
+      this.countDownMeshRotation=null;
+    }
+
+    if (this.countdownTween3) {
+      this.countdownTween3.stop();
+      this.countdownTween3=null;
+    }
+
+    if (this.countdownTween4) {
+      this.countdownTween4.stop();
+      this.countdownTween4=null;
+    }
+
+    if (this.opacityEmoji2DTween) {
+      this.opacityEmoji2DTween.stop();
+      this.opacityEmoji2DTween=null;
+    }
+
+    this.startEmojiSprite.visible = false;
+    this.countdownDigitGroup.visible = false;
   }
 
   resetAfterStop() {

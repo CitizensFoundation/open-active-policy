@@ -81,11 +81,11 @@ class LightShaft3D {
     this.uniforms = {
       // controls how fast the ray attenuates when the camera comes closer
       attenuation: {
-        value: 1
+        value: 5
       },
       // controls the speed of the animation
       speed: {
-        value: 10
+        value: 25
       },
       // the color of the ray
       color: {
@@ -129,11 +129,11 @@ class LightShaft3D {
       lightShaft.position.z = 34;
       lightShaft.position.y = 0;
 
-      lightShaft.position.z = -30;
+      lightShaft.position.z = -50;
       lightShaft.position.x = 0.0;
 
       this.lightShaftTwean = new Tween(lightShaft.position)
-      .to({ z: 37, x: -1.3}, 7000)
+      .to({ z: 35, x: -0.8}, 750)
       .delay(0)
       .on('complete', () => {
         this.lightShaftTwean = null;
@@ -148,19 +148,19 @@ class LightShaft3D {
       this.lightShafts.push(lightShaft);
     }
     this.scene.add(this.shaftGroup);
-
+    this.uniforms.color.value = new THREE.Color(this.gameColors[0]);
     this.cycleThroughGameColors();
   }
 
   async cycleThroughGameColors() {
-
     for (var i=0; i<this.gameColors.length; i++) {
       console.error("Set color: "+this.gameColors[i]);
       if (i<this.gameColors.length) {
         const newColor = new THREE.Color(this.gameColors[i]);
         this.colorTwean = new Tween({ r: this.uniforms.color.value.r, g: this.uniforms.color.value.g, b: this.uniforms.color.value.b})
-        .to({ r: newColor.r, g: newColor.g, b: newColor.b }, 10000)
+        .to({ r: newColor.r, g: newColor.g, b: newColor.b }, 7000)
         .delay(0)
+        .easing(Easing.Elastic.InOut)
         .on('update', (color)=>{
           this.uniforms.color.value = new THREE.Color(color.r, color.g, color.b);
           console.log()
@@ -170,13 +170,9 @@ class LightShaft3D {
         })
         .start();
       }
-      await new Promise(resolve => setTimeout(resolve, 10000));
+      await new Promise(resolve => setTimeout(resolve, 7000));
     }
     this.cycleThroughGameColors();
-  }
-
-  removeFromScene() {
-    this.scene.remove(this.lightShaft);
   }
 
   set visible(value) {
@@ -189,6 +185,10 @@ class LightShaft3D {
     return this.lightShaft.visible;
   }
 
+  remove() {
+    this.scene.remove(this.shaftGroup);
+  }
+
 
   getMaterial() {
     return this.lightShaftMaterial;
@@ -197,7 +197,6 @@ class LightShaft3D {
   update () {
     const delta = this.clock.getDelta();
     this.uniforms.time.value += delta;
-    UpdateTween();
   }
 }
 

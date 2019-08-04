@@ -36,10 +36,6 @@ export const OapPolicyQuizStyles = css`
     font-weight: bold;
     color: #fff;
     border: 1px solid #00ff00;
-    -webkit-transition: color, border 0.7s ease-in-out;
-    -moz-transition: color, border 0.7s ease-in-out;
-    -ms-transition: color, border 0.7s ease-in-out;
-    -o-transition: color, border 0.7s ease-in-out;
   }
 
   .buttonContainer {
@@ -144,6 +140,14 @@ export const OapPolicyQuizStyles = css`
       height: 250px;
     }
 
+  }
+
+  [intro-mode] {
+    opacity: 0.0;
+    -webkit-transition: opacity 2.0s ease-in-out;
+    -moz-transition: opacity 2.0s ease-in-out;
+    -ms-transition: opacity 2.0s ease-in-out;
+    -o-transition: opacity 2.0s ease-in-out;
   }
 
 

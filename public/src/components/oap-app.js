@@ -239,7 +239,7 @@ class OapApp extends OapBaseElement {
                      : html``}
                  </div>
                 <div class="buttons center-center">
-                  <paper-button raised class="continueButton" @click="${this.closeWelcome}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
+                  <paper-button raised class="continueButton" @click="${this.closeWelcome}" autofocus>${this.localize('start')}</paper-button>
                 </div>
               </div>
             </div>
@@ -2126,6 +2126,7 @@ class OapApp extends OapBaseElement {
   }
 
   closeWelcome() {
+    this.$$("#welcomeDialog").close();
     localStorage.setItem("haveClosedWelcome", true);
     this.afterWelcomeClose();
   }
@@ -2157,7 +2158,7 @@ class OapApp extends OapBaseElement {
   afterWelcomeClose() {
     setTimeout(()=>{
       if (this._page==="quiz" && this.$$("#quiz")) {
-        this.$$("#quiz").startCountDown();
+        this.$$("#quiz").startIntro();
       }
     });
   }

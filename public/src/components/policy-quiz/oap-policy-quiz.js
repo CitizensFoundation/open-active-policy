@@ -35,7 +35,8 @@ class OapPolicyQuiz extends OapPageViewElement {
       dirLightOne: Object,
       dirLightTwo: Object,
       submitDisabled: Boolean,
-      totalChoicePoints: Number
+      totalChoicePoints: Number,
+      introMode: Boolean
     };
   }
 
@@ -54,6 +55,27 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.submitDisabled = false;
     this.updateLighting3d = false;
     this.updateFireworks3d = false;
+    this.introMode=true;
+  }
+
+  startIntro() {
+    this.countdownTimer3d.startIntro();
+  }
+
+  disableLightShaft() {
+    this.lightShaft3d.remove();
+    this.updateLightShaft3d = false;
+  }
+
+  disableLightShaftAfterNextAnswer() {
+    this.disableLightShaftAfterNext = true;
+  }
+
+  introFinished() {
+    this.introMode=false;
+    setTimeout(()=>{
+      this.startCountDown();
+    }, 10);
   }
 
   start() {
@@ -233,13 +255,13 @@ class OapPolicyQuiz extends OapPageViewElement {
     return html`
       <div class="topContainer" style="max-width: 600px;">
         ${this.currentIndex!==null ?  html`
-          <div class="layout horizontal progress">
+          <div class="layout horizontal progress" ?intro-mode="${this.introMode}">
             <div class="middle textLeft">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
             <div class="middle textRight">${this.localize("youHave")} ${this.totalChoicePoints}cp</div>
           </div>
-          <div class="question">${this.questions[this.currentIndex].question}</div>
+          <div class="question" ?intro-mode="${this.introMode}">${this.questions[this.currentIndex].question}</div>
           <div id="canvas3d"></div>
-          <div class="buttonContainer">
+          <div class="buttonContainer" ?intro-mode="${this.introMode}">
             <paper-button raised ?disabled="${this.submitDisabled}" id="button0" class="answerButton flex" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>
             <paper-button raised ?disabled="${this.submitDisabled}" id="button1" class="answerButton flex" @click="${()=> { this.submitAnswer(1) }}">${this.questions[this.currentIndex].answers[1]}</paper-button>
             <paper-button raised ?disabled="${this.submitDisabled}" id="button2" class="answerButton flex" @click="${()=> { this.submitAnswer(2) }}">${this.questions[this.currentIndex].answers[2]}</paper-button>
@@ -421,6 +443,13 @@ class OapPolicyQuiz extends OapPageViewElement {
       }
       this.submitDisabled=false;
     }, window.debugOn===true ? 100 : (wasIsCorrect ? 3300 : 2700));
+
+    if (this.disableLightShaftAfterNext) {
+      this.disableLightShaftAfterNext = false;
+      setTimeout(()=>{
+        this.disableLightShaft();
+      }, 450);
+    }
   }
 
   startCountDown() {
