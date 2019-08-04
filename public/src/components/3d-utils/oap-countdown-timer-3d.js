@@ -22,7 +22,7 @@ class CountDownTimer3D {
       {title: "To", animationLength: 650},
       {title: "Make", animationLength: 650},
       {title: "Your", animationLength: 650},
-      {title: "Constitution", animationLength: 1300}];
+      {title: "Constitution", animationLength: 1500, easing: Easing.Cubic.In}];
 
     this.completedTextTweens = 0;
 
@@ -60,8 +60,10 @@ class CountDownTimer3D {
       const fontMesh = this.welcomeFontMeshes[i];
       this.scene.add(fontMesh);
       const animationLength = this.introTexts[i].animationLength;
+      let myEasing = this.introTexts[i].easing ? this.introTexts[i].easing : Easing.Quadratic.InOut;;
       new Tween(fontMesh.position)
-      .to({ z: 15 }, animationLength)
+      .to({ z: 32 }, animationLength)
+      .easing(myEasing)
       .delay(0)
       .on('complete', (event, blah) => {
         fontMesh.visible = false;
@@ -70,14 +72,14 @@ class CountDownTimer3D {
         if (this.completedTextTweens==this.welcomeFontMeshes.length) {
           this.quizComponent.introFinished();
           this.cleanupIntro();
+          this.pointLight2.intensity=0.1;
         }
       })
       .start();
-
       fontMesh.material.transparent=true;
       new Tween(fontMesh.material)
-      .to({ opacity: 0.0 },350)
-      .delay(animationLength-300)
+      .to({ opacity: 0.0 },500)
+      .delay(animationLength-200)
       .easing(Easing.Quadratic.InOut)
       .start();
 
@@ -97,7 +99,7 @@ class CountDownTimer3D {
           this.addTextGeometriesAndRun();
         }, 1000);
       }
-    }, 2600);
+    }, 2520);
 
     var spriteMap = new THREE.TextureLoader().load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/makeyourlogo2.png" );
     var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
@@ -122,7 +124,7 @@ class CountDownTimer3D {
     this.logoSprite.material.transparent=true;
     new Tween(this.logoSprite.material)
     .to({ opacity: 0.0 }, 500)
-    .delay(2800)
+    .delay(2600)
     .on('complete', () => {
       this.scene.remove(this.logoSprite);
     })
@@ -146,10 +148,10 @@ class CountDownTimer3D {
 		this.pointLight1.position.z = 2500;
 		this.scene.add(this.pointLight1 );
 
-		this.pointLight2 = new THREE.PointLight( 0xff6666, 0.10 );
-     this.camera.add( 	this.pointLight2  );
+		this.pointLight2 = new THREE.PointLight( 0xff6666, 0.04 );
+    this.camera.add( 	this.pointLight2  );
 
-    this.pointLight3 = new THREE.PointLight( 0x0000ff, 0.5 );
+    this.pointLight3 = new THREE.PointLight( 0x0000ff, 0.7 );
     this.pointLight3.position.x = - 1000;
     this.pointLight3.position.z = 1000;
     this.scene.add( this.pointLight3 );
@@ -199,7 +201,7 @@ class CountDownTimer3D {
     this.welcomeFontMeshes = [];
     this.scene.remove(this.logoSprite);
     setTimeout(()=>{
-      this.quizComponent.disableLightShaftAfterNextAnswer();
+      //this.quizComponent.disableLightShaftAfterNextAnswer();
     }, 20000);
   }
 
@@ -247,9 +249,9 @@ class CountDownTimer3D {
     const xText = votesWidth*0.069;
 
     this.winPointsMesh.visible = true;
-    this.pointLight2.intensity = 0.3;
+    this.pointLight2.intensity = 0.32;
     this.winPointsTween = new Tween(this.winPointsMesh.position)
-    .to({ x: xText+endFudge, y: this.winPointsMesh.position.y, z: -40}, 2100) // relative animation
+    .to({ x: xText+endFudge, y: this.winPointsMesh.position.y, z: -40}, 3000) // relative animation
     .delay(0)
     .on('complete', () => {
       this.winPointsMesh.position.x=-50;
@@ -330,7 +332,7 @@ class CountDownTimer3D {
 
     this.countdownTween3 = new Tween(this.countDownMesh.position)
     .to({ z: digitsEndZ }, 3400)
-    .easing(Easing.Cubic.Out)
+    .easing(this.getRandomEasing())
     .delay(0)
     .on('complete', () => {
       this.countdownTween3 = null;
@@ -345,6 +347,13 @@ class CountDownTimer3D {
       this.countdownTween4 = null;
     })
     .start();
+  }
+
+  getRandomEasing() {
+    const myArray = [Easing.Circular.Out,Easing.Cubic.Out,Easing.Quintic.Out,
+                    Easing.Quadratic.Out,Easing.Quartic.Out,Easing.Sinusoidal.Out];
+    const randomItem = myArray[Math.floor(Math.random()*myArray.length)];
+    return randomItem;
   }
 
   stopCountDownWin() {
@@ -471,7 +480,7 @@ class CountDownTimer3D {
     this.pointLight1.position.x = 2500 * Math.cos( this.r );
     this.pointLight1.position.z = 2500 * Math.sin( this.r );
 
-    this.r += 0.025;
+    this.r += 0.015;
   }
 }
 

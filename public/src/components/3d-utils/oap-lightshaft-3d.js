@@ -81,11 +81,11 @@ class LightShaft3D {
     this.uniforms = {
       // controls how fast the ray attenuates when the camera comes closer
       attenuation: {
-        value: 5
+        value: 7
       },
       // controls the speed of the animation
       speed: {
-        value: 15
+        value: 2
       },
       // the color of the ray
       color: {
@@ -133,7 +133,8 @@ class LightShaft3D {
       lightShaft.position.x = 0.0;
 
       this.lightShaftTwean = new Tween(lightShaft.position)
-      .to({ z: 35, x: -0.9}, 100)
+      .to({ z: 36, x: -1.4, y: 0.2}, 3500)
+      .easing(Easing.Cubic.InOut)
       .delay(0)
       .on('complete', () => {
         this.lightShaftTwean = null;
@@ -154,13 +155,11 @@ class LightShaft3D {
 
   async cycleThroughGameColors() {
     for (var i=0; i<this.gameColors.length; i++) {
-      console.error("Set color: "+this.gameColors[i]);
       if (i<this.gameColors.length) {
         const newColor = new THREE.Color(this.gameColors[i]);
         this.colorTwean = new Tween({ r: this.uniforms.color.value.r, g: this.uniforms.color.value.g, b: this.uniforms.color.value.b})
-        .to({ r: newColor.r, g: newColor.g, b: newColor.b }, 7000)
+        .to({ r: newColor.r, g: newColor.g, b: newColor.b }, 15000)
         .delay(0)
-        .easing(Easing.Elastic.InOut)
         .on('update', (color)=>{
           this.uniforms.color.value = new THREE.Color(color.r, color.g, color.b);
           console.log()
@@ -170,22 +169,25 @@ class LightShaft3D {
         })
         .start();
       }
-      await new Promise(resolve => setTimeout(resolve, 7000));
+      await new Promise(resolve => setTimeout(resolve, 15000));
     }
-    this.cycleThroughGameColors();
+    if (this.shaftGroup.visible) {
+      this.cycleThroughGameColors();
+    }
   }
 
   set visible(value) {
-    if (this.lightShaft) {
-      this.lightShaft.visible=value;
+    if (this.shaftGroup) {
+      this.shaftGroup.visible=value;
     }
   }
 
   get visible() {
-    return this.lightShaft.visible;
+    return this.shaftGroup.visible;
   }
 
   remove() {
+    this.shaftGroup.visible=false;
     this.scene.remove(this.shaftGroup);
   }
 
