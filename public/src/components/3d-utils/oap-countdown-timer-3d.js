@@ -39,15 +39,15 @@ class CountDownTimer3D {
     this.renderer.gammaOutput = true;
     this.pointLight1 = new THREE.PointLight( 0xff00000, 0.5 );
 		this.pointLight1.position.z = 2500;
-		this.scene.add(this.pointLight1 );
+		//this.scene.add(this.pointLight1 );
 
 		this.pointLight2 = new THREE.PointLight( 0xff6666, 1 );
-    this.camera.add( 	this.pointLight2  );
+    //this.camera.add( 	this.pointLight2  );
 
     this.pointLight3 = new THREE.PointLight( 0x0000ff, 1.5 );
     this.pointLight3.position.x = - 1000;
     this.pointLight3.position.z = 1000;
-    this.scene.add( this.pointLight3 );
+    //this.scene.add( this.pointLight3 );
 
     const path = "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/SwedishCastla/";
     const format = '.jpg';

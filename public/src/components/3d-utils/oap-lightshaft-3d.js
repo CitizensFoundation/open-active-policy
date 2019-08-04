@@ -64,6 +64,11 @@ class LightShaft3D {
     this.font3d = font3d;
     this.component = component;
 
+    this.gameColors = [];
+    Object.values(this.component .configFromServer.client_config.moduleTypeColorLookup).forEach((item) => {
+      this.gameColors.push(item);
+    });
+
     this.clock = clock;
     this.currentTime = 0;
     this.init();
@@ -76,15 +81,15 @@ class LightShaft3D {
     this.uniforms = {
       // controls how fast the ray attenuates when the camera comes closer
       attenuation: {
-        value: 10
+        value: 1
       },
       // controls the speed of the animation
       speed: {
-        value: 2
+        value: 10
       },
       // the color of the ray
       color: {
-        value: new THREE.Color( 0xdadc9f )
+        value: new THREE.Color( 0xdadc9f ) // 0xdadc9f
       },
       // the visual representation of the ray highly depends on the used texture
       colorTexture: {
@@ -112,15 +117,66 @@ class LightShaft3D {
 
     var lightShaftGeometry = new THREE.PlaneBufferGeometry( 0.5, 5 );
 
+    this.lightShafts = [];
+    this.shaftGroup = new THREE.Group();
     for ( var i = 0; i < 5; i ++ ) {
-      this.lightShaft = new THREE.Mesh( lightShaftGeometry, this.lightShaftMaterial );
-      this.lightShaft.position.x = - 1 + 1.5 * Math.sign( ( i % 2 ) );
-      this.lightShaft.position.y = 2;
-      this.lightShaft.position.z = - 1.5 + ( i * 0.5 );
-      this.lightShaft.rotation.y = Math.PI * 0.2;
-      this.lightShaft.rotation.z = Math.PI * - ( 0.15 + 0.1 * Math.random() );
-      this.scene.add( this.lightShaft );
+      let lightShaft = new THREE.Mesh( lightShaftGeometry, this.lightShaftMaterial );
+      lightShaft.position.x = - 1 + 1.5 * Math.sign( ( i % 2 ) );
+      lightShaft.position.y = 1;
+      lightShaft.position.z = - 1.5 + ( i * 0.5 );
+      lightShaft.rotation.y = Math.PI * 0.2;
+      lightShaft.rotation.z = Math.PI * - ( 0.15 + 0.1 * Math.random() );
+      lightShaft.position.z = 34;
+      lightShaft.position.y = 0;
+
+      lightShaft.position.z = -30;
+      lightShaft.position.x = 0.0;
+
+      this.lightShaftTwean = new Tween(lightShaft.position)
+      .to({ z: 37, x: -1.3}, 7000)
+      .delay(0)
+      .on('complete', () => {
+        this.lightShaftTwean = null;
+      })
+      .start();
+      /* GOOD POSITIONS
+            lightShaft.position.z = 31;
+      lightShaft.position.y = 0;
+      lightShaft.position.x = -0.3*/
+
+      this.shaftGroup.add(lightShaft);
+      this.lightShafts.push(lightShaft);
     }
+    this.scene.add(this.shaftGroup);
+
+    this.cycleThroughGameColors();
+  }
+
+  async cycleThroughGameColors() {
+
+    for (var i=0; i<this.gameColors.length; i++) {
+      console.error("Set color: "+this.gameColors[i]);
+      if (i<this.gameColors.length) {
+        const newColor = new THREE.Color(this.gameColors[i]);
+        this.colorTwean = new Tween({ r: this.uniforms.color.value.r, g: this.uniforms.color.value.g, b: this.uniforms.color.value.b})
+        .to({ r: newColor.r, g: newColor.g, b: newColor.b }, 10000)
+        .delay(0)
+        .on('update', (color)=>{
+          this.uniforms.color.value = new THREE.Color(color.r, color.g, color.b);
+          console.log()
+        })
+        .on('complete', () => {
+          this.colorTwean = null;
+        })
+        .start();
+      }
+      await new Promise(resolve => setTimeout(resolve, 10000));
+    }
+    this.cycleThroughGameColors();
+  }
+
+  removeFromScene() {
+    this.scene.remove(this.lightShaft);
   }
 
   set visible(value) {
@@ -139,8 +195,9 @@ class LightShaft3D {
   }
 
   update () {
-    const delta = clock.getDelta();
+    const delta = this.clock.getDelta();
     this.uniforms.time.value += delta;
+    UpdateTween();
   }
 }
 

@@ -15,6 +15,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { CreateGPUFireworks3D } from '../3d-utils/oap-fireworks-3d';
 import { CreateCountDownTimer3D } from '../3d-utils/oap-countdown-timer-3d';
 import { StartEarlyDelayedFontCaching } from '../3d-utils/oap-cached-text-geometry';
+import { CreateLightShaft3D } from '../3d-utils/oap-lightshaft-3d';
 
 class OapPolicyQuiz extends OapPageViewElement {
   static get properties() {
@@ -147,11 +148,15 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.composer.passes = [];
       this.renderPass = new RenderPass( this.scene, this.camera );
       this.composer.addPass(this.renderPass);
+
+      this.lightShaft3d = CreateLightShaft3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
+      this.updateLightShaft3d= true;
+
       this.renderCanvas3d();
 
       setTimeout(()=> {
         this.countdownTimer3d = CreateCountDownTimer3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
-        this.updateCountDownTimer = true;
+        this.updateCountDown3dTimer = true;
       })
 
       setTimeout(()=>{
@@ -203,8 +208,12 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.fireworks3d.update()
     }
 
-    if (this.countdownTimer3d && this.updateCountDownTimer) {
+    if (this.countdownTimer3d && this.updateCountDown3dTimer) {
       this.countdownTimer3d.update()
+    }
+
+    if (this.lightShaft3d && this.updateLightShaft3d) {
+      this.lightShaft3d.update()
     }
 
     //this.controls.update();
