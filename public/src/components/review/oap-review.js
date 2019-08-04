@@ -57,16 +57,16 @@ class OapReview extends OapPageViewElement {
         <div class="layout-inline vertical">
           <div class="header">${this.localize("reviewOfYourConstitution")}</div>
 
-          ${(this.attituteReviewParagraphs && this.countryReviewParagraph) ?  html`
+          ${this.attituteReviewParagraphs ?  html`
             <div class="hiddenDiv nextToTop">
               <div class="countryHeader">${this.country.name}</div>
               <div class="basicInformationDescription">${this.country.description}</div>
 
-              <div class="subHeader">
+              <div class="subHeader" ?hidden="${!this.countryReviewParagraph}">
                 ${this.localize("overallCountryReview")}
               </div>
 
-              <div class="countryReview">${this.countryReviewParagraph}</div>
+              <div class="countryReview" ?hidden="${!this.countryReviewParagraph}">${this.countryReviewParagraph}</div>
 
               <div class="subHeader cultural">
                 ${this.localize("culturalAttitudeReviews")}

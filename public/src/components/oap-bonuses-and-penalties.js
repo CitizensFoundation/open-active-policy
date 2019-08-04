@@ -148,7 +148,9 @@ export const GetResultsForReview = (selectedItems, country, attituteReviews, cou
    verdict="breakEven";
   }
 
-  countryReviewParagraph=country.reviews[verdict];
+  if (country.reviews) {
+    countryReviewParagraph=country.reviews[verdict];
+  }
   return {attituteReviewParagraphs, countryReviewParagraph};
 }
 
