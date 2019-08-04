@@ -179,7 +179,7 @@ export const OapAppStyles = css`
 
   .helpIconInBudget  {
     position: absolute;
-    top: 4px;
+    top: 2px;
     right: 0;
     color: #fff;
   }
