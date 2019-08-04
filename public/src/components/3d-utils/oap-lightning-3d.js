@@ -124,10 +124,7 @@ class Lightning3D {
 
       lightningMaterial: this.scene.userData.lightningMaterial,
 
-      onLightningDown: function ( lightning ) {
-
-      }
-
+      onLightningDown: function ( lightning ) {}
     });
 
     this.scene.userData.timeRate = 1;

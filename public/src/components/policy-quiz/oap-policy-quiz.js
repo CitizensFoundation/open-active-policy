@@ -144,7 +144,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       canvas.appendChild( this.renderer.domElement );
 
       this.composer = new EffectComposer( this.renderer );
-      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
       if (false) {
         let target = new Vector3(6, 140, 220);
@@ -238,7 +238,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.lightShaft3d.update()
     }
 
-    this.controls.update();
+    //this.controls.update();
 
     this.composer.render(this.clock.getDelta());
   }
