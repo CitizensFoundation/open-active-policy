@@ -199,7 +199,7 @@ class OapSwipableCards extends OapBaseElement {
       }
       setTimeout(()=>{
           this.automaticallySelectNext();
-      }, window.debugOn===true ? 300 : 370);
+      }, window.debugOn===true ? 300 : 400);
     } else {
       this.automaticSelectionActive = false;
     }

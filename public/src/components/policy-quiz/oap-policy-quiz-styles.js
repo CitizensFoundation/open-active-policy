@@ -66,6 +66,7 @@ export const OapPolicyQuizStyles = css`
     text-align: center;
     padding-bottom: 0;
     padding-top: 6px;
+    margin-bottom: 4px;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;

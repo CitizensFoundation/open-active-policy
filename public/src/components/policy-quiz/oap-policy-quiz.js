@@ -377,7 +377,9 @@ class OapPolicyQuiz extends OapPageViewElement {
   }
 
   ranOutOfTime() {
-    this.submitAnswer("blah");
+    if (this.currentIndex) {
+      this.submitAnswer("blah");
+    }
     console.log("Rand out of time");
   }
 
