@@ -81,7 +81,7 @@ class LightShaft3D {
     this.uniforms = {
       // controls how fast the ray attenuates when the camera comes closer
       attenuation: {
-        value: 7
+        value: 1
       },
       // controls the speed of the animation
       speed: {
@@ -121,23 +121,20 @@ class LightShaft3D {
     this.shaftGroup = new THREE.Group();
     for ( var i = 0; i < 5; i ++ ) {
       let lightShaft = new THREE.Mesh( lightShaftGeometry, this.lightShaftMaterial );
-      lightShaft.position.x = - 1 + 1.5 * Math.sign( ( i % 2 ) );
-      lightShaft.position.y = 1;
-      lightShaft.position.z = - 1.5 + ( i * 0.5 );
-      lightShaft.rotation.y = Math.PI * 0.2;
-      lightShaft.rotation.z = Math.PI * - ( 0.15 + 0.1 * Math.random() );
-      lightShaft.position.z = 34;
+      lightShaft.position.x = - 1 + 0.15 * Math.sign( ( i % 2 ) );
       lightShaft.position.y = 0;
+      lightShaft.position.z = - 1.5 + ( i *0.5 );
+      lightShaft.position.z+=40;
 
-      lightShaft.position.z = -50;
-      lightShaft.position.x = 0.0;
+      lightShaft.rotation.y = 0.0;
+      lightShaft.rotation.z = Math.PI * - ( 0.15 + 0.1 * Math.random() );
 
-      this.lightShaftTwean = new Tween(lightShaft.position)
-      .to({ z: 36, x: -1.4, y: 0.2}, 3500)
-      .easing(Easing.Cubic.InOut)
+      lightShaft.lightShaftRotationTwean = new Tween(lightShaft.rotation)
+      .to({ y: Math.PI*2 }, 90000)
       .delay(0)
       .on('complete', () => {
-        this.lightShaftTwean = null;
+        lightShaft.rotation.y = 0.0;
+        lightShaft.lightShaftRotationTwean.start();
       })
       .start();
       /* GOOD POSITIONS
@@ -148,9 +145,10 @@ class LightShaft3D {
       this.shaftGroup.add(lightShaft);
       this.lightShafts.push(lightShaft);
     }
-    this.scene.add(this.shaftGroup);
-    this.uniforms.color.value = new THREE.Color(this.gameColors[0]);
-    this.cycleThroughGameColors();
+    setTimeout(()=>{
+      this.scene.add(this.shaftGroup);
+      this.cycleThroughGameColors();
+    }, 500);
   }
 
   async cycleThroughGameColors() {

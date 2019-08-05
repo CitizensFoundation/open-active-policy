@@ -87,7 +87,7 @@ class Lightning3D {
       ramification: 3,
       recursionProbability: 0.4,
 
-      roughness: 0.85,
+      roughness: 0.6,
       straightness: 0.65,
 
       onSubrayCreation: function ( segment, parentSubray, childSubray, lightningStrike ) {
@@ -118,7 +118,7 @@ class Lightning3D {
       minHeight: 100,
       maxHeight: 300,
       maxSlope: 0.7,
-      maxLightnings: 20,
+      maxLightnings: 15,
 
       lightningParameters: this.scene.userData.rayParams,
 
@@ -128,7 +128,7 @@ class Lightning3D {
     });
 
     this.scene.userData.timeRate = 1;
-    this.storm.position.z = -135;
+    this.storm.position.z = -250;
     this.storm.position.y =  -30;
     this.storm.position.x = 0;
 

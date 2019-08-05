@@ -314,13 +314,13 @@ class OapSwipableCards extends OapBaseElement {
     this.rendering = true;
     this.automaticSelectionActive = false;
     this.speedLookup = {
-      0: 5000,
-      1: 4500,
-      2: 3500,
-      3: 3000,
-      4: 2500,
-      5: 2000,
-      6: 1500,
+      0: 15000,
+      1: 12500,
+      2: 10500,
+      3: 7500,
+      4: 5500,
+      5: 3500,
+      6: 2000,
       7: 1200,
       8: 900,
       9: 500,

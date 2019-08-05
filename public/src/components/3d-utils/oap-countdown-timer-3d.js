@@ -224,6 +224,7 @@ class CountDownTimer3D {
   }
 
   showWinPoints() {
+    const winPointZ=-300;
     if (!this.winPointsMesh) {
       this.winPointsMaterial = new THREE.MeshStandardMaterial( {
         color: 0x00FF00,
@@ -234,7 +235,7 @@ class CountDownTimer3D {
       } );
       this.winPointsMesh = new THREE.Mesh(this.cacheWinPointsGeometry ? this.cacheWinPointsGeometry : GetTextGeometry("+"+ this.winPoints+"cp", this.font3d, { large: true }),this.winPointsMaterial );
       this.winPointsMesh.position.x=-50;
-      this.winPointsMesh.position.z=-60;
+      this.winPointsMesh.position.z=winPointZ;
       this.scene.add(this.winPointsMesh);
     }
 
@@ -255,7 +256,7 @@ class CountDownTimer3D {
     .delay(0)
     .on('complete', () => {
       this.winPointsMesh.position.x=-50;
-      this.winPointsMesh.position.z=-50;
+      this.winPointsMesh.position.z=winPointZ;
       this.pointLight2.intensity = 0.1;
       this.winPointsMesh.visible=false;
       this.winPointsTween=null;
@@ -268,7 +269,7 @@ class CountDownTimer3D {
     let emojiEndZ = 40;
     let digitsStartZ = -190;
     let digitsHoldZ = -2090;
-    let digitsEndZ = 3;
+    let digitsEndZ = -60;
     this.secondsLeft = 15;
 
     if (!this.startEmojiSprite) {
@@ -299,7 +300,7 @@ class CountDownTimer3D {
     this.startEmojiSprite.visible=true;
     this.startEmojiSprite.material.opacity = 1.0;
     this.countDownMesh.position.z=digitsHoldZ;
-    this.countDownMesh.position.y=1.4;
+    this.countDownMesh.position.y=-0.5;
     this.countdownDigitGroup.visible=true;
     this.countDownMesh.visible=true;
     const startDateMs = Date.now();

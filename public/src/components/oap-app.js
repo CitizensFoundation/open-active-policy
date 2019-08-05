@@ -405,8 +405,9 @@ class OapApp extends OapBaseElement {
     }
     this.filteredItems = [];
     this.selectedItems = [];
+    this.quizDone=false;
     this.setDummyData();
-    this.GAME_STATE_VERSION="OapGameStateV5";
+    this.GAME_STATE_VERSION="OapGameStateV6";
   }
 
   helpClosed() {
@@ -2040,6 +2041,7 @@ class OapApp extends OapBaseElement {
   }
 
   quizFinished () {
+    this.quizDone=true;
     this.fire('oap-play-sound-effect', 'oap_new_level_1');
     const path = '/create-country';
     window.history.pushState({}, null, path);
@@ -2230,6 +2232,7 @@ class OapApp extends OapBaseElement {
           usedChoicePoints: this.usedChoicePoints,
           selectedItems: this.selectedItems,
           filteredItems: this.filteredItems,
+          quizDone: this.quizDone,
           dateSaved: new Date(),
           country: this.country,
           usedBonusesAndPenalties: this.usedBonusesAndPenalties
@@ -2276,6 +2279,7 @@ class OapApp extends OapBaseElement {
       this.totalChoicePoints = 100;
       this.usedChoicePoints = 0;
       this.selectedItems = [];
+      this.quizDone = false;
       this.country = null;
       this.filteredItems = [];
       this.usedBonusesAndPenalties = [];
@@ -2291,6 +2295,7 @@ class OapApp extends OapBaseElement {
       this.usedChoicePoints = gameState.usedChoicePoints;
       this.selectedItems = gameState.selectedItems;
       this.country = gameState.country;
+      this.quizDone = gameState.quizDone;
       this.filteredItems = gameState.filteredItems;
       this.usedBonusesAndPenalties = gameState.usedBonusesAndPenalties;
       setTimeout(()=>{
@@ -2331,7 +2336,7 @@ class OapApp extends OapBaseElement {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
 
-      console.error("this._page: "+this._page);
+      console.info("Current page: "+this._page);
       const pageTitle = this.appTitle + ' - ' + this._page;
 
       const page = this._page;
@@ -2355,39 +2360,43 @@ class OapApp extends OapBaseElement {
         this.$$("#post").reset();
       }
 
-      // Refresh list when returning back to a ballot
-      if (page=='area-ballot' && this.$$("#budgetBallot") && this.$$("#budgetBallot").refreshList) {
-        this.$$("#budgetBallot").refreshList();
-      }
-
-      // Reset ballot tab view to list
-      if (oldPage=='area-ballot' && this.$$("#budgetBallot") && page!='post') {
-        this.$$("#budgetBallot").selectedView = 0;
-      }
-
-      // Cancel login polling if needed
-      if (oldPage=='area-ballot' && this.$$("#budgetBallot")) {
-        this._hideFavoriteItem();
-      }
-
       // Do not allow access to voting-completed from a reload
       if (page=='voting-completed' && oldPage!='area-ballot') {
         window.location = "/";
       }
 
-      // Refresh counts if coming from voting-completed
-      if (oldPage=='voting-completed' && this.$$("#selectVotingArea")) {
-        this.$$("#selectVotingArea").refreshAreaCounters();
-      }
-
-      if (page==='area-ballot' && (this.filteredItems.length===0 || this.country==null)) {
+      if ((page!=='quiz' && !this.quizDone) && !window.debugOn) {
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
-      }
+      } else {
+        if (page==='area-ballot' && (this.filteredItems.length===0 && this.country==null)) {
+          window.history.pushState({}, null, "/create-country");
+          this.fire('location-changed', "/create-country");
+        } else if (page==='area-ballot' && this.filteredItems.length===0) {
+          window.history.pushState({}, null, "/filter-articles");
+          this.fire('location-changed', "/filter-articles");
+        }
 
-      if (page==='filter-articles' && this.country==null) {
-        window.history.pushState({}, null, "/quiz");
-        this.fire('location-changed', "/quiz");
+        if (page==='filter-articles' && this.country==null) {
+          window.history.pushState({}, null, "/create-country");
+          this.fire('location-changed', "/create-country");
+        }
+
+        if (page==='review' && (this.selectedItems.length===0 && this.filteredItems.length===0 && this.country==null)) {
+          window.history.pushState({}, null, "/create-country");
+          this.fire('location-changed', "/create-country");
+        } else if (page==='area-ballot' && (this.selectedItems.length===0 && this.filteredItems.length===0)) {
+          window.history.pushState({}, null, "/filter-articles");
+          this.fire('location-changed', "/filter-articles");
+        } else if (page==='area-ballot' && (this.selectedItems.length===0)) {
+          window.history.pushState({}, null, "/area-ballot/1");
+          this.fire('location-changed', "/area-ballot/1");
+        }
+
+        if (page==='review' && this.country==null) {
+          window.history.pushState({}, null, "/create-country");
+          this.fire('location-changed', "/create-country");
+        }
       }
 
       // Send page info to Google Analytics

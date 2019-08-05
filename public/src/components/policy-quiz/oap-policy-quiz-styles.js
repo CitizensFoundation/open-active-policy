@@ -40,6 +40,9 @@ export const OapPolicyQuizStyles = css`
 
   .buttonContainer {
     width: 100%;
+    position: absolute;
+    top: 300px;
+    background: transparent;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;
@@ -50,23 +53,30 @@ export const OapPolicyQuizStyles = css`
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    background-color: var(--quiz-background-color, #000);
+    background: transparent;
     color: var(--quiz-color, #FFF);
     height: 100%;
     padding-bottom: 42px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   .question {
     padding: 16px;
     font-size: 23px;
     background-color: #000;
+    background:rgba(0,0,0,0.5);
     color: #FFF;
-    border-radius: 4px;
+    border-radius: 7px;
     margin-top: 0;
     text-align: center;
     padding-bottom: 0;
     padding-top: 6px;
     margin-bottom: 4px;
+    position: absolute;
+    top: 75px;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;
@@ -85,6 +95,10 @@ export const OapPolicyQuizStyles = css`
     font-size: 18px;
     color: #bbb;
     padding: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 24px;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;
@@ -104,12 +118,20 @@ export const OapPolicyQuizStyles = css`
   }
 
   #canvas3d {
-    width: 600px;
+    width: 100%;
     height: 250px;
+    top: 0;
   }
 
   .completedQuiz {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
     padding: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   .completeHeader {
