@@ -130,7 +130,7 @@ class LightShaft3D {
       lightShaft.rotation.z = Math.PI * - ( 0.15 + 0.1 * Math.random() );
 
       lightShaft.lightShaftRotationTwean = new Tween(lightShaft.rotation)
-      .to({ y: Math.PI*2 }, 90000)
+      .to({ y: Math.PI*2 }, 180000)
       .delay(0)
       .on('complete', () => {
         lightShaft.rotation.y = 0.0;

@@ -274,7 +274,7 @@ class CountDownTimer3D {
 
     if (!this.startEmojiSprite) {
       this.startEmojiSprite = Get2DEmoji("⏳", '120px Arial');
-      this.startEmojiSprite.position.y = 2.9;
+      this.startEmojiSprite.position.y = 2.0;
       this.countdownDigitGroup.add(this.startEmojiSprite);
     }
 
