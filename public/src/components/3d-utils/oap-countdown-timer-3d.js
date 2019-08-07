@@ -87,7 +87,7 @@ class CountDownTimer3D {
 
       await new Promise(resolve => setTimeout(resolve, animationLength));
     }
-    this.pointLight2.intensity=0.06;
+    this.pointLight2.intensity=0.05;
     this.pointLight1.intensity=0.5;
     this.pointLight3.intensity=0.5;
     this.pointLight1.color = new Color(0xff0000);
