@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { GetTextGeometry, GetTextMesh } from  '../3d-utils/oap-cached-text-geometry';
 import { Tween, Easing, update as UpdateTween } from 'es6-tween';
 import { Get2DEmoji } from '../3d-utils/oap-2d-emojis';
+import { Color } from 'three';
 
 class CountDownTimer3D {
 
@@ -38,19 +39,25 @@ class CountDownTimer3D {
 
     for (var i=0;i<this.welcomeTexts.length;i++) {
       const textMaterial = new THREE.MeshStandardMaterial( {
-        color: "#fafafa",
-        roughness: 0.3,
-        metalness: 0.8,
+        color: "#a0a0a0",
+        roughness: 0.4,
+        metalness: 1.0,
         side: THREE.DoubleSide
       });
       const textMesh = new THREE.Mesh(GetTextGeometry(this.welcomeTexts[i].title, this.font3d, { large: true }), textMaterial );
       this.welcomeFontMeshes.push(textMesh);
       textMesh.position.z = -500
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await new Promise(resolve => setTimeout(resolve, 50));
     }
   }
 
   async addTextGeometriesAndRun() {
+    this.pointLight2.intensity=0.001;
+    this.pointLight1.intensity=0.5
+    this.pointLight3.intensity=0.5
+    this.pointLight1.color = new Color(0xffffff);
+    this.pointLight3.color = new Color(0xffffff);
+
     for (var i=0;i<this.welcomeFontMeshes.length;i++) {
       const fontMesh = this.welcomeFontMeshes[i];
       this.scene.add(fontMesh);
@@ -80,6 +87,13 @@ class CountDownTimer3D {
 
       await new Promise(resolve => setTimeout(resolve, animationLength));
     }
+    this.pointLight2.intensity=0.06;
+    this.pointLight1.intensity=0.5;
+    this.pointLight3.intensity=0.5;
+    this.pointLight1.color = new Color(0xff0000);
+    this.pointLight3.color = new Color(0x0000ff);
+
+
   }
 
   startIntro() {
@@ -139,14 +153,14 @@ class CountDownTimer3D {
     };
     this.renderer.gammaInput = true;
     this.renderer.gammaOutput = true;
-    this.pointLight1 = new THREE.PointLight( 0xff00000, 0.5 );
+    this.pointLight1 = new THREE.PointLight( 0xff00000, 0.15 );
 		this.pointLight1.position.z = 2500;
 		this.scene.add(this.pointLight1 );
 
-		this.pointLight2 = new THREE.PointLight( 0xff6666, 0.04 );
+		this.pointLight2 = new THREE.PointLight( 0xffffff, 0.07 );
     this.camera.add( 	this.pointLight2  );
 
-    this.pointLight3 = new THREE.PointLight( 0x0000ff, 0.7 );
+    this.pointLight3 = new THREE.PointLight( 0x0000ff, 0.15 );
     this.pointLight3.position.x = - 1000;
     this.pointLight3.position.z = 1000;
     this.scene.add( this.pointLight3 );
@@ -474,8 +488,10 @@ class CountDownTimer3D {
   update () {
     this.pointLight1.position.x = 2500 * Math.cos( this.r );
     this.pointLight1.position.z = 2500 * Math.sin( this.r );
+    this.pointLight3.position.z = 2500 * Math.cos( this.r );
+    this.pointLight3.position.x = 2500 * Math.sin( this.r );
 
-    this.r += 0.015;
+    this.r += 0.005;
   }
 }
 
