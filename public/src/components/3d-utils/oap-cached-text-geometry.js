@@ -75,6 +75,13 @@ async function PerformEarlyDelayedFontCaching(font3d, options) {
   }
 }
 
+async function PerformCacheWelcomeTexts(texts, font3d) {
+  for (var i = 0; i<texts.length; i++) {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    GetTextGeometry(texts[i].title, font3d, { large: true, isCaching: true });
+  }
+}
+
 async function PerformDelayedFontCaching(font3d, options) {
   GetTextGeometry("cp", font3d, { large: true, isCaching: true });
   await new Promise(resolve => setTimeout(resolve, isSlow(options) ? getDelay(900) : getDelay(300)));
@@ -108,6 +115,10 @@ async function PerformDelayedFontCaching(font3d, options) {
 
 export const StartEarlyDelayedFontCaching = (font3d) => {
   PerformEarlyDelayedFontCaching(font3d, { large: true, isCaching: true});
+}
+
+export const StartPerformCacheWelcomeTexts = (texts, font3d) => {
+  PerformCacheWelcomeTexts(texts, font3d);
 }
 
 export const SetForceSlowOnFontCaching = () => {

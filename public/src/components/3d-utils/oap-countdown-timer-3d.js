@@ -6,7 +6,7 @@ import { Get2DEmoji } from '../3d-utils/oap-2d-emojis';
 
 class CountDownTimer3D {
 
-  constructor (scene, camera, renderer, composer, clock, font3d, quizComponent, width, height) {
+  constructor (scene, camera, renderer, composer, clock, font3d, quizComponent, welcomeTexts, width, height) {
     this.scene = scene;
     this.camera = camera;
     this.renderer = renderer;
@@ -17,12 +17,7 @@ class CountDownTimer3D {
     this.r = 0.0;
     this.inCountDown = false;
     this.quizComponent = quizComponent;
-    this.introTexts = [
-      {title: "Welcome", animationLength: 1100},
-      {title: "To", animationLength: 650},
-      {title: "Make", animationLength: 650},
-      {title: "Your", animationLength: 650},
-      {title: "Constitution", animationLength: 1500, easing: Easing.Cubic.In}];
+    this.welcomeTexts = welcomeTexts;
 
     this.completedTextTweens = 0;
 
@@ -41,14 +36,14 @@ class CountDownTimer3D {
   async createTextGeometries() {
     this.welcomeFontMeshes = [];
 
-    for (var i=0;i<this.introTexts.length;i++) {
+    for (var i=0;i<this.welcomeTexts.length;i++) {
       const textMaterial = new THREE.MeshStandardMaterial( {
         color: "#fafafa",
         roughness: 0.3,
         metalness: 0.8,
         side: THREE.DoubleSide
       });
-      const textMesh = new THREE.Mesh(GetTextGeometry(this.introTexts[i].title, this.font3d, { large: true }), textMaterial );
+      const textMesh = new THREE.Mesh(GetTextGeometry(this.welcomeTexts[i].title, this.font3d, { large: true }), textMaterial );
       this.welcomeFontMeshes.push(textMesh);
       textMesh.position.z = -500
       await new Promise(resolve => setTimeout(resolve, 400));
@@ -59,8 +54,8 @@ class CountDownTimer3D {
     for (var i=0;i<this.welcomeFontMeshes.length;i++) {
       const fontMesh = this.welcomeFontMeshes[i];
       this.scene.add(fontMesh);
-      const animationLength = this.introTexts[i].animationLength;
-      let myEasing = this.introTexts[i].easing ? this.introTexts[i].easing : Easing.Quadratic.InOut;;
+      const animationLength = this.welcomeTexts[i].animationLength;
+      let myEasing = this.welcomeTexts[i].easing ? eval(this.welcomeTexts[i].easing) : Easing.Quadratic.InOut;
       new Tween(fontMesh.position)
       .to({ z: 32 }, animationLength)
       .easing(myEasing)
@@ -92,7 +87,7 @@ class CountDownTimer3D {
     const logoEndZ= 48;
 
     setTimeout(()=>{
-      if (this.welcomeFontMeshes.length==this.introTexts.length) {
+      if (this.welcomeFontMeshes.length==this.welcomeTexts.length) {
         this.addTextGeometriesAndRun();
       } else {
         setTimeout(()=>{
@@ -235,6 +230,7 @@ class CountDownTimer3D {
       } );
       this.winPointsMesh = new THREE.Mesh(this.cacheWinPointsGeometry ? this.cacheWinPointsGeometry : GetTextGeometry("+"+ this.winPoints+"cp", this.font3d, { large: true }),this.winPointsMaterial );
       this.winPointsMesh.position.x=-50;
+      this.winPointsMesh.position.y=-6.2;
       this.winPointsMesh.position.z=winPointZ;
       this.scene.add(this.winPointsMesh);
     }
@@ -269,12 +265,12 @@ class CountDownTimer3D {
     let emojiEndZ = 40;
     let digitsStartZ = -190;
     let digitsHoldZ = -2090;
-    let digitsEndZ = -60;
+    let digitsEndZ = -55;
     this.secondsLeft = 15;
 
     if (!this.startEmojiSprite) {
       this.startEmojiSprite = Get2DEmoji("⏳", '120px Arial');
-      this.startEmojiSprite.position.y = 2.0;
+      this.startEmojiSprite.position.y = 0.7;
       this.countdownDigitGroup.add(this.startEmojiSprite);
     }
 
@@ -300,7 +296,7 @@ class CountDownTimer3D {
     this.startEmojiSprite.visible=true;
     this.startEmojiSprite.material.opacity = 1.0;
     this.countDownMesh.position.z=digitsHoldZ;
-    this.countDownMesh.position.y=-0.5;
+    this.countDownMesh.position.y=-3.7;
     this.countdownDigitGroup.visible=true;
     this.countDownMesh.visible=true;
     const startDateMs = Date.now();
@@ -483,6 +479,6 @@ class CountDownTimer3D {
   }
 }
 
-export const CreateCountDownTimer3D = (scene, camera, renderer, composer, clock, font, quizComponent, width, height) => {
-  return new CountDownTimer3D(scene, camera, renderer, composer, clock, font, quizComponent, width, height);
+export const CreateCountDownTimer3D = (scene, camera, renderer, composer, clock, font, quizComponent, welcomeTexts, width, height) => {
+  return new CountDownTimer3D(scene, camera, renderer, composer, clock, font, quizComponent, welcomeTexts, width, height);
 }

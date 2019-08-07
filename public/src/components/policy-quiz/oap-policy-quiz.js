@@ -177,7 +177,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.renderCanvas3d();
 
       setTimeout(()=> {
-        this.countdownTimer3d = CreateCountDownTimer3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
+        this.countdownTimer3d = CreateCountDownTimer3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, this.configFromServer.client_config.welcomeTexts, width, height);
         this.updateCountDown3dTimer = true;
       })
 

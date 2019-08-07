@@ -41,12 +41,16 @@ export const OapPolicyQuizStyles = css`
   .buttonContainer {
     width: 100%;
     position: absolute;
-    top: 300px;
+    top: 340px;
     background: transparent;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;
     -o-transition: opacity 2.0s ease-in-out;
+  }
+
+  @media (max-width: 340px) {
+    top: 300px;
   }
 
   .topContainer {

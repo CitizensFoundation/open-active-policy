@@ -60,7 +60,9 @@ class OapSwipableCards extends OapBaseElement {
       rendering: Boolean,
       configFromServer: Object,
       automaticSelectionActive: Boolean,
-      country: Object
+      country: Object,
+      autoSliderTime: String,
+      automaticFlipSpeed: Number
     }
   }
 
@@ -116,6 +118,7 @@ class OapSwipableCards extends OapBaseElement {
               .value="${this.speedSettings}"
               max="10">
           </paper-slider>
+          <div class="speedSliderInfo" ?auto="${this.automaticSelectionActive}">${this.autoSliderTime}</div>
           <div class="global-actions" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
             <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
             </div>
@@ -217,6 +220,10 @@ class OapSwipableCards extends OapBaseElement {
 
   updated(changedProps) {
     super.updated(changedProps);
+    if (changedProps.has('automaticFlipSpeed')) {
+      this.autoSliderTime="Swipe speed "+(this.automaticFlipSpeed/1000)+" seconds";
+    }
+
     if (changedProps.has('currentItem')) {
       if (this.currentItem && this.currentItem.module_type==="ModuleTypeCard") {
         this.removeEventListeners();

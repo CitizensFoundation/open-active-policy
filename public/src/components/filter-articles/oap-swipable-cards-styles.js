@@ -123,6 +123,24 @@ export const OapSwipableCardsStyles = css`
     -o-transition: opacity 0.5s;
   }
 
+  .speedSliderInfo {
+    opacity: 0.0;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    color: #999;
+    margin-top: -6px;
+  }
+
+  .speedSliderInfo[auto] {
+    opacity: 1.0;
+    transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+  }
+
   .card-content {
     position: relative;
     color: #fff;
@@ -486,7 +504,6 @@ export const OapSwipableCardsStyles = css`
     margin-bottom: -6px;
     padding-bottom: 0;
   }
-
 
   .imageCollapsed {
     height: 0px;

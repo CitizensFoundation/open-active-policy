@@ -12,7 +12,7 @@ import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
 import { CacheEmojisInBackground } from './3d-utils/oap-2d-emojis';
-import { StartDelayedFontCaching, SetForceSlowOnFontCaching } from './3d-utils/oap-cached-text-geometry';
+import { StartDelayedFontCaching, SetForceSlowOnFontCaching, StartPerformCacheWelcomeTexts } from './3d-utils/oap-cached-text-geometry';
 import { FontLoader } from 'three';
 
 import 'whatwg-fetch';
@@ -1735,7 +1735,7 @@ class OapApp extends OapBaseElement {
     cacheDataImages(this.allItems);
     cacheSoundEffects(this.soundEffects);
     if (window.debugOn) {
-      this.filteredItems = this.allItems;
+      //this.filteredItems = this.allItems;
       this.country = {
         name: "13 Colonies 1783 (US Constitutional Convention)",
         description: "A rag-tag band of diverse colonies join together to defeat one of the most powerful maritime Empires in the world at that time; shocked at their own victory, they are determined not to have won the War, only to have lost the Peace. They set out to frame a document that will provide for a future free of the tyranny and injustice they had just endured at the hands of Mad King George II. Can you do as good a job as they did, or perhaps even build a more perfect union?",
@@ -1871,6 +1871,10 @@ class OapApp extends OapBaseElement {
 
         window.language = this.language;
         window.localize = this.localize;
+
+        setTimeout(()=>{
+          StartPerformCacheWelcomeTexts(this.configFromServer.client_config.welcomeTexts, this.font3d);
+        }, 950);
 
         if (this.configFromServer.client_config.insecureEmailLoginEnabled===true) {
           import('./oap-insecure-email-login.js');
@@ -2368,7 +2372,7 @@ class OapApp extends OapBaseElement {
       if ((page!=='quiz' && !this.quizDone) && !window.debugOn) {
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
-      } else {
+      } else if (!window.debugOn) {
         if (page==='area-ballot' && (this.filteredItems.length===0 && this.country==null)) {
           window.history.pushState({}, null, "/create-country");
           this.fire('location-changed', "/create-country");
