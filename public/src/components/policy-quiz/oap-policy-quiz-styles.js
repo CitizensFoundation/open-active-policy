@@ -68,23 +68,24 @@ export const OapPolicyQuizStyles = css`
   }
 
   .question {
+    width: 600px;
     padding: 16px;
     font-size: 23px;
     background-color: #000;
     background:rgba(0,0,0,0.5);
     color: #FFF;
-    border-radius: 7px;
+    border-radius: 12px;
     margin-top: 0;
     text-align: center;
-    padding-bottom: 0;
-    padding-top: 6px;
     margin-bottom: 4px;
     position: absolute;
     top: 75px;
+    border: 1px solid #FFF;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;
     -o-transition: opacity 2.0s ease-in-out;
+    box-shadow: 0 0 10px #fff, inset 0 0 4px #fff;
   }
 
   .infoBar {
