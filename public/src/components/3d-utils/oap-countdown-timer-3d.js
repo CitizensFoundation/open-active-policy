@@ -4,10 +4,13 @@ import { GetTextGeometry, GetTextMesh } from  '../3d-utils/oap-cached-text-geome
 import { Tween, Easing, update as UpdateTween } from 'es6-tween';
 import { Get2DEmoji } from '../3d-utils/oap-2d-emojis';
 import { Color } from 'three';
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
+import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 class CountDownTimer3D {
 
-  constructor (scene, camera, renderer, composer, clock, font3d, quizComponent, welcomeTexts, width, height) {
+  constructor (scene, camera, renderer, composer, clock, font3d, quizComponent, welcomeTexts, configFromServer, width, height) {
     this.scene = scene;
     this.camera = camera;
     this.renderer = renderer;
@@ -19,13 +22,13 @@ class CountDownTimer3D {
     this.inCountDown = false;
     this.quizComponent = quizComponent;
     this.welcomeTexts = welcomeTexts;
+    this.configFromServer = configFromServer;
 
     this.completedTextTweens = 0;
 
     this.secondsLeft=15;
     this.clock = clock;
     this.currentTime = 0;
-    this.createTextGeometries();
     this.init();
 
     this.winPoints = 5;
@@ -34,168 +37,55 @@ class CountDownTimer3D {
     }, 100)
   }
 
-  async createTextGeometries() {
-    this.welcomeFontMeshes = [];
-
-    for (var i=0;i<this.welcomeTexts.length;i++) {
-      const textMaterial = new THREE.MeshStandardMaterial( {
-        color: "#a0a0a0",
-        roughness: 0.4,
-        metalness: 1.0,
-        side: THREE.DoubleSide
-      });
-      const textMesh = new THREE.Mesh(GetTextGeometry(this.welcomeTexts[i].title, this.font3d, { large: true }), textMaterial );
-      this.welcomeFontMeshes.push(textMesh);
-      textMesh.position.z = -500
-      await new Promise(resolve => setTimeout(resolve, 50));
-    }
-  }
-
-  async addTextGeometriesAndRun() {
-    this.pointLight2.intensity=0.001;
-    this.pointLight1.intensity=0.5
-    this.pointLight3.intensity=0.5
-    this.pointLight1.color = new Color(0xffffff);
-    this.pointLight3.color = new Color(0xffffff);
-
-    for (var i=0;i<this.welcomeFontMeshes.length;i++) {
-      const fontMesh = this.welcomeFontMeshes[i];
-      this.scene.add(fontMesh);
-      const animationLength = this.welcomeTexts[i].animationLength;
-      let myEasing = this.welcomeTexts[i].easing ? eval(this.welcomeTexts[i].easing) : Easing.Quadratic.InOut;
-      new Tween(fontMesh.position)
-      .to({ z: 32 }, animationLength)
-      .easing(myEasing)
-      .delay(0)
-      .on('complete', (event, blah) => {
-        fontMesh.visible = false;
-        this.scene.remove(fontMesh);
-        this.completedTextTweens+=1;
-        if (this.completedTextTweens==this.welcomeFontMeshes.length) {
-          this.quizComponent.introFinished();
-          this.cleanupIntro();
-          this.pointLight2.intensity=0.1;
-        }
-      })
-      .start();
-      fontMesh.material.transparent=true;
-      new Tween(fontMesh.material)
-      .to({ opacity: 0.0 },500)
-      .delay(animationLength-200)
-      .easing(Easing.Quadratic.InOut)
-      .start();
-
-      await new Promise(resolve => setTimeout(resolve, animationLength));
-    }
-    this.pointLight2.intensity=0.05;
-    this.pointLight1.intensity=0.5;
-    this.pointLight3.intensity=0.5;
-    this.pointLight1.color = new Color(0xff0000);
-    this.pointLight3.color = new Color(0x0000ff);
-
-
-  }
-
-  startIntro() {
-    const logoStartZ=-5;
-    const logoEndZ= 48;
-
-    setTimeout(()=>{
-      if (this.welcomeFontMeshes.length==this.welcomeTexts.length) {
-        this.addTextGeometriesAndRun();
-      } else {
-        setTimeout(()=>{
-          this.addTextGeometriesAndRun();
-        }, 1000);
-      }
-    }, 2520);
-
-    var spriteMap = new THREE.TextureLoader().load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/makeyourlogo2.png" );
-    var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
-    this.logoSprite = new THREE.Sprite( spriteMaterial );
-    this.scene.add( this.logoSprite );
-    this.logoSprite.position.z = logoStartZ;
-    this.logoSprite.scale.y=1.5;
-    this.logoSprite.position.y=0.1;
-    this.logoSprite.position.x=4.7;
-
-    this.logoTween = new Tween(this.logoSprite.position)
-    .to({ z: logoEndZ, x: -1.5, y: this.logoSprite.position.y }, 3100)
-    .delay(0)
-    .easing(Easing.Quadratic.In)
-    .on('complete', () => {
-      this.logoTween = null;
-      /*this.logoSprite.position.z=logoStartZ;
-      this.logoSprite.visible=false;*/
-    })
-    .start();
-
-    this.logoSprite.material.transparent=true;
-    new Tween(this.logoSprite.material)
-    .to({ opacity: 0.0 }, 500)
-    .delay(2600)
-    .on('complete', () => {
-      this.scene.remove(this.logoSprite);
-    })
-    .start();
-  }
-
   init() {
     this.roughness = 0.3;
     const settings = {
-      metalness: 0.1,
-      roughness: 0.1,
+      metalness: 1.0,
+      roughness: 0.4,
       ambientIntensity: 0.2,
       aoMapIntensity: 1.0,
       envMapIntensity: 1.0,
-      displacementScale: 2.436143, // from original model
-      normalScale: 1.0
+      displacementScale: 0.436143, // from original model
+      normalScale: 0.5
     };
-    this.renderer.gammaInput = true;
-    this.renderer.gammaOutput = true;
-    this.pointLight1 = new THREE.PointLight( 0xff00000, 0.15 );
-		this.pointLight1.position.z = 2500;
-		this.scene.add(this.pointLight1 );
 
-		this.pointLight2 = new THREE.PointLight( 0xffffff, 0.07 );
+    this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.95);
+    this.directionalLight.position.setScalar(100);
+    this.scene.add(this.directionalLight);
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 1.97);
+    this.scene.add(this.ambientLight);
+
+		this.pointLight2 = new THREE.PointLight(0xffffff, 0.8 );
     this.camera.add( 	this.pointLight2  );
 
-    this.pointLight3 = new THREE.PointLight( 0x0000ff, 0.15 );
-    this.pointLight3.position.x = - 1000;
-    this.pointLight3.position.z = 1000;
-    this.scene.add( this.pointLight3 );
+    const effectFXAA = new ShaderPass( FXAAShader );
+    effectFXAA.uniforms.resolution.value.set( 1 / this.width, 1 / this.height );
 
-    const path = "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/SwedishCastla/";
-    const format = '.jpg';
-    const urls = [
-      path + 'px' + format, path + 'nx' + format,
-      path + 'py' + format, path + 'ny' + format,
-      path + 'pz' + format, path + 'nz' + format
-    ];
+    const bloomPass = new UnrealBloomPass( new THREE.Vector2( this.width, this.height ), 1.5, 0.4, 0.85 );
+    bloomPass.threshold = 0.12;
+    bloomPass.strength = 2.9;
+    bloomPass.radius = 1.20;
+    bloomPass.renderToScreen = true;
 
-  	const reflectionCube = new THREE.CubeTextureLoader().load( urls );
+    this.composer.addPass( effectFXAA );
+    this.composer.addPass( bloomPass );
 
-    const textureLoader = new THREE.TextureLoader();
-    const normalMap = textureLoader.load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/SwedishCastla/normal.jpg" );
-    const aoMap = textureLoader.load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/SwedishCastla/ao.jpg" );
-    const displacementMap = textureLoader.load( "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/3d/textures/SwedishCastla/displacement.jpg" );
+    this.renderer.gammaInput = true;
+    this.renderer.gammaOutput = true;
+    this.renderer.toneMappingExposure = Math.pow( 0.9, 4.0 );
 
     this.material = new THREE.MeshStandardMaterial( {
-      color: 0x888888,
-      roughness: this.roughness ,
-      metalness: settings.metalness,
-
-      side: THREE.DoubleSide
+      color: 0xFF0000,
+      side:THREE.BackSide,
+      transparent: true,
+      opacity: 0.3
     } );
 
-    const materials = [
-      new THREE.MeshPhongMaterial( { color: "#FF0000", flatShading: true } ), // front
-      new THREE.MeshPhongMaterial( { color: "#FF0000"} ) // side
-    ];
+    this.colorArray =   Object.values(this.configFromServer.client_config.moduleTypeColorLookup);
 
-    this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
-
-    this.countDownMesh = new THREE.Mesh(this.countDownDigitGeometry, this.material);
+    this.countDownMesh = new THREE.LineSegments( this.getCountDownOutlineGeometry(), new THREE.LineBasicMaterial({
+      color: this.colorArray [Math.floor(Math.random()*this.colorArray.length)]
+    } ));
     this.countDownMesh.visible = false;
 
     this.countdownDigitGroup = new THREE.Group();
@@ -260,7 +150,7 @@ class CountDownTimer3D {
     const xText = votesWidth*0.069;
 
     this.winPointsMesh.visible = true;
-    this.pointLight2.intensity = 0.32;
+//    this.pointLight2.intensity = 0.32;
     this.winPointsTween = new Tween(this.winPointsMesh.position)
     .to({ x: xText+endFudge, y: this.winPointsMesh.position.y, z: -40}, 3000) // relative animation
     .delay(0)
@@ -296,15 +186,15 @@ class CountDownTimer3D {
     const roughness = Math.random();
     const metalness = Math.random();
 
-    this.material = new THREE.MeshStandardMaterial( {
+    /*this.material = new THREE.MeshStandardMaterial( {
       color: 0x888888,
       roughness: roughness,
       metalness:metalness,
 
       side: THREE.DoubleSide
-    } );
+    } );*/
 
-    this.countDownMesh.material = this.material;
+   // this.countDownMesh.material = this.material;
 
     this.startEmojiSprite.position.z=emojiStartZ;
     this.startEmojiSprite.visible=true;
@@ -421,10 +311,19 @@ class CountDownTimer3D {
     this.countdownDigitGroup.visible = false;
   }
 
+  getCountDownOutlineGeometry() {
+    const countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
+    return new THREE.EdgesGeometry( countDownDigitGeometry );
+//    return new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xff0000 } ) );
+  }
+
   resetAfterStop() {
     this.secondsLeft = 15;
     this.roughness = 0.1;
-    this.countDownMesh.geometry = this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
+    this.countDownMesh.geometry = this.getCountDownOutlineGeometry();
+    this.countDownMesh.material = new THREE.LineBasicMaterial({
+      color: this.colorArray [Math.floor(Math.random()*this.colorArray.length)]
+    } )
   }
 
   doCountDown() {
@@ -436,7 +335,7 @@ class CountDownTimer3D {
       if (this.inCountDown) {
         if (this.secondsLeft>0) {
           this.secondsLeft-=1;
-          this.countDownMesh.geometry = this.countDownDigitGeometry=GetTextGeometry(this.secondsLeft.toString(), this.font3d, { large: true });
+          this.countDownMesh.geometry = this.getCountDownOutlineGeometry();
           if (this.secondsLeft<8) {
             if (this.countDownMeshRotation) {
               this.countDownMeshRotation.stop();
@@ -486,15 +385,17 @@ class CountDownTimer3D {
   }
 
   update () {
+    /*
     this.pointLight1.position.x = 2500 * Math.cos( this.r );
     this.pointLight1.position.z = 2500 * Math.sin( this.r );
     this.pointLight3.position.z = 2500 * Math.cos( this.r );
     this.pointLight3.position.x = 2500 * Math.sin( this.r );
 
     this.r += 0.005;
+    */
   }
 }
 
-export const CreateCountDownTimer3D = (scene, camera, renderer, composer, clock, font, quizComponent, welcomeTexts, width, height) => {
-  return new CountDownTimer3D(scene, camera, renderer, composer, clock, font, quizComponent, welcomeTexts, width, height);
+export const CreateCountDownTimer3D = (scene, camera, renderer, composer, clock, font, quizComponent, welcomeTexts,configFromServer, width, height) => {
+  return new CountDownTimer3D(scene, camera, renderer, composer, clock, font, quizComponent, welcomeTexts, configFromServer, width, height);
 }

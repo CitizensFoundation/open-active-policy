@@ -80,7 +80,7 @@ export const OapPolicyQuizStyles = css`
     margin-bottom: 4px;
     position: absolute;
     top: 75px;
-    border: 1px solid #FFF;
+    border: 1px solid #999;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;

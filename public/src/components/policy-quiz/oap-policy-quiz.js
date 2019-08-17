@@ -59,7 +59,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   }
 
   startIntro() {
-    this.countdownTimer3d.startIntro();
+//    this.introScene3d.startIntro();
   }
 
   disableLightShaft() {
@@ -171,14 +171,16 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.renderPass = new RenderPass( this.scene, this.camera );
       this.composer.addPass(this.renderPass);
 
-      this.lightShaft3d = CreateLightShaft3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
-      this.updateLightShaft3d= true;
+      //this.lightShaft3d = CreateLightShaft3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, width, height);
+      //this.updateLightShaft3d= true;
 
       this.renderCanvas3d();
 
       setTimeout(()=> {
-        this.countdownTimer3d = CreateCountDownTimer3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, this.configFromServer.client_config.welcomeTexts, width, height);
+        this.countdownTimer3d = CreateCountDownTimer3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, this.configFromServer.client_config.welcomeTexts, this.configFromServer, width, height);
         this.updateCountDown3dTimer = true;
+        this.introMode=false;
+        this.startCountDown();
       })
 
       setTimeout(()=>{
@@ -204,6 +206,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   stop() {
     while(this.scene.children.length > 0){
+      console.error(this.scene.children[0]);
       this.scene.remove(this.scene.children[0]);
     }
     this.scene.remove();
