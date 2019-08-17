@@ -60,6 +60,8 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   startIntro() {
 //    this.introScene3d.startIntro();
+    this.introMode=false;
+    this.startCountDown();
   }
 
   disableLightShaft() {
@@ -179,8 +181,6 @@ class OapPolicyQuiz extends OapPageViewElement {
       setTimeout(()=> {
         this.countdownTimer3d = CreateCountDownTimer3D(this.scene, this.camera, this.renderer, this.composer, this.clock, this.font3d, this, this.configFromServer.client_config.welcomeTexts, this.configFromServer, width, height);
         this.updateCountDown3dTimer = true;
-        this.introMode=false;
-        this.startCountDown();
       })
 
       setTimeout(()=>{

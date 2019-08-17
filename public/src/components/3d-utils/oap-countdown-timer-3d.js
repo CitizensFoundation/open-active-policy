@@ -206,16 +206,9 @@ class CountDownTimer3D {
     this.countdownDigitGroup.visible=true;
     this.countDownMesh.visible=true;
     const startDateMs = Date.now();
-    if (this.firstRoundCompleted) {
-      this.inCountDown = true;
-      this.doCountDown();
-    } else {
-      setTimeout(()=>{
-        this.inCountDown = true;
-        this.doCountDown();
-        this.firstRoundCompleted=true;
-      }, 1300);
-    }
+
+    this.inCountDown = true;
+    this.doCountDown();
     /*this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
     .to({ z: emojiEndZ }, 2400)
     .delay(0)
