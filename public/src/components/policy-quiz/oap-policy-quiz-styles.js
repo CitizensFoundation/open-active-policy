@@ -12,13 +12,35 @@ export const OapPolicyQuizStyles = css`
     height: 100%;
   }
 
+  .question {
+    width: 600px;
+    padding: 16px;
+    font-size: 23px;
+    background-color: #000;
+    background:rgba(0,0,0,0.5);
+    color: #FFF;
+    border-radius: 12px;
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 4px;
+    position: absolute;
+    top: 75px;
+    border: 1px solid #999;
+    -webkit-transition: opacity 2.0s ease-in-out;
+    -moz-transition: opacity 2.0s ease-in-out;
+    -ms-transition: opacity 2.0s ease-in-out;
+    -o-transition: opacity 2.0s ease-in-out;
+    box-shadow: 0 0 10px #fff, inset 0 0 4px #fff;
+  }
+
   .answerButton {
     background-color: var(--app-quiz-answer-button-background-color, #000);
     color: #eee;
     border: 1px solid #eee;
-    padding: 12px;
+    padding: 16px;
     width: 100%;
     margin: 0;
+    width: 600px;
     margin-bottom: 16px;
   }
 
@@ -54,7 +76,7 @@ export const OapPolicyQuizStyles = css`
   }
 
   .topContainer {
-    max-width: 600px;
+    width: 600px;
     margin-left: auto;
     margin-right: auto;
     background: transparent;
@@ -65,27 +87,7 @@ export const OapPolicyQuizStyles = css`
     top: 0;
     left: 0;
     right: 0;
-  }
-
-  .question {
-    width: 600px;
-    padding: 16px;
-    font-size: 23px;
-    background-color: #000;
-    background:rgba(0,0,0,0.5);
-    color: #FFF;
-    border-radius: 12px;
-    margin-top: 0;
-    text-align: center;
-    margin-bottom: 4px;
-    position: absolute;
-    top: 75px;
-    border: 1px solid #999;
-    -webkit-transition: opacity 2.0s ease-in-out;
-    -moz-transition: opacity 2.0s ease-in-out;
-    -ms-transition: opacity 2.0s ease-in-out;
-    -o-transition: opacity 2.0s ease-in-out;
-    box-shadow: 0 0 10px #fff, inset 0 0 4px #fff;
+    padding: 0;
   }
 
   .infoBar {

@@ -256,7 +256,7 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   render() {
     return html`
-      <div class="layout-inline vertical">
+      <div class="layout-inline vertical center-center">
         <div id="canvas3d"></div>
         <div class="topContainer">
           ${this.currentIndex!==null ?  html`
