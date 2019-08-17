@@ -61,14 +61,15 @@ class CountDownTimer3D {
     const effectFXAA = new ShaderPass( FXAAShader );
     effectFXAA.uniforms.resolution.value.set( 1 / this.width, 1 / this.height );
 
-    const bloomPass = new UnrealBloomPass( new THREE.Vector2( this.width, this.height ), 1.5, 0.4, 0.85 );
-    bloomPass.threshold = 0.12;
-    bloomPass.strength = 2.9;
-    bloomPass.radius = 1.20;
-    bloomPass.renderToScreen = true;
+    this.bloomPass = new UnrealBloomPass( new THREE.Vector2( this.width, this.height ), 1.5, 0.4, 0.85 );
+    this.bloomPass.threshold = 0.12;
+    this.bloompassInitialStrength = 4.3;
+    this.bloomPass.strength =  this.bloompassInitialStrength;
+    this.bloomPass.radius = 1.10;
+    this.bloomPass.renderToScreen = true;
 
     this.composer.addPass( effectFXAA );
-    this.composer.addPass( bloomPass );
+    this.composer.addPass( this.bloomPass );
 
     this.renderer.gammaInput = true;
     this.renderer.gammaOutput = true;
@@ -87,6 +88,7 @@ class CountDownTimer3D {
       color: this.colorArray [Math.floor(Math.random()*this.colorArray.length)]
     } ));
     this.countDownMesh.visible = false;
+    this.countDownMesh.scale.set(1,2,1);
 
     this.countdownDigitGroup = new THREE.Group();
     this.countdownDigitGroup.add(this.countDownMesh);
@@ -168,14 +170,14 @@ class CountDownTimer3D {
     let emojiStartZ = -120;
     let emojiEndZ = 40;
     let digitsStartZ = -190;
-    let digitsHoldZ = -2090;
-    let digitsEndZ = -55;
+    let digitsHoldZ = -1350;
+    let digitsEndZ = -225;
     this.secondsLeft = 15;
 
     if (!this.startEmojiSprite) {
       this.startEmojiSprite = Get2DEmoji("⏳", '120px Arial');
       this.startEmojiSprite.position.y = 0.7;
-      this.countdownDigitGroup.add(this.startEmojiSprite);
+     // this.countdownDigitGroup.add(this.startEmojiSprite);
     }
 
     if (this.startEmoji2DTween) {
@@ -200,12 +202,21 @@ class CountDownTimer3D {
     this.startEmojiSprite.visible=true;
     this.startEmojiSprite.material.opacity = 1.0;
     this.countDownMesh.position.z=digitsHoldZ;
-    this.countDownMesh.position.y=-3.7;
+    this.countDownMesh.position.y=-15.0;
     this.countdownDigitGroup.visible=true;
     this.countDownMesh.visible=true;
     const startDateMs = Date.now();
-
-    this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
+    if (this.firstRoundCompleted) {
+      this.inCountDown = true;
+      this.doCountDown();
+    } else {
+      setTimeout(()=>{
+        this.inCountDown = true;
+        this.doCountDown();
+        this.firstRoundCompleted=true;
+      }, 1300);
+    }
+    /*this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
     .to({ z: emojiEndZ }, 2400)
     .delay(0)
     .on('update', (val, deg) => {
@@ -221,6 +232,7 @@ class CountDownTimer3D {
     })
     .start();
 
+
     this.opacityEmoji2DTween = new Tween(this.startEmojiSprite.material)
     .to({ opacity: 0.0 }, 600)
     .delay(1800)
@@ -228,22 +240,13 @@ class CountDownTimer3D {
       this.opacityEmoji2DTween = null;
     })
     .start();
-
+    */
     this.countdownTween3 = new Tween(this.countDownMesh.position)
-    .to({ z: digitsEndZ }, 3400)
+    .to({ z: digitsEndZ }, 2000)
     .easing(this.getRandomEasing())
     .delay(0)
     .on('complete', () => {
       this.countdownTween3 = null;
-    })
-    .start();
-
-    this.countdownTween4 = new Tween(this)
-    .to({ roughness: 0.5 }, 3400)
-    .easing(Easing.Cubic.Out)
-    .delay(0)
-    .on('complete', () => {
-      this.countdownTween4 = null;
     })
     .start();
   }
@@ -257,8 +260,9 @@ class CountDownTimer3D {
 
   stopCountDownWin() {
     this.stopCountDown();
+    this.bloomPass.strength = 0.2;
     this.countdownTween3 = new Tween(this.countDownMesh.position)
-    .to({ y: 70 }, 1200)
+    .to({ y: 70 }, 2000)
     .easing(Easing.Elastic.Out)
     .delay(0)
     .on('complete', () => {
@@ -270,8 +274,9 @@ class CountDownTimer3D {
 
   stopCountDownFail() {
     this.stopCountDown();
+    this.bloomPass.strength = 0.2;
     this.countdownTween3 = new Tween(this.countDownMesh.position)
-    .to({ y: 70 }, 1200)
+    .to({ y: 70 }, 2000)
     .easing(Easing.Bounce.InOut)
     .delay(0)
     .on('complete', () => {
@@ -319,6 +324,7 @@ class CountDownTimer3D {
 
   resetAfterStop() {
     this.secondsLeft = 15;
+    this.bloomPass.strength = this.bloompassInitialStrength;
     this.roughness = 0.1;
     this.countDownMesh.geometry = this.getCountDownOutlineGeometry();
     this.countDownMesh.material = new THREE.LineBasicMaterial({
