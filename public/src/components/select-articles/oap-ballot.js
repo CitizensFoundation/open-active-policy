@@ -5,7 +5,7 @@ import { encryptVote } from '../ballot-encryption-behavior.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { repeat } from 'lit-html/directives/repeat';
 
-import { GetBonusesAndPenaltiesForItem } from '../oap-bonuses-and-penalties';
+import { GetBonusesAndPenaltiesForItem, GetEmojiFromAttitute } from '../oap-bonuses-and-penalties';
 
 import '@polymer/paper-tabs/paper-tab';
 import '@polymer/paper-tabs/paper-tabs';
@@ -362,7 +362,7 @@ class OapBallot extends OapPageViewElement {
       for (var i = 0; i < listItems.children.length; i++) {
         var listItem = listItems.children[i];
         if (itemIds.indexOf(listItem.item.id) > -1) {
-          listItem.setNotExcluded();
+          listItem.setNotBlockedBy();
        }
       }
     }, 50);
@@ -408,7 +408,7 @@ class OapBallot extends OapPageViewElement {
           this.fire('oap-usedBonusesAndPenalties-changed', this.usedBonusesAndPenalties);
           if (item.type==="bonus") {
             this.budgetElement.totalChoicePoints+=item.value;
-            let emoji = this._getEmojiFromAttitute(item.attitute);
+            let emoji = GetEmojiFromAttitute(item.attitute);
             if (!emojis.indexOf(emoji)>-1) {
               emojis.push(emoji);
             }
@@ -421,12 +421,12 @@ class OapBallot extends OapPageViewElement {
               this.budgetElement.totalChoicePoints-=(item.value+pointsWillBeLeft);
             }
             totalValue-=item.value;
-            let emoji = this._getEmojiFromAttitute(item.attitute);
+            let emoji = GetEmojiFromAttitute(item.attitute);
             if (!emojis.indexOf(emoji)>-1) {
               emojis.push(emoji);
             }
           }
-          htmlString+='<span style="width: 40px;height: 40px">'+this._getEmojiFromAttitute(item.attitute)
+          htmlString+='<span style="width: 40px;height: 40px">'+GetEmojiFromAttitute(item.attitute)
           htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'<br>';
         } else {
           console.warn("Trying to use bonus again: "+usedKey);
@@ -442,25 +442,6 @@ class OapBallot extends OapPageViewElement {
       }
     }
 
-  }
-
-  _getEmojiFromAttitute(attitute) {
-    const emojis = {
-          authority: "🏛️",
-          liberty: "🌅",
-          science: "🔬",
-          tradition: "🏺",
-          collective: "👥",
-          independence: "🛡️",
-          privacy: "🔐",
-          lawAndOrder: "👮",
-          progressivism: "✊",
-          naturalResourceWealth: "🔋",
-          borderDensity: "🛂",
-          hostilityNeighboringCountries: "🌐",
-          barrieresToCitizenship: "🧱"
-    }
-    return emojis[attitute];
   }
 
   async setStateOfRemainingItems(startTimeout, inbetweenTimeout) {
@@ -482,10 +463,11 @@ class OapBallot extends OapPageViewElement {
 
           if (listItem.item.exclusive_ids && listItem.item.exclusive_ids.length>0) {
             listItem.item.exclusive_ids.split(",").forEach((id) => {
-              if (allSelectedIds.indexOf(id) > -1) {
-                listItem.setExcluded();
+              const index = allSelectedIds.indexOf(id);
+              if (index> -1) {
+                listItem.setBlockedBy(this.budgetElement.selectedItems[index].name);
               } else {
-                //listItem.setNotExcluded();
+                //listItem.setNotBlockedBy();
               }
             });
           }

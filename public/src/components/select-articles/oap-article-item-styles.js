@@ -184,9 +184,17 @@ export const OapArticleItemStyles = css`
     padding-right: 16px;
   }
 
+  .subCategory {
+    position: absolute;
+    bottom: 4px;
+    left: 12px;
+    color: #656565;
+    font-size: 12px;
+  }
+
   .addRemoveButton {
     position: absolute;
-    bottom: 9px;
+    bottom: 11px;
     right: 5px;
     font-size: 18px;
     margin: 0;
@@ -195,16 +203,31 @@ export const OapArticleItemStyles = css`
     margin-right: 6px;
     border-radius: 3px;
     padding: 8px;
-    padding-top: 12px;
     text-align: center;
     cursor: pointer;
     background-color: var(--app-accent-color);
     color: var(--app-ballot-item-button-color, #fff);
   }
 
+  .priceText {
+    margin-top: 6px;
+  }
+
   .addRemoveButton[disabled] {
     cursor: default;
     background-color: #b7b7b7;
+  }
+
+  #isBlockedByInfo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 18px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
 
   .removeButton {

@@ -573,6 +573,19 @@ export const OapSwipableCardsStyles = css`
     margin-left: 42px;
   }
 
+  .exclusiveCardTitle {
+    margin-left: 8px;
+    color: #FFF;
+  }
+
+  .subHeader {
+    margin-left: 8px;
+  }
+
+  .subHeader[module-type] {
+    display: none;
+  }
+
   [hidden] {
     display: none !important;
   }

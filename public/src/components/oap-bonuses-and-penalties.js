@@ -228,3 +228,22 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
     return { bonusesAndPenalties, bonusCount, penaltyCount, bonuses, penalties };
 }
 
+
+export const GetEmojiFromAttitute = (attitute) => {
+  const emojis = {
+        authority: "🏛️",
+        liberty: "🌅",
+        science: "🔬",
+        tradition: "🏺",
+        collective: "👥",
+        independence: "🛡️",
+        privacy: "🔐",
+        lawAndOrder: "👮",
+        progressivism: "✊",
+        naturalResourceWealth: "🔋",
+        borderDensity: "🛂",
+        hostilityNeighboringCountries: "🌐",
+        barrieresToCitizenship: "🧱"
+  }
+  return emojis[attitute];
+}

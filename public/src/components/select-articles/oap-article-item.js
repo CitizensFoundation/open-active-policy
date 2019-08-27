@@ -46,6 +46,10 @@ class OapArticleItem extends OapBaseElement {
         type: Boolean
       },
 
+      isBlockedBy: {
+        type: String
+      },
+
       isFavorite: {
         type: Boolean
       },
@@ -97,28 +101,49 @@ class OapArticleItem extends OapBaseElement {
     return html`
       <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp layout horizontal" ?inbudget="${this.selected}">
         <div id="opacityLayer"></div>
-        <div id="leftColor" class="leftColor" ?hidden="${this.selected}"></div>
-        <div class="layout-inline vertical">
-          <div class="layout horizontal">
-            <div class="image" ?hidden="${!this.selected}"><img class="cardImage" src="${this.item.image_url}"/></div>
-          </div>
-          <div class="name" ?inbudget="${this.selected}">${this.item.name}</div>
-          <div class="layout-inline vertical" >
-            <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
-            <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-              <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
-                        ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
-                        +${this.item.price}
+        <div id="innerContainer">
+          <div id="leftColor" class="leftColor" ?hidden="${this.selected}"></div>
+          <div class="layout-inline vertical">
+            <div class="layout horizontal">
+              <div class="image" ?hidden="${!this.selected}"><img class="cardImage" src="${this.item.image_url}"/></div>
+            </div>
+            <div class="name" ?inbudget="${this.selected}">${this.item.name} ${this.exclusiveNumberOf()}</div>
+            <div class="layout-inline vertical" >
+              <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
+              <div class="buttons" ?hidden="${this.descriptionTabSelected}">
+                <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
+                          ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
+                  <div class="priceText">+${this.item.price}</div>
+                </div>
+                <div raised elevation="5" class="addRemoveButton removeButton shadow-animation  shadow-elevation-4dp" ?hidden="${!this.selected}"
+                          title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
+                  <div class="priceText">-${this.item.price}</div>
+                </div>
               </div>
-              <div raised elevation="5" class="addRemoveButton removeButton shadow-animation  shadow-elevation-4dp" ?hidden="${!this.selected}"
-                        title="${this.localize('remove_from_budget')}" icon="remove" @click="${this._toggleInBudget}">
-                        -${this.item.price}
-              </div>
-          </div>
+            </div>
+            <div class="subCategory" ?inbudget="${this.selected}">${this.item.sub_category}</div>
           </div>
         </div>
+        <div id="isBlockedByInfo" ?hidden="${!this.isBlockedBy}">${this.localize("blockedBy")} ${this.isBlockedBy}</div>
       </div>
     `;
+  }
+
+  exclusiveNumberOf() {
+    if (this.item.exclusive_ids) {
+      const ids = this.item.exclusive_ids.split(',');
+      let current;
+
+      ids.forEach((id, index)=>{
+        if (this.item.id==id) {
+          current = index+1;
+        }
+      })
+
+      return "("+current+"/"+ids.length+")";
+    } else {
+      return "";
+    }
   }
 
   updated(changedProps) {
@@ -175,6 +200,7 @@ class OapArticleItem extends OapBaseElement {
     this.isBookmarked = false;
     this.selected = false;
     this.isExcluded = false;
+    this.isBlockedBy = null;
   }
 
   _imageLoadedChanged(event) {
@@ -230,7 +256,7 @@ class OapArticleItem extends OapBaseElement {
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
 
     this.$$("#leftColor").style.backgroundColor=color;
-    if (!this.isExcluded) {
+    if (!this.isExcluded && !this.isBlockedBy) {
       this.$$("#addToBudgetButton").style.backgroundColor=color;
     }
 
@@ -258,9 +284,9 @@ class OapArticleItem extends OapBaseElement {
         });
         this.item.exclusive_ids.split(",").forEach((id) => {
           if (allSelectedIds.indexOf(id) > -1) {
-            this.setExcluded();
+            this.setBlockedBy(this.item.name);
           } else {
-            this.setNotExcluded();
+            this.setNotBlockedBy();
           }
         });
       }
@@ -332,24 +358,28 @@ class OapArticleItem extends OapBaseElement {
   setNotTooExpensive() {
     //console.log("setNotTooExpensive itemId: "+this.item.id);
     this.toExpensive = false;
-    if (!this.isExcluded) {
+    if (!this.isExcluded && !this.isBlockedBy) {
       const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
       this.$$("#addToBudgetButton").style.backgroundColor=color;
     }
   }
 
-  setExcluded() {
+  setBlockedBy(name) {
     //console.log("setTooExpensive itemId: "+this.item.id);
-    this.$$("#addToBudgetButton").style.backgroundColor="#888";
-    this.isExcluded = true;
+    this.$$("#addToBudgetButton").style.display="none";
+    this.$$("#innerContainer").style.opacity = 0.1;
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
+    this.$$("#isBlockedByInfo").style.color=color;
+    this.isBlockedBy = name;
     this.requestUpdate();
   }
 
-  setNotExcluded () {
+  setNotBlockedBy () {
     //console.log("setNotTooExpensive itemId: "+this.item.id);
-    this.isExcluded = false;
-    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
-    this.$$("#addToBudgetButton").style.backgroundColor=color;
+    this.isBlockedBy = null;
+    this.$$("#addToBudgetButton").style.display="block";
+
+    this.$$("#innerContainer").style.opacity = 1.0;
     this.requestUpdate();
   }
 

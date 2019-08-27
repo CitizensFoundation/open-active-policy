@@ -12,8 +12,8 @@ import '@polymer/paper-slider/paper-slider';
 import '@polymer/paper-icon-button';
 
 import '../oap-icons';
-import { GetBonusesAndPenaltiesForItem } from '../oap-bonuses-and-penalties';
 import { OapFlexLayout } from '../oap-flex-layout';
+import { GetBonusesAndPenaltiesForItem, GetEmojiFromAttitute } from '../oap-bonuses-and-penalties';
 
 class OapSwipableCards extends OapBaseElement {
 
@@ -85,11 +85,17 @@ class OapSwipableCards extends OapBaseElement {
                     <div class="card-content">
                       <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                       <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
-                        <div id="moduleName" class="name" ?module-type="${item.module_type=="ModuleTypeCard"}">${item.name}</div>
+                        <div class="subHeader layout  horizontal" ?module-type="${item.module_type=="ModuleTypeCard"}" style="${this.getSubCategoryStyle(item)}">
+                          ${item.sub_category} <div class="layout-inline flex-auto"> </div> ${this.getBonusesAndPenalties(item)}
+                        </div>
+                        <div class="moduleName name" title="${item.module_content_type}" ?module-type="${item.module_type=="ModuleTypeCard"}" ?is-exclusive="${this.isExclusive(item)}">${item.name}</div>
+                        ${this.isExclusive(item) ? html`
+                          <div class="exclusiveCardTitle" style="${this.getExclusiveStyle(item)}">${this.localize("exclusiveSeries")} ${this.exclusiveNumberOf(item)}</div>
+                          ` : html``}
                         <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
                       </div>
                     ${(item.module_type==="ModuleTypeCard") ? html`
-                      <div style="text-align:center" class="global-asctions  vertical center-center actionButtonContainer">
+                      <div style="text-align:center" class="global-asctions vertical center-center actionButtonContainer">
                         <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
                         <div class="layout  horizontal actionButtonInnerContainer">
                           <div class="left-actionx vertical">
@@ -142,6 +148,68 @@ class OapSwipableCards extends OapBaseElement {
     this.reset();
   }
 
+  isExclusive(item) {
+    return item.exclusive_ids && item.exclusive_ids!='';
+  }
+
+  getBonusesAndPenalties(itemIn) {
+    let bonusesAndPenalties = GetBonusesAndPenaltiesForItem(itemIn, this.country).bonusesAndPenalties;
+    let bonusEmojis = [];
+    let penaltyEmojis = [];
+    let hasBonuses = false;
+    let hasPenalties = false;
+    if (bonusesAndPenalties.length>0) {
+      bonusesAndPenalties.forEach((item)=>{
+          if (item.type==="bonus") {
+            let emoji = GetEmojiFromAttitute(item.attitute);
+            if (!bonusEmojis.indexOf(emoji)>-1) {
+              bonusEmojis.push({emoji: emoji, title: this.localize(item.attitute)});
+              hasBonuses = true;
+            }
+          } else if (item.type==="penalty") {
+            let emoji = GetEmojiFromAttitute(item.attitute);
+            if (!penaltyEmojis.indexOf(emoji)>-1) {
+              penaltyEmojis.push({emoji: emoji, title: this.localize(item.attitute)});
+              hasPenalties = true;
+            }
+          }
+      });
+
+      const bonusHtml = html`${bonusEmojis.map((emoji)=> {
+        return html`<div style="margin-right: 4px;" title="${emoji.title}">${emoji.emoji}</div>`
+      })}`;
+
+      const penaltyHtml = html`${penaltyEmojis.map((emoji)=> {
+        return html`<div style="margin-right: 4px;" title="${emoji.title}">${emoji.emoji}</div>`
+      })}`
+
+      if (hasBonuses && hasPenalties) {
+        return html`+${bonusHtml} / -${penaltyHtml}`
+      } else if (hasBonuses) {
+        return html`+${bonusHtml}`
+      } else if (hasPenalties) {
+        return html`-${hasPenalties}`
+      } else {
+        console.error("Wrong state of penalties");
+      }
+    } else {
+      return '';
+    }
+  }
+
+  exclusiveNumberOf(itemIn) {
+    const ids = itemIn.exclusive_ids.split(',');
+    let current;
+
+    ids.forEach((id, index)=>{
+      if (itemIn.id==id) {
+        current = index+1;
+      }
+    })
+
+    return current+" "+this.localize('of')+" "+ids.length;
+  }
+
   changeSpeed(event) {
     let speed;
     if (event.detail.value!==null) {
@@ -162,6 +230,15 @@ class OapSwipableCards extends OapBaseElement {
     } else {
       return "";
     }
+  }
+
+  getExclusiveStyle(item) {
+    const color = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
+    return "color: #FFF;font-size: 15px;background-color:"+color;
+  }
+
+  getSubCategoryStyle(item) {
+    return "color: #111;font-size: 15px;background-color: #FFF";
   }
 
   startAutomaticSelection() {
@@ -251,6 +328,10 @@ class OapSwipableCards extends OapBaseElement {
           })
         }
 
+        if (window.debugOn) {
+          this.itemsLeft = [...this.items];
+        }
+
         this.visibleItems=this.itemsLeft.slice(0, 5);
         this.itemsLeft.shift();
         this.itemsLeft.shift();
@@ -269,8 +350,7 @@ class OapSwipableCards extends OapBaseElement {
 
   updateNavigator() {
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.items[this.currentItemsPosition].module_content_type];
-    if (this.$$("#moduleName")) {
-      this.$$("#moduleName").title = this.items[this.currentItemsPosition].module_content_type;
+    if (this.$$("#navigator")) {
       const navigatorDiv = this.$$("#navigator");
       while (navigatorDiv.firstChild) {
         navigatorDiv.removeChild(navigatorDiv.firstChild);
