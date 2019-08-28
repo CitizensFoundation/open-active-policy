@@ -714,7 +714,12 @@ class Oap3dBudget extends OapBaseElement {
 
     const color = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
 
-    var fudgetFactorPx = 0.033;
+    let fudgetFactorPx;
+    if (window.innerWidth>=600) {
+      fudgetFactorPx = 0.033;
+    } else {
+      fudgetFactorPx = 0.014;
+    }
     itemWidth = itemWidth*fudgetFactorPx;
 
     var object = new Mesh(new BoxGeometry(itemWidth, 5, 5), new MeshBasicMaterial({

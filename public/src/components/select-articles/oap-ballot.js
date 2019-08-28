@@ -86,6 +86,7 @@ class OapBallot extends OapPageViewElement {
                       class="ballotAreaItem"
                       .configFromServer="${this.configFromServer}"
                       .language="${this.language}"
+                      @goto-selected-id="${this.gotoSelectedId}"
                       .budgetElement="${this.budgetElement}"
                       .item="${item}">
                     </oap-article-item>
@@ -138,6 +139,13 @@ class OapBallot extends OapPageViewElement {
       ''
     }
     `
+  }
+
+  gotoSelectedId(event) {
+    this.selectedView = 1;
+    setTimeout(()=>{
+      this._scrollItemIntoView(event.detail, true);
+    }, 150);
   }
 
   selectTabAndScroll(view) {
@@ -257,11 +265,18 @@ class OapBallot extends OapPageViewElement {
     this.selectedView = parseInt(event.detail.value);
   }
 
-  _scrollItemIntoView(itemId) {
+  _scrollItemIntoView(itemId, fromSelectedItems) {
     var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     var isIE11 = /Trident.*rv[ :]*11\./.test(navigator.userAgent);
 
-    var items = this.shadowRoot.querySelectorAll("oap-article-item");
+    let selectorText;
+    if (fromSelectedItems) {
+      selectorText = "#itemContainerFinal > oap-article-item"
+    } else {
+      selectorText = "#itemContainer > oap-article-item"
+    }
+
+    var items = this.shadowRoot.querySelectorAll(selectorText);
     items.forEach(function (item) {
       if (item.name==itemId) {
         if (iOS || isIE11) {
@@ -270,8 +285,8 @@ class OapBallot extends OapPageViewElement {
           item.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
         }
 
-        if (this.wide) {
-          /*item.animate([
+        if (window.innerWidth>600) {
+          item.animate([
             { transform: "translateX(-3px)", easing: 'ease-in' },
             { transform: "translateX(3px)", easing: 'ease-out' },
             { transform: "translateX(-5px)", easing: 'ease-in' },
@@ -279,9 +294,9 @@ class OapBallot extends OapPageViewElement {
             { transform: "translateX(-7px)", easing: 'ease-in' },
             { transform: "translateX(7px)", easing: 'ease-out' },
           ], {
-            duration: 450,
-            iterations: 1
-          });*/
+            duration: 400,
+            iterations: 2
+          });
         }
       }
     }.bind(this));
@@ -465,7 +480,7 @@ class OapBallot extends OapPageViewElement {
             listItem.item.exclusive_ids.split(",").forEach((id) => {
               const index = allSelectedIds.indexOf(id);
               if (index> -1) {
-                listItem.setBlockedBy(this.budgetElement.selectedItems[index].name);
+                listItem.setBlockedBy({name: this.budgetElement.selectedItems[index].name, id: this.budgetElement.selectedItems[index].id});
               } else {
                 //listItem.setNotBlockedBy();
               }

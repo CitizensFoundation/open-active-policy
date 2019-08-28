@@ -47,7 +47,7 @@ class OapArticleItem extends OapBaseElement {
       },
 
       isBlockedBy: {
-        type: String
+        type: Object
       },
 
       isFavorite: {
@@ -99,7 +99,10 @@ class OapArticleItem extends OapBaseElement {
 
   render() {
     return html`
-      <div id="topContainer" class="itemContent shadow-animation shadow-elevation-3dp layout horizontal" ?inbudget="${this.selected}">
+      <div id="topContainer"
+           @click="${this.topClick}"
+           class="itemContent shadow-animation shadow-elevation-3dp layout horizontal"
+           ?inbudget="${this.selected}" ?blocked-by="${this.isBlockedBy}">
         <div id="opacityLayer"></div>
         <div id="innerContainer">
           <div id="leftColor" class="leftColor" ?hidden="${this.selected}"></div>
@@ -121,12 +124,24 @@ class OapArticleItem extends OapBaseElement {
                 </div>
               </div>
             </div>
-            <div class="subCategory" ?inbudget="${this.selected}">${this.item.sub_category}</div>
+            <div class="subCategory" ?inbudget="${this.selected}" ?hidden="${this.isBlockedBy}">${this.item.sub_category}</div>
           </div>
         </div>
-        <div id="isBlockedByInfo" ?hidden="${!this.isBlockedBy}">${this.localize("blockedBy")} ${this.isBlockedBy}</div>
+        <div id="isBlockedByInfo" ?hidden="${!this.isBlockedBy}">
+          ${this.isBlockedBy ? html`
+            ${this.localize("blockedBy")} ${this.isBlockedBy.name}
+          ` : ''}
+        </div>
       </div>
     `;
+  }
+
+  topClick() {
+    if (this.isBlockedBy) {
+      this.fire('goto-selected-id', this.isBlockedBy.id);
+    } else {
+      this.fire('oap-open-article-id', this.item.id);
+    }
   }
 
   exclusiveNumberOf() {
@@ -284,7 +299,7 @@ class OapArticleItem extends OapBaseElement {
         });
         this.item.exclusive_ids.split(",").forEach((id) => {
           if (allSelectedIds.indexOf(id) > -1) {
-            this.setBlockedBy(this.item.name);
+            this.setBlockedBy({name: this.item.name, id: this.item.id });
           } else {
             this.setNotBlockedBy();
           }
@@ -364,21 +379,22 @@ class OapArticleItem extends OapBaseElement {
     }
   }
 
-  setBlockedBy(name) {
+  setBlockedBy(blockedByInfo) {
     //console.log("setTooExpensive itemId: "+this.item.id);
-    this.$$("#addToBudgetButton").style.display="none";
-    this.$$("#innerContainer").style.opacity = 0.1;
-    const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
-    this.$$("#isBlockedByInfo").style.color=color;
-    this.isBlockedBy = name;
-    this.requestUpdate();
+    if (blockedByInfo.id!=this.item.id) {
+      this.$$("#addToBudgetButton").style.display="none";
+      this.$$("#innerContainer").style.opacity = 0.4;
+      const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
+      this.isBlockedBy = blockedByInfo;
+      this.$$("#isBlockedByInfo").style.color=color;
+      this.requestUpdate();
+    }
   }
 
   setNotBlockedBy () {
     //console.log("setNotTooExpensive itemId: "+this.item.id);
     this.isBlockedBy = null;
     this.$$("#addToBudgetButton").style.display="block";
-
     this.$$("#innerContainer").style.opacity = 1.0;
     this.requestUpdate();
   }
@@ -410,6 +426,7 @@ class OapArticleItem extends OapBaseElement {
 
   _toggleInBudget(event) {
     //console.log("_toggleInBudget itemId: "+this.item.id);
+    event.stopPropagation();
     if (event.target && !event.target.attributes['disabled']) {
       this.fire('oav-toggle-item-in-budget', { item: this.item });
       this.fire('oap-close-snackbar');

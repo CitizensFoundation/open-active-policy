@@ -192,6 +192,10 @@ export const OapArticleItemStyles = css`
     font-size: 12px;
   }
 
+  #topContainer {
+    cursor: pointer;
+  }
+
   .addRemoveButton {
     position: absolute;
     bottom: 11px;
@@ -220,12 +224,15 @@ export const OapArticleItemStyles = css`
 
   #isBlockedByInfo {
     position: absolute;
+    /*
     top: 50%;
     transform: translateY(-50%);
+    */
+    bottom: 6px;
     left: 0;
     right: 0;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 8px;
     margin-right: 8px;
   }

@@ -97,7 +97,7 @@ export const OapBallotStyles = css`
 
   .tab {
     background: transparent;
-    font-size: 17px;
+    font-size: 18px;
     padding-left: 12px;
     padding-right: 12px;
     color: #999;
@@ -171,7 +171,6 @@ export const OapBallotStyles = css`
       margin-top: 30px;
     }
   }
-
 
   @media (max-width: 600px) {
     .topContainer {
