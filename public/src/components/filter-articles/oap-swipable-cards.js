@@ -85,13 +85,13 @@ class OapSwipableCards extends OapBaseElement {
                     <div class="card-content">
                       <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                       <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
-                        <div class="subHeader layout  horizontal" ?module-type="${item.module_type=="ModuleTypeCard"}" style="${this.getSubCategoryStyle(item)}">
-                          ${item.sub_category} <div class="layout-inline flex-auto"> </div> ${this.getBonusesAndPenalties(item)}
-                        </div>
                         <div class="moduleName name" title="${item.module_content_type}" ?module-type="${item.module_type=="ModuleTypeCard"}" ?is-exclusive="${this.isExclusive(item)}">${item.name}</div>
                         ${this.isExclusive(item) ? html`
                           <div class="exclusiveCardTitle" style="${this.getExclusiveStyle(item)}">${this.localize("exclusiveSeries")} ${this.exclusiveNumberOf(item)}</div>
                           ` : html``}
+                        <div class="subHeader layout  horizontal" ?module-type="${item.module_type=="ModuleTypeCard"}" style="${this.getSubCategoryStyle(item)}">
+                         ${this.getBonusesAndPenalties(item)}
+                        </div>
                         <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
                       </div>
                     ${(item.module_type==="ModuleTypeCard") ? html`
@@ -184,11 +184,11 @@ class OapSwipableCards extends OapBaseElement {
       })}`
 
       if (hasBonuses && hasPenalties) {
-        return html`+${bonusHtml} / -${penaltyHtml}`
+        return html`<span style="color: #0F0;font-weight: bold;">+</span>${bonusHtml} / <span style="color: #F00;font-weight: bold;">-</span>${penaltyHtml}`
       } else if (hasBonuses) {
-        return html`+${bonusHtml}`
+        return html`<span style="color: #0F0;font-weight: bold;">+</span>${bonusHtml}`
       } else if (hasPenalties) {
-        return html`-${hasPenalties}`
+        return html`<span style="color: #F00;font-weight: bold;">-</span>${hasPenalties}`
       } else {
         console.error("Wrong state of penalties");
       }
@@ -238,7 +238,7 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   getSubCategoryStyle(item) {
-    return "color: #111;font-size: 15px;background-color: #FFF";
+    return "";//"color: #111;font-size: 15px;background-color: #FFF";
   }
 
   startAutomaticSelection() {

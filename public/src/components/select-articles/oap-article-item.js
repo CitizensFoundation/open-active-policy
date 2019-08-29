@@ -7,7 +7,7 @@ import { html } from 'lit-element';
 import { OapArticleItemStyles } from './oap-article-item-styles.js';
 import { OapBaseElement } from '../oap-base-element';
 import { OapShadowStyles } from '../oap-shadow-styles';
-
+import '../oap-icons.js';
 import '@polymer/iron-image';
 import '@polymer/paper-menu-button';
 import '@polymer/paper-icon-button';
@@ -85,7 +85,9 @@ class OapArticleItem extends OapBaseElement {
 
       configFromServer: Object,
 
-      listBoxSelection: Number
+      listBoxSelection: Number,
+
+      selectedExclusiveId: Number
     };
   }
 
@@ -110,11 +112,19 @@ class OapArticleItem extends OapBaseElement {
             <div class="layout horizontal">
               <div class="image" ?hidden="${!this.selected}"><img class="cardImage" src="${this.item.image_url}"/></div>
             </div>
-            <div class="name" ?inbudget="${this.selected}">${this.item.name} ${this.exclusiveNumberOf()}</div>
+            <div class="name"
+              ?exclusive-active="${this.item.exclusiveOptions && !this.selectedExclusiveId}"
+              ?inbudget="${this.selected}">
+              ${this.item.exclusiveOptions && !this.selectedExclusiveId ? 'Pick: ' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
+              </div>
+            <div class="exclusiveName" ?hidden="${this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
             <div class="layout-inline vertical" >
               <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
-              <div class="buttons" ?hidden="${this.descriptionTabSelected}">
-                <div raised id="addToBudgetButton" class="shadow-animation  shadow-elevation-2dp addRemoveButton" ?hidden="${this.selected}"
+              <div class="buttons" ?hidden="${this.item.exclusive_ids && !this.selectedExclusiveId}">
+                <div id="addToBudgetButton" class="shadow-animation shadow-elevation-2dp addRemoveButton"
+                          ?hidden="${this.selected}"
+                          ?exclusive-active="${this.item.exclusiveOptions}"
+                          ?exclusive-selected="${this.selectedExclusiveId}"
                           ?disabled="${this.toExpensive || this.isExcluded}" title="${this.localize('add_to_budget')}" icon="add" @click="${this._toggleInBudget}">
                   <div class="priceText">+${this.item.price}</div>
                 </div>
@@ -123,8 +133,22 @@ class OapArticleItem extends OapBaseElement {
                   <div class="priceText">-${this.item.price}</div>
                 </div>
               </div>
+              ${(this.item.exclusiveOptions && !this.selectedExclusiveId && !this.selected) ? html`
+                <paper-menu-button @tap="${this._openMenu}" class="editExclusiveMenuButton" horizontal-align="right">
+                  <paper-icon-button id="editExclusiveOptions" class="shadow-animation shadow-elevation-2dp  dropdown-trigger  editExclusiveButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize('openDetailMenu')}" icon="mode-edit"></paper-icon-button>
+                  <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" @selected-changed="${this.selectedExclusiveChanged}">
+                    ${this.item.exclusiveOptions.map((item)=>{
+                      return html`
+                        <paper-item data-id="${item.id}">
+                          ${item.name.split(": ")[1]}
+                        </paper-item>
+                      `
+                    })}
+                  </paper-listbox>
+                </paper-menu-button>
+              ` : ''}
             </div>
-            <div class="subCategory" ?inbudget="${this.selected}" ?hidden="${this.isBlockedBy}">${this.item.sub_category}</div>
+            <div class="subCategory" hidden ?inbudget="${this.selected}" ?blockedBy="${this.isBlockedBy}">${this.item.sub_category}</div>
           </div>
         </div>
         <div id="isBlockedByInfo" ?hidden="${!this.isBlockedBy}">
@@ -134,6 +158,16 @@ class OapArticleItem extends OapBaseElement {
         </div>
       </div>
     `;
+  }
+
+  selectedExclusiveChanged(event) {
+    if (event.detail.value!==null) {
+      this.selectedExclusiveId = this.item.exclusiveOptions[event.detail.value].id;
+      const exclusiveOptions = this.item.exclusiveOptions;
+      this.item = this.item.exclusiveOptions[event.detail.value];
+      this.item.exclusiveOptions = exclusiveOptions;
+      this.$$("#listBox").selected = null;
+    }
   }
 
   topClick() {
@@ -203,7 +237,7 @@ class OapArticleItem extends OapBaseElement {
   constructor() {
     super();
     this.reset();
-    this.listBoxSelection = 0;
+    this.listBoxSelection = null;
   }
 
   reset() {
@@ -224,8 +258,8 @@ class OapArticleItem extends OapBaseElement {
     }
   }
 
-  _clickedDropDownMenu() {
-    this.activity('click', 'dropdown');
+  _clickedDropDownMenu(event) {
+    this.activity('click', 'exclusiveDropdown');
   }
 
   _costIsOne(cost) {
@@ -273,6 +307,9 @@ class OapArticleItem extends OapBaseElement {
     this.$$("#leftColor").style.backgroundColor=color;
     if (!this.isExcluded && !this.isBlockedBy) {
       this.$$("#addToBudgetButton").style.backgroundColor=color;
+      if (this.$$("#editExclusiveOptions")) {
+        this.$$("#editExclusiveOptions").style.backgroundColor=color;
+      }
     }
 
     if (this.budgetElement) {
@@ -350,7 +387,11 @@ class OapArticleItem extends OapBaseElement {
     this.selected = true;
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
     this.$$("#addToBudgetButton").style.backgroundColor=color;
-   this.$$("#opacityLayer").style.backgroundColor=color;
+    if (this.$$("#editExclusiveOptions")) {
+      this.$$("#editExclusiveOptions").style.backgroundColor=color;
+    }
+
+    this.$$("#opacityLayer").style.backgroundColor=color;
     this.$$("#opacityLayer").classList.add("cover");
     this.$$("#opacityLayer").style.display="block";
     setTimeout(()=>{
@@ -376,6 +417,9 @@ class OapArticleItem extends OapBaseElement {
     if (!this.isExcluded && !this.isBlockedBy) {
       const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
       this.$$("#addToBudgetButton").style.backgroundColor=color;
+      if (this.$$("#editExclusiveOptions")) {
+        this.$$("#editExclusiveOptions").style.backgroundColor=color;
+      }
     }
   }
 

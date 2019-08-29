@@ -538,8 +538,8 @@ export const OapSwipableCardsStyles = css`
   }
 
   .typeButtons {
-    background-color: #000;
-    color: #fff;
+    background-color: #FFF;
+    color: #000;
     border: 1px solid #FFF;
     text-align: center;
     margin: 8px;
@@ -574,12 +574,24 @@ export const OapSwipableCardsStyles = css`
   }
 
   .exclusiveCardTitle {
-    margin-left: 8px;
+    margin-left: 0px;
+    margin-right: 6px;
+    padding: 3px;
+    padding-left: 8px;
+    font-size: 9px;
     color: #FFF;
   }
 
   .subHeader {
-    margin-left: 8px;
+    position: absolute;
+    top: 392px;
+    border-radius: 6px;
+    padding: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
   .subHeader[module-type] {

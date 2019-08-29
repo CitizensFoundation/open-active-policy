@@ -512,7 +512,7 @@ class OapApp extends OapBaseElement {
       image_url: '' },
       { id: '1',
     branch: 'Executive Core Articles',
-    name: 'Empowered President',
+    name: 'Head of state: Empowered President',
     description:
      'An Empowered President, elected directly or indirectly by the entire electorate, meant to personify the will of the people in single individual\'s leadership abilities.',
     module_type: 'Exclusive',
@@ -526,7 +526,7 @@ class OapApp extends OapBaseElement {
     penalty: 'High Social Progress,High Collective' },
   { id: '2',
     branch: 'Executive Core Articles',
-    name: 'Prime Minister',
+    name: 'Head of state: Prime Minister',
     description:
      'As the head of the Legislative/Parliamentary system, the Prime Minister’s authority arises from the elected representatives choice of a leader amongst themselves. This helps reduce gridlock in government, while also disconnecting the Head of State from the direct will of the electorate.',
     module_type: 'Exclusive',
@@ -540,7 +540,7 @@ class OapApp extends OapBaseElement {
     penalty: 'High Social Progress' },
   { id: '3',
     branch: 'Executive Core Articles',
-    name: 'King',
+    name: 'Head of state: King',
     description:
      'Historically the center of authority in pre-modern governments, the King\'s authority rests on a traditional architecture of original military conquest, hereditary transitions of power, and usually some notion of Divine Will. Though once always autocratic and ruling through all powerful fiat of their will, many monarchs have ceded power to more democratic and parliamentary governments, becoming largely figureheads of continuity and tradition.',
     module_type: 'Exclusive',
@@ -555,7 +555,7 @@ class OapApp extends OapBaseElement {
     penalty: 'High Social Progress,High Liberty,High Privacy' },
   { id: '4',
     branch: 'Executive Core Articles',
-    name: 'High Priest',
+    name: 'Head of state: High Priest',
     description:
      'In a proper Theocracy, the central authority rests with the highest authority of the clergy of the religious faith that underpins the government, the spiritual leader of the majority of the population of the country. This authority may function as an interpretive and judicial authority primarily; or it may be an absolute autocratic authority over all structures of government.',
     module_type: 'Exclusive',

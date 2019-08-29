@@ -25,6 +25,14 @@ export const OapArticleItemStyles = css`
     max-width: 220px;
   }
 
+  .name[exclusive-active] {
+    position: absolute;
+    font-size: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+  }
+
   .itemContent[small] {
     width: 260px !important;
     height: 277px;
@@ -56,8 +64,6 @@ export const OapArticleItemStyles = css`
     width: 214px;
     height: 214px;
   }
-
-
 
   .buttons {
     z-index: 5;
@@ -187,9 +193,24 @@ export const OapArticleItemStyles = css`
   .subCategory {
     position: absolute;
     bottom: 4px;
-    left: 12px;
+    left: 8px;
     color: #656565;
     font-size: 12px;
+  }
+
+  #addToBudgetButton[exclusive-active] {
+    -webkit-transition: transform 1400ms ease;
+    -o-transition: transform 1400ms ease;
+    transition: transform 1400ms ease;
+    -webkit-transform: scale(0.1);
+    -o-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+
+  #addToBudgetButton[exclusive-selected] {
+    -webkit-transform: scale(1.0);
+    -o-transform: scale(1.0);
+    transform: scale(1.0);
   }
 
   #topContainer {
@@ -207,6 +228,35 @@ export const OapArticleItemStyles = css`
     margin-right: 6px;
     border-radius: 3px;
     padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--app-accent-color);
+    color: var(--app-ballot-item-button-color, #fff);
+  }
+
+  .exclusiveName {
+    position: absolute;
+    top: 24px;
+    left: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    max-width: 218px;
+  }
+
+  .editExclusiveMenuButton {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    text-align: center;
+  }
+
+  .editExclusiveButton {
+    font-size: 18px;
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    padding: 12px;
     text-align: center;
     cursor: pointer;
     background-color: var(--app-accent-color);
@@ -333,14 +383,6 @@ export const OapArticleItemStyles = css`
     bottom: 4px;
     left: 0px;
     z-index: 2;
-  }
-
-  google-map {
-    z-index: 5;
-  }
-
-   {
-    z-index: 5;
   }
 
   .favoriteButtons {

@@ -43,6 +43,8 @@ class OapBallot extends OapPageViewElement {
 
       budgetBallotItems: Array,
 
+      processedBallotItems: Array,
+
       wide: Boolean,
 
       popupWindow: Object,
@@ -72,14 +74,14 @@ class OapBallot extends OapPageViewElement {
       html`
         <div class="tabsContainer">
           <div id="selectedTab" ?selected="${this.selectedView===1}" @click="${()=>{ this.selectTabAndScroll(1)}}" class="tab selectedTab">${this.localize('finalSelection')} ${(this.budgetElement && this.budgetElement.selectedItems) ? html` (${this.budgetElement.selectedItems.length})` : html``}</div>
-          <div id="favTab" ?selected="${this.selectedView===0}" @click="${()=>{ this.selectTabAndScroll(0)}}" class="tab favTab">${this.localize('favorite')} ${this.budgetBallotItems ? html` (${this.budgetBallotItems.length})` : html``}</div>
+          <div id="favTab" ?selected="${this.selectedView===0}" @click="${()=>{ this.selectTabAndScroll(0)}}" class="tab favTab">${this.localize('favorite')} ${this.processedBallotItems ? html` (${this.processedBallotItems.length})` : html``}</div>
         </div>
 
         <div class="topContainer">
-          ${(this.budgetBallotItems && this.budgetElement) ?
+          ${(this.processedBallotItems && this.budgetElement) ?
             html`
               <div id="itemContainer" class="itemContainer layout horizontal center-center flex wrap" ?hidden="${this.selectedView===1}">
-                ${repeat(this.budgetBallotItems, (item) => item.id,  (item, index) =>
+                ${repeat(this.processedBallotItems, (item) => item.id,  (item, index) =>
                   html`
                     <oap-article-item
                       .name="${item.id}"
@@ -141,6 +143,33 @@ class OapBallot extends OapPageViewElement {
     `
   }
 
+  processBallotItems() {
+    this.processedBallotItems = [];
+    let currentExclusives = [];
+    let lastExclusiveSeries = null;
+    this.budgetBallotItems.forEach((item)=> {
+      if (lastExclusiveSeries && item.exclusive_ids!=lastExclusiveSeries) {
+        if (currentExclusives.length>0) {
+          const currentCombined = currentExclusives[0];
+          const optionItems = [...currentExclusives];
+          currentCombined.exclusiveOptions = optionItems;
+          this.processedBallotItems.push(currentCombined);
+          currentExclusives = [];
+          lastExclusiveSeries = null;
+        } else {
+          console.warn("Unexpected state of lastExclusiveSeries");
+        }
+      }
+
+      if (item.exclusive_ids) {
+        currentExclusives.push(item);
+        lastExclusiveSeries = item.exclusive_ids;
+      } else {
+        this.processedBallotItems.push(item);
+      }
+    });
+  }
+
   gotoSelectedId(event) {
     this.selectedView = 1;
     setTimeout(()=>{
@@ -168,6 +197,10 @@ class OapBallot extends OapPageViewElement {
           this.areaId = this.areaIdRoutePath;
         }
       }
+    }
+
+    if (changedProps.has('budgetBallotItems') && this.budgetBallotItems) {
+      this.processBallotItems();
     }
 
     if (changedProps.has('favoriteItem')) {
@@ -207,30 +240,6 @@ class OapBallot extends OapPageViewElement {
 
   disconnectedCallback() {
     this._removeListeners();
-  }
-
-  loadArea() {
-    this.oldFavoriteItem = null;
-    this.favoriteItem = null;
-    if (this.areaId) {
-      this.reset();
-      this.fire('ak-clear-area');
-      fetch("/votes/get_ballot?area_id="+this.areaId+"&locale="+this.language, { credentials: 'same-origin' })
-      .then(res => res.json())
-      .then(response => {
-        this.area = response.area;
-        this.budgetBallotItems = this._setupLocationsAndTranslation(response.budget_ballot_items);
-        this.fire('oav-set-title', this.localize('ballot_area_name', 'area_name', this.area.name));
-        this.fire('oav-set-area', { areaName: this.area.name, totalChoicePoints: this.area.budget_amount });
-        setTimeout( () => {
-          this.$$("#tabs").shadowRoot.getElementById("selectionBar").style.setProperty("border-bottom", "3px solid var(--paper-tabs-selection-bar-color)");
-        });
-      })
-      .catch(error => {
-        this.fire('ak-error', error);
-        console.error('Error:', error);
-      });
-    }
   }
 
   _setupListeners() {
@@ -333,11 +342,11 @@ class OapBallot extends OapPageViewElement {
       favTab.classList.remove("favOpacityDown");
     }, 770);
 
-    var found = this.budgetBallotItems.find((item)=> {
+    var found = this.processedBallotItems.find((item)=> {
       return item.id==event.detail.item.id;
     });
     if (!found) {
-      this.budgetBallotItems.unshift(event.detail.item);
+      this.processedBallotItems.unshift(event.detail.item);
     }
   }
 
@@ -384,10 +393,10 @@ class OapBallot extends OapPageViewElement {
   }
 
   removeFromAvailableItems(itemId) {
-    for( var i = 0; i < this.budgetBallotItems.length; i++){
-      if (this.budgetBallotItems[i].id==itemId) {
-        this.budgetBallotItems.splice(i,1);
-        this.fire('oap-filtered-items-changed', this.budgetBallotItems);
+    for( var i = 0; i < this.processedBallotItems.length; i++){
+      if (this.processedBallotItems[i].id==itemId) {
+        this.processedBallotItems.splice(i,1);
+        this.fire('oap-filtered-items-changed', this.processedBallotItems);
       }
     }
   }
@@ -593,26 +602,6 @@ class OapBallot extends OapPageViewElement {
         [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
-  }
-
-  _setupLocationsAndTranslation(budgetBallotItems) {
-    var arrayLength = budgetBallotItems.length;
-    for (var i = 0; i < arrayLength; i++) {
-      if (budgetBallotItems[i].locations && budgetBallotItems[i].locations != "") {
-        var hashArray = [];
-        var locationsArray = budgetBallotItems[i].locations.replace(' ','').split(',');
-        var counter = 0;
-        while (counter<locationsArray.length) {
-          hashArray.push({ latitude: locationsArray[counter], longitude: locationsArray[counter+1]});
-          counter+=2;
-        }
-        budgetBallotItems[i].locations = hashArray;
-      } else {
-        budgetBallotItems[i].locations = [];
-      }
-    }
-
-    return this.shuffle(budgetBallotItems);
   }
 }
 
