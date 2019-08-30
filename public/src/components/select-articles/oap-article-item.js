@@ -103,6 +103,7 @@ class OapArticleItem extends OapBaseElement {
     return html`
       <div id="topContainer"
            @click="${this.topClick}"
+           ?module-type="${this.item.module_type=="ModuleTypeCard"}"
            class="itemContent shadow-animation shadow-elevation-3dp layout horizontal"
            ?inbudget="${this.selected}" ?blocked-by="${this.isBlockedBy}">
         <div id="opacityLayer"></div>
@@ -114,11 +115,12 @@ class OapArticleItem extends OapBaseElement {
             </div>
             <div class="name"
               ?exclusive-active="${this.item.exclusiveOptions && !this.selectedExclusiveId}"
+              ?module-type="${this.item.module_type=="ModuleTypeCard"}"
               ?inbudget="${this.selected}">
-              ${this.item.exclusiveOptions && !this.selectedExclusiveId ? 'Pick: ' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
+              ${this.item.exclusiveOptions && !this.selectedExclusiveId ? this.localize('pick')+': ' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
               </div>
             <div class="exclusiveName" ?hidden="${this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
-            <div class="layout-inline vertical" >
+            <div class="layout-inline vertical" ?hidden="${this.item.module_type=="ModuleTypeCard"}">
               <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
               <div class="buttons" ?hidden="${this.item.exclusive_ids && !this.selectedExclusiveId}">
                 <div id="addToBudgetButton" class="shadow-animation shadow-elevation-2dp addRemoveButton"
@@ -210,7 +212,17 @@ class OapArticleItem extends OapBaseElement {
 
     if (changedProps.has('item')) {
       if (this.item) {
+        if (this.item.exclusiveOptions && this.item.exclusiveOptions.length==1) {
+          this.selectedExclusiveId = this.item.id;
+        }
         this.resetFromBudget();
+
+        if (this.item.module_type=="ModuleTypeCard") {
+          const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
+
+          this.$$("#topContainer").style.backgroundColor=color;
+          this.$$("#topContainer").style.color="#FFF";
+        }
       }
     }
 
@@ -252,6 +264,7 @@ class OapArticleItem extends OapBaseElement {
     this.isExcluded = false;
     this.isBlockedBy = null;
     this.oldElementNeedsSwapping=null;
+    this.selectedExclusiveId = null;
   }
 
   _imageLoadedChanged(event) {

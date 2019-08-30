@@ -45,11 +45,11 @@ export const OapPolicyQuizStyles = css`
   }
 
   .wrongAnswer {
-    -webkit-transition: opacity, color, border 0.7s ease-in-out;
-    -moz-transition: opacity, color, border 0.7s ease-in-out;
-    -ms-transition: opacity, color, border 0.7s ease-in-out;
-    -o-transition: opacity, color, border 0.7s ease-in-out;
-    opacity: 0.4;
+    -webkit-transition: opacity, color, border 0.6s ease-in-out;
+    -moz-transition: opacity, color, border 0.6s ease-in-out;
+    -ms-transition: opacity, color, border 0.6s ease-in-out;
+    -o-transition: opacity, color, border 0.6s ease-in-out;
+    opacity: 0.6;
     color: #FF0000;
     border: 1px solid #FF0000;
   }

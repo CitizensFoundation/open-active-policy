@@ -332,6 +332,8 @@ class OapSwipableCards extends OapBaseElement {
           this.itemsLeft = [...this.items];
         }
 
+        this.fire('item-selected', this.items[0]);
+
         this.visibleItems=this.itemsLeft.slice(0, 5);
         this.itemsLeft.shift();
         this.itemsLeft.shift();
@@ -732,6 +734,9 @@ class OapSwipableCards extends OapBaseElement {
           this.currentPosition = 0;
           this.requestUpdate();
           this.updateComplete.then(() => {
+            if (this.visibleItems[this.currentPosition].module_type=="ModuleTypeCard") {
+              this.fire('item-selected', this.visibleItems[0]);
+            }
             this.refresh();
             this.updateNavigator();
             this.requestUpdate();

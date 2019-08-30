@@ -30,7 +30,20 @@ export const OapArticleItemStyles = css`
     font-size: 14px;
     top: 50%;
     transform: translateY(-50%);
-    left: 8px;
+    left: 0;
+  }
+
+  .name[module-type] {
+    position: absolute;
+    font-size: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFF;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   .itemContent[small] {
@@ -214,7 +227,7 @@ export const OapArticleItemStyles = css`
   }
 
   #topContainer {
-    cursor: pointer;
+    /*cursor: pointer;*/
   }
 
   .addRemoveButton {
