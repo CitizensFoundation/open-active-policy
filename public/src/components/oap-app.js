@@ -1064,7 +1064,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
+    this.openAndUpdateDialog();
   }
 
   openChoicePointsDialog() {
@@ -1085,7 +1085,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
+    this.openAndUpdateDialog();
   }
 
   openQuizDialog() {
@@ -1105,8 +1105,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   startCulturalAttitutesTutorial() {
@@ -1128,8 +1127,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialAuthority() {
@@ -1152,8 +1150,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialLiberty() {
@@ -1176,8 +1173,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialScience() {
@@ -1200,8 +1196,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialTradition() {
@@ -1225,8 +1220,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialCollective() {
@@ -1249,8 +1243,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialIndependence() {
@@ -1273,8 +1266,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialPrivacy() {
@@ -1297,8 +1289,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialLawAndOrder() {
@@ -1322,8 +1313,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   culturalAttitutesTutorialProgressivism() {
@@ -1346,8 +1336,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
   openCountrySelectInfoDialog() {
@@ -1368,8 +1357,15 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
+    this.openAndUpdateDialog();
+  }
+
+  openAndUpdateDialog() {
     this.$$("#masterDialog").open();
     this.requestUpdate();
+    setTimeout(()=>{
+      this.$$("#masterDialog").fire('iron-resize');
+    }, 50);
   }
 
   openFilterInfoDialog() {
@@ -1382,15 +1378,14 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Filter Articles</div>
         <div class="horizontal welcomeText">
-        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include. You may choose Automatic for some Branches, and manually select modules for Branches you are most interested in.</div>
+        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include.</div>
         <div class="buttons center-center">
           <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
         </div>
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
 
 
@@ -1410,8 +1405,7 @@ class OapApp extends OapBaseElement {
       </div>
     </div>
    `
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
+    this.openAndUpdateDialog();
   }
   _startDelayedCaching(options) {
     setTimeout(()=>{
