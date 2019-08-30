@@ -25,6 +25,11 @@ class OapFilterArticles extends OapPageViewElement {
     ];
   }
 
+  constructor() {
+    super();
+    this.completed=false;
+  }
+
   render() {
     return html`
       ${this.completed ? html`
@@ -53,13 +58,16 @@ class OapFilterArticles extends OapPageViewElement {
   }
 
   setCompleted() {
-    this.completed=true;
+    this.fire('oap-filtering-finished');
+    setTimeout(()=>{
+      this.fire("oap-open-selection-info-dialog");
+    })
   }
 
   updated(changedProps) {
     super.updated(changedProps);
-    if (changedProps.has('allItems')) {
-      this.completed=false;
+    if (changedProps.has('allItems') && this.allItems) {
+      this.fire("oap-open-filter-info-dialog");
     }
   }
 }

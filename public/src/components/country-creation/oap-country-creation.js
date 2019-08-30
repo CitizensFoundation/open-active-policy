@@ -285,7 +285,10 @@ class OapCountryCreation extends OapPageViewElement {
         this.customCountry = false;
         this.submitDisabled = false;
       }
-      this.fire('oap-start-cultural-attitutes-tutorial');
+      if (!this.haveOpenedTutorial) {
+        this.fire('oap-start-cultural-attitutes-tutorial');
+        this.haveOpenedTutorial=true;
+      }
     }
   }
 

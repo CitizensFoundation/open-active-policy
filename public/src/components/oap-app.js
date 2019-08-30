@@ -698,6 +698,8 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
     this.addEventListener("oap-reset-all-items", this.resetAllItems);
     this.addEventListener("oap-start-cultural-attitutes-tutorial", this.startCulturalAttitutesTutorial);
+    this.addEventListener("oap-open-filter-info-dialog", this.openFilterInfoDialog);
+    this.addEventListener("oap-open-selection-info-dialog", this.openSelectionInfoDialog);
   }
 
   _removeListeners() {
@@ -736,6 +738,8 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
     this.removeEventListener("oap-reset-all-items", this.resetAllItems);
     this.removeEventListener("oap-start-cultural-attitutes-tutorial", this.startCulturalAttitutesTutorial);
+    this.removeEventListener("oap-open-filter-info-dialog", this.openFilterInfoDialog);
+    this.removeEventListener("oap-open-selection-info-dialog", this.openSelectionInfoDialog);
   }
 
   usedBonusesAndPenaltiesChanged(event) {
@@ -1089,7 +1093,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="width: 400px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
+        <img aria-label="choice points image" style="max-width: 400px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">Quiz</div>
@@ -1109,7 +1113,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="image" style="width: 400px;height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
+        <img aria-label="image" style="max-width: 400px;max-height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">Cultural Values</div>
@@ -1136,7 +1140,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Authority</div>
         <div class="horizontal welcomeText">
-          <em>“I will be your father figure, put your tiny hand in mine…”</em><br>
+          <span class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em></span><br></span>
           High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
         </div>
         <div class="buttons center-center">
@@ -1160,7 +1164,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Liberty</div>
         <div class="horizontal welcomeText">
-          <em>A man willing to sacrifice Liberty for Security deserves neither…</em><br>
+          <span class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em><br></span>
           This measures the society’s embrace of the idea that a person should be allowed to do whatever the hell they want as long as it doesn’t hurt other people.
         </div>
         <div class="buttons center-center">
@@ -1184,7 +1188,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Science</div>
         <div class="horizontal welcomeText">
-          <emScience is true whether you believe in it or not…</em><br>
+          <span class="smallQuotes"><em>Science is true whether you believe in it or not…</em><br></span>
           This score represents the extent to which this society values facts, truth, demonstrable evidence, the scientific method, modern consensus on sexual and racial equality, evolution, etc.
         </div>
         <div class="buttons center-center">
@@ -1208,8 +1212,8 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Tradition</div>
         <div class="horizontal welcomeText">
-          <em>“Study the past, if you wish to divine the future”</em><br>
-          <em>- Confucius</em><br>
+          <span class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
+          <em>- Confucius</em><br></span>
           Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
         </div>
         <div class="buttons center-center">
@@ -1233,7 +1237,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Collectivism</div>
         <div class="horizontal welcomeText">
-          <em>The good of the many outweighs the good of the few…</em><br>
+          <span class="smallQuotes"><em>The good of the many outweighs the good of the few…</em><br></span>
           Defines the extent to which the culture understands communal sacrifice and shared purpose in the name of the common good.
         </div>
         <div class="buttons center-center">
@@ -1257,7 +1261,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Independence</div>
         <div class="horizontal welcomeText">
-          <em>Swear allegiance to no other flag, serve no nation but thine own…</em><br>
+          <span class="smallQuotes"><em>Swear allegiance to no other flag, serve no nation but thine own…</em><br></span>
           This measures the extent the culture of the country dictates that it maintain complete autonomy from other nation states. High Independence indicates the citizens supports almost no international coalition building or globalist thinking. Low Independence indicates they welcome partnerships with friendly foriegn powers all over the globe.
         </div>
         <div class="buttons center-center">
@@ -1281,7 +1285,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Privacy</div>
         <div class="horizontal welcomeText">
-          <em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br>
+          <span class="smallQuotes"><em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br></span>
           Defines how much the citizens of the country value their personal information being kept safe from the public sphere, and how much they expect their government to behave with regard to that boundary.
         </div>
         <div class="buttons center-center">
@@ -1305,8 +1309,8 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Law and Order</div>
         <div class="horizontal welcomeText">
-          <em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
-          <em>- Lao Tze</em><br>
+          <span class="smallQuotes"><em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
+          <em>- Lao Tze</em><br></span>
           This sets the appetite of the country’s citizenship for law enforcement in their lives and communities; High means that this makes them feel safe; Low means that it makes them angry and want to revolt.
         </div>
         <div class="buttons center-center">
@@ -1330,8 +1334,8 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         <div class="heading">Social Progress/</div>
         <div class="horizontal welcomeText">
-          <em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
-          <em>- Martin Luther King, Jr.</em>
+          <span class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
+          <em>- Martin Luther King, Jr.</em><br></span>
           This score measures the country’s urge towards social justice, equal treatment for all people, level playing field free of corruption, kleptocracy, cronyism and prejudice, and their belief in every citizen’s right to clean air, food, water, housing, education, medical attention.
         </div>
         <div class="buttons center-center">
@@ -1344,13 +1348,12 @@ class OapApp extends OapBaseElement {
     this.requestUpdate();
   }
 
-
   openCountrySelectInfoDialog() {
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="width: 400px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
+        <img aria-label="choice points image" style="max-width: 340px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">Select a Country</div>
@@ -1365,6 +1368,45 @@ class OapApp extends OapBaseElement {
     this.$$("#masterDialog").open();
   }
 
+  openFilterInfoDialog() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/filter1.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Filter Articles</div>
+        <div class="horizontal welcomeText">
+        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include. You may choose Automatic for some Branches, and manually select modules for Branches you are most interested in.</div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+  }
+
+
+  openSelectionInfoDialog() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Select Articles</div>
+        <div class="horizontal welcomeText">
+          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!        <div class="buttons center-center">
+          <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+  }
   _startDelayedCaching(options) {
     setTimeout(()=>{
       const emojis = ["🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];

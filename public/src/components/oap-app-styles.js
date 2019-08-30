@@ -223,6 +223,10 @@ export const OapAppStyles = css`
     margin-bottom: 16px;
   }
 
+  .smallQuotes {
+    color: #999;
+  }
+
   #favoriteIcon {
     color: var(--app-facvorite-icon-color, rgb(255,215,0));
     background-color: transparent;
