@@ -374,7 +374,8 @@ class OapBallot extends OapPageViewElement {
           newItem.selected = true;
         }, 650);
         this.processedBallotItems[i] = newItem;
-        this.fire('oap-filtered-items-changed', this.processedBallotItems);
+        //TODO: Get this working without circular problems
+        //this.fire('oap-filtered-items-changed', this.processedBallotItems);
         break;
       }
     }
@@ -437,7 +438,8 @@ class OapBallot extends OapPageViewElement {
       if (this.processedBallotItems[i].id==itemId) {
         this.processedBallotItems.splice(i,1);
         console.error("Removed: "+itemId);
-        this.fire('oap-filtered-items-changed', this.processedBallotItems);
+         //TODO: Get this working without circular problems
+        //this.fire('oap-filtered-items-changed', this.processedBallotItems);
         break;
       }
     }
