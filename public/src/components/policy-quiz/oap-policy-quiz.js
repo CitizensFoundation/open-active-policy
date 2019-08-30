@@ -360,7 +360,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.lightning3d.outlinePass.edgeStrength = 2.5;
     this.lightning3d.outlinePass.edgeThickness = 2.8;
     this.lightning3d.material.opacity = 1.0;
-    this.updateLighting3d = true;
+    //this.updateLighting3d = true;
 
     setTimeout(()=>{
       this.lightning3d.material.transparent = true;
