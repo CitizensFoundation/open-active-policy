@@ -448,6 +448,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       } else {
         this.currentIndex=null;
         this.completed=true;
+        this.quizFinished();
         this.requestUpdate();
         this.fire("oap-sound-effect","quizCompleted");
       }

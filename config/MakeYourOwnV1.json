@@ -88,6 +88,7 @@
     "googleAnalyticsId": "UA-7086040-28",
     "locales": {
       "en": {
+        "skip": "Skip",
         "next":"Next",
         "pick":"Pick",
         "blockedBy": "Blocked by",

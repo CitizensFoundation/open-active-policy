@@ -697,6 +697,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
     this.addEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
     this.addEventListener("oap-reset-all-items", this.resetAllItems);
+    this.addEventListener("oap-start-cultural-attitutes-tutorial", this.startCulturalAttitutesTutorial);
   }
 
   _removeListeners() {
@@ -733,7 +734,8 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-used-choice-points-changed", this.usedChoicePointsChanged);
     this.removeEventListener("oap-total-choice-points-changed", this.totalChoicePointsChanged);
     this.removeEventListener("oap-usedBonusesAndPenalties-changed", this.usedBonusesAndPenaltiesChanged);
-    this.addEventListener("oap-reset-all-items", this.resetAllItems);
+    this.removeEventListener("oap-reset-all-items", this.resetAllItems);
+    this.removeEventListener("oap-start-cultural-attitutes-tutorial", this.startCulturalAttitutesTutorial);
   }
 
   usedBonusesAndPenaltiesChanged(event) {
@@ -815,6 +817,7 @@ class OapApp extends OapBaseElement {
     this.fire('location-changed', path);
     this.activity('finished', 'quiz');
     this._startDelayedCaching();
+    this.openCountrySelectInfoDialog();
   }
 
   createCountryFinished(event) {
@@ -1032,7 +1035,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
+        <img aria-label="welcome/velkomin" width="200" height="200" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">${this.welcomeHeading}</div>
@@ -1065,7 +1068,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="cpImage" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
+        <img aria-label="cpImage" width="486" height="206" style="margin-left: -32px;margin-bottom:-16px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">Choice Points</div>
@@ -1086,7 +1089,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="width: 400px" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
+        <img aria-label="choice points image" style="width: 400px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">Quiz</div>
@@ -1101,6 +1104,266 @@ class OapApp extends OapBaseElement {
     this.$$("#masterDialog").open();
   }
 
+  startCulturalAttitutesTutorial() {
+    this.masterDialogCloseFunction = null
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="image" style="width: 400px;height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Cultural Values</div>
+        <div class="horizontal welcomeText">
+         These are the values of your society. Pay attention to these as you frame your constitution - you need to match your constitution to the Values of your citizens in your electorate.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton"  @click="${this.culturalAttitutesTutorialAuthority}"   autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+  }
+
+  culturalAttitutesTutorialAuthority() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🏛️
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Authority</div>
+        <div class="horizontal welcomeText">
+          <em>“I will be your father figure, put your tiny hand in mine…”</em><br>
+          High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLiberty}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialLiberty() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🌅
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Liberty</div>
+        <div class="horizontal welcomeText">
+          <em>A man willing to sacrifice Liberty for Security deserves neither…</em><br>
+          This measures the society’s embrace of the idea that a person should be allowed to do whatever the hell they want as long as it doesn’t hurt other people.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialScience}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialScience() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🔬
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Science</div>
+        <div class="horizontal welcomeText">
+          <emScience is true whether you believe in it or not…</em><br>
+          This score represents the extent to which this society values facts, truth, demonstrable evidence, the scientific method, modern consensus on sexual and racial equality, evolution, etc.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialTradition}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialTradition() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🏺
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Tradition</div>
+        <div class="horizontal welcomeText">
+          <em>“Study the past, if you wish to divine the future”</em><br>
+          <em>- Confucius</em><br>
+          Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialCollective}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialCollective() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      👥
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Collectivism</div>
+        <div class="horizontal welcomeText">
+          <em>The good of the many outweighs the good of the few…</em><br>
+          Defines the extent to which the culture understands communal sacrifice and shared purpose in the name of the common good.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialIndependence}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialIndependence() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🛡️
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Independence</div>
+        <div class="horizontal welcomeText">
+          <em>Swear allegiance to no other flag, serve no nation but thine own…</em><br>
+          This measures the extent the culture of the country dictates that it maintain complete autonomy from other nation states. High Independence indicates the citizens supports almost no international coalition building or globalist thinking. Low Independence indicates they welcome partnerships with friendly foriegn powers all over the globe.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialPrivacy}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialPrivacy() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🔐
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Privacy</div>
+        <div class="horizontal welcomeText">
+          <em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br>
+          Defines how much the citizens of the country value their personal information being kept safe from the public sphere, and how much they expect their government to behave with regard to that boundary.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLawAndOrder}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialLawAndOrder() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      👮
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Law and Order</div>
+        <div class="horizontal welcomeText">
+          <em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
+          <em>- Lao Tze</em><br>
+          This sets the appetite of the country’s citizenship for law enforcement in their lives and communities; High means that this makes them feel safe; Low means that it makes them angry and want to revolt.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialProgressivism}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+  culturalAttitutesTutorialProgressivism() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      ✊
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Social Progress/</div>
+        <div class="horizontal welcomeText">
+          <em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
+          <em>- Martin Luther King, Jr.</em>
+          This score measures the country’s urge towards social justice, equal treatment for all people, level playing field free of corruption, kleptocracy, cronyism and prejudice, and their belief in every citizen’s right to clean air, food, water, housing, education, medical attention.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+  }
+
+
+  openCountrySelectInfoDialog() {
+    this.masterDialogCloseFunction = null;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="width: 400px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Select a Country</div>
+        <div class="horizontal welcomeText">
+         Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!</div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+  }
 
   _startDelayedCaching(options) {
     setTimeout(()=>{
