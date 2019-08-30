@@ -59,9 +59,7 @@ class OapFilterArticles extends OapPageViewElement {
 
   setCompleted() {
     this.fire('oap-filtering-finished');
-    setTimeout(()=>{
-      this.fire("oap-open-selection-info-dialog");
-    })
+    this.fire("oap-open-selection-info-dialog");
   }
 
   updated(changedProps) {

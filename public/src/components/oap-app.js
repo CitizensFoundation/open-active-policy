@@ -1072,7 +1072,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="cpImage" width="486" height="206" style="margin-left: -32px;margin-bottom:-16px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
+        <img aria-label="cpImage" style="max-width: 400px;max-height:171px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">Choice Points</div>
@@ -1106,6 +1106,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.$$("#masterDialog").open();
+    this.requestUpdate();
   }
 
   startCulturalAttitutesTutorial() {
@@ -1128,6 +1129,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.$$("#masterDialog").open();
+    this.requestUpdate();
   }
 
   culturalAttitutesTutorialAuthority() {
@@ -1349,6 +1351,7 @@ class OapApp extends OapBaseElement {
   }
 
   openCountrySelectInfoDialog() {
+    debugger;
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
       <div class="vertical center-center">
@@ -1366,6 +1369,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.$$("#masterDialog").open();
+    this.requestUpdate();
   }
 
   openFilterInfoDialog() {
@@ -1386,6 +1390,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.$$("#masterDialog").open();
+    this.requestUpdate();
   }
 
 
@@ -1406,6 +1411,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.$$("#masterDialog").open();
+    this.requestUpdate();
   }
   _startDelayedCaching(options) {
     setTimeout(()=>{
