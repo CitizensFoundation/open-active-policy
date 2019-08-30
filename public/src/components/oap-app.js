@@ -249,16 +249,16 @@ class OapApp extends OapBaseElement {
                     ${this.welcomeText}
                   </div>
                   <div class="langSelectionText">
-                  ${Object.keys(this.configFromServer.client_config.localeSetup).length>1 ?
-                    html`
-                        ${this.configFromServer.client_config.localeSetup.map((lang) => {
-                          return html`
-                            <span class="langSelect" data-locale="${lang.locale}" ?is-selected="${lang.locale===this.language}"
-                              @click="${this.selectLocale}">${lang.language}</span>
-                          `
-                        })}
-                    `
-                     : html``}
+                    ${Object.keys(this.configFromServer.client_config.localeSetup).length>1 ?
+                      html`
+                          ${this.configFromServer.client_config.localeSetup.map((lang) => {
+                            return html`
+                              <span class="langSelect" data-locale="${lang.locale}" ?is-selected="${lang.locale===this.language}"
+                                @click="${this.selectLocale}">${lang.language}</span>
+                            `
+                          })}
+                      `
+                      : html``}
                  </div>
                 <div class="buttons center-center">
                   <paper-button raised class="continueButton" @click="${this.closeWelcome}" autofocus>${this.localize('start')}</paper-button>
