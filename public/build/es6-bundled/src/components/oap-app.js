@@ -22911,7 +22911,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open()}openChoicePointsDialog(){this.masterDialogCloseFunction=this.openQuizDialog;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}openChoicePointsDialog(){this.masterDialogCloseFunction=this.openQuizDialog;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
         <img aria-label="cpImage" style="max-width: 400px;max-height:171px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
@@ -22926,7 +22926,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open()}openQuizDialog(){this.masterDialogCloseFunction=this.closeWelcome;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}openQuizDialog(){this.masterDialogCloseFunction=this.closeWelcome;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
         <img aria-label="choice points image" style="max-width: 400px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
@@ -22940,7 +22940,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}startCulturalAttitutesTutorial(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}startCulturalAttitutesTutorial(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
         <img aria-label="image" style="max-width: 400px;max-height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
@@ -22956,7 +22956,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialAuthority(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialAuthority(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       🏛️
@@ -22973,7 +22973,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialLiberty(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialLiberty(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       🌅
@@ -22990,7 +22990,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialScience(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialScience(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       🔬
@@ -23007,7 +23007,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialTradition(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialTradition(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       🏺
@@ -23025,7 +23025,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialCollective(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialCollective(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       👥
@@ -23042,7 +23042,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialIndependence(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialIndependence(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       🛡️
@@ -23059,7 +23059,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialPrivacy(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialPrivacy(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       🔐
@@ -23076,7 +23076,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialLawAndOrder(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialLawAndOrder(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       👮
@@ -23094,7 +23094,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}culturalAttitutesTutorialProgressivism(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}culturalAttitutesTutorialProgressivism(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
       ✊
@@ -23111,7 +23111,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}openCountrySelectInfoDialog(){debugger;this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}openCountrySelectInfoDialog(){debugger;this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
         <img aria-label="choice points image" style="max-width: 340px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
@@ -23125,7 +23125,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}openFilterInfoDialog(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}openAndUpdateDialog(){this.$$("#masterDialog").open();this.requestUpdate();setTimeout(()=>{this.$$("#masterDialog").fire("iron-resize")},50)}openFilterInfoDialog(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
         <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/filter1.jpg"></img>
@@ -23133,13 +23133,13 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
       <div class="vertical center-center masterDialog">
         <div class="heading">Filter Articles</div>
         <div class="horizontal welcomeText">
-        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include. You may choose Automatic for some Branches, and manually select modules for Branches you are most interested in.</div>
+        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include.</div>
         <div class="buttons center-center">
           <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize("continue")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}openSelectionInfoDialog(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
+   `;this.openAndUpdateDialog()}openSelectionInfoDialog(){this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
         <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
@@ -23152,7 +23152,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
         </div>
       </div>
     </div>
-   `;this.$$("#masterDialog").open();this.requestUpdate()}_startDelayedCaching(options){setTimeout(()=>{const emojis=["\uD83C\uDFDB\uFE0F","\uD83C\uDF05","\uD83D\uDD2C","\uD83C\uDFFA","\uD83D\uDC65","\uD83D\uDEE1\uFE0F","\uD83D\uDD10","\uD83D\uDC6E","\u270A","\uD83D\uDD0B","\uD83D\uDEC2","\uD83C\uDF10","\uD83E\uDDF1"];CacheEmojisInBackground(["\u23F3"],"120px Arial",options);CacheEmojisInBackground(emojis,"120px Arial",options)},500);setTimeout(()=>{StartDelayedFontCaching(this.font3d,options)},1100)}openNewGame(){this.$$("#savedGameDialog").close();this.disableAutoSave=!1;localStorage.removeItem(this.GAME_STATE_VERSION);if(!0==!window.debugOn){this.totalChoicePoints=100;this.usedChoicePoints=0;this.selectedItems=[];this.quizDone=!1;this.country=null;this.filteredItems=[];this.usedBonusesAndPenalties=[]}this.afterWelcomeClose()}restoreGameFromSave(){let gameState=localStorage.getItem(this.GAME_STATE_VERSION);if(null!=gameState){gameState=JSON.parse(gameState);this.totalChoicePoints=gameState.totalChoicePoints;this.usedChoicePoints=gameState.usedChoicePoints;this.selectedItems=gameState.selectedItems;this.country=gameState.country;this.quizDone=gameState.quizDone;this.filteredItems=gameState.filteredItems;this.usedBonusesAndPenalties=gameState.usedBonusesAndPenalties;setTimeout(()=>{this.disableAutoSave=!1;this._gotoLocation(gameState.path)});if("quiz"!=gameState.page){if("area-ballot"==gameState.page){this._startDelayedCaching({slow:!0})}else{this._startDelayedCaching()}}}else{console.error("Trying to restore game state, not valid state")}}updated(changedProps){super.updated(changedProps);if(changedProps.has("language")){this.setupLocaleTexts()}if(changedProps.has("totalChoicePoints")||changedProps.has("usedChoicePoints")||changedProps.has("selectedItems")||changedProps.has("country")||changedProps.has("usedBonusesAndPenalties")||changedProps.has("_page")){this.saveDebounced()}if(changedProps.has("budgetElement")){}if(changedProps.has("_page")){document.body.scrollTop=0;document.documentElement.scrollTop=0;console.info("Current page: "+this._page);const pageTitle=this.appTitle+" - "+this._page,page=this._page,oldPage=changedProps.get("_page");if(this.configFromServer&&this.configFromServer.client_config.landingPageData&&page&&"select-voting-area"!=page){this.showExit=!0}else{this.showExit=!1}// Setup top ballot if needed
+   `;this.openAndUpdateDialog()}_startDelayedCaching(options){setTimeout(()=>{const emojis=["\uD83C\uDFDB\uFE0F","\uD83C\uDF05","\uD83D\uDD2C","\uD83C\uDFFA","\uD83D\uDC65","\uD83D\uDEE1\uFE0F","\uD83D\uDD10","\uD83D\uDC6E","\u270A","\uD83D\uDD0B","\uD83D\uDEC2","\uD83C\uDF10","\uD83E\uDDF1"];CacheEmojisInBackground(["\u23F3"],"120px Arial",options);CacheEmojisInBackground(emojis,"120px Arial",options)},500);setTimeout(()=>{StartDelayedFontCaching(this.font3d,options)},1100)}openNewGame(){this.$$("#savedGameDialog").close();this.disableAutoSave=!1;localStorage.removeItem(this.GAME_STATE_VERSION);if(!0==!window.debugOn){this.totalChoicePoints=100;this.usedChoicePoints=0;this.selectedItems=[];this.quizDone=!1;this.country=null;this.filteredItems=[];this.usedBonusesAndPenalties=[]}this.afterWelcomeClose()}restoreGameFromSave(){let gameState=localStorage.getItem(this.GAME_STATE_VERSION);if(null!=gameState){gameState=JSON.parse(gameState);this.totalChoicePoints=gameState.totalChoicePoints;this.usedChoicePoints=gameState.usedChoicePoints;this.selectedItems=gameState.selectedItems;this.country=gameState.country;this.quizDone=gameState.quizDone;this.filteredItems=gameState.filteredItems;this.usedBonusesAndPenalties=gameState.usedBonusesAndPenalties;setTimeout(()=>{this.disableAutoSave=!1;this._gotoLocation(gameState.path)});if("quiz"!=gameState.page){if("area-ballot"==gameState.page){this._startDelayedCaching({slow:!0})}else{this._startDelayedCaching()}}}else{console.error("Trying to restore game state, not valid state")}}updated(changedProps){super.updated(changedProps);if(changedProps.has("language")){this.setupLocaleTexts()}if(changedProps.has("totalChoicePoints")||changedProps.has("usedChoicePoints")||changedProps.has("selectedItems")||changedProps.has("country")||changedProps.has("usedBonusesAndPenalties")||changedProps.has("_page")){this.saveDebounced()}if(changedProps.has("budgetElement")){}if(changedProps.has("_page")){document.body.scrollTop=0;document.documentElement.scrollTop=0;console.info("Current page: "+this._page);const pageTitle=this.appTitle+" - "+this._page,page=this._page,oldPage=changedProps.get("_page");if(this.configFromServer&&this.configFromServer.client_config.landingPageData&&page&&"select-voting-area"!=page){this.showExit=!0}else{this.showExit=!1}// Setup top ballot if needed
 if(page&&"area-ballot"==page){this.hideBudget=!1}else{this.hideBudget=!0}// Reset post if needed
 if("post"==oldPage&&this.$$("#post")){this.$$("#post").reset()}// Do not allow access to voting-completed from a reload
 if("voting-completed"==page&&"area-ballot"!=oldPage){window.location="/"}if("quiz"!==page&&!this.quizDone&&!window.debugOn){window.history.pushState({},null,"/quiz");this.fire("location-changed","/quiz")}else if(!window.debugOn){if("area-ballot"===page&&0===this.filteredItems.length&&null==this.country){window.history.pushState({},null,"/create-country");this.fire("location-changed","/create-country")}else if("area-ballot"===page&&0===this.filteredItems.length){window.history.pushState({},null,"/filter-articles");this.fire("location-changed","/filter-articles")}if("filter-articles"===page&&null==this.country){window.history.pushState({},null,"/create-country");this.fire("location-changed","/create-country")}if("review"===page&&0===this.selectedItems.length&&0===this.filteredItems.length&&null==this.country){window.history.pushState({},null,"/create-country");this.fire("location-changed","/create-country")}else if("area-ballot"===page&&0===this.selectedItems.length&&0===this.filteredItems.length){window.history.pushState({},null,"/filter-articles");this.fire("location-changed","/filter-articles")}else if("area-ballot"===page&&0===this.selectedItems.length){window.history.pushState({},null,"/area-ballot/1");this.fire("location-changed","/area-ballot/1")}if("review"===page&&null==this.country){window.history.pushState({},null,"/create-country");this.fire("location-changed","/create-country")}}// Send page info to Google Analytics

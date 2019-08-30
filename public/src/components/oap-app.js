@@ -1365,7 +1365,7 @@ class OapApp extends OapBaseElement {
     this.requestUpdate();
     setTimeout(()=>{
       this.$$("#masterDialog").fire('iron-resize');
-    }, 50);
+    }, 75);
   }
 
   openFilterInfoDialog() {
