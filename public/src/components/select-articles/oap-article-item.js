@@ -87,7 +87,7 @@ class OapArticleItem extends OapBaseElement {
 
       listBoxSelection: Number,
 
-      selectedExclusiveId: Number
+      selectedExclusiveId: String
     };
   }
 
@@ -106,7 +106,7 @@ class OapArticleItem extends OapBaseElement {
            class="itemContent shadow-animation shadow-elevation-3dp layout horizontal"
            ?inbudget="${this.selected}" ?blocked-by="${this.isBlockedBy}">
         <div id="opacityLayer"></div>
-        <div id="innerContainer">
+        <div id="innerContainer" ?hidden="${this.item.hideInnerContainer}">
           <div id="leftColor" class="leftColor" ?hidden="${this.selected}"></div>
           <div class="layout-inline vertical">
             <div class="layout horizontal">
@@ -163,10 +163,11 @@ class OapArticleItem extends OapBaseElement {
   selectedExclusiveChanged(event) {
     if (event.detail.value!==null) {
       this.selectedExclusiveId = this.item.exclusiveOptions[event.detail.value].id;
-      const exclusiveOptions = this.item.exclusiveOptions;
-      this.item = this.item.exclusiveOptions[event.detail.value];
-      this.item.exclusiveOptions = exclusiveOptions;
-      this.$$("#listBox").selected = null;
+      if (this.item.id!=this.selectedExclusiveId) {
+        this.oldElementNeedsSwapping = this.item;
+        this.item = this.ballotElement.getItem(this.selectedExclusiveId);
+        this.item.exclusiveOptions = this.oldElementNeedsSwapping.exclusiveOptions;
+      }
     }
   }
 
@@ -250,6 +251,7 @@ class OapArticleItem extends OapBaseElement {
     this.selected = false;
     this.isExcluded = false;
     this.isBlockedBy = null;
+    this.oldElementNeedsSwapping=null;
   }
 
   _imageLoadedChanged(event) {
@@ -308,7 +310,8 @@ class OapArticleItem extends OapBaseElement {
     if (!this.isExcluded && !this.isBlockedBy) {
       this.$$("#addToBudgetButton").style.backgroundColor=color;
       if (this.$$("#editExclusiveOptions")) {
-        this.$$("#editExclusiveOptions").style.backgroundColor=color;
+        this.$$("#editExclusiveOptions").style.backgroundColor="#FFF";
+        this.$$("#editExclusiveOptions").style.color=color;
       }
     }
 
@@ -388,8 +391,9 @@ class OapArticleItem extends OapBaseElement {
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
     this.$$("#addToBudgetButton").style.backgroundColor=color;
     if (this.$$("#editExclusiveOptions")) {
-      this.$$("#editExclusiveOptions").style.backgroundColor=color;
-    }
+      this.$$("#editExclusiveOptions").style.backgroundColor="#FFF";
+      this.$$("#editExclusiveOptions").style.color=color;
+  }
 
     this.$$("#opacityLayer").style.backgroundColor=color;
     this.$$("#opacityLayer").classList.add("cover");
@@ -418,7 +422,8 @@ class OapArticleItem extends OapBaseElement {
       const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
       this.$$("#addToBudgetButton").style.backgroundColor=color;
       if (this.$$("#editExclusiveOptions")) {
-        this.$$("#editExclusiveOptions").style.backgroundColor=color;
+        this.$$("#editExclusiveOptions").style.backgroundColor="#FFF";
+        this.$$("#editExclusiveOptions").style.color=color;
       }
     }
   }
@@ -471,6 +476,10 @@ class OapArticleItem extends OapBaseElement {
   _toggleInBudget(event) {
     //console.log("_toggleInBudget itemId: "+this.item.id);
     event.stopPropagation();
+    if (this.oldElementNeedsSwapping) {
+      this.ballotElement.swapOutItem(this.oldElementNeedsSwapping, this.item);
+      this.oldElementNeedsSwapping=null;
+    }
     if (event.target && !event.target.attributes['disabled']) {
       this.fire('oav-toggle-item-in-budget', { item: this.item });
       this.fire('oap-close-snackbar');

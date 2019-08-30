@@ -90,6 +90,7 @@ class OapBallot extends OapPageViewElement {
                       .language="${this.language}"
                       @goto-selected-id="${this.gotoSelectedId}"
                       .budgetElement="${this.budgetElement}"
+                      .ballotElement="${this}"
                       .item="${item}">
                     </oap-article-item>
                   `
@@ -151,7 +152,9 @@ class OapBallot extends OapPageViewElement {
       if (lastExclusiveSeries && item.exclusive_ids!=lastExclusiveSeries) {
         if (currentExclusives.length>0) {
           const currentCombined = currentExclusives[0];
-          const optionItems = [...currentExclusives];
+          const optionItems = currentExclusives.map((item)=>{
+            return {id: item.id, name: item.name }
+          });
           currentCombined.exclusiveOptions = optionItems;
           this.processedBallotItems.push(currentCombined);
           currentExclusives = [];
@@ -347,6 +350,33 @@ class OapBallot extends OapPageViewElement {
     });
     if (!found) {
       this.processedBallotItems.unshift(event.detail.item);
+      this.requestUpdate();
+    }
+  }
+
+  getItem(itemId) {
+    let returnItem;
+    for( var i = 0; i < this.budgetBallotItems.length; i++){
+      if (this.budgetBallotItems[i].id==itemId) {
+        returnItem = this.budgetBallotItems[i];
+        break;
+      }
+    }
+    return returnItem;
+  }
+
+  swapOutItem(oldItem, newItem) {
+    for( var i = 0; i < this.processedBallotItems.length; i++){
+      if (this.processedBallotItems[i].id==oldItem.id) {
+        newItem.hideInnerContainer = true;
+        setTimeout(()=>{
+          newItem.hideInnerContainer = false;
+          newItem.selected = true;
+        }, 650);
+        this.processedBallotItems[i] = newItem;
+        this.fire('oap-filtered-items-changed', this.processedBallotItems);
+        break;
+      }
     }
   }
 
@@ -392,11 +422,23 @@ class OapBallot extends OapPageViewElement {
     }, 50);
   }
 
+  addToProcessListIfNeeded(itemToAdd) {
+    var found = this.processedBallotItems.find((item)=> {
+      return item.id==itemToAdd.id;
+    });
+    if (!found) {
+      this.processedBallotItems.unshift(itemToAdd);
+      this.requestUpdate();
+    }
+  }
+
   removeFromAvailableItems(itemId) {
     for( var i = 0; i < this.processedBallotItems.length; i++){
       if (this.processedBallotItems[i].id==itemId) {
         this.processedBallotItems.splice(i,1);
+        console.error("Removed: "+itemId);
         this.fire('oap-filtered-items-changed', this.processedBallotItems);
+        break;
       }
     }
   }
