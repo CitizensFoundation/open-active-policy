@@ -240,6 +240,10 @@ export const OapAppStyles = css`
     }
   }
 
+  .buttons {
+    margin-top: 16px;
+  }
+
   .budgetContainer {
   }
 
@@ -259,7 +263,7 @@ export const OapAppStyles = css`
     background-color: var(--primary-background-color);
   }
 
-  .welcomeDialog {
+  .masterDialog {
     font-size: 22px;
     max-width: 420px;
     width: 420px;
@@ -290,13 +294,13 @@ export const OapAppStyles = css`
     height: 200px;
   }
 
-  .welcomeLogoContainer {
+  .masterLogoContainer {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
   }
 
-  #welcomeDialog {
+  #masterDialog {
     background-color: #000;
     color: #FFF;
   }
@@ -323,7 +327,7 @@ export const OapAppStyles = css`
     }
 
   @media (max-width: 600px) {
-    .welcomeDialog {
+    .masterDialog {
       font-size: 16px;
       padding: 8px;
       padding-top: 0;
@@ -347,7 +351,7 @@ export const OapAppStyles = css`
   }
 
   @media (max-width: 340px) {
-    .welcomeDialog {
+    .masterDialog {
       font-size: 13px;
     }
     .heading {
@@ -368,7 +372,7 @@ export const OapAppStyles = css`
     }
   }
 
-  .welcomeLogoContainer {
+  .masterLogoContainer {
   }
 
   paper-dialog {

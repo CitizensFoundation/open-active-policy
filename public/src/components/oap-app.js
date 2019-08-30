@@ -179,7 +179,11 @@ class OapApp extends OapBaseElement {
 
       disableAutoSave: Boolean,
 
-      font3d: Object
+      font3d: Object,
+
+      openMasterDialog: String,
+
+      masterDialogCloseFunction: Function
     };
   }
 
@@ -225,7 +229,7 @@ class OapApp extends OapBaseElement {
         </paper-dialog>
 
         <paper-dialog id="savedGameDialog" modal>
-          <div class="welcomeLogoContainer center-center">
+          <div class="masterLogoContainer center-center">
              <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
           </div>
           <div class="savedGameContent">
@@ -237,34 +241,9 @@ class OapApp extends OapBaseElement {
           </div>
         </paper-dialog>
 
-        <paper-dialog id="welcomeDialog" with-backdrop @close="${this.afterWelcomeClose}">
+        <paper-dialog id="masterDialog" modal @close="${this.masterDialogCloseFunction}">
           <paper-dialog-scrollable>
-            <div class="vertical center-center">
-              <div class="welcomeLogoContainer center-center">
-                <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
-              </div>
-              <div class="vertical center-center welcomeDialog">
-                <div class="heading">${this.welcomeHeading}</div>
-                  <div class="horizontal welcomeText">
-                    ${this.welcomeText}
-                  </div>
-                  <div class="langSelectionText">
-                    ${Object.keys(this.configFromServer.client_config.localeSetup).length>1 ?
-                      html`
-                          ${this.configFromServer.client_config.localeSetup.map((lang) => {
-                            return html`
-                              <span class="langSelect" data-locale="${lang.locale}" ?is-selected="${lang.locale===this.language}"
-                                @click="${this.selectLocale}">${lang.language}</span>
-                            `
-                          })}
-                      `
-                      : html``}
-                 </div>
-                <div class="buttons center-center">
-                  <paper-button raised class="continueButton" @click="${this.closeWelcome}" autofocus>${this.localize('start')}</paper-button>
-                </div>
-              </div>
-            </div>
+            ${this.masterDialogContent}
           </paper-dialog-scrollable>
         </paper-dialog>
 
@@ -921,7 +900,7 @@ class OapApp extends OapBaseElement {
   }
 
   closeWelcome() {
-    this.$$("#welcomeDialog").close();
+    this.$$("#masterDialog").close();
     localStorage.setItem("haveClosedWelcome", true);
     this.afterWelcomeClose();
   }
@@ -1043,10 +1022,85 @@ class OapApp extends OapBaseElement {
         this.savedGameDate = parsedDate.toISOString().slice(0, 10);
       } else {
         this.disableAutoSave=false;
-        this.$$("#welcomeDialog").open();
+        this.openWelcomeDialog();
       }
     });
   }
+
+  openWelcomeDialog() {
+    this.masterDialogCloseFunction = this.openChoicePointsDialog;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">${this.welcomeHeading}</div>
+          <div class="horizontal welcomeText">
+            ${this.welcomeText}
+          </div>
+          <div class="langSelectionText">
+            ${Object.keys(this.configFromServer.client_config.localeSetup).length>1 ?
+              html`
+                  ${this.configFromServer.client_config.localeSetup.map((lang) => {
+                    return html`
+                      <span class="langSelect" data-locale="${lang.locale}" ?is-selected="${lang.locale===this.language}"
+                        @click="${this.selectLocale}">${lang.language}</span>
+                    `
+                  })}
+              `
+              : html``}
+        </div>
+        <div class="center-center">
+          <paper-button raised class="continueButton" @click="${this.openChoicePointsDialog}" autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+  }
+
+  openChoicePointsDialog() {
+    this.masterDialogCloseFunction = this.openQuizDialog;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="cpImage" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Choice Points</div>
+        <div class="horizontal welcomeText">
+          Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
+        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" @click="${this.openQuizDialog}" autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+  }
+
+  openQuizDialog() {
+    this.masterDialogCloseFunction = this.closeWelcome;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="width: 400px" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Quiz</div>
+        <div class="horizontal welcomeText">
+          First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" @click="${this.closeWelcome}" autofocus>${this.localize('start')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.$$("#masterDialog").open();
+  }
+
 
   _startDelayedCaching(options) {
     setTimeout(()=>{
