@@ -365,7 +365,7 @@ class OapCountryCreation extends OapPageViewElement {
   updated(changedProps) {
     super.updated(changedProps);
     if (changedProps.has("configFromServer") && this.configFromServer) {
-      this.countryList = this.configFromServer.client_config.countryList;
+      this.countryList = this.configFromServer.client_config.languages[this.language].countryList;
     }
   }
 }
