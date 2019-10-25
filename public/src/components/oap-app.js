@@ -285,7 +285,7 @@ class OapApp extends OapBaseElement {
               ?active="${this._page === 'create-country'}">
             </oap-country-creation>
             ` : html``}
-          ${ this._page==="quiz" ?  html`
+          ${this._page==="quiz" ?  html`
             <oap-policy-quiz
               id="quiz"
               .questions="${this.quizQuestions}"
@@ -395,7 +395,7 @@ class OapApp extends OapBaseElement {
   setDummyData() {
     this.totalChoicePoints = 100;
     this.usedChoicePoints = 0;
-    this.quizQuestions = [],
+    this.quizQuestion = [];
 
     this.soundEffects = {
       oap_short_win_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3", volume: 0.4},
@@ -501,7 +501,6 @@ class OapApp extends OapBaseElement {
     } else {
       this.language = "is";
     }
-    debugger;
     fetch("/votes/boot?locale="+this.language, { credentials: 'same-origin' })
       .then(res => res.json())
       .then(response => {
@@ -526,7 +525,6 @@ class OapApp extends OapBaseElement {
           if (localStorage.getItem("languageOverride")) {
             this.language = localStorage.getItem("languageOverride");
           } else {
-            debugger;
             if (this.language!=this.configFromServer.client_config.defaultLanguage) {
               this.language = this.configFromServer.client_config.defaultLanguage;
               localStorage.setItem("languageOverride", this.language);
@@ -535,6 +533,8 @@ class OapApp extends OapBaseElement {
             }
           }
         }
+
+        this.createQuizQuestions();
 
         this.setupLocaleTexts();
 
@@ -556,7 +556,7 @@ class OapApp extends OapBaseElement {
         window.localize = this.localize;
 
         setTimeout(()=>{
-          StartPerformCacheWelcomeTexts(this.configFromServer.client_config.welcomeTexts, this.font3d);
+          StartPerformCacheWelcomeTexts(this.configFromServer.client_config.languages[this.language].welcomeTexts, this.font3d);
         }, 950);
 
       })
@@ -567,11 +567,33 @@ class OapApp extends OapBaseElement {
   }
 
   setupAllItems() {
-    debugger;
     const itemsArray = this.parseCSV(this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].encodedModules));
     this.allItems = [];
     itemsArray.forEach((line, index)=>{
-      debugger;
+      if (index!==0) {
+        this.allItems.push({
+          id: line[0],
+          sub_category: line[1],
+          Branch: line[2],
+          name: line[3],
+          description: line[4],
+          moduleType: line[5],
+          exclusive_ids: line[6],
+          hybrids: line[7],
+          timePeriod: line[8],
+          module_content_type: line[9],
+          module_type_index: line[10],
+          image_url: line[11],
+          price: line[12],
+          bonus: line[13],
+          penalty: line[14],
+          specialFunctions: line[15],
+          blockIds: line[16],
+          enableIds: line[17],
+          comboBonusIds: line[18],
+          authorshipPercent: line[19]
+        })
+      }
     })
 
     for (var i=0; i<this.allItems.length; i++) {
@@ -587,14 +609,40 @@ class OapApp extends OapBaseElement {
     }
   }
 
+  getRandom(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+  }
+
   createQuizQuestions() {
-    const quizQuestionsArray = parseCSV(this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].encodedModules));
-    this.quizQuestions = [];
+    const quizQuestionsArray = this.parseCSV(this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].quizQuestions.b64text));
+    const allQuizQuestions = [];
     quizQuestionsArray.forEach((line, index)=>{
-
-
+      if (index!==0) {
+        allQuizQuestions.push({
+          question: line[1],
+          answers: [
+            line[2],
+            line[3],
+            line[4],
+            line[5]
+          ],
+          correctAnswer: parseInt(line[6])-1
+        });
+      }
     })
-    debugger;
+
+    this.quizQuestions = this.getRandom(allQuizQuestions, 10);
+    this.requestUpdate();
   }
 
   parseCSV(str) {
