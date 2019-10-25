@@ -174,8 +174,10 @@ export const OapPolicyQuizStyles = css`
     }
 
     .question {
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
       font-size: 19px;
-      width: 95%;
     }
 
 
