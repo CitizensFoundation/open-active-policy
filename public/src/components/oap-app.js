@@ -14,9 +14,7 @@ import { updateMetadata } from 'pwa-helpers/metadata.js';
 import { CacheEmojisInBackground } from './3d-utils/oap-2d-emojis';
 import { StartDelayedFontCaching, SetForceSlowOnFontCaching, StartPerformCacheWelcomeTexts } from './3d-utils/oap-cached-text-geometry';
 import { FontLoader } from 'three';
-
 import 'whatwg-fetch';
-
 // These are the elements needed by this element.
 import '@polymer/app-layout/app-drawer/app-drawer.js';
 import '@polymer/app-layout/app-header/app-header.js';
@@ -498,11 +496,16 @@ class OapApp extends OapBaseElement {
   }
 
   _boot() {
-    fetch("/votes/boot", { credentials: 'same-origin' })
+    if (localStorage.getItem("languageOverride")) {
+      this.language = localStorage.getItem("languageOverride");
+    } else {
+      this.language = "is";
+    }
+    debugger;
+    fetch("/votes/boot?locale="+this.language, { credentials: 'same-origin' })
       .then(res => res.json())
       .then(response => {
         this.requestInProgress= false;
-        this.language = 'en';
         this.votePublicKey = response.public_key;
         this._setupCustomCss(response.config.client_config);
         window.localeResources = response.config.client_config.locales;
@@ -523,26 +526,23 @@ class OapApp extends OapBaseElement {
           if (localStorage.getItem("languageOverride")) {
             this.language = localStorage.getItem("languageOverride");
           } else {
-            this.language = this.configFromServer.client_config.defaultLanguage;
+            debugger;
+            if (this.language!=this.configFromServer.client_config.defaultLanguage) {
+              this.language = this.configFromServer.client_config.defaultLanguage;
+              localStorage.setItem("languageOverride", this.language);
+              this._boot();
+              return;
+            }
           }
-          this.setupLocaleTexts();
         }
+
+        this.setupLocaleTexts();
+
         if (this.configFromServer.client_config.favoriteIcon) {
           this.favoriteIcon = this.configFromServer.client_config.favoriteIcon;
         }
 
-        this.allItems = this.configFromServer.client_config.modules;
-
-        for (var i=0; i<this.allItems.length; i++) {
-          if (this.allItems[i].price) {
-            this.allItems[i].price=parseInt(this.allItems[i].price);
-          }
-        }
-
-        cacheDataImages(this.allItems);
-        if (window.debugOn) {
-          this.filteredItems = this.allItems;
-        }
+        this.setupAllItems();
 
         if (false && !(location.href.indexOf("completePostingOfVoteAfterRedirect") > -1)) {
           const path = "/quiz";
@@ -559,14 +559,78 @@ class OapApp extends OapBaseElement {
           StartPerformCacheWelcomeTexts(this.configFromServer.client_config.welcomeTexts, this.font3d);
         }, 950);
 
-        if (this.configFromServer.client_config.insecureEmailLoginEnabled===true) {
-          import('./oap-insecure-email-login.js');
-        }
       })
       .catch(error => {
         console.error('Error:', error);
         this.fire('oav-error', 'unknown_error');
       });
+  }
+
+  setupAllItems() {
+    debugger;
+    const itemsArray = this.parseCSV(this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].encodedModules));
+    this.allItems = [];
+    itemsArray.forEach((line, index)=>{
+      debugger;
+    })
+
+    for (var i=0; i<this.allItems.length; i++) {
+      if (this.allItems[i].price) {
+        this.allItems[i].price=parseInt(this.allItems[i].price);
+      }
+    }
+
+    cacheDataImages(this.allItems);
+
+    if (window.debugOn) {
+      this.filteredItems = this.allItems;
+    }
+  }
+
+  createQuizQuestions() {
+    const quizQuestionsArray = parseCSV(this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].encodedModules));
+    this.quizQuestions = [];
+    quizQuestionsArray.forEach((line, index)=>{
+
+
+    })
+    debugger;
+  }
+
+  parseCSV(str) {
+    var arr = [];
+    var quote = false;  // true means we're inside a quoted field
+
+    // iterate over each character, keep track of current row and column (of the returned array)
+    for (var row = 0, col = 0, c = 0; c < str.length; c++) {
+        var cc = str[c], nc = str[c+1];        // current character, next character
+        arr[row] = arr[row] || [];             // create a new row if necessary
+        arr[row][col] = arr[row][col] || '';   // create a new column (start with empty string) if necessary
+
+        // If the current character is a quotation mark, and we're inside a
+        // quoted field, and the next character is also a quotation mark,
+        // add a quotation mark to the current column and skip the next character
+        if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+
+        // If it's just one quotation mark, begin/end quoted field
+        if (cc == '"') { quote = !quote; continue; }
+
+        // If it's a comma and we're not in a quoted field, move on to the next column
+        if (cc == ',' && !quote) { ++col; continue; }
+
+        // If it's a newline (CRLF) and we're not in a quoted field, skip the next character
+        // and move on to the next row and move to column 0 of that new row
+        if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+
+        // If it's a newline (LF or CR) and we're not in a quoted field,
+        // move on to the next row and move to column 0 of that new row
+        if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+        if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+
+        // Otherwise, append the current character to the current column
+        arr[row][col] += cc;
+    }
+    return arr;
   }
 
   disconnectedCallback() {
@@ -766,18 +830,6 @@ class OapApp extends OapBaseElement {
     this.$$("#budgetBallot")._scrollItemIntoView(event.detail);
   }
 
-  setTotalBudget(event) {
-    this.$$("#budget").setTotalBudget(event.detail);
-  }
-
-  _hideFavoriteItem() {
-    this.$$("#favoriteIcon").hidden = true;
-  }
-
-  _insecureEmailLogin(event) {
-    this.$$("#insecureEmailLogin").open(event.detail.areaId, event.detail.areaName, event.detail.onLoginFunction);
-  }
-
 
   _help(event) {
     if (event.detail && event.detail!="1") {
@@ -873,28 +925,24 @@ class OapApp extends OapBaseElement {
   }
 
   getHelpContent() {
-    if (this.configFromServer.client_config.helpPageLocales[this.language]) {
-      return this.b64DecodeUnicode(this.configFromServer.client_config.helpPageLocales[this.language].b64text);
-    } else if (this.configFromServer.client_config.helpPageLocales["en"]) {
-      return this.b64DecodeUnicode(this.configFromServer.client_config.helpPageLocales["en"].b64text)
+    if (this.configFromServer.client_config.languages[this.langauge] && this.configFromServer.client_config.languages[this.langauge].helpPageLocales) {
+      return this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].helpPageLocales.b64text);
     } else {
       return "No help page found for selected language!"
     }
   }
 
   getWelcomeHeading() {
-    if (this.configFromServer.client_config.welcomeLocales[this.language]) {
-      return this.configFromServer.client_config.welcomeLocales[this.language].heading;
-    } else if (this.configFromServer.client_config.welcomeLocales["en"]) {
-      return this.configFromServer.client_config.welcomeLocales["en"].heading
+    if (this.configFromServer.client_config.languages[this.language] && this.configFromServer.client_config.languages[this.language].welcomeLocales) {
+      return this.configFromServer.client_config.languages[this.language].welcomeLocales.heading;
     } else {
       return "No heading found"
     }
   }
 
   getWelcomeText() {
-    if (this.configFromServer.client_config.welcomeLocales[this.language]) {
-      return this.configFromServer.client_config.welcomeLocales[this.language].text;
+    if (this.configFromServer.client_config.languages[this.language].welcomeLocales) {
+      return this.configFromServer.client_config.languages[this.language].welcomeLocales.text;
     } else if (this.configFromServer.client_config.welcomeLocales["en"]) {
       return this.configFromServer.client_config.welcomeLocales["en"].text
     } else {

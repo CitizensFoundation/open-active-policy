@@ -36,6 +36,24 @@ class VotesController < ApplicationController
   # Send the config and public key to the client app
   def boot
     respond_to do |format|
+
+      locale = params[:locale]
+      data = @config.client_config
+      not_used_languages = []
+      data['languages'].each do |key, child|
+        puts key
+        if key!=locale
+          not_used_languages.push(key)
+        end
+      end
+      not_used_languages.each do |not_used|
+        puts not_used
+        puts "jijijij"
+        data['languages'][not_used]=nil
+      end
+
+      @config.client_config = data
+
       format.json { render :json => { :config => @config, :public_key => @public_key } }
     end
   end
@@ -45,57 +63,6 @@ class VotesController < ApplicationController
     @meta = @config.client_config["shareMetaData"]
     respond_to do |format|
       format.html
-    end
-  end
-
-  # The redirect return point from the external island.is authentication
-  def authenticate_from_island_is
-    unless perform_island_is_authentication(params[:token],request)
-      Rails.logger.error("No identity from island.is for session id: #{request.session_options[:id]}")
-      @error = "Það hefur komið upp villa við innskráningu vinsamlegast reyndu aftur"
-    end
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  # Get the voting areas
-  def get_areas
-    respond_to do |format|
-      format.json { render :json => {:areas => BudgetBallotArea.all,
-                                     area_voter_count: Vote.where.not(:saml_assertion_id=>nil).group(:area_id).distinct.count(:user_id_hash),
-                                     total_voter_count: Vote.where.not(:saml_assertion_id=>nil).distinct.count(:user_id_hash)
-      }}
-    end
-  end
-
-  # Proxy for ideas from better iceland
-  def better_iceland_proxy
-    post_url = "https://www.betraisland.is"+params[:params]
-    encoded_url = URI.encode(post_url)
-    uri = URI(encoded_url)
-    res = Net::HTTP.get(uri)
-    post_json = JSON.parse(res)
-    puts post_json
-    respond_to do |format|
-      format.json { render :json => post_json }
-    end
-  end
-
-  # Get the ballot and display it to the user
-  def get_ballot
-    # Get the budget ballot area from the database
-    I18n.locale = "en"
-    @area = BudgetBallotArea.where(:id => params[:area_id].to_i).first
-    if params[:locale]
-      I18n.locale = params[:locale]
-    else
-      I18n.locale = "en"
-    end
-    @budget_ballot_items = BudgetBallotItem.where(:budget_ballot_area_id=> @area.id).all
-
-    respond_to do |format|
-      format.json { render :json =>  {:area=>@area, :budget_ballot_items => @budget_ballot_items } } #, methods: [:name_is, :name_en, :name_pl, :description_is, :description_en, :description_pl]}
     end
   end
 
@@ -145,37 +112,6 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       format.json { render :json => response }
-    end
-  end
-
-  # For smaller projects with no access to secure logins and for testing purposes
-  def insecure_email_login
-    if ENV["INSECURE_EMAIL_LOGIN_ENABLED"]
-      insecure_email = params[:insecure_email]
-      postcode = params[:postCode]
-      # Find the previously stored wote from the session id that has not been authenticated before
-      vote = Vote.order("created_at DESC").where(:session_id=>request.session_options[:id], :saml_assertion_id=>nil).first
-
-      if vote
-        # Create an encrypted checksum
-        encrypted_vote_checksum = Vote.generate_encrypted_checksum(insecure_email,
-                                       vote.payload_data,vote.client_ip_address,vote.area_id,request.session_options[:id])
-
-        # Update the values for the vote and confirm it as being authenticated
-        vote.encrypted_vote_checksum = encrypted_vote_checksum
-        vote.user_id_hash = insecure_email
-        vote.authenticated_at = Time.now
-        vote.user_postcode = postcode
-        vote.saml_assertion_id = -1
-        vote.save
-        respond_to do |format|
-          format.json { render :json => {:ok=>true} }
-        end
-      else
-        raise "Authentication was not a success vote not found for insecure email"
-      end
-    else
-      raise "Trying to use insecure email login when not enabled"
     end
   end
 
