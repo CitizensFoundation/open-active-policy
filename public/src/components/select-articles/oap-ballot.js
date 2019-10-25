@@ -509,7 +509,6 @@ class OapBallot extends OapPageViewElement {
         }
       }
     }
-
   }
 
   async setStateOfRemainingItems(startTimeout, inbetweenTimeout) {

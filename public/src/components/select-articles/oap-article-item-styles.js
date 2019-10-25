@@ -228,6 +228,7 @@ export const OapArticleItemStyles = css`
 
   #topContainer {
     /*cursor: pointer;*/
+    border-radius: 5px;
   }
 
   .addRemoveButton {

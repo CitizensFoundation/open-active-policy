@@ -30,6 +30,7 @@ import './snack-bar.js';
 import './policy-quiz/oap-policy-quiz';
 import './filter-articles/oap-filter-articles';
 import './select-articles/oap-ballot';
+import './select-articles/oap-article-item';
 import './select-articles/oap-3d-budget';
 import './review/oap-review';
 import './country-creation/oap-country-creation';
@@ -396,88 +397,7 @@ class OapApp extends OapBaseElement {
   setDummyData() {
     this.totalChoicePoints = 100;
     this.usedChoicePoints = 0;
-    this.quizQuestions = [
-      {
-        question: "What is the shortest Constitution in the world?",
-        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/shortestConst1.png",
-        correctAnswer: 2,
-        answers: [
-          "Luxemburg","Andorra","Monaco","Bangladesh"
-        ]
-      },
-      {
-        question: "When Oliver Cromwell set up his short-lived government following the English Civil war he created a constitution, but he called his document?",
-        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/cromwell1.jpg",
-        correctAnswer: 3,
-        answers: [
-          "The Law of the Land","Principia Jurisprudencia","The Fiat of God’s Will","The Instrument of Government"
-        ]
-      },
-      {
-        question: "The Edicts of Ashoka established a constitutional code for the 3rd Century BC in what is now what modern country?",
-        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/3bc1.jpg",
-        correctAnswer: 1,
-        answers: [
-          "Nigeria","India","Thailand","Australia"
-        ]
-      },
-      {
-        question: 'The famous line “life, liberty and the pursuit of happiness” in the US Constitution is actually an edit; the original line read, “life, liberty and..."?',
-        imageUrl: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/quiz/wethepeople1.png",
-        correctAnswer: 3,
-        answers: [
-          "The acquisition of wealth","The perfection of spirit","the promotion of the Common Good","the pursuit of property"
-        ]
-      },
-      {
-        question: 'Some constitutions are written such that they are extremely difficult to modify or rewrite. This feature is known to scholars as?',
-        imageUrl: "",
-        correctAnswer: 1,
-        answers: [
-          "Intransciance","Entrenchment","Obstinance","Intractability"
-        ]
-      },
-      {
-        question: 'If a country draws on a legal and cultural tradition to form its constitutional norms, but those norms are not organized into a single document, that constitution is called?',
-        imageUrl: "",
-        correctAnswer: 2,
-        answers: [
-          "Unorganized","Unincorporated","Uncodified","Traditionalistic"
-        ]
-      },
-      {
-        question: 'If a legislature has only one ruling body it’s referred to as?',
-        imageUrl: "",
-        correctAnswer: 1,
-        answers: [
-          "Unilateral","Unicameral","Absolutist","Minimalist"
-        ]
-      },
-      {
-        question: 'Many Constitutions have a formal introduction known as a?',
-        imageUrl: "",
-        correctAnswer: 3,
-        answers: [
-          "Overture","Mis En Place","Foundation","Preamble"
-        ]
-      },
-      {
-        question: 'Dividing the government into branches is commonly referred to as',
-        imageUrl: "",
-        correctAnswer: 0,
-        answers: [
-          "Separation of Powers","Dendrology of Authority","Division of Labor","Civic Branching"
-        ]
-      },
-      {
-        question: 'The longest known constitution in the world governs what country?',
-        imageUrl: "",
-        correctAnswer: 0,
-        answers: [
-          "India","Iran","China","Brazil"
-        ]
-      }
-    ],
+    this.quizQuestions = [],
 
     this.soundEffects = {
       oap_short_win_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3", volume: 0.4},
@@ -700,6 +620,8 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-start-cultural-attitutes-tutorial", this.startCulturalAttitutesTutorial);
     this.addEventListener("oap-open-filter-info-dialog", this.openFilterInfoDialog);
     this.addEventListener("oap-open-selection-info-dialog", this.openSelectionInfoDialog);
+    this.addEventListener("oap-open-article-item", this.openArticleItem);
+    this.addEventListener("oap-close-master-dialog", this.closeMasterDialog);
   }
 
   _removeListeners() {
@@ -740,6 +662,12 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-start-cultural-attitutes-tutorial", this.startCulturalAttitutesTutorial);
     this.removeEventListener("oap-open-filter-info-dialog", this.openFilterInfoDialog);
     this.removeEventListener("oap-open-selection-info-dialog", this.openSelectionInfoDialog);
+    this.removeEventListener("oap-open-article-item", this.openArticleItem);
+    this.removeEventListener("oap-close-master-dialog", this.closeMasterDialog);
+  }
+
+  closeMasterDialog() {
+    this.$$("#masterDialog").close();
   }
 
   usedBonusesAndPenaltiesChanged(event) {
@@ -1029,384 +957,21 @@ class OapApp extends OapBaseElement {
         this.savedGameDate = parsedDate.toISOString().slice(0, 10);
       } else {
         this.disableAutoSave=false;
-        this.openWelcomeDialog();
+        if (!window.debugOn)
+          this.openWelcomeDialog();
       }
     });
   }
 
-  openWelcomeDialog() {
-    this.masterDialogCloseFunction = this.openChoicePointsDialog;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="welcome/velkomin" width="200" height="200" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">${this.welcomeHeading}</div>
-          <div class="horizontal welcomeText">
-            ${this.welcomeText}
-          </div>
-          <div class="langSelectionText">
-            ${Object.keys(this.configFromServer.client_config.localeSetup).length>1 ?
-              html`
-                  ${this.configFromServer.client_config.localeSetup.map((lang) => {
-                    return html`
-                      <span class="langSelect" data-locale="${lang.locale}" ?is-selected="${lang.locale===this.language}"
-                        @click="${this.selectLocale}">${lang.language}</span>
-                    `
-                  })}
-              `
-              : html``}
-        </div>
-        <div class="center-center">
-          <paper-button raised class="continueButton" @click="${this.openChoicePointsDialog}" autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  openChoicePointsDialog() {
-    this.masterDialogCloseFunction = this.openQuizDialog;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="cpImage" style="max-width: 400px;max-height:171px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Choice Points</div>
-        <div class="horizontal welcomeText">
-          Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" @click="${this.openQuizDialog}" autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  openQuizDialog() {
-    this.masterDialogCloseFunction = this.closeWelcome;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 400px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Quiz</div>
-        <div class="horizontal welcomeText">
-          First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" @click="${this.closeWelcome}" autofocus>${this.localize('start')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  startCulturalAttitutesTutorial() {
-    this.masterDialogCloseFunction = null
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="image" style="max-width: 400px;max-height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Cultural Values</div>
-        <div class="horizontal welcomeText">
-         These are the values of your society. Pay attention to these as you frame your constitution - you need to match your constitution to the Values of your citizens in your electorate.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton"  @click="${this.culturalAttitutesTutorialAuthority}"   autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialAuthority() {
+  openArticleItem(event) {
+    const item = event.detail;
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      🏛️
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Authority</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em></span><br></span>
-          High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLiberty}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
+     <oap-article-item .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
    `
-    this.openAndUpdateDialog();
+    this.openAndUpdateDialog(true);
   }
 
-  culturalAttitutesTutorialLiberty() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      🌅
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Liberty</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em><br></span>
-          This measures the society’s embrace of the idea that a person should be allowed to do whatever the hell they want as long as it doesn’t hurt other people.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialScience}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialScience() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      🔬
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Science</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Science is true whether you believe in it or not…</em><br></span>
-          This score represents the extent to which this society values facts, truth, demonstrable evidence, the scientific method, modern consensus on sexual and racial equality, evolution, etc.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialTradition}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialTradition() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      🏺
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Tradition</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
-          <em>- Confucius</em><br></span>
-          Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialCollective}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialCollective() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      👥
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Collectivism</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>The good of the many outweighs the good of the few…</em><br></span>
-          Defines the extent to which the culture understands communal sacrifice and shared purpose in the name of the common good.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialIndependence}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialIndependence() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      🛡️
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Independence</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Swear allegiance to no other flag, serve no nation but thine own…</em><br></span>
-          This measures the extent the culture of the country dictates that it maintain complete autonomy from other nation states. High Independence indicates the citizens supports almost no international coalition building or globalist thinking. Low Independence indicates they welcome partnerships with friendly foriegn powers all over the globe.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialPrivacy}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialPrivacy() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      🔐
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Privacy</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br></span>
-          Defines how much the citizens of the country value their personal information being kept safe from the public sphere, and how much they expect their government to behave with regard to that boundary.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLawAndOrder}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialLawAndOrder() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      👮
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Law and Order</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
-          <em>- Lao Tze</em><br></span>
-          This sets the appetite of the country’s citizenship for law enforcement in their lives and communities; High means that this makes them feel safe; Low means that it makes them angry and want to revolt.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
-          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialProgressivism}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  culturalAttitutesTutorialProgressivism() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
-      ✊
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Social Progress/</div>
-        <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
-          <em>- Martin Luther King, Jr.</em><br></span>
-          This score measures the country’s urge towards social justice, equal treatment for all people, level playing field free of corruption, kleptocracy, cronyism and prejudice, and their belief in every citizen’s right to clean air, food, water, housing, education, medical attention.
-        </div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  openCountrySelectInfoDialog() {
-    debugger;
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 340px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Select a Country</div>
-        <div class="horizontal welcomeText">
-         Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!</div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-  openAndUpdateDialog() {
-    this.$$("#masterDialog").open();
-    this.requestUpdate();
-    setTimeout(()=>{
-      this.$$("#masterDialog").fire('iron-resize');
-    }, 75);
-  }
-
-  openFilterInfoDialog() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/filter1.jpg"></img>
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Filter Articles</div>
-        <div class="horizontal welcomeText">
-        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include.</div>
-        <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
-
-
-  openSelectionInfoDialog() {
-    this.masterDialogCloseFunction = null;
-    this.masterDialogContent = html`
-      <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
-      </div>
-      <div class="vertical center-center masterDialog">
-        <div class="heading">Select Articles</div>
-        <div class="horizontal welcomeText">
-          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!        <div class="buttons center-center">
-          <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
-        </div>
-      </div>
-    </div>
-   `
-    this.openAndUpdateDialog();
-  }
   _startDelayedCaching(options) {
     setTimeout(()=>{
       const emojis = ["🏛️","🌅","🔬","🏺","👥","🛡️","🔐","👮","✊","🔋","🛂","🌐","🧱"];
@@ -1635,6 +1200,587 @@ class OapApp extends OapBaseElement {
 
   _drawerOpenedChanged(e) {
     this._updateDrawerState(e.target.opened);
+  }
+
+  openWelcomeDialog() {
+    this.masterDialogCloseFunction = this.openChoicePointsDialog;
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="welcome/velkomin" width="200" height="200" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">${this.welcomeHeading}</div>
+          <div class="horizontal welcomeText">
+            ${this.welcomeText}
+          </div>
+          <div class="langSelectionText">
+            ${Object.keys(this.configFromServer.client_config.localeSetup).length>1 ?
+              html`
+                  ${this.configFromServer.client_config.localeSetup.map((lang) => {
+                    return html`
+                      <span class="langSelect" data-locale="${lang.locale}" ?is-selected="${lang.locale===this.language}"
+                        @click="${this.selectLocale}">${lang.language}</span>
+                    `
+                  })}
+              `
+              : html``}
+        </div>
+        <div class="center-center">
+          <paper-button raised class="continueButton" @click="${this.openChoicePointsDialog}" autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  openChoicePointsDialog() {
+    this.masterDialogCloseFunction = this.openQuizDialog;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Choice Points</div>
+        <div class="horizontal welcomeText">
+          Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Choice Points</div>
+        <div class="horizontal welcomeText">
+          Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="cpImage" style="max-width: 400px;max-height:171px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" @click="${this.openQuizDialog}" autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  openQuizDialog() {
+    this.masterDialogCloseFunction = this.closeWelcome;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Quiz</div>
+        <div class="horizontal welcomeText">
+          First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Quiz</div>
+        <div class="horizontal welcomeText">
+          First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="max-width: 400px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" @click="${this.closeWelcome}" autofocus>${this.localize('start')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  startCulturalAttitutesTutorial() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Cultural Values</div>
+        <div class="horizontal welcomeText">
+         These are the values of your society. Pay attention to these as you frame your constitution - you need to match your constitution to the Values of your citizens in your electorate.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Cultural Values</div>
+        <div class="horizontal welcomeText">
+         These are the values of your society. Pay attention to these as you frame your constitution - you need to match your constitution to the Values of your citizens in your electorate.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="image" style="max-width: 400px;max-height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton"  @click="${this.culturalAttitutesTutorialAuthority}"   autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialAuthority() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Authority</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em></span><br></span>
+          High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Authority</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em></span><br></span>
+          High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🏛️
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLiberty}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialLiberty() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Liberty</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em><br></span>
+          This measures the society’s embrace of the idea that a person should be allowed to do whatever the hell they want as long as it doesn’t hurt other people.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Liberty</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em><br></span>
+          This measures the society’s embrace of the idea that a person should be allowed to do whatever the hell they want as long as it doesn’t hurt other people.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🌅
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialScience}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialScience() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Science</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>Science is true whether you believe in it or not…</em><br></span>
+          This score represents the extent to which this society values facts, truth, demonstrable evidence, the scientific method, modern consensus on sexual and racial equality, evolution, etc.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Science</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>Science is true whether you believe in it or not…</em><br></span>
+          This score represents the extent to which this society values facts, truth, demonstrable evidence, the scientific method, modern consensus on sexual and racial equality, evolution, etc.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🔬
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialTradition}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialTradition() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Tradition</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
+          <em>- Confucius</em><br></span>
+          Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Tradition</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
+          <em>- Confucius</em><br></span>
+          Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🏺
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialCollective}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialCollective() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Collectivism</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>The good of the many outweighs the good of the few…</em><br></span>
+          Defines the extent to which the culture understands communal sacrifice and shared purpose in the name of the common good.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Collectivism</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>The good of the many outweighs the good of the few…</em><br></span>
+          Defines the extent to which the culture understands communal sacrifice and shared purpose in the name of the common good.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      👥
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialIndependence}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialIndependence() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Independence</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>Swear allegiance to no other flag, serve no nation but thine own…</em><br></span>
+          This measures the extent the culture of the country dictates that it maintain complete autonomy from other nation states. High Independence indicates the citizens supports almost no international coalition building or globalist thinking. Low Independence indicates they welcome partnerships with friendly foriegn powers all over the globe.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Independence</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>Swear allegiance to no other flag, serve no nation but thine own…</em><br></span>
+          This measures the extent the culture of the country dictates that it maintain complete autonomy from other nation states. High Independence indicates the citizens supports almost no international coalition building or globalist thinking. Low Independence indicates they welcome partnerships with friendly foriegn powers all over the globe.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🛡️
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialPrivacy}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialPrivacy() {
+    this.masterDialogCloseFunction = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Privacy</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br></span>
+          Defines how much the citizens of the country value their personal information being kept safe from the public sphere, and how much they expect their government to behave with regard to that boundary.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Privacy</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br></span>
+          Defines how much the citizens of the country value their personal information being kept safe from the public sphere, and how much they expect their government to behave with regard to that boundary.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      🔐
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLawAndOrder}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialLawAndOrder() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Law and Order</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
+          <em>- Lao Tze</em><br></span>
+          This sets the appetite of the country’s citizenship for law enforcement in their lives and communities; High means that this makes them feel safe; Low means that it makes them angry and want to revolt.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Law and Order</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
+          <em>- Lao Tze</em><br></span>
+          This sets the appetite of the country’s citizenship for law enforcement in their lives and communities; High means that this makes them feel safe; Low means that it makes them angry and want to revolt.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      👮
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialProgressivism}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  culturalAttitutesTutorialProgressivism() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Social Progress/</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
+          <em>- Martin Luther King, Jr.</em><br></span>
+          This score measures the country’s urge towards social justice, equal treatment for all people, level playing field free of corruption, kleptocracy, cronyism and prejudice, and their belief in every citizen’s right to clean air, food, water, housing, education, medical attention.
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Social Progress/</div>
+        <div class="horizontal welcomeText">
+          <span class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
+          <em>- Martin Luther King, Jr.</em><br></span>
+          This score measures the country’s urge towards social justice, equal treatment for all people, level playing field free of corruption, kleptocracy, cronyism and prejudice, and their belief in every citizen’s right to clean air, food, water, housing, education, medical attention.
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center" style="font-size: 110px;padding: 52px;margin-bottom: 16px;">
+      ✊
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  openCountrySelectInfoDialog() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="horizontal welcomeText">
+         Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!</div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="horizontal welcomeText">
+         Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!</div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="max-width: 340px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        <div class="heading">Select a Country</div>
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+  openAndUpdateDialog(notModal) {
+    if (notModal) {
+      this.$$("#masterDialog").modal = false;
+    } else {
+      this.$$("#masterDialog").modal = true;
+    }
+    this.$$("#masterDialog").open();
+    this.requestUpdate();
+    setTimeout(()=>{
+      this.$$("#masterDialog").fire('iron-resize');
+    }, 75);
+  }
+
+  openFilterInfoDialog() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Filter Articles</div>
+        <div class="horizontal welcomeText">
+        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include.</div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Filter Articles</div>
+        <div class="horizontal welcomeText">
+        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include.</div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/filter1.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+        ${localeText}
+        <div class="buttons center-center">
+          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
+        </div>
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
+  }
+
+
+  openSelectionInfoDialog() {
+    this.masterDialogCloseFunction = null;
+    let localeText = null;
+    if (this.language=="en") {
+      localeText =  html`
+        <div class="heading">Select Articles</div>
+        <div class="horizontal welcomeText">
+          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!        <div class="buttons center-center">
+          <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
+        </div>
+      `
+    } else if (this.language=="is") {
+      localeText =  html`
+        <div class="heading">Veldu greinar</div>
+        <div class="horizontal welcomeText">
+          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!        <div class="buttons center-center">
+          <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
+        </div>
+      `;
+    }
+    this.masterDialogContent = html`
+      <div class="vertical center-center">
+      <div class="masterLogoContainer center-center">
+        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
+      </div>
+      <div class="vertical center-center masterDialog">
+       ${localeText}
+      </div>
+    </div>
+   `
+    this.openAndUpdateDialog();
   }
 }
 

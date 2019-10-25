@@ -322,7 +322,7 @@ class Oap3dBudget extends OapBaseElement {
 
         setTimeout(()=>{
           this.bonusPenaltyFontTween = new Tween(this.bonusPenaltyGroup.position)
-          .to({ x: xText+endFudge, y: this.bonusPenaltyGroup.position.y, z: this.bonusPenaltyGroup.position.z}, 1500) // relative animation
+          .to({ x: xText+endFudge, y: this.bonusPenaltyGroup.position.y, z: this.bonusPenaltyGroup.position.z}, 2500) // relative animation
           .delay(0)
           .on('complete', () => {
             this.bonusPenaltyGroup.position.x=this.getLeftOfCamera();
@@ -902,8 +902,8 @@ class Oap3dBudget extends OapBaseElement {
     .on('complete', () => {
       this.budgetGroup3d.runningMoveX=null;
       this.budgetGroup3d.runningMoveXTwo = new Tween(this.budgetGroup3d.position)
-      .to({ x: this.defaultGroupPos.x, y: this.defaultGroupPos.y, z: this.defaultGroupPos.z }, 650) // relative animation
-      .delay(700)
+      .to({ x: this.defaultGroupPos.x, y: this.defaultGroupPos.y, z: this.defaultGroupPos.z }, 1150) // relative animation
+      .delay(1200)
       .easing(Easing.Quadratic.InOut)
       .on('complete', () => {
         this.budgetGroup3d.runningMoveX=null;

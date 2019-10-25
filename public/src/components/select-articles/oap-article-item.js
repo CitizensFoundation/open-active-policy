@@ -26,6 +26,8 @@ class OapArticleItem extends OapBaseElement {
 
       elevation: Number,
 
+      selected: Boolean,
+
       ballotElement: {
         type: Object
       },
@@ -87,7 +89,9 @@ class OapArticleItem extends OapBaseElement {
 
       listBoxSelection: Number,
 
-      selectedExclusiveId: String
+      selectedExclusiveId: String,
+
+      onlyDisplay: Boolean
     };
   }
 
@@ -122,7 +126,11 @@ class OapArticleItem extends OapBaseElement {
             <div class="exclusiveName" ?hidden="${this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
             <div class="layout-inline vertical" ?hidden="${this.item.module_type=="ModuleTypeCard"}">
               <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
-              <div class="buttons" ?hidden="${this.item.exclusive_ids && !this.selectedExclusiveId}">
+              <div class="buttons" ?hidden="${!this.onlyDisplay===true}">
+                <div id="addToBudgetButton" class="shadow-animation shadow-elevation-2dp addRemoveButton"
+                   @click="${()=>{this.fire("oap-close-master-dialog")}}"title="${this.localize('close')}">${this.localize("close")}
+              </div>
+              <div class="buttons" ?hidden="${(this.item.exclusive_ids && !this.selectedExclusiveId) || this.onlyDisplay===true}">
                 <div id="addToBudgetButton" class="shadow-animation shadow-elevation-2dp addRemoveButton"
                           ?hidden="${this.selected}"
                           ?exclusive-active="${this.item.exclusiveOptions}"
@@ -174,10 +182,8 @@ class OapArticleItem extends OapBaseElement {
   }
 
   topClick() {
-    if (this.isBlockedBy) {
-      this.fire('goto-selected-id', this.isBlockedBy.id);
-    } else {
-      this.fire('oap-open-article-id', this.item.id);
+    if ((!this.item.exclusiveOptions || this.selectedExclusiveId) && !this.selected) {
+      this.fire('oap-open-article-item', this.item);
     }
   }
 
@@ -215,7 +221,8 @@ class OapArticleItem extends OapBaseElement {
         if (this.item.exclusiveOptions && this.item.exclusiveOptions.length==1) {
           this.selectedExclusiveId = this.item.id;
         }
-        this.resetFromBudget();
+        if (!this.onlyDisplay)
+          this.resetFromBudget();
 
         if (this.item.module_type=="ModuleTypeCard") {
           const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
