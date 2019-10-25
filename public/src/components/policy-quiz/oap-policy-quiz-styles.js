@@ -23,8 +23,6 @@ export const OapPolicyQuizStyles = css`
     margin-top: 0;
     text-align: center;
     margin-bottom: 4px;
-    position: absolute;
-    top: 75px;
     border: 1px solid #999;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
@@ -62,8 +60,6 @@ export const OapPolicyQuizStyles = css`
 
   .buttonContainer {
     width: 100%;
-    position: absolute;
-    top: 340px;
     background: transparent;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;
@@ -81,13 +77,7 @@ export const OapPolicyQuizStyles = css`
     margin-right: auto;
     background: transparent;
     color: var(--quiz-color, #FFF);
-    height: 100%;
-    padding-bottom: 42px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
+    margin-top: 42px;
   }
 
   .infoBar {
@@ -126,7 +116,7 @@ export const OapPolicyQuizStyles = css`
 
   #canvas3d {
     width: 100%;
-    height: 250px;
+    height: 150px;
     top: 0;
   }
 

@@ -83,7 +83,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   start() {
     this.reset();
     var width=window.innerWidth;
-    var height=420;
+    var height=150;
 
     setTimeout(()=>{
       this.scene = new Scene();
@@ -256,8 +256,8 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   render() {
     return html`
+      <div id="canvas3d"></div>
       <div class="layout-inline vertical center-center">
-        <div id="canvas3d"></div>
         <div class="topContainer">
           ${this.currentIndex!==null ?  html`
             <div class="layout horizontal progress" ?intro-mode="${this.introMode}">
@@ -319,20 +319,22 @@ class OapPolicyQuiz extends OapPageViewElement {
       .start();
     });
 
-    this.fireworks3d.visible = true;
-    this.fireworks3d.material.opacity = 1.0;
-    this.updateFireworks3d = true;
+    if (this.fireworks3d) {
+      this.fireworks3d.visible = true;
+      this.fireworks3d.material.opacity = 1.0;
+      this.updateFireworks3d = true;
 
-    setTimeout(()=>{
-      this.fireworks3d.material.transparent = true;
-      new Tween(this.fireworks3d.material)
-      .to({ opacity: 0.0 }, 1000)
-      .on('complete', () => {
-        this.fireworks3d.visible = false;
-        this.updateFireworks3d = false;
-      })
-      .start();
-    }, 2200);
+      setTimeout(()=>{
+        this.fireworks3d.material.transparent = true;
+        new Tween(this.fireworks3d.material)
+        .to({ opacity: 0.0 }, 1000)
+        .on('complete', () => {
+          this.fireworks3d.visible = false;
+          this.updateFireworks3d = false;
+        })
+        .start();
+      }, 2200);
+    }
 
   }
 
@@ -355,12 +357,14 @@ class OapPolicyQuiz extends OapPageViewElement {
       .start();
     });
 
-    this.lightning3d.visible = true;
-    this.lightning3d.outlinePass.edgeGlow = 0.7;
-    this.lightning3d.outlinePass.edgeStrength = 2.5;
-    this.lightning3d.outlinePass.edgeThickness = 2.8;
-    this.lightning3d.material.opacity = 1.0;
-    //this.updateLighting3d = true;
+    if (this.lightning3d) {
+      this.lightning3d.visible = true;
+      this.lightning3d.outlinePass.edgeGlow = 0.7;
+      this.lightning3d.outlinePass.edgeStrength = 2.5;
+      this.lightning3d.outlinePass.edgeThickness = 2.8;
+      this.lightning3d.material.opacity = 1.0;
+      //this.updateLighting3d = true;
+    }
 
     setTimeout(()=>{
       this.lightning3d.material.transparent = true;

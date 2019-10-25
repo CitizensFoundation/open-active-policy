@@ -573,17 +573,17 @@ class OapApp extends OapBaseElement {
         this.allItems.push({
           id: line[0],
           sub_category: line[1],
-          Branch: line[2],
+          branch: line[2],
           name: line[3],
           description: line[4],
-          moduleType: line[5],
+          module_type: line[5],
           exclusive_ids: line[6],
           hybrids: line[7],
           timePeriod: line[8],
           module_content_type: line[9],
-          module_type_index: line[10],
+          module_type_index: parseInt(line[10]),
           image_url: line[11],
-          price: line[12],
+          price: parseInt(line[12]),
           bonus: line[13],
           penalty: line[14],
           specialFunctions: line[15],
@@ -594,12 +594,6 @@ class OapApp extends OapBaseElement {
         })
       }
     })
-
-    for (var i=0; i<this.allItems.length; i++) {
-      if (this.allItems[i].price) {
-        this.allItems[i].price=parseInt(this.allItems[i].price);
-      }
-    }
 
     cacheDataImages(this.allItems);
 
@@ -1350,7 +1344,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="cpImage" style="max-width: 400px;max-height:171px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
+        <img aria-label="cpImage" style="width: 250px;height:107px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
       </div>
       <div class="vertical center-center masterDialog">
         ${localeText}
@@ -1382,7 +1376,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 400px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
+        <img aria-label="choice points image" style="width: 339px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         ${localeText}
@@ -1416,7 +1410,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="image" style="max-width: 400px;max-height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
+        <img aria-label="image" style="width: 400px;height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         ${localeText}
@@ -1784,7 +1778,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 340px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
+        <img aria-label="choice points image" style="width: 340px;height: 226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         <div class="heading">Select a Country</div>
@@ -1806,9 +1800,7 @@ class OapApp extends OapBaseElement {
     }
     this.$$("#masterDialog").open();
     this.requestUpdate();
-    setTimeout(()=>{
-      this.$$("#masterDialog").fire('iron-resize');
-    }, 75);
+    this.$$("#masterDialog").fire('iron-resize');
   }
 
   openFilterInfoDialog() {
@@ -1830,7 +1822,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/filter1.jpg"></img>
+        <img aria-label="choice points image" style="width: 250px;height: 167px" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/filter1.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         ${localeText}

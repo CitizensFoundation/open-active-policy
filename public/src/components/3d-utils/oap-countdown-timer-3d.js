@@ -167,17 +167,17 @@ class CountDownTimer3D {
   }
 
   startCountDown() {
-    let emojiStartZ = -120;
-    let emojiEndZ = 40;
+    let emojiStartZ = -50;
+    let emojiEndZ = 70;
     let digitsStartZ = -190;
     let digitsHoldZ = -1350;
-    let digitsEndZ = -225;
+    let digitsEndZ = -50;
     this.secondsLeft = 15;
 
-    if (!this.startEmojiSprite) {
+    if (false && !this.startEmojiSprite) {
       this.startEmojiSprite = Get2DEmoji("⏳", '120px Arial');
-      this.startEmojiSprite.position.y = 0.7;
-     // this.countdownDigitGroup.add(this.startEmojiSprite);
+      this.startEmojiSprite.position.y = 10.7;
+      this.countdownDigitGroup.add(this.startEmojiSprite);
     }
 
     if (this.startEmoji2DTween) {
@@ -198,18 +198,16 @@ class CountDownTimer3D {
 
    // this.countDownMesh.material = this.material;
 
-    this.startEmojiSprite.position.z=emojiStartZ;
-    this.startEmojiSprite.visible=true;
-    this.startEmojiSprite.material.opacity = 1.0;
     this.countDownMesh.position.z=digitsHoldZ;
-    this.countDownMesh.position.y=-15.0;
+    this.countDownMesh.position.y=1.0;
     this.countdownDigitGroup.visible=true;
     this.countDownMesh.visible=true;
     const startDateMs = Date.now();
 
     this.inCountDown = true;
     this.doCountDown();
-    /*this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
+    /*
+    this.startEmoji2DTween = new Tween(this.startEmojiSprite.position)
     .to({ z: emojiEndZ }, 2400)
     .delay(0)
     .on('update', (val, deg) => {
@@ -232,8 +230,8 @@ class CountDownTimer3D {
     .on('complete', () => {
       this.opacityEmoji2DTween = null;
     })
-    .start();
-    */
+    .start();*/
+
     this.countdownTween3 = new Tween(this.countDownMesh.position)
     .to({ z: digitsEndZ }, 2000)
     .easing(this.getRandomEasing())
