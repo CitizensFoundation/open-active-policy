@@ -171,7 +171,7 @@ class CountDownTimer3D {
     let emojiEndZ = 70;
     let digitsStartZ = -190;
     let digitsHoldZ = -1350;
-    let digitsEndZ = -130;
+    let digitsEndZ = -155;
     this.secondsLeft = 15;
 
     if (false && !this.startEmojiSprite) {
