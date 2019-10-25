@@ -712,7 +712,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-play-sound-effect", this.playSoundEffect);
     this.addEventListener("oap-country-created", this.createCountryFinished);
     this.addEventListener("oap-set-total-budget", this.setTotalBudget);
-    this.addEventListener("oap-submit-ballot", this.submitBallot);
+    this.addEventListener("oap-submit-ballot-for-review", this.submitBallot);
     this.addEventListener("oap-bonus-points", this.processBonusPoints);
     this.addEventListener("oap-set-3d-font", this.set3dFont);
     this.addEventListener("oap-filtered-items-changed", this.filteredItemsChanged);
@@ -754,7 +754,7 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-open-snackbar", this._openSnackBar);
     this.removeEventListener("oap-set-total-budget", this.setTotalBudget);
     this.removeEventListener("oap-close-snackbar", this._closeSnackBar);
-    this.removeEventListener("oap-submit-ballot", this.submitBallot);
+    this.removeEventListener("oap-submit-ballot-for-review", this.submitBallot);
     this.removeEventListener("oap-bonus-points", this.processBonusPoints);
     this.removeEventListener("oap-set-3d-font", this.set3dFont);
     this.removeEventListener("oap-filtered-items-changed", this.filteredItemsChanged);
@@ -804,9 +804,9 @@ class OapApp extends OapBaseElement {
     this.font3d = event.detail;
   }
 
-  submitBallot() {
+  submitBallot(event) {
     this.fire('oap-play-sound-effect', 'oap_new_level_1');
-    const path = '/review';
+    const path = '/review/'+event.detail;
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
     this.activity('finished', 'ballot');

@@ -83,7 +83,7 @@ class OapPolicyQuiz extends OapPageViewElement {
   start() {
     this.reset();
     var width=window.innerWidth;
-    var height=150;
+    var height=300;
 
     setTimeout(()=>{
       this.scene = new Scene();
@@ -257,13 +257,13 @@ class OapPolicyQuiz extends OapPageViewElement {
   render() {
     return html`
       <div id="canvas3d"></div>
-      <div class="layout-inline vertical center-center">
-        <div class="topContainer">
-          ${this.currentIndex!==null ?  html`
-            <div class="layout horizontal progress" ?intro-mode="${this.introMode}">
+      <div class="layout-inline vertical center-center" class="topTop">
+          <div class="layout horizontal progress" ?intro-mode="${this.introMode}" style="max-width: 600px;margin-left: auto; margin-right:auto;">
               <div class="middle textLeft">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
               <div class="middle textRight">${this.localize("youHave")} ${this.totalChoicePoints}cp</div>
             </div>
+        <div class="topContainer">
+          ${this.currentIndex!==null ?  html`
             <div class="question" ?intro-mode="${this.introMode}">${this.questions[this.currentIndex].question}</div>
             <div class="buttonContainer" ?intro-mode="${this.introMode}">
               <paper-button raised ?disabled="${this.submitDisabled}" id="button0" class="answerButton flex" @click="${()=> { this.submitAnswer(0) }}">${this.questions[this.currentIndex].answers[0]}</paper-button>

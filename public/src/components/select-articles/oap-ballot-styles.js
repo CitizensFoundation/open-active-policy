@@ -17,6 +17,14 @@ export const OapBallotStyles = css`
     background-color: var(--app-main-background-color);
   }
 
+  .finalItems {
+    flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    margin: 0 auto;
+  }
+
   .name {
     font-size: 19px;
     padding: 8px;

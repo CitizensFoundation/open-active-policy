@@ -77,7 +77,13 @@ export const OapPolicyQuizStyles = css`
     margin-right: auto;
     background: transparent;
     color: var(--quiz-color, #FFF);
-    margin-top: 42px;
+    height: 100%;
+    padding-bottom: 42px;
+    position: absolute;
+    top: 175px;
+    left: 0;
+    right: 0;
+    padding: 0;
   }
 
   .infoBar {
@@ -116,9 +122,10 @@ export const OapPolicyQuizStyles = css`
 
   #canvas3d {
     width: 100%;
-    height: 150px;
+    height: 300px;
     top: 0;
   }
+
 
   .completedQuiz {
     margin-left: auto;

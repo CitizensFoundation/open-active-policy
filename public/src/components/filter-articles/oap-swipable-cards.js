@@ -152,6 +152,22 @@ class OapSwipableCards extends OapBaseElement {
     return item.exclusive_ids && item.exclusive_ids!='';
   }
 
+  getBonusPlurar(array) {
+    if (array.length>1) {
+      return this.localize("bonuses");
+    } else {
+      return this.localize("bonus");
+    }
+  }
+
+  getPenaltyPlurar(array) {
+    if (array.length>1) {
+      return this.localize("penalties");
+    } else {
+      return this.localize("penalty");
+    }
+  }
+
   getBonusesAndPenalties(itemIn) {
     let bonusesAndPenalties = GetBonusesAndPenaltiesForItem(itemIn, this.country).bonusesAndPenalties;
     let bonusEmojis = [];
@@ -174,21 +190,27 @@ class OapSwipableCards extends OapBaseElement {
             }
           }
       });
+      let bonusHtml = html``;
+      if (hasBonuses) {
+        bonusHtml = html`${bonusEmojis.map((emoji)=> {
+          return html`<div style="margin-left: 6px;" title="${emoji.title}">${emoji.emoji}</div>`
+        })}`;
+      }
 
-      const bonusHtml = html`${bonusEmojis.map((emoji)=> {
-        return html`<div style="margin-right: 4px;" title="${emoji.title}">${emoji.emoji}</div>`
-      })}`;
-
-      const penaltyHtml = html`${penaltyEmojis.map((emoji)=> {
-        return html`<div style="margin-right: 4px;" title="${emoji.title}">${emoji.emoji}</div>`
-      })}`
+      let penaltyHtml;
+      if (hasPenalties) {
+        penaltyHtml = html`${penaltyEmojis.map((emoji)=> {
+          return html`<div style="margin-left: 6px;" title="${emoji.title}">${emoji.emoji}</div>`
+        })}`
+      }
 
       if (hasBonuses && hasPenalties) {
-        return html`<span style="color: #0F0;font-weight: bold;">+</span>${bonusHtml} / <span style="color: #F00;font-weight: bold;">-</span>${penaltyHtml}`
+        return html`<div style="margin-left: 6px;">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}
+          <div class="flex"></div> <div style="margin-left: 6px;">${this.getPenaltyPlurar(penaltyEmojis)} </div>${penaltyHtml}`
       } else if (hasBonuses) {
-        return html`<span style="color: #0F0;font-weight: bold;">+</span>${bonusHtml}`
+          return html`<div style="margin-left: 6px;">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}`
       } else if (hasPenalties) {
-        return html`<span style="color: #F00;font-weight: bold;">-</span>${hasPenalties}`
+       return html`<div style="margin-left: 6px;">${this.getPenaltyPlurar(penaltyEmojis)} </div>${hasPenalties}`
       } else {
         console.error("Wrong state of penalties");
       }
@@ -234,7 +256,7 @@ class OapSwipableCards extends OapBaseElement {
 
   getExclusiveStyle(item) {
     const color = this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
-    return "color: #FFF;font-size: 15px;background-color:"+color;
+    return "color: #FFF;background-color:"+color;
   }
 
   getSubCategoryStyle(item) {

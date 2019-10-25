@@ -136,7 +136,7 @@ class CountDownTimer3D {
       } );
       this.winPointsMesh = new THREE.Mesh(this.cacheWinPointsGeometry ? this.cacheWinPointsGeometry : GetTextGeometry("+"+ this.winPoints+"cp", this.font3d, { large: true }),this.winPointsMaterial );
       this.winPointsMesh.position.x=-50;
-      this.winPointsMesh.position.y=-6.2;
+      this.winPointsMesh.position.y=7.2;
       this.winPointsMesh.position.z=winPointZ;
       this.scene.add(this.winPointsMesh);
     }
@@ -171,7 +171,7 @@ class CountDownTimer3D {
     let emojiEndZ = 70;
     let digitsStartZ = -190;
     let digitsHoldZ = -1350;
-    let digitsEndZ = -50;
+    let digitsEndZ = -130;
     this.secondsLeft = 15;
 
     if (false && !this.startEmojiSprite) {
@@ -199,7 +199,12 @@ class CountDownTimer3D {
    // this.countDownMesh.material = this.material;
 
     this.countDownMesh.position.z=digitsHoldZ;
-    this.countDownMesh.position.y=1.0;
+    if (window.innerWidth<600) {
+      this.countDownMesh.position.y=12.5;
+    } else {
+      this.countDownMesh.position.y=15.5;
+    }
+
     this.countdownDigitGroup.visible=true;
     this.countDownMesh.visible=true;
     const startDateMs = Date.now();

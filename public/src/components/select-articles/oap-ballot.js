@@ -60,6 +60,8 @@ class OapBallot extends OapPageViewElement {
       showMap: Boolean,
 
       usedBonusesAndPenalties: Object,
+
+      savedVoteId: Number
     };
   }
 
@@ -110,6 +112,9 @@ class OapBallot extends OapPageViewElement {
                 </div>
                 <div id="submitButtonContainer" class="layout horizontal center-center">
                    <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-submit-ballot') }}">${this.localize("submitConstitution")}</paper-button>
+                </div>
+                <div class="finalItems">
+
                 </div>
                 ${repeat(this.budgetElement.selectedItems, (item) => item.id,  (item, index) => {
                    let headerTemplate = html``;
@@ -250,6 +255,7 @@ class OapBallot extends OapPageViewElement {
     this.addEventListener("oav-submit-vote", this._postVoteToServer);
     this.addEventListener("oav-item-selected-in-budget", this._itemSelectedInBudget);
     this.addEventListener("oav-item-de-selected-from-budget", this._itemDeSelectedFromBudget);
+    this.addEventListener("oap-submit-ballot", this._postVoteToServer);
   }
 
   _removeListeners() {
@@ -257,6 +263,7 @@ class OapBallot extends OapPageViewElement {
     this.removeEventListener("oav-submit-vote", this._postVoteToServer);
     this.removeEventListener("oav-item-selected-in-budget", this._itemSelectedInBudget);
     this.removeEventListener("oav-item-de-selected-from-budget", this._itemDeSelectedFromBudget);
+    this.removeEventListener("oap-submit-ballot", this._postVoteToServer);
   }
 
   reset() {
@@ -494,8 +501,8 @@ class OapBallot extends OapPageViewElement {
               emojis.push(emoji);
             }
           }
-          htmlString+='<span style="width: 40px;height: 40px">'+GetEmojiFromAttitute(item.attitute)
-          htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'<br>';
+          htmlString+='<span style="font-size: 17px;"><span style="padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)
+          htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'</span><br>';
         } else {
           console.warn("Trying to use bonus again: "+usedKey);
         }
@@ -554,12 +561,20 @@ class OapBallot extends OapPageViewElement {
 
   _postVoteToServer() {
     if (this.budgetElement.selectedItems && this.budgetElement.selectedItems.length>0) {
-      this.completePostingOfVote(this._createEncryptedVotes());
+      this.completePostingOfVote(this._createB64Votes());
     } else {
       this.fire('oav-error', this.localize('error_no_items_selected'));
       console.error('error_no_items_selected');
     }
   }
+
+  _createB64Votes() {
+    debugger;
+    return btoa(encodeURIComponent(JSON.stringify({items: this.budgetElement.selectedItems, country: this.country})).replace(/%([0-9A-F]{2})/g,
+        function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+    }));
+}
 
   _createEncryptedVotes() {
     var selectedItemIds = this.budgetElement.selectedItems.map((item) => {
@@ -585,11 +600,8 @@ class OapBallot extends OapPageViewElement {
         .then(response => response.json())
         .then(response => {
           if (response && response.vote_ok === true) {
-            if (this.configFromServer.client_config.insecureEmailLoginEnabled===true) {
-              this.fire("oav-insecure-email-login", { areaId: this.area.id, areaName: this.area.name, onLoginFunction: this._setVotingCompleted.bind(this)})
-            } else {
-              window.location = this._getSamlUrlWithLanguage();
-            }
+            this.savedVoteId = response.vote_id;
+            this.fire('oap-submit-ballot-for-review', this.savedVoteId);
           } else {
             this.fire('oav-error', this.localize('error_could_not_post_vote'));
           }

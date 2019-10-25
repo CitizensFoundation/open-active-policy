@@ -76,7 +76,7 @@ class VotesController < ApplicationController
       ip_address = DO_NOT_LOG_IP_ADDRESSES == false ? request.remote_ip : "n/a"
 
       # Save the vote to the database as not authenticated
-      if Vote.create(:user_id_hash => "not authenticated",
+      if vote = Vote.create(:user_id_hash => "not authenticated",
                      :payload_data => params[:encrypted_vote],
                      :client_ip_address => ip_address,
                      :area_id =>params[:area_id],
@@ -85,7 +85,7 @@ class VotesController < ApplicationController
                      :encrypted_vote_checksum => "not authenticated")
 
         Rails.logger.info("Saved vote for session id: #{request.session_options[:id]}")
-        response = {:error=>false, :vote_ok=>true}
+        response = {:error=>false, :vote_ok=>true, :vote_id=>vote.id}
       else
         Rails.logger.error("Could not save vote for session id: #{request.session_options[:id]}")
         response = {:error=>true, :vote_ok=>false}
