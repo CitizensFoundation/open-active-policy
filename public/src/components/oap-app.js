@@ -1650,6 +1650,7 @@ class OapApp extends OapBaseElement {
 
   culturalAttitutesTutorialPrivacy() {
     this.masterDialogCloseFunction = null;
+    let localeText;
     if (this.language=="en") {
       localeText =  html`
         <div class="heading">Privacy</div>
@@ -1835,7 +1836,6 @@ class OapApp extends OapBaseElement {
     this.openAndUpdateDialog();
   }
 
-
   openSelectionInfoDialog() {
     this.masterDialogCloseFunction = null;
     let localeText = null;
@@ -1859,7 +1859,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="max-width: 250px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
+        <img aria-label="choice points image" style="width:250px;height:143px" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
        ${localeText}

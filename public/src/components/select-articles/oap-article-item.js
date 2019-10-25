@@ -150,7 +150,7 @@ class OapArticleItem extends OapBaseElement {
                   <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" @selected-changed="${this.selectedExclusiveChanged}">
                     ${this.item.exclusiveOptions.map((item)=>{
                       return html`
-                        <paper-item data-id="${item.id}">
+                        <paper-item data-id="${item.id}" @click="${this.noClick}">
                           ${item.name.split(": ")[1]}
                         </paper-item>
                       `
@@ -169,6 +169,10 @@ class OapArticleItem extends OapBaseElement {
         </div>
       </div>
     `;
+  }
+
+  noClick(event) {
+    event.preventDefault();
   }
 
   selectedExclusiveChanged(event) {
@@ -408,19 +412,19 @@ class OapArticleItem extends OapBaseElement {
 
   setInBudget() {
     //console.log("setInBudget itemId: "+this.item.id);
-    this.selected = true;
     const color = this.configFromServer.client_config.moduleTypeColorLookup[this.item.module_content_type];
     this.$$("#addToBudgetButton").style.backgroundColor=color;
     if (this.$$("#editExclusiveOptions")) {
       this.$$("#editExclusiveOptions").style.backgroundColor="#FFF";
       this.$$("#editExclusiveOptions").style.color=color;
-  }
+    }
 
     this.$$("#opacityLayer").style.backgroundColor=color;
     this.$$("#opacityLayer").classList.add("cover");
     this.$$("#opacityLayer").style.display="block";
     setTimeout(()=>{
       this.$$("#opacityLayer").style.display="none";
+      this.selected = true;
     }, 600);
   }
 
