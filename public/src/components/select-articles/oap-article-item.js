@@ -147,7 +147,7 @@ class OapArticleItem extends OapBaseElement {
               ${(this.item.exclusiveOptions && !this.selectedExclusiveId && !this.selected) ? html`
                 <paper-menu-button @tap="${this._openMenu}" class="editExclusiveMenuButton" horizontal-align="right">
                   <paper-icon-button id="editExclusiveOptions" class="shadow-animation shadow-elevation-2dp  dropdown-trigger  editExclusiveButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize('openDetailMenu')}" icon="mode-edit"></paper-icon-button>
-                  <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" @selected-changed="${this.selectedExclusiveChanged}">
+                  <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" @click="${this.noClick}" @selected-changed="${this.selectedExclusiveChanged}">
                     ${this.item.exclusiveOptions.map((item)=>{
                       return html`
                         <paper-item data-id="${item.id}" @click="${this.noClick}">

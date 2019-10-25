@@ -141,7 +141,7 @@ class OapReview extends OapPageViewElement {
     super.updated(changedProps);
     if (changedProps.has('selectedItems')) {
       if (this.selectedItems) {
-        const reviews = GetResultsForReview(this.selectedItems, this.country, this.configFromServer.client_config.attituteReviews);
+        const reviews = GetResultsForReview(this.selectedItems, this.country, this.configFromServer.client_config.languages[this.language].attituteReviews);
         this.attituteReviewParagraphs=reviews.attituteReviewParagraphs;
         this.countryReviewParagraph=reviews.countryReviewParagraph;
       }
