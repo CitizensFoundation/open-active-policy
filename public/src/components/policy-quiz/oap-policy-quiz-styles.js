@@ -13,7 +13,7 @@ export const OapPolicyQuizStyles = css`
   }
 
   .question {
-    width: 600px;
+    width: 566px;
     padding: 16px;
     font-size: 23px;
     background-color: #000;
@@ -22,7 +22,7 @@ export const OapPolicyQuizStyles = css`
     border-radius: 12px;
     margin-top: 0;
     text-align: center;
-    margin-bottom: 4px;
+    margin-bottom: 32px;
     border: 1px solid #999;
     -webkit-transition: opacity 2.0s ease-in-out;
     -moz-transition: opacity 2.0s ease-in-out;

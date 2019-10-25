@@ -411,8 +411,6 @@ export const OapSwipableCardsStyles = css`
     color: #000;
     margin: 8px;
     margin-top: 0;
-    height 100%;
-    overflow: hidden;
     margin-bottom: 32px;
   }
 
