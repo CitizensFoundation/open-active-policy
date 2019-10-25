@@ -51,10 +51,10 @@ export class OapBaseElement extends LitElement {
 
   localize() {
     var key = arguments[0];
-    if (!key || !window.localeResources || !(this.language && window.language) || !window.localeResources[this.language])
+    if (!key || !window.localeResources || !(this.language && window.language))
       return key;
 
-    var translatedValue = window.localeResources[this.language || window.language][key];
+    var translatedValue = window.localeResources[key];
 
     if (!translatedValue) {
       return key;

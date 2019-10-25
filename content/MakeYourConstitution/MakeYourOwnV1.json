@@ -27,7 +27,7 @@
     ],
     "auth_url": "https://audkenning.vottun.is/Login/Login?electionId=f3ec8729-e20f-4a87-81ff-0faa6248bec3&returnUrl=%20https%3A%2F%2Fkosning2019.gardabaer.is%2Fauthenticate_from_island_is",
     "saml_idp_cert_fingerprint":"23:81:C3:16:7A:8C:A8:77:2E:A6:00:26:5E:1E:EA:51:1E:66:28:C5",
-    "defaultLanguage": "en",
+    "defaultLanguage": "is",
     "favoriteIcon": "favorite",
     "favoriteIconOutline": "favorite-border",
     "googleMapsApiKey": "AIzaSyDkF_kak8BVZA5zfp5R4xRnrX8HP3hjiL0",

@@ -285,7 +285,7 @@ class OapApp extends OapBaseElement {
               ?active="${this._page === 'create-country'}">
             </oap-country-creation>
             ` : html``}
-          ${this._page==="quiz" ?  html`
+          ${(this.quizQuestions && this._page==="quiz") ?  html`
             <oap-policy-quiz
               id="quiz"
               .questions="${this.quizQuestions}"
@@ -295,7 +295,7 @@ class OapApp extends OapBaseElement {
               .font3d="${this.font3d}"
               .totalChoicePoints="${this.totalChoicePoints}"
               class="page"
-              ?active="${this._page === 'quiz'}">
+              ?active="${(this.quizQuestions && this._page==="quiz") }">
             </oap-policy-quiz>
           ` : html``}
           ${ this._page==="filter-articles" ?  html`
@@ -395,7 +395,6 @@ class OapApp extends OapBaseElement {
   setDummyData() {
     this.totalChoicePoints = 100;
     this.usedChoicePoints = 0;
-    this.quizQuestion = [];
 
     this.soundEffects = {
       oap_short_win_1: {url: "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/soundsFx/oap_short_win_1.mp3", volume: 0.4},
@@ -507,7 +506,7 @@ class OapApp extends OapBaseElement {
         this.requestInProgress= false;
         this.votePublicKey = response.public_key;
         this._setupCustomCss(response.config.client_config);
-        window.localeResources = response.config.client_config.locales;
+        window.localeResources = response.config.client_config.languages[this.language].locales;
         this.configFromServer = response.config;
         this.updateAppMeta(this.configFromServer.client_config.shareMetaData);
 
@@ -642,7 +641,6 @@ class OapApp extends OapBaseElement {
     })
 
     this.quizQuestions = this.getRandom(allQuizQuestions, 10);
-    this.requestUpdate();
   }
 
   parseCSV(str) {
@@ -973,7 +971,7 @@ class OapApp extends OapBaseElement {
   }
 
   getHelpContent() {
-    if (this.configFromServer.client_config.languages[this.langauge] && this.configFromServer.client_config.languages[this.langauge].helpPageLocales) {
+    if (this.configFromServer.client_config.languages[this.language] && this.configFromServer.client_config.languages[this.language].helpPageLocales) {
       return this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].helpPageLocales.b64text);
     } else {
       return "No help page found for selected language!"

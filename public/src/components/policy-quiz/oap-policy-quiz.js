@@ -55,7 +55,7 @@ class OapPolicyQuiz extends OapPageViewElement {
     this.submitDisabled = false;
     this.updateLighting3d = false;
     this.updateFireworks3d = false;
-    this.introMode=true;
+    this.introMode=false;
   }
 
   startIntro() {

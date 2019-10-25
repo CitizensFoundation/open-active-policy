@@ -305,7 +305,9 @@ class CountDownTimer3D {
       this.opacityEmoji2DTween=null;
     }
 
-    this.startEmojiSprite.visible = false;
+    if (this.startEmojiSprite)
+      this.startEmojiSprite.visible = false;
+
     this.countdownDigitGroup.visible = false;
   }
 
