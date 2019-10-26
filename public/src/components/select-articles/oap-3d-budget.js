@@ -365,6 +365,9 @@ class Oap3dBudget extends OapBaseElement {
         metalness = Math.random();
       }
 
+      roughness=0.7;
+      metalness=0.7;
+
       this.choicePointsMaterial = new MeshStandardMaterial( {
         color: this.defaultChoicePointsColor,
         roughness: roughness,
