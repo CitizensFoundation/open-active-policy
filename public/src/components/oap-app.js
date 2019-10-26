@@ -1338,10 +1338,9 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Choice Points</div>
+        <div class="heading">Valstig</div>
         <div class="horizontal welcomeText">
-          Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
-        </div>
+        Valstig eru leikjaorð fyrir stjórnmálalegt fjármagn þitt, „safinn“ sem þú þarft til að fá þessa stjórnarskrá skrifaða. Þú verður að eyða stigum þínum skynsamlega þegar þú velur greinar og borgaraleg réttindi í stjórnarskrá þinni; þú munt fá bónus og viðurlög við valpunkta þínum fyrir hversu vel stjórnskipunin sem þú skrifar passar löngun þegna þinna.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1371,9 +1370,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Quiz</div>
+        <div class="heading">Spurningakeppni</div>
         <div class="horizontal welcomeText">
-          First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
+          Byrjum fyrst á almennri spurningakeppni um stjórnarskrár í sögunni og um allan heim. Því fleiri spurningar sem þú færð rétt, þeim mun fleiri valkostum verður þú að ramma upp stjórnarskrána þína!
+         </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1404,10 +1404,9 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Cultural Values</div>
+        <div class="heading">Menningarleg gildi</div>
         <div class="horizontal welcomeText">
-         These are the values of your society. Pay attention to these as you frame your constitution - you need to match your constitution to the Values of your citizens in your electorate.
-        </div>
+        Þetta eru gildi samfélagsins. Fylgstu með þessum þegar þú rammar stjórnarskrána þína - þú þarft að passa stjórnarskrána við gildi borgaranna í kjósendum þínum.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1440,10 +1439,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Authority</div>
+        <div class="heading">Yfirvald</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em></span><br></span>
-          High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
+          <span class = "smallQuotes"> <em> „Ég mun vera faðir þinn, leggðu litlu höndina í mitt…“ </em> </span> <br> </span>
+          Menningarríki yfirvalda hefur íbúa þess lands þrá sterka uppbyggingu og skýrar stjórnlínur í lífi sínu og vilja að stjórnvöld ráði eins skýrum hætti og unnt er að búa um lífskjör. Miðlungs vald þýðir að vilja nokkrar leiðbeiningar, með minni þátttöku stjórnvalda. Low Authority þýðir að menningin metur afstöðu stjórnvalda.
         </div>
       `;
     }
@@ -1477,11 +1476,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Liberty</div>
+        <div class="heading">Frelsi</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em><br></span>
-          This measures the society’s embrace of the idea that a person should be allowed to do whatever the hell they want as long as it doesn’t hurt other people.
-        </div>
+        <span class = "smallQuotes"> <em> Maður sem er tilbúinn að fórna frelsi til öryggis á hvorki skilið… </em> <br> </span>
+          Þetta mælir faðma samfélagsins með þá hugmynd að einstaklingur skuli fá að gera hvað í fjandanum sem þeir vilja svo framarlega sem það skaðar ekki annað fólk.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1514,11 +1512,11 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Science</div>
+        <div class="heading">Vísindi</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Science is true whether you believe in it or not…</em><br></span>
-          This score represents the extent to which this society values facts, truth, demonstrable evidence, the scientific method, modern consensus on sexual and racial equality, evolution, etc.
-        </div>
+
+        <span class = "smallQuotes"> <em> Vísindi eru sönn hvort sem þú trúir á það eða ekki… </em> <br> </span>
+          Þessi skora táknar að hve miklu leyti samfélagið metur staðreyndir, sannleika, sannanleg sönnunargögn, vísindalega aðferð, nútíma samstöðu um kynferðislegt og kynþáttajafnrétti, þróun o.s.frv.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1552,12 +1550,11 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Tradition</div>
+        <div class="heading">Hefðir</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
-          <em>- Confucius</em><br></span>
-          Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
-        </div>
+        <span class = "smallQuotes"> <em> „Athugaðu fortíðina, ef þú vilt spá í framtíðina“ </em> <br>
+          <em> - Confucius </em> <br> </span>
+          Mælir hversu fastir íbúar lands þíns eru við aldar skoðanir á menningu sinni, þar með talin trúarbrögð, klæðnaður, réttarvenjur, viðhorf um kynlíf og hjónaband og kyn, þjóðernisarfleifð, mat og list / tónlist. Þessi staðfasta viðhorf hafa djúp áhrif á þá tegund stjórnvalda sem þeir vilja láta stjórnast af.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1590,11 +1587,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Collectivism</div>
+        <div class="heading">Samfélagshyggja</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>The good of the many outweighs the good of the few…</em><br></span>
-          Defines the extent to which the culture understands communal sacrifice and shared purpose in the name of the common good.
-        </div>
+        <span class = "smallQuotes"> <em> Góður hinna mörgu vegur þyngra en góður fárra… </em> <br> </span>
+          Skilgreinir að hve miklu leyti menningin skilur samfélagslegar fórnir og sameiginlegan tilgang í nafni almannaheilla.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1627,11 +1623,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Independence</div>
+        <div class="heading">Sjálfstæði</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Swear allegiance to no other flag, serve no nation but thine own…</em><br></span>
-          This measures the extent the culture of the country dictates that it maintain complete autonomy from other nation states. High Independence indicates the citizens supports almost no international coalition building or globalist thinking. Low Independence indicates they welcome partnerships with friendly foriegn powers all over the globe.
-        </div>
+        <span class = "smallQuotes"> <em> sverðu trúmennsku við engan annan fána, þjónaðu engri þjóð en þínum eigin… </em> <br> </span>
+          Þetta mælir að hve miklu leyti menning landsins ræður því að það haldi fullkomnu sjálfræði frá öðrum þjóðríkjum. Hátt sjálfstæði bendir til þess að borgararnir styðji nánast enga alþjóðlega samsteypustjórn eða hnattræna hugsun. Lágt sjálfstæði gefur til kynna að þeir fagni samvinnu með vinalegu valdi víðsvegar um heiminn.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1664,11 +1659,11 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Privacy</div>
+        <div class="heading">Persónuvernd</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br></span>
-          Defines how much the citizens of the country value their personal information being kept safe from the public sphere, and how much they expect their government to behave with regard to that boundary.
-        </div>
+
+        <span class = "smallQuotes"> <em> „Að biðja stjórnvöld að vernda friðhelgi þína er eins og að biðja Peeping Tom um að setja upp gluggatjöldin þín.“ </em> <br> </span>
+          Skilgreinir hve mikils virði íbúar landsins séu persónulegar upplýsingar þeirra verndar fyrir almenningi og hve mikið þeir búast við því að ríkisstjórn þeirra hegði sér         </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1702,12 +1697,12 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Law and Order</div>
+        <div class="heading">Lög og regla</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
-          <em>- Lao Tze</em><br></span>
-          This sets the appetite of the country’s citizenship for law enforcement in their lives and communities; High means that this makes them feel safe; Low means that it makes them angry and want to revolt.
-        </div>
+
+        <span class = "smallQuotes"> <em> „Því meira sem lög og reglu eru gerð áberandi, því fleiri þjófar og ræningjar verða“ </em> <br>
+          <em> - Lao Tze </em> <br> </span>
+          Þetta setur lyst á ríkisborgararétt landsins fyrir löggæslu í lífi sínu og samfélögum; Hátt þýðir að þetta líður þeim öruggum; Lágt þýðir að það gerir þá reiða og vilja gera uppreisn.        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1732,7 +1727,7 @@ class OapApp extends OapBaseElement {
     let localeText = null;
     if (this.language=="en") {
       localeText =  html`
-        <div class="heading">Social Progress/</div>
+        <div class="heading">Social Progress</div>
         <div class="horizontal welcomeText">
           <span class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
           <em>- Martin Luther King, Jr.</em><br></span>
@@ -1741,12 +1736,11 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Social Progress/</div>
+        <div class="heading">Félagsleg framþróun</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
-          <em>- Martin Luther King, Jr.</em><br></span>
-          This score measures the country’s urge towards social justice, equal treatment for all people, level playing field free of corruption, kleptocracy, cronyism and prejudice, and their belief in every citizen’s right to clean air, food, water, housing, education, medical attention.
-        </div>
+        <span class = "smallQuotes"> <em> „... bogi siðferðisheimsins er langur, en hann beygir sig í átt að réttlæti.“ </em> <br>
+          <em> - Martin Luther King, Jr. </em> <br> </span>
+          Þessi skora mælir hvöt landsins til félagslegrar réttlætis, jafnrar meðferðar fyrir alla, jafna leikvöll án lausnar við spillingu, kleptókróm, skáldskap og fordóma og trú þeirra á rétt allra borgara á hreinu lofti, mat, vatni, húsnæði, menntun, læknishjálp .        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1770,14 +1764,16 @@ class OapApp extends OapBaseElement {
     let localeText = null;
     if (this.language=="en") {
       localeText =  html`
+        <div class="heading">Select a Country</div>
         <div class="horizontal welcomeText">
          Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!</div>
       `
     } else if (this.language=="is") {
       localeText =  html`
+        <div class="heading">Veldu land</div>
         <div class="horizontal welcomeText">
-         Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!</div>
-      `;
+
+        Veldu land og tíma í sögu sem þú vilt skrifa stjórnarskrá fyrir! Við höfum 10 lönd á mismunandi tímabilum til að velja úr, hvert með mismunandi menningarleg gildi. Að samræma stjórnskipun þína við þessi menningarlegu gildi gefur þér bónus og viðurlög við valpunkta þínum! </div>      `;
     }
     this.masterDialogContent = html`
       <div class="vertical center-center">
@@ -1785,7 +1781,6 @@ class OapApp extends OapBaseElement {
         <img aria-label="choice points image" style="width: 340px;height: 226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/earth1.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
-        <div class="heading">Select a Country</div>
         ${localeText}
         <div class="buttons center-center">
           <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
@@ -1818,10 +1813,9 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Filter Articles</div>
+        <div class="heading">Forval greina</div>
         <div class="horizontal welcomeText">
-        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include.</div>
-      `;
+        Verið velkomin í breiðan heim stjórnskipulegra hugmynda! Við höfum kynnt þetta sem einingar; þú hefur tækifæri til að fara í gegnum allar greinar og réttindi og velja þær sem þú veist að þú myndir vilja byggja stjórnarskrána þína með. Ef þú vilt flýta þér í ferlið geturðu valið Sjálfvirkt val fyrir hverja grein - Framkvæmdastjórn, löggjafarvald, dómsmál og borgaraleg - þetta mun fá þig til að skrifa stjórnarskrána hraðar - þó að þú gætir saknað þess sem þú vilt láta fylgja með. </div>      `;
     }
     this.masterDialogContent = html`
       <div class="vertical center-center">
@@ -1846,7 +1840,7 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Select Articles</div>
         <div class="horizontal welcomeText">
-          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!        <div class="buttons center-center">
+          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!
           <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
         </div>
       `
@@ -1854,7 +1848,7 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Veldu greinar</div>
         <div class="horizontal welcomeText">
-          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!        <div class="buttons center-center">
+        Nú ertu tilbúinn að gera raunverulega ramma um stjórnarskrá fyrir þegna þína! Hver eining sem þú hefur í boði frá fyrri skjá er nú tiltæk fyrir þig að eyða valpunkta í; ef þú velur einingar sem samsvara menningarlegu gildi þegna þinna færðu valmöguleika í bónus; ef þau eru ekki samsvarandi menningarlegum gildum kjósenda þinna, þá greiðir þú vítaspyrnu. Þú verður að hafa nægar einingar frá hverju af fjórum útibúum til að ljúka stjórnarskrá áður en þú klárir í Choice Points. Gangi þér vel!!
           <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
         </div>
       `;
