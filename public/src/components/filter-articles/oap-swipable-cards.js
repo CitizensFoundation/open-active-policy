@@ -83,6 +83,9 @@ class OapSwipableCards extends OapBaseElement {
                 html`
                   <div class="card" id="card${item.id}" style="${this.getCardStyle(item)}">
                     <div class="card-content">
+                      ${this.isExclusive(item) ? html`
+                          <div class="exclusiveCardTitle" style="${this.getExclusiveStyle(item)}">${this.localize("exclusiveSeries")} ${this.exclusiveNumberOf(item)}</div>
+                          ` : html``}
                       <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                       <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
                         <div class="moduleName name" title="${item.module_content_type}" ?module-type="${item.module_type=="ModuleTypeCard"}" ?is-exclusive="${this.isExclusive(item)}">${item.name}</div>
@@ -90,9 +93,6 @@ class OapSwipableCards extends OapBaseElement {
                          ${this.getBonusesAndPenalties(item)}
                         </div>
                         <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
-                        ${this.isExclusive(item) ? html`
-                          <div class="exclusiveCardTitle" style="${this.getExclusiveStyle(item)}">${this.localize("exclusiveSeries")} ${this.exclusiveNumberOf(item)}</div>
-                          ` : html``}
                       </div>
                     ${(item.module_type==="ModuleTypeCard") ? html`
                       <div style="text-align:center" class="global-asctions vertical center-center actionButtonContainer">

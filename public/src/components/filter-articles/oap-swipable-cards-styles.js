@@ -580,7 +580,7 @@ export const OapSwipableCardsStyles = css`
     margin-bottom: 4px;
     margin-top: 4px;
     color: #FFF;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .subHeader {

@@ -121,7 +121,7 @@ class OapArticleItem extends OapBaseElement {
               ?exclusive-active="${this.item.exclusiveOptions && !this.selectedExclusiveId}"
               ?module-type="${this.item.module_type=="ModuleTypeCard"}"
               ?inbudget="${this.selected}">
-              ${this.item.exclusiveOptions && !this.selectedExclusiveId ? this.localize('pick')+': ' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
+              ${this.item.exclusiveOptions && !this.selectedExclusiveId ? '' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
             </div>
             <div class="exclusiveName" ?hidden="${this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
             <div class="layout-inline vertical" ?hidden="${this.item.module_type=="ModuleTypeCard"}">
@@ -146,7 +146,7 @@ class OapArticleItem extends OapBaseElement {
               </div>
               ${(this.item.exclusiveOptions && !this.selectedExclusiveId && !this.selected) ? html`
                 <paper-menu-button @tap="${this._openMenu}" class="editExclusiveMenuButton" horizontal-align="right">
-                  <paper-icon-button id="editExclusiveOptions" class="shadow-animation shadow-elevation-2dp  dropdown-trigger  editExclusiveButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize('openDetailMenu')}" icon="mode-edit"></paper-icon-button>
+                  <paper-icon-button id="editExclusiveOptions" class="shadow-animation shadow-elevation-2dp  dropdown-trigger  editExclusiveButton" slot="dropdown-trigger" @click="${this._clickedDropDownMenu}" alt="${this.localize('openDetailMenu')}" icon="menu"></paper-icon-button>
                   <paper-listbox class="dropdown-content" slot="dropdown-content" id="listBox" @click="${this.noClick}" @selected-changed="${this.selectedExclusiveChanged}">
                     ${this.item.exclusiveOptions.map((item)=>{
                       return html`
@@ -186,9 +186,11 @@ class OapArticleItem extends OapBaseElement {
     }
   }
 
-  topClick() {
-    if ((!this.item.exclusiveOptions || this.selectedExclusiveId) && !this.selected) {
-      this.fire('oap-open-article-item', this.item);
+  topClick(event) {
+    if (event.target.localName!="paper-item") {
+      if ((!this.item.exclusiveOptions || this.selectedExclusiveId) && !this.selected && this.item.module_type!="ModuleTypeCard") {
+        this.fire('oap-open-article-item', this.item);
+      }
     }
   }
 
@@ -286,6 +288,7 @@ class OapArticleItem extends OapBaseElement {
   }
 
   _clickedDropDownMenu(event) {
+    event.preventDefault();
     this.activity('click', 'exclusiveDropdown');
   }
 
