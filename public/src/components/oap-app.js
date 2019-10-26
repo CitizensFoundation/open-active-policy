@@ -1055,7 +1055,9 @@ class OapApp extends OapBaseElement {
     const item = event.detail;
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
-     <oap-article-item .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
+    <div style="margin-bottom: 24px;" @click="${()=>{ this.$$("#masterDialog").close()}}" >
+      <oap-article-item .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
+    </div>
    `
     this.openAndUpdateDialog(true);
   }

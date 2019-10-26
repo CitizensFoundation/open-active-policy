@@ -127,7 +127,7 @@ class OapArticleItem extends OapBaseElement {
             <div class="layout-inline vertical" ?hidden="${this.item.module_type=="ModuleTypeCard"}">
               <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
               <div class="buttons" ?hidden="${!this.onlyDisplay===true}">
-                <div id="closeButton" class="shadow-animation shadow-elevation-2dp addRemoveButton" @click="${()=>{this.fire("oap-close-master-dialog")}}" title="${this.localize('close')}">
+                <div id="closeButton" class="shadow-animation shadow-elevation-2dp" @click="${()=>{this.fire("oap-close-master-dialog")}}" title="${this.localize('close')}">
                    ${this.localize("close")}
                 </div>
               </div>

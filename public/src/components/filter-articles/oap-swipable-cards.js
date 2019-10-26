@@ -119,12 +119,12 @@ class OapSwipableCards extends OapBaseElement {
             <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
           </div>
           <div id="navigator" class="mainNavigator layout horizontal"></div>
-          <paper-slider
+          <paper-slider hidden
               class="speedSlider" ?auto="${this.automaticSelectionActive}" @value-changed="${(event) => { this.changeSpeed(event)}}"
               .value="${this.speedSettings}"
               max="10">
           </paper-slider>
-          <div class="speedSliderInfo" ?auto="${this.automaticSelectionActive}">${this.autoSliderTime}</div>
+          <div class="speedSliderInfo" hidden ?auto="${this.automaticSelectionActive}">${this.autoSliderTime}</div>
           <div class="global-actions" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
             <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
             </div>
@@ -437,8 +437,8 @@ class OapSwipableCards extends OapBaseElement {
       9: 500,
       10: 310
     }
-    this.automaticFlipSpeed=900;
-    this.speedSettings=8;
+    this.automaticFlipSpeed=310;
+    this.speedSettings=10;
   }
 
   activate() {

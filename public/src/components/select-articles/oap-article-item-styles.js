@@ -14,6 +14,18 @@ export const OapArticleItemStyles = css`
     padding: 0;
   }
 
+  #closeButton {
+    position: absolute;
+    right: 2px;
+    bottom: -32px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 4px;
+    cursor: pointer;
+    color: #FFF;
+  }
+
   .itemContent {
     position: relative;
     width: 300px;
