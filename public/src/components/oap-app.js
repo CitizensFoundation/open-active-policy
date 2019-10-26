@@ -372,7 +372,6 @@ class OapApp extends OapBaseElement {
     }
     this.hideBudget = true;
     this.disableAutoSave = true;
-    this._boot();
     var name = "locale".replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
     var results = regex.exec(location.search);
@@ -381,11 +380,12 @@ class OapApp extends OapBaseElement {
       this.language = language;
       localStorage.setItem("languageOverride", language);
     }
+    this._boot();
     this.filteredItems = [];
     this.selectedItems = [];
     this.quizDone=false;
     this.setDummyData();
-    this.GAME_STATE_VERSION="OapGameStateV7";
+    this.GAME_STATE_VERSION="OapGameStateV8";
   }
 
   helpClosed() {
@@ -498,7 +498,7 @@ class OapApp extends OapBaseElement {
     if (localStorage.getItem("languageOverride")) {
       this.language = localStorage.getItem("languageOverride");
     } else {
-      this.language = "is";
+      this.language = "en";
     }
     fetch("/votes/boot?locale="+this.language, { credentials: 'same-origin' })
       .then(res => res.json())
@@ -506,7 +506,8 @@ class OapApp extends OapBaseElement {
         this.requestInProgress= false;
         this.votePublicKey = response.public_key;
         this._setupCustomCss(response.config.client_config);
-        window.localeResources = response.config.client_config.languages[this.language].locales;
+        if (response.config.client_config.languages[this.language])
+          window.localeResources = response.config.client_config.languages[this.language].locales;
         this.configFromServer = response.config;
         this.updateAppMeta(this.configFromServer.client_config.shareMetaData);
 
