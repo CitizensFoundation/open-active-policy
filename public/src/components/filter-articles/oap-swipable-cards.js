@@ -125,7 +125,7 @@ class OapSwipableCards extends OapBaseElement {
               max="10">
           </paper-slider>
           <div class="speedSliderInfo" hidden ?auto="${this.automaticSelectionActive}">${this.autoSliderTime}</div>
-          <div class="global-actions" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
+          <div class="global-actions" style="margin-top: 0px;" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
             <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
             </div>
             <div hidden>
