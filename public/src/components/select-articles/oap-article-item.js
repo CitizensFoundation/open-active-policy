@@ -122,7 +122,7 @@ class OapArticleItem extends OapBaseElement {
               ?module-type="${this.item.module_type=="ModuleTypeCard"}"
               ?inbudget="${this.selected}">
               ${this.item.exclusiveOptions && !this.selectedExclusiveId ? this.localize('pick')+': ' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
-              </div>
+            </div>
             <div class="exclusiveName" ?hidden="${this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
             <div class="layout-inline vertical" ?hidden="${this.item.module_type=="ModuleTypeCard"}">
               <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>

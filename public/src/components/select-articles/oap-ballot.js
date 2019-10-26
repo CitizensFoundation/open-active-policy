@@ -502,7 +502,7 @@ class OapBallot extends OapPageViewElement {
             }
           }
           htmlString+='<span style="font-size: 17px;"><span style="padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)
-          htmlString+='</span> <b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'</span><br>';
+          htmlString+='</span> <span '+(item.type=="penalty" ? 'style="color: red;"' : '')+'><b>'+this.localize(item.type)+'</b></span>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'</span><br>';
         } else {
           console.warn("Trying to use bonus again: "+usedKey);
         }

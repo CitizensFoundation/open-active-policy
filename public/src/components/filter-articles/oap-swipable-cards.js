@@ -86,13 +86,13 @@ class OapSwipableCards extends OapBaseElement {
                       <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
                       <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
                         <div class="moduleName name" title="${item.module_content_type}" ?module-type="${item.module_type=="ModuleTypeCard"}" ?is-exclusive="${this.isExclusive(item)}">${item.name}</div>
-                        ${this.isExclusive(item) ? html`
-                          <div class="exclusiveCardTitle" style="${this.getExclusiveStyle(item)}">${this.localize("exclusiveSeries")} ${this.exclusiveNumberOf(item)}</div>
-                          ` : html``}
                         <div class="subHeader layout  horizontal" ?module-type="${item.module_type=="ModuleTypeCard"}" style="${this.getSubCategoryStyle(item)}">
                          ${this.getBonusesAndPenalties(item)}
                         </div>
                         <div id="description${item.id}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
+                        ${this.isExclusive(item) ? html`
+                          <div class="exclusiveCardTitle" style="${this.getExclusiveStyle(item)}">${this.localize("exclusiveSeries")} ${this.exclusiveNumberOf(item)}</div>
+                          ` : html``}
                       </div>
                     ${(item.module_type==="ModuleTypeCard") ? html`
                       <div style="text-align:center" class="global-asctions vertical center-center actionButtonContainer">
@@ -193,24 +193,24 @@ class OapSwipableCards extends OapBaseElement {
       let bonusHtml = html``;
       if (hasBonuses) {
         bonusHtml = html`${bonusEmojis.map((emoji)=> {
-          return html`<div style="margin-left: 6px;" title="${emoji.title}">${emoji.emoji}</div>`
+          return html`<div style="margin-left: 5px;" title="${emoji.title}">${emoji.emoji}</div>`
         })}`;
       }
 
       let penaltyHtml;
       if (hasPenalties) {
         penaltyHtml = html`${penaltyEmojis.map((emoji)=> {
-          return html`<div style="margin-left: 6px;" title="${emoji.title}">${emoji.emoji}</div>`
+          return html`<div style="margin-left: 5px;" title="${emoji.title}">${emoji.emoji}</div>`
         })}`
       }
 
       if (hasBonuses && hasPenalties) {
-        return html`<div style="margin-left: 6px;">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}
-          <div class="flex"></div> <div style="margin-left: 6px;">${this.getPenaltyPlurar(penaltyEmojis)} </div>${penaltyHtml}`
+        return html`<div style="">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}
+          <div class="flex"></div> <div style="margin-left: 16px;">${this.getPenaltyPlurar(penaltyEmojis)} </div>${penaltyHtml}`
       } else if (hasBonuses) {
-          return html`<div style="margin-left: 6px;">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}`
+          return html`<div style="">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}`
       } else if (hasPenalties) {
-       return html`<div style="margin-left: 6px;">${this.getPenaltyPlurar(penaltyEmojis)} </div>${hasPenalties}`
+       return html`<div style="">${this.getPenaltyPlurar(penaltyEmojis)} </div>${penaltyHtml}`
       } else {
         console.error("Wrong state of penalties");
       }
