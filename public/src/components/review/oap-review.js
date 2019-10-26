@@ -6,6 +6,7 @@ import '@polymer/paper-input/paper-textarea';
 import '@polymer/paper-item/paper-item';
 import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/paper-dropdown-menu/paper-dropdown-menu';
+import 'paper-share-button';
 
 import { Scene, DirectionalLight, PerspectiveCamera, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
 
@@ -99,18 +100,20 @@ class OapReview extends OapPageViewElement {
                 <div class="attituteReview">${this.attituteReviewParagraphs['lawAndOrder']}</div>
               </div>
 
-              <div class="subHeader">
-                ${this.localize("whatConstitutionIsTheMostSimilarToYours")}
+
+              <div class="" style="width:100%;text-align: center;">
+                <div style="margin-left:auto;margin-right:auto;">
+                  <div class="subHeader">
+                    ${this.localize("shareOnSocialMedia")}
+                  </div>
+
+                  <div>
+                    <paper-share-button class="shareIcon" horizontal-align="left" id="shareButton"
+                      facebook twitter popup .url="${window.location.href}">
+                    </paper-share-button>
+                  </div>
+                </div>
               </div>
-
-              <div>TBD</div>
-
-              <div class="subHeader">
-                ${this.localize("shareOnSocialMedia")}
-              </div>
-
-              <div>TBD</div>
-
           ` : html``}
         </div>
       </div>

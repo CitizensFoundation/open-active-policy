@@ -31,6 +31,7 @@ export const OapArticleItemStyles = css`
     width: 300px;
     height: 70px;
     margin: 8px;
+    cursor: pointer;
   }
 
   .name {
