@@ -98,9 +98,23 @@ export const OapBallotStyles = css`
 
   .tabsContainer {
     z-index: 9000;
-    width: 100%;
     background: transparent;
     cursor: pointer;
+    position: fixed;
+    top: 166px;
+    left: 32px;
+    display: block;
+  }
+
+  .favTab {
+    z-index: 9001;
+    display: inline;
+    transition: opacity 250ms ease-in-out;
+  }
+
+  .selectedTab {
+    display: inline;
+    z-index: 9001;
   }
 
   .tab {
@@ -122,17 +136,9 @@ export const OapBallotStyles = css`
     border-bottom: 2px solid #ddd;
   }
 
-  .favTab {
-    z-index: 9001;
-    position: fixed;
-    top: 166px;
-    left: 32px;
-    transition: opacity 250ms ease-in-out;
-  }
-
   .favOpacityDown {
     transition: opacity 250ms ease-in-out;
-    opacity: 0.5;
+    opacity: 0.47;
   }
 
   @keyframes colorani {
@@ -144,16 +150,11 @@ export const OapBallotStyles = css`
       border-color: var(--oap-active-selection-original-color);}
   }
 
-  .selectedTab {
-    z-index: 9001;
-    position: fixed;
-    top: 166px;
-    left: 155px;
-  }
+
 
   .selectedTabAnimation {
     animation-name: colorani;
-    animation-duration: 1s;
+    animation-duration: 1.4s;
   }
 
   paper-button[disabled] {

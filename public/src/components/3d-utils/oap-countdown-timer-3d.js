@@ -171,7 +171,7 @@ class CountDownTimer3D {
     let emojiEndZ = 70;
     let digitsStartZ = -190;
     let digitsHoldZ = -1350;
-    let digitsEndZ = -155;
+    let digitsEndZ = -185;
     this.secondsLeft = 15;
 
     if (false && !this.startEmojiSprite) {
@@ -200,9 +200,9 @@ class CountDownTimer3D {
 
     this.countDownMesh.position.z=digitsHoldZ;
     if (window.innerWidth<600) {
-      this.countDownMesh.position.y=12.5;
+      this.countDownMesh.position.y=13.5;
     } else {
-      this.countDownMesh.position.y=15.5;
+      this.countDownMesh.position.y=16.5;
     }
 
     this.countdownDigitGroup.visible=true;

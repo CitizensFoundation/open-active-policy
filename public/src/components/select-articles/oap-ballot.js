@@ -195,6 +195,10 @@ class OapBallot extends OapPageViewElement {
     return this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
   }
 
+  choicePointsAtZero() {
+
+  }
+
   updated(changedProps) {
     super.updated(changedProps);
     if (changedProps.has('areaIdRoutePath')) {
@@ -345,7 +349,7 @@ class OapBallot extends OapPageViewElement {
     selectedTab.classList.add("selectedTabAnimation");
     setTimeout(()=>{
       selectedTab.classList.remove("selectedTabAnimation");
-    }, 1200);
+    }, 1400);
 
     favTab.classList.add("favOpacityDown");
     setTimeout(()=>{

@@ -385,7 +385,10 @@ class OapApp extends OapBaseElement {
     this.selectedItems = [];
     this.quizDone=false;
     this.setDummyData();
-    this.GAME_STATE_VERSION="OapGameStateV8";
+    this.GAME_STATE_VERSION="OapGameStateV9";
+    if (localStorage.getItem('oap-have-seen-cultural-attitutes-tutorial')) {
+      this.hasSeenCulturalAttitutesTutorial = true;
+    }
   }
 
   helpClosed() {
@@ -402,6 +405,7 @@ class OapApp extends OapBaseElement {
     }
 
     cacheSoundEffects(this.soundEffects);
+
     if (window.debugOn) {
       this.country = {
         name: "13 Colonies 1783 (US Constitutional Convention)",
@@ -1417,7 +1421,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton"  @click="${this.culturalAttitutesTutorialAuthority}"   autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1454,7 +1458,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLiberty}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1490,7 +1494,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialScience}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1527,7 +1531,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialTradition}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1565,7 +1569,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialCollective}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1601,7 +1605,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialIndependence}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1637,7 +1641,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialPrivacy}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1674,7 +1678,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLawAndOrder}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1713,7 +1717,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize('skip')}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialProgressivism}" dialog-dismiss autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
@@ -1751,7 +1755,10 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" dialog-dismiss autofocus>${this.localize('continue')}</paper-button>
+          <paper-button raised class="continueButton"
+            @click="${()=>{localStorage.setItem('oap-have-seen-cultural-attitutes-tutorial', true)}}"
+            dialog-dismiss autofocus>${this.localize('continue')}
+          </paper-button>
         </div>
       </div>
     </div>
