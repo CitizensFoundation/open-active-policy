@@ -1344,7 +1344,8 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Valstig</div>
         <div class="horizontal welcomeText">
-        Valstig eru leikjaorð fyrir stjórnmálalegt fjármagn þitt, „safinn“ sem þú þarft til að fá þessa stjórnarskrá skrifaða. Þú verður að eyða stigum þínum skynsamlega þegar þú velur greinar og borgaraleg réttindi í stjórnarskrá þinni; þú munt fá bónus og viðurlög við valpunkta þínum fyrir hversu vel stjórnskipunin sem þú skrifar passar löngun þegna þinna.        </div>
+          Valstig er nafnið á pólitísku auðmagni – sjóðnum sem þú hefur til að koma stjórnarskránni þinni saman. Þú þarft að verja stigunum þínum skynsamlega þegar þú velur stjónarskrárákvæði og þau réttindi sem stjórnarskráin á að innihalda. Þú færð verðlauna- og refsistig sem bætast við eða dragast frá valstigunum þínum eftir því hversu vel þér tekst að láta stjórnarskrána falla að óskum fólksins í landinu sem þú hefur valið eða búið til.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1374,10 +1375,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Spurningakeppni</div>
+        <div class="heading">Spurningaleikur</div>
         <div class="horizontal welcomeText">
-          Byrjum fyrst á almennri spurningakeppni um stjórnarskrár í sögunni og um allan heim. Því fleiri spurningar sem þú færð rétt, þeim mun fleiri valkostum verður þú að ramma upp stjórnarskrána þína!
-         </div>
+          Við skulum byrja á almennum spurningum um stjórnarskrár í sögunni og víðsvegar um heiminn. Því fleiri spurningum sem þú svarar rétt, þeim mun fleiri valstig færðu í sarpinn til að setja saman stjórnarskrána þína!
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1410,7 +1411,8 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Menningarleg gildi</div>
         <div class="horizontal welcomeText">
-        Þetta eru gildi samfélagsins. Fylgstu með þessum þegar þú rammar stjórnarskrána þína - þú þarft að passa stjórnarskrána við gildi borgaranna í kjósendum þínum.        </div>
+         Þetta eru helstu gildi samfélagsins þíns. Þú skalt taka mið af þeim þegar þú leggur drög að stjórnarskrá. Þú þarft að gera hana þannig úr garði að hún sé í samræmi við gildismat fólksins þíns – kjósenda.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1443,10 +1445,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Yfirvald</div>
+        <div class="heading">Vald</div>
         <div class="horizontal welcomeText">
-          <span class = "smallQuotes"> <em> „Ég mun vera faðir þinn, leggðu litlu höndina í mitt…“ </em> </span> <br> </span>
-          Menningarríki yfirvalda hefur íbúa þess lands þrá sterka uppbyggingu og skýrar stjórnlínur í lífi sínu og vilja að stjórnvöld ráði eins skýrum hætti og unnt er að búa um lífskjör. Miðlungs vald þýðir að vilja nokkrar leiðbeiningar, með minni þátttöku stjórnvalda. Low Authority þýðir að menningin metur afstöðu stjórnvalda.
+          <span class="smallQuotes"><em>“Ég skal vera pabbi þinn, réttu mér litlu höndina þína...”</em></span><br></span>
+          Þar sem almenningur óskar eftir sterku ríkisvaldi og telja borgararnir eftirsóknarvert að lífum þeirra sé stýrt með skýrum fyrirmælum hins opinbera. Þeir vilja að reglum samfélagsins sé framfylgt af fyllstu hörku. Þegar aðeins er krafa um miðlungssterkt ríkisvaldi óskar almenningur eftir skýrum leiðbeiningum en minni afskiptum ríkisvaldsins. Lítill áhugi á ríkisvaldi þýðir að borgararnir kunna að meta að ríkisvaldið láti fólk almennt sem mest í friði.
         </div>
       `;
     }
@@ -1482,8 +1484,9 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Frelsi</div>
         <div class="horizontal welcomeText">
-        <span class = "smallQuotes"> <em> Maður sem er tilbúinn að fórna frelsi til öryggis á hvorki skilið… </em> <br> </span>
-          Þetta mælir faðma samfélagsins með þá hugmynd að einstaklingur skuli fá að gera hvað í fjandanum sem þeir vilja svo framarlega sem það skaðar ekki annað fólk.        </div>
+          <span class="smallQuotes"><em>Sá sem er tilbúinn til að fórna frelsi sínu til að tryggja öryggi sitt á hvorki frelsi né öryggi skilið...</em><br></span>
+          Sú sannfæring er ríkjandi í samfélaginu að hver manneskja eigi að fá að gera hvað það sem henni kemur í hug ef hún aðeins gætir þess að valda ekki öðrum tjóni.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1518,9 +1521,9 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Vísindi</div>
         <div class="horizontal welcomeText">
-
-        <span class = "smallQuotes"> <em> Vísindi eru sönn hvort sem þú trúir á það eða ekki… </em> <br> </span>
-          Þessi skora táknar að hve miklu leyti samfélagið metur staðreyndir, sannleika, sannanleg sönnunargögn, vísindalega aðferð, nútíma samstöðu um kynferðislegt og kynþáttajafnrétti, þróun o.s.frv.        </div>
+          <span class="smallQuotes"><em>Vísindin birta sannleikann hvort sem þú trúir eða ekki...</em><br></span>
+          Samfélagið leggur mikið upp úr staðreyndum, sannindum, rökum og gögnum, vísindalegri aðferð og hefur nútímalega afstöðu til jöfnuðar kynja og kynþátta, almenningur trúir á þróun osfrv..
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1554,11 +1557,12 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Hefðir</div>
+        <div class="heading">Hefð</div>
         <div class="horizontal welcomeText">
-        <span class = "smallQuotes"> <em> „Athugaðu fortíðina, ef þú vilt spá í framtíðina“ </em> <br>
-          <em> - Confucius </em> <br> </span>
-          Mælir hversu fastir íbúar lands þíns eru við aldar skoðanir á menningu sinni, þar með talin trúarbrögð, klæðnaður, réttarvenjur, viðhorf um kynlíf og hjónaband og kyn, þjóðernisarfleifð, mat og list / tónlist. Þessi staðfasta viðhorf hafa djúp áhrif á þá tegund stjórnvalda sem þeir vilja láta stjórnast af.        </div>
+          <span class="smallQuotes"><em>“Til að spá fyrir um framtíðina, verður að þekkja söguna”</em><br>
+          <em>- Konfúsíus</em><br></span>
+          Fólkið í landinu þínu tengir sig sterkt við þjóðtrú og gamlar hefðir. Þetta birtist í trúarbrögðum og trúrækni, klæðaburði afstöðu til laga, hugmynda um kyn og kynlíf, hjónaband, kyngervi, menningararf, matarhefðir og listir. Þjóðmenningin hefur djúp áhrif á viðhorf þess til stjórnvalda og stjórnmálaskoðanir.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1591,10 +1595,12 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Samfélagshyggja</div>
+        <div class="heading">Félagshyggja</div>
         <div class="horizontal welcomeText">
-        <span class = "smallQuotes"> <em> Góður hinna mörgu vegur þyngra en góður fárra… </em> <br> </span>
-          Skilgreinir að hve miklu leyti menningin skilur samfélagslegar fórnir og sameiginlegan tilgang í nafni almannaheilla.        </div>
+          <span class="smallQuotes"><em>
+          Gæði fyrir alla eru mikilvægari en gæði sem falla fáum í hendur...</em><br></span>
+          Samfélagið metur mikils fórnfýsi og óeigingjarnt starf í þágu samfélagsins og leggur áherslu á sameiginleg gæði.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1627,10 +1633,11 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Sjálfstæði</div>
+       <div class="heading">Sjálfstæði</div>
         <div class="horizontal welcomeText">
-        <span class = "smallQuotes"> <em> sverðu trúmennsku við engan annan fána, þjónaðu engri þjóð en þínum eigin… </em> <br> </span>
-          Þetta mælir að hve miklu leyti menning landsins ræður því að það haldi fullkomnu sjálfræði frá öðrum þjóðríkjum. Hátt sjálfstæði bendir til þess að borgararnir styðji nánast enga alþjóðlega samsteypustjórn eða hnattræna hugsun. Lágt sjálfstæði gefur til kynna að þeir fagni samvinnu með vinalegu valdi víðsvegar um heiminn.        </div>
+          <span class="smallQuotes"><em>Ekki hylla aðra fána , þjónaðu engri þjóð nema þinni eigin...</em><br></span>
+          Hér miðasta stigagjöf við hversu mjög menning landsins krefst þess að algjöru sjálfstæði sé haldið gagnvart öðrum ríkjum. Hátt sjálfstæði bendir til að borgararnir viðurkenni helst enga samstöðu með öðrum þjóðum eða hnattrænan hugsunarhátt. Lágt sjálfstæði bendir til að áhugi sé fyrir að ganga í margvísleg bandalög með vinveittum ríkjum um allan heim.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1663,11 +1670,11 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Persónuvernd</div>
+        <div class="heading">Einkalíf</div>
         <div class="horizontal welcomeText">
-
-        <span class = "smallQuotes"> <em> „Að biðja stjórnvöld að vernda friðhelgi þína er eins og að biðja Peeping Tom um að setja upp gluggatjöldin þín.“ </em> <br> </span>
-          Skilgreinir hve mikils virði íbúar landsins séu persónulegar upplýsingar þeirra verndar fyrir almenningi og hve mikið þeir búast við því að ríkisstjórn þeirra hegði sér         </div>
+          <span class="smallQuotes"><em>“Að biðja stjórnvöld um að tryggja rétt sinn til einkalífs er eins og að fá gluggagægi til að koma fyrir gluggatjöldunum hjá sér”</em><br></span>
+          Hér er skýrt hvaða gildi það hefur fyrir borgarana að persónuupplýsingar þeirra séu utan seilingar almannaumræðunnar og að hve miklu leyti þeir gera ráð fyrir því að þeirra eigin stjórnvöld virði mörk einkalífsins.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1701,12 +1708,12 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Lög og regla</div>
+       <div class="heading">Lög og regla</div>
         <div class="horizontal welcomeText">
-
-        <span class = "smallQuotes"> <em> „Því meira sem lög og reglu eru gerð áberandi, því fleiri þjófar og ræningjar verða“ </em> <br>
-          <em> - Lao Tze </em> <br> </span>
-          Þetta setur lyst á ríkisborgararétt landsins fyrir löggæslu í lífi sínu og samfélögum; Hátt þýðir að þetta líður þeim öruggum; Lágt þýðir að það gerir þá reiða og vilja gera uppreisn.        </div>
+          <span class="smallQuotes"><em>“Þegar lög og regla er sýnileg, þá fjölgar þjófum og ræningjum” </em><br>
+          <em>- Lao Tze</em><br></span>
+          Hér þrá borgarar landsins að lögum sé framfylgt í lífum þeirra og samfélögum. Þegar þessi þáttur er hár, þá upplifa þeir öryggi. Þegar hann er lágur eru þeir fullir reiði og biturleika og á þá sækir löngun til að gera uppreisn.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1740,11 +1747,12 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Félagsleg framþróun</div>
+        <div class="heading">Félagslegar framfarir</div>
         <div class="horizontal welcomeText">
-        <span class = "smallQuotes"> <em> „... bogi siðferðisheimsins er langur, en hann beygir sig í átt að réttlæti.“ </em> <br>
-          <em> - Martin Luther King, Jr. </em> <br> </span>
-          Þessi skora mælir hvöt landsins til félagslegrar réttlætis, jafnrar meðferðar fyrir alla, jafna leikvöll án lausnar við spillingu, kleptókróm, skáldskap og fordóma og trú þeirra á rétt allra borgara á hreinu lofti, mat, vatni, húsnæði, menntun, læknishjálp .        </div>
+          <span class="smallQuotes"><em>“...veröld siðferðisins fer í stóran sveig, en hann bendir á réttlætið.”</em><br>
+          <em>- Martin Luther King, Jr.</em><br></span>
+          Hér miðast stigagjöfin við hve mikið landið þitt sækist eftir félagslegu réttlæti, jöfnuði gagnvart öllum, jafnri samkeppnisaðstöðu sem er laus við spillingu, klíkuskap og fordóma og trúir á rétt allra til þess að hafa aðgang að hreinu lfoti, fæðu, vatni, húsnæði, menntun og heilbrigðisþjónustu.
+        </div>
       `;
     }
     this.masterDialogContent = html`
@@ -1773,14 +1781,16 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Select a Country</div>
         <div class="horizontal welcomeText">
-         Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!</div>
+         Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!
+        </div>
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Veldu land</div>
+        <div class="heading">Land valið</div>
         <div class="horizontal welcomeText">
-
-        Veldu land og tíma í sögu sem þú vilt skrifa stjórnarskrá fyrir! Við höfum 10 lönd á mismunandi tímabilum til að velja úr, hvert með mismunandi menningarleg gildi. Að samræma stjórnskipun þína við þessi menningarlegu gildi gefur þér bónus og viðurlög við valpunkta þínum! </div>      `;
+         Veldu land og tímabil í sögunni sem þú vilt að stjórnarskráin þín eigi við! Við höfum 10 lönd frá ólíkum tímabilum sem má velja úr, og hvert þeirra hefur sín menningarlegu gildi. Með því að láta stjórnarskrána þina passa við eitthvert þeirra geturðu spilað úr verðlauna og refsistigum sem þú færð þegar þú velur!
+       </div>
+        `;
     }
     this.masterDialogContent = html`
       <div class="vertical center-center">
@@ -1820,9 +1830,10 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Forval greina</div>
+        <div class="heading">Velja úr ákvæðum</div>
         <div class="horizontal welcomeText">
-        Verið velkomin í breiðan heim stjórnskipulegra hugmynda! Við höfum kynnt þetta sem einingar; þú hefur tækifæri til að fara í gegnum allar greinar og réttindi og velja þær sem þú veist að þú myndir vilja byggja stjórnarskrána þína með. Ef þú vilt flýta þér í ferlið geturðu valið Sjálfvirkt val fyrir hverja grein - Framkvæmdastjórn, löggjafarvald, dómsmál og borgaraleg - þetta mun fá þig til að skrifa stjórnarskrána hraðar - þó að þú gætir saknað þess sem þú vilt láta fylgja með. </div>      `;
+          Velkomin/n í veröld stjórnarskrárhugmynda! Við stillum þessum hugmyndum upp sem þáttum. Þú færð nú tækifæri til að renna í gegnum ákvæði stjórnarskrárinnar og réttindi sem hún getur innihaldið og velja þau sem þu vilt hafa í þinni stjórnarskrá. If þú ert að flýta þér og vilt komast sem fyrst í lokaval á þáttum þinnar stjórnaskrár skaltu hafa valið sjálfvirkt fyrir hverja grein -- framkvæmdavald, löggjafarvald, dómsvald of borgararéttindi -- með þessu móti ertu fljótari að skrifa stjórnarskrána -- þótt vissulega getir þú líka misst af ákvæðum sem þú hefðir kannski viljað hafa með.</div>
+        `;
     }
     this.masterDialogContent = html`
       <div class="vertical center-center">
@@ -1853,9 +1864,9 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Veldu greinar</div>
+        <div class="heading">Finna ákvæði</div>
         <div class="horizontal welcomeText">
-        Nú ertu tilbúinn að gera raunverulega ramma um stjórnarskrá fyrir þegna þína! Hver eining sem þú hefur í boði frá fyrri skjá er nú tiltæk fyrir þig að eyða valpunkta í; ef þú velur einingar sem samsvara menningarlegu gildi þegna þinna færðu valmöguleika í bónus; ef þau eru ekki samsvarandi menningarlegum gildum kjósenda þinna, þá greiðir þú vítaspyrnu. Þú verður að hafa nægar einingar frá hverju af fjórum útibúum til að ljúka stjórnarskrá áður en þú klárir í Choice Points. Gangi þér vel!!
+      	  Nú geturðu byrjað að hanna stjórnarskrá fyrir þína ríkisborgara! Hver þáttur úr stjórnarskrá sem þú valdir á fyrra stigi leiksins er nú meðal þeirra sem þú getur valið og eytt valstigum í. Ef þú velur þætti sem passa við menningarleg gildi þinna ríkisborgara færðu verðlaunapunkta. Ef þeir passa ekki við menningarleg gildi þeirra taparðu valstigum. Þú verður að hafa nógu marga þætti úr hverri greinanna fjögurra til að geta lokið við stjórnarskrá áður en þú eyðir öllum valstigunum þínum. Gangi þér vel!
           <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
         </div>
       `;

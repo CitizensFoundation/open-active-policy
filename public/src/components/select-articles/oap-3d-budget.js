@@ -501,6 +501,9 @@ class Oap3dBudget extends OapBaseElement {
 
     if (changedProps.has('choicePointsLeft')) {
       this.rebuildChoicePoints();
+      if (this.choicePointsLeft==0) {
+        this.currentBallot.choicePointsAtZero();
+      }
     }
 
     if (changedProps.has('totalChoicePoints')) {

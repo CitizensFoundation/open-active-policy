@@ -196,7 +196,7 @@ class OapBallot extends OapPageViewElement {
   }
 
   choicePointsAtZero() {
-
+    this.selectTabAndScroll(1);
   }
 
   updated(changedProps) {
