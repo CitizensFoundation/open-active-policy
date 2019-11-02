@@ -261,6 +261,7 @@ class OapBallot extends OapPageViewElement {
     this.addEventListener("oav-item-selected-in-budget", this._itemSelectedInBudget);
     this.addEventListener("oav-item-de-selected-from-budget", this._itemDeSelectedFromBudget);
     this.addEventListener("oap-submit-ballot", this._postVoteToServer);
+    this.addEventListener("oap-set-state-of-remaining-items", () => { this.setStateOfRemainingItems()});
   }
 
   _removeListeners() {
@@ -269,6 +270,7 @@ class OapBallot extends OapPageViewElement {
     this.removeEventListener("oav-item-selected-in-budget", this._itemSelectedInBudget);
     this.removeEventListener("oav-item-de-selected-from-budget", this._itemDeSelectedFromBudget);
     this.removeEventListener("oap-submit-ballot", this._postVoteToServer);
+    this.removeEventListener("oap-set-state-of-remaining-items", () => { this.setStateOfRemainingItems()});
   }
 
   reset() {
@@ -507,7 +509,7 @@ class OapBallot extends OapPageViewElement {
             }
           }
           htmlString+='<span style="font-size: 17px;">';
-          htmlString+='<span '+(item.type=="penalty" ? 'style="color: red;"' : '')+'><b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+'</span><span style="padding-left:1px;padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)+'</span><br>';
+          htmlString+='<span '+(item.type=="penalty" ? 'style="color: red;"' : 'style="color: green;"')+'><b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+'</span><span style="padding-left:1px;padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)+'</span><br>';
         } else {
           console.warn("Trying to use bonus again: "+usedKey);
         }

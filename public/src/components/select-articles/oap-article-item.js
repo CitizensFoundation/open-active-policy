@@ -191,6 +191,7 @@ class OapArticleItem extends OapBaseElement {
         this.ballotElement.swapOutItem(this.oldElementNeedsSwapping, this.item);
         this.oldElementNeedsSwapping=null;
       }
+      this.fire('oap-set-state-of-remaining-items');
     }
   }
 
