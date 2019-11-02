@@ -722,9 +722,9 @@ class Oap3dBudget extends OapBaseElement {
 
     let fudgetFactorPx;
     if (window.innerWidth>=600) {
-      fudgetFactorPx = 0.033;
+      fudgetFactorPx = 0.040;
     } else {
-      fudgetFactorPx = 0.030;
+      fudgetFactorPx = 0.0315;
     }
     itemWidth = itemWidth*fudgetFactorPx;
 
@@ -764,9 +764,9 @@ class Oap3dBudget extends OapBaseElement {
       let itemWidth = parseInt(this.votesWidth * (dItem.item.price / this.totalChoicePoints));
       let fudgetFactorPx;
       if (window.innerWidth>=600) {
-        fudgetFactorPx = 0.033;
+        fudgetFactorPx = 0.040;
       } else {
-        fudgetFactorPx = 0.030;
+        fudgetFactorPx = 0.0315;
       }
       itemWidth = itemWidth*fudgetFactorPx;
       if (dItem.width!=itemWidth) {

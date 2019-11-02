@@ -380,11 +380,11 @@ class OapBallot extends OapPageViewElement {
   swapOutItem(oldItem, newItem) {
     for( var i = 0; i < this.processedBallotItems.length; i++){
       if (this.processedBallotItems[i].id==oldItem.id) {
-        newItem.hideInnerContainer = true;
+        /*newItem.hideInnerContainer = true;
         setTimeout(()=>{
           newItem.hideInnerContainer = false;
           newItem.selected = true;
-        }, 650);
+        }, 650);*/
         this.processedBallotItems[i] = newItem;
         //TODO: Get this working without circular problems
         //this.fire('oap-filtered-items-changed', this.processedBallotItems);
@@ -507,7 +507,7 @@ class OapBallot extends OapPageViewElement {
             }
           }
           htmlString+='<span style="font-size: 17px;">';
-          htmlString+='<span '+(item.type=="penalty" ? 'style="color: red;"' : '')+'><b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+'</span><span style="padding-left:2px;padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)+'</span><br>';
+          htmlString+='<span '+(item.type=="penalty" ? 'style="color: red;"' : '')+'><b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+'</span><span style="padding-left:1px;padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)+'</span><br>';
         } else {
           console.warn("Trying to use bonus again: "+usedKey);
         }

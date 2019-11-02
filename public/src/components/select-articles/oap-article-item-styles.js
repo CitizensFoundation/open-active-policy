@@ -206,7 +206,7 @@ export const OapArticleItemStyles = css`
     height: 100%;
   }
 
-  .name[in-budget-selection]:not([exclusive-active]) {
+  .name[in-budget-selection]:not([exclusive-active]):not([module-type]) {
     text-decoration: underline;
   }
 

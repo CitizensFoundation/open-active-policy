@@ -184,7 +184,12 @@ class OapArticleItem extends OapBaseElement {
       if (this.item.id!=this.selectedExclusiveId) {
         this.oldElementNeedsSwapping = this.item;
         this.item = this.ballotElement.getItem(this.selectedExclusiveId);
+        this.item.selectedExclusiveId = this.selectedExclusiveId;
         this.item.exclusiveOptions = this.oldElementNeedsSwapping.exclusiveOptions;
+      }
+      if (this.oldElementNeedsSwapping) {
+        this.ballotElement.swapOutItem(this.oldElementNeedsSwapping, this.item);
+        this.oldElementNeedsSwapping=null;
       }
     }
   }
@@ -231,6 +236,11 @@ class OapArticleItem extends OapBaseElement {
         if (this.item.exclusiveOptions && this.item.exclusiveOptions.length==1) {
           this.selectedExclusiveId = this.item.id;
         }
+
+        if (this.item.selectedExclusiveId) {
+          this.selectedExclusiveId = this.item.selectedExclusiveId;
+        }
+
         if (!this.onlyDisplay)
           this.resetFromBudget();
 
