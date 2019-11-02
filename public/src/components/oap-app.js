@@ -1864,7 +1864,7 @@ class OapApp extends OapBaseElement {
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Finna ákvæði</div>
+        <div class="heading">Velja ákvæði</div>
         <div class="horizontal welcomeText">
       	  Nú geturðu byrjað að hanna stjórnarskrá fyrir þína ríkisborgara! Hver þáttur úr stjórnarskrá sem þú valdir á fyrra stigi leiksins er nú meðal þeirra sem þú getur valið og eytt valstigum í. Ef þú velur þætti sem passa við menningarleg gildi þinna ríkisborgara færðu verðlaunapunkta. Ef þeir passa ekki við menningarleg gildi þeirra taparðu valstigum. Þú verður að hafa nógu marga þætti úr hverri greinanna fjögurra til að geta lokið við stjórnarskrá áður en þú eyðir öllum valstigunum þínum. Gangi þér vel!
           <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>

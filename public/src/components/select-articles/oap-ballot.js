@@ -90,6 +90,7 @@ class OapBallot extends OapPageViewElement {
                       class="ballotAreaItem"
                       .configFromServer="${this.configFromServer}"
                       .language="${this.language}"
+                      .inBudgetSelection="${true}"
                       @goto-selected-id="${this.gotoSelectedId}"
                       .budgetElement="${this.budgetElement}"
                       .ballotElement="${this}"
@@ -505,8 +506,8 @@ class OapBallot extends OapPageViewElement {
               emojis.push(emoji);
             }
           }
-          htmlString+='<span style="font-size: 17px;"><span style="padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)
-          htmlString+='</span> <span '+(item.type=="penalty" ? 'style="color: red;"' : '')+'><b>'+this.localize(item.type)+'</b></span>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+this.localize(item.level)+'</span><br>';
+          htmlString+='<span style="font-size: 17px;">';
+          htmlString+='<span '+(item.type=="penalty" ? 'style="color: red;"' : '')+'><b>'+this.localize(item.type)+'</b>: '+item.value+" <em>"+this.localize(item.attitute)+"</em> "+'</span><span style="padding-left:2px;padding-bottom:8px;padding-top:8px;">'+GetEmojiFromAttitute(item.attitute)+'</span><br>';
         } else {
           console.warn("Trying to use bonus again: "+usedKey);
         }
@@ -573,7 +574,6 @@ class OapBallot extends OapPageViewElement {
   }
 
   _createB64Votes() {
-    debugger;
     return btoa(encodeURIComponent(JSON.stringify({items: this.budgetElement.selectedItems, country: this.country})).replace(/%([0-9A-F]{2})/g,
         function toSolidBytes(match, p1) {
             return String.fromCharCode('0x' + p1);

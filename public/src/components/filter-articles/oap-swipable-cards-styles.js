@@ -427,6 +427,7 @@ export const OapSwipableCardsStyles = css`
 
   .description[module-type] {
     font-size: 16px;
+    margin-bottom: 0px;
     color: #FFF;
     padding-left: 8xp;
   }
@@ -451,7 +452,7 @@ export const OapSwipableCardsStyles = css`
   }
 
   .cardTitles[module-type] {
-    margin-top: 96px;
+    margin-top: 72px;
     text-align: center;
   }
 

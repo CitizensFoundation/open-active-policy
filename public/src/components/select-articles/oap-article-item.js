@@ -85,6 +85,8 @@ class OapArticleItem extends OapBaseElement {
         value: false
       },
 
+      inBudgetSelection: Boolean,
+
       configFromServer: Object,
 
       listBoxSelection: Number,
@@ -120,6 +122,7 @@ class OapArticleItem extends OapBaseElement {
             <div class="name"
               ?exclusive-active="${this.item.exclusiveOptions && !this.selectedExclusiveId}"
               ?module-type="${this.item.module_type=="ModuleTypeCard"}"
+              ?in-budget-selection="${this.inBudgetSelection}"
               ?inbudget="${this.selected}">
               ${this.item.exclusiveOptions && !this.selectedExclusiveId ? '' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
             </div>
@@ -265,6 +268,7 @@ class OapArticleItem extends OapBaseElement {
     super();
     this.reset();
     this.listBoxSelection = null;
+    this.inBudgetSelection = false;
   }
 
   reset() {

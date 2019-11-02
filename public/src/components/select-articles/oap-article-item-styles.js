@@ -206,6 +206,10 @@ export const OapArticleItemStyles = css`
     height: 100%;
   }
 
+  .name[in-budget-selection]:not([exclusive-active]) {
+    text-decoration: underline;
+  }
+
   .name[inbudget] {
     font-size: 20px;
     font-weight: bold;

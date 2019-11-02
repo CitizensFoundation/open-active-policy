@@ -114,13 +114,13 @@ class OapSwipableCards extends OapBaseElement {
                       <div style="text-align:center" class="global-asctions vertical center-center actionButtonContainer">
                         <div class="moduleSelectionTitle">${this.localize("moduleSelection")}</div>
                         <div class="layout  horizontal actionButtonInnerContainer">
-                          <div class="left-actionx vertical">
-                            <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("autoMaticCardSelection")}</paper-button>
-                            <div class="winInfo">${this.localize("automaticInfo")}</div>
-                          </div>
                           <div class="right-actionx vertical">
                             <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
-                            <div class="winInfo">${this.localize("win")} 3cp</div>
+                            <div class="winInfo">${this.localize("win")} 10 ${this.localize("points")}</div>
+                          </div>
+                          <div class="left-actionx vertical">
+                            <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("allCardSelection")}</paper-button>
+                            <div class="winInfo">${this.localize("winAllCards")}</div>
                           </div>
                         </div>
                       </div>
@@ -320,8 +320,6 @@ class OapSwipableCards extends OapBaseElement {
 
       if (currentModuleTypeCard) {
         this.onActionTop(true);
-      } else if (bonusCount===0 && Math.random()<0.7) {
-        this.onActionLeft();
       } else {
         this.onActionRight();
       }

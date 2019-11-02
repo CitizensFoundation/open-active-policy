@@ -123,6 +123,8 @@ export const GetResultsForReview = (selectedItems, country, attituteReviews, cou
   console.log("runningBonusPenaltyInfo");
   console.log(runningBonusPenaltyInfo);
 
+  debugger;
+
   const attitutesWinnersAndLosers = analyseBonusPenaltiesForAttitutes(bonusPenaltyInfo);
 
   attitutes.forEach((attitute)=>{
@@ -151,6 +153,9 @@ export const GetResultsForReview = (selectedItems, country, attituteReviews, cou
   if (country.reviews) {
     countryReviewParagraph=country.reviews[verdict];
   }
+
+  debugger;
+
   return {attituteReviewParagraphs, countryReviewParagraph};
 }
 
