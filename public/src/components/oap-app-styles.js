@@ -342,7 +342,22 @@ export const OapAppStyles = css`
       font-size: 16px;
       padding: 8px;
       padding-top: 0;
-      text-align: center;
+      width: 100%;
+    }
+
+    .headingNoImage {
+      margin-top: 64px;
+    }
+
+    paper-dialog {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      margin: 0;
+      min-width: 360px;
+      max-width: 1024px;
+      width: 100%;
     }
 
     .heading {
