@@ -106,7 +106,7 @@ class OapArticleItem extends OapBaseElement {
   }
 
   getName() {
-    if (this.item.exclusiveOptions && !this.selectedExclusiveId) {
+    if (this.item.exclusiveOptions) {
       return this.item.name.split(": ")[0];
     } else {
       return this.item.name;
