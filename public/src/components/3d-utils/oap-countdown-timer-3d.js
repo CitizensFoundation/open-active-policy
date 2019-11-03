@@ -107,7 +107,7 @@ class CountDownTimer3D {
   }
 
   cacheWinPoints() {
-    this.cacheWinPointsGeometry = GetTextGeometry("+"+ this.winPoints+"cp", this.font3d, { large: true });
+    this.cacheWinPointsGeometry = GetTextGeometry("+"+ this.winPoints, this.font3d, { large: true });
   }
 
   getLeftOfCamera() {
@@ -134,7 +134,7 @@ class CountDownTimer3D {
 
         side: THREE.DoubleSide
       } );
-      this.winPointsMesh = new THREE.Mesh(this.cacheWinPointsGeometry ? this.cacheWinPointsGeometry : GetTextGeometry("+"+ this.winPoints+"cp", this.font3d, { large: true }),this.winPointsMaterial );
+      this.winPointsMesh = new THREE.Mesh(this.cacheWinPointsGeometry ? this.cacheWinPointsGeometry : GetTextGeometry("+"+ this.winPoints, this.font3d, { large: true }),this.winPointsMaterial );
       this.winPointsMesh.position.x=-50;
       this.winPointsMesh.position.y=7.2;
       this.winPointsMesh.position.z=winPointZ;

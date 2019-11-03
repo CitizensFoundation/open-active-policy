@@ -105,6 +105,14 @@ class OapArticleItem extends OapBaseElement {
     ];
   }
 
+  getName() {
+    if (this.item.exclusiveOptions && !this.selectedExclusiveId) {
+      return this.item.name.split(": ")[0];
+    } else {
+      return this.item.name;
+    }
+  }
+
   render() {
     return html`
       <div id="topContainer"
@@ -124,7 +132,7 @@ class OapArticleItem extends OapBaseElement {
               ?module-type="${this.item.module_type=="ModuleTypeCard"}"
               ?in-budget-selection="${this.inBudgetSelection}"
               ?inbudget="${this.selected}">
-              ${this.item.exclusiveOptions && !this.selectedExclusiveId ? '' : ''} ${this.item.name.split(": ")[0]+((this.item.exclusiveOptions && !this.selectedExclusiveId) ? '' : '')}
+              ${this.getName()}
             </div>
             <div class="exclusiveName" ?hidden="${this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
             <div class="layout-inline vertical" ?hidden="${this.item.module_type=="ModuleTypeCard"}">

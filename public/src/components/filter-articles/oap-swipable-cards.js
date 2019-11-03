@@ -286,7 +286,7 @@ class OapSwipableCards extends OapBaseElement {
 
   startManualSelection() {
     this.$$("#manualSelectionButton").disabled = true;
-    this.fire("oap-bonus-points", 3);
+    this.fire("oap-bonus-points", 10);
     this.onActionTop(true);
     this.addEventListeners();
     setTimeout(()=>{

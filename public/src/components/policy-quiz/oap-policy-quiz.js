@@ -258,9 +258,9 @@ class OapPolicyQuiz extends OapPageViewElement {
     return html`
       <div id="canvas3d"></div>
       <div class="layout-inline vertical center-center" class="topTop">
-          <div class="layout horizontal progress" ?intro-mode="${this.introMode}" style="max-width: 600px;margin-left: auto; margin-right:auto;">
+          <div class="layout horizontal progress" ?intro-mode="${this.introMode}">
               <div class="middle textLeft">${this.localize("question")} ${this.currentIndex+1}/${this.questions.length}</div>
-              <div class="middle textRight">${this.localize("youHave")} ${this.totalChoicePoints}cp</div>
+              <div class="middle textRight">${this.totalChoicePoints} ${this.localize('choicePoints').toLowerCase()}</div>
             </div>
         <div class="topContainer">
           ${this.currentIndex!==null ?  html`

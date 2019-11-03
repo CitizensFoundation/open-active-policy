@@ -106,6 +106,7 @@ export const OapPolicyQuizStyles = css`
     -moz-transition: opacity 2.0s ease-in-out;
     -ms-transition: opacity 2.0s ease-in-out;
     -o-transition: opacity 2.0s ease-in-out;
+    max-width: 600px;padding-left: 36px;margin-left: auto; margin-right:auto;
   }
 
   .middle {
@@ -184,6 +185,10 @@ export const OapPolicyQuizStyles = css`
     #canvas3d {
       width: 100%;
       height: 250px;
+    }
+
+    .progress {
+      padding-left: 16px;
     }
 
   }
