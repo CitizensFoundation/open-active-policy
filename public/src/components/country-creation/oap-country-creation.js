@@ -120,77 +120,95 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div id="culturalAttitudes" class="flexRow cultRow">
                 <div class="column">
-                  <div class="sliderHeader"><span class="emoji">🏛️</span>${this.localize("authority")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🏛️</span>${this.localize("authority")}
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('authority', event)}}"
                     .value="${this.country.culturalAttitutes.authority}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">🔬</span>${this.localize("science")}</div>
-                  <paper-slider class="attituteSlider"
+                <div class="sliderHeader">
+                  <span class="emoji">🔬</span>${this.localize("science")}
+                </div>
+                <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('science', event)}}"
                     .value="${this.country.culturalAttitutes.science}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">👥</span>${this.localize("collective")}</div>
+                <div class="sliderHeader">
+                  <span class="emoji">👥</span>${this.localize("collective")}
+                </div>
                 <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('collective', event)}}"
                   .value="${this.country.culturalAttitutes.collective}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">🔐</span>${this.localize("privacy")}</div>
-                  <paper-slider class="attituteSlider"
+                <div class="sliderHeader">
+                  <span class="emoji">🔐</span>${this.localize("privacy")}
+                </div>
+                <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('privacy', event)}}"
                 .value="${this.country.culturalAttitutes.privacy}"
-                  max="9" ?disabled="${!this.customCountry}"
+                  max="9" ?hidden="${!this.customCountry}"
                   >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("progressivism")}</div>
-                  <paper-slider class="attituteSlider"
+                <div class="sliderHeader">
+                  <span class="emoji">✊</span>${this.localize("progressivism")}
+                </div>
+                <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('progressivism', event)}}"
                     .value="${this.country.culturalAttitutes.progressivism}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
               </div>
 
               <div class="column">
-                  <div class="sliderHeader"><span class="emoji">🌅</span>${this.localize("liberty")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🌅</span>${this.localize("liberty")}
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('liberty', event)}}"
                     .value="${this.country.culturalAttitutes.liberty}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">🏺</span>${this.localize("tradition")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🏺</span>${this.localize("tradition")}
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('tradition', event)}}"
                     .value="${this.country.culturalAttitutes.tradition}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">🛡️</span>${this.localize("independence")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🛡️</span>${this.localize("independence")}
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('independence', event)}}"
                     .value="${this.country.culturalAttitutes.independence}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">👮</span>${this.localize("lawAndOrder")}
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('lawAndOrder', event)}}"
                     .value="${this.country.culturalAttitutes.lawAndOrder}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
@@ -221,36 +239,44 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div class="flexRow">
                 <div class="column">
-                  <div class="sliderHeader"><span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}</div>
-                    <paper-slider
+                  <div class="sliderHeader">
+                    <span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}
+                  </div>
+                  <paper-slider
                       @value-changed="${(event) => { this.changeStats('naturalResourceWealth', event)}}"
                       .value="${this.country.naturalResourceWealth}"
-                      max="9" ?disabled="${!this.customCountry}"
+                      max="9" ?hidden="${!this.customCountry}"
                       >
                     </paper-slider>
 
-                    <div class="sliderHeader"><span class="emoji">🛂</span>${this.localize("borderDensity")}</div>
-                    <paper-slider
+                  <div class="sliderHeader">
+                    <span class="emoji">🛂</span>${this.localize("borderDensity")}
+                  </div>
+                  <paper-slider
                       @value-changed="${(event) => { this.changeStats('borderDensity', event)}}"
                       .value="${this.country.borderDensity}"
-                      max="9" ?disabled="${!this.customCountry}"
+                      max="9" ?hidden="${!this.customCountry}"
                       >
                     </paper-slider>
                   </div>
                 <div class="column">
-                  <div class="sliderHeader"><span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}
+                  </div>
                   <paper-slider
                     @value-changed="${(event) => { this.changeStats('hostilityNeighboringCountries', event)}}"
                     .value="${this.country.hostilityNeighboringCountries}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}
+                  </div>
                   <paper-slider
                     @value-changed="${(event) => { this.changeStats('barrieresToCitizenship', event)}}"
                     .value="${this.country.barrieresToCitizenship}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
                 </div>
