@@ -3735,77 +3735,104 @@
 
               <div id="culturalAttitudes" class="flexRow cultRow">
                 <div class="column">
-                  <div class="sliderHeader"><span class="emoji">🏛️</span>${this.localize("authority")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🏛️</span>${this.localize("authority")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.authority)}</span>
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${e=>{this.changeAttitute("authority",e)}}"
                     .value="${this.country.culturalAttitutes.authority}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">🔬</span>${this.localize("science")}</div>
-                  <paper-slider class="attituteSlider"
+                <div class="sliderHeader">
+                  <span class="emoji">🔬</span>${this.localize("science")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.science)}</span>
+                </div>
+                <paper-slider class="attituteSlider"
                     @value-changed="${e=>{this.changeAttitute("science",e)}}"
                     .value="${this.country.culturalAttitutes.science}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">👥</span>${this.localize("collective")}</div>
+                <div class="sliderHeader">
+                  <span class="emoji">👥</span>${this.localize("collective")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.collective)}</span>
+                </div>
                 <paper-slider class="attituteSlider"
                   @value-changed="${e=>{this.changeAttitute("collective",e)}}"
                   .value="${this.country.culturalAttitutes.collective}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">🔐</span>${this.localize("privacy")}</div>
-                  <paper-slider class="attituteSlider"
+                <div class="sliderHeader">
+                  <span class="emoji">🔐</span>${this.localize("privacy")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.privacy)}</span>
+                </div>
+                <paper-slider class="attituteSlider"
                   @value-changed="${e=>{this.changeAttitute("privacy",e)}}"
                 .value="${this.country.culturalAttitutes.privacy}"
-                  max="9" ?disabled="${!this.customCountry}"
+                  max="9" ?hidden="${!this.customCountry}"
                   >
                 </paper-slider>
 
-                <div class="sliderHeader"><span class="emoji">✊</span>${this.localize("progressivism")}</div>
-                  <paper-slider class="attituteSlider"
+                <div class="sliderHeader">
+                  <span class="emoji">✊</span>${this.localize("progressivism")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.progressivism)}</span>
+                </div>
+                <paper-slider class="attituteSlider"
                     @value-changed="${e=>{this.changeAttitute("progressivism",e)}}"
                     .value="${this.country.culturalAttitutes.progressivism}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                 </paper-slider>
               </div>
 
               <div class="column">
-                  <div class="sliderHeader"><span class="emoji">🌅</span>${this.localize("liberty")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🌅</span>${this.localize("liberty")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.liberty)}</span>
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${e=>{this.changeAttitute("liberty",e)}}"
                     .value="${this.country.culturalAttitutes.liberty}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">🏺</span>${this.localize("tradition")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🏺</span>${this.localize("tradition")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.tradition)}</span>
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${e=>{this.changeAttitute("tradition",e)}}"
                     .value="${this.country.culturalAttitutes.tradition}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">🛡️</span>${this.localize("independence")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🛡️</span>${this.localize("independence")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.independence)}</span>
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${e=>{this.changeAttitute("independence",e)}}"
                     .value="${this.country.culturalAttitutes.independence}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">👮</span>${this.localize("lawAndOrder")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.lawAndOrder)}</span>
+                  </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${e=>{this.changeAttitute("lawAndOrder",e)}}"
                     .value="${this.country.culturalAttitutes.lawAndOrder}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
@@ -3836,36 +3863,48 @@
 
               <div class="flexRow">
                 <div class="column">
-                  <div class="sliderHeader"><span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}</div>
-                    <paper-slider
+                  <div class="sliderHeader">
+                    <span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.naturalResourceWealth)}</span>
+                  </div>
+                  <paper-slider
                       @value-changed="${e=>{this.changeStats("naturalResourceWealth",e)}}"
                       .value="${this.country.naturalResourceWealth}"
-                      max="9" ?disabled="${!this.customCountry}"
+                      max="9" ?hidden="${!this.customCountry}"
                       >
                     </paper-slider>
 
-                    <div class="sliderHeader"><span class="emoji">🛂</span>${this.localize("borderDensity")}</div>
-                    <paper-slider
+                  <div class="sliderHeader">
+                    <span class="emoji">🛂</span>${this.localize("borderDensity")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.borderDensity)}</span>
+                  </div>
+                  <paper-slider
                       @value-changed="${e=>{this.changeStats("borderDensity",e)}}"
                       .value="${this.country.borderDensity}"
-                      max="9" ?disabled="${!this.customCountry}"
+                      max="9" ?hidden="${!this.customCountry}"
                       >
                     </paper-slider>
                   </div>
                 <div class="column">
-                  <div class="sliderHeader"><span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.hostilityNeighboringCountries)}</span>
+                  </div>
                   <paper-slider
                     @value-changed="${e=>{this.changeStats("hostilityNeighboringCountries",e)}}"
                     .value="${this.country.hostilityNeighboringCountries}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
 
-                  <div class="sliderHeader"><span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}</div>
+                  <div class="sliderHeader">
+                    <span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.barrieresToCitizenship)}</span>
+                  </div>
                   <paper-slider
                     @value-changed="${e=>{this.changeStats("barrieresToCitizenship",e)}}"
                     .value="${this.country.barrieresToCitizenship}"
-                    max="9" ?disabled="${!this.customCountry}"
+                    max="9" ?hidden="${!this.customCountry}"
                     >
                   </paper-slider>
                 </div>
@@ -3883,7 +3922,7 @@
       </div>
 
     </div>
-    `}countrySelected(e){if(e.detail.value){const t=e.detail.value.dataset.id;this.country=this.countryList[e.detail.value.dataset.id],9==t?(this.customCountry=!0,this.country.name="",this.submitDisabled=!0,this.checkIfOkToProceed()):(this.countryList[9].name="Custom country",this.customCountry=!1,this.submitDisabled=!1),this.haveOpenedTutorial||(setTimeout(()=>{this.fire("oap-start-cultural-attitutes-tutorial")}),this.haveOpenedTutorial=!0)}}checkIfOkToProceed(){1<this.country.name.length&&1<this.country.description.length&&0<this.country.population.length&&0<this.country.geographicalSize.length&&(this.submitDisabled=!1)}setName(e){e.detail.value&&this.customCountry&&(this.country.name=e.detail.value,this.checkIfOkToProceed())}setDescription(e){e.detail.value&&this.customCountry&&(this.country.description=e.detail.value,this.checkIfOkToProceed())}setPopulation(e){e.detail.value&&this.customCountry&&(this.country.population=e.detail.value,this.checkIfOkToProceed())}changeStats(e,t){t.detail.value&&this.customCountry&&(this.country[e]=t.detail.value)}changeAttitute(e,t){t.detail.value&&this.customCountry&&(this.country.culturalAttitutes[e]=t.detail.value)}setGeographicalSize(e){e.detail.value&&this.customCountry&&(this.country.geographicalSize=e.detail.value,this.checkIfOkToProceed())}culturalHelp(){let e;e=this.configFromServer.client_config.helpPageLocales[this.language]?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text):this.configFromServer.client_config.helpPageLocales.en?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text):"No help page found for selected language!",this.fire("oap-open-help",e)}b64DecodeUnicode(e){return decodeURIComponent(atob(e).split("").map(function(e){return"%"+("00"+e.charCodeAt(0).toString(16)).slice(-2)}).join(""))}updated(e){super.updated(e),e.has("configFromServer")&&this.configFromServer&&(this.countryList=this.configFromServer.client_config.languages[this.language].countryList)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
+    `}getCulturalPercent(e){return 10*parseInt(e)+"%"}countrySelected(e){if(e.detail.value){const t=e.detail.value.dataset.id;this.country=this.countryList[e.detail.value.dataset.id],9==t?(this.customCountry=!0,this.country.name="",this.submitDisabled=!0,this.checkIfOkToProceed()):(this.countryList[9].name="Custom country",this.customCountry=!1,this.submitDisabled=!1),this.haveOpenedTutorial||(setTimeout(()=>{this.fire("oap-start-cultural-attitutes-tutorial")}),this.haveOpenedTutorial=!0)}}checkIfOkToProceed(){1<this.country.name.length&&1<this.country.description.length&&0<this.country.population.length&&0<this.country.geographicalSize.length&&(this.submitDisabled=!1)}setName(e){e.detail.value&&this.customCountry&&(this.country.name=e.detail.value,this.checkIfOkToProceed())}setDescription(e){e.detail.value&&this.customCountry&&(this.country.description=e.detail.value,this.checkIfOkToProceed())}setPopulation(e){e.detail.value&&this.customCountry&&(this.country.population=e.detail.value,this.checkIfOkToProceed())}changeStats(e,t){t.detail.value&&this.customCountry&&(this.country[e]=t.detail.value,this.requestUpdate())}changeAttitute(e,t){t.detail.value&&this.customCountry&&(this.country.culturalAttitutes[e]=t.detail.value,this.requestUpdate())}setGeographicalSize(e){e.detail.value&&this.customCountry&&(this.country.geographicalSize=e.detail.value,this.checkIfOkToProceed())}culturalHelp(){let e;e=this.configFromServer.client_config.helpPageLocales[this.language]?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text):this.configFromServer.client_config.helpPageLocales.en?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text):"No help page found for selected language!",this.fire("oap-open-help",e)}b64DecodeUnicode(e){return decodeURIComponent(atob(e).split("").map(function(e){return"%"+("00"+e.charCodeAt(0).toString(16)).slice(-2)}).join(""))}updated(e){super.updated(e),e.has("configFromServer")&&this.configFromServer&&(this.countryList=this.configFromServer.client_config.languages[this.language].countryList)}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
 
   :host {
     width: 100%;

@@ -698,7 +698,7 @@
         "penalty": "Refsistig",
         "bonuses": "Verðlaunastig",
         "penalties": "Refsistig",
-        "buildConstitutionForCountry": "Þín eigin stjórnarskrá",
+        "buildConstitutionForCountry": "Búa til stjórnarskrá",
         "createYourCountry": "Hvaða land?",
         "basicInformation": "Grunnupplýsingar",
         "culturalAttitude": "Menningarleg við horf í þínu landi",
@@ -820,7 +820,7 @@
       },
       {
          "id": 4,
-         "name": "Amríka í dag (Bandaríkin, eins og sakir standa)",
+         "name": "Ameríka í dag (Bandaríkin, eins og sakir standa)",
          "description": "Þetta fyrsta lýðræðisríki heimsins hefur stækkað. Það eru ekki 13 ríki í sambandinu eins og þegar stjórnarskráin var samin heldur 50. Efnahagsframfarirnar eftir lok seinni heimstyrjaldar hafa gert það að mesta stórveldi tuttugustu aldar, en nú við upphaf 21. aldarinnar er stjórnarskrárkreppa í uppsiglingu. Hjálpaðu til við að semja stjórnarskrá sem er í samræmi við það sem þetta nýja land er orðið!",
         "population": "350M",
          "geographicalSize": "9.5M",

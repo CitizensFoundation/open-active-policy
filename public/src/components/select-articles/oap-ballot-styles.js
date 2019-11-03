@@ -87,6 +87,13 @@ export const OapBallotStyles = css`
     margin-top: 12px;
   }
 
+  #submitButtonContainerTwo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+    margin-top: 12px;
+  }
+
   #submitButton {
     color: #FFF;
     background-color: #000;

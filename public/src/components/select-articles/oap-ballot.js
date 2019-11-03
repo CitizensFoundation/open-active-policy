@@ -137,6 +137,10 @@ class OapBallot extends OapPageViewElement {
                     `
                   }
                 )}
+               <div id="submitButtonContainerTwo" class="layout horizontal center-center">
+                 <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-submit-ballot') }}">${this.localize("submitConstitution")}</paper-button>
+               </div>
+
               </div>
             `
             :
