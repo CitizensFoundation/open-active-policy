@@ -574,7 +574,7 @@ class OapApp extends OapBaseElement {
     const itemsArray = this.parseCSV(this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].encodedModules));
     this.allItems = [];
     itemsArray.forEach((line, index)=>{
-      if (index!==0) {
+      if (index!==0 && line[0]!=null && line[0]!='#REF!' && line[0]!='') {
         this.allItems.push({
           id: line[0],
           sub_category: line[1],
@@ -582,7 +582,7 @@ class OapApp extends OapBaseElement {
           name: line[3],
           description: line[4],
           module_type: line[5],
-          exclusive_ids: line[6],
+          exclusive_ids: line[6] ? line[6].replace(/ /g,'') : '',
           hybrids: line[7],
           timePeriod: line[8],
           module_content_type: line[9],
@@ -1826,13 +1826,13 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Filter Articles</div>
         <div class="horizontal welcomeText">
-        Welcome to the wide world of constitutional ideas! We have presented these as modules; you have a chance now to go through all of the articles and rights and pick the ones you know you would like to build your constitution with. If you want to hurry on to the process you can select Automatic Selection for each Branch -- Executive, Legislative, Judicial and Civil -- this will get you to writing the constitution more quickly -- though you may miss something you want to include.</div>
+        Welcome to the wide world of constitutional articles! We have presented these as modules; you have a chance now to go through all of the articles and pick the ones you know you would like to use in the game.</div>
       `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Velja úr ákvæðum</div>
+        <div class="heading">Forvelja ákvæði</div>
         <div class="horizontal welcomeText">
-          Velkomin/n í veröld stjórnarskrárhugmynda! Við stillum þessum hugmyndum upp sem þáttum. Þú færð nú tækifæri til að renna í gegnum ákvæði stjórnarskrárinnar og réttindi sem hún getur innihaldið og velja þau sem þu vilt hafa í þinni stjórnarskrá. If þú ert að flýta þér og vilt komast sem fyrst í lokaval á þáttum þinnar stjórnaskrár skaltu hafa valið sjálfvirkt fyrir hverja grein -- framkvæmdavald, löggjafarvald, dómsvald of borgararéttindi -- með þessu móti ertu fljótari að skrifa stjórnarskrána -- þótt vissulega getir þú líka misst af ákvæðum sem þú hefðir kannski viljað hafa með.</div>
+          Velkomin/n í veröld stjórnarskrárákvæða! Þú færð nú tækifæri til að renna í gegnum öll ákvæði boði og forvelja þau sem þú vilt nota í leiknum.</div>
         `;
     }
     this.masterDialogContent = html`

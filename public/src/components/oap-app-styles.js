@@ -275,10 +275,17 @@ export const OapAppStyles = css`
     padding-top: 0;
     line-height: 1.3;
     margin: 8px;
-    text-align: center;
     width: 100%;
     margin: 0 !important;
     padding: 0 !important;
+  }
+
+  .masterDialog > .heading {
+    text-align: center;
+  }
+
+  .masterDialog > .buttons {
+    text-align: center;
   }
 
   .welcomeText {
