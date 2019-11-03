@@ -179,7 +179,6 @@ class OapReview extends OapPageViewElement {
         window.onpopstate = function () {
             window.history.pushState(null, "", window.location.href);
         };
-        debugger;
       }
     }
   }
