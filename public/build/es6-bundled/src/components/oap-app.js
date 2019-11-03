@@ -21081,7 +21081,22 @@ this.onSwipeRight()}else{this.backToMiddle()}}}}}}window.customElements.define("
       font-size: 16px;
       padding: 8px;
       padding-top: 0;
-      text-align: center;
+      width: 100%;
+    }
+
+    .headingNoImage {
+      margin-top: 64px;
+    }
+
+    paper-dialog {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      margin: 0;
+      min-width: 360px;
+      max-width: 1024px;
+      width: 100%;
     }
 
     .heading {
@@ -22895,7 +22910,7 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
       </div>
     </div>
    `}culturalHelp(){let content;if(this.configFromServer.client_config.helpPageLocales[this.language]){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text)}else if(this.configFromServer.client_config.helpPageLocales.en){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text)}else{content="No help page found for selected language!"}this.fire("oap-open-help",content)}b64DecodeUnicode(str){// Going backwards: from bytestream, to percent-encoding, to original string.
-return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))}updated(changedProps){super.updated(changedProps);if(changedProps.has("selectedItems")){if(this.selectedItems){const reviewsMaster=this.configFromServer.client_config.languages[this.language].attituteReviews,reviews=GetResultsForReview(this.selectedItems,this.allItems,this.country,reviewsMaster);this.attituteReviewParagraphs=reviews.attituteReviewParagraphs;this.countryReviewParagraph=reviews.countryReviewParagraph;this.completionScore=reviews.completionScore;this.isConstitutionViable=reviews.isConstitutionViable;window.history.pushState(null,"",window.location.href);window.onpopstate=function(){window.history.pushState(null,"",window.location.href)};debugger}}}}window.customElements.define("oap-review",OapReview);function cacheDataImages(_x13){return _cacheDataImages.apply(this,arguments)}function _cacheDataImages(){_cacheDataImages=babelHelpers.asyncToGenerator(function*(items){if(items){yield new Promise(resolve=>setTimeout(resolve,100));for(let i=0;i<items.length;i++){const img=new Image;img.src=items[i].image_url;yield new Promise(resolve=>setTimeout(resolve,750))}}});return _cacheDataImages.apply(this,arguments)}function cacheSoundEffects(_x14){return _cacheSoundEffects.apply(this,arguments)}function _cacheSoundEffects(){_cacheSoundEffects=babelHelpers.asyncToGenerator(function*(soundEffects){if(soundEffects){const effects=Object.values(soundEffects);for(let i=0;i<effects.length;i++){effects[i].audio=new Audio(effects[i].url);effects[i].audio.volume=effects[i].volume;yield new Promise(resolve=>setTimeout(resolve,750))}}});return _cacheSoundEffects.apply(this,arguments)}class OapApp extends OapBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,currentBallot:Object,currentBudget:Object,budgetElement:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,masterHelpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String,filteredItems:Array,selectedItems:Array,quizQuestions:Array,totalChoicePoints:Number,usedChoicePoints:Number,snackBarContent:String,country:Object,debouncedSave:Object,usedBonusesAndPenalties:Object,savedGameDate:String,disableAutoSave:Boolean,font3d:Object,openMasterDialog:String,masterDialogCloseFunction:Function}}static get styles(){return[OapAppStyles,OapFlexLayout]}render(){let errorDialog=html$1`
+return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))}updated(changedProps){super.updated(changedProps);if(changedProps.has("selectedItems")){if(this.selectedItems){const reviewsMaster=this.configFromServer.client_config.languages[this.language].attituteReviews,reviews=GetResultsForReview(this.selectedItems,this.allItems,this.country,reviewsMaster);this.attituteReviewParagraphs=reviews.attituteReviewParagraphs;this.countryReviewParagraph=reviews.countryReviewParagraph;this.completionScore=reviews.completionScore;this.isConstitutionViable=reviews.isConstitutionViable;window.history.pushState(null,"",window.location.href);window.onpopstate=function(){window.history.pushState(null,"",window.location.href)}}}}}window.customElements.define("oap-review",OapReview);function cacheDataImages(_x13){return _cacheDataImages.apply(this,arguments)}function _cacheDataImages(){_cacheDataImages=babelHelpers.asyncToGenerator(function*(items){if(items){yield new Promise(resolve=>setTimeout(resolve,100));for(let i=0;i<items.length;i++){const img=new Image;img.src=items[i].image_url;yield new Promise(resolve=>setTimeout(resolve,750))}}});return _cacheDataImages.apply(this,arguments)}function cacheSoundEffects(_x14){return _cacheSoundEffects.apply(this,arguments)}function _cacheSoundEffects(){_cacheSoundEffects=babelHelpers.asyncToGenerator(function*(soundEffects){if(soundEffects){const effects=Object.values(soundEffects);for(let i=0;i<effects.length;i++){effects[i].audio=new Audio(effects[i].url);effects[i].audio.volume=effects[i].volume;yield new Promise(resolve=>setTimeout(resolve,750))}}});return _cacheSoundEffects.apply(this,arguments)}class OapApp extends OapBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,currentBallot:Object,currentBudget:Object,budgetElement:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,masterHelpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String,filteredItems:Array,selectedItems:Array,quizQuestions:Array,totalChoicePoints:Number,usedChoicePoints:Number,snackBarContent:String,country:Object,debouncedSave:Object,usedBonusesAndPenalties:Object,savedGameDate:String,disableAutoSave:Boolean,font3d:Object,openMasterDialog:String,masterDialogCloseFunction:Function}}static get styles(){return[OapAppStyles,OapFlexLayout]}render(){let errorDialog=html$1`
       <paper-dialog id="errorDialog">
         <p id="errorText">${this.errorText}</p>
         <div class="buttons">
@@ -23108,20 +23123,17 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}}_load
       </div>
     </div>
    `;this.openAndUpdateDialog()}openChoicePointsDialog(){this.masterDialogCloseFunction=this.openQuizDialog;let localeText=null;if("en"==this.language){localeText=html$1`
-        <div class="heading">Choice Points</div>
+        <div class="heading headingNoImage">Choice Points</div>
         <div class="horizontal welcomeText">
           Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
         </div>
       `}else if("is"==this.language){localeText=html$1`
-        <div class="heading">Valstig</div>
+        <div class="heading headingNoImage">Valstig</div>
         <div class="horizontal welcomeText">
           Valstig er nafnið á pólitísku auðmagni – sjóðnum sem þú hefur til að koma stjórnarskránni þinni saman. Þú þarft að verja stigunum þínum skynsamlega þegar þú velur stjónarskrárákvæði og þau réttindi sem stjórnarskráin á að innihalda. Þú færð verðlauna- og refsistig sem bætast við eða dragast frá valstigunum þínum eftir því hversu vel þér tekst að láta stjórnarskrána falla að óskum fólksins í landinu sem þú hefur valið eða búið til.
         </div>
       `}this.masterDialogContent=html$1`
       <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="cpImage" style="width: 250px;height:107px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
-      </div>
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
@@ -23130,19 +23142,16 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}}_load
       </div>
     </div>
    `;this.openAndUpdateDialog()}openQuizDialog(){this.masterDialogCloseFunction=this.closeWelcome;let localeText=null;if("en"==this.language){localeText=html$1`
-        <div class="heading">Quiz</div>
+        <div class="heading headingNoImage">Quiz</div>
         <div class="horizontal welcomeText">
           First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
       `}else if("is"==this.language){localeText=html$1`
-        <div class="heading">Spurningaleikur</div>
+        <div class="heading headingNoImage">Spurningaleikur</div>
         <div class="horizontal welcomeText">
           Við skulum byrja á almennum spurningum um stjórnarskrár í sögunni og víðsvegar um heiminn. Því fleiri spurningum sem þú svarar rétt, þeim mun fleiri valstig færðu í sarpinn til að setja saman stjórnarskrána þína!
         </div>
       `}this.masterDialogContent=html$1`
       <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="width: 339px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
-      </div>
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">

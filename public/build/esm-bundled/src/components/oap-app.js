@@ -5044,7 +5044,22 @@
       font-size: 16px;
       padding: 8px;
       padding-top: 0;
-      text-align: center;
+      width: 100%;
+    }
+
+    .headingNoImage {
+      margin-top: 64px;
+    }
+
+    paper-dialog {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      margin: 0;
+      min-width: 360px;
+      max-width: 1024px;
+      width: 100%;
     }
 
     .heading {
@@ -6960,20 +6975,17 @@ $
       </div>
     </div>
    `,this.openAndUpdateDialog()}openChoicePointsDialog(){this.masterDialogCloseFunction=this.openQuizDialog;let e=null;"en"==this.language?e=html$1`
-        <div class="heading">Choice Points</div>
+        <div class="heading headingNoImage">Choice Points</div>
         <div class="horizontal welcomeText">
           Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
         </div>
       `:"is"==this.language&&(e=html$1`
-        <div class="heading">Valstig</div>
+        <div class="heading headingNoImage">Valstig</div>
         <div class="horizontal welcomeText">
           Valstig er nafnið á pólitísku auðmagni – sjóðnum sem þú hefur til að koma stjórnarskránni þinni saman. Þú þarft að verja stigunum þínum skynsamlega þegar þú velur stjónarskrárákvæði og þau réttindi sem stjórnarskráin á að innihalda. Þú færð verðlauna- og refsistig sem bætast við eða dragast frá valstigunum þínum eftir því hversu vel þér tekst að láta stjórnarskrána falla að óskum fólksins í landinu sem þú hefur valið eða búið til.
         </div>
       `),this.masterDialogContent=html$1`
       <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="cpImage" style="width: 250px;height:107px; margin-left: -24px;margin-bottom:-8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/choicePoints1.png"></img>
-      </div>
       <div class="vertical center-center masterDialog">
         ${e}
         <div class="buttons center-center">
@@ -6982,19 +6994,16 @@ $
       </div>
     </div>
    `,this.openAndUpdateDialog()}openQuizDialog(){this.masterDialogCloseFunction=this.closeWelcome;let e=null;"en"==this.language?e=html$1`
-        <div class="heading">Quiz</div>
+        <div class="heading headingNoImage">Quiz</div>
         <div class="horizontal welcomeText">
           First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
       `:"is"==this.language&&(e=html$1`
-        <div class="heading">Spurningaleikur</div>
+        <div class="heading headingNoImage">Spurningaleikur</div>
         <div class="horizontal welcomeText">
           Við skulum byrja á almennum spurningum um stjórnarskrár í sögunni og víðsvegar um heiminn. Því fleiri spurningum sem þú svarar rétt, þeim mun fleiri valstig færðu í sarpinn til að setja saman stjórnarskrána þína!
         </div>
       `),this.masterDialogContent=html$1`
       <div class="vertical center-center">
-      <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="width: 339px;height:226px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/quizIntro.jpg"></img>
-      </div>
       <div class="vertical center-center masterDialog">
         ${e}
         <div class="buttons center-center">
