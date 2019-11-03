@@ -121,7 +121,8 @@ class OapCountryCreation extends OapPageViewElement {
               <div id="culturalAttitudes" class="flexRow cultRow">
                 <div class="column">
                   <div class="sliderHeader">
-                    <span class="emoji">🏛️</span>${this.localize("authority")}
+                    <span class="emoji">🏛️</span>${this.localize("authority")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.authority)}</span>
                   </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('authority', event)}}"
@@ -131,7 +132,8 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
 
                 <div class="sliderHeader">
-                  <span class="emoji">🔬</span>${this.localize("science")}
+                  <span class="emoji">🔬</span>${this.localize("science")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.science)}</span>
                 </div>
                 <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('science', event)}}"
@@ -141,7 +143,8 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
 
                 <div class="sliderHeader">
-                  <span class="emoji">👥</span>${this.localize("collective")}
+                  <span class="emoji">👥</span>${this.localize("collective")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.collective)}</span>
                 </div>
                 <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('collective', event)}}"
@@ -151,7 +154,8 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
 
                 <div class="sliderHeader">
-                  <span class="emoji">🔐</span>${this.localize("privacy")}
+                  <span class="emoji">🔐</span>${this.localize("privacy")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.privacy)}</span>
                 </div>
                 <paper-slider class="attituteSlider"
                   @value-changed="${(event) => { this.changeAttitute('privacy', event)}}"
@@ -161,7 +165,8 @@ class OapCountryCreation extends OapPageViewElement {
                 </paper-slider>
 
                 <div class="sliderHeader">
-                  <span class="emoji">✊</span>${this.localize("progressivism")}
+                  <span class="emoji">✊</span>${this.localize("progressivism")}:
+                  <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.progressivism)}</span>
                 </div>
                 <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('progressivism', event)}}"
@@ -173,7 +178,8 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div class="column">
                   <div class="sliderHeader">
-                    <span class="emoji">🌅</span>${this.localize("liberty")}
+                    <span class="emoji">🌅</span>${this.localize("liberty")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.liberty)}</span>
                   </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('liberty', event)}}"
@@ -183,7 +189,8 @@ class OapCountryCreation extends OapPageViewElement {
                   </paper-slider>
 
                   <div class="sliderHeader">
-                    <span class="emoji">🏺</span>${this.localize("tradition")}
+                    <span class="emoji">🏺</span>${this.localize("tradition")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.tradition)}</span>
                   </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('tradition', event)}}"
@@ -193,7 +200,8 @@ class OapCountryCreation extends OapPageViewElement {
                   </paper-slider>
 
                   <div class="sliderHeader">
-                    <span class="emoji">🛡️</span>${this.localize("independence")}
+                    <span class="emoji">🛡️</span>${this.localize("independence")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.independence)}</span>
                   </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('independence', event)}}"
@@ -203,7 +211,8 @@ class OapCountryCreation extends OapPageViewElement {
                   </paper-slider>
 
                   <div class="sliderHeader">
-                    <span class="emoji">👮</span>${this.localize("lawAndOrder")}
+                    <span class="emoji">👮</span>${this.localize("lawAndOrder")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.culturalAttitutes.lawAndOrder)}</span>
                   </div>
                   <paper-slider class="attituteSlider"
                     @value-changed="${(event) => { this.changeAttitute('lawAndOrder', event)}}"
@@ -240,7 +249,8 @@ class OapCountryCreation extends OapPageViewElement {
               <div class="flexRow">
                 <div class="column">
                   <div class="sliderHeader">
-                    <span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}
+                    <span class="emoji emojiResources">🔋</span>${this.localize("naturalResourceWealth")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.naturalResourceWealth)}</span>
                   </div>
                   <paper-slider
                       @value-changed="${(event) => { this.changeStats('naturalResourceWealth', event)}}"
@@ -250,7 +260,8 @@ class OapCountryCreation extends OapPageViewElement {
                     </paper-slider>
 
                   <div class="sliderHeader">
-                    <span class="emoji">🛂</span>${this.localize("borderDensity")}
+                    <span class="emoji">🛂</span>${this.localize("borderDensity")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.borderDensity)}</span>
                   </div>
                   <paper-slider
                       @value-changed="${(event) => { this.changeStats('borderDensity', event)}}"
@@ -261,7 +272,8 @@ class OapCountryCreation extends OapPageViewElement {
                   </div>
                 <div class="column">
                   <div class="sliderHeader">
-                    <span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}
+                    <span class="emoji">🌐</span>${this.localize("hostilityNeighboringCountries")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.hostilityNeighboringCountries)}</span>
                   </div>
                   <paper-slider
                     @value-changed="${(event) => { this.changeStats('hostilityNeighboringCountries', event)}}"
@@ -271,7 +283,8 @@ class OapCountryCreation extends OapPageViewElement {
                   </paper-slider>
 
                   <div class="sliderHeader">
-                    <span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}
+                    <span class="emoji">🧱</span>${this.localize("barrieresToCitizenship")}:
+                    <span class="cultPercent">${this.getCulturalPercent(this.country.barrieresToCitizenship)}</span>
                   </div>
                   <paper-slider
                     @value-changed="${(event) => { this.changeStats('barrieresToCitizenship', event)}}"
@@ -295,6 +308,10 @@ class OapCountryCreation extends OapPageViewElement {
 
     </div>
     `
+  }
+
+  getCulturalPercent(value) {
+    return parseInt(value)*10+"%";
   }
 
   countrySelected(event) {
@@ -353,12 +370,14 @@ class OapCountryCreation extends OapPageViewElement {
   changeStats(stat, event) {
     if (event.detail.value && this.customCountry) {
       this.country[stat] = event.detail.value;
+      this.requestUpdate();
     }
   }
 
   changeAttitute(attitute, event) {
     if (event.detail.value && this.customCountry) {
       this.country.culturalAttitutes[attitute] = event.detail.value;
+      this.requestUpdate();
     }
   }
 
