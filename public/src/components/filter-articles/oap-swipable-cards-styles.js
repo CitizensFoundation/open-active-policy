@@ -429,7 +429,14 @@ export const OapSwipableCardsStyles = css`
     font-size: 16px;
     margin-bottom: 0px;
     color: #FFF;
-    padding-left: 8xp;
+    margin-left: 32px;
+    margin-right: 32px;
+    font-style: italic;
+  }
+
+  .description[module-type] > em {
+    text-align: left;
+    font-style: normal;
   }
 
   .name {

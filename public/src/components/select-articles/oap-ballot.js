@@ -121,7 +121,7 @@ class OapBallot extends OapPageViewElement {
                    let headerTemplate = html``;
                     if (index===0 || this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index) {
                       headerTemplate = html`
-                        <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${item.module_content_type}</div>
+                        <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${this.getModuleTypeName(item.module_content_type)}</div>
                       `;
                     }
                     return html`
@@ -148,6 +148,10 @@ class OapBallot extends OapPageViewElement {
       ''
     }
     `
+  }
+
+  getModuleTypeName(module_content_type) {
+    return this.localize(module_content_type.toLowerCase().replace('/',''));
   }
 
   processBallotItems() {

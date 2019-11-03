@@ -150,8 +150,7 @@ class OapSwipableCards extends OapBaseElement {
             </div>
             <div style="width: 100px;">
               </div>
-            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/>
-            </div>
+            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
           </div>
         </div>
         <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
@@ -686,36 +685,48 @@ class OapSwipableCards extends OapBaseElement {
 
   //Functions to swipe left elements on logic external action.
   onActionLeft() {
-    if(!(this.currentPosition >= this.maxElements)){
-      if(this.useOverlays) {
-        this.leftObj.classList.remove('no-transition');
-        this.topObj.classList.remove('no-transition');
-        this.leftObj.style.zIndex = '8';
-        this.transformUi(0, 0, 1, this.leftObj);
+    if (!this.temporaryDisableLeft) {
+      if(!(this.currentPosition >= this.maxElements)){
+        if(this.useOverlays) {
+          this.leftObj.classList.remove('no-transition');
+          this.topObj.classList.remove('no-transition');
+          this.leftObj.style.zIndex = '8';
+          this.transformUi(0, 0, 1, this.leftObj);
 
+        }
+
+        setTimeout(function() {
+          this.onSwipeLeft();
+          this.resetOverlayLeft();
+        }.bind(this),300);
       }
-
-      setTimeout(function() {
-        this.onSwipeLeft();
-        this.resetOverlayLeft();
-      }.bind(this),300);
+      this.temporaryDisableLeft=true;
+      setTimeout(()=>{
+        this.temporaryDisableLeft=false;
+      }, 310);
     }
   }
 
   //Functions to swipe right elements on logic external action.
   onActionRight() {
-    if(!(this.currentPosition >= this.maxElements)){
-      if(this.useOverlays) {
-        this.rightObj.classList.remove('no-transition');
-        this.topObj.classList.remove('no-transition');
-        this.rightObj.style.zIndex = '8';
-        this.transformUi(0, 0, 1, this.rightObj);
-      }
+    if (!this.temporaryDisableRight) {
+      if(!(this.currentPosition >= this.maxElements)){
+        if(this.useOverlays) {
+          this.rightObj.classList.remove('no-transition');
+          this.topObj.classList.remove('no-transition');
+          this.rightObj.style.zIndex = '8';
+          this.transformUi(0, 0, 1, this.rightObj);
+        }
 
-      setTimeout(function(){
-        this.onSwipeRight();
-        this.resetOverlayRight();
-      }.bind(this),300);
+        setTimeout(function(){
+          this.onSwipeRight();
+          this.resetOverlayRight();
+        }.bind(this),300);
+      }
+      this.temporaryDisableRight=true;
+      setTimeout(()=>{
+        this.temporaryDisableRight=false;
+      }, 310);
     }
   }
 

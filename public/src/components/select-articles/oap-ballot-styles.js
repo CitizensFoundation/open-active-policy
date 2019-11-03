@@ -93,7 +93,8 @@ export const OapBallotStyles = css`
     border: 1px solid #FFF;
     margin-left: auto;
     margin-right: auto;
-    width: 200px;
+    max-width: 300px;
+    width: 270px;
   }
 
   .tabsContainer {

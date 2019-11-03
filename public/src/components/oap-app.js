@@ -1321,7 +1321,7 @@ class OapApp extends OapBaseElement {
               `
               : html``}
         </div>
-        <div class="center-center">
+        <div class="center-center buttons">
           <paper-button raised class="continueButton" @click="${this.openChoicePointsDialog}" autofocus>${this.localize('next')}</paper-button>
         </div>
       </div>
