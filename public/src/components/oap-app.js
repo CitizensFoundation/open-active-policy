@@ -334,9 +334,10 @@ class OapApp extends OapBaseElement {
             <oap-review id="review"
               .budgetBallotItems="${this.filteredItems}"
               .configFromServer="${this.configFromServer}"
-              .selectedItems="${this.selectedItems}"
               .budgetElement="${this.currentBudget}"
               .language="${this.language}"
+              .allItems="${this.allItems}"
+              .selectedItems="${this.selectedItems}"
               .country="${this.country}"
               class="page"
               ?active="${this._page === 'review'}">
@@ -731,6 +732,7 @@ class OapApp extends OapBaseElement {
     this.addEventListener("oap-open-selection-info-dialog", this.openSelectionInfoDialog);
     this.addEventListener("oap-open-article-item", this.openArticleItem);
     this.addEventListener("oap-close-master-dialog", this.closeMasterDialog);
+    this.addEventListener("oap-reset-select-articles", this.resetSelectArticles);
   }
 
   _removeListeners() {
@@ -772,11 +774,28 @@ class OapApp extends OapBaseElement {
     this.removeEventListener("oap-open-filter-info-dialog", this.openFilterInfoDialog);
     this.removeEventListener("oap-open-selection-info-dialog", this.openSelectionInfoDialog);
     this.removeEventListener("oap-open-article-item", this.openArticleItem);
+    this.removeEventListener("oap-reset-select-articles", this.resetSelectArticles);
     this.removeEventListener("oap-close-master-dialog", this.closeMasterDialog);
   }
 
   closeMasterDialog() {
     this.$$("#masterDialog").close();
+  }
+
+  resetSelectArticles() {
+    this.selectedItems = [];
+    if (this.savedChoicePoints) {
+      this.totalChoicePoints=this.savedChoicePoints;
+      this.usedChoicePoints=0;
+    }
+
+    this.filteredItems = JSON.parse(JSON.stringify(this.filteredItems));
+
+    const path = '/area-ballot/1';
+    window.history.pushState({}, null, path);
+    this.fire('location-changed', path);
+    this.requestUpdate();
+    this.activity('resetSelectArticles', 'ballot');
   }
 
   usedBonusesAndPenaltiesChanged(event) {
@@ -843,6 +862,7 @@ class OapApp extends OapBaseElement {
 
   filteringFinished () {
     this.fire('oap-play-sound-effect', 'oap_new_level_1');
+    this.savedChoicePoints = this.totalChoicePoints;
     SetForceSlowOnFontCaching();
     const path = '/area-ballot/1';
     window.history.pushState({}, null, path);

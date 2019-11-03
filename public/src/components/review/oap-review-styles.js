@@ -12,6 +12,10 @@ export const OapReviewStyles = css`
     height: 100%;
   }
 
+  .weakItem {
+    font-style: italic;
+  }
+
   .header {
     font-size: 24px;
     margin-top: 16px;
@@ -39,6 +43,12 @@ export const OapReviewStyles = css`
     text-align: center;
     margin-bottom: 4px;
     margin-top: 8px;
+  }
+
+  #retryButton {
+    background-color: #FFF;
+    color: #000;
+    margin-top: 4px;
   }
 
   .subHeader.noBottom {

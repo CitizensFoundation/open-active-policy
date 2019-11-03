@@ -91,7 +91,7 @@ export const OapBallotStyles = css`
     width: 100%;
     text-align: center;
     margin-bottom: 16px;
-    margin-top: 12px;
+    margin-top: 24px;
   }
 
   #submitButton {

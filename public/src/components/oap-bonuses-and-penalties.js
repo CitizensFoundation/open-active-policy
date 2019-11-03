@@ -70,29 +70,63 @@ const analyseBonusPenaltiesForAttitutes = (objectToAnalyse) => {
 
   attitutes.forEach((attitute)=>{
     let verdict;
-    if (objectToAnalyse.sumBonusesByCulturalAttitute[attitute] &&
-        objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute]) {
-          const profitLoss = objectToAnalyse.sumBonusesByCulturalAttitute[attitute]-objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute];
-          if (profitLoss<0) {
-            verdict="highPenalty";
-          } else {
-           verdict="highBonus";
-          }
-          if (Math.abs(profitLoss)<=5) {
-           verdict="breakEven";
-          }
+    let profitLoss = 0;
+    const bonuses = objectToAnalyse.sumBonusesByCulturalAttitute[attitute] ? objectToAnalyse.sumBonusesByCulturalAttitute[attitute] : 0;
+    const penalties = objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute] ? objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute] : 0;
+    if (bonuses || penalties) {
+      profitLoss = bonuses-penalties;
+      if (profitLoss<0) {
+        verdict="highPenalty";
+      } else {
+        verdict="highBonus";
+      }
+      if (Math.abs(profitLoss)<=12) {
+        verdict="breakEven";
+      }
      } else {
        verdict="breakEven";
-     }
-     attitutesWinnersAndLosers[attitute]=verdict;
-   });
+    }
+    attitutesWinnersAndLosers[attitute]=verdict;
+    console.info("Bonus/Penalty test: "+attitute+" - bonuses:"+bonuses);
+    console.info("Bonus/Penalty test: "+attitute+" - penalties:"+penalties);
+    console.info("Bonus/Penalty test: "+attitute+" - profitLoss:"+profitLoss);
+    console.info("Bonus/Penalty test: "+attitute+": "+verdict);
+  });
 
-   return attitutesWinnersAndLosers;
+  return attitutesWinnersAndLosers;
 }
 
-//highNetPenalties highNetBonuses breakEven
+export const GetCompletionScoreByModuleType = (allItems, selectedItems) => {
+  const moduleTypesAuthorship = {};
+  let totalAuthorship = 0;
+  let countedAuthorship = 0;
 
-export const GetResultsForReview = (selectedItems, country, attituteReviews, countryReviews) => {
+  allItems.forEach((item)=>{
+    if (item.module_type=="ModuleTypeCard") {
+      moduleTypesAuthorship[item.module_type_index]={ name: item.name, status: "weak", totalCount: 0, counted: 0, completedPercent: 0};
+    } else {
+      if (item.authorshipPercent) {
+        moduleTypesAuthorship[item.module_type_index].totalCount+=parseInt(item.authorshipPercent);
+        totalAuthorship+=parseInt(item.authorshipPercent);
+      }
+    }
+  });
+
+  selectedItems.forEach((item)=>{
+    if (item.authorshipPercent) {
+      moduleTypesAuthorship[item.module_type_index].counted+=parseInt(item.authorshipPercent);
+      moduleTypesAuthorship[item.module_type_index].completedPercent = moduleTypesAuthorship[item.module_type_index].counted / moduleTypesAuthorship[item.module_type_index].totalCount;
+      if (moduleTypesAuthorship[item.module_type_index].counted>=20) {
+        moduleTypesAuthorship[item.module_type_index].status = "viable";
+      }
+      countedAuthorship+=parseInt(item.authorshipPercent);
+    }
+  });
+
+  return moduleTypesAuthorship;
+}
+
+export const GetResultsForReview = (selectedItems, allItems, country, attituteReviews, countryReviews) => {
   const attituteReviewParagraphs = {};
   let countryReviewParagraph;
 
@@ -123,8 +157,6 @@ export const GetResultsForReview = (selectedItems, country, attituteReviews, cou
   console.log("runningBonusPenaltyInfo");
   console.log(runningBonusPenaltyInfo);
 
-  debugger;
-
   const attitutesWinnersAndLosers = analyseBonusPenaltiesForAttitutes(bonusPenaltyInfo);
 
   attitutes.forEach((attitute)=>{
@@ -146,17 +178,32 @@ export const GetResultsForReview = (selectedItems, country, attituteReviews, cou
   } else {
    verdict="highNetBonuses";
   }
-  if (Math.abs(totalProfitLoss)<=5) {
+  if (Math.abs(totalProfitLoss)<=15) {
    verdict="breakEven";
   }
+
+  const completionScore = GetCompletionScoreByModuleType(allItems, selectedItems);
+
+  let isConstitutionViable = true;
+  Object.keys(completionScore).forEach((objectKey) => {
+    if (completionScore[objectKey].status=="weak") {
+      isConstitutionViable = false;
+    }
+  });
+
+  if (!isConstitutionViable) {
+    verdict="highNetPenalties";
+  }
+
+  console.info("Total bonsues: "+bonusPenaltyInfo.totalBonuses);
+  console.info("Total penalties: "+bonusPenaltyInfo.totalPenalties);
+  console.info("Total verdict: "+verdict);
 
   if (country.reviews) {
     countryReviewParagraph=country.reviews[verdict];
   }
 
-  debugger;
-
-  return {attituteReviewParagraphs, countryReviewParagraph};
+  return { attituteReviewParagraphs, countryReviewParagraph, completionScore, isConstitutionViable };
 }
 
 export const GetBonusesAndPenaltiesForItem = (item, country) => {
@@ -175,7 +222,6 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
     penaltyRules = penaltyRules.map((rule) => {
       return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism");
     });
-
 
     bonusesRules.forEach((bonus) => {
       const splitBonus = bonus.split(" ");

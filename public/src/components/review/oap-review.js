@@ -23,9 +23,12 @@ class OapReview extends OapPageViewElement {
       customCountry: Boolean,
       submitDisabled: Boolean,
       selectedItems: Array,
+      allItems: Array,
       configFromServer: Object,
       attituteReviewParagraphs: Object,
-      countryReviewParagraph: String
+      countryReviewParagraph: String,
+      completionScore: Object,
+      isConstitutionViable: Boolean
     };
   }
 
@@ -45,6 +48,7 @@ class OapReview extends OapPageViewElement {
   reset() {
     this.customCountry = null;
     this.submitDisabled = true;
+    this.isConstitutionViable = true;
   }
 
   render() {
@@ -60,8 +64,30 @@ class OapReview extends OapPageViewElement {
 
           ${this.attituteReviewParagraphs ?  html`
             <div class="hiddenDiv nextToTop">
+
               <div class="countryHeader">${this.country.name}</div>
               <div class="basicInformationDescription">${this.country.description}</div>
+
+              ${!this.isConstitutionViable ? html`
+                <div class="notViable ">
+                  <div class="subHeader">${this.localize("yourConstitutionIsNotViableHeader")}</div>
+                  <div>${this.localize("yourConstitutionIsNotViable")}</div>
+                  <div>
+                    ${Object.keys(this.completionScore).map((key) => {
+                      if (this.completionScore[key].status=='weak') {
+                        return html`<div class="weakItem">${this.completionScore[key].name}</div>`
+                      } else {
+                        return html``
+                      }
+                    })}
+                  </div>
+
+                  <div id="submitButtonContainerTwo" class="layout horizontal center-center">
+                   <paper-button id="retryButton" raised class="" @click="${()=> { this.fire('oap-reset-select-articles') }}">${this.localize("retrySelectingArticles")}</paper-button>
+                 </div>
+
+                </div>
+              ` : ''}
 
               <div class="subHeader" ?hidden="${!this.countryReviewParagraph}">
                 ${this.localize("overallCountryReview")}
@@ -99,7 +125,6 @@ class OapReview extends OapPageViewElement {
                 <div class="attituteHeader"><span class="emoji">👮</span>${this.localize("lawAndOrder")}</div>
                 <div class="attituteReview">${this.attituteReviewParagraphs['lawAndOrder']}</div>
               </div>
-
 
               <div class="" style="width:100%;text-align: center;">
                 <div style="margin-left:auto;margin-right:auto;">
@@ -145,10 +170,16 @@ class OapReview extends OapPageViewElement {
     if (changedProps.has('selectedItems')) {
       if (this.selectedItems) {
         const reviewsMaster = this.configFromServer.client_config.languages[this.language].attituteReviews;
-        const reviews = GetResultsForReview(this.selectedItems, this.country, reviewsMaster);
-        debugger;
+        const reviews = GetResultsForReview(this.selectedItems, this.allItems, this.country, reviewsMaster);
         this.attituteReviewParagraphs=reviews.attituteReviewParagraphs;
         this.countryReviewParagraph=reviews.countryReviewParagraph;
+        this.completionScore = reviews.completionScore;
+        this.isConstitutionViable = reviews.isConstitutionViable;
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function () {
+            window.history.pushState(null, "", window.location.href);
+        };
+        debugger;
       }
     }
   }
