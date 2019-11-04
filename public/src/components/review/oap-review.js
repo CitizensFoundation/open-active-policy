@@ -7,6 +7,8 @@ import '@polymer/paper-item/paper-item';
 import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/paper-dropdown-menu/paper-dropdown-menu';
 import 'paper-share-button';
+import '../select-articles/oap-article-item';
+import { repeat } from 'lit-html/directives/repeat';
 
 import { Scene, DirectionalLight, PerspectiveCamera, TextGeometry, Color, FontLoader, BufferGeometry, Shape, Mesh, WebGLRenderer, ExtrudeGeometry, MeshPhongMaterial} from 'three';
 
@@ -51,19 +53,23 @@ class OapReview extends OapPageViewElement {
     this.isConstitutionViable = true;
   }
 
+  getModuleColorForItem(item) {
+    return this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];
+  }
+
   render() {
     return html`
-    <div class="layout vertical center-center">
+    <div class=" vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="welcomeLogoContainer layout center-center">
           <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
         </div>
 
-        <div class="layout-inline vertical">
+        <div class="layout-inline vertical center-center">
           <div class="header">${this.localize("reviewOfYourConstitution")}</div>
 
           ${this.attituteReviewParagraphs ?  html`
-            <div class="hiddenDiv nextToTop">
+            <div class="hiddenDiv nextToTop mainArea" style="margin-left: auto;margin-right:auto;">
 
               <div class="countryHeader">${this.country.name}</div>
               <div class="basicInformationDescription">${this.country.description}</div>
@@ -142,8 +148,41 @@ class OapReview extends OapPageViewElement {
           ` : html``}
         </div>
       </div>
+      <div class="topContainer">
+        <div class="header lastHeader">${this.localize('finalSelection')}</div>
+        <div class="finaslItems">
+          ${repeat(this.selectedItems, (item) => item.id,  (item, index) => {
+              let headerTemplate = html``;
+              if (index===0 || this.selectedItems[index-1].module_type_index!=item.module_type_index) {
+                headerTemplate = html`
+                  <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${this.getModuleTypeName(item.module_content_type)}</div>
+                `;
+              }
+              return html`
+                ${headerTemplate}
+                <oap-article-item
+                  .name="${item.id}"
+                  class="ballotAreaItem"
+                  .selected="${true}"
+                  .hideClose="${true}"
+                  .onlyDisplay="${true}"
+                  .configFromServer="${this.configFromServer}"
+                  .language="${this.language}"
+                  .budgetElement="${this.budgetElement}"
+                  .item="${item}">
+                </oap-article-item>
+              `
+            }
+          )}
+        </div>
+
+      </div>
     </div>
    `
+  }
+
+  getModuleTypeName(module_content_type) {
+    return this.localize(module_content_type.toLowerCase().replace('/',''));
   }
 
   culturalHelp() {

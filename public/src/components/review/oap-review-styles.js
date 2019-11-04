@@ -16,6 +16,14 @@ export const OapReviewStyles = css`
     font-style: italic;
   }
 
+  .finalItems {
+    flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    margin: 0 auto;
+  }
+
   .header {
     font-size: 24px;
     margin-top: 16px;
@@ -30,11 +38,36 @@ export const OapReviewStyles = css`
     text-align: center;
   }
 
+  .lastHeader {
+    margin-top: 0;
+    padding-bottom: 8px;
+  }
+
+  .finalHeader {
+    padding: 8px;
+    font-size: 24px;
+    margin: 8px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 12px;
+  }
+
   .subHeader {
     font-size: 20px;
     margin-top: 16px;
     margin-bottom: 4px;
     font-weight: bold;
+  }
+
+  oap-article-item {
+    outline: 0px;
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 750ms ease-in-out;
+    -moz-transition: all 750ms ease-in-out;
+    -o-transition: all 750ms ease-in-out;
+    -ms-transition: all 750ms ease-in-out;
   }
 
   .countryHeader {
@@ -55,13 +88,16 @@ export const OapReviewStyles = css`
     margin-bottom: 0;
   }
 
-  .topContainer {
+  .mainArea {
     max-width: 600px;
     width: 600px;
+  }
+
+  .topContainer {
     background-color: #000;
     color: #FFF;
     padding: 16px;
-    padding-bottom: 42px;
+    padding-bottom: 24px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -241,6 +277,12 @@ export const OapReviewStyles = css`
       margin-bottom: 32px;
       padding-top: 32px;
     }
+
+  .mainArea {
+    max-width: 100%;
+    width: 100%;
+  }
+
 
     paper-input {
       max-width: 300px;

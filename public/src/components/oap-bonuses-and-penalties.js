@@ -80,7 +80,7 @@ const analyseBonusPenaltiesForAttitutes = (objectToAnalyse) => {
       } else {
         verdict="highBonus";
       }
-      if (Math.abs(profitLoss)<=12) {
+      if (Math.abs(profitLoss)<=10) {
         verdict="breakEven";
       }
      } else {
@@ -116,7 +116,7 @@ export const GetCompletionScoreByModuleType = (allItems, selectedItems) => {
     if (item.authorshipPercent) {
       moduleTypesAuthorship[item.module_type_index].counted+=parseInt(item.authorshipPercent);
       moduleTypesAuthorship[item.module_type_index].completedPercent = moduleTypesAuthorship[item.module_type_index].counted / moduleTypesAuthorship[item.module_type_index].totalCount;
-      if (moduleTypesAuthorship[item.module_type_index].counted>=20) {
+      if (moduleTypesAuthorship[item.module_type_index].counted>=15) {
         moduleTypesAuthorship[item.module_type_index].status = "viable";
       }
       countedAuthorship+=parseInt(item.authorshipPercent);
@@ -185,14 +185,20 @@ export const GetResultsForReview = (selectedItems, allItems, country, attituteRe
   const completionScore = GetCompletionScoreByModuleType(allItems, selectedItems);
 
   let isConstitutionViable = true;
+  let weakCount = 0;
   Object.keys(completionScore).forEach((objectKey) => {
     if (completionScore[objectKey].status=="weak") {
       isConstitutionViable = false;
+      weakCount+=1;
     }
   });
 
   if (!isConstitutionViable) {
-    verdict="highNetPenalties";
+    if (weakCount>1) {
+      verdict="highNetPenalties";
+    } else {
+      verdict="breakEven";
+    }
   }
 
   console.info("Total bonsues: "+bonusPenaltyInfo.totalBonuses);
