@@ -386,8 +386,8 @@ class OapApp extends OapBaseElement {
     this.selectedItems = [];
     this.quizDone=false;
     this.setDummyData();
-    this.GAME_STATE_VERSION="OapGameStateV9";
-    if (localStorage.getItem('oap-have-seen-cultural-attitutes-tutorial')) {
+    this.GAME_STATE_VERSION="OapGameStateV10";
+    if (localStorage.getItem('oap-have-seen-cultural-attitutes-tutorial-'+this.GAME_STATE_VERSION)) {
       this.hasSeenCulturalAttitutesTutorial = true;
     }
   }
@@ -1047,6 +1047,7 @@ class OapApp extends OapBaseElement {
           usedChoicePoints: this.usedChoicePoints,
           selectedItems: this.selectedItems,
           filteredItems: this.filteredItems,
+          savedChoicePoints: this.savedChoicePoints,
           quizDone: this.quizDone,
           dateSaved: new Date(),
           country: this.country,
@@ -1122,6 +1123,7 @@ class OapApp extends OapBaseElement {
       this.usedChoicePoints = gameState.usedChoicePoints;
       this.selectedItems = gameState.selectedItems;
       this.country = gameState.country;
+      this.savedChoicePoints = gameState.savedChoicePoints;
       this.quizDone = gameState.quizDone;
       this.filteredItems = gameState.filteredItems;
       this.usedBonusesAndPenalties = gameState.usedBonusesAndPenalties;
@@ -1778,7 +1780,7 @@ class OapApp extends OapBaseElement {
         ${localeText}
         <div class="buttons center-center">
           <paper-button raised class="continueButton"
-            @click="${()=>{localStorage.setItem('oap-have-seen-cultural-attitutes-tutorial', true)}}"
+            @click="${()=>{localStorage.setItem('oap-have-seen-cultural-attitutes-tutorial-'+this.GAME_STATE_VERSION, true)}}"
             dialog-dismiss autofocus>${this.localize('continue')}
           </paper-button>
         </div>
