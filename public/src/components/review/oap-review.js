@@ -30,7 +30,8 @@ class OapReview extends OapPageViewElement {
       attituteReviewParagraphs: Object,
       countryReviewParagraph: String,
       completionScore: Object,
-      isConstitutionViable: Boolean
+      isConstitutionViable: Boolean,
+      debugText: String
     };
   }
 
@@ -148,6 +149,14 @@ class OapReview extends OapPageViewElement {
           ` : html``}
         </div>
       </div>
+
+      ${ this.configFromServer.mechDebug===true ?  html`
+        <div class="topContainer">
+         <pre>${this.debugText}</pre><br>
+         <div>${JSON.stringify(this.completionScore)}</div>
+        </div>
+      ` : html``}
+
       <div class="topContainer">
         <div class="header lastHeader">${this.localize('finalSelection')}</div>
         <div class="finaslItems">
@@ -214,6 +223,7 @@ class OapReview extends OapPageViewElement {
         this.countryReviewParagraph=reviews.countryReviewParagraph;
         this.completionScore = reviews.completionScore;
         this.isConstitutionViable = reviews.isConstitutionViable;
+        this.debugText = reviews.debugText;
         window.history.pushState(null, "", window.location.href);
         window.onpopstate = function () {
             window.history.pushState(null, "", window.location.href);

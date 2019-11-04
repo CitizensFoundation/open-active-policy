@@ -365,6 +365,13 @@ class OapApp extends OapBaseElement {
     `;
   }
 
+  getPathVariable(name) {
+    name = "locale".replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+
   constructor() {
     super();
     setPassiveTouchGestures(true);
@@ -373,10 +380,7 @@ class OapApp extends OapBaseElement {
     }
     this.hideBudget = true;
     this.disableAutoSave = true;
-    var name = "locale".replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    var language = results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    const language = this.getPathVariable('locale');
     if (language) {
       this.language = language;
       localStorage.setItem("languageOverride", language);
@@ -505,7 +509,7 @@ class OapApp extends OapBaseElement {
     } else {
       this.language = "en";
     }
-    fetch("/votes/boot?locale="+this.language, { credentials: 'same-origin' })
+    fetch("/constitutions/boot?locale="+this.language, { credentials: 'same-origin' })
       .then(res => res.json())
       .then(response => {
         this.requestInProgress= false;
@@ -537,6 +541,11 @@ class OapApp extends OapBaseElement {
               return;
             }
           }
+        }
+
+        const mechDebug = this.getPathVariable('mechDebug');
+        if (mechDebug) {
+          this.configFromServer.mechDebug = true;
         }
 
         this.createQuizQuestions();

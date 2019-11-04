@@ -650,7 +650,7 @@
     "is": {
       "welcomeLocales": {
         "heading": "Þín eigin stjórnarskrá",
-        "text": "Vertu velkomin/n í Þína eigin stjórnarskrá! Nú kemstu að því hvernig það er að búa til stjórnarskrá fyrir landið sem þú hefur valið, sem þjónar pólitískum og menningarlegum þörfum og óskum þeirra sem það land byggja, og skapar aðstæður fyrir stöðugleika í samfélaginu þar sem allir geta unað glaðir við sitt um langa framtíð. Heldurðu að þú getir þetta?"
+        "text": "Nú kemstu að því hvernig það er að búa til stjórnarskrá land sem þú velur, sem þjónar pólitískum og menningarlegum þörfum og óskum þeirra sem það land byggja, og skapar aðstæður fyrir stöðugleika í samfélaginu þar sem allir geta unað glaðir við sitt um langa framtíð. Heldurðu að þú getir þetta?"
       },
       "welcomeTexts": [
         {"title": "Welcome", "animationLength": 1100},
@@ -747,8 +747,8 @@
     "countryList": [
       {
          "id": 1,
-         "name": "Glaðir eyjarskeggjar á norðurslóðum (Ísland)",
-         "description": "Hamingja þeirra sem búa á þessari eyju mælist aðeins ögn minni en hamingja norrænna frænda þeirra og frænkna. Fólkið er iðjusamt og vel menntað, vinnur vel og er framsýnt og víðsýnt. Þjóðin stendur þétt saman en á þó í mestu vandræðum með að endurhanna stjórnarskrána sína. Þú getur kannski hjálpað þeim?",
+         "name": "Eyjarskeggjar á norðurslóðum (Ísland)",
+         "description": "Hamingja þeirra sem búa á þessari eyju mælist aðeins ögn minni en hamingja norrænna frænda þeirra og frænkna. Fólkið er iðjusamt og vel menntað, vinnur vel og er framsýnt og víðsýnt. Þjóðin stendur yfirleitt þétt saman en á þó í mestu vandræðum með að endurhanna stjórnarskrána sína. Þú getur kannski hjálpað þeim?",
          "population": "340.000",
          "geographicalSize": "103K",
          "naturalResourceWealth": 7,
@@ -909,7 +909,7 @@
       },
       {
          "id": 7,
-         "name": "Stórveldi í Asíu með gervikommúnistastjórn (Meginland Kína)",
+         "name": "Stórveldi í Asíu (Meginland Kína)",
          "description": "Einu sinni hét þetta ríki Chung-Kuo, Konungdæmið í miðju heimsins. Eftir róstusama tíma á nítjándu öld og ofbeldi nýlenduvelda, og stríð, hungursneyð og harðstjórn á þeirri tuttugustu er engu líkara en að núna, við upphaf 21. aldar sé það að verða ríkasta stórveldi sem þekkst hefur. En á sama tíma ógna lýðræðishreyfingar innanlands algjörum yfirráðum stjórnvalda. Geturðu hugsað þér stjórnarskrá sem tryggir framtíð þessa lands – þess fjölmennasta í heimi?",
          "population": "1.4B",
          "geographicalSize": "9.5M",
@@ -936,7 +936,7 @@
       },
       {
          "id": 8,
-         "name": "Draumalandið (Staðleysan)",
+         "name": "Draumalandið",
          "description": "Hefurð þig dreymt um fullkominn heim, þar sem allir eru jafnir og lifa lífi sínu í friði og kyrrð, þjást lítið og líða ekki fyrir ranglæti? Hér er þitt tækifæri til að hanna stjórnarskrá fyrir fagurt land og nýtt.",
          "population": "5M",
          "geographicalSize": "500K",

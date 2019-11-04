@@ -415,12 +415,14 @@ namespace :ballot do
 
   desc "Set ktest config"
   task(:set_ktest_config => :environment) do
-    config=BudgetConfig.first
-    config.auth_url = "https://www.island.is/audkenning?id=ktest.betrireykjavik.is"
-    config.saml_idp_cert_fingerprint = "08:95:CE:CC:8B:04:F6:B9:9E:E3:DC:59:B6:A0:C4:CE:E7:7E:86:C9"
-    config.ideas_without_pdfs = "[]"
-    config.save(:validate=>false)
-    puts "Config ok"
+    unless BudgetConfig.first
+      config=BudgetConfig.new
+      config.timeout_in_seconds = 600
+      config.auth_url = "https://www.island.is/audkenning?id=ktest.betrireykjavik.is"
+      config.public_key = "na"
+      config.save
+    end
+  puts "Config ok"
   end
 
   desc "Set advania config"

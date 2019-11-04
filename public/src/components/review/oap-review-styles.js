@@ -14,6 +14,7 @@ export const OapReviewStyles = css`
 
   .weakItem {
     font-style: italic;
+    font-weight: bold;
   }
 
   .finalItems {

@@ -67,6 +67,7 @@ const attitutes = ["lawAndOrder","progressivism","authority","science",
 
 const analyseBonusPenaltiesForAttitutes = (objectToAnalyse) => {
   const attitutesWinnersAndLosers = {};
+  let debugText = "";
 
   attitutes.forEach((attitute)=>{
     let verdict;
@@ -87,11 +88,13 @@ const analyseBonusPenaltiesForAttitutes = (objectToAnalyse) => {
        verdict="breakEven";
     }
     attitutesWinnersAndLosers[attitute]=verdict;
-    console.info("Bonus/Penalty test: "+attitute+" - bonuses:"+bonuses);
-    console.info("Bonus/Penalty test: "+attitute+" - penalties:"+penalties);
-    console.info("Bonus/Penalty test: "+attitute+" - profitLoss:"+profitLoss);
-    console.info("Bonus/Penalty test: "+attitute+": "+verdict);
+    debugText+="Bonus/Penalty test: "+attitute+" - bonuses:"+bonuses+"\n";
+    debugText+="Bonus/Penalty test: "+attitute+" - penalties:"+penalties+"\n";
+    debugText+="Bonus/Penalty test: "+attitute+" - profitLoss:"+profitLoss+"\n";
+    debugText+="Bonus/Penalty test: "+attitute+": "+verdict+"\n";
   });
+
+  attitutesWinnersAndLosers["debugText"]=debugText;
 
   return attitutesWinnersAndLosers;
 }
@@ -158,6 +161,7 @@ export const GetResultsForReview = (selectedItems, allItems, country, attituteRe
   console.log(runningBonusPenaltyInfo);
 
   const attitutesWinnersAndLosers = analyseBonusPenaltiesForAttitutes(bonusPenaltyInfo);
+  let debugText = attitutesWinnersAndLosers['debugText'];
 
   attitutes.forEach((attitute)=>{
     let countryLevel;
@@ -201,15 +205,15 @@ export const GetResultsForReview = (selectedItems, allItems, country, attituteRe
     }
   }
 
-  console.info("Total bonsues: "+bonusPenaltyInfo.totalBonuses);
-  console.info("Total penalties: "+bonusPenaltyInfo.totalPenalties);
-  console.info("Total verdict: "+verdict);
+  debugText+="Total bonsues: "+bonusPenaltyInfo.totalBonuses+"\n";
+  debugText+="Total penalties: "+bonusPenaltyInfo.totalPenalties+"\n";
+  debugText+="Total verdict: "+verdict+"\n";
 
   if (country.reviews) {
     countryReviewParagraph=country.reviews[verdict];
   }
 
-  return { attituteReviewParagraphs, countryReviewParagraph, completionScore, isConstitutionViable };
+  return { attituteReviewParagraphs, countryReviewParagraph, completionScore, isConstitutionViable, debugText };
 }
 
 export const GetBonusesAndPenaltiesForItem = (item, country) => {

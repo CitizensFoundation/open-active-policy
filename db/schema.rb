@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20180330170937) do
   add_index "votes", ["created_at"], name: "index_votes_created_at", using: :btree
   add_index "votes", ["user_id_hash","created_at","id"], name: "index_votes_id_hash_created_at", using: :btree
 
-  create_table "constitions", force: :cascade do |t|
+  create_table "constitutions", force: :cascade do |t|
     t.integer  "area_id",                 limit: 4,     null: false
     t.string   "user_id_hash",            limit: 255,   null: false
     t.text     "payload_data",            limit: 65535, null: false
@@ -183,12 +183,12 @@ ActiveRecord::Schema.define(version: 20180330170937) do
     t.string   "user_postcode",           limit: 255,   null: true
   end
 
-  add_index "constitions", ["area_id"], name: "index_votes_on_area_id", using: :btree
-  add_index "constitions", ["user_id_hash"], name: "index_votes_on_user_id_hash", using: :btree
-  add_index "constitions", ["session_id"], name: "index_votes_on_session_id", using: :btree
-  add_index "constitions", ["session_id","saml_assertion_id"], name: "index_votes_on_session_id_and_saml_id", using: :btree
-  add_index "constitions", ["saml_assertion_id"], name: "index_votes_saml_id", using: :btree
-  add_index "constitions", ["created_at"], name: "index_votes_created_at", using: :btree
-  add_index "constitions", ["user_id_hash","created_at","id"], name: "index_votes_id_hash_created_at", using: :btree
+  add_index "constitutions", ["area_id"], name: "index_votes_on_area_id", using: :btree
+  add_index "constitutions", ["user_id_hash"], name: "index_votes_on_user_id_hash", using: :btree
+  add_index "constitutions", ["session_id"], name: "index_votes_on_session_id", using: :btree
+  add_index "constitutions", ["session_id","saml_assertion_id"], name: "index_votes_on_session_id_and_saml_id", using: :btree
+  add_index "constitutions", ["saml_assertion_id"], name: "index_votes_saml_id", using: :btree
+  add_index "constitutions", ["created_at"], name: "index_votes_created_at", using: :btree
+  add_index "constitutions", ["user_id_hash","created_at","id"], name: "index_votes_id_hash_created_at", using: :btree
 
 end

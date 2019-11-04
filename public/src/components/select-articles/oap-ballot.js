@@ -602,20 +602,20 @@ class OapBallot extends OapPageViewElement {
   completePostingOfVote(encryptedVotes) {
     if (this.area && this.area.id) {
       if (encryptedVotes) {
-        return fetch('/constitution/post_constitution', {
+        return fetch('/constitutions/post_constitution', {
           method: "POST",
           cache: "no-cache",
           credentials: 'same-origin',
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ encrypted_vote: encryptedVotes, area_id: this.area.id,  })
+          body: JSON.stringify({ encrypted_vote: encryptedVotes, area_id: this.area.id  })
         })
         .then(response => response.json())
         .then(response => {
-          if (response && response.vote_ok === true) {
-            this.savedVoteId = response.vote_id;
-            this.fire('oap-submit-ballot-for-review', this.savedVoteId);
+          if (response && response.constitution_ok === true) {
+            this.savedConstitutionId = response.constitution_id;
+            this.fire('oap-submit-ballot-for-review', this.savedConstitutionId);
           } else {
             this.fire('oav-error', this.localize('error_could_not_post_vote'));
           }
@@ -643,7 +643,7 @@ class OapBallot extends OapPageViewElement {
   }
 
   completeIfAuthenticatedVote() {
-    fetch('/votes/is_vote_authenticated', { credentials: 'same-origin' })
+    fetch('/constitutions/is_vote_authenticated', { credentials: 'same-origin' })
     .then(response => response.json())
     .then(response => {
       if (response && response.vote_ok===true) {

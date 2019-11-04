@@ -23,7 +23,7 @@ require 'ruby-saml'
 
 DSIG = "http://www.w3.org/2000/09/xmldsig#"
 
-class ConstitutionController < ApplicationController
+class ConstitutionsController < ApplicationController
 
   before_action :log_session_id
 
@@ -64,33 +64,40 @@ class ConstitutionController < ApplicationController
     end
   end
 
-  # Encrypted vote posted by the user
-  def post_vote
+  def get_constitution
+    constitution = Constitution.find(params[:id])
+    respond_to do |format|
+      format.json { render :json => { :constitution => constitution.payload_data } }
+    end
+  end
 
-    # Try to read the vote identity and redirect to authentication error if not found
+  # Encrypted constitution posted by the user
+  def post_constitution
+
+    # Try to read the constitution identity and redirect to authentication error if not found
     if request.session_options[:id]
 
       # Hide IP address if needed
       ip_address = DO_NOT_LOG_IP_ADDRESSES == false ? request.remote_ip : "n/a"
 
-      # Save the vote to the database as not authenticated
-      if vote = Constitution.create(:user_id_hash => "not authenticated",
+      # Save the constitution to the database as not authenticated
+      if constitution = Constitution.create(:user_id_hash => "not authenticated",
                      :payload_data => params[:encrypted_vote],
                      :client_ip_address => ip_address,
-                     :area_id =>params[:area_id],
+                     :area_id =>1,
                      :saml_assertion_id=> ENV["FAKE_VOTING"] ? "fake" : nil,
                      :session_id => request.session_options[:id],
                      :encrypted_vote_checksum => "not authenticated")
 
-        Rails.logger.info("Saved vote for session id: #{request.session_options[:id]}")
-        response = {:error=>false, :vote_ok=>true, :vote_id=>vote.id}
+        Rails.logger.info("Saved constitution for session id: #{request.session_options[:id]}")
+        response = {:error=>false, :constitution_ok=>true, :constitution_id=>constitution.id}
       else
-        Rails.logger.error("Could not save vote for session id: #{request.session_options[:id]}")
-        response = {:error=>true, :vote_ok=>false}
+        Rails.logger.error("Could not save constitution for session id: #{request.session_options[:id]}")
+        response = {:error=>true, :constitution_ok=>false}
       end
     else
       Rails.logger.error("No session id")
-      response = {:error=>true, :vote_ok=>false}
+      response = {:error=>true, :constitution_ok=>false}
     end
 
     respond_to do |format|
