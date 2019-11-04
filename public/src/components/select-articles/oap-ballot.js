@@ -602,7 +602,7 @@ class OapBallot extends OapPageViewElement {
   completePostingOfVote(encryptedVotes) {
     if (this.area && this.area.id) {
       if (encryptedVotes) {
-        return fetch('/votes/post_vote', {
+        return fetch('/constitution/post_constitution', {
           method: "POST",
           cache: "no-cache",
           credentials: 'same-origin',
