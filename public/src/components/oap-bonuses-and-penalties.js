@@ -88,10 +88,10 @@ const analyseBonusPenaltiesForAttitutes = (objectToAnalyse) => {
        verdict="breakEven";
     }
     attitutesWinnersAndLosers[attitute]=verdict;
-    debugText+="Bonus/Penalty test: "+attitute+" - bonuses:"+bonuses+"\n";
-    debugText+="Bonus/Penalty test: "+attitute+" - penalties:"+penalties+"\n";
-    debugText+="Bonus/Penalty test: "+attitute+" - profitLoss:"+profitLoss+"\n";
-    debugText+="Bonus/Penalty test: "+attitute+": "+verdict+"\n";
+    debugText+="Bonus/Penalty test: "+attitute+" - bonuses: "+bonuses+"\n";
+    debugText+="Bonus/Penalty test: "+attitute+" - penalties: "+penalties+"\n";
+    debugText+="Bonus/Penalty test: "+attitute+" - profitLoss: "+profitLoss+"\n";
+    debugText+="Bonus/Penalty test: "+attitute+" - verdict: "+verdict+"\n";
   });
 
   attitutesWinnersAndLosers["debugText"]=debugText;

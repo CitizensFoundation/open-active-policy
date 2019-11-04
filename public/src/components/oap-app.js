@@ -509,6 +509,11 @@ class OapApp extends OapBaseElement {
     } else {
       this.language = "en";
     }
+
+    if (!this.mechDebug) {
+      this.mechDebug = this.getPathVariable('mechDebug');
+    }
+
     fetch("/constitutions/boot?locale="+this.language, { credentials: 'same-origin' })
       .then(res => res.json())
       .then(response => {
@@ -543,8 +548,7 @@ class OapApp extends OapBaseElement {
           }
         }
 
-        const mechDebug = this.getPathVariable('mechDebug');
-        if (mechDebug) {
+        if (this.mechDebug) {
           this.configFromServer.mechDebug = true;
         }
 
