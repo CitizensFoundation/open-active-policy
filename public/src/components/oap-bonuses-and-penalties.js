@@ -1,5 +1,13 @@
 'use strict';
 
+const BONUS_FOR_HIGH = 9;
+const BONUS_FOR_MEDIUM = 7;
+const BONUS_FOR_LOW = 3;
+
+const PENALTY_FOR_HIGH = 7;
+const PENALTY_FOR_MEDIUM = 5;
+const PENALTY_FOR_LOW = 2;
+
 const runningBonusPenaltyInfo = {
   allBonuses: [],
   allBonusesByCulturalAttitute: {},
@@ -200,7 +208,7 @@ export const GetResultsForReview = (selectedItems, allItems, country, attituteRe
   if (!isConstitutionViable) {
     if (weakCount>1) {
       verdict="highNetPenalties";
-    } else {
+    } else if (verdict=='highNetBonuses') {
       verdict="breakEven";
     }
   }
@@ -216,6 +224,21 @@ export const GetResultsForReview = (selectedItems, allItems, country, attituteRe
   return { attituteReviewParagraphs, countryReviewParagraph, completionScore, isConstitutionViable, debugText };
 }
 
+export const fixupRules = (rule) => {
+  rule = rule.toLowerCase();
+  rule = rule.replace(/\n/g,'');
+  rule = rule.trim();
+  rule = rule.replace("law/order","lawAndOrder");
+  rule = rule.replace("law and order","lawAndOrder");
+  rule = rule.replace("law & order","lawAndOrder");
+  rule = rule.replace("progressivisim","progressivism");
+  rule = rule.replace("progrevissim","progressivism");
+  rule = rule.replace("social progress","progressivism");
+  rule = rule.replace("sovreignty","independence");
+  rule = rule.replace("collectivism","collective");
+  return rule;
+}
+
 export const GetBonusesAndPenaltiesForItem = (item, country) => {
     let bonusesAndPenalties = [];
     let bonuses = [];
@@ -225,36 +248,43 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
 
     let bonusesRules = item.bonus ? item.bonus.split(",") : [];
     bonusesRules = bonusesRules.map((rule) => {
-      return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism");
+      rule = fixupRules(rule);
+      console.info("BONUES:"+ rule);
+      return rule;
     });
 
     let penaltyRules =  item.penalty ? item.penalty.split(",") : [];
     penaltyRules = penaltyRules.map((rule) => {
-      return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism");
+      rule = fixupRules(rule);
+      console.info("PENALTY:"+ rule);
+      return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism").replace("collectivism","collective").replace('\n','');
     });
 
     bonusesRules.forEach((bonus) => {
       const splitBonus = bonus.split(" ");
       const level = splitBonus[0];
       const attitute = splitBonus[1];
-      if (level==="bonus") {
-      } else if (level==="high") {
-        if (country.culturalAttitutes[attitute]>=7) {
-          const itemToSave = {id: item.id, type:"bonus", value: 7, attitute: attitute, level: level};
-          saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
-          bonusCount+=1;
-        }
-      } else if (level==="medium") {
-        if (country.culturalAttitutes[attitute]>=3 && country.culturalAttitutes[attitute]<7) {
-          const itemToSave = {id: item.id, type:"bonus", value: 5, attitute: attitute, level: level};
-          saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
-          bonusCount+=1;
-        }
-      } else if (level==="low") {
-        if (country.culturalAttitutes[attitute]>=0 && country.culturalAttitutes[attitute]<3) {
-          const itemToSave = {id: item.id, type:"bonus", value: 2, attitute: attitute, level: level};
-          saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
-          bonusCount+=1;
+      console.error("attitute:"+attitute+" nr: "+country.culturalAttitutes[attitute]+" level: "+level);
+      if (country.culturalAttitutes[attitute]) {
+        if (level==="bonus") {
+        } else if (level==="high") {
+          if (country.culturalAttitutes[attitute]>=7) {
+            const itemToSave = {id: item.id, type:"bonus", value: BONUS_FOR_HIGH, attitute: attitute, level: level};
+            saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
+            bonusCount+=1;
+          }
+        } else if (level==="medium") {
+          if (country.culturalAttitutes[attitute]>=3 && country.culturalAttitutes[attitute]<7) {
+            const itemToSave = {id: item.id, type:"bonus", value: BONUS_FOR_MEDIUM, attitute: attitute, level: level};
+            saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
+            bonusCount+=1;
+          }
+        } else if (level==="low") {
+          if (country.culturalAttitutes[attitute]>=0 && country.culturalAttitutes[attitute]<3) {
+            const itemToSave = {id: item.id, type:"bonus", value: BONUS_FOR_LOW, attitute: attitute, level: level};
+            saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
+            bonusCount+=1;
+          }
         }
       }
     });
@@ -267,19 +297,19 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
         console.error("Wrong level");
       } else if (level==="high") {
         if (country.culturalAttitutes[attitute]>=7) {
-          const itemToSave = {id: item.id, type:"penalty", value: 7, attitute: attitute, level: level};
+          const itemToSave = {id: item.id, type:"penalty", value: PENALTY_FOR_HIGH, attitute: attitute, level: level};
           saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
           penaltyCount+=1;
         }
       } else if (level==="medium") {
         if (country.culturalAttitutes[attitute]>=3 && country.culturalAttitutes[attitute]<7) {
-          const itemToSave = {id: item.id, type:"penalty", value: 5, attitute: attitute, level: level};
+          const itemToSave = {id: item.id, type:"penalty", value: PENALTY_FOR_MEDIUM, attitute: attitute, level: level};
           saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
           penaltyCount+=1;
         }
       } else if (level==="low") {
         if (country.culturalAttitutes[attitute]>=0 && country.culturalAttitutes[attitute]<3) {
-          const itemToSave = {id: item.id, type:"penalty", value: 2, attitute: attitute, level: level};
+          const itemToSave = {id: item.id, type:"penalty", value: PENALTY_FOR_LOW, attitute: attitute, level: level};
           saveItemForReview(itemToSave, bonusesAndPenalties, bonuses, penalties);
           penaltyCount+=1;
         }
