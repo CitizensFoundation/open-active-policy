@@ -366,7 +366,7 @@ class OapApp extends OapBaseElement {
   }
 
   getPathVariable(name) {
-    name = "locale".replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
     var results = regex.exec(location.search);
     return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
