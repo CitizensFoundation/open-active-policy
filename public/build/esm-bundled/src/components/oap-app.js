@@ -4604,7 +4604,7 @@
     <g id="keyboard-arrow-down"><path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path></g>
     <g id="keyboard-arrow-up"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></g>
       </defs></svg>
-</iron-iconset-svg>`;document.head.appendChild(template$e.content);const runningBonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0},saveItemForReview=(e,t,i,r)=>{t.push(e),"bonus"==e.type?i.push(e):r.push(e)},saveItemToObject=(e,t)=>{"bonus"==t.type?(e.totalBonusesCount+=1,e.totalBonuses+=t.value,e.allBonuses.push(t),e.allBonusesByCulturalAttitute[t.attitute]||(e.allBonusesByCulturalAttitute[t.attitute]=[]),e.sumBonusesByCulturalAttitute[t.attitute]||(e.sumBonusesByCulturalAttitute[t.attitute]=0),e.allBonusesByCulturalAttitute[t.attitute].push(t),e.sumBonusesByCulturalAttitute[t.attitute]+=t.value,e.allBonusesByLevel[t.level]||(e.allBonusesByLevel[t.level]=[]),e.allBonusesByLevel[t.level].push(t)):(e.totalPenaltiesCount+=1,e.totalPenalties+=t.value,e.allPenalties.push(t),e.allPenaltiesByCulturalAttitute[t.attitute]||(e.allPenaltiesByCulturalAttitute[t.attitute]=[]),e.sumPenaltiesByCulturalAttitute[t.attitute]||(e.sumPenaltiesByCulturalAttitute[t.attitute]=[]),e.allPenaltiesByCulturalAttitute[t.attitute].push(t),e.sumPenaltiesByCulturalAttitute[t.attitute]+=t.value,e.allPenaltiesByLevel[t.level]||(e.allPenaltiesByLevel[t.level]=[]),e.allPenaltiesByLevel[t.level].push(t))},attitutes=["lawAndOrder","progressivism","authority","science","collective","privacy","liberty","tradition","independence"],analyseBonusPenaltiesForAttitutes=e=>{const t={};return attitutes.forEach(i=>{let r,n=0;const a=e.sumBonusesByCulturalAttitute[i]?e.sumBonusesByCulturalAttitute[i]:0,o=e.sumPenaltiesByCulturalAttitute[i]?e.sumPenaltiesByCulturalAttitute[i]:0;a||o?(r=0>(n=a-o)?"highPenalty":"highBonus",12>=Math.abs(n)&&(r="breakEven")):r="breakEven",t[i]=r,console.info("Bonus/Penalty test: "+i+" - bonuses:"+a),console.info("Bonus/Penalty test: "+i+" - penalties:"+o),console.info("Bonus/Penalty test: "+i+" - profitLoss:"+n),console.info("Bonus/Penalty test: "+i+": "+r)}),t},GetCompletionScoreByModuleType=(e,t)=>{const i={};let r=0,n=0;return e.forEach(e=>{"ModuleTypeCard"==e.module_type?i[e.module_type_index]={name:e.name,status:"weak",totalCount:0,counted:0,completedPercent:0}:e.authorshipPercent&&(i[e.module_type_index].totalCount+=parseInt(e.authorshipPercent),r+=parseInt(e.authorshipPercent))}),t.forEach(e=>{e.authorshipPercent&&(i[e.module_type_index].counted+=parseInt(e.authorshipPercent),i[e.module_type_index].completedPercent=i[e.module_type_index].counted/i[e.module_type_index].totalCount,20<=i[e.module_type_index].counted&&(i[e.module_type_index].status="viable"),n+=parseInt(e.authorshipPercent))}),i},GetResultsForReview=(e,t,i,r,n)=>{const a={};let o;const s={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0};e.forEach(e=>{GetBonusesAndPenaltiesForItem(e,i).bonusesAndPenalties.forEach(e=>{saveItemToObject(s,e)})}),console.log("bonusPenaltyInfo"),console.log(s),console.log("runningBonusPenaltyInfo"),console.log(runningBonusPenaltyInfo);const l=analyseBonusPenaltiesForAttitutes(s);attitutes.forEach(e=>{let t;t=6<i.culturalAttitutes[e]?"high":2<i.culturalAttitutes[e]?"medium":"low",a[e]=r[e][l[e]][t]});const c=s.totalBonuses-s.totalPenalties;let h;h=0>c?"highNetPenalties":"highNetBonuses",15>=Math.abs(c)&&(h="breakEven");const u=GetCompletionScoreByModuleType(t,e);let d=!0;return Object.keys(u).forEach(e=>{"weak"==u[e].status&&(d=!1)}),d||(h="highNetPenalties"),console.info("Total bonsues: "+s.totalBonuses),console.info("Total penalties: "+s.totalPenalties),console.info("Total verdict: "+h),i.reviews&&(o=i.reviews[h]),{attituteReviewParagraphs:a,countryReviewParagraph:o,completionScore:u,isConstitutionViable:d}},GetBonusesAndPenaltiesForItem=(e,t)=>{let i=[],r=[],n=[],a=0,o=0,s=e.bonus?e.bonus.split(","):[];s=s.map(e=>e.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism"));let l=e.penalty?e.penalty.split(","):[];return l=l.map(e=>e.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism")),s.forEach(o=>{const s=o.split(" "),l=s[0],c=s[1];if("bonus"===l);else if("high"===l){if(7<=t.culturalAttitutes[c]){const t={id:e.id,type:"bonus",value:7,attitute:c,level:l};saveItemForReview(t,i,r,n),a+=1}}else if("medium"===l){if(3<=t.culturalAttitutes[c]&&7>t.culturalAttitutes[c]){const t={id:e.id,type:"bonus",value:5,attitute:c,level:l};saveItemForReview(t,i,r,n),a+=1}}else if("low"===l&&0<=t.culturalAttitutes[c]&&3>t.culturalAttitutes[c]){const t={id:e.id,type:"bonus",value:2,attitute:c,level:l};saveItemForReview(t,i,r,n),a+=1}}),l.forEach(a=>{const s=a.split(" "),l=s[0],c=s[1];if("bonus"===l)console.error("Wrong level");else if("high"===l){if(7<=t.culturalAttitutes[c]){const t={id:e.id,type:"penalty",value:7,attitute:c,level:l};saveItemForReview(t,i,r,n),o+=1}}else if("medium"===l){if(3<=t.culturalAttitutes[c]&&7>t.culturalAttitutes[c]){const t={id:e.id,type:"penalty",value:5,attitute:c,level:l};saveItemForReview(t,i,r,n),o+=1}}else if("low"===l&&0<=t.culturalAttitutes[c]&&3>t.culturalAttitutes[c]){const t={id:e.id,type:"penalty",value:2,attitute:c,level:l};saveItemForReview(t,i,r,n),o+=1}}),{bonusesAndPenalties:i,bonusCount:a,penaltyCount:o,bonuses:r,penalties:n}},GetEmojiFromAttitute=e=>{return{authority:"🏛️",liberty:"🌅",science:"🔬",tradition:"🏺",collective:"👥",independence:"🛡️",privacy:"🔐",lawAndOrder:"👮",progressivism:"✊",naturalResourceWealth:"🔋",borderDensity:"🛂",hostilityNeighboringCountries:"🌐",barrieresToCitizenship:"🧱"}[e]};var oapBonusesAndPenalties={GetCompletionScoreByModuleType:GetCompletionScoreByModuleType,GetResultsForReview:GetResultsForReview,GetBonusesAndPenaltiesForItem:GetBonusesAndPenaltiesForItem,GetEmojiFromAttitute:GetEmojiFromAttitute};class OapSwipableCards extends OapBaseElement{static get properties(){return{stackedOptions:String,rotate:Boolean,items:Array,selectedItems:Array,filteredItems:Array,itemsLeft:Array,visibleItems:Array,elementsMargin:Number,useOverlays:Boolean,maxElements:Number,currentPosition:Number,currentItemsPosition:Number,currentItem:Object,isFirstTime:Boolean,elementHeight:Number,velocity:Number,topObj:Object,rightObj:Object,leftObj:Object,listElNodesObj:Object,listElNodesWidth:Object,currentElementObj:Object,stackedCardsObj:Object,obj:Object,elTrans:Object,startTime:Number,startX:Number,startY:Number,translateX:Number,translateY:Number,currentX:Number,currentY:Number,timeTaken:Number,rightOpacity:Number,leftOpacity:Number,touchingElement:Boolean,disableUpSwipe:Boolean,hiddenImageIds:Object,rendering:Boolean,configFromServer:Object,automaticSelectionActive:Boolean,country:Object,autoSliderTime:String,automaticFlipSpeed:Number}}static get styles(){return[OapSwipableCardsStyles,OapFlexLayout]}render(){return html$1`
+</iron-iconset-svg>`;document.head.appendChild(template$e.content);const runningBonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0},saveItemForReview=(e,t,i,r)=>{t.push(e),"bonus"==e.type?i.push(e):r.push(e)},saveItemToObject=(e,t)=>{"bonus"==t.type?(e.totalBonusesCount+=1,e.totalBonuses+=t.value,e.allBonuses.push(t),e.allBonusesByCulturalAttitute[t.attitute]||(e.allBonusesByCulturalAttitute[t.attitute]=[]),e.sumBonusesByCulturalAttitute[t.attitute]||(e.sumBonusesByCulturalAttitute[t.attitute]=0),e.allBonusesByCulturalAttitute[t.attitute].push(t),e.sumBonusesByCulturalAttitute[t.attitute]+=t.value,e.allBonusesByLevel[t.level]||(e.allBonusesByLevel[t.level]=[]),e.allBonusesByLevel[t.level].push(t)):(e.totalPenaltiesCount+=1,e.totalPenalties+=t.value,e.allPenalties.push(t),e.allPenaltiesByCulturalAttitute[t.attitute]||(e.allPenaltiesByCulturalAttitute[t.attitute]=[]),e.sumPenaltiesByCulturalAttitute[t.attitute]||(e.sumPenaltiesByCulturalAttitute[t.attitute]=[]),e.allPenaltiesByCulturalAttitute[t.attitute].push(t),e.sumPenaltiesByCulturalAttitute[t.attitute]+=t.value,e.allPenaltiesByLevel[t.level]||(e.allPenaltiesByLevel[t.level]=[]),e.allPenaltiesByLevel[t.level].push(t))},attitutes=["lawAndOrder","progressivism","authority","science","collective","privacy","liberty","tradition","independence"],analyseBonusPenaltiesForAttitutes=e=>{const t={};return attitutes.forEach(i=>{let r,n=0;const a=e.sumBonusesByCulturalAttitute[i]?e.sumBonusesByCulturalAttitute[i]:0,o=e.sumPenaltiesByCulturalAttitute[i]?e.sumPenaltiesByCulturalAttitute[i]:0;a||o?(r=0>(n=a-o)?"highPenalty":"highBonus",10>=Math.abs(n)&&(r="breakEven")):r="breakEven",t[i]=r,console.info("Bonus/Penalty test: "+i+" - bonuses:"+a),console.info("Bonus/Penalty test: "+i+" - penalties:"+o),console.info("Bonus/Penalty test: "+i+" - profitLoss:"+n),console.info("Bonus/Penalty test: "+i+": "+r)}),t},GetCompletionScoreByModuleType=(e,t)=>{const i={};let r=0,n=0;return e.forEach(e=>{"ModuleTypeCard"==e.module_type?i[e.module_type_index]={name:e.name,status:"weak",totalCount:0,counted:0,completedPercent:0}:e.authorshipPercent&&(i[e.module_type_index].totalCount+=parseInt(e.authorshipPercent),r+=parseInt(e.authorshipPercent))}),t.forEach(e=>{e.authorshipPercent&&(i[e.module_type_index].counted+=parseInt(e.authorshipPercent),i[e.module_type_index].completedPercent=i[e.module_type_index].counted/i[e.module_type_index].totalCount,15<=i[e.module_type_index].counted&&(i[e.module_type_index].status="viable"),n+=parseInt(e.authorshipPercent))}),i},GetResultsForReview=(e,t,i,r,n)=>{const a={};let o;const s={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0};e.forEach(e=>{GetBonusesAndPenaltiesForItem(e,i).bonusesAndPenalties.forEach(e=>{saveItemToObject(s,e)})}),console.log("bonusPenaltyInfo"),console.log(s),console.log("runningBonusPenaltyInfo"),console.log(runningBonusPenaltyInfo);const l=analyseBonusPenaltiesForAttitutes(s);attitutes.forEach(e=>{let t;t=6<i.culturalAttitutes[e]?"high":2<i.culturalAttitutes[e]?"medium":"low",a[e]=r[e][l[e]][t]});const c=s.totalBonuses-s.totalPenalties;let h;h=0>c?"highNetPenalties":"highNetBonuses",15>=Math.abs(c)&&(h="breakEven");const u=GetCompletionScoreByModuleType(t,e);let d=!0,p=0;return Object.keys(u).forEach(e=>{"weak"==u[e].status&&(d=!1,p+=1)}),d||(h=1<p?"highNetPenalties":"breakEven"),console.info("Total bonsues: "+s.totalBonuses),console.info("Total penalties: "+s.totalPenalties),console.info("Total verdict: "+h),i.reviews&&(o=i.reviews[h]),{attituteReviewParagraphs:a,countryReviewParagraph:o,completionScore:u,isConstitutionViable:d}},GetBonusesAndPenaltiesForItem=(e,t)=>{let i=[],r=[],n=[],a=0,o=0,s=e.bonus?e.bonus.split(","):[];s=s.map(e=>e.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism"));let l=e.penalty?e.penalty.split(","):[];return l=l.map(e=>e.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism")),s.forEach(o=>{const s=o.split(" "),l=s[0],c=s[1];if("bonus"===l);else if("high"===l){if(7<=t.culturalAttitutes[c]){const t={id:e.id,type:"bonus",value:7,attitute:c,level:l};saveItemForReview(t,i,r,n),a+=1}}else if("medium"===l){if(3<=t.culturalAttitutes[c]&&7>t.culturalAttitutes[c]){const t={id:e.id,type:"bonus",value:5,attitute:c,level:l};saveItemForReview(t,i,r,n),a+=1}}else if("low"===l&&0<=t.culturalAttitutes[c]&&3>t.culturalAttitutes[c]){const t={id:e.id,type:"bonus",value:2,attitute:c,level:l};saveItemForReview(t,i,r,n),a+=1}}),l.forEach(a=>{const s=a.split(" "),l=s[0],c=s[1];if("bonus"===l)console.error("Wrong level");else if("high"===l){if(7<=t.culturalAttitutes[c]){const t={id:e.id,type:"penalty",value:7,attitute:c,level:l};saveItemForReview(t,i,r,n),o+=1}}else if("medium"===l){if(3<=t.culturalAttitutes[c]&&7>t.culturalAttitutes[c]){const t={id:e.id,type:"penalty",value:5,attitute:c,level:l};saveItemForReview(t,i,r,n),o+=1}}else if("low"===l&&0<=t.culturalAttitutes[c]&&3>t.culturalAttitutes[c]){const t={id:e.id,type:"penalty",value:2,attitute:c,level:l};saveItemForReview(t,i,r,n),o+=1}}),{bonusesAndPenalties:i,bonusCount:a,penaltyCount:o,bonuses:r,penalties:n}},GetEmojiFromAttitute=e=>{return{authority:"🏛️",liberty:"🌅",science:"🔬",tradition:"🏺",collective:"👥",independence:"🛡️",privacy:"🔐",lawAndOrder:"👮",progressivism:"✊",naturalResourceWealth:"🔋",borderDensity:"🛂",hostilityNeighboringCountries:"🌐",barrieresToCitizenship:"🧱"}[e]};var oapBonusesAndPenalties={GetCompletionScoreByModuleType:GetCompletionScoreByModuleType,GetResultsForReview:GetResultsForReview,GetBonusesAndPenaltiesForItem:GetBonusesAndPenaltiesForItem,GetEmojiFromAttitute:GetEmojiFromAttitute};class OapSwipableCards extends OapBaseElement{static get properties(){return{stackedOptions:String,rotate:Boolean,items:Array,selectedItems:Array,filteredItems:Array,itemsLeft:Array,visibleItems:Array,elementsMargin:Number,useOverlays:Boolean,maxElements:Number,currentPosition:Number,currentItemsPosition:Number,currentItem:Object,isFirstTime:Boolean,elementHeight:Number,velocity:Number,topObj:Object,rightObj:Object,leftObj:Object,listElNodesObj:Object,listElNodesWidth:Object,currentElementObj:Object,stackedCardsObj:Object,obj:Object,elTrans:Object,startTime:Number,startX:Number,startY:Number,translateX:Number,translateY:Number,currentX:Number,currentY:Number,timeTaken:Number,rightOpacity:Number,leftOpacity:Number,touchingElement:Boolean,disableUpSwipe:Boolean,hiddenImageIds:Object,rendering:Boolean,configFromServer:Object,automaticSelectionActive:Boolean,country:Object,autoSliderTime:String,automaticFlipSpeed:Number}}static get styles(){return[OapSwipableCardsStyles,OapFlexLayout]}render(){return html$1`
       <div class="toppestContainer">
         <div class="stage">
           <div id="stacked-cards-block" class="stackedcards stackedcards--animatable init">
@@ -6090,7 +6090,7 @@ $
   [hidden] {
     display: none !important;
   }
-`;var oapArticleItemStyles={OapArticleItemStyles:OapArticleItemStyles};class OapArticleItem extends OapBaseElement{static get properties(){return{item:{type:Object},elevation:Number,selected:Boolean,ballotElement:{type:Object},selectedInBudget:{type:Boolean},isBookmarked:{type:Boolean},toExpensive:{type:Boolean},isExcluded:{type:Boolean},isBlockedBy:{type:Object},isFavorite:{type:Boolean},browsingMode:{type:Boolean},imageTabSelected:{type:Boolean},descriptionTabSelected:{type:Boolean},descriptionPdfLink:{type:String},small:{type:Boolean},tiny:{type:Boolean},imageLoaded:{type:Boolean,value:!1},inBudgetSelection:Boolean,configFromServer:Object,listBoxSelection:Number,selectedExclusiveId:String,onlyDisplay:Boolean}}static get styles(){return[OapArticleItemStyles,OapShadowStyles,OapFlexLayout]}getName(){return this.item.exclusiveOptions?this.item.name.split(": ")[0]:this.item.name}render(){return html$1`
+`;var oapArticleItemStyles={OapArticleItemStyles:OapArticleItemStyles};class OapArticleItem extends OapBaseElement{static get properties(){return{item:{type:Object},elevation:Number,selected:Boolean,ballotElement:{type:Object},selectedInBudget:{type:Boolean},hideClose:Boolean,isBookmarked:{type:Boolean},toExpensive:{type:Boolean},isExcluded:{type:Boolean},isBlockedBy:{type:Object},isFavorite:{type:Boolean},browsingMode:{type:Boolean},imageTabSelected:{type:Boolean},descriptionTabSelected:{type:Boolean},descriptionPdfLink:{type:String},small:{type:Boolean},tiny:{type:Boolean},imageLoaded:{type:Boolean,value:!1},inBudgetSelection:Boolean,configFromServer:Object,listBoxSelection:Number,selectedExclusiveId:String,onlyDisplay:Boolean}}static get styles(){return[OapArticleItemStyles,OapShadowStyles,OapFlexLayout]}getName(){return this.item.exclusiveOptions?this.item.name.split(": ")[0]:this.item.name}render(){return html$1`
       <div id="topContainer"
            @click="${this.topClick}"
            ?module-type="${"ModuleTypeCard"==this.item.module_type}"
@@ -6114,7 +6114,7 @@ $
             <div class="layout-inline vertical" ?hidden="${"ModuleTypeCard"==this.item.module_type}">
               <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
               <div class="buttons" ?hidden="${!0==!this.onlyDisplay}">
-                <div id="closeButton" class="shadow-animation shadow-elevation-2dp" @click="${()=>{this.fire("oap-close-master-dialog")}}" title="${this.localize("close")}">
+                <div id="closeButton" ?hidden="${this.hideClose}" class="shadow-animation shadow-elevation-2dp" @click="${()=>{this.fire("oap-close-master-dialog")}}" title="${this.localize("close")}">
                    ${this.localize("close")}
                 </div>
               </div>
@@ -6447,6 +6447,14 @@ $
     font-style: italic;
   }
 
+  .finalItems {
+    flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    margin: 0 auto;
+  }
+
   .header {
     font-size: 24px;
     margin-top: 16px;
@@ -6461,11 +6469,36 @@ $
     text-align: center;
   }
 
+  .lastHeader {
+    margin-top: 0;
+    padding-bottom: 8px;
+  }
+
+  .finalHeader {
+    padding: 8px;
+    font-size: 24px;
+    margin: 8px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 12px;
+  }
+
   .subHeader {
     font-size: 20px;
     margin-top: 16px;
     margin-bottom: 4px;
     font-weight: bold;
+  }
+
+  oap-article-item {
+    outline: 0px;
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 750ms ease-in-out;
+    -moz-transition: all 750ms ease-in-out;
+    -o-transition: all 750ms ease-in-out;
+    -ms-transition: all 750ms ease-in-out;
   }
 
   .countryHeader {
@@ -6486,13 +6519,16 @@ $
     margin-bottom: 0;
   }
 
-  .topContainer {
+  .mainArea {
     max-width: 600px;
     width: 600px;
+  }
+
+  .topContainer {
     background-color: #000;
     color: #FFF;
     padding: 16px;
-    padding-bottom: 42px;
+    padding-bottom: 24px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -6673,6 +6709,12 @@ $
       padding-top: 32px;
     }
 
+  .mainArea {
+    max-width: 100%;
+    width: 100%;
+  }
+
+
     paper-input {
       max-width: 300px;
     }
@@ -6702,18 +6744,18 @@ $
   [hidden] {
     display: none !important;
   }
-`;var oapReviewStyles={OapReviewStyles:OapReviewStyles};class OapReview extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,selectedItems:Array,allItems:Array,configFromServer:Object,attituteReviewParagraphs:Object,countryReviewParagraph:String,completionScore:Object,isConstitutionViable:Boolean}}static get styles(){return[OapReviewStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.reset()}reset(){this.customCountry=null,this.submitDisabled=!0,this.isConstitutionViable=!0}render(){return html$1`
-    <div class="layout vertical center-center">
+`;var oapReviewStyles={OapReviewStyles:OapReviewStyles};class OapReview extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,selectedItems:Array,allItems:Array,configFromServer:Object,attituteReviewParagraphs:Object,countryReviewParagraph:String,completionScore:Object,isConstitutionViable:Boolean}}static get styles(){return[OapReviewStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.reset()}reset(){this.customCountry=null,this.submitDisabled=!0,this.isConstitutionViable=!0}getModuleColorForItem(e){return this.configFromServer.client_config.moduleTypeColorLookup[e.module_content_type]}render(){return html$1`
+    <div class=" vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="welcomeLogoContainer layout center-center">
           <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
         </div>
 
-        <div class="layout-inline vertical">
+        <div class="layout-inline vertical center-center">
           <div class="header">${this.localize("reviewOfYourConstitution")}</div>
 
           ${this.attituteReviewParagraphs?html$1`
-            <div class="hiddenDiv nextToTop">
+            <div class="hiddenDiv nextToTop mainArea" style="margin-left: auto;margin-right:auto;">
 
               <div class="countryHeader">${this.country.name}</div>
               <div class="basicInformationDescription">${this.country.description}</div>
@@ -6786,8 +6828,30 @@ $
           `:html$1``}
         </div>
       </div>
+      <div class="topContainer">
+        <div class="header lastHeader">${this.localize("finalSelection")}</div>
+        <div class="finaslItems">
+          ${repeat(this.selectedItems,e=>e.id,(e,t)=>{let i=html$1``;return 0!==t&&this.selectedItems[t-1].module_type_index==e.module_type_index||(i=html$1`
+                  <div style="width: 100%;background-color:${this.getModuleColorForItem(e)}" class="flex finalHeader">${this.getModuleTypeName(e.module_content_type)}</div>
+                `),html$1`
+                ${i}
+                <oap-article-item
+                  .name="${e.id}"
+                  class="ballotAreaItem"
+                  .selected="${!0}"
+                  .hideClose="${!0}"
+                  .onlyDisplay="${!0}"
+                  .configFromServer="${this.configFromServer}"
+                  .language="${this.language}"
+                  .budgetElement="${this.budgetElement}"
+                  .item="${e}">
+                </oap-article-item>
+              `})}
+        </div>
+
+      </div>
     </div>
-   `}culturalHelp(){let e;e=this.configFromServer.client_config.helpPageLocales[this.language]?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text):this.configFromServer.client_config.helpPageLocales.en?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text):"No help page found for selected language!",this.fire("oap-open-help",e)}b64DecodeUnicode(e){return decodeURIComponent(atob(e).split("").map(function(e){return"%"+("00"+e.charCodeAt(0).toString(16)).slice(-2)}).join(""))}updated(e){if(super.updated(e),e.has("selectedItems")&&this.selectedItems){const e=this.configFromServer.client_config.languages[this.language].attituteReviews,t=GetResultsForReview(this.selectedItems,this.allItems,this.country,e);this.attituteReviewParagraphs=t.attituteReviewParagraphs,this.countryReviewParagraph=t.countryReviewParagraph,this.completionScore=t.completionScore,this.isConstitutionViable=t.isConstitutionViable,window.history.pushState(null,"",window.location.href),window.onpopstate=function(){window.history.pushState(null,"",window.location.href)}}}}async function cacheDataImages(e){if(e){await new Promise(e=>setTimeout(e,100));for(let t=0;t<e.length;t++){(new Image).src=e[t].image_url,await new Promise(e=>setTimeout(e,750))}}}async function cacheSoundEffects(e){if(e){const t=Object.values(e);for(let e=0;e<t.length;e++)t[e].audio=new Audio(t[e].url),t[e].audio.volume=t[e].volume,await new Promise(e=>setTimeout(e,750))}}window.customElements.define("oap-review",OapReview);class OapApp extends OapBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,currentBallot:Object,currentBudget:Object,budgetElement:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,masterHelpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String,filteredItems:Array,selectedItems:Array,quizQuestions:Array,totalChoicePoints:Number,usedChoicePoints:Number,snackBarContent:String,country:Object,debouncedSave:Object,usedBonusesAndPenalties:Object,savedGameDate:String,disableAutoSave:Boolean,font3d:Object,openMasterDialog:String,masterDialogCloseFunction:Function}}static get styles(){return[OapAppStyles,OapFlexLayout]}render(){let e=html$1`
+   `}getModuleTypeName(e){return this.localize(e.toLowerCase().replace("/",""))}culturalHelp(){let e;e=this.configFromServer.client_config.helpPageLocales[this.language]?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text):this.configFromServer.client_config.helpPageLocales.en?this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text):"No help page found for selected language!",this.fire("oap-open-help",e)}b64DecodeUnicode(e){return decodeURIComponent(atob(e).split("").map(function(e){return"%"+("00"+e.charCodeAt(0).toString(16)).slice(-2)}).join(""))}updated(e){if(super.updated(e),e.has("selectedItems")&&this.selectedItems){const e=this.configFromServer.client_config.languages[this.language].attituteReviews,t=GetResultsForReview(this.selectedItems,this.allItems,this.country,e);this.attituteReviewParagraphs=t.attituteReviewParagraphs,this.countryReviewParagraph=t.countryReviewParagraph,this.completionScore=t.completionScore,this.isConstitutionViable=t.isConstitutionViable,window.history.pushState(null,"",window.location.href),window.onpopstate=function(){window.history.pushState(null,"",window.location.href)}}}}async function cacheDataImages(e){if(e){await new Promise(e=>setTimeout(e,100));for(let t=0;t<e.length;t++){(new Image).src=e[t].image_url,await new Promise(e=>setTimeout(e,750))}}}async function cacheSoundEffects(e){if(e){const t=Object.values(e);for(let e=0;e<t.length;e++)t[e].audio=new Audio(t[e].url),t[e].audio.volume=t[e].volume,await new Promise(e=>setTimeout(e,750))}}window.customElements.define("oap-review",OapReview);class OapApp extends OapBaseElement{static get properties(){return{appTitle:{type:String},_page:{type:String},_drawerOpened:{type:Boolean},_snackbarOpened:{type:Boolean},_offline:{type:Boolean},_subPath:{type:String},favoriteIcon:{type:String,value:"star"},dialogHeading:{type:String,value:""},activityHost:{type:String,value:""},setupDefaults:{type:Boolean,value:!1},votePublicKey:{type:String},configFromServer:{type:Object,value:null},requestInProgress:{type:Boolean,value:!1},title:{type:String},showExit:{type:Boolean,value:!1},hideBudget:{type:Boolean,value:!0},areaName:String,currentBallot:Object,currentBudget:Object,budgetElement:Object,totalBudget:Number,haveSetLanguage:{type:Boolean,value:!1},resizeTimer:Object,postsHost:String,welcomeHeading:String,welcomeText:String,helpContent:String,masterHelpContent:String,wideAndBallot:Boolean,errorText:String,languageOveride:String,filteredItems:Array,selectedItems:Array,quizQuestions:Array,totalChoicePoints:Number,usedChoicePoints:Number,snackBarContent:String,country:Object,debouncedSave:Object,usedBonusesAndPenalties:Object,savedGameDate:String,disableAutoSave:Boolean,font3d:Object,openMasterDialog:String,masterDialogCloseFunction:Function}}static get styles(){return[OapAppStyles,OapFlexLayout]}render(){let e=html$1`
       <paper-dialog id="errorDialog">
         <p id="errorText">${this.errorText}</p>
         <div class="buttons">
