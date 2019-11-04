@@ -212,8 +212,11 @@ class Oap3dBudget extends OapBaseElement {
           endFudge = 20;
         }
 
-        const roughness = Math.random();
-        const metalness = Math.random();
+        let roughness = Math.random();
+        let metalness = Math.random();
+
+        roughness=0.7;
+        metalness=0.9;
 
         this.bonusMaterial = new MeshStandardMaterial( {
           color: color,
