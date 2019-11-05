@@ -4,7 +4,7 @@ const BONUS_FOR_HIGH = 9;
 const BONUS_FOR_MEDIUM = 5;
 const BONUS_FOR_LOW = 2;
 
-const PENALTY_FOR_HIGH = 8;
+const PENALTY_FOR_HIGH = 9;
 const PENALTY_FOR_MEDIUM = 5;
 const PENALTY_FOR_LOW = 2;
 
@@ -58,7 +58,7 @@ const saveItemToObject = (targetObject, item) => {
       targetObject.allPenaltiesByCulturalAttitute[item.attitute] = [];
     }
     if (!targetObject.sumPenaltiesByCulturalAttitute[item.attitute]) {
-      targetObject.sumPenaltiesByCulturalAttitute[item.attitute] = [];
+      targetObject.sumPenaltiesByCulturalAttitute[item.attitute] = 0;
     }
     targetObject.allPenaltiesByCulturalAttitute[item.attitute].push(item);
     targetObject.sumPenaltiesByCulturalAttitute[item.attitute]+=item.value;
