@@ -56,9 +56,24 @@ class ConstitutionsController < ApplicationController
     end
   end
 
+  def review
+    @constitution = Constitution.find(params[:id])
+    if @constitution
+    else
+    end
+  end
+
   # Used for BOTs to show dynamic meta data
   def meta
-    @meta = @config.client_config["shareMetaData"]
+    locale = @config.client_config["localeSetup"]["locale"]
+    if params[:locale]
+      locale = params[:locale]
+    end
+    if @config.client_config["languages"][locale] and  @config.client_config["languages"][locale]["shareMetaData"]
+      @meta = @config.client_config["languages"][locale]["shareMetaData"]
+    else
+      @meta = @config.client_config["languages"]["en"]["shareMetaData"]
+    end
     respond_to do |format|
       format.html
     end
