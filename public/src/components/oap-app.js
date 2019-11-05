@@ -1094,8 +1094,11 @@ class OapApp extends OapBaseElement {
     const item = event.detail;
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
-    <div id="fullScreenItem" style="margin-bottom: 24px;" @click="${()=>{this.$$("#masterDialog").close()}}" >
-      <oap-article-item .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
+    <div id="fullScreenItem" style="cursor: pointer;margin-left: auto;margin-right: auto;" class="layout-inline vertical center-center;" @click="${()=>{this.$$("#masterDialog").close()}}" >
+      <oap-article-item style="text-align: center;margin-left: auto;margin-right: auto;" .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
+      <div style="text-align: center;text-transform: uppercase;margin-top: 16px;">
+        <b>${this.localize('close')}</b>
+      </div>
     </div>
    `
     this.openAndUpdateDialog(window.innerWidth<=600 ? false : true);
@@ -1418,7 +1421,7 @@ class OapApp extends OapBaseElement {
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" @click="${this.closeWelcome}" autofocus>${this.localize('start')}</paper-button>
+          <paper-button raised class="continueButton" @click="${() => {window.scrollTop=0;this.closeWelcome();}}" autofocus>${this.localize('start')}</paper-button>
         </div>
       </div>
     </div>
@@ -1888,15 +1891,18 @@ class OapApp extends OapBaseElement {
         <div class="heading">Select Articles</div>
         <div class="horizontal welcomeText">
           Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!
-          <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
         </div>
-      `
+        <div class="buttons">
+          <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
+        </div>      `
     } else if (this.language=="is") {
       localeText =  html`
         <div class="heading">Velja ákvæði</div>
         <div class="horizontal welcomeText">
-      	  Nú geturðu byrjað að hanna stjórnarskrá fyrir þína ríkisborgara! Hver þáttur úr stjórnarskrá sem þú valdir á fyrra stigi leiksins er nú meðal þeirra sem þú getur valið og eytt valstigum í. Ef þú velur þætti sem passa við menningarleg gildi þinna ríkisborgara færðu verðlaunapunkta. Ef þeir passa ekki við menningarleg gildi þeirra taparðu valstigum. Þú verður að hafa nógu marga þætti úr hverri greinanna fjögurra til að geta lokið við stjórnarskrá áður en þú eyðir öllum valstigunum þínum. Gangi þér vel!
-          <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
+          Nú geturðu byrjað að hanna stjórnarskrá fyrir þína ríkisborgara! Hver þáttur úr stjórnarskrá sem þú valdir á fyrra stigi leiksins er nú meðal þeirra sem þú getur valið og eytt valstigum í. Ef þú velur þætti sem passa við menningarleg gildi þinna ríkisborgara færðu verðlaunapunkta. Ef þeir passa ekki við menningarleg gildi þeirra taparðu valstigum. Þú verður að hafa nógu marga þætti úr hverri greinanna fjögurra til að geta lokið við stjórnarskrá áður en þú eyðir öllum valstigunum þínum. Gangi þér vel!
+        </div>
+        <div class="buttons">
+           <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
         </div>
       `;
     }
