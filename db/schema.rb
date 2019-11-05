@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20180330170937) do
   create_table "constitutions", force: :cascade do |t|
     t.integer  "area_id",                 limit: 4,     null: false
     t.string   "user_id_hash",            limit: 255,   null: false
-    t.text     "payload_data",            limit: 65535, null: false
+    t.text     "payload_data",            limit: 16.megabytes - 1, null: false
     t.string   "client_ip_address",       limit: 255,   null: false
     t.datetime "created_at"
     t.datetime "updated_at"

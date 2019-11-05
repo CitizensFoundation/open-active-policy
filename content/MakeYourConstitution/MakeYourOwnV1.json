@@ -747,7 +747,7 @@
     "countryList": [
       {
          "id": 1,
-         "name": "Eyjarskeggjar á norðurslóðum (Ísland)",
+         "name": "Hressir eyjarskeggjar á norðurslóðum (Ísland)",
          "description": "Hamingja þeirra sem búa á þessari eyju mælist aðeins ögn minni en hamingja norrænna frænda þeirra og frænkna. Fólkið er iðjusamt og vel menntað, vinnur vel og er framsýnt og víðsýnt. Þjóðin stendur yfirleitt þétt saman en á þó í mestu vandræðum með að endurhanna stjórnarskrána sína. Þú getur kannski hjálpað þeim?",
          "population": "340.000",
          "geographicalSize": "103K",
@@ -767,9 +767,9 @@
             "progressivism": 8
          },
          "reviews": {
-            "highNetBonuses": "Á eftir að semja...",
-            "breakEven": "Á eftir að semja...",
-            "highNetPenalties": "Á eftir að semja..."
+          "highNetBonuses": "Þú hefur greinilega einhverja innsýn í hugsunarhátt þjóðarinnar og hefur tekist að fanga þá sérkennilegu blöndu af frelsisþrá og fortíðarhyggju sem einkennir hann. Með stjórnarskránni sem þú hefur samið er næstum öruggt að á þessari eyju tekst mönnum að finna jafnvægi félagshyggju og sjálfstæðis – og finna ekki fyrir valdboði sem hér fellur ekki í kramið.",
+          "breakEven": "Kannski hefurðu gengið aðeins of langt í að búa til valdheimildir handa ríkisstjórn eða dómsvaldi. Líklega hefur villt eitthvað um fyrir þér að það eru þversagnir í hugsunarhætti þessa fólks. Það er hætt við að annaðhvort blöskri þeim sem unna þjóðtrúnni – eða hinum sem leggja mest uppúr sjálfstæði. Hér vantar að minnsta kosti jafnvægið og stjórnarskráin þín kemur ekki í veg fyrir að upp úr sjóði.",
+          "highNetPenalties": "Já, þú heldur að stjórnarskrána megi nota til að svínbeygja fólk? Gleymdirðu því kannski að eyjarskeggjarnir þínir hata vald meira en annað, jafnvel þó að þeir elski hefðir og sé fúsir til að fórna miklu fyrir heill samfélagsins? Það eru allir líkur á því að stjórnarskráin þín kalli fram það versta í þessu annars friðsama fólki, sem hefur ekki háð borgarastríð í bráðum áttahundruð ár. Það er kannski kominn tími til að brýna sverðin?"
          }
       },
       {
