@@ -33,12 +33,6 @@
     "googleMapsApiKey": "AIzaSyDkF_kak8BVZA5zfp5R4xRnrX8HP3hjiL0",
     "googleMapsStaticApiKey": "AIzaSyBYy8UvdDD650mz7k1pY0j2hBFQmCPVnxA",
     "ballotBudgetLogo": "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/makeyourlogo2.png",
-    "shareMetaData": {
-      "title": "Make your constitution",
-      "description": "You start out with 100 choice points and can win up to 50 more if you answer everything right in the quiz. Then you can filter articles and finally select articles for you constitution and submitted as a vote.",
-      "shareImageUrl": "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/makeyourlogo2.png",
-      "faviconUrl": "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/makeyourlogo2.png"
-    },
     "localeSetup": [
       {
         "locale": "en",
@@ -57,6 +51,12 @@
         "welcomeLocales": {
           "heading": "Make Your Constitution",
           "text": "Welcome to Make Your Constitution! You are going to experience what it is like to frame a constitution for a country of your choice, representing the political needs and desires of the citizens of that country to make for a long lasting, stable society with a contented electorate. Think you can do it?"
+        },
+        "shareMetaData": {
+          "title": "Make your constitution",
+          "description": "You are going to experience what it is like to frame a constitution for a country of your choice, representing the political needs and desires of the citizens of that country. Think you can do it?",
+          "shareImageUrl": "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/logoYourConst1.png",
+          "faviconUrl": "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/makeyourlogo2.png"
         },
         "welcomeTexts": [
           {"title": "Welcome", "animationLength": 1100},
@@ -652,6 +652,12 @@
       "welcomeLocales": {
         "heading": "Þín eigin stjórnarskrá",
         "text": "Nú kemstu að því hvernig það er að búa til stjórnarskrá fyrir land sem þú velur, sem þjónar pólitískum og menningarlegum þörfum og óskum þeirra sem það land byggja, og skapar aðstæður fyrir stöðugleika í samfélaginu þar sem allir geta unað glaðir við sitt um langa framtíð. Heldurðu að þú getir þetta?"
+      },
+      "shareMetaData": {
+        "title": "Þín eigin stjórnarskrá",
+        "description": "Hér kemstu að því hvernig það er að búa til stjórnarskrá fyrir land sem þú velur, sem þjónar pólitískum og menningarlegum þörfum og óskum þeirra sem það land byggja. Heldurðu að þú getir þetta?",
+        "shareImageUrl": "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/logoYourConst1.png",
+        "faviconUrl": "https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/makeyourlogo2.png"
       },
       "welcomeTexts": [
         {"title": "Welcome", "animationLength": 1100},
