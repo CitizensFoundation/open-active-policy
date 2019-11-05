@@ -73,6 +73,14 @@ class OapSwipableCards extends OapBaseElement {
     ];
   }
 
+  hasArrow(item) {
+    if (item.name.length>42) {
+      return item.description.length>280;
+    } else {
+      return item.description.length>320;
+    }
+  }
+
   render() {
     return html`
       <div class="toppestContainer">
@@ -84,21 +92,19 @@ class OapSwipableCards extends OapBaseElement {
                   <div class="card" id="card${item.id}" style="${this.getCardStyle(item)}">
                     <div class="card-content">
                       <div id="imageContainer${item.id}" ?hidden="${item.module_type=="ModuleTypeCard"}" class="card-imagse"><img id="image${item.id}" class="cardImage" src="${item.image_url}"/></div>
-                      ${this.isExclusive(item) ? html`
-                          <div class="exclusiveCardTitle" style="${this.getExclusiveStyle(item)}">${item.name.split(":")[0]} ${this.exclusiveNumberOf(item)}</div>
-                          ` : html``}
+
                       <div class="cardTitles" ?module-type="${item.module_type=="ModuleTypeCard"}">
                         <div class="moduleName name"
                           title="${item.module_content_type}"
                           ?module-type="${item.module_type=="ModuleTypeCard"}"
                           ?is-exclusive="${this.isExclusive(item)}">
-                            ${this.isExclusive(item) ? item.name.split(":")[1] : item.name }
+                            ${this.isExclusive(item) ? item.name: item.name }
                           </div>
                         <div class="subHeader layout horizontal" ?module-type="${item.module_type=="ModuleTypeCard"}" style="${this.getSubCategoryStyle(item)}">
                          ${this.getBonusesAndPenalties(item)}
                         </div>
-                        <div id="description${item.id}" ?exlusive="${this.isExclusive(item)}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
-                           ${ item.description.length>280 ? html`
+                        <div id="description${item.id}" ?has-long-name="${item.name.length>42}" ?no-arrow="${!this.hasArrow(item)}" ?exlusive="${this.isExclusive(item)}" class="description" ?module-type="${item.module_type=="ModuleTypeCard"}">${unsafeHTML(item.description)}</div>
+                           ${ this.hasArrow(item) ? html`
                             <div class="hideUnhideContainer">
                               <div class="innerHideContainer">
                                 ${this.isImageHidden(item.id)==true ? html`
@@ -328,7 +334,7 @@ class OapSwipableCards extends OapBaseElement {
       }, this.automaticFlipSpeed);
     } else {
       this.automaticSelectionActive = false;
-      this.stopActions = false;
+      this.stopActions = null;
     }
   }
 

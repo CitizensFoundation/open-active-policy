@@ -140,7 +140,7 @@ class OapReview extends OapPageViewElement {
                   </div>
 
                   <div>
-                    <paper-share-button class="shareIcon" horizontal-align="left" id="shareButton"
+                    <paper-share-button class="shareIcon" horizontal-align="left" id="shareButton" @click="${this.shareClick}"
                       facebook twitter popup .url="${window.location.href}">
                     </paper-share-button>
                   </div>
@@ -184,10 +184,13 @@ class OapReview extends OapPageViewElement {
             }
           )}
         </div>
-
       </div>
     </div>
    `
+  }
+
+  shareClick() {
+    this.activity("click","share");
   }
 
   getModuleTypeName(module_content_type) {

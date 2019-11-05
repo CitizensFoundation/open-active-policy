@@ -846,7 +846,7 @@ class OapApp extends OapBaseElement {
     const path = '/review/'+event.detail;
     window.history.pushState({}, null, path);
     this.fire('location-changed', path);
-    this.activity('finished', 'ballot');
+    this.activity('submit', 'forReview');
   }
 
   addItemToFinalList(event) {

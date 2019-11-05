@@ -411,13 +411,26 @@ export const OapSwipableCardsStyles = css`
     color: #000;
     margin: 8px;
     margin-top: 0;
+    padding-right: 4px;
     margin-bottom: 32px;
-    height: 120px;
-    overflow-y: hidden;
+    height: 105px;
+    overflow: hidden;
+  }
+
+  .description[no-arrow] {
+    height: 125px;
+  }
+
+  .description[has-long-name] {
+    height: 85px;
+  }
+
+  .description[has-long-name][no-arrow] {
+    height: 100px;
   }
 
   .description[exlusive] {
-    height: 97px;
+    /*height: 97px;*/
   }
 
   .moduleName {
@@ -445,10 +458,11 @@ export const OapSwipableCardsStyles = css`
     font-weight: bold;
     margin: 8px;
     text-align: left;
-    padding-top: 2px;
+    padding-top: 8px;
     margin-top: 0;
-    margin-bottom: 2px;
+    margin-bottom: 8px;
     line-height: 1.15;
+    padding-right: 6px;
   }
 
   .name[module-type] {
@@ -499,7 +513,7 @@ export const OapSwipableCardsStyles = css`
 
   .hideUnhideContainer {
     position: absolute;
-    bottom: 18px;
+    bottom: 20px;
     margin-bottom: 0;
     width: 100%;
   }
