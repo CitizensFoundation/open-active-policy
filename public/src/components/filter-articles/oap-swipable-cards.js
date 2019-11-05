@@ -74,7 +74,7 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   hasArrow(item) {
-    if (item.name.length>42) {
+    if (item.name.length>40) {
       return item.description.length>280;
     } else {
       return item.description.length>320;

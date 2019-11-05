@@ -1893,16 +1893,16 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Select Articles</div>
         <div class="horizontal welcomeText">
-          Now you are ready to actually frame a constitution for your citizens! Each module you have available from the previous screen is now available for you to spend Choice Points on; if you choose modules that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!
+          Now you are ready to actually frame a constitution for your citizens! If you choose articles that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!
         </div>
         <div class="buttons">
           <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
         </div>      `
     } else if (this.language=="is") {
       localeText =  html`
-        <div class="heading">Velja ákvæði</div>
+        <div class="heading">Veldu ákvæði</div>
         <div class="horizontal welcomeText">
-          Nú geturðu byrjað að hanna stjórnarskrá fyrir þína ríkisborgara! Hver þáttur úr stjórnarskrá sem þú valdir á fyrra stigi leiksins er nú meðal þeirra sem þú getur valið og eytt valstigum í. Ef þú velur þætti sem passa við menningarleg gildi þinna ríkisborgara færðu verðlaunapunkta. Ef þeir passa ekki við menningarleg gildi þeirra taparðu valstigum. Þú verður að hafa nógu marga þætti úr hverri greinanna fjögurra til að geta lokið við stjórnarskrá áður en þú eyðir öllum valstigunum þínum. Gangi þér vel!
+          Nú geturðu byrjað að hanna stjórnarskrá fyrir þitt land! Ef þú velur ákvæði sem passa við menningarleg gildi þinna ríkisborgara vinnur þú valstig. Ef þeir passa ekki við menningarleg gildi þeirra taparðu valstigum. Þú verður að hafa nógu marga þætti úr hverri greinanna fjögurra til að geta lokið við stjórnarskrá. Gangi þér vel!
         </div>
         <div class="buttons">
            <paper-button raised class="continueButton" @click="${()=>{ window.scrollTop=0 }}" dialog-dismiss autofocus>${this.localize('start')}</paper-button>
