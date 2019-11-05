@@ -650,7 +650,7 @@
     "is": {
       "welcomeLocales": {
         "heading": "Þín eigin stjórnarskrá",
-        "text": "Nú kemstu að því hvernig það er að búa til stjórnarskrá land sem þú velur, sem þjónar pólitískum og menningarlegum þörfum og óskum þeirra sem það land byggja, og skapar aðstæður fyrir stöðugleika í samfélaginu þar sem allir geta unað glaðir við sitt um langa framtíð. Heldurðu að þú getir þetta?"
+        "text": "Nú kemstu að því hvernig það er að búa til stjórnarskrá fyrir land sem þú velur, sem þjónar pólitískum og menningarlegum þörfum og óskum þeirra sem það land byggja, og skapar aðstæður fyrir stöðugleika í samfélaginu þar sem allir geta unað glaðir við sitt um langa framtíð. Heldurðu að þú getir þetta?"
       },
       "welcomeTexts": [
         {"title": "Welcome", "animationLength": 1100},

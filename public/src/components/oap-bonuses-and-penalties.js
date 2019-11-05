@@ -1,6 +1,6 @@
 'use strict';
 
-const BONUS_FOR_HIGH = 8;
+const BONUS_FOR_HIGH = 9;
 const BONUS_FOR_MEDIUM = 5;
 const BONUS_FOR_LOW = 2;
 
