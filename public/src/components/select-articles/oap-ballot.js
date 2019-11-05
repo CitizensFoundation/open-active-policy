@@ -235,7 +235,7 @@ class OapBallot extends OapPageViewElement {
   constructor() {
     super();
     this.showMap = false;
-    this.area = {name: "Blah", id: 1};
+    this.area = { name: "Main", id: 1 };
   }
 
   connectedCallback() {

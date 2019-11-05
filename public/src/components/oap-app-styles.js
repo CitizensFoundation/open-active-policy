@@ -349,16 +349,6 @@ export const OapAppStyles = css`
       margin-top: 64px;
     }
 
-    paper-dialog {
-      position: absolute;
-      display: block;
-      top: 0;
-      bottom: 0;
-      margin: 0;
-      min-width: 360px;
-      max-width: 1024px;
-      width: 100%;
-    }
 
     .heading {
       font-size: 22px;
@@ -367,6 +357,7 @@ export const OapAppStyles = css`
     .welcomeText {
       width: 100%;
     }
+
     paper-button.continueButton {
       font-size: 16px;
     }

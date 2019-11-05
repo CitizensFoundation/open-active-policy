@@ -1094,11 +1094,11 @@ class OapApp extends OapBaseElement {
     const item = event.detail;
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
-    <div style="margin-bottom: 24px;" @click="${()=>{this.$$("#masterDialog").close()}}" >
+    <div id="fullScreenItem" style="margin-bottom: 24px;" @click="${()=>{this.$$("#masterDialog").close()}}" >
       <oap-article-item .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
     </div>
    `
-    this.openAndUpdateDialog(true);
+    this.openAndUpdateDialog(window.innerWidth<=600 ? false : true);
   }
 
   _startDelayedCaching(options) {
@@ -1175,7 +1175,6 @@ class OapApp extends OapBaseElement {
     }
 
     if (changedProps.has('_page')) {
-      debugger;
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
 

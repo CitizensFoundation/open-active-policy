@@ -118,7 +118,6 @@ class OapArticleItem extends OapBaseElement {
   render() {
     return html`
       <div id="topContainer"
-           @click="${this.topClick}"
            ?module-type="${this.item.module_type=="ModuleTypeCard"}"
            class="itemContent shadow-animation shadow-elevation-3dp layout horizontal"
            ?inbudget="${this.selected}" ?blocked-by="${this.isBlockedBy}">
@@ -133,6 +132,7 @@ class OapArticleItem extends OapBaseElement {
               ?exclusive-active="${this.item.exclusiveOptions && !this.selectedExclusiveId}"
               ?module-type="${this.item.module_type=="ModuleTypeCard"}"
               ?in-budget-selection="${this.inBudgetSelection}"
+              @click="${this.topClick}"
               ?inbudget="${this.selected}">
               ${this.getName()}
             </div>
