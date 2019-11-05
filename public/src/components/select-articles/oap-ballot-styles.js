@@ -30,6 +30,11 @@ export const OapBallotStyles = css`
     padding: 8px;
   }
 
+  .name[only-display] {
+    text-align: left;
+    padding-right: 6px;
+  }
+
   .description {
     padding-left: 8px;
   }

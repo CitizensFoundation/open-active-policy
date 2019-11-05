@@ -206,7 +206,6 @@ class OapPolicyQuiz extends OapPageViewElement {
 
   stop() {
     while(this.scene.children.length > 0){
-      console.error(this.scene.children[0]);
       this.scene.remove(this.scene.children[0]);
     }
     this.scene.remove();

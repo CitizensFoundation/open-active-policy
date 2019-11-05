@@ -239,6 +239,7 @@ export const OapAppStyles = css`
 
   .smallQuotes {
     color: #999;
+    text-align: center;
   }
 
   #favoriteIcon {
@@ -367,7 +368,6 @@ export const OapAppStyles = css`
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
     }
 
     paper-dialog {

@@ -131,6 +131,8 @@ class OapBallot extends OapPageViewElement {
                         class="ballotAreaItem"
                         .configFromServer="${this.configFromServer}"
                         .language="${this.language}"
+                        .onlyDisplay="${true}"
+                        .selected="${true}"
                         .budgetElement="${this.budgetElement}"
                         .item="${item}">
                       </oap-article-item>

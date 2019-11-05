@@ -12,6 +12,13 @@ export const OapCountryCreationStyles = css`
     height: 100%;
   }
 
+  paper-item {
+    background-color: #FFF;
+    color: #000;
+    padding-top: 8px;
+    font-weight: bold;
+  }
+
   .header {
     font-size: 24px;
     margin-top: 16px;

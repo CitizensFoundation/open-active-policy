@@ -523,7 +523,6 @@ class OapApp extends OapBaseElement {
         if (response.config.client_config.languages[this.language])
           window.localeResources = response.config.client_config.languages[this.language].locales;
         this.configFromServer = response.config;
-        this.updateAppMeta(this.configFromServer.client_config.shareMetaData);
 
         if (this.configFromServer.client_config.welcomeLocales &&
             this.configFromServer.client_config.ballotBudgetLogo) {
@@ -547,6 +546,8 @@ class OapApp extends OapBaseElement {
             }
           }
         }
+
+        this.updateAppMeta(this.configFromServer.client_config.languages[this.language].shareMetaData);
 
         if (this.mechDebug) {
           this.configFromServer.mechDebug = true;
@@ -1097,8 +1098,8 @@ class OapApp extends OapBaseElement {
     const item = event.detail;
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
-    <div id="fullScreenItem" style="cursor: pointer;margin-left: auto;margin-right: auto;" class="layout-inline vertical center-center;" @click="${()=>{this.$$("#masterDialog").close()}}" >
-      <oap-article-item style="text-align: center;margin-left: auto;margin-right: auto;" .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
+    <div id="fullScreesnItem" style="cursor: pointer;margin-left: auto;margin-right: auto;" class="" @click="${()=>{this.$$("#masterDialog").close()}}" >
+      <oap-article-item style="margin-left: auto;margin-right: auto;" .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
       <div style="text-align: center;text-transform: uppercase;margin-top: 16px;">
         <b>${this.localize('close')}</b>
       </div>

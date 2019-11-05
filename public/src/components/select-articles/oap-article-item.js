@@ -108,7 +108,7 @@ class OapArticleItem extends OapBaseElement {
   }
 
   getName() {
-    if (this.item.exclusiveOptions) {
+    if (this.item.exclusiveOptions && !this.onlyDisplay) {
       return this.item.name.split(": ")[0];
     } else {
       return this.item.name;
@@ -119,9 +119,10 @@ class OapArticleItem extends OapBaseElement {
     return html`
       <div id="topContainer"
            ?module-type="${this.item.module_type=="ModuleTypeCard"}"
+           ?only-display="${this.onlyDisplay}"
            class="itemContent shadow-animation shadow-elevation-3dp layout horizontal"
            ?inbudget="${this.selected}" ?blocked-by="${this.isBlockedBy}">
-        <div id="opacityLayer"></div>
+        <div id="opacityLayer" ?hidden="${this.onlyDisplay}"></div>
         <div id="innerContainer" ?hidden="${this.item.hideInnerContainer}">
           <div id="leftColor" class="leftColor" ?hidden="${this.selected}"></div>
           <div class="layout-inline vertical">
@@ -133,12 +134,15 @@ class OapArticleItem extends OapBaseElement {
               ?module-type="${this.item.module_type=="ModuleTypeCard"}"
               ?in-budget-selection="${this.inBudgetSelection}"
               @click="${this.topClick}"
+              ?only-display="${this.onlyDisplay}"
               ?inbudget="${this.selected}">
               ${this.getName()}
             </div>
-            <div class="exclusiveName" ?hidden="${this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
+            <div class="exclusiveName" ?hidden="${this.onlyDisplay || this.selected || !this.selectedExclusiveId}">${this.item.name.split(": ")[1]}</div>
             <div class="layout-inline vertical" ?hidden="${this.item.module_type=="ModuleTypeCard"}">
-              <div class="description" ?hidden="${!this.selected}">${this.item.description}</div>
+              <div class="description" ?only-display="${this.onlyDisplay}" ?hidden="${!this.selected}">
+                ${this.item.description}
+              </div>
               <div class="buttons" ?hidden="${(this.item.exclusive_ids && !this.selectedExclusiveId) || this.onlyDisplay===true}">
                 <div id="addToBudgetButton" class="shadow-animation shadow-elevation-2dp addRemoveButton"
                           ?hidden="${this.selected}"

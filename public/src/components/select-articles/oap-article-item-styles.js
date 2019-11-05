@@ -38,7 +38,7 @@ export const OapArticleItemStyles = css`
     cursor: pointer;
   }
 
-  .name[exclusive-active] {
+  .name[exclusive-active]:not([only-display]) {
     position: absolute;
     font-size: 14px;
     top: 50%;
@@ -188,6 +188,23 @@ export const OapArticleItemStyles = css`
     color: var(--app-accent-color);
   }
 
+  .name[inbudget] {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    max-width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 16px;
+  }
+
+  .name[only-display] {
+    margin-top: 8px;
+    padding-bottom: 0px;
+    margin-left: 6px;
+    margin-right: 16px;
+    max-width: 280px;
+  }
 
   .description {
     padding: 8px;
@@ -195,6 +212,16 @@ export const OapArticleItemStyles = css`
     padding-right: 12px;
     padding-left: 12px;
   }
+
+  .description[only-display] {
+    padding-bottom: 24px;
+  }
+
+  .name[only-display] {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
 
   .cardImage {
     width: 300px;
@@ -210,15 +237,6 @@ export const OapArticleItemStyles = css`
     text-decoration: underline;
   }
 
-  .name[inbudget] {
-    font-size: 20px;
-    font-weight: bold;
-    width: 100%;
-    max-width: 100%;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 16px;
-  }
 
   .subCategory {
     position: absolute;
@@ -248,6 +266,10 @@ export const OapArticleItemStyles = css`
     border-radius: 5px;
   }
 
+  #topContainer[only-display] {
+    /*cursor: pointer;*/
+    border-radius: 0;
+  }
   .addRemoveButton {
     position: absolute;
     bottom: 11px;
@@ -440,10 +462,16 @@ export const OapArticleItemStyles = css`
     z-index: 2000;
   }
 
-  #opacityLayer.cover {
-    opacity: 1;
+  #opacityLayer {
+    width: 100%;
   }
 
+  @media (max-width: 600px) {
+
+  .itemContent[only-display] {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   [hidden] {
     display: none !important;
