@@ -313,6 +313,7 @@ class OapSwipableCards extends OapBaseElement {
 
     if ((currentModuleTypeCard && !this.automaticSelectionActive) || (this.items[this.currentItemsPosition] && futureModuleType!=="ModuleTypeCard")) {
       this.automaticSelectionActive = true;
+      this.stopActions = true;
 
       let random = Math.floor(Math.random() * 2);
       const bonusCount = GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition], this.country).bonusCount;
@@ -327,6 +328,7 @@ class OapSwipableCards extends OapBaseElement {
       }, this.automaticFlipSpeed);
     } else {
       this.automaticSelectionActive = false;
+      this.stopActions = false;
     }
   }
 
@@ -814,7 +816,9 @@ class OapSwipableCards extends OapBaseElement {
     this.updateUi();
     this.setCurrentElement();
     this.updateFromMainItemsList();
-    this.activity('swipeRight', 'filtering');
+    if (!this.stopActions) {
+      this.activity('swipeRight', 'filtering');
+    }
   }
 
   //Swipe active card to top.

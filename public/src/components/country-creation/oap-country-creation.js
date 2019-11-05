@@ -324,7 +324,7 @@ class OapCountryCreation extends OapPageViewElement {
         this.submitDisabled = true;
         this.checkIfOkToProceed();
       } else {
-        this.countryList[9].name="Custom country";
+        this.countryList[9].name=this.localize('customCountry');
         this.customCountry = false;
         this.submitDisabled = false;
       }

@@ -86,6 +86,7 @@
           "allCardSelection": "Use all",
           "of": "of",
           "cp": "cp",
+          "customCountry": "Custom Country",
           "error_no_items_selected": "No articles selected",
           "points": "points",
           "exclusiveSeries": "Exclusive series",
@@ -246,9 +247,9 @@
               "progressivism": 8
            },
            "reviews": {
-              "highNetBonuses": "To be done...",
-              "breakEven": "To be done...",
-              "highNetPenalties": "To be done..."
+              "highNetBonuses": "You clearly have some insight into the island nation's way of thinking, and have managed to capture the peculiar mixture of individual liberty and the deep respect for the past and tradition that characterizes it. With the constitution you have drafted, it is almost certain that these island people can find a balance of social security - and limits on the authority of the state which safeguard future liberty.",
+              "breakEven": "You may have gone a little too far in creating powers for government or judiciary. Your mistakes in framing the document may arise from the fact that there are paradoxes in the thinking and values of these fiercely independent people. There is a risk of either indulging those who cultivated the almost religion like cult of nationality - or supporting those who are most independent; in this element, at least, you may have missed the balance, and your constitution may not prevent that conflict from boiling over in the future.",
+              "highNetPenalties": "So, do you think the Constitution you have written can be used to bend the will of the people? Maybe you forgot that this island of proud bearded men and head strong women hate power forced or imposed upon them, even as they love the tradition that binds them together, and are willing to sacrifice much for the entire community? You may have tripped over the trigger of potential true conflict - your Constitution will bring out the worst in this otherwise peaceful people, who have not been subject to civil war for nearly eighty years. Maybe it's time to break out the swords of the ancestors?"
            }
         },
         {
@@ -679,11 +680,13 @@
         "next": "áfram",
         "skip": "sleppa",
         "allCardSelection": "Nota öll",
+        "close": "loka",
         "of": "af",
         "error_no_items_selected": "Engin ákvæði valin",
         "start": "Byrja að spila",
         "points": "stig",
         "cp": "cp",
+        "customCountry": "Þitt land",
         "exclusiveSeries": "Val",
         "overallCountryReview": "Landið þitt – rýni",
         "culturalAttitudeReviews":"Menningarleg viðhorf – rýni",

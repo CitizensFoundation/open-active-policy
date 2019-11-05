@@ -197,6 +197,7 @@ class OapArticleItem extends OapBaseElement {
         this.oldElementNeedsSwapping=null;
       }
       this.fire('oap-set-state-of-remaining-items');
+      this.activity("selected","exlusiveContent")
     }
   }
 

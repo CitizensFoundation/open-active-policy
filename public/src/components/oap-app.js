@@ -217,13 +217,13 @@ class OapApp extends OapBaseElement {
           html``
         }
         <paper-dialog id="helpDialog" @close="${this.helpClosed}">
-          <paper-dialog-scrollable>
-            <div id="helpContent">
+            <paper-dialog-scrollable>
+              <div id="helpContent">
               ${unsafeHTML(this.helpContent)}
-            </div>
-          </paper-dialog-scrollable>
-          <div class="buttons">
-            <paper-button class="closeButton generalButton" dialog-dismiss>${this.localize('close')}</paper-button>
+              </div>
+            </paper-dialog-scrollable>
+          <div class="">
+            <paper-button class="closeHelpButton generalButton" dialog-dismiss>${this.localize('close')}</paper-button>
           </div>
         </paper-dialog>
 
@@ -914,6 +914,9 @@ class OapApp extends OapBaseElement {
       this.helpContent = event.detail;
     }
     this.$$("#helpDialog").open();
+    setTimeout(()=>{
+      this.$$("#helpDialog").fire("iron-resize");
+    })
   }
 
   _setArea(event) {
@@ -1128,7 +1131,7 @@ class OapApp extends OapBaseElement {
       this.filteredItems = [];
       this.usedBonusesAndPenalties = [];
     }
-    this.afterWelcomeClose();
+    window.location.reload();
   }
 
   restoreGameFromSave() {

@@ -147,6 +147,14 @@ export const OapAppStyles = css`
     height: 50px;
   }
 
+  .closeHelpButton {
+    width: 58px;
+    height: 58px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   paper-icon-button.closeButton {
     width: 58px;
     height: 58px;
@@ -157,6 +165,12 @@ export const OapAppStyles = css`
       width: 40px;
       height: 40px;
     }
+
+
+  .closeHelpButton {
+    width: 46px;
+    height: 46px;
+  }
 
     paper-icon-button.closeButton {
       width: 46px;
@@ -349,11 +363,15 @@ export const OapAppStyles = css`
       margin-top: 64px;
     }
 
-    paper-dialog {
+    paper-dialog#masterDialog {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
+    }
+
+    paper-dialog {
+      margin: 0;
     }
 
     .heading {
