@@ -94,7 +94,7 @@ class ConstitutionsController < ApplicationController
 
   # Used for BOTs to show dynamic meta data
   def meta
-    locale = @config.client_config["localeSetup"]["locale"]
+    locale = @config.client_config["defaultLanguage"]
     if params[:locale]
       locale = params[:locale]
     end
