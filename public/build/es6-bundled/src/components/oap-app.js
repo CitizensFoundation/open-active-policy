@@ -20616,7 +20616,10 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
     <g id="keyboard-arrow-down"><path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path></g>
     <g id="keyboard-arrow-up"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></g>
       </defs></svg>
-</iron-iconset-svg>`;document.head.appendChild(template$e.content);"use strict";const BONUS_FOR_HIGH=9,BONUS_FOR_MEDIUM=5,BONUS_FOR_LOW=2,PENALTY_FOR_HIGH=8,PENALTY_FOR_MEDIUM=5,PENALTY_FOR_LOW=2,runningBonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0},saveItemForReview=(item,bonusesAndPenalties,bonuses,penalties)=>{bonusesAndPenalties.push(item);if("bonus"==item.type){bonuses.push(item)}else{penalties.push(item)}},saveItemToObject=(targetObject,item)=>{if("bonus"==item.type){targetObject.totalBonusesCount+=1;targetObject.totalBonuses+=item.value;targetObject.allBonuses.push(item);if(!targetObject.allBonusesByCulturalAttitute[item.attitute]){targetObject.allBonusesByCulturalAttitute[item.attitute]=[]}if(!targetObject.sumBonusesByCulturalAttitute[item.attitute]){targetObject.sumBonusesByCulturalAttitute[item.attitute]=0}targetObject.allBonusesByCulturalAttitute[item.attitute].push(item);targetObject.sumBonusesByCulturalAttitute[item.attitute]+=item.value;if(!targetObject.allBonusesByLevel[item.level]){targetObject.allBonusesByLevel[item.level]=[]}targetObject.allBonusesByLevel[item.level].push(item)}else{targetObject.totalPenaltiesCount+=1;targetObject.totalPenalties+=item.value;targetObject.allPenalties.push(item);if(!targetObject.allPenaltiesByCulturalAttitute[item.attitute]){targetObject.allPenaltiesByCulturalAttitute[item.attitute]=[]}if(!targetObject.sumPenaltiesByCulturalAttitute[item.attitute]){targetObject.sumPenaltiesByCulturalAttitute[item.attitute]=0}targetObject.allPenaltiesByCulturalAttitute[item.attitute].push(item);targetObject.sumPenaltiesByCulturalAttitute[item.attitute]+=item.value;if(!targetObject.allPenaltiesByLevel[item.level]){targetObject.allPenaltiesByLevel[item.level]=[]}targetObject.allPenaltiesByLevel[item.level].push(item)}},attitutes=["lawAndOrder","progressivism","authority","science","collective","privacy","liberty","tradition","independence"],analyseBonusPenaltiesForAttitutes=objectToAnalyse=>{const attitutesWinnersAndLosers={};let debugText="";attitutes.forEach(attitute=>{let verdict,profitLoss=0;const bonuses=objectToAnalyse.sumBonusesByCulturalAttitute[attitute]?objectToAnalyse.sumBonusesByCulturalAttitute[attitute]:0,penalties=objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute]?objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute]:0;if(bonuses||penalties){profitLoss=bonuses-penalties;if(0>profitLoss){verdict="highPenalty"}else{verdict="highBonus"}if(10>=Math.abs(profitLoss)){verdict="breakEven"}}else{verdict="breakEven"}attitutesWinnersAndLosers[attitute]=verdict;debugText+="Bonus/Penalty test: "+attitute+" - bonuses: "+bonuses+"\n";debugText+="Bonus/Penalty test: "+attitute+" - penalties: "+penalties+"\n";debugText+="Bonus/Penalty test: "+attitute+" - profitLoss: "+profitLoss+"\n";debugText+="Bonus/Penalty test: "+attitute+" - verdict: "+verdict+"\n"});attitutesWinnersAndLosers.debugText=debugText;return attitutesWinnersAndLosers},GetCompletionScoreByModuleType=(allItems,selectedItems)=>{const moduleTypesAuthorship={};let totalAuthorship=0,countedAuthorship=0;allItems.forEach(item=>{if("ModuleTypeCard"==item.module_type){moduleTypesAuthorship[item.module_type_index]={name:item.name,status:"weak",totalCount:0,counted:0,completedPercent:0}}else{if(item.authorshipPercent){moduleTypesAuthorship[item.module_type_index].totalCount+=parseInt(item.authorshipPercent);totalAuthorship+=parseInt(item.authorshipPercent)}}});selectedItems.forEach(item=>{if(item.authorshipPercent){moduleTypesAuthorship[item.module_type_index].counted+=parseInt(item.authorshipPercent);moduleTypesAuthorship[item.module_type_index].completedPercent=moduleTypesAuthorship[item.module_type_index].counted/moduleTypesAuthorship[item.module_type_index].totalCount;if(15<=moduleTypesAuthorship[item.module_type_index].counted){moduleTypesAuthorship[item.module_type_index].status="viable"}countedAuthorship+=parseInt(item.authorshipPercent)}});return moduleTypesAuthorship};_exports.GetCompletionScoreByModuleType=GetCompletionScoreByModuleType;const GetResultsForReview=(selectedItems,allItems,country,attituteReviews,countryReviews)=>{const attituteReviewParagraphs={};let countryReviewParagraph;const bonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0};selectedItems.forEach(item=>{const bonusesAndPenalties=GetBonusesAndPenaltiesForItem(item,country).bonusesAndPenalties;bonusesAndPenalties.forEach(innerItem=>{saveItemToObject(bonusPenaltyInfo,innerItem)})});console.log("bonusPenaltyInfo");console.log(bonusPenaltyInfo);console.log("runningBonusPenaltyInfo");console.log(runningBonusPenaltyInfo);const attitutesWinnersAndLosers=analyseBonusPenaltiesForAttitutes(bonusPenaltyInfo);let debugText=attitutesWinnersAndLosers.debugText;attitutes.forEach(attitute=>{let countryLevel;if(6<country.culturalAttitutes[attitute]){countryLevel="high"}else if(2<country.culturalAttitutes[attitute]){countryLevel="medium"}else{countryLevel="low"}attituteReviewParagraphs[attitute]=attituteReviews[attitute][attitutesWinnersAndLosers[attitute]][countryLevel]});const totalProfitLoss=bonusPenaltyInfo.totalBonuses-bonusPenaltyInfo.totalPenalties;let verdict;if(0>totalProfitLoss){verdict="highNetPenalties"}else{verdict="highNetBonuses"}if(15>=Math.abs(totalProfitLoss)){verdict="breakEven"}const completionScore=GetCompletionScoreByModuleType(allItems,selectedItems);let isConstitutionViable=!0,weakCount=0;Object.keys(completionScore).forEach(objectKey=>{if("weak"==completionScore[objectKey].status){isConstitutionViable=!1;weakCount+=1}});if(!isConstitutionViable){if(1<weakCount){verdict="highNetPenalties"}else if("highNetBonuses"==verdict){verdict="breakEven"}}debugText+="Total bonsues: "+bonusPenaltyInfo.totalBonuses+"\n";debugText+="Total penalties: "+bonusPenaltyInfo.totalPenalties+"\n";debugText+="Total verdict: "+verdict+"\n";if(country.reviews){countryReviewParagraph=country.reviews[verdict]}return{attituteReviewParagraphs,countryReviewParagraph,completionScore,isConstitutionViable,debugText}};_exports.GetResultsForReview=GetResultsForReview;const fixupRules=rule=>{rule=rule.toLowerCase();rule=rule.replace(/\n/g,"");rule=rule.trim();rule=rule.replace("law/order","lawAndOrder");rule=rule.replace("law and order","lawAndOrder");rule=rule.replace("law & order","lawAndOrder");rule=rule.replace("progressivisim","progressivism");rule=rule.replace("progrevissim","progressivism");rule=rule.replace("social progress","progressivism");rule=rule.replace("sovreignty","independence");rule=rule.replace("collectivism","collective");return rule};_exports.fixupRules=fixupRules;const GetBonusesAndPenaltiesForItem=(item,country)=>{let bonusesAndPenalties=[],bonuses=[],penalties=[],bonusCount=0,penaltyCount=0,bonusesRules=item.bonus?item.bonus.split(","):[];bonusesRules=bonusesRules.map(rule=>{rule=fixupRules(rule);console.info("BONUES:"+rule);return rule});let penaltyRules=item.penalty?item.penalty.split(","):[];penaltyRules=penaltyRules.map(rule=>{rule=fixupRules(rule);console.info("PENALTY:"+rule);return rule=rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism").replace("collectivism","collective").replace("\n","")});bonusesRules.forEach(bonus=>{const splitBonus=bonus.split(" "),level=splitBonus[0],attitute=splitBonus[1];console.error("attitute:"+attitute+" nr: "+country.culturalAttitutes[attitute]+" level: "+level);if(country.culturalAttitutes[attitute]){if("bonus"===level){}else if("high"===level){if(7<=country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:BONUS_FOR_HIGH,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}else if("medium"===level){if(3<=country.culturalAttitutes[attitute]&&7>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:BONUS_FOR_MEDIUM,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}else if("low"===level){if(0<=country.culturalAttitutes[attitute]&&3>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:BONUS_FOR_LOW,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}}else{console.warn("Can't find attitute for: "+attitute)}});penaltyRules.forEach(bonus=>{const splitBonus=bonus.split(" "),level=splitBonus[0],attitute=splitBonus[1];if("bonus"===level){console.error("Wrong level")}else if("high"===level){if(7<=country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:PENALTY_FOR_HIGH,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}else if("medium"===level){if(3<=country.culturalAttitutes[attitute]&&7>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:PENALTY_FOR_MEDIUM,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}else if("low"===level){if(0<=country.culturalAttitutes[attitute]&&3>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:PENALTY_FOR_LOW,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}});return{bonusesAndPenalties,bonusCount,penaltyCount,bonuses,penalties}};_exports.GetBonusesAndPenaltiesForItem=GetBonusesAndPenaltiesForItem;const GetEmojiFromAttitute=attitute=>{const emojis={authority:"\uD83C\uDFDB\uFE0F",liberty:"\uD83C\uDF05",science:"\uD83D\uDD2C",tradition:"\uD83C\uDFFA",collective:"\uD83D\uDC65",independence:"\uD83D\uDEE1\uFE0F",privacy:"\uD83D\uDD10",lawAndOrder:"\uD83D\uDC6E",progressivism:"\u270A",naturalResourceWealth:"\uD83D\uDD0B",borderDensity:"\uD83D\uDEC2",hostilityNeighboringCountries:"\uD83C\uDF10",barrieresToCitizenship:"\uD83E\uDDF1"};return emojis[attitute]};_exports.GetEmojiFromAttitute=GetEmojiFromAttitute;var oapBonusesAndPenalties={GetCompletionScoreByModuleType:GetCompletionScoreByModuleType,GetResultsForReview:GetResultsForReview,fixupRules:fixupRules,GetBonusesAndPenaltiesForItem:GetBonusesAndPenaltiesForItem,GetEmojiFromAttitute:GetEmojiFromAttitute};// Code originally from https://www.outsystems.com/blog/posts/gestures_glamour_swipeable_stacked_cards/
+</iron-iconset-svg>`;document.head.appendChild(template$e.content);"use strict";const BONUS_FOR_HIGH=9,BONUS_FOR_MEDIUM=5,BONUS_FOR_LOW=2,PENALTY_FOR_HIGH=8,PENALTY_FOR_MEDIUM=5,PENALTY_FOR_LOW=2,runningBonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0},saveItemForReview=(item,bonusesAndPenalties,bonuses,penalties)=>{bonusesAndPenalties.push(item);if("bonus"==item.type){bonuses.push(item)}else{penalties.push(item)}},saveItemToObject=(targetObject,item)=>{if("bonus"==item.type){targetObject.totalBonusesCount+=1;targetObject.totalBonuses+=item.value;targetObject.allBonuses.push(item);if(!targetObject.allBonusesByCulturalAttitute[item.attitute]){targetObject.allBonusesByCulturalAttitute[item.attitute]=[]}if(!targetObject.sumBonusesByCulturalAttitute[item.attitute]){targetObject.sumBonusesByCulturalAttitute[item.attitute]=0}targetObject.allBonusesByCulturalAttitute[item.attitute].push(item);targetObject.sumBonusesByCulturalAttitute[item.attitute]+=item.value;if(!targetObject.allBonusesByLevel[item.level]){targetObject.allBonusesByLevel[item.level]=[]}targetObject.allBonusesByLevel[item.level].push(item)}else{targetObject.totalPenaltiesCount+=1;targetObject.totalPenalties+=item.value;targetObject.allPenalties.push(item);if(!targetObject.allPenaltiesByCulturalAttitute[item.attitute]){targetObject.allPenaltiesByCulturalAttitute[item.attitute]=[]}if(!targetObject.sumPenaltiesByCulturalAttitute[item.attitute]){targetObject.sumPenaltiesByCulturalAttitute[item.attitute]=0}targetObject.allPenaltiesByCulturalAttitute[item.attitute].push(item);targetObject.sumPenaltiesByCulturalAttitute[item.attitute]+=item.value;if(!targetObject.allPenaltiesByLevel[item.level]){targetObject.allPenaltiesByLevel[item.level]=[]}targetObject.allPenaltiesByLevel[item.level].push(item)}},attitutes=["lawAndOrder","progressivism","authority","science","collective","privacy","liberty","tradition","independence"],analyseBonusPenaltiesForAttitutes=objectToAnalyse=>{const attitutesWinnersAndLosers={};let debugText="";attitutes.forEach(attitute=>{let verdict,profitLoss=0;const bonuses=objectToAnalyse.sumBonusesByCulturalAttitute[attitute]?objectToAnalyse.sumBonusesByCulturalAttitute[attitute]:0,penalties=objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute]?objectToAnalyse.sumPenaltiesByCulturalAttitute[attitute]:0;if(bonuses||penalties){profitLoss=bonuses-penalties;if(0>profitLoss){verdict="highPenalty"}else{verdict="highBonus"}if(10>=Math.abs(profitLoss)){verdict="breakEven"}}else{verdict="breakEven"}attitutesWinnersAndLosers[attitute]=verdict;debugText+="Bonus/Penalty test: "+attitute+" - bonuses: "+bonuses+"\n";debugText+="Bonus/Penalty test: "+attitute+" - penalties: "+penalties+"\n";debugText+="Bonus/Penalty test: "+attitute+" - profitLoss: "+profitLoss+"\n";debugText+="Bonus/Penalty test: "+attitute+" - verdict: "+verdict+"\n"});attitutesWinnersAndLosers.debugText=debugText;return attitutesWinnersAndLosers},GetCompletionScoreByModuleType=(allItems,selectedItems)=>{const moduleTypesAuthorship={};let totalAuthorship=0,countedAuthorship=0;allItems.forEach(item=>{if("ModuleTypeCard"==item.module_type){moduleTypesAuthorship[item.module_type_index]={name:item.name,status:"weak",totalCount:0,counted:0,completedPercent:0}}else{if(item.authorshipPercent){moduleTypesAuthorship[item.module_type_index].totalCount+=parseInt(item.authorshipPercent);totalAuthorship+=parseInt(item.authorshipPercent)}}});selectedItems.forEach(item=>{if(item.authorshipPercent){moduleTypesAuthorship[item.module_type_index].counted+=parseInt(item.authorshipPercent);moduleTypesAuthorship[item.module_type_index].completedPercent=moduleTypesAuthorship[item.module_type_index].counted/moduleTypesAuthorship[item.module_type_index].totalCount;if(15<=moduleTypesAuthorship[item.module_type_index].counted){moduleTypesAuthorship[item.module_type_index].status="viable"}countedAuthorship+=parseInt(item.authorshipPercent)}});return moduleTypesAuthorship};_exports.GetCompletionScoreByModuleType=GetCompletionScoreByModuleType;const GetResultsForReview=(selectedItems,allItems,country,attituteReviews,countryReviews)=>{const attituteReviewParagraphs={};let countryReviewParagraph;const bonusPenaltyInfo={allBonuses:[],allBonusesByCulturalAttitute:{},sumBonusesByCulturalAttitute:{},allBonusesByLevel:{},allPenalties:[],allPenaltiesByCulturalAttitute:{},sumPenaltiesByCulturalAttitute:{},allPenaltiesByLevel:{},totalBonuses:0,totalPenalties:0,totalBonusesCount:0,totalPenaltiesCount:0};selectedItems.forEach(item=>{const bonusesAndPenalties=GetBonusesAndPenaltiesForItem(item,country).bonusesAndPenalties;bonusesAndPenalties.forEach(innerItem=>{saveItemToObject(bonusPenaltyInfo,innerItem)})});console.log("bonusPenaltyInfo");console.log(bonusPenaltyInfo);console.log("runningBonusPenaltyInfo");console.log(runningBonusPenaltyInfo);const attitutesWinnersAndLosers=analyseBonusPenaltiesForAttitutes(bonusPenaltyInfo);let debugText=attitutesWinnersAndLosers.debugText;attitutes.forEach(attitute=>{let countryLevel;if(6<country.culturalAttitutes[attitute]){countryLevel="high"}else if(2<country.culturalAttitutes[attitute]){countryLevel="medium"}else{countryLevel="low"}attituteReviewParagraphs[attitute]=attituteReviews[attitute][attitutesWinnersAndLosers[attitute]][countryLevel]});const totalProfitLoss=bonusPenaltyInfo.totalBonuses-bonusPenaltyInfo.totalPenalties;let verdict;if(0>totalProfitLoss){verdict="highNetPenalties"}else{verdict="highNetBonuses"}if(15>=Math.abs(totalProfitLoss)){verdict="breakEven"}const completionScore=GetCompletionScoreByModuleType(allItems,selectedItems);let isConstitutionViable=!0,weakCount=0;Object.keys(completionScore).forEach(objectKey=>{if("weak"==completionScore[objectKey].status){isConstitutionViable=!1;weakCount+=1}});if(!isConstitutionViable){if(1<weakCount){verdict="highNetPenalties"}else if("highNetBonuses"==verdict){verdict="breakEven"}}debugText+="Total bonsues: "+bonusPenaltyInfo.totalBonuses+"\n";debugText+="Total penalties: "+bonusPenaltyInfo.totalPenalties+"\n";debugText+="Total verdict: "+verdict+"\n";if(country.reviews){countryReviewParagraph=country.reviews[verdict]}return{attituteReviewParagraphs,countryReviewParagraph,completionScore,isConstitutionViable,debugText}};_exports.GetResultsForReview=GetResultsForReview;const fixupRules=rule=>{rule=rule.toLowerCase();rule=rule.replace(/\n/g,"");rule=rule.replace(/collective.high/,"collective high");rule=rule.trim();rule=rule.replace("law/order","lawAndOrder");rule=rule.replace("law and order","lawAndOrder");rule=rule.replace("law & order","lawAndOrder");rule=rule.replace("law/iorder","lawAndOrder");rule=rule.replace("progressivisim","progressivism");rule=rule.replace("progressism","progressivism");rule=rule.replace("progressive","progressivism");rule=rule.replace("progrevissim","progressivism");rule=rule.replace("social progress","progressivism");rule=rule.replace("sovreignty","independence");rule=rule.replace("collectivism","collective");return rule};_exports.fixupRules=fixupRules;const GetBonusesAndPenaltiesForItem=(item,country)=>{let bonusesAndPenalties=[],bonuses=[],penalties=[],bonusCount=0,penaltyCount=0,bonusesRules=item.bonus?item.bonus.split(","):[];bonusesRules=bonusesRules.map(rule=>{rule=fixupRules(rule);//console.info("BONUES:"+ rule);
+return rule});let penaltyRules=item.penalty?item.penalty.split(","):[];penaltyRules=penaltyRules.map(rule=>{rule=fixupRules(rule);//console.info("PENALTY:"+ rule);
+return rule=rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism").replace("collectivism","collective").replace("\n","")});bonusesRules.forEach(bonus=>{const splitBonus=bonus.split(" "),level=splitBonus[0],attitute=splitBonus[1];//console.error("attitute:"+attitute+" nr: "+country.culturalAttitutes[attitute]+" level: "+level);
+if(country.culturalAttitutes[attitute]){if("bonus"===level){}else if("high"===level){if(7<=country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:BONUS_FOR_HIGH,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}else if("medium"===level){if(3<=country.culturalAttitutes[attitute]&&7>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:BONUS_FOR_MEDIUM,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}else if("low"===level){if(0<=country.culturalAttitutes[attitute]&&3>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"bonus",value:BONUS_FOR_LOW,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);bonusCount+=1}}}else{console.warn("Can't find attitute for: "+attitute+" "+bonus+" "+item.id)}});penaltyRules.forEach(bonus=>{const splitBonus=bonus.split(" "),level=splitBonus[0],attitute=splitBonus[1];if("bonus"===level){console.error("Wrong level")}else if("high"===level){if(7<=country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:PENALTY_FOR_HIGH,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}else if("medium"===level){if(3<=country.culturalAttitutes[attitute]&&7>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:PENALTY_FOR_MEDIUM,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}else if("low"===level){if(0<=country.culturalAttitutes[attitute]&&3>country.culturalAttitutes[attitute]){const itemToSave={id:item.id,type:"penalty",value:PENALTY_FOR_LOW,attitute:attitute,level:level};saveItemForReview(itemToSave,bonusesAndPenalties,bonuses,penalties);penaltyCount+=1}}});return{bonusesAndPenalties,bonusCount,penaltyCount,bonuses,penalties}};_exports.GetBonusesAndPenaltiesForItem=GetBonusesAndPenaltiesForItem;const GetEmojiFromAttitute=attitute=>{const emojis={authority:"\uD83C\uDFDB\uFE0F",liberty:"\uD83C\uDF05",science:"\uD83D\uDD2C",tradition:"\uD83C\uDFFA",collective:"\uD83D\uDC65",independence:"\uD83D\uDEE1\uFE0F",privacy:"\uD83D\uDD10",lawAndOrder:"\uD83D\uDC6E",progressivism:"\u270A",naturalResourceWealth:"\uD83D\uDD0B",borderDensity:"\uD83D\uDEC2",hostilityNeighboringCountries:"\uD83C\uDF10",barrieresToCitizenship:"\uD83E\uDDF1"};return emojis[attitute]};_exports.GetEmojiFromAttitute=GetEmojiFromAttitute;var oapBonusesAndPenalties={GetCompletionScoreByModuleType:GetCompletionScoreByModuleType,GetResultsForReview:GetResultsForReview,fixupRules:fixupRules,GetBonusesAndPenaltiesForItem:GetBonusesAndPenaltiesForItem,GetEmojiFromAttitute:GetEmojiFromAttitute};// Code originally from https://www.outsystems.com/blog/posts/gestures_glamour_swipeable_stacked_cards/
 _exports.$oapBonusesAndPenalties=oapBonusesAndPenalties;class OapSwipableCards extends OapBaseElement{static get properties(){return{stackedOptions:String,rotate:Boolean,items:Array,selectedItems:Array,filteredItems:Array,itemsLeft:Array,visibleItems:Array,elementsMargin:Number,useOverlays:Boolean,maxElements:Number,currentPosition:Number,currentItemsPosition:Number,currentItem:Object,isFirstTime:Boolean,elementHeight:Number,velocity:Number,topObj:Object,rightObj:Object,leftObj:Object,listElNodesObj:Object,listElNodesWidth:Object,currentElementObj:Object,stackedCardsObj:Object,obj:Object,elTrans:Object,startTime:Number,startX:Number,startY:Number,translateX:Number,translateY:Number,currentX:Number,currentY:Number,timeTaken:Number,rightOpacity:Number,leftOpacity:Number,touchingElement:Boolean,disableUpSwipe:Boolean,hiddenImageIds:Object,rendering:Boolean,configFromServer:Object,automaticSelectionActive:Boolean,country:Object,autoSliderTime:String,automaticFlipSpeed:Number}}static get styles(){return[OapSwipableCardsStyles,OapFlexLayout]}hasArrow(item){if(40<item.name.length){return 280<item.description.length}else{return 320<item.description.length}}render(){return html$1`
       <div class="toppestContainer">
         <div class="stage">
@@ -21126,6 +21129,7 @@ this.onSwipeRight()}else{this.backToMiddle()}}}}}}window.customElements.define("
       margin: 0;
       padding: 0;
       width: 100%;
+      text-align: justify;
     }
 
     paper-dialog {
@@ -21133,7 +21137,7 @@ this.onSwipeRight()}else{this.backToMiddle()}}}}}}window.customElements.define("
     }
 
     .heading {
-      font-size: 22px;
+      font-size: 28px;
     }
 
     .welcomeText {
@@ -21270,12 +21274,22 @@ this.onSwipeRight()}else{this.backToMiddle()}}}}}}window.customElements.define("
   }
 
   .wrongAnswer {
-    -webkit-transition: opacity, color, border 0.6s ease-in-out;
-    -moz-transition: opacity, color, border 0.6s ease-in-out;
-    -ms-transition: opacity, color, border 0.6s ease-in-out;
-    -o-transition: opacity, color, border 0.6s ease-in-out;
-    opacity: 0.6;
+    -webkit-transition: opacity, color, border 0.7s ease-in-out;
+    -moz-transition: opacity, color, border 0.7s ease-in-out;
+    -ms-transition: opacity, color, border 0.7s ease-in-out;
+    -o-transition: opacity, color, border 0.7s ease-in-out;
+    opacity: 0.2;
     color: #FF0000;
+    border: 1px solid #FF0000;
+  }
+
+  .wrongAnswerClicked {
+    -webkit-transition: opacity, color, border 0.15s ease-in-out;
+    -moz-transition: opacity, color, border 0.15s ease-in-out;
+    -ms-transition: opacity, color, border 0.15s ease-in-out;
+    -o-transition: opacity, color, border 0.15s ease-in-out;
+    opacity: 0.92;
+    color: #f00;
     border: 1px solid #FF0000;
   }
 
@@ -21493,7 +21507,7 @@ this.composer.render(this.clock.getDelta())}reset(){this.completed=!1;this.corre
                                   ], {
                                     duration: 500,
                                     iterations: 1
-                                  });*/this.activity("answerSubmitted","quiz")}window.requestAnimationFrame(()=>{this.$$("#button"+correctAnswer).classList.add("rightAnswer");const incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer);incorrectButtons.forEach(buttonId=>{this.$$("#button"+buttonId).classList.add("wrongAnswer")})});setTimeout(()=>{this.resetAllButtons();if(this.currentIndex<this.questions.length-1){this.currentIndex+=1;this.countdownTimer3d.startCountDown();this.requestUpdate()}else{this.currentIndex=null;this.completed=!0;this.quizFinished();this.requestUpdate();this.fire("oap-sound-effect","quizCompleted")}this.submitDisabled=!1},!0===window.debugOn?100:wasIsCorrect?3300:2700);if(this.disableLightShaftAfterNext){this.disableLightShaftAfterNext=!1;setTimeout(()=>{this.disableLightShaft()},50)}}startCountDown(){if(this.countdownTimer3d){this.countdownTimer3d.startCountDown()}else{config.error("No countdownTimer3d")}}resetAllButtons(){[0,1,2,3].forEach(buttonId=>{this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;this.$$("#button"+buttonId).selected=!1;this.$$("#button"+buttonId).focused=!1;this.$$("#button"+buttonId).classList.remove("wrongAnswer","rightAnswer")})}updated(changedProps){super.updated(changedProps);if(changedProps.has("questions")){if(this.questions){this.reset()}}if(changedProps.has("font3d")&&this.font3d){this.start();StartEarlyDelayedFontCaching(this.font3d)}}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
+                                  });*/this.activity("answerSubmitted","quiz")}window.requestAnimationFrame(()=>{this.$$("#button"+correctAnswer).classList.add("rightAnswer");let incorrectButtons;if(this.$$("#button"+answer)){this.$$("#button"+answer).classList.add("wrongAnswerClicked");incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer&&item!==answer)}else{incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer)}incorrectButtons.forEach(buttonId=>{this.$$("#button"+buttonId).classList.add("wrongAnswer")})});setTimeout(()=>{this.resetAllButtons();if(this.currentIndex<this.questions.length-1){this.currentIndex+=1;this.countdownTimer3d.startCountDown();this.requestUpdate()}else{this.currentIndex=null;this.completed=!0;this.quizFinished();this.requestUpdate();this.fire("oap-sound-effect","quizCompleted")}this.submitDisabled=!1},!0===window.debugOn?100:wasIsCorrect?3300:2700);if(this.disableLightShaftAfterNext){this.disableLightShaftAfterNext=!1;setTimeout(()=>{this.disableLightShaft()},50)}}startCountDown(){if(this.countdownTimer3d){this.countdownTimer3d.startCountDown()}else{config.error("No countdownTimer3d")}}resetAllButtons(){[0,1,2,3].forEach(buttonId=>{this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;this.$$("#button"+buttonId).selected=!1;this.$$("#button"+buttonId).focused=!1;this.$$("#button"+buttonId).classList.remove("wrongAnswer","rightAnswer","wrongAnswerClicked")})}updated(changedProps){super.updated(changedProps);if(changedProps.has("questions")){if(this.questions){this.reset()}}if(changedProps.has("font3d")&&this.font3d){this.start();StartEarlyDelayedFontCaching(this.font3d)}}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
 
   :host {
     position: relative;
@@ -21503,6 +21517,10 @@ this.composer.render(this.clock.getDelta())}reset(){this.completed=!1;this.corre
     margin-top: 24px;
     padding-bottom: 16px;
     background-color: var(--app-main-background-color);
+  }
+
+  .selectedItem {
+    margin-bottom: 16px;
   }
 
   .finalItems {
@@ -21682,12 +21700,6 @@ this.composer.render(this.clock.getDelta())}reset(){this.completed=!1;this.corre
     }
   }
 
-  @media (max-width: 600px) {
-    .topContainer {
-      margin-top: 32px;
-    }
-  }
-
   .finalHeader {
     padding: 8px;
     font-size: 24px;
@@ -21695,8 +21707,22 @@ this.composer.render(this.clock.getDelta())}reset(){this.completed=!1;this.corre
     text-align: center;
     color: #FFF;
     font-weight: bold;
-    margin-bottom: 12px;
-    margin-top: 12px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .topContainer {
+      margin-top: 32px;
+    }
+
+    .finalHeader {
+      width: 300px !important;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
   }
 
   paper-tabs {
@@ -21947,6 +21973,7 @@ this.composer.render(this.clock.getDelta())}reset(){this.completed=!1;this.corre
     margin-left: 6px;
     margin-right: 16px;
     max-width: 280px;
+    line-height: 25px;
   }
 
   .description {
@@ -21958,6 +21985,8 @@ this.composer.render(this.clock.getDelta())}reset(){this.completed=!1;this.corre
 
   .description[only-display] {
     padding-bottom: 24px;
+    font-size: 15px;
+    line-height: 18px;
   }
 
   .name[only-display] {
@@ -22324,16 +22353,13 @@ event.stopPropagation();if(this.oldElementNeedsSwapping){this.ballotElement.swap
                 <div id="submitButtonContainer" class="layout horizontal center-center">
                    <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=>{this.fire("oap-submit-ballot")}}">${this.localize("submitConstitution")}</paper-button>
                 </div>
-                <div class="finalItems">
-
-                </div>
                 ${repeat(this.budgetElement.selectedItems,item=>item.id,(item,index)=>{let headerTemplate=html$1``;if(0===index||this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index){headerTemplate=html$1`
                         <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${this.getModuleTypeName(item.module_content_type)}</div>
                       `}return html$1`
                       ${headerTemplate}
                       <oap-article-item
                         .name="${item.id}"
-                        class="ballotAreaItem"
+                        class="ballotAreaItem selectedItem"
                         .configFromServer="${this.configFromServer}"
                         .language="${this.language}"
                         .onlyDisplay="${!0}"
@@ -22638,6 +22664,21 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
     font-weight: bold;
   }
 
+  .shareHeader {
+    font-size: 26px !important;
+  }
+
+  .itemContainer {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: var(-app-item-container, #000 !important);
+  }
+
   .finalItems {
     flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
     justify-content: flex-start;
@@ -22662,7 +22703,7 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
 
   .lastHeader {
     margin-top: 0;
-    padding-bottom: 8px;
+    font-size: 32px !important;
   }
 
   .finalHeader {
@@ -22674,6 +22715,20 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
     font-weight: bold;
     margin-bottom: 12px;
     margin-top: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .finalHeader {
+      width: 300px !important;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .ballotAreaItem {
+      margin-bottom: 16px;
+    }
   }
 
   .subHeader {
@@ -22715,13 +22770,14 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
     width: 600px;
   }
 
-  .topContainer {
-    background-color: #000;
-    color: #FFF;
-    padding: 16px;
-    padding-bottom: 24px;
-    margin-left: auto;
-    margin-right: auto;
+  @media (max-width: 600px) {
+    .finalHeader {
+      width: 300px !important;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
   }
 
   .flexRow {
@@ -22858,13 +22914,6 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
     width: 100%;
   }
 
-  .nextToTop {
-    background-color: #fff;
-    color: #000;
-    padding: 16px;
-    padding-bottom: 24px;
-    border-radius: 8px;
-  }
 
   .attituteSlider {
     width: 240px;
@@ -22889,21 +22938,50 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
     text-align: center;
   }
 
+  .shareButton {
+    --iron-icon-width: 60px;
+    --iron-icon-height: 60px;
+  }
+
+  .topContainer {
+    background-color: #000;
+    color: #FFF;
+    padding: 16px;
+    padding-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nextToTop {
+    background-color: #fff;
+    color: #000;
+    padding: 16px;
+    padding-bottom: 24px;
+    border-radius: 8px;
+  }
+
   @media (max-width: 600px) {
     .topContainer {
       max-width: 100%;
-      margin-left: 8px;
-      margin-right: 8px;
+      margin-left: 0;
+      margin-right: 0;
       width: 100%;
       height: 100%;
+      padding: 0;
       margin-bottom: 32px;
       padding-top: 32px;
     }
 
-  .mainArea {
-    max-width: 100%;
-    width: 100%;
-  }
+    .nextToTop {
+      padding: 20px !important;
+      width: auto !important;
+    }
+
+    .mainArea {
+      max-width: 100%;
+      width: 100%;
+      padding: 0;
+    }
 
 
     paper-input {
@@ -22936,7 +23014,7 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
     display: none !important;
   }
 `;_exports.OapReviewStyles=OapReviewStyles;var oapReviewStyles={OapReviewStyles:OapReviewStyles};_exports.$oapReviewStyles=oapReviewStyles;class OapReview extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,selectedItems:Array,allItems:Array,configFromServer:Object,attituteReviewParagraphs:Object,countryReviewParagraph:String,completionScore:Object,isConstitutionViable:Boolean,debugText:String}}static get styles(){return[OapReviewStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.reset()}reset(){this.customCountry=null;this.submitDisabled=!0;this.isConstitutionViable=!0}getModuleColorForItem(item){return this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type]}render(){return html$1`
-    <div class=" vertical center-center">
+    <div class="layout-inline vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="welcomeLogoContainer layout center-center">
           <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
@@ -23005,7 +23083,7 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
 
               <div class="" style="width:100%;text-align: center;">
                 <div style="margin-left:auto;margin-right:auto;">
-                  <div class="subHeader">
+                  <div class="subHeader shareHeader">
                     ${this.localize("shareOnSocialMedia")}
                   </div>
 
@@ -23027,9 +23105,8 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
         </div>
       `:html$1``}
 
-      <div class="topContainer">
+      <div class="itemContainer layout horizontal center-center flex wrap">
         <div class="header lastHeader">${this.localize("finalSelection")}</div>
-        <div class="finaslItems">
           ${repeat(this.selectedItems,item=>item.id,(item,index)=>{let headerTemplate=html$1``;if(0===index||this.selectedItems[index-1].module_type_index!=item.module_type_index){headerTemplate=html$1`
                   <div style="width: 100%;background-color:${this.getModuleColorForItem(item)}" class="flex finalHeader">${this.getModuleTypeName(item.module_content_type)}</div>
                 `}return html$1`
@@ -23046,7 +23123,6 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
                   .item="${item}">
                 </oap-article-item>
               `})}
-        </div>
       </div>
     </div>
    `}shareClick(){this.activity("click","share")}getModuleTypeName(module_content_type){return this.localize(module_content_type.toLowerCase().replace("/",""))}culturalHelp(){let content;if(this.configFromServer.client_config.helpPageLocales[this.language]){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text)}else if(this.configFromServer.client_config.helpPageLocales.en){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text)}else{content="No help page found for selected language!"}this.fire("oap-open-help",content)}b64DecodeUnicode(str){// Going backwards: from bytestream, to percent-encoding, to original string.
@@ -23230,7 +23306,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
 }resetSizeWithDelay(){clearTimeout(this.resizeTimer);this.resizeTimer=setTimeout(()=>{},250)}_translationLoaded(){if(!this.haveSetLanguage){this.haveSetLanguage=!0;if("undefined"!==typeof Storage){var selectedLanguage=localStorage.getItem("selectedLanguage");if(selectedLanguage){this.fire("iron-signal",{name:"set-language",data:selectedLanguage})}}}}closeWelcome(){this.$$("#masterDialog").close();localStorage.setItem("haveClosedWelcome",!0);this.afterWelcomeClose()}getDialog(name){return this.$$("#"+name)}firstUpdated(){super.firstUpdated();this._setupListeners();installRouter(location=>this._locationChanged(location));installOfflineWatcher(offline=>this._offlineChanged(offline));installMediaQueryWatcher$1(`(min-width: 460px)`,matches=>this._layoutChanged(matches));installMediaQueryWatcher$1(`(min-width: 1024px)`,matches=>{this.wide=matches;this.wideAndBallot=this.wide&&"area-ballot"===this._page});var loader=new FontLoader;loader.load("https://open-active-policy-public.s3-eu-west-1.amazonaws.com/helvetiker_regular.typeface.json",function(font){this.font3d=font}.bind(this));this.shadowRoot.setAttribute("--iron-overlay-backdrop-opacity",1)}afterWelcomeClose(){setTimeout(()=>{if("quiz"===this._page&&this.$$("#quiz")){this.$$("#quiz").startIntro()}})}getHelpContent(){if(this.configFromServer.client_config.languages[this.language]&&this.configFromServer.client_config.languages[this.language].helpPageLocales){return this.b64DecodeUnicode(this.configFromServer.client_config.languages[this.language].helpPageLocales.b64text)}else{return"No help page found for selected language!"}}getWelcomeHeading(){if(this.configFromServer.client_config.languages[this.language]&&this.configFromServer.client_config.languages[this.language].welcomeLocales){return this.configFromServer.client_config.languages[this.language].welcomeLocales.heading}else{return"No heading found"}}getWelcomeText(){if(this.configFromServer.client_config.languages[this.language].welcomeLocales){return this.configFromServer.client_config.languages[this.language].welcomeLocales.text}else if(this.configFromServer.client_config.welcomeLocales.en){return this.configFromServer.client_config.welcomeLocales.en.text}else{return"No heading found"}}setupLocaleTexts(){this.welcomeHeading=this.getWelcomeHeading();this.welcomeText=this.getWelcomeText();this.masterHelpContent=this.helpContent=this.getHelpContent()}updateAppMeta(meta){document.title=meta.title;updateMetadata({title:meta.title,description:meta.description,image:meta.shareImageUrl// This object also takes an image property, that points to an img src.
 });var link=document.querySelector("link[rel*='icon']")||document.createElement("link");link.type="image/x-icon";link.rel="shortcut icon";link.href=meta.faviconUrl;document.getElementsByTagName("head")[0].appendChild(link)}saveDebounced(){if(!this.debouncedSave&&!this.disableAutoSave){this.debouncedSave=setTimeout(()=>{localStorage.setItem(this.GAME_STATE_VERSION,JSON.stringify({path:window.decodeURIComponent(location.pathname),page:this._page,totalChoicePoints:this.totalChoicePoints,usedChoicePoints:this.usedChoicePoints,selectedItems:this.selectedItems,filteredItems:this.filteredItems,savedChoicePoints:this.savedChoicePoints,quizDone:this.quizDone,dateSaved:new Date,country:this.country,usedBonusesAndPenalties:this.usedBonusesAndPenalties}));this.debouncedSave=null;console.info("Have autosaved game")},1e3*5)}else if(this.disableAutoSave){console.warn("Autosaved is disabled")}}checkForRestoredGameOrWelcome(){setTimeout(()=>{let gameState=localStorage.getItem(this.GAME_STATE_VERSION);if(null!=gameState){gameState=JSON.parse(gameState);this.$$("#savedGameDialog").open();const parsedDate=new Date(gameState.dateSaved);this.savedGameDate=parsedDate.toISOString().slice(0,10)}else{this.disableAutoSave=!1;if(!window.debugOn)this.openWelcomeDialog()}})}openArticleItem(event){const item=event.detail;this.masterDialogCloseFunction=null;this.masterDialogContent=html$1`
     <div id="fullScreesnItem" style="cursor: pointer;margin-left: auto;margin-right: auto;" class="" @click="${()=>{this.$$("#masterDialog").close()}}" >
-      <oap-article-item style="margin-left: auto;margin-right: auto;" .item="${item}" .onlyDisplay="${!0}" .selected="${!0}"></oap-article-item>
+      <oap-article-item style="margin-left: auto;margin-right: auto;text-align:left;" .item="${item}" .onlyDisplay="${!0}" .selected="${!0}"></oap-article-item>
       <div style="text-align: center;text-transform: uppercase;margin-top: 16px;">
         <b>${this.localize("close")}</b>
       </div>
@@ -23403,8 +23479,8 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}}_load
    `;this.openAndUpdateDialog()}culturalAttitutesTutorialTradition(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Tradition</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
-          <em>- Confucius</em><br></span>
+          <div class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
+          <em>- Confucius</em><br></div>
           Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
         </div>
       `}else if("is"==this.language){localeText=html$1`
