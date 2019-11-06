@@ -240,6 +240,7 @@ export const OapAppStyles = css`
   .smallQuotes {
     color: #999;
     text-align: center;
+    padding-bottom: 4px;
   }
 
   #favoriteIcon {
