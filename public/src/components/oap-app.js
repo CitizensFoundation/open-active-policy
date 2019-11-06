@@ -1497,7 +1497,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogContent = html`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="image" style="width: 400px;height:216px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
+        <img aria-label="image" style="width: 309px;height:167px;margin-bottom:8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/culturalValues12.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
         ${localeText}
