@@ -397,6 +397,8 @@ class OapApp extends OapBaseElement {
     this.GAME_STATE_VERSION="OapGameStateV11";
     if (localStorage.getItem('oap-have-seen-cultural-attitutes-tutorial-'+this.GAME_STATE_VERSION)) {
       this.hasSeenCulturalAttitutesTutorial = true;
+    } else {
+      this.hasSeenCulturalAttitutesTutorial = true;
     }
   }
 

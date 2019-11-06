@@ -994,7 +994,6 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   toggleBudgetItem(item) {
-    this.activity('toggle', 'vote');
     if (this.selectedItems.indexOf(item) > -1) {
       this.activity('remove', 'vote');
       this._removeItemFromArray(item);
