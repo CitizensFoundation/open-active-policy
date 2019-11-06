@@ -597,9 +597,12 @@ class GPUFireworks3D {
     if (window.innerWidth<600) {
       this.MAX_PARTICLES = 2000;
       this.MAX_FIREWORKS = 2;
+    } else if (window.innerWidth<1025) {
+      this.MAX_PARTICLES = 4000;
+      this.MAX_FIREWORKS = 3;
     } else {
-      this.MAX_PARTICLES = 250000;
-      this.MAX_FIREWORKS = 7;
+      this.MAX_PARTICLES = 200000;
+      this.MAX_FIREWORKS = 6;
     }
     this.scene = scene;
     this.camera = camera;
