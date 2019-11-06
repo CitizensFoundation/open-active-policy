@@ -6888,7 +6888,7 @@ $
   [hidden] {
     display: none !important;
   }
-`;var oapReviewStyles={OapReviewStyles:OapReviewStyles};class OapReview extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,selectedItems:Array,allItems:Array,configFromServer:Object,attituteReviewParagraphs:Object,countryReviewParagraph:String,completionScore:Object,isConstitutionViable:Boolean,debugText:String}}static get styles(){return[OapReviewStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.reset()}reset(){this.customCountry=null,this.submitDisabled=!0,this.isConstitutionViable=!0}getModuleColorForItem(e){return this.configFromServer.client_config.moduleTypeColorLookup[e.module_content_type]}render(){return html$1`
+`;var oapReviewStyles={OapReviewStyles:OapReviewStyles};class OapReview extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,selectedItems:Array,allItems:Array,configFromServer:Object,attituteReviewParagraphs:Object,countryReviewParagraph:String,completionScore:Object,isConstitutionViable:Boolean,debugText:String,reviewId:String}}static get styles(){return[OapReviewStyles,OapFlexLayout,OapShadowStyles]}constructor(){super(),this.reset()}reset(){this.customCountry=null,this.submitDisabled=!0,this.isConstitutionViable=!0}getModuleColorForItem(e){return this.configFromServer.client_config.moduleTypeColorLookup[e.module_content_type]}render(){return html$1`
     <div class="layout-inline vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="welcomeLogoContainer layout center-center">
@@ -6964,7 +6964,7 @@ $
 
                   <div>
                     <paper-share-button class="shareIcon" horizontal-align="left" id="shareButton" @click="${this.shareClick}"
-                      facebook twitter popup .url="${window.location.href}">
+                      facebook twitter popup .url="https://${window.location.hostname+"/constiutions/review/"+this.reviewId}">
                     </paper-share-button>
                   </div>
                 </div>
@@ -7138,6 +7138,7 @@ $
               .budgetElement="${this.currentBudget}"
               .language="${this.language}"
               .allItems="${this.allItems}"
+              .reviewId="${this._subPath}"
               .selectedItems="${this.selectedItems}"
               .country="${this.country}"
               class="page"

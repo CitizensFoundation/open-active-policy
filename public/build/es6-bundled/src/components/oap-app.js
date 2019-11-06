@@ -23013,7 +23013,7 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
   [hidden] {
     display: none !important;
   }
-`;_exports.OapReviewStyles=OapReviewStyles;var oapReviewStyles={OapReviewStyles:OapReviewStyles};_exports.$oapReviewStyles=oapReviewStyles;class OapReview extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,selectedItems:Array,allItems:Array,configFromServer:Object,attituteReviewParagraphs:Object,countryReviewParagraph:String,completionScore:Object,isConstitutionViable:Boolean,debugText:String}}static get styles(){return[OapReviewStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.reset()}reset(){this.customCountry=null;this.submitDisabled=!0;this.isConstitutionViable=!0}getModuleColorForItem(item){return this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type]}render(){return html$1`
+`;_exports.OapReviewStyles=OapReviewStyles;var oapReviewStyles={OapReviewStyles:OapReviewStyles};_exports.$oapReviewStyles=oapReviewStyles;class OapReview extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,selectedItems:Array,allItems:Array,configFromServer:Object,attituteReviewParagraphs:Object,countryReviewParagraph:String,completionScore:Object,isConstitutionViable:Boolean,debugText:String,reviewId:String}}static get styles(){return[OapReviewStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.reset()}reset(){this.customCountry=null;this.submitDisabled=!0;this.isConstitutionViable=!0}getModuleColorForItem(item){return this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type]}render(){return html$1`
     <div class="layout-inline vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="welcomeLogoContainer layout center-center">
@@ -23089,7 +23089,7 @@ item.object.rotation.x=0;if(Math.abs(item.object.rotation.y)>=2*Math.PI){item.ob
 
                   <div>
                     <paper-share-button class="shareIcon" horizontal-align="left" id="shareButton" @click="${this.shareClick}"
-                      facebook twitter popup .url="${window.location.href}">
+                      facebook twitter popup .url="https://${window.location.hostname+"/constiutions/review/"+this.reviewId}">
                     </paper-share-button>
                   </div>
                 </div>
@@ -23264,6 +23264,7 @@ return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.
               .budgetElement="${this.currentBudget}"
               .language="${this.language}"
               .allItems="${this.allItems}"
+              .reviewId="${this._subPath}"
               .selectedItems="${this.selectedItems}"
               .country="${this.country}"
               class="page"

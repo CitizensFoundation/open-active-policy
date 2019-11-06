@@ -32,7 +32,8 @@ class OapReview extends OapPageViewElement {
       completionScore: Object,
       isConstitutionViable: Boolean,
       debugText: String,
-      reviewId: String
+      reviewId: String,
+      gotReviewFromServer: Boolean
     };
   }
 

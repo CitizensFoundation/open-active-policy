@@ -123,6 +123,8 @@ class OapApp extends OapBaseElement {
         value: true
       },
 
+      gotReviewFromServer: Boolean,
+
       areaName: String,
 
       currentBallot: Object,
@@ -338,6 +340,7 @@ class OapApp extends OapBaseElement {
               .language="${this.language}"
               .allItems="${this.allItems}"
               .reviewId="${this._subPath}"
+              .gotReviewFromServer="${this.gotReviewFromServer}"
               .selectedItems="${this.selectedItems}"
               .country="${this.country}"
               class="page"
