@@ -436,7 +436,13 @@ class OapPolicyQuiz extends OapPageViewElement {
 
     window.requestAnimationFrame(()=>{
       this.$$("#button"+correctAnswer).classList.add("rightAnswer");
-      const incorrectButtons = [0,1,2,3].filter(item => item !== correctAnswer);
+      let incorrectButtons;
+      if (this.$$("#button"+answer)) {
+        this.$$("#button"+answer).classList.add("wrongAnswerClicked");
+        incorrectButtons = [0,1,2,3].filter(item => (item !== correctAnswer && item !== answer));
+      } else {
+        incorrectButtons = [0,1,2,3].filter(item => (item !== correctAnswer));
+      }
       incorrectButtons.forEach( (buttonId) => {
         this.$$("#button"+buttonId).classList.add("wrongAnswer");
       });
@@ -479,7 +485,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;
       this.$$("#button"+buttonId).selected=false;
       this.$$("#button"+buttonId).focused=false;
-      this.$$("#button"+buttonId).classList.remove("wrongAnswer","rightAnswer");
+      this.$$("#button"+buttonId).classList.remove("wrongAnswer","rightAnswer","wrongAnswerClicked");
     });
   }
 

@@ -43,12 +43,22 @@ export const OapPolicyQuizStyles = css`
   }
 
   .wrongAnswer {
-    -webkit-transition: opacity, color, border 0.6s ease-in-out;
-    -moz-transition: opacity, color, border 0.6s ease-in-out;
-    -ms-transition: opacity, color, border 0.6s ease-in-out;
-    -o-transition: opacity, color, border 0.6s ease-in-out;
-    opacity: 0.6;
+    -webkit-transition: opacity, color, border 0.7s ease-in-out;
+    -moz-transition: opacity, color, border 0.7s ease-in-out;
+    -ms-transition: opacity, color, border 0.7s ease-in-out;
+    -o-transition: opacity, color, border 0.7s ease-in-out;
+    opacity: 0.2;
     color: #FF0000;
+    border: 1px solid #FF0000;
+  }
+
+  .wrongAnswerClicked {
+    -webkit-transition: opacity, color, border 0.15s ease-in-out;
+    -moz-transition: opacity, color, border 0.15s ease-in-out;
+    -ms-transition: opacity, color, border 0.15s ease-in-out;
+    -o-transition: opacity, color, border 0.15s ease-in-out;
+    opacity: 0.92;
+    color: #f00;
     border: 1px solid #FF0000;
   }
 

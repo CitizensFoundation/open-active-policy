@@ -114,9 +114,6 @@ class OapBallot extends OapPageViewElement {
                 <div id="submitButtonContainer" class="layout horizontal center-center">
                    <paper-button  id="submitButton" raised  ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-submit-ballot') }}">${this.localize("submitConstitution")}</paper-button>
                 </div>
-                <div class="finalItems">
-
-                </div>
                 ${repeat(this.budgetElement.selectedItems, (item) => item.id,  (item, index) => {
                    let headerTemplate = html``;
                     if (index===0 || this.budgetElement.selectedItems[index-1].module_type_index!=item.module_type_index) {
@@ -128,7 +125,7 @@ class OapBallot extends OapPageViewElement {
                       ${headerTemplate}
                       <oap-article-item
                         .name="${item.id}"
-                        class="ballotAreaItem"
+                        class="ballotAreaItem selectedItem"
                         .configFromServer="${this.configFromServer}"
                         .language="${this.language}"
                         .onlyDisplay="${true}"

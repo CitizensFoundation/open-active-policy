@@ -57,9 +57,32 @@ class ConstitutionsController < ApplicationController
   end
 
   def review
+      browser = Browser.new(
+        request.user_agent,
+        accept_language: request.env["HTTP_ACCEPT_LANGUAGE"]
+    )
+
     @constitution = Constitution.find(params[:id])
-    if @constitution
+
+    plain = Base64.decode64(@constitution.payload_data)
+    @data = JSON.parse(plain)
+
+    locale = @config.client_config["localeSetup"]["locale"]
+    if params[:locale]
+      locale = params[:locale]
+    end
+    if @config.client_config["languages"][locale] and  @config.client_config["languages"][locale]["shareMetaData"]
+      @meta = @config.client_config["languages"][locale]["shareMetaData"]
     else
+      @meta = @config.client_config["languages"]["en"]["shareMetaData"]
+    end
+
+    if browser.bot?
+      respond_to do |format|
+        format.html { render :layout => false }
+      end
+    else
+      format.json { render :json => { :constitution => @constitution} }
     end
   end
 

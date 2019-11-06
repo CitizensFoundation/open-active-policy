@@ -1099,7 +1099,7 @@ class OapApp extends OapBaseElement {
     this.masterDialogCloseFunction = null;
     this.masterDialogContent = html`
     <div id="fullScreesnItem" style="cursor: pointer;margin-left: auto;margin-right: auto;" class="" @click="${()=>{this.$$("#masterDialog").close()}}" >
-      <oap-article-item style="margin-left: auto;margin-right: auto;" .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
+      <oap-article-item style="margin-left: auto;margin-right: auto;text-align:left;" .item="${item}" .onlyDisplay="${true}" .selected="${true}"></oap-article-item>
       <div style="text-align: center;text-transform: uppercase;margin-top: 16px;">
         <b>${this.localize('close')}</b>
       </div>
@@ -1586,8 +1586,8 @@ class OapApp extends OapBaseElement {
       localeText =  html`
         <div class="heading">Tradition</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
-          <em>- Confucius</em><br></span>
+          <div class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
+          <em>- Confucius</em><br></div>
           Measures how attached the citizens of your country are to age old beliefs of their culture, including religion, dress, legal practice, attitudes about sex and marriage and gender, ethnic heritage, food, and art/music. These committed beliefs deeply influence the sort of government they wish to be ruled by.
         </div>
       `

@@ -17,6 +17,21 @@ export const OapReviewStyles = css`
     font-weight: bold;
   }
 
+  .shareHeader {
+    font-size: 26px !important;
+  }
+
+  .itemContainer {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: var(-app-item-container, #000 !important);
+  }
+
   .finalItems {
     flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
     justify-content: flex-start;
@@ -41,7 +56,7 @@ export const OapReviewStyles = css`
 
   .lastHeader {
     margin-top: 0;
-    padding-bottom: 8px;
+    font-size: 32px !important;
   }
 
   .finalHeader {
@@ -53,6 +68,20 @@ export const OapReviewStyles = css`
     font-weight: bold;
     margin-bottom: 12px;
     margin-top: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .finalHeader {
+      width: 300px !important;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .ballotAreaItem {
+      margin-bottom: 16px;
+    }
   }
 
   .subHeader {
@@ -94,13 +123,14 @@ export const OapReviewStyles = css`
     width: 600px;
   }
 
-  .topContainer {
-    background-color: #000;
-    color: #FFF;
-    padding: 16px;
-    padding-bottom: 24px;
-    margin-left: auto;
-    margin-right: auto;
+  @media (max-width: 600px) {
+    .finalHeader {
+      width: 300px !important;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
   }
 
   .flexRow {
@@ -237,13 +267,6 @@ export const OapReviewStyles = css`
     width: 100%;
   }
 
-  .nextToTop {
-    background-color: #fff;
-    color: #000;
-    padding: 16px;
-    padding-bottom: 24px;
-    border-radius: 8px;
-  }
 
   .attituteSlider {
     width: 240px;
@@ -268,21 +291,50 @@ export const OapReviewStyles = css`
     text-align: center;
   }
 
+  .shareButton {
+    --iron-icon-width: 60px;
+    --iron-icon-height: 60px;
+  }
+
+  .topContainer {
+    background-color: #000;
+    color: #FFF;
+    padding: 16px;
+    padding-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nextToTop {
+    background-color: #fff;
+    color: #000;
+    padding: 16px;
+    padding-bottom: 24px;
+    border-radius: 8px;
+  }
+
   @media (max-width: 600px) {
     .topContainer {
       max-width: 100%;
-      margin-left: 8px;
-      margin-right: 8px;
+      margin-left: 0;
+      margin-right: 0;
       width: 100%;
       height: 100%;
+      padding: 0;
       margin-bottom: 32px;
       padding-top: 32px;
     }
 
-  .mainArea {
-    max-width: 100%;
-    width: 100%;
-  }
+    .nextToTop {
+      padding: 20px !important;
+      width: auto !important;
+    }
+
+    .mainArea {
+      max-width: 100%;
+      width: 100%;
+      padding: 0;
+    }
 
 
     paper-input {

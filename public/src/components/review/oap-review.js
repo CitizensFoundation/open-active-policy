@@ -60,7 +60,7 @@ class OapReview extends OapPageViewElement {
 
   render() {
     return html`
-    <div class=" vertical center-center">
+    <div class="layout-inline vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="welcomeLogoContainer layout center-center">
           <img aria-label="welcome/velkomin" class="welcomeLogo" src="${this.configFromServer.client_config.ballotBudgetLogo}"></img>
@@ -135,7 +135,7 @@ class OapReview extends OapPageViewElement {
 
               <div class="" style="width:100%;text-align: center;">
                 <div style="margin-left:auto;margin-right:auto;">
-                  <div class="subHeader">
+                  <div class="subHeader shareHeader">
                     ${this.localize("shareOnSocialMedia")}
                   </div>
 
@@ -157,9 +157,8 @@ class OapReview extends OapPageViewElement {
         </div>
       ` : html``}
 
-      <div class="topContainer">
+      <div class="itemContainer layout horizontal center-center flex wrap">
         <div class="header lastHeader">${this.localize('finalSelection')}</div>
-        <div class="finaslItems">
           ${repeat(this.selectedItems, (item) => item.id,  (item, index) => {
               let headerTemplate = html``;
               if (index===0 || this.selectedItems[index-1].module_type_index!=item.module_type_index) {
@@ -183,7 +182,6 @@ class OapReview extends OapPageViewElement {
               `
             }
           )}
-        </div>
       </div>
     </div>
    `

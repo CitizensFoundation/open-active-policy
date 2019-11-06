@@ -204,6 +204,7 @@ export const OapArticleItemStyles = css`
     margin-left: 6px;
     margin-right: 16px;
     max-width: 280px;
+    line-height: 25px;
   }
 
   .description {
@@ -215,6 +216,8 @@ export const OapArticleItemStyles = css`
 
   .description[only-display] {
     padding-bottom: 24px;
+    font-size: 15px;
+    line-height: 18px;
   }
 
   .name[only-display] {

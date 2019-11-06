@@ -17,6 +17,10 @@ export const OapBallotStyles = css`
     background-color: var(--app-main-background-color);
   }
 
+  .selectedItem {
+    margin-bottom: 16px;
+  }
+
   .finalItems {
     flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
     justify-content: flex-start;
@@ -194,12 +198,6 @@ export const OapBallotStyles = css`
     }
   }
 
-  @media (max-width: 600px) {
-    .topContainer {
-      margin-top: 32px;
-    }
-  }
-
   .finalHeader {
     padding: 8px;
     font-size: 24px;
@@ -207,8 +205,22 @@ export const OapBallotStyles = css`
     text-align: center;
     color: #FFF;
     font-weight: bold;
-    margin-bottom: 12px;
-    margin-top: 12px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .topContainer {
+      margin-top: 32px;
+    }
+
+    .finalHeader {
+      width: 300px !important;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
   }
 
   paper-tabs {

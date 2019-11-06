@@ -227,11 +227,17 @@ export const GetResultsForReview = (selectedItems, allItems, country, attituteRe
 export const fixupRules = (rule) => {
   rule = rule.toLowerCase();
   rule = rule.replace(/\n/g,'');
+
+  rule = rule.replace(/collective.high/,'collective high')
+
   rule = rule.trim();
   rule = rule.replace("law/order","lawAndOrder");
   rule = rule.replace("law and order","lawAndOrder");
   rule = rule.replace("law & order","lawAndOrder");
+  rule = rule.replace("law/iorder","lawAndOrder");
   rule = rule.replace("progressivisim","progressivism");
+  rule = rule.replace("progressism","progressivism");
+  rule = rule.replace("progressive","progressivism");
   rule = rule.replace("progrevissim","progressivism");
   rule = rule.replace("social progress","progressivism");
   rule = rule.replace("sovreignty","independence");
@@ -249,14 +255,14 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
     let bonusesRules = item.bonus ? item.bonus.split(",") : [];
     bonusesRules = bonusesRules.map((rule) => {
       rule = fixupRules(rule);
-      console.info("BONUES:"+ rule);
+      //console.info("BONUES:"+ rule);
       return rule;
     });
 
     let penaltyRules =  item.penalty ? item.penalty.split(",") : [];
     penaltyRules = penaltyRules.map((rule) => {
       rule = fixupRules(rule);
-      console.info("PENALTY:"+ rule);
+      //console.info("PENALTY:"+ rule);
       return rule = rule.toLowerCase().replace("law/order","lawAndOrder").replace("law and order","lawAndOrder").replace("social progress","progressivism").replace("collectivism","collective").replace('\n','');
     });
 
@@ -264,7 +270,7 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
       const splitBonus = bonus.split(" ");
       const level = splitBonus[0];
       const attitute = splitBonus[1];
-      console.error("attitute:"+attitute+" nr: "+country.culturalAttitutes[attitute]+" level: "+level);
+      //console.error("attitute:"+attitute+" nr: "+country.culturalAttitutes[attitute]+" level: "+level);
       if (country.culturalAttitutes[attitute]) {
         if (level==="bonus") {
         } else if (level==="high") {
@@ -287,7 +293,7 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
           }
         }
       } else {
-        console.warn("Can't find attitute for: "+attitute);
+        console.warn("Can't find attitute for: "+attitute+ " "+bonus+" "+item.id);
       }
     });
 

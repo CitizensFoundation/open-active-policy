@@ -1,0 +1,29 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "#{@area.name}: #{@item.name}", :property => "og:title"}/
+    %meta{:content => "#{@config.client_config["shareMetaData"]["description"]}", :property => "og:description"}/
+    %meta{:content => "website", :property => "og:type"}/
+    %meta{:content => "#{@item.image_url}", :property => "og:image"}/
+    %meta{:content => "#{request.protocol + request.host}/items/#{@item.id}", :property => "og:url"}/
+    %meta{:content => "#{@area.name}: #{@item.name}", :property => "og:site_name"}/
+    %title
+      = "#{@area.name}: #{@item.name}"
+  %body
+    %center
+      %div
+        %b
+          = "#{@config.client_config["shareMetaData"]["description"]}"
+      %br
+      %div
+        %b
+          = "#{@area.name}: #{@item.name}"
+      %br
+      %div
+        %img{:src=>@item.image_url, :width=>310}
+      %br
+      %div
+        %b
+          %a{:href=>"/"} Taktu þátt með því að smella hér
+

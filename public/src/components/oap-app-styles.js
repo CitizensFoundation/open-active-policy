@@ -368,6 +368,7 @@ export const OapAppStyles = css`
       margin: 0;
       padding: 0;
       width: 100%;
+      text-align: justify;
     }
 
     paper-dialog {
@@ -375,7 +376,7 @@ export const OapAppStyles = css`
     }
 
     .heading {
-      font-size: 22px;
+      font-size: 28px;
     }
 
     .welcomeText {
