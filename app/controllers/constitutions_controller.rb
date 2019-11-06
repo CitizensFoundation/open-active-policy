@@ -68,8 +68,7 @@ class ConstitutionsController < ApplicationController
     @data = JSON.parse(plain)
 
     client_config = @config.client_config
-    puts client_config["localeSetup"][0]["locale"]
-    locale = client_config["localeSetup"][0]["locale"]
+    locale = @config.client_config["defaultLanguage"]
     if params[:locale]
       locale = params[:locale]
     end
