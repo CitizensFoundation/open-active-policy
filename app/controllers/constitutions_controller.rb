@@ -86,9 +86,7 @@ class ConstitutionsController < ApplicationController
         format.html { render :layout => false }
       end
     else
-      respond_to do |format|
-        format.json { render :json => { :constitution => @data } }
-      end
+      redirect_to '/review/'+params[:id]
     end
   end
 

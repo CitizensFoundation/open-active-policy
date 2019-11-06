@@ -31,7 +31,8 @@ class OapReview extends OapPageViewElement {
       countryReviewParagraph: String,
       completionScore: Object,
       isConstitutionViable: Boolean,
-      debugText: String
+      debugText: String,
+      reviewId: String
     };
   }
 
@@ -141,7 +142,7 @@ class OapReview extends OapPageViewElement {
 
                   <div>
                     <paper-share-button class="shareIcon" horizontal-align="left" id="shareButton" @click="${this.shareClick}"
-                      facebook twitter popup .url="${window.location.href}">
+                      facebook twitter popup .url="https://${window.location.hostname+"/constiutions/review/"+this.reviewId}">
                     </paper-share-button>
                   </div>
                 </div>

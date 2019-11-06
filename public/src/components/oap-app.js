@@ -337,6 +337,7 @@ class OapApp extends OapBaseElement {
               .budgetElement="${this.currentBudget}"
               .language="${this.language}"
               .allItems="${this.allItems}"
+              .reviewId="${this._subPath}"
               .selectedItems="${this.selectedItems}"
               .country="${this.country}"
               class="page"
