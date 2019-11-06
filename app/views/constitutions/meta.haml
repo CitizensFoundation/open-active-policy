@@ -4,12 +4,12 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title @meta.title
     %meta{:charset => "utf-8"}/
-    %meta{:property => "og:title", :content => @meta["title"]+": "+@data["country"]["name"]}
-    %meta{:property => "og:description", :content => @meta["country"]["description]}
+    %meta{:property => "og:title", :content => @meta["title"]}
+    %meta{:property => "og:description", :content => @meta["description"]}
     %meta{:property => "og:image", :content => @meta["shareImageUrl"]}
   %body
     %h1
-      = @meta["title"]+": "+@data["country"]["name"]
+      = @meta["title"]
     %p
       = @meta["description"]
     %img{:src => @meta["shareImageUrl"]}
