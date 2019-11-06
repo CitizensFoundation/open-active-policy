@@ -1102,7 +1102,7 @@ class OapApp extends OapBaseElement {
 
   checkForRestoredGameOrWelcome() {
     setTimeout(()=>{
-      if (!this.gettingSavedReview && !this._page=="review") {
+      if (!this.gettingSavedReview && this._page!=="review") {
         let gameState = localStorage.getItem(this.GAME_STATE_VERSION);
         if (gameState!=null) {
           gameState = JSON.parse(gameState);
