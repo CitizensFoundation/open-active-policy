@@ -1413,6 +1413,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'welcome');
   }
 
   openChoicePointsDialog() {
@@ -1444,6 +1445,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'choicePoints');
   }
 
   openQuizDialog() {
@@ -1474,6 +1476,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'quiz');
   }
 
   startCulturalAttitutesTutorial() {
@@ -1509,6 +1512,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'culturalAttitutes');
   }
 
   culturalAttitutesTutorialAuthority() {
@@ -1548,6 +1552,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'authority');
   }
 
   culturalAttitutesTutorialLiberty() {
@@ -1587,6 +1592,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'liberty');
   }
 
   culturalAttitutesTutorialScience() {
@@ -1626,6 +1632,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'science');
   }
 
   culturalAttitutesTutorialTradition() {
@@ -1666,6 +1673,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'tradition');
   }
 
   culturalAttitutesTutorialCollective() {
@@ -1707,6 +1715,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'collectivism');
   }
 
   culturalAttitutesTutorialIndependence() {
@@ -1747,6 +1756,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'independence');
   }
 
   culturalAttitutesTutorialPrivacy() {
@@ -1788,6 +1798,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'privacy');
   }
 
   culturalAttitutesTutorialLawAndOrder() {
@@ -1831,6 +1842,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'lawAndOrder');
   }
 
   culturalAttitutesTutorialProgressivism() {
@@ -1874,6 +1886,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'progressiveism');
   }
 
   openCountrySelectInfoDialog() {
@@ -1908,6 +1921,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'selectCountry');
   }
 
   openAndUpdateDialog(notModal) {
@@ -1951,6 +1965,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'openFilter');
   }
 
   openSelectionInfoDialog() {
@@ -1987,6 +2002,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
+    this.activity('tutorial', 'selection');
   }
 }
 

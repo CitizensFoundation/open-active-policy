@@ -63,6 +63,10 @@ class OapCountryCreation extends OapPageViewElement {
     };
   }
 
+  countryDropdownClicked() {
+    this.activity('open', 'countryDropdown');
+  }
+
   render() {
     return html`
     <div class="layout vertical center-center">
@@ -75,7 +79,7 @@ class OapCountryCreation extends OapPageViewElement {
             <div class="header"><div style="padding: 8px">${this.localize("createYourCountry")}</div></div>
 
             <div class="dropDownContainer">
-              <paper-dropdown-menu .label="${this.localize("choose_a_country")}" @selected-item-changed="${this.countrySelected}">
+              <paper-dropdown-menu .label="${this.localize("choose_a_country")}" @click="${this.countryDropdownClicked}" @selected-item-changed="${this.countrySelected}">
                   <paper-listbox slot="dropdown-content">
                     ${this.countryList.map((country, index)=>{
                       return html`
@@ -333,6 +337,7 @@ class OapCountryCreation extends OapPageViewElement {
         });
         this.haveOpenedTutorial=true;
       }
+      this.activity('selected', 'country');
     }
   }
 

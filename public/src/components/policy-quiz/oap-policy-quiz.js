@@ -420,6 +420,7 @@ class OapPolicyQuiz extends OapPageViewElement {
       this.countdownTimer3d.stopCountDownFail();
       this.wrongAnswerColorAnimation();
       this.incorrectAnswers+=1;
+      this.activity('wrong', 'quizAnswer');
       /*this.$$("#button"+answer).animate([
         { transform: "translateX(-3px)", easing: 'ease-in' },
         { transform: "translateX(3px)", easing: 'ease-out' },
@@ -431,8 +432,9 @@ class OapPolicyQuiz extends OapPageViewElement {
         duration: 500,
         iterations: 1
       });*/
-      this.activity('answerSubmitted', 'quiz');
     }
+
+    this.activity('answerSubmitted', 'quiz');
 
     window.requestAnimationFrame(()=>{
       this.$$("#button"+correctAnswer).classList.add("rightAnswer");
