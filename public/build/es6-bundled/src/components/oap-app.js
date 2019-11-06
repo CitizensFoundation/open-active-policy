@@ -19678,7 +19678,7 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
                 0 9px 46px 8px rgba(0, 0, 0, 0.12),
                 0 11px 15px -7px rgba(0, 0, 0, 0.4);
   }
-`;_exports.OapShadowStyles=OapShadowStyles;var oapShadowStyles={OapShadowStyles:OapShadowStyles};_exports.$oapShadowStyles=oapShadowStyles;class OapCountryCreation extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,configFromServer:Object}}static get styles(){return[OapCountryCreationStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.reset()}reset(){this.customCountry=null;this.submitDisabled=!0;this.country={name:"",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,progressivism:0}}}render(){return html$1`
+`;_exports.OapShadowStyles=OapShadowStyles;var oapShadowStyles={OapShadowStyles:OapShadowStyles};_exports.$oapShadowStyles=oapShadowStyles;class OapCountryCreation extends OapPageViewElement{static get properties(){return{country:Object,customCountry:Boolean,submitDisabled:Boolean,configFromServer:Object}}static get styles(){return[OapCountryCreationStyles,OapFlexLayout,OapShadowStyles]}constructor(){super();this.reset()}reset(){this.customCountry=null;this.submitDisabled=!0;this.country={name:"",description:"",population:"",geographicalSize:"",naturalResourceWealth:0,borderDensity:0,hostilityNeighboringCountries:0,barrieresToCitizenship:0,culturalAttitutes:{authority:0,liberty:0,science:0,tradition:0,collective:0,independence:0,privacy:0,lawAndOrder:0,progressivism:0}}}countryDropdownClicked(){this.activity("open","countryDropdown")}render(){return html$1`
     <div class="layout vertical center-center">
       <div class="topContainer shadow-animation shadow-elevation-3dp">
         <div class="welcomeLogoContainer layout center-center">
@@ -19689,7 +19689,7 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
             <div class="header"><div style="padding: 8px">${this.localize("createYourCountry")}</div></div>
 
             <div class="dropDownContainer">
-              <paper-dropdown-menu .label="${this.localize("choose_a_country")}" @selected-item-changed="${this.countrySelected}">
+              <paper-dropdown-menu .label="${this.localize("choose_a_country")}" @click="${this.countryDropdownClicked}" @selected-item-changed="${this.countrySelected}">
                   <paper-listbox slot="dropdown-content">
                     ${this.countryList.map((country,index)=>{return html$1`
                         <paper-item data-id="${index}">${country.name}</paper-item>
@@ -19918,7 +19918,7 @@ _exports.$oapBaseElement=oapBaseElement;class OapPageViewElement extends OapBase
       </div>
 
     </div>
-    `}getCulturalPercent(value){return 10*parseInt(value)+"%"}countrySelected(event){if(event.detail.value){const countryId=event.detail.value.dataset.id;this.country=this.countryList[event.detail.value.dataset.id];if(9==countryId){this.customCountry=!0;this.country.name="";this.submitDisabled=!0;this.checkIfOkToProceed()}else{this.countryList[9].name=this.localize("customCountry");this.customCountry=!1;this.submitDisabled=!1}if(!this.haveOpenedTutorial){setTimeout(()=>{this.fire("oap-start-cultural-attitutes-tutorial")});this.haveOpenedTutorial=!0}}}checkIfOkToProceed(){if(1<this.country.name.length&&1<this.country.description.length&&0<this.country.population.length&&0<this.country.geographicalSize.length){this.submitDisabled=!1}}setName(event){if(event.detail.value&&this.customCountry){this.country.name=event.detail.value;this.checkIfOkToProceed()}}setDescription(event){if(event.detail.value&&this.customCountry){this.country.description=event.detail.value;this.checkIfOkToProceed()}}setPopulation(event){if(event.detail.value&&this.customCountry){this.country.population=event.detail.value;this.checkIfOkToProceed()}}changeStats(stat,event){if(event.detail.value&&this.customCountry){this.country[stat]=event.detail.value;this.requestUpdate()}}changeAttitute(attitute,event){if(event.detail.value&&this.customCountry){this.country.culturalAttitutes[attitute]=event.detail.value;this.requestUpdate()}}setGeographicalSize(event){if(event.detail.value&&this.customCountry){this.country.geographicalSize=event.detail.value;this.checkIfOkToProceed()}}culturalHelp(){let content;if(this.configFromServer.client_config.helpPageLocales[this.language]){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text)}else if(this.configFromServer.client_config.helpPageLocales.en){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text)}else{content="No help page found for selected language!"}this.fire("oap-open-help",content)}b64DecodeUnicode(str){// Going backwards: from bytestream, to percent-encoding, to original string.
+    `}getCulturalPercent(value){return 10*parseInt(value)+"%"}countrySelected(event){if(event.detail.value){const countryId=event.detail.value.dataset.id;this.country=this.countryList[event.detail.value.dataset.id];if(9==countryId){this.customCountry=!0;this.country.name="";this.submitDisabled=!0;this.checkIfOkToProceed()}else{this.countryList[9].name=this.localize("customCountry");this.customCountry=!1;this.submitDisabled=!1}if(!this.haveOpenedTutorial){setTimeout(()=>{this.fire("oap-start-cultural-attitutes-tutorial")});this.haveOpenedTutorial=!0}this.activity("selected","country")}}checkIfOkToProceed(){if(1<this.country.name.length&&1<this.country.description.length&&0<this.country.population.length&&0<this.country.geographicalSize.length){this.submitDisabled=!1}}setName(event){if(event.detail.value&&this.customCountry){this.country.name=event.detail.value;this.checkIfOkToProceed()}}setDescription(event){if(event.detail.value&&this.customCountry){this.country.description=event.detail.value;this.checkIfOkToProceed()}}setPopulation(event){if(event.detail.value&&this.customCountry){this.country.population=event.detail.value;this.checkIfOkToProceed()}}changeStats(stat,event){if(event.detail.value&&this.customCountry){this.country[stat]=event.detail.value;this.requestUpdate()}}changeAttitute(attitute,event){if(event.detail.value&&this.customCountry){this.country.culturalAttitutes[attitute]=event.detail.value;this.requestUpdate()}}setGeographicalSize(event){if(event.detail.value&&this.customCountry){this.country.geographicalSize=event.detail.value;this.checkIfOkToProceed()}}culturalHelp(){let content;if(this.configFromServer.client_config.helpPageLocales[this.language]){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales[this.language].b64text)}else if(this.configFromServer.client_config.helpPageLocales.en){content=this.b64DecodeUnicode(this.configFromServer.client_config.cultureHelpPageLocales.en.b64text)}else{content="No help page found for selected language!"}this.fire("oap-open-help",content)}b64DecodeUnicode(str){// Going backwards: from bytestream, to percent-encoding, to original string.
 return decodeURIComponent(atob(str).split("").map(function(c){return"%"+("00"+c.charCodeAt(0).toString(16)).slice(-2)}).join(""))}updated(changedProps){super.updated(changedProps);if(changedProps.has("configFromServer")&&this.configFromServer){this.countryList=this.configFromServer.client_config.languages[this.language].countryList}}}window.customElements.define("oap-country-creation",OapCountryCreation);const OapFilterArticlesStyles=css`
 
   :host {
@@ -20699,7 +20699,7 @@ _exports.$oapBonusesAndPenalties=oapBonusesAndPenalties;class OapSwipableCards e
       </div>
     `}constructor(){super();this.reset()}isExclusive(item){return item.exclusive_ids&&""!=item.exclusive_ids}getBonusPlurar(array){if(1<array.length){return this.localize("bonuses")}else{return this.localize("bonus")}}getPenaltyPlurar(array){if(1<array.length){return this.localize("penalties")}else{return this.localize("penalty")}}getBonusesAndPenalties(itemIn){let bonusesAndPenalties=GetBonusesAndPenaltiesForItem(itemIn,this.country).bonusesAndPenalties,bonusEmojis=[],penaltyEmojis=[],hasBonuses=!1,hasPenalties=!1;if(0<bonusesAndPenalties.length){bonusesAndPenalties.forEach(item=>{if("bonus"===item.type){let emoji=GetEmojiFromAttitute(item.attitute);if(-1<!bonusEmojis.indexOf(emoji)){bonusEmojis.push({emoji:emoji,title:this.localize(item.attitute)});hasBonuses=!0}}else if("penalty"===item.type){let emoji=GetEmojiFromAttitute(item.attitute);if(-1<!penaltyEmojis.indexOf(emoji)){penaltyEmojis.push({emoji:emoji,title:this.localize(item.attitute)});hasPenalties=!0}}});let bonusHtml=html$1``;if(hasBonuses){bonusHtml=html$1`${bonusEmojis.map(emoji=>{return html$1`<div style="margin-left: 5px;" title="${emoji.title}">${emoji.emoji}</div>`})}`}let penaltyHtml;if(hasPenalties){penaltyHtml=html$1`${penaltyEmojis.map(emoji=>{return html$1`<div style="margin-left: 5px;" title="${emoji.title}">${emoji.emoji}</div>`})}`}if(hasBonuses&&hasPenalties){return html$1`<div style="">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}
           <div class="flex"></div> <div style="margin-left: 16px;">${this.getPenaltyPlurar(penaltyEmojis)} </div>${penaltyHtml}`}else if(hasBonuses){return html$1`<div style="">${this.getBonusPlurar(bonusEmojis)} </div>${bonusHtml}`}else if(hasPenalties){return html$1`<div style="">${this.getPenaltyPlurar(penaltyEmojis)} </div>${penaltyHtml}`}else{console.error("Wrong state of penalties")}}else{return""}}exclusiveNumberOf(itemIn){const ids=itemIn.exclusive_ids.split(",");let current;ids.forEach((id,index)=>{if(itemIn.id==id){current=index+1}});return current+" "+this.localize("of")+" "+ids.length}changeSpeed(event){let speed;if(null!==event.detail.value){this.automaticFlipSpeed=this.speedLookup[event.detail.value];console.log("Set flip speed: "+this.automaticFlipSpeed)}}disconnectedCallback(){this.removeEventListeners();super.disconnectedCallback()}getCardStyle(item){if("ModuleTypeCard"===item.module_type){const color=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];return"color: #FFF;font-size: 20px;background-color:"+color}else{return""}}getExclusiveStyle(item){const color=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];return"color: #FFF;background-color:"+color}getSubCategoryStyle(item){return"";//"color: #111;font-size: 15px;background-color: #FFF";
-}startAutomaticSelection(){this.automaticallySelectNext();this.removeEventListeners()}startManualSelection(){this.$$("#manualSelectionButton").disabled=!0;this.fire("oap-bonus-points",10);this.onActionTop(!0);this.addEventListeners();setTimeout(()=>{if(this.$$("#manualSelectionButton"))this.$$("#manualSelectionButton").disabled=!1},750)}startAutoSelection(){this.$$("#autoSelectionButton").disabled=!0;setTimeout(()=>{if(this.$$("#autoSelectionButton"))this.$$("#autoSelectionButton").disabled=!1},750);this.automaticallySelectNext()}automaticallySelectNext(){let futureModuleType,currentModuleTypeCard;if(this.currentItemsPosition<this.items.length-1){futureModuleType=this.items[this.currentItemsPosition].module_type;currentModuleTypeCard="ModuleTypeCard"===this.items[this.currentItemsPosition].module_type}if(currentModuleTypeCard&&!this.automaticSelectionActive||this.items[this.currentItemsPosition]&&"ModuleTypeCard"!==futureModuleType){this.automaticSelectionActive=!0;this.stopActions=!0;let random=Math.floor(2*Math.random());const bonusCount=GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition],this.country).bonusCount;if(currentModuleTypeCard){this.onActionTop(!0)}else{this.onActionRight()}setTimeout(()=>{this.automaticallySelectNext()},this.automaticFlipSpeed)}else{this.automaticSelectionActive=!1;this.stopActions=null}}updated(changedProps){super.updated(changedProps);if(changedProps.has("automaticFlipSpeed")){this.autoSliderTime="Swipe speed "+this.automaticFlipSpeed/1e3+" seconds"}if(changedProps.has("currentItem")){if(this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type){this.removeEventListeners()}}if(changedProps.has("items")){if(this.items&&0<this.items.length){if(0===this.currentItemsPosition){this.currentItem=this.items[0]}this.itemsLeft=[...this.items];if(this.selectedItems&&0<this.selectedItems.length||this.filteredItems&&0<this.filteredItems.length){this.itemsLeft=this.itemsLeft.filter(item=>{let useItem=!0;if(this.selectedItems&&-1<this.selectedItems.indexOf(item)){useItem=!1}if(this.filteredItems&&-1<this.filteredItems.indexOf(item)){useItem=!1}return useItem})}if(window.debugOn){this.itemsLeft=[...this.items]}this.fire("item-selected",this.items[0]);this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
+}startAutomaticSelection(){this.automaticallySelectNext();this.removeEventListeners()}startManualSelection(){this.activity("start","manualCardSelection");this.$$("#manualSelectionButton").disabled=!0;this.fire("oap-bonus-points",10);this.onActionTop(!0);this.addEventListeners();setTimeout(()=>{if(this.$$("#manualSelectionButton"))this.$$("#manualSelectionButton").disabled=!1},750)}startAutoSelection(){this.activity("start","automaticCardSelection");this.$$("#autoSelectionButton").disabled=!0;setTimeout(()=>{if(this.$$("#autoSelectionButton"))this.$$("#autoSelectionButton").disabled=!1},750);this.automaticallySelectNext()}automaticallySelectNext(){let futureModuleType,currentModuleTypeCard;if(this.currentItemsPosition<this.items.length-1){futureModuleType=this.items[this.currentItemsPosition].module_type;currentModuleTypeCard="ModuleTypeCard"===this.items[this.currentItemsPosition].module_type}if(currentModuleTypeCard&&!this.automaticSelectionActive||this.items[this.currentItemsPosition]&&"ModuleTypeCard"!==futureModuleType){this.automaticSelectionActive=!0;this.stopActions=!0;let random=Math.floor(2*Math.random());const bonusCount=GetBonusesAndPenaltiesForItem(this.items[this.currentItemsPosition],this.country).bonusCount;if(currentModuleTypeCard){this.onActionTop(!0)}else{this.onActionRight()}setTimeout(()=>{this.automaticallySelectNext()},this.automaticFlipSpeed)}else{this.automaticSelectionActive=!1;this.stopActions=null}}updated(changedProps){super.updated(changedProps);if(changedProps.has("automaticFlipSpeed")){this.autoSliderTime="Swipe speed "+this.automaticFlipSpeed/1e3+" seconds"}if(changedProps.has("currentItem")){if(this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type){this.removeEventListeners()}}if(changedProps.has("items")){if(this.items&&0<this.items.length){if(0===this.currentItemsPosition){this.currentItem=this.items[0]}this.itemsLeft=[...this.items];if(this.selectedItems&&0<this.selectedItems.length||this.filteredItems&&0<this.filteredItems.length){this.itemsLeft=this.itemsLeft.filter(item=>{let useItem=!0;if(this.selectedItems&&-1<this.selectedItems.indexOf(item)){useItem=!1}if(this.filteredItems&&-1<this.filteredItems.indexOf(item)){useItem=!1}return useItem})}if(window.debugOn){this.itemsLeft=[...this.items]}this.fire("item-selected",this.items[0]);this.visibleItems=this.itemsLeft.slice(0,5);this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();this.itemsLeft.shift();//TODO: Only show first 20 items and reload on demand
 this.requestUpdate();this.updateComplete.then(()=>{this.activate();this.updateNavigator()})}}}updateNavigator(){const color=this.configFromServer.client_config.moduleTypeColorLookup[this.items[this.currentItemsPosition].module_content_type];if(this.$$("#navigator")){const navigatorDiv=this.$$("#navigator");while(navigatorDiv.firstChild){navigatorDiv.removeChild(navigatorDiv.firstChild)}let leftItems;if(0<this.itemsLeft.length){leftItems=this.visibleItems.concat(this.itemsLeft)}else{leftItems=this.visibleItems.slice(1,Math.abs(6-this.currentPosition))}const pixels=310/this.items.length;leftItems.forEach((item,index)=>{const div=document.createElement("span");div.style.backgroundColor=this.configFromServer.client_config.moduleTypeColorLookup[item.module_content_type];if(0===index){div.style.width=pixels+5+"px";div.style.height="8px";div.title=item.name}else{div.style.width=pixels+"px";div.style.height="8px";div.title=item.module_content_type}div.onclick=event=>{//this.goTo(item.id);
 };navigatorDiv.appendChild(div)})}else{console.error("No module name in updateNavigator")}}reset(){this.stackedOptions="Top";this.rotate=!0;this.elementsMargin=7;this.currentPosition=0;this.currentItemsPosition=0;this.currentItem=null;this.useOverlays=!1;this.velocity=.3;this.isFirstTime=!0;this.touchingElement=!1;this.visibleItems=[];this.disableUpSwipe=!0;this.hiddenImageIds={};this.rendering=!0;this.automaticSelectionActive=!1;this.speedLookup={0:15e3,1:12500,2:10500,3:7500,4:5500,5:3500,6:2e3,7:1200,8:900,9:500,10:310};this.automaticFlipSpeed=310;this.speedSettings=10}activate(){this.obj=this.$$("#stacked-cards-block");this.refresh();if(this.useOverlays){this.leftObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.leftObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.rightObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.transform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)";this.topObj.style.webkitTransform="translateX(0px) translateY("+this.elTrans+"px) translateZ(0px) rotate(0deg)"}else if(this.leftObj){this.leftObj.className="";this.rightObj.className="";this.topObj.className="";this.leftObj.classList.add("stackedcards-overlay-hidden");this.rightObj.classList.add("stackedcards-overlay-hidden");this.topObj.classList.add("stackedcards-overlay-hidden")}//Remove class init
 setTimeout(function(){this.obj.classList.remove("init")}.bind(this),250);//this.addEventListeners();
@@ -21498,17 +21498,17 @@ this.composer.render(this.clock.getDelta())}reset(){this.completed=!1;this.corre
                                                 ], {
                                                   duration: 600,
                                                   iterations: 1
-                                                });*/this.fire("oap-process-correct-quiz-answer");if(this.countdownTimer3d){this.countdownTimer3d.showWinPoints()}}else{this.fire("oap-overlay",{html:html$1`${this.localize("incorrectAnswer")}`,soundEffect:"",duration:300});this.countdownTimer3d.stopCountDownFail();this.wrongAnswerColorAnimation();this.incorrectAnswers+=1;/*this.$$("#button"+answer).animate([
-                                    { transform: "translateX(-3px)", easing: 'ease-in' },
-                                    { transform: "translateX(3px)", easing: 'ease-out' },
-                                    { transform: "translateX(-5px)", easing: 'ease-in' },
-                                    { transform: "translateX(5px)", easing: 'ease-out' },
-                                    { transform: "translateX(-7px)", easing: 'ease-in' },
-                                    { transform: "translateX(7px)", easing: 'ease-out' },
-                                  ], {
-                                    duration: 500,
-                                    iterations: 1
-                                  });*/this.activity("answerSubmitted","quiz")}window.requestAnimationFrame(()=>{this.$$("#button"+correctAnswer).classList.add("rightAnswer");let incorrectButtons;if(this.$$("#button"+answer)){this.$$("#button"+answer).classList.add("wrongAnswerClicked");incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer&&item!==answer)}else{incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer)}incorrectButtons.forEach(buttonId=>{this.$$("#button"+buttonId).classList.add("wrongAnswer")})});setTimeout(()=>{this.resetAllButtons();if(this.currentIndex<this.questions.length-1){this.currentIndex+=1;this.countdownTimer3d.startCountDown();this.requestUpdate()}else{this.currentIndex=null;this.completed=!0;this.quizFinished();this.requestUpdate();this.fire("oap-sound-effect","quizCompleted")}this.submitDisabled=!1},!0===window.debugOn?100:wasIsCorrect?3300:2700);if(this.disableLightShaftAfterNext){this.disableLightShaftAfterNext=!1;setTimeout(()=>{this.disableLightShaft()},50)}}startCountDown(){if(this.countdownTimer3d){this.countdownTimer3d.startCountDown()}else{config.error("No countdownTimer3d")}}resetAllButtons(){[0,1,2,3].forEach(buttonId=>{this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;this.$$("#button"+buttonId).selected=!1;this.$$("#button"+buttonId).focused=!1;this.$$("#button"+buttonId).classList.remove("wrongAnswer","rightAnswer","wrongAnswerClicked")})}updated(changedProps){super.updated(changedProps);if(changedProps.has("questions")){if(this.questions){this.reset()}}if(changedProps.has("font3d")&&this.font3d){this.start();StartEarlyDelayedFontCaching(this.font3d)}}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
+                                                });*/this.fire("oap-process-correct-quiz-answer");if(this.countdownTimer3d){this.countdownTimer3d.showWinPoints()}}else{this.fire("oap-overlay",{html:html$1`${this.localize("incorrectAnswer")}`,soundEffect:"",duration:300});this.countdownTimer3d.stopCountDownFail();this.wrongAnswerColorAnimation();this.incorrectAnswers+=1;this.activity("wrong","quizAnswer");/*this.$$("#button"+answer).animate([
+                                              { transform: "translateX(-3px)", easing: 'ease-in' },
+                                              { transform: "translateX(3px)", easing: 'ease-out' },
+                                              { transform: "translateX(-5px)", easing: 'ease-in' },
+                                              { transform: "translateX(5px)", easing: 'ease-out' },
+                                              { transform: "translateX(-7px)", easing: 'ease-in' },
+                                              { transform: "translateX(7px)", easing: 'ease-out' },
+                                            ], {
+                                              duration: 500,
+                                              iterations: 1
+                                            });*/}this.activity("answerSubmitted","quiz");window.requestAnimationFrame(()=>{this.$$("#button"+correctAnswer).classList.add("rightAnswer");let incorrectButtons;if(this.$$("#button"+answer)){this.$$("#button"+answer).classList.add("wrongAnswerClicked");incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer&&item!==answer)}else{incorrectButtons=[0,1,2,3].filter(item=>item!==correctAnswer)}incorrectButtons.forEach(buttonId=>{this.$$("#button"+buttonId).classList.add("wrongAnswer")})});setTimeout(()=>{this.resetAllButtons();if(this.currentIndex<this.questions.length-1){this.currentIndex+=1;this.countdownTimer3d.startCountDown();this.requestUpdate()}else{this.currentIndex=null;this.completed=!0;this.quizFinished();this.requestUpdate();this.fire("oap-sound-effect","quizCompleted")}this.submitDisabled=!1},!0===window.debugOn?100:wasIsCorrect?3300:2700);if(this.disableLightShaftAfterNext){this.disableLightShaftAfterNext=!1;setTimeout(()=>{this.disableLightShaft()},50)}}startCountDown(){if(this.countdownTimer3d){this.countdownTimer3d.startCountDown()}else{config.error("No countdownTimer3d")}}resetAllButtons(){[0,1,2,3].forEach(buttonId=>{this.$$("#button"+buttonId).style.backgroundColor=this.savedBackgroundColor;this.$$("#button"+buttonId).selected=!1;this.$$("#button"+buttonId).focused=!1;this.$$("#button"+buttonId).classList.remove("wrongAnswer","rightAnswer","wrongAnswerClicked")})}updated(changedProps){super.updated(changedProps);if(changedProps.has("questions")){if(this.questions){this.reset()}}if(changedProps.has("font3d")&&this.font3d){this.start();StartEarlyDelayedFontCaching(this.font3d)}}}window.customElements.define("oap-policy-quiz",OapPolicyQuiz);const OapBallotStyles=css`
 
   :host {
     position: relative;
@@ -23349,7 +23349,7 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}openChoicePointsDialog(){this.masterDialogCloseFunction=this.openQuizDialog;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","welcome")}openChoicePointsDialog(){this.masterDialogCloseFunction=this.openQuizDialog;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading headingNoImage">Choice Points</div>
         <div class="horizontal welcomeText">
           Choice Points are the game term for your political capital, the “juice” you have to get this constitution written. You will need to spend your points wisely as you choose articles and civil rights in your constitution; you will get bonuses and penalties to your Choice Points for how well the constitution you write fits the desires of your citizens.
@@ -23368,7 +23368,7 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}openQuizDialog(){this.masterDialogCloseFunction=this.closeWelcome;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","choicePoints")}openQuizDialog(){this.masterDialogCloseFunction=this.closeWelcome;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading headingNoImage">Quiz</div>
         <div class="horizontal welcomeText">
           First let’s start with a general quiz about constitutions in history and around the world. The more questions you get right, the more choice points you will have to frame your constitution!        </div>
@@ -23386,7 +23386,7 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}startCulturalAttitutesTutorial(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","quiz")}startCulturalAttitutesTutorial(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Cultural Values</div>
         <div class="horizontal welcomeText">
          These are the values of your society. Pay attention to these as you frame your constitution - you need to match your constitution to the Values of your citizens in your electorate.
@@ -23404,12 +23404,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton"  @click="${this.culturalAttitutesTutorialAuthority}"   autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialAuthority(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","culturalAttitutes")}culturalAttitutesTutorialAuthority(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Authority</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em>
@@ -23431,12 +23431,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLiberty}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialLiberty(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","authority")}culturalAttitutesTutorialLiberty(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Liberty</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em>
@@ -23458,12 +23458,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialScience}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialScience(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","liberty")}culturalAttitutesTutorialScience(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Science</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes"><em>Science is true whether you believe in it or not…</em>
@@ -23485,12 +23485,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialTradition}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialTradition(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","science")}culturalAttitutesTutorialTradition(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Tradition</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes"><em>“Study the past, if you wish to divine the future”</em><br>
@@ -23513,12 +23513,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialCollective}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialCollective(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","tradition")}culturalAttitutesTutorialCollective(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Collectivism</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes">
@@ -23542,12 +23542,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialIndependence}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialIndependence(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","collectivism")}culturalAttitutesTutorialIndependence(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Independence</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes">
@@ -23570,12 +23570,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialPrivacy}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialPrivacy(){this.masterDialogCloseFunction=null;let localeText;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","independence")}culturalAttitutesTutorialPrivacy(){this.masterDialogCloseFunction=null;let localeText;if("en"==this.language){localeText=html$1`
         <div class="heading">Privacy</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes">
@@ -23599,12 +23599,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialLawAndOrder}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialLawAndOrder(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","privacy")}culturalAttitutesTutorialLawAndOrder(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Law and Order</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes">
@@ -23630,12 +23630,12 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
       <div class="vertical center-center masterDialog">
         ${localeText}
         <div class="buttons center-center">
-          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus>${this.localize("skip")}</paper-button>
+          <paper-button raised class="continueButton" ?hidden="${!this.hasSeenCulturalAttitutesTutorial}" dialog-dismiss autofocus @click="${()=>{this.activity("skip","culturalAttitutesTutotorial")}}">${this.localize("skip")}</paper-button>
           <paper-button raised class="continueButton" @click="${this.culturalAttitutesTutorialProgressivism}" dialog-dismiss autofocus>${this.localize("next")}</paper-button>
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}culturalAttitutesTutorialProgressivism(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","lawAndOrder")}culturalAttitutesTutorialProgressivism(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Social Progress</div>
         <div class="horizontal welcomeText">
           <div class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
@@ -23666,7 +23666,7 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}openCountrySelectInfoDialog(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","progressiveism")}openCountrySelectInfoDialog(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Select a Country</div>
         <div class="horizontal welcomeText">
          Pick the country and time in history that you want to write a constitution for! We have 10 countries in different time periods to choose from, each with different cultural values. Matching your constitution to these cultural values gives you bonuses and penalties to your Choice Points!
@@ -23688,7 +23688,7 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}openAndUpdateDialog(notModal){if(notModal){this.$$("#masterDialog").modal=!1}else{this.$$("#masterDialog").modal=!0}this.$$("#masterDialog").open();this.requestUpdate();this.$$("#masterDialog").fire("iron-resize")}openFilterInfoDialog(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","selectCountry")}openAndUpdateDialog(notModal){if(notModal){this.$$("#masterDialog").modal=!1}else{this.$$("#masterDialog").modal=!0}this.$$("#masterDialog").open();this.requestUpdate();this.$$("#masterDialog").fire("iron-resize")}openFilterInfoDialog(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Filter Articles</div>
         <div class="horizontal welcomeText">
         Welcome to the wide world of constitutional articles! We have presented these as modules; you have a chance now to go through all of the articles and pick the ones you know you would like to use in the game.</div>
@@ -23708,7 +23708,7 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
         </div>
       </div>
     </div>
-   `;this.openAndUpdateDialog()}openSelectionInfoDialog(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
+   `;this.openAndUpdateDialog();this.activity("tutorial","openFilter")}openSelectionInfoDialog(){this.masterDialogCloseFunction=null;let localeText=null;if("en"==this.language){localeText=html$1`
         <div class="heading">Select Articles</div>
         <div class="horizontal welcomeText">
           Now you are ready to actually frame a constitution for your citizens! If you choose articles that match your citizens Cultural Values you will get bonus Choice Points; if they do not match the Cultural Values of your electorate, you will pay a Choice Point penalty. You must have enough modules from each of the four Branches to complete a constitution before you run out of Choice Points. Good Luck!!
@@ -23732,4 +23732,4 @@ if(path.slice(1).split("/")[1]){this._subPath=path.slice(1).split("/")[1]}this._
        ${localeText}
       </div>
     </div>
-   `;this.openAndUpdateDialog()}}window.customElements.define("oap-app",OapApp)});
+   `;this.openAndUpdateDialog();this.activity("tutorial","selection")}}window.customElements.define("oap-app",OapApp)});

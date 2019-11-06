@@ -290,6 +290,7 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   startManualSelection() {
+    this.activity('start','manualCardSelection');
     this.$$("#manualSelectionButton").disabled = true;
     this.fire("oap-bonus-points", 10);
     this.onActionTop(true);
@@ -301,6 +302,7 @@ class OapSwipableCards extends OapBaseElement {
   }
 
   startAutoSelection() {
+    this.activity('start','automaticCardSelection');
     this.$$("#autoSelectionButton").disabled = true;
     setTimeout(()=>{
       if (this.$$("#autoSelectionButton"))
