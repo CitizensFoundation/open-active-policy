@@ -79,13 +79,16 @@ class ConstitutionsController < ApplicationController
       @meta = @config.client_config["languages"]["en"]["shareMetaData"]
     end
 
-    puts @data
-
     @title = @meta["title"]+": "+@data["country"]["name"]
+    puts request.format
 
     if browser.bot?
       respond_to do |format|
         format.html { render :layout => false }
+      end
+    elsif request.format == 'json'
+      respond_to do |format|
+        format.json { render :json => { :constitution => @data } }
       end
     else
       redirect_to '/review/'+params[:id]

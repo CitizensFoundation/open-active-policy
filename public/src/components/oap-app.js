@@ -509,7 +509,7 @@ class OapApp extends OapBaseElement {
 
   _getSavedReview(id) {
     this.gettingSavedReview = true;
-    fetch("/constitutions/review/"+id+"?locale="+this.language, { credentials: 'same-origin' })
+    fetch("/constitutions/review/"+id+".json?locale="+this.language, { credentials: 'same-origin' })
       .then(res => res.json())
       .then(response => {
         this.gettingSavedReview = false;

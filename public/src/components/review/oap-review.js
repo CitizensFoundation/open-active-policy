@@ -72,7 +72,7 @@ class OapReview extends OapPageViewElement {
           <div class="header">${this.localize("reviewOfYourConstitution")}</div>
           ${this.attituteReviewParagraphs ?  html`
             <div class="hiddenDiv nextToTop mainArea" style="margin-left: auto;margin-right:auto;">
-              <div style="margin-top: 16px;margin-bottom: 16px;" class="layout horizontal center-center" ?hidden="${!this.gotReviewFromServer}">
+              <div style="margin-top: 4px;margin-bottom: 16px;" class="layout horizontal center-center" ?hidden="${!this.gotReviewFromServer}">
                 <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("playTheGame")}</paper-button>
               </div>
 
