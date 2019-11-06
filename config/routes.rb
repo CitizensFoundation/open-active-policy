@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "votes/get_areas"
   get "votes/boot"
   get "constitutions/boot"
+  get "constitutions/meta"
   get "constitutions/review/:id", to: "constitutions#review"
   get "votes/get_ballot"
   get "votes/better_iceland_proxy"
