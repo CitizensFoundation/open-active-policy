@@ -33,6 +33,12 @@ export const OapCountryCreationStyles = css`
     text-align: center;
   }
 
+  #submitButtonTwo {
+    color: #000;
+    background-color: #FFF;
+    margin-bottom: 0;
+  }
+
   .subHeader {
     font-size: 20px;
     margin-top: 12px;
@@ -79,7 +85,7 @@ export const OapCountryCreationStyles = css`
   }
 
   .basicInfo {
-    padding-top: 24px;
+    padding-top: 8px;
   }
 
   .column {

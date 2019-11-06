@@ -91,6 +91,10 @@ class OapCountryCreation extends OapPageViewElement {
             </div>
 
             <div class="hiddenDiv nextToTop" ?hidden="${this.customCountry===null}">
+              <div class="layout horizontal center-center">
+                <paper-button raised id="submitButtonTwo" ?hidden="${this.customCountry===null}" ?disabled="${this.submitDisabled}" class="buttton" @click="${()=> { this.fire('oap-country-created', this.country) }}">${this.localize("buildConstitutionForCountry")}</paper-button>
+              </div>
+
               <div class="subHeader noBottom basicInfo">${this.localize("basicInformation")}</div>
 
               <paper-input id="name"

@@ -1965,7 +1965,7 @@ class OapApp extends OapBaseElement {
     </div>
    `
     this.openAndUpdateDialog();
-    this.activity('tutorial', 'openFilter');
+    this.activity('tutorial', 'filtering');
   }
 
   openSelectionInfoDialog() {
