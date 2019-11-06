@@ -503,6 +503,23 @@ class OapApp extends OapBaseElement {
     }
   }
 
+  _getSavedReview(id) {
+    this.gettingSavedReview = true;
+    fetch("/constitutions/review/"+id+"?locale="+this.language, { credentials: 'same-origin' })
+      .then(res => res.json())
+      .then(response => {
+        this.gettingSavedReview = false;
+        this.country = response.constitution.country;
+        this.selectedItems = response.constitution.items;
+      })
+      .catch(error => {
+        this.gettingSavedReview = false;
+        console.error('Error:', error);
+        this.fire('oav-error', 'unknown_error');
+      }
+    );
+  }
+
   _boot() {
     if (localStorage.getItem("languageOverride")) {
       this.language = localStorage.getItem("languageOverride");
@@ -1080,16 +1097,18 @@ class OapApp extends OapBaseElement {
 
   checkForRestoredGameOrWelcome() {
     setTimeout(()=>{
-      let gameState = localStorage.getItem(this.GAME_STATE_VERSION);
-      if (gameState!=null) {
-        gameState = JSON.parse(gameState);
-        this.$$("#savedGameDialog").open();
-        const parsedDate = new Date(gameState.dateSaved);
-        this.savedGameDate = parsedDate.toISOString().slice(0, 10);
-      } else {
-        this.disableAutoSave=false;
-        if (!window.debugOn)
-          this.openWelcomeDialog();
+      if (!this.gettingSavedReview && !this._page=="review") {
+        let gameState = localStorage.getItem(this.GAME_STATE_VERSION);
+        if (gameState!=null) {
+          gameState = JSON.parse(gameState);
+          this.$$("#savedGameDialog").open();
+          const parsedDate = new Date(gameState.dateSaved);
+          this.savedGameDate = parsedDate.toISOString().slice(0, 10);
+        } else {
+          this.disableAutoSave=false;
+          if (!window.debugOn)
+            this.openWelcomeDialog();
+        }
       }
     });
   }
@@ -1181,6 +1200,7 @@ class OapApp extends OapBaseElement {
     if (changedProps.has('budgetElement')) {
     }
 
+
     if (changedProps.has('_page')) {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
@@ -1214,7 +1234,7 @@ class OapApp extends OapBaseElement {
         window.location = "/";
       }
 
-      if ((page!=='quiz' && !this.quizDone) && !window.debugOn) {
+      if ((page!=='quiz' && !this.quizDone) && !window.debugOn && !this._subPath) {
         window.history.pushState({}, null, "/quiz");
         this.fire('location-changed', "/quiz");
       } else if (!window.debugOn) {
@@ -1231,10 +1251,7 @@ class OapApp extends OapBaseElement {
           this.fire('location-changed', "/create-country");
         }
 
-        if (page==='review' && (this.selectedItems.length===0 && this.filteredItems.length===0 && this.country==null)) {
-          window.history.pushState({}, null, "/create-country");
-          this.fire('location-changed', "/create-country");
-        } else if (page==='area-ballot' && (this.selectedItems.length===0 && this.filteredItems.length===0)) {
+        if (page==='area-ballot' && (this.selectedItems.length===0 && this.filteredItems.length===0)) {
           window.history.pushState({}, null, "/filter-articles");
           this.fire('location-changed', "/filter-articles");
         } else if (page==='area-ballot' && (this.selectedItems.length===0)) {
@@ -1242,7 +1259,9 @@ class OapApp extends OapBaseElement {
           this.fire('location-changed', "/area-ballot/1");
         }
 
-        if (page==='review' && this.country==null) {
+        if (page==='review' && this.country==null && this._subPath && !isNaN(this._subPath)) {
+          this._getSavedReview(this._subPath);
+        } else if (page==='review' && this.country==null) {
           window.history.pushState({}, null, "/create-country");
           this.fire('location-changed', "/create-country");
         }
@@ -1301,16 +1320,19 @@ class OapApp extends OapBaseElement {
 
     const path = window.decodeURIComponent(location.pathname);
     const page = path === '/' ? '/' : path.slice(1).split("/")[0];
+    const id = path === '/' ? '/' : path.slice(1).split("/")[1];
 
-    this._loadPage(page);
     // Any other info you might want to extract from the path (like page type),
     // you can do here.
     if (path.slice(1).split('/')[1]) {
       this._subPath = path.slice(1).split('/')[1];
     }
+
+    this._loadPage(page);
+
   }
 
-  _loadPage(page) {
+  _loadPage(page, id) {
     switch(page) {
       case 'post':
         import('./yp-post/yp-post.js');

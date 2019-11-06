@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   post "votes/authenticate_from_island_is"
   post "authenticate_from_island_is", to: "votes#authenticate_from_island_is"
-  get "review", to: "constitutions#review"
 
   get "items/:id", to: "items#index"
   get "votes/is_vote_authenticated"
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
   get "votes/get_areas"
   get "votes/boot"
   get "constitutions/boot"
-  get "constitutions/review"
+  get "constitutions/review/:id", to: "constitutions#review"
   get "votes/get_ballot"
   get "votes/better_iceland_proxy"
   post "constitutions/post_constitution"

@@ -67,7 +67,9 @@ class ConstitutionsController < ApplicationController
     plain = Base64.decode64(@constitution.payload_data)
     @data = JSON.parse(plain)
 
-    locale = @config.client_config["localeSetup"]["locale"]
+    client_config = @config.client_config
+    puts client_config["localeSetup"][0]["locale"]
+    locale = client_config["localeSetup"][0]["locale"]
     if params[:locale]
       locale = params[:locale]
     end
@@ -77,12 +79,16 @@ class ConstitutionsController < ApplicationController
       @meta = @config.client_config["languages"]["en"]["shareMetaData"]
     end
 
+    puts @data
+
     if browser.bot?
       respond_to do |format|
         format.html { render :layout => false }
       end
     else
-      format.json { render :json => { :constitution => @constitution} }
+      respond_to do |format|
+        format.json { render :json => { :constitution => @data } }
+      end
     end
   end
 

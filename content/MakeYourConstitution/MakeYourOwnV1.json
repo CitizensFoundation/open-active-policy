@@ -179,6 +179,7 @@
           "choose_a_neighbourhood_1": "",
           "choose_a_neighbourhood_2": "Choose a neighbourhood to cast your vote. 450 million have been allocated proportionately.",
           "error_not_found": "Not found",
+          "unknown_error": "Not found or general error",
           "general_error": "An error has occurred, we have been notified",
           "error_not_authorized": "Not authorized",
           "error_cant_connect": "Can't connect to server, please try again later",
@@ -750,6 +751,7 @@
         "language": "Tungumál:",
         "error_not_found": "Finnst ekki",
         "general_error": "Eitthvað fór úrskeiðis – búið að láta vita",
+        "unknown_error": "Fannst ekki eða villa",
         "error_not_authorized": "Heimild vantar",
         "error_cant_connect": "Næ ekki sambandi – reyndu síðar"
     },
