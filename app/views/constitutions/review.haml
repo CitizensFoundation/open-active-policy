@@ -5,11 +5,11 @@
     %title= @title
     %meta{:charset => "utf-8"}/
     %meta{:property => "og:title", :content => @title }
-    %meta{:property => "og:description", :content => @meta["country"]["description"]}
+    %meta{:property => "og:description", :content => @data["country"]["description"]}
     %meta{:property => "og:image", :content => @meta["shareImageUrl"]}
   %body
     %h1
       = @title
     %p
-      = @meta["description"]
+      = @data["country"]["description"]
     %img{:src => @meta["shareImageUrl"]}

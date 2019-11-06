@@ -70,6 +70,9 @@ class OapReview extends OapPageViewElement {
 
         <div class="layout-inline vertical center-center">
           <div class="header">${this.localize("reviewOfYourConstitution")}</div>
+          <div class="layout horizontal center-center" ?hidden="${!this.gotReviewFromServer}">
+            <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("playTheGame")}</paper-button>
+          </div>
 
           ${this.attituteReviewParagraphs ?  html`
             <div class="hiddenDiv nextToTop mainArea" style="margin-left: auto;margin-right:auto;">
@@ -93,7 +96,7 @@ class OapReview extends OapPageViewElement {
 
                   <div id="submitButtonContainerTwo" class="layout horizontal center-center" ?hidden="${this.gotReviewFromServer}">
                    <paper-button id="retryButton" raised class="" @click="${()=> { this.fire('oap-reset-select-articles') }}">${this.localize("retrySelectingArticles")}</paper-button>
-                 </div>
+                  </div>
 
                 </div>
               ` : ''}
@@ -158,6 +161,10 @@ class OapReview extends OapPageViewElement {
          <div>${JSON.stringify(this.completionScore)}</div>
         </div>
       ` : html``}
+
+      <div class="layout horizontal center-center" ?hidden="${this.gotReviewFromServer}">
+         <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("restartGame")}</paper-button>
+      </div>
 
       <div class="itemContainer layout horizontal center-center flex wrap">
         <div class="header lastHeader">${this.localize('finalSelection')}</div>
