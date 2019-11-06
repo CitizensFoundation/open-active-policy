@@ -70,12 +70,11 @@ class OapReview extends OapPageViewElement {
 
         <div class="layout-inline vertical center-center">
           <div class="header">${this.localize("reviewOfYourConstitution")}</div>
-          <div class="layout horizontal center-center" ?hidden="${!this.gotReviewFromServer}">
-            <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("playTheGame")}</paper-button>
-          </div>
-
           ${this.attituteReviewParagraphs ?  html`
             <div class="hiddenDiv nextToTop mainArea" style="margin-left: auto;margin-right:auto;">
+              <div style="margin-top: 16px;margin-bottom: 16px;" class="layout horizontal center-center" ?hidden="${!this.gotReviewFromServer}">
+                <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("playTheGame")}</paper-button>
+              </div>
 
               <div class="countryHeader">${this.country.name}</div>
               <div class="basicInformationDescription">${this.country.description}</div>
@@ -151,7 +150,10 @@ class OapReview extends OapPageViewElement {
                   </div>
                 </div>
               </div>
-          ` : html``}
+              <div style="margin-top: 16px;" class="layout horizontal center-center" ?hidden="${this.gotReviewFromServer}">
+                <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("restartGame")}</paper-button>
+              </div>
+              ` : html``}
         </div>
       </div>
 
@@ -162,9 +164,6 @@ class OapReview extends OapPageViewElement {
         </div>
       ` : html``}
 
-      <div class="layout horizontal center-center" ?hidden="${this.gotReviewFromServer}">
-         <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("restartGame")}</paper-button>
-      </div>
 
       <div class="itemContainer layout horizontal center-center flex wrap">
         <div class="header lastHeader">${this.localize('finalSelection')}</div>
