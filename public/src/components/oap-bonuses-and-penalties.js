@@ -293,7 +293,7 @@ export const GetBonusesAndPenaltiesForItem = (item, country) => {
           }
         }
       } else {
-        console.warn("Can't find attitute for: "+attitute+ " "+bonus+" "+item.id);
+        //console.warn("Can't find attitute for: "+attitute+ " "+bonus+" "+item.id);
       }
     });
 
