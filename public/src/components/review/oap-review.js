@@ -91,7 +91,7 @@ class OapReview extends OapPageViewElement {
                     })}
                   </div>
 
-                  <div id="submitButtonContainerTwo" class="layout horizontal center-center">
+                  <div id="submitButtonContainerTwo" class="layout horizontal center-center" ?hidden="${this.gotReviewFromServer}">
                    <paper-button id="retryButton" raised class="" @click="${()=> { this.fire('oap-reset-select-articles') }}">${this.localize("retrySelectingArticles")}</paper-button>
                  </div>
 
@@ -143,7 +143,7 @@ class OapReview extends OapPageViewElement {
 
                   <div>
                     <paper-share-button class="shareIcon" horizontal-align="left" id="shareButton" @click="${this.shareClick}"
-                      facebook twitter popup .url="https://${window.location.hostname+"/constiutions/review/"+this.reviewId}">
+                      facebook twitter popup .url="https://${window.location.hostname+"/constitutions/review/"+this.reviewId}">
                     </paper-share-button>
                   </div>
                 </div>

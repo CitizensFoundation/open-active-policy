@@ -81,6 +81,8 @@ class ConstitutionsController < ApplicationController
 
     puts @data
 
+    @title = @meta["title"]+": "+@data["country"]["name"]
+
     if browser.bot?
       respond_to do |format|
         format.html { render :layout => false }

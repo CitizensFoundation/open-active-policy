@@ -515,6 +515,7 @@ class OapApp extends OapBaseElement {
         this.gettingSavedReview = false;
         this.country = response.constitution.country;
         this.selectedItems = response.constitution.items;
+        this.gotReviewFromServer = true;
       })
       .catch(error => {
         this.gettingSavedReview = false;
