@@ -588,12 +588,6 @@ class OapApp extends OapBaseElement {
 
         this.setupAllItems();
 
-        if (false && !(location.href.indexOf("completePostingOfVoteAfterRedirect") > -1)) {
-          const path = "/quiz";
-          window.history.pushState({}, null, path);
-          this.fire('location-changed', path);
-        }
-
         this.checkForRestoredGameOrWelcome();
 
         window.language = this.language;
@@ -603,6 +597,7 @@ class OapApp extends OapBaseElement {
           StartPerformCacheWelcomeTexts(this.configFromServer.client_config.languages[this.language].welcomeTexts, this.font3d);
         }, 950);
 
+        this.hasCompletedBoot = true;
       })
       .catch(error => {
         console.error('Error:', error);
@@ -1268,7 +1263,25 @@ class OapApp extends OapBaseElement {
         }
 
         if (page==='review' && this.country==null && this._subPath && !isNaN(this._subPath)) {
-          this._getSavedReview(this._subPath);
+          if (this.hasCompletedBoot) {
+            this._getSavedReview(this._subPath);
+          } else {
+            setTimeout(()=>{
+              if (this.hasCompletedBoot) {
+                this._getSavedReview(this._subPath);
+              } else {
+                setTimeout(()=>{
+                  if (this.hasCompletedBoot) {
+                    this._getSavedReview(this._subPath);
+                  } else {
+                    setTimeout(()=>{
+                      this._getSavedReview(this._subPath);
+                    }, 500);
+                  }
+                }, 300);
+              }
+            }, 200);
+          }
         } else if (page==='review' && this.country==null) {
           window.history.pushState({}, null, "/create-country");
           this.fire('location-changed', "/create-country");
