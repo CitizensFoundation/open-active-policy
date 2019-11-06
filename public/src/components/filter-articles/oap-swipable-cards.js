@@ -122,7 +122,7 @@ class OapSwipableCards extends OapBaseElement {
                         <div class="layout  horizontal actionButtonInnerContainer">
                           <div class="right-actionx vertical">
                             <paper-button id="manualSelectionButton" class="typeButtons" @click="${this.startManualSelection}">${this.localize("manualSelection")}</paper-button>
-                            <div class="winInfo">${this.localize("win")} 10 ${this.localize("points")}</div>
+                            <div class="winInfo">${this.localize("win")} 5 ${this.localize("points")}</div>
                           </div>
                           <div class="left-actionx vertical">
                             <paper-button id="autoSelectionButton" class="typeButtons" @click="${this.startAutoSelection}">${this.localize("allCardSelection")}</paper-button>
@@ -292,7 +292,7 @@ class OapSwipableCards extends OapBaseElement {
   startManualSelection() {
     this.activity('start','manualCardSelection');
     this.$$("#manualSelectionButton").disabled = true;
-    this.fire("oap-bonus-points", 10);
+    this.fire("oap-bonus-points", 5);
     this.onActionTop(true);
     this.addEventListeners();
     setTimeout(()=>{
