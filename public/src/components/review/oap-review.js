@@ -73,7 +73,7 @@ class OapReview extends OapPageViewElement {
           ${this.attituteReviewParagraphs ?  html`
             <div class="hiddenDiv nextToTop mainArea" style="margin-left: auto;margin-right:auto;">
               <div style="margin-top: 2px;margin-bottom: 16px;" class="layout horizontal center-center" ?hidden="${!this.gotReviewFromServer}">
-                <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("playTheGame")}</paper-button>
+                <paper-button id="retryButton" raised class="" @click="${()=> { this.activity("click","playTheGameFromSharing");window.location = '/';}}">${this.localize("playTheGame")}</paper-button>
               </div>
 
               <div class="countryHeader">${this.country.name}</div>
@@ -94,7 +94,7 @@ class OapReview extends OapPageViewElement {
                   </div>
 
                   <div id="submitButtonContainerTwo" class="layout horizontal center-center" ?hidden="${this.gotReviewFromServer}">
-                   <paper-button id="retryButton" raised class="" @click="${()=> { this.fire('oap-reset-select-articles') }}">${this.localize("retrySelectingArticles")}</paper-button>
+                   <paper-button id="retryButton" raised class="" @click="${()=> { this.activity("click","retrySelecting"); this.fire('oap-reset-select-articles') }}">${this.localize("retrySelectingArticles")}</paper-button>
                   </div>
 
                 </div>
@@ -108,7 +108,6 @@ class OapReview extends OapPageViewElement {
 
               <div class="subHeader cultural">
                 ${this.localize("culturalAttitudeReviews")}
-                <paper-icon-button icon="help-outline" @click="${this.culturalHelp}"></paper-icon-button>
               </div>
 
               <div id="culturalAttitudes" class="flexRow cultRow">
@@ -151,7 +150,7 @@ class OapReview extends OapPageViewElement {
                 </div>
               </div>
               <div style="margin-top: 16px;" class="layout horizontal center-center" ?hidden="${this.gotReviewFromServer}">
-                <paper-button id="retryButton" raised class="" @click="${()=> { window.location = '/';}}">${this.localize("restartGame")}</paper-button>
+                <paper-button id="retryButton" raised class="" @click="${()=> { this.activity("click","restartGame");window.location = '/';}}">${this.localize("restartGame")}</paper-button>
               </div>
               ` : html``}
         </div>

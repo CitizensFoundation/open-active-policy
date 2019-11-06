@@ -1276,9 +1276,9 @@ class OapApp extends OapBaseElement {
                   } else {
                     setTimeout(()=>{
                       this._getSavedReview(this._subPath);
-                    }, 500);
+                    }, 700);
                   }
-                }, 300);
+                }, 350);
               }
             }, 200);
           }
