@@ -115,7 +115,6 @@ class OapCountryCreation extends OapPageViewElement {
 
               <div class="subHeader cultural">
                 ${this.localize("culturalAttitude")}
-                <paper-icon-button icon="help-outline" @click="${this.culturalHelp}"></paper-icon-button>
               </div>
 
               <div id="culturalAttitudes" class="flexRow cultRow">
