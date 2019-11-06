@@ -4960,6 +4960,7 @@
   .smallQuotes {
     color: #999;
     text-align: center;
+    padding-bottom: 4px;
   }
 
   #favoriteIcon {
@@ -7259,13 +7260,15 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialAuthority(){this.masterDialogCloseFunction=null;let e=null;"en"==this.language?e=html$1`
         <div class="heading">Authority</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em></span><br></span>
-          High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
+          <div class="smallQuotes"><em>“I will be your father figure, put your tiny hand in mine…”</em>
+        </div>
+         High Authority cultures have citizens that country crave strong structure and clear lines of command in their lives, wanting the government to dictate as much as possible clear rules for living. Medium Authority means wanting some guidelines, with less government involvement. Low Authority means the culture values a hands-off attitude from its government.
         </div>
       `:"is"==this.language&&(e=html$1`
         <div class="heading">Vald</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Ég skal vera pabbi þinn, réttu mér litlu höndina þína...”</em></span><br></span>
+          <div class="smallQuotes"><em>“Ég skal vera pabbi þinn, réttu mér litlu höndina þína...”</em>
+          </div>
           Þar sem almenningur óskar eftir sterku ríkisvaldi og telja borgararnir eftirsóknarvert að lífum þeirra sé stýrt með skýrum fyrirmælum hins opinbera. Þeir vilja að reglum samfélagsins sé framfylgt af fyllstu hörku. Þegar aðeins er krafa um miðlungssterkt ríkisvaldi óskar almenningur eftir skýrum leiðbeiningum en minni afskiptum ríkisvaldsins. Lítill áhugi á ríkisvaldi þýðir að borgararnir kunna að meta að ríkisvaldið láti fólk almennt sem mest í friði.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7284,13 +7287,15 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialLiberty(){this.masterDialogCloseFunction=null;let e=null;"en"==this.language?e=html$1`
         <div class="heading">Liberty</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em><br></span>
+          <div class="smallQuotes"><em>A man willing to sacrifice Liberty for Security deserves neither…</em>
+        </div>
           This measures the society’s embrace of the idea that a person should be allowed to do whatever the hell they want as long as it doesn’t hurt other people.
         </div>
       `:"is"==this.language&&(e=html$1`
         <div class="heading">Frelsi</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Sá sem er tilbúinn til að fórna frelsi sínu til að tryggja öryggi sitt á hvorki frelsi né öryggi skilið...</em><br></span>
+          <div class="smallQuotes"><em>Sá sem er tilbúinn til að fórna frelsi sínu til að tryggja öryggi sitt á hvorki frelsi né öryggi skilið...</em>
+        </div>
           Sú sannfæring er ríkjandi í samfélaginu að hver manneskja eigi að fá að gera hvað það sem henni kemur í hug ef hún aðeins gætir þess að valda ekki öðrum tjóni.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7309,13 +7314,15 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialScience(){this.masterDialogCloseFunction=null;let e=null;"en"==this.language?e=html$1`
         <div class="heading">Science</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Science is true whether you believe in it or not…</em><br></span>
+          <div class="smallQuotes"><em>Science is true whether you believe in it or not…</em>
+        </div>
           This score represents the extent to which this society values facts, truth, demonstrable evidence, the scientific method, modern consensus on sexual and racial equality, evolution, etc.
         </div>
       `:"is"==this.language&&(e=html$1`
         <div class="heading">Vísindi</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Vísindin birta sannleikann hvort sem þú trúir eða ekki...</em><br></span>
+          <div class="smallQuotes"><em>Vísindin birta sannleikann hvort sem þú trúir eða ekki...</em>
+         </div>
           Samfélagið leggur mikið upp úr staðreyndum, sannindum, rökum og gögnum, vísindalegri aðferð og hefur nútímalega afstöðu til jöfnuðar kynja og kynþátta, almenningur trúir á þróun osfrv..
         </div>
       `),this.masterDialogContent=html$1`
@@ -7341,8 +7348,9 @@ $
       `:"is"==this.language&&(e=html$1`
         <div class="heading">Hefð</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Til að spá fyrir um framtíðina, verður að þekkja söguna”</em><br>
-          <em>- Konfúsíus</em><br></span>
+          <div class="smallQuotes"><em>“Til að spá fyrir um framtíðina, verður að þekkja söguna”</em><br>
+          <em>- Konfúsíus</em>
+         </div>
           Fólkið í landinu þínu tengir sig sterkt við þjóðtrú og gamlar hefðir. Þetta birtist í trúarbrögðum og trúrækni, klæðaburði afstöðu til laga, hugmynda um kyn og kynlíf, hjónaband, kyngervi, menningararf, matarhefðir og listir. Þjóðmenningin hefur djúp áhrif á viðhorf þess til stjórnvalda og stjórnmálaskoðanir.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7361,14 +7369,17 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialCollective(){this.masterDialogCloseFunction=null;let e=null;"en"==this.language?e=html$1`
         <div class="heading">Collectivism</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>The good of the many outweighs the good of the few…</em><br></span>
+          <div class="smallQuotes">
+            <em>The good of the many outweighs the good of the few…</em>
+          </div>
           Defines the extent to which the culture understands communal sacrifice and shared purpose in the name of the common good.
         </div>
       `:"is"==this.language&&(e=html$1`
         <div class="heading">Félagshyggja</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>
-          Gæði fyrir alla eru mikilvægari en gæði sem falla fáum í hendur...</em><br></span>
+          <div class="smallQuotes"><em>
+          Gæði fyrir alla eru mikilvægari en gæði sem falla fáum í hendur...</em>
+          </div>
           Samfélagið metur mikils fórnfýsi og óeigingjarnt starf í þágu samfélagsins og leggur áherslu á sameiginleg gæði.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7387,13 +7398,16 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialIndependence(){this.masterDialogCloseFunction=null;let e=null;"en"==this.language?e=html$1`
         <div class="heading">Independence</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Swear allegiance to no other flag, serve no nation but thine own…</em><br></span>
+          <div class="smallQuotes">
+            <em>Swear allegiance to no other flag, serve no nation but thine own…</em>
+          </div>
           This measures the extent the culture of the country dictates that it maintain complete autonomy from other nation states. High Independence indicates the citizens supports almost no international coalition building or globalist thinking. Low Independence indicates they welcome partnerships with friendly foriegn powers all over the globe.
         </div>
       `:"is"==this.language&&(e=html$1`
        <div class="heading">Sjálfstæði</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>Ekki hylla aðra fána , þjónaðu engri þjóð nema þinni eigin...</em><br></span>
+          <div class="smallQuotes"><em>Ekki hylla aðra fána , þjónaðu engri þjóð nema þinni eigin...</em>
+        </div>
           Hér miðasta stigagjöf við hversu mjög menning landsins krefst þess að algjöru sjálfstæði sé haldið gagnvart öðrum ríkjum. Hátt sjálfstæði bendir til að borgararnir viðurkenni helst enga samstöðu með öðrum þjóðum eða hnattrænan hugsunarhátt. Lágt sjálfstæði bendir til að áhugi sé fyrir að ganga í margvísleg bandalög með vinveittum ríkjum um allan heim.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7412,13 +7426,17 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialPrivacy(){let e;this.masterDialogCloseFunction=null,"en"==this.language?e=html$1`
         <div class="heading">Privacy</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em><br></span>
+          <div class="smallQuotes">
+            <em>“Asking a government to protect your privacy is like asking a Peeping Tom to install your window blinds.”</em>
+          </div>
           Defines how much the citizens of the country value their personal information being kept safe from the public sphere, and how much they expect their government to behave with regard to that boundary.
         </div>
       `:"is"==this.language&&(e=html$1`
         <div class="heading">Einkalíf</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Að biðja stjórnvöld um að tryggja rétt sinn til einkalífs er eins og að fá gluggagægi til að koma fyrir gluggatjöldunum hjá sér”</em><br></span>
+          <div class="smallQuotes">
+            <em>“Að biðja stjórnvöld um að tryggja rétt sinn til einkalífs er eins og að fá gluggagægi til að koma fyrir gluggatjöldunum hjá sér”</em>
+         </div>
           Hér er skýrt hvaða gildi það hefur fyrir borgarana að persónuupplýsingar þeirra séu utan seilingar almannaumræðunnar og að hve miklu leyti þeir gera ráð fyrir því að þeirra eigin stjórnvöld virði mörk einkalífsins.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7437,15 +7455,19 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialLawAndOrder(){this.masterDialogCloseFunction=null;let e=null;"en"==this.language?e=html$1`
         <div class="heading">Law and Order</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
-          <em>- Lao Tze</em><br></span>
+          <div class="smallQuotes">
+            <em>“The more Law and Order is made prominent, the more thieves and robbers there will be” </em><br>
+            <em>- Lao Tze</em>
+          </div>
           This sets the appetite of the country’s citizenship for law enforcement in their lives and communities; High means that this makes them feel safe; Low means that it makes them angry and want to revolt.
         </div>
       `:"is"==this.language&&(e=html$1`
        <div class="heading">Lög og regla</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“Þegar lög og regla er sýnileg, þá fjölgar þjófum og ræningjum” </em><br>
-          <em>- Lao Tze</em><br></span>
+          <div class="smallQuotes">
+            <em>“Þegar lög og regla er sýnileg, þá fjölgar þjófum og ræningjum” </em><br>
+            <em>- Lao Tze</em>
+          </div>
           Hér þrá borgarar landsins að lögum sé framfylgt í lífum þeirra og samfélögum. Þegar þessi þáttur er hár, þá upplifa þeir öryggi. Þegar hann er lágur eru þeir fullir reiði og biturleika og á þá sækir löngun til að gera uppreisn.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7464,15 +7486,17 @@ $
    `,this.openAndUpdateDialog()}culturalAttitutesTutorialProgressivism(){this.masterDialogCloseFunction=null;let e=null;"en"==this.language?e=html$1`
         <div class="heading">Social Progress</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
-          <em>- Martin Luther King, Jr.</em><br></span>
+          <div class="smallQuotes"><em>“...the arc of the moral universe is long, but it bends toward justice.”</em><br>
+             <em>- Martin Luther King, Jr.</em><br>
+          </div>
           This score measures the country’s urge towards social justice, equal treatment for all people, level playing field free of corruption, kleptocracy, cronyism and prejudice, and their belief in every citizen’s right to clean air, food, water, housing, education, medical attention.
         </div>
       `:"is"==this.language&&(e=html$1`
         <div class="heading">Félagslegar framfarir</div>
         <div class="horizontal welcomeText">
-          <span class="smallQuotes"><em>“...veröld siðferðisins fer í stóran sveig, en hann bendir á réttlætið.”</em><br>
-          <em>- Martin Luther King, Jr.</em><br></span>
+          <div class="smallQuotes"><em>“...veröld siðferðisins fer í stóran sveig, en hann bendir á réttlætið.”</em><br>
+            <em>- Martin Luther King, Jr.</em>
+          </div>
           Hér miðast stigagjöfin við hve mikið landið þitt sækist eftir félagslegu réttlæti, jöfnuði gagnvart öllum, jafnri samkeppnisaðstöðu sem er laus við spillingu, klíkuskap og fordóma og trúir á rétt allra til þess að hafa aðgang að hreinu lfoti, fæðu, vatni, húsnæði, menntun og heilbrigðisþjónustu.
         </div>
       `),this.masterDialogContent=html$1`
@@ -7550,7 +7574,7 @@ $
       `),this.masterDialogContent=html$1`
       <div class="vertical center-center">
       <div class="masterLogoContainer center-center">
-        <img aria-label="choice points image" style="width:250px;height:143px" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
+        <img aria-label="choice points image" style="width:250px;height:143px;margin-bottom: 8px;" src="https://open-active-policy-public.s3-eu-west-1.amazonaws.com/make-your-constitution+/clientAssets/select1.jpg"></img>
       </div>
       <div class="vertical center-center masterDialog">
        ${e}
