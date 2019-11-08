@@ -311,7 +311,7 @@
         },
         {
            "id": 4,
-           "name": "‘Murica Now (US currently)",
+           "name": "America Now (US currently)",
            "description": "The first Democratic nation in the world, this nation has grown from 13 to 50 states since its constitution was first written. It rode the wave of Economic development following World War 2 to become the undeniable Super Power of the 20th Century; now it finds itself floundering in a constitutional crisis at the beginning of the 21st. Help this nation write a new constitution that reflects the new nation it has become!",
            "population": "350M",
            "geographicalSize": "9.5M",
@@ -979,7 +979,7 @@
       {
          "id": 9,
          "name": "Klofningsríkið (Ímyndað anarkistasamfélag)",
-         "description": "Líður manni ekki í nútímanum dálítið eins og maður sé í hræðilegri dýflissu reglna, væntinga og kúgunar? Langar þig stundum að búa í heimi sem er ekki eins skipulagður og þar sem færri eru ofan í þér að segja þér hvað þú eigir að gera? Hér hföum við land sem er fullt af pönkuðum aktívistum sem vilja einmitt það sama og þú! Getur þú búið til stjórnarksrá sem heldur þessu klikkaða kóngsríki saman?",
+         "description": "Líður manni ekki í nútímanum dálítið eins og maður sé í hræðilegri dýflissu reglna, væntinga og kúgunar? Langar þig stundum að búa í heimi sem er ekki eins skipulagður og þar sem færri eru ofan í þér að segja þér hvað þú eigir að gera? Hér höfum við land sem er fullt af pönkuðum aktívistum sem vilja einmitt það sama og þú! Getur þú búið til stjórnarskrá sem heldur þessu klikkaða kóngsríki saman?",
          "population": "5M",
          "geographicalSize": "500K",
          "naturalResourceWealth": 5,
