@@ -512,7 +512,7 @@ class Oap3dBudget extends OapBaseElement {
     if (changedProps.has('totalChoicePoints')) {
       this.fire('oap-total-choice-points-changed', this.totalChoicePoints);
       if (this.itemsInScene.length>0 && this.totalChoicePoints!=changedProps.get("totalChoicePoints")) {
-        console.error(this.totalChoicePoints+" "+ changedProps.get("totalChoicePoints"));
+        console.info(this.totalChoicePoints+" "+ changedProps.get("totalChoicePoints"));
         this.resetItemsWidth();
         const oldtotalChoicePoints = changedProps.get("totalChoicePoints");
         if (oldtotalChoicePoints<this.totalChoicePoints) {
@@ -528,7 +528,7 @@ class Oap3dBudget extends OapBaseElement {
     }
 
     if (changedProps.has('usedChoicePoints') || changedProps.has('totalChoicePoints')) {
-      console.error("Used "+this.usedChoicePoints+" of "+this.totalChoicePoints);
+      console.info("Used "+this.usedChoicePoints+" of "+this.totalChoicePoints);
       var choicePointsLeft = this.totalChoicePoints-this.usedChoicePoints;
       if (choicePointsLeft>0) {
         this.choicePointsLeft = choicePointsLeft;
@@ -648,7 +648,7 @@ class Oap3dBudget extends OapBaseElement {
   }
 
   resetWidthAnd3DItems() {
-    console.error("resetWidthAnd3DItems");
+    console.info("resetWidthAnd3DItems");
     this.resetWidth();
     if (this.itemsInScene && this.itemsInScene.length>0) {
       this.itemsInScene.forEach((item)=>{

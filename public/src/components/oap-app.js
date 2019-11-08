@@ -846,7 +846,7 @@ class OapApp extends OapBaseElement {
 
   usedChoicePointsChanged(event) {
     this.usedChoicePoints = event.detail;
-    console.error("Used choice points:", this.usedChoicePoints);
+    console.info("Used choice points:", this.usedChoicePoints);
     this.saveDebounced();
   }
 
@@ -881,7 +881,7 @@ class OapApp extends OapBaseElement {
   }
 
   resetAllItems() {
-    console.error("resetAllItems");
+    console.info("resetAllItems");
     this.filteredItems = [];
     this.selectedItems = [];
   }
@@ -1867,7 +1867,7 @@ class OapApp extends OapBaseElement {
           <div class="smallQuotes"><em>“...veröld siðferðisins fer í stóran sveig, en hann bendir á réttlætið.”</em><br>
             <em>- Martin Luther King, Jr.</em>
           </div>
-          Hér miðast stigagjöfin við hve mikið landið þitt sækist eftir félagslegu réttlæti, jöfnuði gagnvart öllum, jafnri samkeppnisaðstöðu sem er laus við spillingu, klíkuskap og fordóma og trúir á rétt allra til þess að hafa aðgang að hreinu lfoti, fæðu, vatni, húsnæði, menntun og heilbrigðisþjónustu.
+          Hér miðast stigagjöfin við hve mikið landið þitt sækist eftir félagslegu réttlæti, jöfnuði gagnvart öllum, jafnri samkeppnisaðstöðu sem er laus við spillingu, klíkuskap og fordóma og trúir á rétt allra til þess að hafa aðgang að hreinu lofti, fæðu, vatni, húsnæði, menntun og heilbrigðisþjónustu.
         </div>
       `;
     }

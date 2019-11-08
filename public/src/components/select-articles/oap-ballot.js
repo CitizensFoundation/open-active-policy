@@ -281,7 +281,7 @@ class OapBallot extends OapPageViewElement {
   }
 
   reset() {
-    console.error("BALLOT reset");
+    console.info("BALLOT reset");
     if (this.budgetElement) {
       this.budgetElement.reset();
     }
