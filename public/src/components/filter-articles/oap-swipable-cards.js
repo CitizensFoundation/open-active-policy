@@ -136,9 +136,9 @@ class OapSwipableCards extends OapBaseElement {
                 `
               )}
             </div>
-            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png"  width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png" width="100" height="100"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/XX.png" width="auto" height="auto"/></div>
           </div>
           <div id="navigator" class="mainNavigator layout horizontal"></div>
           <paper-slider hidden
@@ -148,15 +148,15 @@ class OapSwipableCards extends OapBaseElement {
           </paper-slider>
           <div class="speedSliderInfo" hidden ?auto="${this.automaticSelectionActive}">${this.autoSliderTime}</div>
           <div class="global-actions" style="margin-top: 0px;" ?hidden="${this.automaticSelectionActive===true || (this.currentItem && this.currentItem.module_type==="ModuleTypeCard")}">
-            <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
+            <div class="left-action"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/XX.png" width="26" height="26"/>
             </div>
             <div hidden>
-              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/>
+              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png" width="18" height="16"/>
               </div>
             </div>
             <div style="width: 100px;">
               </div>
-            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
+            <div class="right-action"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png" width="30" height="28"/></div>
           </div>
         </div>
         <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>

@@ -298,7 +298,7 @@ MIXIN_MATCH.lastIndex=0;VAR_ASSIGN.lastIndex=0;return has}var commonUtils={updat
        * the desired `orange`. This leads us to a limitation.
        *
        * Limitation 1:
-      
+
        * Only properties in the rule where the `@apply`
        * is used are considered as default values.
        * If another rule matches the element and sets `background` with
@@ -309,7 +309,7 @@ MIXIN_MATCH.lastIndex=0;VAR_ASSIGN.lastIndex=0;return has}var commonUtils={updat
        *
        * When using Polymer's `updateStyles` api, new properties may not be set for
        * `@apply` properties.
-      
+
       */_exports.$commonUtils=commonUtils;"use strict";const APPLY_NAME_CLEAN=/;\s*/m,INITIAL_INHERIT=/^\s*(initial)|(inherit)\s*$/,IMPORTANT=/\s*!important/,MIXIN_VAR_SEP="_-_";/**
                               * @typedef {!Object<string, string>}
                               */let PropertyEntry,DependantsEntry,MixinMapEntry;// eslint-disable-line no-unused-vars
@@ -524,14 +524,14 @@ template[CURRENT_VERSION]=template[NEXT_VERSION];template._validating=!1})}}/**
                        This interface is provided to add document-level <style> elements to ShadyCSS for processing.
                        These styles must be processed by ShadyCSS to simulate ShadowRoot upper-bound encapsulation from outside styles
                        In addition, these styles may also need to be processed for @apply rules and CSS Custom Properties
-                       
+
                        To add document-level styles to ShadyCSS, one can call `ShadyCSS.addDocumentStyle(styleElement)` or `ShadyCSS.addDocumentStyle({getStyle: () => styleElement})`
-                       
+
                        In addition, if the process used to discover document-level styles can be synchronously flushed, one should set `ShadyCSS.documentStyleFlush`.
                        This function will be called when calculating styles.
-                       
+
                        An example usage of the document-level styling api can be found in `examples/document-style-lib.js`
-                       
+
                        @unrestricted
                        */class CustomStyleInterface{constructor(){/** @type {!Array<!CustomStyleProvider>} */this.customStyles=[];this.enqueued=!1;// NOTE(dfreedm): use quotes here to prevent closure inlining to `function(){}`;
 documentWait(()=>{if(window.ShadyCSS.flushCustomStyles){window.ShadyCSS.flushCustomStyles()}})}/**
@@ -5284,30 +5284,30 @@ if(0>list.indexOf(b)&&(!exclude||0>exclude.indexOf(b))){list.unshift(b)}}}else{c
    * Copies property descriptors from source to target, overwriting all fields
    * of any previous descriptor for a property *except* for `value`, which is
    * merged in from the target if it does not exist on the source.
-   * 
+   *
    * @param {*} target Target properties object
    * @param {*} source Source properties object
    */function mergeProperties(target,source){for(const p in source){const targetInfo=target[p],sourceInfo=source[p];if(!("value"in sourceInfo)&&targetInfo&&"value"in targetInfo){target[p]=Object.assign({value:targetInfo.value},sourceInfo)}else{target[p]=sourceInfo}}}/* Note about construction and extension of legacy classes.
     [Changed in Q4 2018 to optimize performance.]
-  
+
     When calling `Polymer` or `mixinBehaviors`, the generated class below is
     made. The list of behaviors was previously made into one generated class per
     behavior, but this is no longer the case as behaviors are now called
     manually. Note, there may *still* be multiple generated classes in the
     element's prototype chain if extension is used with `mixinBehaviors`.
-  
+
     The generated class is directly tied to the info object and behaviors
     used to create it. That list of behaviors is filtered so it's only the
     behaviors not active on the superclass. In order to call through to the
     entire list of lifecycle methods, it's important to call `super`.
-  
+
     The element's `properties` and `observers` are controlled via the finalization
     mechanism provided by `PropertiesMixin`. `Properties` and `observers` are
     collected by manually traversing the prototype chain and merging.
-  
+
     To limit changes, the `_registered` method is called via `_initializeProperties`
     and not `_finalizeClass`.
-  
+
   */ /**
       * @param {!PolymerInit} info Polymer info object
       * @param {function(new:HTMLElement)} Base base class to extend with info object
@@ -7932,35 +7932,35 @@ IronMeta[" "]=function(){};IronMeta.types={};var metaDatas=IronMeta.types;/**
                                 such that any instance of iron-meta has access to the shared information. You
                                 can use `iron-meta` to share whatever you want (or create an extension [like
                                 x-meta] for enhancements).
-                                
+
                                 The `iron-meta` instances containing your actual data can be loaded in an
                                 import, or constructed in any way you see fit. The only requirement is that you
                                 create them before you try to access them.
-                                
+
                                 Examples:
-                                
+
                                 If I create an instance like this:
-                                
+
                                     <iron-meta key="info" value="foo/bar"></iron-meta>
-                                
+
                                 Note that value="foo/bar" is the metadata I've defined. I could define more
                                 attributes or use child nodes to define additional metadata.
-                                
+
                                 Now I can access that element (and it's metadata) from any iron-meta instance
                                 via the byKey method, e.g.
-                                
+
                                     meta.byKey('info');
-                                
+
                                 Pure imperative form would be like:
-                                
+
                                     document.createElement('iron-meta').byKey('info');
-                                
+
                                 Or, in a Polymer element, you can include a meta in your template:
-                                
+
                                     <iron-meta id="meta"></iron-meta>
                                     ...
                                     this.$.meta.byKey('info');
-                                
+
                                 @group Iron Elements
                                 @demo demo/index.html
                                 @element iron-meta
@@ -8957,13 +8957,13 @@ document.documentElement.scrollTop=document.body.scrollTop=this.__scrollTop;docu
      or shown, and displays on top of other content. It includes an optional
      backdrop, and can be used to implement a variety of UI controls including
      dialogs and drop downs. Multiple overlays may be displayed at once.
-   
+
      See the [demo source
      code](https://github.com/PolymerElements/iron-overlay-behavior/blob/master/demo/simple-overlay.html)
      for an example.
-   
+
      ### Closing and canceling
-   
+
      An overlay may be hidden by closing or canceling. The difference between close
      and cancel is user intent. Closing generally implies that the user
      acknowledged the content on the overlay. By default, it will cancel whenever
@@ -8974,31 +8974,31 @@ document.documentElement.scrollTop=document.body.scrollTop=this.__scrollTop;docu
      element. When the dialog is canceled, the overlay fires an
      'iron-overlay-canceled' event. Call `preventDefault` on this event to prevent
      the overlay from closing.
-   
+
      ### Positioning
-   
+
      By default the element is sized and positioned to fit and centered inside the
      window. You can position and size it manually using CSS. See
      `Polymer.IronFitBehavior`.
-   
+
      ### Backdrop
-   
+
      Set the `with-backdrop` attribute to display a backdrop behind the overlay.
      The backdrop is appended to `<body>` and is of type `<iron-overlay-backdrop>`.
      See its doc page for styling options.
-   
+
      In addition, `with-backdrop` will wrap the focus within the content in the
      light DOM. Override the [`_focusableNodes`
      getter](#Polymer.IronOverlayBehavior:property-_focusableNodes) to achieve a
      different behavior.
-   
+
      ### Limitations
-   
+
      The element is styled to appear on top of other content by setting its
      `z-index` property. You must ensure no element has a stacking context with a
      higher `z-index` than its parent stacking context. You should place this
      element as a child of `<body>` whenever possible.
-   
+
      @demo demo/index.html
      @polymerBehavior
     */_exports.IronOverlayBehaviorImpl=IronOverlayBehaviorImpl;const IronOverlayBehavior=[IronFitBehavior,IronResizableBehavior,IronOverlayBehaviorImpl];/**
@@ -9764,28 +9764,28 @@ var outerOpacity=.3*this.mouseUpElapsedSeconds,waveOpacity=this.opacity;return M
 this.waveContainer.style.webkitTransform="translate("+dx+"px, "+dy+"px)";this.waveContainer.style.transform="translate3d("+dx+"px, "+dy+"px, 0)";this.wave.style.webkitTransform="scale("+scale+","+scale+")";this.wave.style.transform="scale3d("+scale+","+scale+",1)"},/** @param {Event=} event */downAction:function(event){var xCenter=this.containerMetrics.width/2,yCenter=this.containerMetrics.height/2;this.resetInteractionState();this.mouseDownStart=Utility.now();if(this.center){this.xStart=xCenter;this.yStart=yCenter;this.slideDistance=Utility.distance(this.xStart,this.yStart,this.xEnd,this.yEnd)}else{this.xStart=event?event.detail.x-this.containerMetrics.boundingRect.left:this.containerMetrics.width/2;this.yStart=event?event.detail.y-this.containerMetrics.boundingRect.top:this.containerMetrics.height/2}if(this.recenters){this.xEnd=xCenter;this.yEnd=yCenter;this.slideDistance=Utility.distance(this.xStart,this.yStart,this.xEnd,this.yEnd)}this.maxRadius=this.containerMetrics.furthestCornerDistanceFrom(this.xStart,this.yStart);this.waveContainer.style.top=(this.containerMetrics.height-this.containerMetrics.size)/2+"px";this.waveContainer.style.left=(this.containerMetrics.width-this.containerMetrics.size)/2+"px";this.waveContainer.style.width=this.containerMetrics.size+"px";this.waveContainer.style.height=this.containerMetrics.size+"px"},/** @param {Event=} event */upAction:function(event){if(!this.isMouseDown){return}this.mouseUpStart=Utility.now()},remove:function(){dom(this.waveContainer.parentNode).removeChild(this.waveContainer)}};/**
    Material design: [Surface
    reaction](https://www.google.com/design/spec/animation/responsive-interaction.html#responsive-interaction-surface-reaction)
-   
+
    `paper-ripple` provides a visual effect that other paper elements can
    use to simulate a rippling effect emanating from the point of contact.  The
    effect can be visualized as a concentric circle with motion.
-   
+
    Example:
-   
+
        <div style="position:relative">
          <paper-ripple></paper-ripple>
        </div>
-   
+
    Note, it's important that the parent container of the ripple be relative
    position, otherwise the ripple will emanate outside of the desired container.
-   
+
    `paper-ripple` listens to "mousedown" and "mouseup" events so it would display
    ripple effect when touches on it.  You can also defeat the default behavior and
    manually route the down and up actions to the ripple element.  Note that it is
    important if you call `downAction()` you will have to make sure to call
    `upAction()` so that `paper-ripple` would end the animation loop.
-   
+
    Example:
-   
+
        <paper-ripple id="ripple" style="pointer-events: none;"></paper-ripple>
        ...
        downAction: function(e) {
@@ -9794,32 +9794,32 @@ this.waveContainer.style.webkitTransform="translate("+dx+"px, "+dy+"px)";this.wa
        upAction: function(e) {
          this.$.ripple.upAction();
        }
-   
+
    Styling ripple effect:
-   
+
      Use CSS color property to style the ripple:
-   
+
        paper-ripple {
          color: #4285f4;
        }
-   
+
      Note that CSS color property is inherited so it is not required to set it on
      the `paper-ripple` element directly.
-   
+
    By default, the ripple is centered on the point of contact.  Apply the
    `recenters` attribute to have the ripple grow toward the center of its
    container.
-   
+
        <paper-ripple recenters></paper-ripple>
-   
+
    You can also  center the ripple inside its container from the start.
-   
+
        <paper-ripple center></paper-ripple>
-   
+
    Apply `circle` class to make the rippling effect within a circle.
-   
+
        <paper-ripple class="circle"></paper-ripple>
-   
+
    @group Paper Elements
    @element paper-ripple
    @hero hero.svg
@@ -10899,7 +10899,7 @@ for(var path=dom(event).path,i=0,l=path.indexOf(this),target;i<l;i++){target=pat
         padding: 0;
       }
 
-      
+
       :host > ::slotted(*:first-child) {
         margin-top: 24px;
       }
@@ -11167,7 +11167,7 @@ if(this.dialogElement&&this.dialogElement.behaviors&&0<=this.dialogElement.behav
                                                    <label slot="label">Social security number</label>
                                                    <ssn-input slot="input" class="paper-input-input"></ssn-input>
                                                  </paper-input-container>
-                                                                                           
+
                                                If you're using a `<paper-input-container>` imperatively, it's important to make
                                                sure that you attach its children (the `iron-input` and the optional `label`)
                                                before you attach the `<paper-input-container>` itself, so that it can be set up
@@ -11885,21 +11885,21 @@ if(!this.$.nativeInput){this.$.nativeInput=this.$$("input")}if(this.inputElement
 if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(this.inputElement)}}});Polymer({is:"paper-menu-grow-height-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),height=rect.height;this._effect=new KeyframeEffect(node,[{height:height/2+"px"},{height:height+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-grow-width-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),width=rect.width;this._effect=new KeyframeEffect(node,[{width:width/2+"px"},{width:width+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-shrink-width-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),width=rect.width;this._effect=new KeyframeEffect(node,[{width:width+"px"},{width:width-width/20+"px"}],this.timingFromConfig(config));return this._effect}});Polymer({is:"paper-menu-shrink-height-animation",behaviors:[NeonAnimationBehavior],configure:function(config){var node=config.node,rect=node.getBoundingClientRect(),height=rect.height;this.setPrefixedProperty(node,"transformOrigin","0 0");this._effect=new KeyframeEffect(node,[{height:height+"px",transform:"translateY(0)"},{height:height/2+"px",transform:"translateY(-20px)"}],this.timingFromConfig(config));return this._effect}});var config$1={ANIMATION_CUBIC_BEZIER:"cubic-bezier(.3,.95,.5,1)",MAX_ANIMATION_TIME_MS:400};/**
    Material design: [Dropdown
    buttons](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
-   
+
    `paper-menu-button` allows one to compose a designated "trigger" element with
    another element that represents "content", to create a dropdown menu that
    displays the "content" when the "trigger" is clicked.
-   
+
    The child element assigned to the `dropdown-trigger` slot will be used as the
    "trigger" element. The child element assigned to the `dropdown-content` slot
    will be used as the "content" element.
-   
+
    The `paper-menu-button` is sensitive to its content's `iron-select` events. If
    the "content" element triggers an `iron-select` event, the `paper-menu-button`
    will close automatically.
-   
+
    Example:
-   
+
        <paper-menu-button>
          <paper-icon-button icon="menu"
    slot="dropdown-trigger"></paper-icon-button> <paper-listbox
@@ -11908,11 +11908,11 @@ if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(t
            <paper-item>Help</paper-item>
          </paper-listbox>
        </paper-menu-button>
-   
+
    ### Styling
-   
+
    The following custom properties and mixins are also available for styling:
-   
+
    Custom property | Description | Default
    ----------------|-------------|----------
    `--paper-menu-button-dropdown-background` | Background color of the paper-menu-button dropdown | `--primary-background-color`
@@ -11920,7 +11920,7 @@ if(!!this.inputElement.bindValue){this.$.container._handleValueAndAutoValidate(t
    `--paper-menu-button-disabled` | Mixin applied to the paper-menu-button when disabled | `{}`
    `--paper-menu-button-dropdown` | Mixin applied to the paper-menu-button dropdown | `{}`
    `--paper-menu-button-content` | Mixin applied to the paper-menu-button content | `{}`
-   
+
    @hero hero.svg
    @demo demo/index.html
    */const PaperMenuButton=Polymer({_template:html`
@@ -12299,7 +12299,7 @@ return noLabelFloat?-4:8},/**
                                                                                                    <paper-fab icon="add"></paper-fab>
                                                    <paper-fab mini icon="favorite"></paper-fab>
                                                    <paper-fab src="star.png"></paper-fab>
-                                                                                               
+
                                                  ### Styling
                                                                                                The following custom properties and mixins are available for styling:
                                                                                                Custom property | Description | Default
@@ -15351,7 +15351,7 @@ const fragment=document.importNode(template.content,!0);part.setValue(fragment);
     </paper-menu-button>
   </template>
 
-    
+
 </dom-module>`;document.head.appendChild($_documentContainer$5.content);Polymer({is:"paper-share-button",properties:{/** URL to share. Don't forget to use http:// or https:// at the beginning of the url! */url:{type:String},/** Use window.location.href as url. (Only if the url is not set) */autoUrl:{type:Boolean},/** The icon for the button (share icon by default)*/buttonIcon:{type:String,value:"custom:share"},/** text to share with the URL. (Compatible w/ Twitter / Reddit / Blogger) */sharingText:{type:String,value:""},/** Set to true to make all the logo black & white */monochrome:{type:Boolean,value:!1},/** Enable Popup sharing. Only working with compatible website (Facebook, Google Plus, Twitter)*/popup:{type:Boolean,value:!1},/** Set to true to enable share with email (mailto) */email:{type:Boolean,value:!1},/** Set to true to enable share with Facebook */facebook:{type:Boolean,value:!1},/** Set to true to enable share with Google Plus */google:{type:Boolean,value:!1},/** Set to true to enable share with Twitter */twitter:{type:Boolean,value:!1},/** Set to true to enable share with Reddit */reddit:{type:Boolean,value:!1},/** Set to true to enable share with VK */vk:{type:Boolean,value:!1},/** Set to true to enable share with Blogger */blogger:{type:Boolean,value:!1},/** Set to true to enable share with Tumblr */tumblr:{type:Boolean,value:!1},horizontalAlign:{type:String,value:"left"}},_share:function(event){var element=dom(event).localTarget;if(!this.url&&this.autoUrl){this.url=window.location.href}if(this.url){this.fire("share-tap",{brand:element.icon});if(this.popup){switch(element.icon){case"brand:facebook":this._openPopup(element.getAttribute("href"),"Sharing",600,375);break;case"brand:google":this._openPopup(element.getAttribute("href"),"Sharing",400,445);break;case"brand:twitter":this._openPopup(element.getAttribute("href"),"Sharing",500,230);break;default:window.open(element.getAttribute("href"),"Sharing");}}else{window.open(element.getAttribute("href"),"Sharing")}}else{console.error("Impossible to share, no url set")}this.$.shareMenu.close()},_openPopup:function(url,title,w,h){//Center and open the popup.
 var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+window.top.screenX-w/2;window.open(url,title,"width="+w+", height="+h+", top="+y+", left="+x)}});/**
     @license
@@ -15365,11 +15365,11 @@ var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+
          Utility method that calls a callback whenever a media-query matches in response
          to the viewport size changing. The callback should take a boolean parameter
          (with `true` meaning the media query is matched).
-       
+
          Example:
-       
+
              import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
-       
+
              installMediaQueryWatcher(`(min-width: 600px)`, (matches) => {
                console.log(matches ? 'wide screen' : 'narrow sreen');
              });
@@ -15385,37 +15385,37 @@ var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+
         Utility method that updates the page's open graph and Twitter card metadata.
         It takes an object as a parameter with the following properties:
         title | description | url | image.
-      
+
         If the `url` is not specified, `window.location.href` will be used; for
         all other properties, if they aren't specified, then that metadata field will not
         be set.
-      
+
         Example (in your top level element or document, or in the router callback):
-      
+
             import { updateMetadata } from 'pwa-helpers/metadata.js';
-      
+
             updateMetadata({
               title: 'My App - view 1',
               description: 'This is my sample app',
               url: window.location.href,
               image: '/assets/view1-hero.png'
             });
-      
+
       */_exports.$mediaQuery=mediaQuery;const updateMetadata=({title,description,url,image,imageAlt})=>{if(title){document.title=title;setMetaTag("property","og:title",title)}if(description){setMetaTag("name","description",description);setMetaTag("property","og:description",description)}if(image){setMetaTag("property","og:image",image)}if(imageAlt){setMetaTag("property","og:image:alt",imageAlt)}url=url||window.location.href;setMetaTag("property","og:url",url)};/**
      Utility method to create or update the content of a meta tag based on an
      attribute name/value pair.
-   
+
      Example (in your top level element or document, or in the router callback):
-   
+
          import { setMetaTag } from 'pwa-helpers/metadata.js';
-   
+
          setMetaTag('name', 'twitter:card', 'summary');
-         
+
      This would create the following meta tag in the head of the document (or
      update the content attribute if a meta tag with name="twitter:card" exists):
-   
+
          <meta name="twitter:card" content="summary">
-   
+
    */_exports.updateMetadata=updateMetadata;function setMetaTag(attrName,attrValue,content){let element=document.head.querySelector(`meta[${attrName}="${attrValue}"]`);if(!element){element=document.createElement("meta");element.setAttribute(attrName,attrValue);document.head.appendChild(element)}element.setAttribute("content",content||"")}var metadata={updateMetadata:updateMetadata,setMetaTag:setMetaTag};/**
    @license
    Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
@@ -15428,11 +15428,11 @@ var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+
         Utility method that calls a callback whenever the network connectivity of the app changes.
         The callback should take a boolean parameter (with `true` meaning
         the network is offline, and `false` meaning online)
-      
+
         Example:
-      
+
             import { installOfflineWatcher } from 'pwa-helpers/network.js';
-      
+
             installOfflineWatcher((offline) => {
               console.log('You are ' + offline ? ' offline' : 'online');
             });
@@ -15446,31 +15446,31 @@ var y=window.top.outerHeight/2+window.top.screenY-h/2,x=window.top.outerWidth/2+
    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
    */ /**
         Basic router that calls a callback whenever the location is updated.
-      
+
         Example:
-      
+
             import { installRouter } from 'pwa-helpers/router.js';
-      
+
             installRouter((location) => handleNavigation(location));
-      
+
         For example, if you're using this router in a Redux-connected component,
         you could dispatch an action in the callback:
-      
+
             import { installRouter } from 'pwa-helpers/router.js';
             import { navigate } from '../actions/app.js';
-      
+
             installRouter((location) => store.dispatch(navigate(location)))
-      
+
         If you need to force a navigation to a new location programmatically, you can
         do so by pushing a new state using the History API, and then manually
         calling the callback with the new location:
-      
+
             window.history.pushState({}, '', '/new-route');
             handleNavigation(window.location);
-      
+
         Optionally, you can use the second argument to read the event that caused the
         navigation. For example, you may want to scroll to top only after a link click.
-      
+
             installRouter((location, event) => {
               // Only scroll to top on link clicks, not popstate events.
               if (event && event.type === 'click') {
@@ -17836,7 +17836,7 @@ x=tx*cos-ty*sin+this.aX;y=tx*sin+ty*cos+this.aY}return point.set(x,y)};EllipseCu
                                           Based on an optimized c++ solution in
                                            - http://stackoverflow.com/questions/9489736/catmull-rom-curve-with-no-cusps-and-no-self-intersections/
                                            - http://ideone.com/NoEbVM
-                                          
+
                                           This CubicPoly class could be used for reusing some variables and calculations,
                                           but for three.js curve use, it could be possible inlined and flatten into a single function call
                                           which can be placed in CurveUtils.
@@ -20682,9 +20682,9 @@ _exports.$oapBonusesAndPenalties=oapBonusesAndPenalties;class OapSwipableCards e
                   </div>
                 `)}
             </div>
-            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png"  width="auto" height="auto"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="100" height="100"/></div>
-            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay top"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png"  width="auto" height="auto"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay right"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png" width="100" height="100"/></div>
+            <div class="stackedcards--animatable stackedcards-overlay left"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/XX.png" width="auto" height="auto"/></div>
           </div>
           <div id="navigator" class="mainNavigator layout horizontal"></div>
           <paper-slider hidden
@@ -20694,15 +20694,15 @@ _exports.$oapBonusesAndPenalties=oapBonusesAndPenalties;class OapSwipableCards e
           </paper-slider>
           <div class="speedSliderInfo" hidden ?auto="${this.automaticSelectionActive}">${this.autoSliderTime}</div>
           <div class="global-actions" style="margin-top: 0px;" ?hidden="${!0===this.automaticSelectionActive||this.currentItem&&"ModuleTypeCard"===this.currentItem.module_type}">
-            <div class="left-action"><img src="https://image.ibb.co/heTxf7/20_status_close_3x.png" width="26" height="26"/>
+            <div class="left-action"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/XX.png" width="26" height="26"/>
             </div>
             <div hidden>
-              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="18" height="16"/>
+              <div ?hidden="${this.disableUpSwipe}" class="top-action"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png" width="18" height="16"/>
               </div>
             </div>
             <div style="width: 100px;">
               </div>
-            <div class="right-action"><img src="https://image.ibb.co/m1ykYS/rank_army_star_2_3x.png" width="30" height="28"/></div>
+            <div class="right-action"><img src="https://yrpri-eu-direct-assets.s3.eu-west-1.amazonaws.com/starX.png" width="30" height="28"/></div>
           </div>
         </div>
         <div class="final-state hidden"><h2>${this.localize("filterArticlesDone")}</h2></div>
